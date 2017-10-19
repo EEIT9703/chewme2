@@ -1,0 +1,31 @@
+.container{
+	width:100%;
+}
+
+.mymiddle{
+	margin:0 auto;
+	text-align:center;
+}
+
+.bg-littleblue{
+	 background-color:#46A3FF;
+	
+}
+.my-clear{
+	float: left;	
+}
+
+.my-titlefont{
+	font-weight:bold;
+}
+
+.my-rightfloat { 
+  float:right; 
+}
+.my-leftfloat { 
+  float:left; 
+}
+
+.my-list-inline{
+　display:inline;	
+}
