@@ -1,6 +1,7 @@
 package com.iii.eeit9703.activity.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -72,14 +73,78 @@ public class ActivityServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		//選擇行程
+		if("getOne_For_Update".equals(action)){
+			List<String>errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			try {
+				//1.接收請求
+				Integer actID = new Integer(req.getParameter("actID")); 
+				
+				//2.開始查詢資料
+				ActService actSvc = new ActService();
+				ActivityVO activityVO = actSvc.getOneAct(actID);
+				
+				//3.查詢完成 準備轉交
+				req.setAttribute("activityVO", activityVO); //取出資料庫activityVO 存入req
+				String url = "/createActivity.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); //成功轉交createActivity.jsp 
+				successView.forward(req, resp);
+				
+				//處理錯誤
+			} catch (NumberFormatException e) {
+				errorMsgs.add("無法取得要修改的資料"+e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/createActivity.jsp");
+				failureView.forward(req, resp);
+				e.printStackTrace();
+			}
+		}
+		
+		
 		
 		//活動上架
-		if("update".equals(action)){  //來自update_act_input.jsp 請求
+		if("update".equals(action)){  //來自/createActivity.jsp 請求
 			
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			
-			Integer actID = new Integer(req.getParameter("actID").trim());
+			try {
+				Integer actID = new Integer(req.getParameter("actID").trim());			
+				String act_name = req.getParameter("act_name");
+				Integer act_groups = new Integer(req.getParameter("act_groups"));
+				Integer act_current = new Integer(req.getParameter("act_groups"));
+				Date BDate = java.sql.Date.valueOf(req.getParameter("BDate"));
+				Date EDate = java.sql.Date.valueOf(req.getParameter("EDate"));
+				Integer activity_state = new Integer(req.getParameter("activity_state"));
+				
+//			Integer actID =new Integer(req.getParameter("actID").trim());
+				
+				ActivityVO activityVO = new ActivityVO();
+				
+				activityVO.setAct_name(act_name);
+				activityVO.setAct_groups(act_groups);
+				activityVO.setAct_current(act_current);
+				activityVO.setBDate(BDate);
+				activityVO.setEDate(EDate);
+				activityVO.setActivity_state(activity_state);
+				
+				if(!errorMsgs.isEmpty()){
+					req.setAttribute("activityVO", activityVO); //含有輸入錯誤的activityVO 也存入req
+					RequestDispatcher failureView =req.getRequestDispatcher("/createActivity.jsp");
+					failureView.forward(req, resp);
+					return;
+				}
+				
+				ActService actSvc = new ActService();
+				
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+			
+			
+			
+			
 		}
 		
 	}
