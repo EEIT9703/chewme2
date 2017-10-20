@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -9,9 +9,36 @@
 <meta charset="utf-8" />
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/mybootstrap.css">
+
 </head>
 
 <body>
+	<header> <nav class="navbar navbar-expand-lg">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand " href="#"> <img src="image/letter-c.png"
+				width="30" height="30" class="d-inline-black align-top " alt="">
+				CHEWME
+			</a>
+		</div>
+		<ul class="nav">
+			<li class=" nav-item"><a class="nav-link" href="#">Home</a></li>
+			<li class=" nav-item"><a class="nav-link" href="#">揪人玩</a></li>
+			<li class=" nav-item"><a class="nav-link" href="#">創行程</a></li>
+			<li class=" nav-item"><a class="nav-link" href="#">創社團</a></li>
+
+		</ul>
+		
+		<ul class="nav justify-content-end">
+			<li class=" nav-item"><a class="nav-link" href="#"><span
+					class="glyphicon glyphicon-user"></span> 登入</a></li>
+			<li class=" nav-item"><a class="nav-link" href="#"><span
+					class="glyphicon glyphicon-log-in"></span> 註冊</a></li>
+		</ul>
+	</div>
+
+	</nav> </header>
+
 	<div class="container">
 		<div class="carousel-item active">
 			<div class="row">
@@ -20,26 +47,7 @@
 				<div class="col"></div>
 			</div>
 		</div>
-		<nav class="navbar-light bg-littleblue text-white">
-			<a class="navbar-brand text-white" href="#"> <img
-				src="image/letter-c.png" width="30" height="30"
-				class="d-inline-black align-top " alt=""> CHEWME
-			</a>
-
-			<div class="btn-toolbar pull-right my-titlefont " role="toolbar"
-				aria-label="Toolbar with button groups">
-				<div class="btn-group mr-2 " role="group" aria-label="First group">
-					<button type="button" class="btn btn-primary bg-littleblue my-titlefont">揪行程</button>
-					<button type="button" class="btn btn-primary bg-littleblue my-titlefont">創社團</button>
-					<button type="button" class="btn btn-primary bg-littleblue my-titlefont">找社團</button>
-				</div>
-				<div class="btn-group mr-2 bg-littleblue" role="group" aria-label="Second group">
-					<button type="button" class="btn btn-primary bg-littleblue my-titlefont">登入</button>
-					<button type="button" class="btn btn-primary bg-littleblue my-titlefont">登出</button>
-				</div>
-
-			</div>
-		</nav>
+		<nav class="navbar-light bg-littleblue text-white"> </nav>
 		<div id="carouselExampleControls" class="carousel slide"
 			data-ride="carousel">
 
@@ -120,6 +128,7 @@
 	<script src="js/jquery-3.2.1.slim.min.js"></script>
 	<script src="js/popper.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+
 </body>
 
 </html>
