@@ -8,38 +8,40 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AreaDAO {
+public class CountyDAO {
 
 	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=CMDB";
 	String userid = "sa";
 	String passwd = "P@ssw0rd";
 	
-	private static final String SELECT = "SELECT * FROM taiwan_areas where countyID = ?";
+	private static final String COUNTY = "SELECT * FROM countys where countryID = ? order by countyID";
+		
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
 	
-	public List<AreaVO> findConty(String countyID){
-		
-		List<AreaVO> list = new ArrayList<AreaVO>();
-		AreaVO areaVO = null;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
+	
+	public ArrayList<CountyVO> getCounty(String countryID){
+
+		ArrayList<CountyVO> list = new ArrayList<CountyVO>();
+		CountyVO countyVO = null;
+
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(SELECT);
+			pstmt = con.prepareStatement(COUNTY);
 			
-			pstmt.setString(1, countyID);
+			pstmt.setString(1, countryID);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()){
-				areaVO = new AreaVO();
-				areaVO.setContyID(rs.getInt("contyID"));
-				areaVO.setConty(rs.getString("conty"));
-				areaVO.setCounty(rs.getString("county"));
-				areaVO.setCountyID(rs.getString("countyID"));
-				list.add(areaVO);
+				countyVO = new CountyVO();
+				countyVO.setCountyID(rs.getInt("countyID"));
+				countyVO.setCountyName(rs.getString("countyName"));
+				countyVO.setCountryName(rs.getString("countryName"));
+				countyVO.setCountryID(rs.getString("countryID"));
+				list.add(countyVO);
 			}
 			
 		} catch (ClassNotFoundException e) {
@@ -68,14 +70,15 @@ public class AreaDAO {
 	
 	public static void main(String[] args) {
 		
-		AreaDAO aDao = new AreaDAO();
+		CountyDAO aDao = new CountyDAO();
 		
-		List<AreaVO> list = aDao.findConty("TPE");
-		for(AreaVO area : list){
-			System.out.print(area.getContyID()+",");
-			System.out.print(area.getConty()+",");
-			System.out.print(area.getCounty()+",");
-			System.out.println(area.getCountyID()+",");
+		//查台北市區域
+		List<CountyVO> list = aDao.getCounty("TPE");
+		for(CountyVO area : list){
+			System.out.print(area.getCountyID()+",");
+			System.out.print(area.getCountyName()+",");
+			System.out.print(area.getCountryName()+",");
+			System.out.println(area.getCountryID());
 		}
 
 	}
