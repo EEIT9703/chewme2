@@ -11,13 +11,15 @@ sqlcmd -E -i   member\3_CreateTableMsgRooms_Msgs.sql
 :: sqlcmd -E -i   member\4_CreateTableMCalendar.sql
 
 
+:: create bridge的子表
+sqlcmd -E -i   bridge\1_CreateTableClubActivityList.sql
+sqlcmd -E -i   bridge\2_CreateTableClubMemberList.sql
+
 :: create club的子表
-sqlcmd -E -i   club\2_CreateTableClubActivityList.sql
-sqlcmd -E -i   club\3_CreateTableClubMemberList.sql
-sqlcmd -E -i   club\4_CreateTableIssues.sql
-sqlcmd -E -i   club\5_CreateTableComments.sql
-sqlcmd -E -i   club\6_CreateTableQuestion.sql
-sqlcmd -E -i   club\7_CreateTableReplys.sql
+sqlcmd -E -i   club\2_CreateTableIssues.sql
+sqlcmd -E -i   club\3_CreateTableComments.sql
+sqlcmd -E -i   club\4_CreateTableQuestion.sql
+sqlcmd -E -i   club\5_CreateTableReplys.sql
 
 :: create1行程編輯器所會用到的地點代碼
 sqlcmd -E -i   actEditor\1_CreateTableCountrys.sql

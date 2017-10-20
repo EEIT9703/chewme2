@@ -3,13 +3,12 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.iii.eeit9703.club.model.CommentVO" table="clubs">
+	<class name="com.iii.eeit9703.club.model.ClubVO" table="clubs">
 
 		<id name="clubId" column="clubId">
 			<generator class="identity" />
 		</id>
 
-		<property name="clubId" column="clubId" />
 		<property name="clubName" column="clubName" />
 		<property name="managerId" column="managerId" />
 		<property name="locationId" column="locationId" />

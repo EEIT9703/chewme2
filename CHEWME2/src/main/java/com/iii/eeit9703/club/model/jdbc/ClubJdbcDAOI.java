@@ -1,4 +1,4 @@
-package com.iii.eeit9703.club.model.jdbcDAO;
+package com.iii.eeit9703.club.model.jdbc;
 
 import java.util.List;
 
