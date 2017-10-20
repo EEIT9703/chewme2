@@ -69,6 +69,24 @@ select{width:120px;height:40px;}
 		  <div id="rest"></div>
 		  <div id="stay"></div>
 		</div>
+		<div class="modal fade" id="detail" aria-labelledby="modalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+			<div class="modal-content">
+			<div class="modal-body">
+				<p>TEST</p>
+			<table border="1">
+				<tbody>
+					<tr><td>名　稱</td><td id=detailName></td><td rowspan=3 id=detailPhoto></td></tr>	
+					<tr><td>電　話</td><td id=detailTel></td></tr>
+					<tr><td>地　址</td><td id=detailAdd></td></tr>
+					<tr><td>簡　介</td><td colspan=2 id=detailIntor></td></tr>
+						
+				</tbody>
+			</table>
+			</div>
+			</div>
+			</div>
+		</div>
 	</div>
 	<div ></div>
 </div>		
@@ -120,7 +138,6 @@ window.onload = function(){
 			stay.empty();
 			var type=new Array("景點","餐廳","住宿");
 			for(var k=0;k<array.length;k++){
-//			$.each(array,function(i,attraction){
 //				alert(attraction.type);
 //				console.log(array.length);
 				var dataName = array[k].name;
@@ -134,6 +151,8 @@ window.onload = function(){
 					console.log(array[k].name);
 					$('#attr>div').css("background-color","#4EFEB3");
 					$('#attr>div').draggable();
+					$('#attr>div').attr("data-toggle","modal");
+					$('#attr>div').attr("data-target","#detail");
 					$('#attr>div').draggable({
 						zIndex: 999,
 						revert: true,		// will cause the event to go back to its
@@ -145,7 +164,6 @@ window.onload = function(){
 				else if(type[1].match(array[k].type)){
 					rest.append(item);
 					$('#rest>div').css("background-color","#FFA042");
-//					$('#rest>div').data('event', { id:item.attr("id"), title:item.text() });
 					$('#rest>div').draggable();
 					$('#rest>div').draggable({
 						zIndex: 999,
@@ -157,7 +175,6 @@ window.onload = function(){
 				else if(type[2].match(array[k].type)){
 					stay.append(item);
 					$('#stay>div').css("background-color","#6A6AFF");
-//					$('#stay>div').data('event', { id:item.attr("id"), title:item.text() });
 					$('#stay>div').draggable();
 					$('#stay>div').draggable({
 						zIndex: 999,
@@ -168,11 +185,11 @@ window.onload = function(){
 				}
 				for(var item of  $('.item')){
 					$(item).data('event', { id:$(item).attr("id"), title:$(item).text() });
+					
 				}
 				
 				
 }	
-//			});
 		}
 		
 
