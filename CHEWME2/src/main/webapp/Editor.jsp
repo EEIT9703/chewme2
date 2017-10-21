@@ -80,7 +80,102 @@ select{width:120px;height:40px;}
 
 
 <script>
-	var i=1;
+var i=1;
+
+window.onload = function(){
+
+//		document.getElementById("county").addEventListener("change",function (){
+//			var county = document.getElementById("county");
+		
+//		});
+	$("#country").change(function (){
+		var country = document.getElementById("country");
+//		alert("選擇縣市："+country.value);
+		$.getJSON('/actEditor/AreaServlet.do?mission=getCountry',{'country':country.value},sendCounty);
+		function sendCounty(array){
+			var opt = $('#county');
+			opt.empty();
+			$.each(array,function(i,county){
+				var cell = $("<option></option>");
+				cell.text(county.countyName);
+				cell.val(county.countyID);
+				opt.append(cell);
+			})
+		}
+	});
+	$("#county").change(function (){
+		var county = document.getElementById("county");
+//		alert("選擇區域："+county.value);
+		$.getJSON('/actEditor/AreaServlet.do?mission=getCounty',{'county':county.value},sendAttraction);
+		function sendAttraction(array){
+			var attr = $("#attr");
+			var rest = $("#rest");
+			var stay = $("#stay");
+			attr.empty();
+			rest.empty();
+			stay.empty();
+			var type=new Array("景點","餐廳","住宿");
+			$.each(array,function(i,attraction){
+//				alert(attraction.type);
+				var dataName = attraction.name;
+				var dataID = attraction.attractionID
+				var name = $("<p></p>").text(dataName);
+				var item = $("<div class='item'></div>").append(name);
+				item.attr("id",dataID);
+				
+				if(type[0].match(attraction.type)){
+					attr.append(item);
+					console.log(this.name);
+					$('#attr>div').css("background-color","#4EFEB3");
+					$('#attr>div').data('event', { id:item.attr("id"), title:item.text() });
+					$('#attr>div').draggable();
+					$('#attr>div').draggable({
+						zIndex: 999,
+						revert: true,		// will cause the event to go back to its
+					    revertDuration: 0 	// original position after the drag
+					});
+				
+				}
+				else if(type[1].match(attraction.type)){
+					rest.append(item);
+					$('#rest>div').css("background-color","#FFA042");
+					$('#rest>div').data('event', { id:item.attr("id"), title:item.text() });
+					$('#rest>div').draggable();
+					$('#rest>div').draggable({
+						zIndex: 999,
+						revert: true,      
+					    revertDuration: 0  
+					});
+					
+				}
+				else if(type[2].match(attraction.type)){
+					stay.append(item);
+					$('#stay>div').css("background-color","#6A6AFF");
+					$('#stay>div').data('event', { id:item.attr("id"), title:item.text() });
+					$('#stay>div').draggable();
+					$('#stay>div').draggable({
+						zIndex: 999,
+						revert: true,      
+					    revertDuration: 0  
+					});
+											
+				}
+				
+				
+			});
+		}
+		
+	});
+
+$(function() {
+				$("#tabs").tabs({event: "mouseover"});
+	  		 });	
+
+}
+
+$(function() {
+			
+//initialize the calendar
 	$('#calendar').fullCalendar({
     	height: 680,
     	allDaySlot: false,
@@ -88,11 +183,35 @@ select{width:120px;height:40px;}
     	slotDuration:"01:00",
     	slotLabelFormat:"HH:mm",
     	minTime:"01:00",
+    	editable: true,
     	droppable: true,
-    	dropAccept:"#draggable",
+    	//dropAccept:".item",
     	drop: function(date,jsEven,ui,resourceId) {
-    	        alert("Dropped on " + date.format()+" id= "+this.id);
+    			console.log('drop', date.format(), resourceId);
+
+    			// retrieve the dropped element's stored Event Object
+    			var originalEventObject = $(this).data('eventObject');
+//    			alert(originalEventObject.id);
+    			// we need to copy it, so that multiple events don't have a reference to the same object
+    			var copiedEventObject = $.extend({}, originalEventObject);
+    			// assign it the date that was reported
+    			copiedEventObject.start = date;
+    			// render the event on the calendar
+    			// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+    			$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+    			// is the "remove after drop" checkbox checked?
+    			if ($('#drop-remove').is(':checked')) {
+					// if so, remove the element from the "Draggable Events" list
+					$(this).remove();
+				}
     	    },
+    	    eventReceive: function(event) { // called when a proper external event is dropped
+				console.log('eventReceive', event);
+			},
+			eventDrop: function(event) { // called when an event (already on the calendar) is moved
+				console.log('eventDrop', event);
+			},
+
     	//columnHeader:false,
 		defaultView: 'agendaDay',
 		header:{
@@ -123,83 +242,11 @@ select{width:120px;height:40px;}
         {id: 'day1', title: 'DAY 1',}
     	]
     	// other options go here...
-	});
-//draggable 相關	
-	$('#draggable').draggable({
-	    revert: true,      // immediately snap back to original position
-	    revertDuration: 0  //
-	});
-	$('#draggable').data('event', { id:'415', title: 'my event' });
-	$( function() {
-	    $( "#draggable" ).draggable();
-	  } );
-
-	window.onload = function(){
-
-// 		document.getElementById("county").addEventListener("change",function (){
-// 			var county = document.getElementById("county");
-			
-// 		});
-		$("#country").change(function (){
-			var country = document.getElementById("country");
-//			alert("選擇縣市："+country.value);
-			$.getJSON('/actEditor/AreaServlet.do?mission=getCountry',{'country':country.value},sendCounty);
-			function sendCounty(array){
-				var opt = $('#county');
-				opt.empty();
-				$.each(array,function(i,county){
-					var cell = $("<option></option>");
-					cell.text(county.countyName);
-					cell.val(county.countyID);
-					opt.append(cell);
-				})
-			}
-		});
-		$("#county").change(function (){
-			var county = document.getElementById("county");
-//			alert("選擇區域："+county.value);
-			$.getJSON('/actEditor/AreaServlet.do?mission=getCounty',{'county':county.value},sendAttraction);
-			function sendAttraction(array){
-				var attr = $("#attr");
-				var rest = $("#rest");
-				var stay = $("#stay");
-				attr.empty();
-				rest.empty();
-				stay.empty();
-				var type=new Array("景點","餐廳","住宿");
-				$.each(array,function(i,attraction){
-//					alert(attraction.type);
-					if(type[0].match(attraction.type)){
-						var name = $("<p></p>").text(attraction.name);
-						var item = $("<div class='item' style='background-color:#AAAAFF'></div>").append(name);
-						item.attr("id",attraction.attractionID);
-						attr.append(item);
-					}
-					else if(type[1].match(attraction.type)){
-						var name = $("<p></p>").text(attraction.name);
-						var item = $("<div class='item' style='background-color:#96FED1'></div>").append(name);
-						item.attr("id",attraction.attractionID);
-						rest.append(item);
-					}
-					else if(type[2].match(attraction.type)){
-						var name = $("<p></p>").text(attraction.name);
-						var item = $("<div class='item' style='background-color:#FFBD9D'></div>").append(name);
-						item.attr("id",attraction.attractionID);
-						stay.append(item);
-					}
-					
-				})
-			}
-			
-		});
-	$(function() {
-					$("#tabs").tabs({event: "mouseover"});
-		  		 });	
-	$( function() {
-	    			$( "#draggable" ).draggable();
-	  			  });
+	});		
 	
-	}
+})
+
+
 </script>
 </body>
 
