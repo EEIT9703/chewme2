@@ -26,6 +26,6 @@ sqlcmd -E -i   actEditor\2_CreateTableCountys.sql
 :: create後台所會用到的表格
 sqlcmd -E -i   backstage\Collection.sql
 sqlcmd -E -i   backstage\Report.sql
-
+sqlcmd -E -i   backstage\Adphoto.sql
 
 pause
