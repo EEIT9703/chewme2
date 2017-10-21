@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="org.eeit.group3.photo.model.PhotoVO" table="photo" >
+    <class name="com.iii.eeit9703.adphoto.model.PhotoVO" table="adphoto" >
         
         <id name="photo_no" column="photo_no">
             <generator class="identity"/>

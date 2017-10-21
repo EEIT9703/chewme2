@@ -26,7 +26,7 @@
 
 		<!--Java物件與資料庫表格的映射檔 -->
 		
-		<mapping resource="org/eeit/group3/photo/model/photo.hbm.xml" />
+		<mapping resource="com/iii/eeit9703/adphoto/model/photo.hbm.xml" />
 		
 <!-- 		收藏表的mapping -->
 <!-- 		<mapping resource="org/eeit/group3/collection/model/collection.hbm.xml" /> -->

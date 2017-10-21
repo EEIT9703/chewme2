@@ -97,18 +97,19 @@
                 <div class="col-lg-8">
                     <div class="panel panel-default">
                         內容區         <div class="panel-heading"> 
-                     <form name="myForm" enctype="multipart/form-data" >
-					<input type="file" id="picture1" name="photo" >
-					<input type="file" id="picture2" name="photo" >
-					<input type="file" id="picture3" name="photo" >
-					<input type="file" id="picture4" name="photo" >
-					<input type="file" id="picture5" name="photo" >	
-						
-						<input type="button"  id="send" value="上傳" >
+                
+			         <form id="fileUploadForm" >
+					<input type="file" id="1" name="photo" >
+					<input type="file" id="2" name="photo" >
+<!-- 					<input type="file" id="picture3" name="photo" > -->
+<!-- 					<input type="file" id="picture4" name="photo" > -->
+<!-- 					<input type="file" id="picture5" name="photo" >	 -->
+<!-- 					<input id="send" type="button" value="上傳" > -->
+					 <input type="submit" value="上傳" id="btnSubmit"/>
+			       <div id="result"></div>
 			         </form>
+			        	
 			          
-			         
-			         <div id="result"></div>
                         </div>          
                     </div>              
                 </div>
@@ -134,16 +135,60 @@
 
 	<script>
 	
-	$(function() {
-		$('#send').click(function(){
-			var data =$('form[name="myForm"]').serialize();			
- 			$.post("upload",data,function(data){
-				$('#re').text("success");
- 			});
-		});
 
-	
-	})
+// 		$('#send').click(function(){
+// 			var data =$('form[name="myForm"]').serialize();			
+//  			$.post("upload",data,function(){
+// 				$('#result').text("success");
+//  			});
+// 		});
+$(document).ready(function () {
+
+    $("#btnSubmit").click(function (event) {
+
+        //stop submit the form, we will post it manually.
+        event.preventDefault();
+
+        // Get form
+        var form = $('#fileUploadForm')[0];
+
+		// Create an FormData object
+        var data = new FormData(form);
+
+		// If you want to add an extra field for the FormData
+      //  data.append("CustomField", "This is some extra data, testing");
+
+		// disabled the submit button
+       // $("#btnSubmit").prop("disabled", true);
+
+        $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url:"upload",
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+
+                $("#result").text(data);
+                console.log("SUCCESS : ", data);
+                $("#btnSubmit").prop("disabled", false);
+
+            },
+            error: function (e) {
+
+                $("#result").text(e.responseText);
+                console.log("ERROR : ", e);
+                $("#btnSubmit").prop("disabled", false);
+
+            }
+        });
+
+    });
+
+});
 	</script>
 	<script src='backage/full/moment.min.js'></script>
     <script src='backage/full/fullcalendar.min.js'></script>
