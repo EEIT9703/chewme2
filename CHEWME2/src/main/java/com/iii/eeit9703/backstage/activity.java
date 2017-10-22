@@ -22,7 +22,7 @@ import com.iii.eeit9703.activity.model.ActivityVO;
 /**
  * Servlet implementation class AreaServlet
  */
-@WebServlet("/activity.do")
+@WebServlet("accttt")
 public class activity extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -41,13 +41,13 @@ public class activity extends HttpServlet {
 	}
 
 	private void processRequest(HttpServletRequest request, HttpServletResponse response) {
-		
+	
 		try {
 			String action = request.getParameter("action");
 			request.setCharacterEncoding("UTF-8");
 			String countryID = null;
 			Integer countyID = null;
-			
+			System.out.println("Aaa");
 			response.setCharacterEncoding("UTF-8");
 			PrintWriter out = response.getWriter();
 			

@@ -156,7 +156,7 @@
 	<script src="js/jquery.min.js"></script>
   	<script>
   	window.onload = function(){
-  		$.getJSON('activity?action=getall', {}, function (array){
+  		$.getJSON('accttt?action=getall', {}, function (array){
   			  var docFrag = $(document.createDocumentFragment());
 	           var tb = $('#activity>tbody');
 	           tb.empty();
