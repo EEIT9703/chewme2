@@ -95,7 +95,7 @@ public class ActivityServlet extends HttpServlet {
 				//處理錯誤
 			} catch (NumberFormatException e) {
 				errorMsgs.add("無法取得要修改的資料"+e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/createActivity.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/act/createActi.jsp");
 				failureView.forward(req, resp);
 				e.printStackTrace();
 			}
@@ -110,6 +110,7 @@ public class ActivityServlet extends HttpServlet {
 			req.setAttribute("errorMsgs", errorMsgs);
 			
 			try {
+				//1.接收請求
 				Integer actID = new Integer(req.getParameter("actID").trim());			
 				String act_name = req.getParameter("act_name");
 				Integer act_groups = new Integer(req.getParameter("act_groups"));
@@ -131,14 +132,25 @@ public class ActivityServlet extends HttpServlet {
 				
 				if(!errorMsgs.isEmpty()){
 					req.setAttribute("activityVO", activityVO); //含有輸入錯誤的activityVO 也存入req
-					RequestDispatcher failureView =req.getRequestDispatcher("/createActivity.jsp");
+					RequestDispatcher failureView =req.getRequestDispatcher("/act/createActi.jsp");
 					failureView.forward(req, resp);
 					return;
 				}
 				
+				//2.開始修改資料
 				ActService actSvc = new ActService();
+				activityVO = actSvc.updateAct(actID, act_name, act_groups, act_current, BDate, EDate, activity_state);
 				
-			} catch (NumberFormatException e) {
+				//修改完成  準備轉交
+				req.setAttribute("activityVO", activityVO);  //資料庫update成功後 正確的activityVO 存入req
+				String url = "/act/createActi.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, resp);
+				
+			} catch (Exception e) {
+				errorMsgs.add("修改資料失敗"+e.getMessage());
+				RequestDispatcher failureView =req.getRequestDispatcher("/act/createActi.jsp");
+				failureView.forward(req, resp);
 				e.printStackTrace();
 			}
 			
