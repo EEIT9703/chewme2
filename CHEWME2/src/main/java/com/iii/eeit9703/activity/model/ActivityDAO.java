@@ -19,7 +19,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 	static{
 		try {
 			Context ctx = new InitialContext(); //初始化
-			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/DB01"); //連結資料庫
+			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/TestDB"); //連結資料庫
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -27,18 +27,18 @@ public class ActivityDAO implements ActivityDAO_interface {
 	
 	//新增活動
 		private static final String INSERT_STMT =
-				"INSERT INTO activity (act_name,act_groups,act_current,BDate,EDate,activity_state) VALUES (?,?,?,?,?,?) ";
+				"INSERT INTO activity (act_name,act_groups,act_current,BDate,EDate,activity_state,collectID) VALUES (?,?,?,?,?,?,?) ";
 		//修改活動
 		private static final String UPDATE_STMT =
-				"UPDATE activity set act_name=?, act_groups=?, act_current=?, BDate=?, EDate=?, activity_state=?  where actID = ? ";
+				"UPDATE activity set act_name=?, act_groups=?, act_current=?, BDate=?, EDate=?, activity_state=?, collectID=?  where actID = ? ";
 		//刪除活動
 		private static final String DELETE_STMT =
 				"DELETE FROM activity actID = ?";
 		//查詢活動
 		private static final String GET_ALL_STMT =
-			      "SELECT act_name,act_groups,act_current,BDate,EDate,activity_state FROM activity order by actID";
+			      "SELECT act_name,act_groups,act_current,BDate,EDate,activity_state,collectID FROM activity order by actID";
 		private static final String GET_ONE_STMT =
-			      "SELECT act_name,act_groups,act_current,BDate,EDate,activity_state FROM activity where actID = ?";
+			      "SELECT act_name,act_groups,act_current,BDate,EDate,activity_state,collectID FROM activity where actID = ?";
 	
 	//新增活動
 	@Override
@@ -57,6 +57,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 			pstmt.setDate(4, activityVO.getBDate());      //開始日期
 			pstmt.setDate(5, activityVO.getEDate());     //結束日期
 			pstmt.setInt(6, activityVO.getActivity_state());  //活動上下架
+			pstmt.setInt(7, activityVO.getCollectID());
 		
 			pstmt.executeUpdate();
 			
@@ -101,6 +102,9 @@ public class ActivityDAO implements ActivityDAO_interface {
 			pstmt.setDate(4, activityVO.getBDate());      //開始日期
 			pstmt.setDate(5, activityVO.getEDate());     //結束日期
 			pstmt.setInt(6, activityVO.getActivity_state());  //活動上下架
+			pstmt.setInt(7, activityVO.getCollectID());     //收藏表
+
+			
 			
 			pstmt.executeUpdate();
 			

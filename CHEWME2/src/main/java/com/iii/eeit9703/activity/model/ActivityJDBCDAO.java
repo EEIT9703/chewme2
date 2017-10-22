@@ -31,9 +31,9 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 			"DELETE FROM activity actID = ?";
 	//查詢活動
 	private static final String GET_ALL_STMT =
-		      "SELECT act_name,act_groups,act_current,BDate,EDate,activity_state FROM activity order by actID";
+		      "SELECT act_name,act_groups,act_current,BDate,EDate,activity_state,collectID FROM activity order by actID";
 	private static final String GET_ONE_STMT =
-		      "SELECT act_name,act_groups,act_current,BDate,EDate,activity_state FROM activity where actID = ?";
+		      "SELECT act_name,act_groups,act_current,BDate,EDate,activity_state,collectID FROM activity where actID = ?";
 
 	
 	//新增行程
@@ -337,6 +337,7 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 		actVO1.setBDate(java.sql.Date.valueOf("2017-10-10"));
 		actVO1.setEDate(java.sql.Date.valueOf("2017-10-11"));
 		actVO1.setActivity_state(0);
+		actVO1.setCollectID(0);
 		dao.insert(actVO1);
 		
 		//修改

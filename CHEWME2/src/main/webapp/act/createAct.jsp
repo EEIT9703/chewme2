@@ -92,7 +92,7 @@
 	</div>
 	</nav>
 
-
+  <jsp:useBean id="actSvc" scope="page" class="com.iii.eeit9703.activity.model.ActService" />
 
 	<!-- Main component for a primary marketing message or call to action -->
 	<div class="jumbotron">
