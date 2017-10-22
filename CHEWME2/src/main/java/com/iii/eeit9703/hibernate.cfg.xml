@@ -25,9 +25,16 @@
 		<property name="hibernate.current_session_context_class">thread</property>
 
 		<!--Java物件與資料庫表格的映射檔 -->
-		
+		<!--photo 相關的映射表格 -->
 		<mapping resource="com/iii/eeit9703/adphoto/model/photo.hbm.xml" />
-		
+		<!--club 相關的映射表格 -->
+		<mapping resource="com/iii/eeit9703/club/model/HibernateDAO/club.hbm.xml" />
+		<mapping resource="com/iii/eeit9703/club/model/HibernateDAO/clubActList.hbm.xml" />
+		<mapping resource="com/iii/eeit9703/club/model/HibernateDAO/clubMemList.hbm.xml" />
+		<mapping resource="com/iii/eeit9703/club/model/HibernateDAO/Comment.hbm.xml" />
+		<mapping resource="com/iii/eeit9703/club/model/HibernateDAO/Issue.hbm.xml" />
+		<mapping resource="com/iii/eeit9703/club/model/HibernateDAO/Question.hbm.xml" />
+		<mapping resource="com/iii/eeit9703/club/model/HibernateDAO/Reply.hbm.xml" />
 <!-- 		收藏表的mapping -->
 <!-- 		<mapping resource="org/eeit/group3/collection/model/collection.hbm.xml" /> -->
 <!-- 		<mapping resource="org/eeit/group3/activity/model/activity.hbm.xml" /> -->

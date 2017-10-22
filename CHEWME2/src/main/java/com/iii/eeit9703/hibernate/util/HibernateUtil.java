@@ -3,7 +3,7 @@
  * it also hides the fact that it uses a static singleton
 */
 
-package hibernate.util;
+package com.iii.eeit9703.hibernate.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
