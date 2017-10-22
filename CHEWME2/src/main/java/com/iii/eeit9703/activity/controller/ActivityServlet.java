@@ -1,7 +1,9 @@
 package com.iii.eeit9703.activity.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,7 +14,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
+
 import com.iii.eeit9703.activity.model.ActService;
+import com.iii.eeit9703.activity.model.ActivityDAO;
 import com.iii.eeit9703.activity.model.ActivityVO;
 
 
@@ -33,7 +38,7 @@ public class ActivityServlet extends HttpServlet {
 		
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-		
+		PrintWriter out = resp.getWriter();
 		//新增活動
 		if("insert".equals(action)){  //來自XXX.jsp的請求
 				
@@ -156,9 +161,10 @@ public class ActivityServlet extends HttpServlet {
 			
 			
 			
-			
 		}
-		
+			
+			
+			
 	}
 
 }
