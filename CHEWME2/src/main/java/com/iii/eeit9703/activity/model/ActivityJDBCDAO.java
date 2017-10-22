@@ -16,16 +16,16 @@ import javax.sql.DataSource;
 public class ActivityJDBCDAO implements ActivityDAO_interface {
 	
 	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=DB01";
+	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=CMDB";
 	String userid = "sa";
 	String passwd = "P@ssw0rd";
 
 	//新增活動
 	private static final String INSERT_STMT =
-			"INSERT INTO activity (act_name,act_groups,act_current,BDate,EDate,activity_state) VALUES (?,?,?,?,?,?) ";
+			"INSERT INTO activity (act_name,act_groups,act_current,BDate,EDate,activity_state,collectID) VALUES (?,?,?,?,?,?,?)";
 	//修改活動
 	private static final String UPDATE_STMT =
-			"UPDATE activity set act_name=?, act_groups=?, act_current=?, BDate=?, EDate=?, activity_state=?  where actID = ? ";
+			"UPDATE activity set act_name=?, act_groups=?, act_current=?, BDate=?, EDate=?, activity_state=?, collectID=?  where actID = ? ";
 	//刪除活動
 	private static final String DELETE_STMT =
 			"DELETE FROM activity actID = ?";
@@ -55,8 +55,9 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 			pstmt.setInt(3, activityVO.getAct_current());  //當前人數
 			pstmt.setDate(4, activityVO.getBDate());      //開始日期
 			pstmt.setDate(5, activityVO.getEDate());     //結束日期
-			pstmt.setInt(6, activityVO.getActivity_state());  //活動上下架
-		
+			pstmt.setInt(6, activityVO.getActivity_state()); //活動上下架
+			pstmt.setInt(7, activityVO.getCollectID());     //收藏表
+			
 			pstmt.executeUpdate();
 			
 		} catch (ClassNotFoundException e) {
@@ -106,6 +107,7 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 			pstmt.setDate(4, activityVO.getBDate());      //開始日期
 			pstmt.setDate(5, activityVO.getEDate());     //結束日期
 			pstmt.setInt(6, activityVO.getActivity_state());  //活動上下架
+			pstmt.setInt(7, activityVO.getCollectID());     //收藏表
 			
 			pstmt.executeUpdate();
 			
