@@ -63,7 +63,7 @@
                             <a href="report.jsp"><i class="fa fa-table fa-fw"></i>檢舉名單</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-edit fa-fw"></i> Forms</a>
+                            <a href="backage_activity.jsp"><i class="fa fa-edit fa-fw"></i>活動管理</a>
                         </li>                      
                         <li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
@@ -139,7 +139,7 @@
  			//cell2=JSON.stringify(cell1); 	
 			loadProduct(cell1);
 		})	
-		   function loadProduct(cell1){	
+		   function loadProduct(cell1){	 
 		$(document).ready(function() {		
 			//alert( JSON.stringify(all));
 			$('#calendar').fullCalendar({

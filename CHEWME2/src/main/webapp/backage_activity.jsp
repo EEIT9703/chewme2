@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 
 <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
-    <link href= "backage/full/fullcalendar.min.css" rel='stylesheet' />
-	<link href= "backage/full/fullcalendar.print.min.css"rel='stylesheet' media='print' />
 
     <link href="backage/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -26,9 +24,12 @@
 	<header> <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<a class="navbar-brand " href="#"><img src="image/letter-c.png"width="30" height="30" alt="">CHEWME</a>
+		<a class="navbar-brand " href="#"><img src="image/letter-c.png" width="30" height="30" alt=""></a>	
 		</div>
-		<ul class="nav navbar-nav">
+		<div class="navbar-header">
+		<a class="navbar-brand " href="#">CHEWME</a>
+		</div>
+		<ul class="nav navbar-nav" style="margin-left:50px" >
 			<li><a href="#">Home</a></li>
 			<li><a href="#">揪人玩</a></li>
 			<li><a href="#">創行程</a></li>
@@ -63,7 +64,7 @@
                             <a href="report.jsp"><i class="fa fa-table fa-fw"></i>檢舉名單</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-edit fa-fw"></i>活動管理</a>
+                            <a href="backage_activity.jsp"><i class="fa fa-edit fa-fw"></i>活動管理</a>
                         </li>                      
                         <li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
@@ -96,21 +97,42 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="panel panel-default">
-                        內容區         <div class="panel-heading"> 
-                
-			         <form id="fileUploadForm" >
-					<input type="file" id="1" name="photo" >
-					<input type="file" id="2" name="photo" >
-<!-- 					<input type="file" id="picture3" name="photo" > -->
-<!-- 					<input type="file" id="picture4" name="photo" > -->
-<!-- 					<input type="file" id="picture5" name="photo" >	 -->
-<!-- 					<input id="send" type="button" value="上傳" > -->
-					 <input type="submit" value="上傳" id="btnSubmit"/>
-			       <div id="result"></div>
-			         </form>
-			        	
-			          
-                        </div>          
+                      
+                         <div class="panel-heading"> 
+						                        
+             <table id="activity" class="table table-bordered">
+                       <thead>
+                          <tr>
+                             <th>活動編號</th>
+                             <th>活動名稱</th>
+                             <th>揪團人數</th>
+                             <th>目前人數</th>
+                          	 <th>活動開始時間</th>
+                             <th>活動結束時間</th>
+                             <th>活動狀態</th>
+                          </tr>
+                       </thead>
+                       <tbody>
+                      
+                       </tbody>
+                       <tfoot>
+                       <tr>
+<!--                        <form name="myForm"> -->
+<!--                         <td><input type="hidden" id="ProductID" name="ProductID"><span></span></td> -->
+<!--                         <td><input type="text" class="form-control" id="ProductName" name="ProductName" placeholder="產品名稱"></td> -->
+<!--                         <td><input type="text" style="width:100px" class="form-control" id="UnitPrice" name="UnitPrice" placeholder="價格"></td> -->
+<!--                         <td><input type="text" style="width:100px" class="form-control" id="UnitsInStock" name="UnitsInStock" placeholder="庫存量"></td> -->
+<!--                         <td><button id="buttonAdd" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span></button> -->
+<!--                         <button id="buttonUpdate" type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></button></td> -->
+<!--                        </tr> -->
+<!--                        </form> -->
+                       </tfoot>
+                   </table>     
+                       	
+                       	
+                       	</div>       
+                        
+                                      
                     </div>              
                 </div>
                 
@@ -129,69 +151,32 @@
         </div>     
     </div>
     </div>
-
- 	 <script src="js/bootstrap.min.js"></script>
-	 <script src="js/jquery.min.js"></script>
-
-	<script>
-	
-
-// 		$('#send').click(function(){
-// 			var data =$('form[name="myForm"]').serialize();			
-//  			$.post("upload",data,function(){
-// 				$('#result').text("success");
-//  			});
-// 		});
-$(document).ready(function () {
-
-    $("#btnSubmit").click(function (event) {
-
-        //stop submit the form, we will post it manually.
-        event.preventDefault();
-
-        // Get form
-        var form = $('#fileUploadForm')[0];
-
-		// Create an FormData object
-        var data = new FormData(form);
-
-		// If you want to add an extra field for the FormData
-      //  data.append("CustomField", "This is some extra data, testing");
-
-		// disabled the submit button
-       // $("#btnSubmit").prop("disabled", true);
-
-        $.ajax({
-            type: "POST",
-            enctype: 'multipart/form-data',
-            url:"upload",
-            data: data,
-            processData: false,
-            contentType: false,
-            cache: false,
-            timeout: 600000,
-            success: function (data) {
-
-                $("#result").text(data);
-                console.log("SUCCESS : ", data);
-                $("#btnSubmit").prop("disabled", false);
-
-            },
-            error: function (e) {
-
-                $("#result").text(e.responseText);
-                console.log("ERROR : ", e);
-                $("#btnSubmit").prop("disabled", false);
-
-            }
-        });
-
-    });
-
-});
-	</script>
-	<script src='backage/full/moment.min.js'></script>
-    <script src='backage/full/fullcalendar.min.js'></script>
-
+  
+ 	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.min.js"></script>
+  	<script>
+  	window.onload = function(){
+  		$.getJSON('activity?action=getall', {}, function (array){
+  			  var docFrag = $(document.createDocumentFragment());
+	           var tb = $('#activity>tbody');
+	           tb.empty();
+  			$.each(array,function(i,activity){
+			
+  			  var cell1 = $('<td></td>').text(activity.actID);
+              var cell2 = $('<td></td>').text(activity.act_name);
+              var cell3 = $('<td></td>').text(activity.act_groups);
+              var cell4 = $('<td></td>').text(activity.act_current);
+              var cell5 = $('<td></td>').text(activity.BDdat);
+              var cell6 = $('<td></td>').text(activity.Edate);
+              var cell7 = $('<td></td>').text(activity.activity_state);
+              var row = $('<tr></tr>').append([cell1, cell2, cell3, cell4,cell5,cell6,cell7]);
+              docFrag.append(row);
+			});
+			 tb.append(docFrag);
+  			
+  		
+  		});
+    };
+    </script>
 </body>
 </html>
