@@ -155,28 +155,28 @@
  	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.min.js"></script>
   	<script>
-  	window.onload = function(){
-  		$.getJSON('accttt?action=getall', {}, function (array){
-  			  var docFrag = $(document.createDocumentFragment());
-	           var tb = $('#activity>tbody');
-	           tb.empty();
-  			$.each(array,function(i,activity){
+//   	window.onload = function(){
+//   		$.getJSON('accttt?action=getall', {}, function (array){
+//   			  var docFrag = $(document.createDocumentFragment());
+// 	           var tb = $('#activity>tbody');
+// 	           tb.empty();
+//   			$.each(array,function(i,activity){
 			
-  			  var cell1 = $('<td></td>').text(activity.actID);
-              var cell2 = $('<td></td>').text(activity.act_name);
-              var cell3 = $('<td></td>').text(activity.act_groups);
-              var cell4 = $('<td></td>').text(activity.act_current);
-              var cell5 = $('<td></td>').text(activity.BDdat);
-              var cell6 = $('<td></td>').text(activity.Edate);
-              var cell7 = $('<td></td>').text(activity.activity_state);
-              var row = $('<tr></tr>').append([cell1, cell2, cell3, cell4,cell5,cell6,cell7]);
-              docFrag.append(row);
-			});
-			 tb.append(docFrag);
+//   			  var cell1 = $('<td></td>').text(activity.actID);
+//               var cell2 = $('<td></td>').text(activity.act_name);
+//               var cell3 = $('<td></td>').text(activity.act_groups);
+//               var cell4 = $('<td></td>').text(activity.act_current);
+//               var cell5 = $('<td></td>').text(activity.BDdat);
+//               var cell6 = $('<td></td>').text(activity.Edate);
+//               var cell7 = $('<td></td>').text(activity.activity_state);
+//               var row = $('<tr></tr>').append([cell1, cell2, cell3, cell4,cell5,cell6,cell7]);
+//               docFrag.append(row);
+// 			});
+// 			 tb.append(docFrag);
   			
   		
-  		});
-    };
+//   		});
+//     };
     </script>
 </body>
 </html>
