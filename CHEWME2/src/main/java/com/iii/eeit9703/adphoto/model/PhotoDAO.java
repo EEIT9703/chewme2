@@ -3,10 +3,9 @@ package com.iii.eeit9703.adphoto.model;
 import java.util.List;
 import java.util.Set;
 
-
 import org.hibernate.Session;
 
-import hibernate.util.HibernateUtil;
+import com.iii.eeit9703.hibernate.util.HibernateUtil;
 
 public class PhotoDAO implements Photo_interface {
 

@@ -5,7 +5,7 @@ import java.sql.Date;
 public class ReplyVO {
 	private Integer reqlyId;
 	private Integer qId;
-	private String content;
+	private String rContent;
 	private Integer replyerId;
 	private Date replyDate;
 	private boolean read;
@@ -21,11 +21,11 @@ public class ReplyVO {
 	public void setqId(Integer qId) {
 		this.qId = qId;
 	}
-	public String getContent() {
-		return content;
+	public String getRContent() {
+		return rContent;
 	}
 	public void setContent(String content) {
-		this.content = content;
+		this.rContent = content;
 	}
 	public Integer getReplyerId() {
 		return replyerId;
