@@ -7,15 +7,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="styLesheet" href="css/bootstrap.min.css">
+<link rel="styLesheet" href="../css/bootstrap.min.css">
 
 <!-- <script src="js/bootstrap.min.js"></script> -->
 <script src="js/jquery-3.2.1.min.js"></script>
 
 <!-- Custom styles for this template -->
-<link href="css/navbar-fixed-top.css" rel="stylesheet">
+<link href="../css/navbar-fixed-top.css" rel="stylesheet">
 
-<!-- jQuery -->
+<!-- jQuery UI Datepicker -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -103,7 +103,7 @@
 					<label class="col-sm-2 control-lable" for="actID">選擇活動</label>
 					<div class="col-sm-10">
 						<select class="form-control input-sm" size="1" name="actID">
-						<c:forEach var="activityVO" items="${empSvc.all}" > 
+						<c:forEach var="activityVO" items="${actSvc.all}" > 
                         <option value="${activityVO.actID}">
                         </c:forEach> 
 						</select>

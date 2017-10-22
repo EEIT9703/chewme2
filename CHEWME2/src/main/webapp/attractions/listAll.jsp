@@ -25,7 +25,7 @@ text-align: center;
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>列表</title>
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 <body>
 	<div id="listtable">
@@ -77,9 +77,9 @@ text-align: center;
 		</table>
 		<a href="InsertAttr.jsp" class="btn btn-primary">返回</a>
 	</div>
-	<script src="js/jquery-1.12.3.min.js"></script>
-	<script src="js/jquery-ui.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	<script src="../js/jquery-1.12.3.min.js"></script>
+	<script src="../js/jquery-ui.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
 	
 	<script>
 		$(function() {

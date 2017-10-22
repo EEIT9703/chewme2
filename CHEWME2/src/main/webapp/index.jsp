@@ -13,7 +13,9 @@
 </head>
 
 <body>
-	<header> <nav class="navbar navbar-default navbar-fixed-top">
+	<header> 
+	<%@ include file="header.jsp" %>
+	<!-- <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
 		<a class="navbar-brand " href="#"><img src="image/letter-c.png" width="30" height="30" alt=""></a>	
@@ -41,7 +43,7 @@
 	</nav> <nav class="navbar navbar-expand-lg">
 	<div class="container-fluid"></div>
 
-	</nav> </header>
+	</nav> --> </header>
 
 	<div class="container">
 		<nav class="navbar-light bg-littleblue text-white"> </nav>
