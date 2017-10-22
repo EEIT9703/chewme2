@@ -152,8 +152,9 @@
 				navLinks : true, // can click day/week names to navigate views
 				editable : true,
 				eventLimit : true, // allow "more" link when too many events
-				events:cell1,			
-
+				events:cell1,		
+				
+			   
 			});
 
 		});
