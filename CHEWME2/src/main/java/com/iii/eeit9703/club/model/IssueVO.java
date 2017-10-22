@@ -3,7 +3,7 @@ package com.iii.eeit9703.club.model;
 import java.sql.Blob;
 import java.util.List;
 
-public class IssueVO {
+public class IssueVO implements java.io.Serializable{
 	private Integer issueId;
 	private Integer clubId;
 	private String issueContent;

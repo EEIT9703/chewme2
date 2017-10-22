@@ -1,6 +1,6 @@
 package com.iii.eeit9703.club.model;
 
-public class ClubVO {
+public class ClubVO implements java.io.Serializable{
 	private Integer clubId;
 	private String clubName;
 	private Integer managerId;

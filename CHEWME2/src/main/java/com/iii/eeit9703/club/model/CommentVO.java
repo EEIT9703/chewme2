@@ -1,6 +1,6 @@
 package com.iii.eeit9703.club.model;
 
-public class CommentVO {
+public class CommentVO implements java.io.Serializable{
 	private Integer commentId;
 	private Integer issueId;
 	private String content;

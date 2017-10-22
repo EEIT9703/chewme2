@@ -1,6 +1,6 @@
 package com.iii.eeit9703.club.model;
 
-public class QuestionVO {
+public class QuestionVO implements java.io.Serializable{
 	private Integer questionId;
 	private Integer clubId;
 	private String qTitle;

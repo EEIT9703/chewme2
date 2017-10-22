@@ -2,7 +2,7 @@ package com.iii.eeit9703.club.model;
 
 import java.sql.Date;
 
-public class ReplyVO {
+public class ReplyVO implements java.io.Serializable{
 	private Integer reqlyId;
 	private Integer qId;
 	private String rContent;
