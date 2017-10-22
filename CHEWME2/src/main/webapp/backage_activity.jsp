@@ -97,7 +97,42 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="panel panel-default">
-                        內容區                     
+                      
+                         <div class="panel-heading"> 
+						                        
+             <table id="activity" class="table table-bordered">
+                       <thead>
+                          <tr>
+                             <th>活動編號</th>
+                             <th>活動名稱</th>
+                             <th>揪團人數</th>
+                             <th>目前人數</th>
+                          	 <th>活動開始時間</th>
+                             <th>活動結束時間</th>
+                             <th>活動狀態</th>
+                          </tr>
+                       </thead>
+                       <tbody>
+                      
+                       </tbody>
+                       <tfoot>
+                       <tr>
+<!--                        <form name="myForm"> -->
+<!--                         <td><input type="hidden" id="ProductID" name="ProductID"><span></span></td> -->
+<!--                         <td><input type="text" class="form-control" id="ProductName" name="ProductName" placeholder="產品名稱"></td> -->
+<!--                         <td><input type="text" style="width:100px" class="form-control" id="UnitPrice" name="UnitPrice" placeholder="價格"></td> -->
+<!--                         <td><input type="text" style="width:100px" class="form-control" id="UnitsInStock" name="UnitsInStock" placeholder="庫存量"></td> -->
+<!--                         <td><button id="buttonAdd" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span></button> -->
+<!--                         <button id="buttonUpdate" type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></button></td> -->
+<!--                        </tr> -->
+<!--                        </form> -->
+                       </tfoot>
+                   </table>     
+                       	
+                       	
+                       	</div>       
+                        
+                                      
                     </div>              
                 </div>
                 
@@ -116,9 +151,32 @@
         </div>     
     </div>
     </div>
-    
+  
  	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.min.js"></script>
-
+  	<script>
+  	window.onload = function(){
+  		$.getJSON('accttt?action=getall', {}, function (array){
+  			  var docFrag = $(document.createDocumentFragment());
+	           var tb = $('#activity>tbody');
+	           tb.empty();
+  			$.each(array,function(i,activity){
+			
+  			  var cell1 = $('<td></td>').text(activity.actID);
+              var cell2 = $('<td></td>').text(activity.act_name);
+              var cell3 = $('<td></td>').text(activity.act_groups);
+              var cell4 = $('<td></td>').text(activity.act_current);
+              var cell5 = $('<td></td>').text(activity.BDdat);
+              var cell6 = $('<td></td>').text(activity.Edate);
+              var cell7 = $('<td></td>').text(activity.activity_state);
+              var row = $('<tr></tr>').append([cell1, cell2, cell3, cell4,cell5,cell6,cell7]);
+              docFrag.append(row);
+			});
+			 tb.append(docFrag);
+  			
+  		
+  		});
+    };
+    </script>
 </body>
 </html>
