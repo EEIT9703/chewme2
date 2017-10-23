@@ -16,7 +16,8 @@ public class AttrDAO {
 	String passwd = "P@ssw0rd";
 	
 	private static final String COUNTY = "SELECT countyName FROM countys where countyID = ?";
-	private static final String Attr = "SELECT  *  FROM Attractions A join countys c on A.county=c.countryName WHERE countyID = ? and address like ?";
+	private static final String AttrByCountry = "SELECT  *  FROM Attractions A join countrys c on A.county=c.countryName WHERE countryID = ? ";
+	private static final String AttrByCounty = "SELECT  *  FROM Attractions A join countys c on A.county=c.countryName WHERE countyID = ? and address like ?";
 		
 	Connection con = null;
 	PreparedStatement pstmt = null;
@@ -59,8 +60,64 @@ public class AttrDAO {
 		}
 		return countryName;		
 	}
-	
-	public ArrayList<AttrVO> getAttr(Integer countyID){
+
+	//由縣市取得景點資料	
+		public ArrayList<AttrVO> getAttrByCountry(String countryID){
+
+			ArrayList<AttrVO> list = new ArrayList<AttrVO>();
+			AttrVO attrVO = null;
+
+			try {
+				Class.forName(driver);
+				con = DriverManager.getConnection(url, userid, passwd);
+				pstmt = con.prepareStatement(AttrByCountry);
+				
+				
+				pstmt.setString(1, countryID);
+				
+				rs = pstmt.executeQuery();
+							
+				while(rs.next()){
+					attrVO = new AttrVO();
+					attrVO.setAttractionID(rs.getInt("attractionID"));
+					attrVO.setName(rs.getString("name"));
+					attrVO.setCounty(rs.getString("county"));
+					attrVO.setType(rs.getString("type"));
+					attrVO.setAddress(rs.getString("address"));
+					attrVO.setTel(rs.getString("tel"));
+					attrVO.setIntro(rs.getString("intro"));
+					//attrVO.setImage(rs.getString("image"));				
+					
+					list.add(attrVO);
+				}
+				
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+				if(rs != null){
+					try {rs.close();} 
+					catch (SQLException e) {e.printStackTrace();}
+				}
+				if(pstmt != null){
+					try {pstmt.close();} 
+					catch (SQLException e) {e.printStackTrace();}
+				}
+				if(con != null){
+					try {con.close();} 
+					catch (SQLException e) {e.printStackTrace();}
+				}
+			}
+			return list;
+			
+			
+		}
+
+//由區域取得景點資料	
+	public ArrayList<AttrVO> getAttrByCounty(Integer countyID){
 
 		ArrayList<AttrVO> list = new ArrayList<AttrVO>();
 		AttrVO attrVO = null;
@@ -72,7 +129,7 @@ public class AttrDAO {
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(Attr);
+			pstmt = con.prepareStatement(AttrByCounty);
 			
 			
 			pstmt.setInt(1, countyID);
@@ -126,7 +183,7 @@ public class AttrDAO {
 		AttrDAO aDao = new AttrDAO();
 		
 		//查區域景點、餐廳、民宿
-		List<AttrVO> list = aDao.getAttr(251);
+		List<AttrVO> list = aDao.getAttrByCountry("NWT");
 		for(AttrVO area : list){
 			System.out.print(area.getName()+",");
 			System.out.print(area.getCounty()+",");

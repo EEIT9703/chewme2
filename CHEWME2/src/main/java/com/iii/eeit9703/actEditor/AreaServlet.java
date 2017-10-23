@@ -56,13 +56,25 @@ public class AreaServlet extends HttpServlet {
 				JSONArray countyArrayList = new JSONArray(countyList);
 //				System.out.print(countyArrayList);
 				out.print(countyArrayList.toString());
+				
+				}
+			
+			if("getCountryAttr".equals(mission)){
+				countryID = request.getParameter("country");
+				System.out.println(countryID);
+				AttrDAO attrdao = new AttrDAO();
+				ArrayList<AttrVO> attrList = attrdao.getAttrByCountry(countryID);
+				
+				JSONArray attrArrayList = new JSONArray(attrList);
+//				System.out.println(attrArrayList);
+				out.print(attrArrayList.toString());
 				}
 			
 			if("getCounty".equals(mission)){
 				countyID =  Integer.parseInt(request.getParameter("county"));
 				System.out.println(countyID);
 				AttrDAO attrdao = new AttrDAO();
-				ArrayList<AttrVO> attrList = attrdao.getAttr(countyID);
+				ArrayList<AttrVO> attrList = attrdao.getAttrByCounty(countyID);
 				
 				JSONArray attrArrayList = new JSONArray(attrList);
 //				System.out.println(attrArrayList);
