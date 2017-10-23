@@ -29,7 +29,7 @@ public class Uploadfile extends HttpServlet {
 		}
 
 	}
-
+//binary
 	private void wirtepicture(Part part) {
 		PhotoDAO dao = new PhotoDAO();
 		PhotoVO photoVO = new PhotoVO();
@@ -52,8 +52,12 @@ public class Uploadfile extends HttpServlet {
 				while ((len = is.read(buf, 0, size)) != -1)
 					bos.write(buf, 0, len);
 				buf = bos.toByteArray();
+				String base64 = Base64.getEncoder().encodeToString(buf);
+				
+//				BASE64Encoder encoder = new BASE64Encoder();
+//				String imageString = encoder.encode(buf);
 				photoVO.setName(part.getSubmittedFileName());
-				photoVO.setPhoto(buf);
+				photoVO.setPhoto(base64);
 				dao.insert(photoVO);
 
 			}
@@ -71,4 +75,36 @@ public class Uploadfile extends HttpServlet {
 		}
 
 	}
+	
+	//base
+//	private void wirtepicture(Part part) {
+//		PhotoDAO dao = new PhotoDAO();
+//		PhotoVO photoVO = new PhotoVO();
+//		InputStream is = null;
+//	
+//		try {
+//		
+//			is = part.getInputStream();
+//		
+//			
+//			
+//				photoVO.setName(part.getSubmittedFileName());
+//				photoVO.setPhoto();
+//				dao.insert(photoVO);
+//
+//			
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				is.close();
+//				
+//				// is.close();
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//
+//	}
 }

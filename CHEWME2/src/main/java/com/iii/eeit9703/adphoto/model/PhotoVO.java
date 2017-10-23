@@ -6,7 +6,7 @@ import java.io.Serializable;
 public class PhotoVO implements Serializable{
 		private Integer photo_no;		
 		private String name;
-		private byte[] photo;
+		private String photo;
 		
 		
 		
@@ -23,10 +23,10 @@ public class PhotoVO implements Serializable{
 		public void setName(String name) {
 			this.name = name;
 		}
-		public byte[] getPhoto() {
+		public String getPhoto() {
 			return photo;
 		}
-		public void setPhoto(byte[] photo) {
+		public void setPhoto(String photo) {
 			this.photo = photo;
 		}
 		

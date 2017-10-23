@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -9,7 +9,31 @@
 <meta charset="utf-8" />
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/mybootstrap.css">
+<style>
 
+.aaa{
+    position: absolute;
+    right: -10px;
+    border: 1px solid #fff;
+    background: #111111;
+    color: #fff;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    z-index: 15;
+    width: 20px;
+    height: 15px;
+
+}
+.nav-shopping-cart{
+
+    position: relative;
+    display: inline-block;
+
+}
+
+</style>
 </head>
 
 <body>

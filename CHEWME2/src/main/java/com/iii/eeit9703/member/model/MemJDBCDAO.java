@@ -1,5 +1,8 @@
 package com.iii.eeit9703.member.model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.*;
 import java.util.*;
 
@@ -11,11 +14,11 @@ public class MemJDBCDAO {
 	String userid = "sa";
 	String passwd = "P@ssw0rd";
 
-	private static final String INSERT_STMT = "INSERT INTO members (memberId,mName,mNickN,mPwd,mBirthday,mMail,mAddr,mPhone,mIntr,mphoto,mstatus,mrole) VALUES(?,?,?,?,?,?,?,?,?,?,'正常','一般會員')";
-	private static final String GET_ALL_STMT = "SELECT  memberId,mName,mNickN,mPwd,mBirthday,mMail,mAddr,mPhone,mIntr,mphoto,mstatus,mrole FROM members order by memberId";
-	private static final String GET_ONE_STMT = "SELECT  memberId,mName,mNickN,mPwd,mBirthday,mMail,mAddr,mPhone,mIntr,mphoto,mstatus,mrole FROM members WHERE memberId=?";
+	private static final String INSERT_STMT = "INSERT INTO members (memberId,mName,mNickN,mPwd,mBirthday,mMail,mAddr,mPhone,mIntr,mFileName,mphoto,mstatus,mrole) VALUES(?,?,?,?,?,?,?,?,?,?,?,'正常','一般會員')";
+	private static final String GET_ALL_STMT = "SELECT  memberId,mName,mNickN,mPwd,mBirthday,mMail,mAddr,mPhone,mIntr,mFileName,mphoto,mstatus,mrole FROM members order by memberId";
+	private static final String GET_ONE_STMT = "SELECT  memberId,mName,mNickN,mPwd,mBirthday,mMail,mAddr,mPhone,mIntr,mFileName,mphoto,mstatus,mrole FROM members WHERE memberId=?";
 	private static final String DELETE = "DELETE FROM members WHERE memberId=?";
-	private static final String UPDATE = "UPDATE members set mName=?,mNickN=?, mPwd=?, mBirthday=?, mMail=?, mAddr=?, mPhone=?,mIntr=?,mphoto=?,mstatus=?,mrole=?  WHERE memberId=?";
+	private static final String UPDATE = "UPDATE members set mName=?,mNickN=?, mPwd=?, mBirthday=?, mMail=?, mAddr=?, mPhone=?,mIntr=?,mFileName=?,mphoto=?,mstatus=?,mrole=?  WHERE memberId=?";
 
 	public void insert(MemVO memVO) {
 
@@ -37,6 +40,9 @@ public class MemJDBCDAO {
 			pstmt.setString(7, memVO.getmAddr());
 			pstmt.setString(8, memVO.getmPhone());
 			pstmt.setString(9, memVO.getmIntr());
+			pstmt.setString(10, memVO.getmFileName());
+			pstmt.setBinaryStream(11, memVO.getmPhoto());
+
 
 			pstmt.executeUpdate();
 
@@ -86,6 +92,8 @@ public class MemJDBCDAO {
 			pstmt.setString(7, memVO.getmPhone());
 			pstmt.setString(8, memVO.getmIntr());
 			pstmt.setString(9, memVO.getmemberId());
+			pstmt.setString(10, memVO.getmFileName());
+			pstmt.setBinaryStream(11, memVO.getmPhoto());
 
 			pstmt.executeUpdate();
 
@@ -185,6 +193,8 @@ public class MemJDBCDAO {
 				memVO.setmAddr(rs.getString("mAddr"));
 				memVO.setmPhone(rs.getString("mPhone"));
 				memVO.setmIntr(rs.getString("mIntr"));
+				memVO.setmFileName(rs.getString("mFileName"));
+				memVO.setmPhoto(rs.getBinaryStream("mPhoto"));
 
 			}
 
@@ -242,6 +252,8 @@ public class MemJDBCDAO {
 				memVO.setmAddr(rs.getString("mAddr"));
 				memVO.setmPhone(rs.getString("mPhone"));
 				memVO.setmIntr(rs.getString("mIntr"));
+				memVO.setmFileName(rs.getString("mFileName"));
+				memVO.setmPhoto(rs.getBinaryStream("mPhoto"));
 				list.add(memVO); // Store the row in the list
 			}
 
@@ -278,24 +290,25 @@ public class MemJDBCDAO {
 		return list;
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 
 		MemJDBCDAO dao = new MemJDBCDAO();
 
-		 MemVO memVO1=new MemVO();
-		 memVO1.setmemberId("eeit970307");
-		 memVO1.setmName("王立藍");
-		 memVO1.setmNickN("職業哈星");
-		 memVO1.setmPwd("eeit97032017");
-		 memVO1.setmBirthday(java.sql.Date.valueOf("1978-05-22"));
-		 memVO1.setmMail("eeit9703@gmail.com");
-		 memVO1.setmAddr("你家");
-		 memVO1.setmPhone("0912-345-678");
-		 memVO1.setmIntr("我超猛");
-		 
-		 
-		 dao.insert(memVO1);
-
+//		 MemVO memVO1=new MemVO();
+//		 memVO1.setmemberId("eeit970307");
+//		 memVO1.setmName("王立藍");
+//		 memVO1.setmNickN("職業哈星");
+//		 memVO1.setmPwd("eeit97032017");
+//		 memVO1.setmBirthday(java.sql.Date.valueOf("1978-05-22"));
+//		 memVO1.setmMail("eeit9703@gmail.com");
+//		 memVO1.setmAddr("你家");
+//		 memVO1.setmPhone("0912-345-678");
+//		 memVO1.setmIntr("我超猛");
+//		 memVO1.setmFileName("番薯島小霸王");
+//		 memVO1.setmPhoto(new FileInputStream(new File("C:\\Users\\Student\\Downloads\\番薯島小霸王.jpg")));
+//		 
+//		 dao.insert(memVO1);
+//
 //		 MemVO memVO2=new MemVO();
 //		 memVO2.setmemberId("eeit970301");
 //		 memVO2.setmName("王立綠");
@@ -306,21 +319,25 @@ public class MemJDBCDAO {
 //		 memVO2.setmAddr("我家");
 //		 memVO2.setmPhone("0987-654-321");
 //		 memVO2.setmIntr("我超爛");
+//		 memVO1.setmFileName("番薯島小霸王");
+//		 memVO1.setmPhoto(new FileInputStream(new File("C:\\Users\\Student\\Downloads\\番薯島小霸王.jpg")));
 //		 dao.update(memVO2);
 //
 //		dao.delete("eeit970301");
 //
-//		MemVO memVO3 = dao.findByPrimaryKey("eeit970301");
-//		System.out.print(memVO3.getmemberId() + ",");
-//		System.out.print(memVO3.getmName() + ",");
-//		System.out.print(memVO3.getmNickN() + ",");
-//		System.out.print(memVO3.getmPwd() + ",");
-//		System.out.print(memVO3.getmBirthday() + ",");
-//		System.out.print(memVO3.getmMail() + ",");
-//		System.out.print(memVO3.getmAddr() + ",");
-//		System.out.print(memVO3.getmPhone() + ",");
-//		System.out.print(memVO3.getmIntr());
-//		System.out.println("---------------------");
+		MemVO memVO3 = dao.findByPrimaryKey("eeit970307");
+		System.out.print(memVO3.getmemberId() + ",");
+		System.out.print(memVO3.getmName() + ",");
+		System.out.print(memVO3.getmNickN() + ",");
+		System.out.print(memVO3.getmPwd() + ",");
+		System.out.print(memVO3.getmBirthday() + ",");
+		System.out.print(memVO3.getmMail() + ",");
+		System.out.print(memVO3.getmAddr() + ",");
+		System.out.print(memVO3.getmPhone() + ",");
+		System.out.print(memVO3.getmIntr()+ ",");
+		System.out.print(memVO3.getmFileName()+ ",");
+		System.out.println(memVO3.getmPhoto());
+		System.out.println("---------------------");
 //
 //		List<MemVO> list = dao.getAll();
 //		for (MemVO aMem : list) {

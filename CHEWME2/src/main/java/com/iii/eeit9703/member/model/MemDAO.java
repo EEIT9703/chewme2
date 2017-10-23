@@ -41,6 +41,8 @@ public class MemDAO implements MemDAO_interface {
 			pstmt.setString(7, memVO.getmAddr());
 			pstmt.setString(8, memVO.getmPhone());
 			pstmt.setString(9, memVO.getmIntr());
+			pstmt.setString(10, memVO.getmFileName());
+			pstmt.setBinaryStream(11, memVO.getmPhoto());
 
 			pstmt.executeUpdate();
 
@@ -86,6 +88,8 @@ public class MemDAO implements MemDAO_interface {
 			pstmt.setString(7, memVO.getmPhone());
 			pstmt.setString(8, memVO.getmIntr());
 			pstmt.setString(9, memVO.getmemberId());
+			pstmt.setString(10, memVO.getmFileName());
+			pstmt.setBinaryStream(11, memVO.getmPhoto());
 
 			pstmt.executeUpdate();
 
@@ -177,6 +181,7 @@ public class MemDAO implements MemDAO_interface {
 				memVO.setmAddr(rs.getString("mAddr"));
 				memVO.setmPhone(rs.getString("mPhone"));
 				memVO.setmIntr(rs.getString("mIntr"));
+				memVO.setmPhoto(rs.getBinaryStream("mPhoto"));
 
 			}
 
@@ -229,6 +234,8 @@ public class MemDAO implements MemDAO_interface {
 				memVO.setmAddr(rs.getString("mAddr"));
 				memVO.setmPhone(rs.getString("mPhone"));
 				memVO.setmIntr(rs.getString("mIntr"));
+				memVO.setmIntr(rs.getString("mIntr"));
+				memVO.setmPhoto(rs.getBinaryStream("mPhoto"));
 				list.add(memVO); // Store the row in the list
 			}
 
