@@ -1,4 +1,4 @@
-package com.iii.eeit9703.club.model;
+package com.iii.eeit9703.bridge.model;
 
 public class ClubMemListVO implements java.io.Serializable {
 	private Integer clubId;

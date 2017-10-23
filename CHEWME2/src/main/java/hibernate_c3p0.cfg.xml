@@ -46,7 +46,6 @@
 		<mapping resource="com/iii/eeit9703/club/model/hibernate/question/Question.hbm.xml" />
 		<mapping resource="com/iii/eeit9703/club/model/hibernate/reply/Reply.hbm.xml" />
  -->
-
 	</session-factory>
 	
 </hibernate-configuration>

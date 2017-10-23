@@ -1,4 +1,4 @@
-package com.iii.eeit9703.club.model.HibernateDAO;
+package com.iii.eeit9703.club.model.hibernate.club;
 
 import java.util.List;
 
