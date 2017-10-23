@@ -41,6 +41,7 @@ public class MemJNDIDAO implements MemDAO_interface {
 			pstmt.setString(7, memVO.getmAddr());
 			pstmt.setString(8, memVO.getmPhone());
 			pstmt.setString(9, memVO.getmIntr());
+			pstmt.setBlob(10, memVO.getmPhoto());
 
 			pstmt.executeUpdate();
 
