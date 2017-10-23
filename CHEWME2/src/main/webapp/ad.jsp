@@ -11,7 +11,7 @@
     <link href= "backage/full/fullcalendar.min.css" rel='stylesheet' />
 	<link href= "backage/full/fullcalendar.print.min.css"rel='stylesheet' media='print' />
 
-    <link href="backage/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!--     <link href="backage/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
 
     <link href="backage/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
@@ -21,10 +21,10 @@
 
     <link href="backage/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<!-- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.js"></script> -->
 
 
 </head>
@@ -133,38 +133,12 @@
 						</div>
 					</div>
 
-
-
-					<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-						aria-labelledby="myModalLabel" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal"
-										aria-hidden="true">&times;</button>
-									<h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4>
-								</div>
-								<div class="modal-body">在这里添加一些文本</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-default"
-										data-dismiss="modal">关闭</button>
-									<button type="button" class="btn btn-primary">提交更改</button>
-								</div>
-							</div>
-							<!-- /.modal-content -->
-						</div>
-						<!-- /.modal -->
-					</div>
-
-
-
-
-
 					<!--                 右邊預留空間 -->
                 <div class="col-lg-4">
 
                     <div class="panel panel-default">
                       			 預留空間	
+                      			
                     </div>
                 
                     <div class="chat-panel panel panel-default">
@@ -176,14 +150,56 @@
     </div>
     </div>
     
+       <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">歡迎來到揪ME</h4>
+						</div>
+						<div class="modal-body">
+						<div class="form-group">
+							<input class="form-control" placeholder="E-mail" name="email"
+								type="email" autofocus>
+						</div>
+						<div class="form-group">
+							<input class="form-control" placeholder="Password"
+								name="password" type="password" value="">
+						</div>
+						<div class="checkbox">
+							<label> <input name="remember" type="checkbox"
+								value="Remember Me">Remember Me
+							</label>
+						</div>
+						
+						
+						<div><a href="#">忘記密碼?</a></div>
+					</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">離開</button>
+							<button type="button" class="btn btn-primary">登入</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
+    
+   
+    
+    
+    
     
     
     
     
     
 
- 	 <script src="js/bootstrap.min.js"></script>
-	 <script src="js/jquery.min.js"></script>
+<!--  	 <script src="js/bootstrap.min.js"></script> -->
+<!-- 	 <script src="js/jquery.min.js"></script> -->
 
 	<script>
 	
@@ -305,14 +321,12 @@ function search(){
     
     $('#productTable>tbody').on('click','td:nth-child(5) button:nth-child(1)',function(){
     	
-    	alert('ss');
+    	//alert('ss');
     	$('#myModal').modal('show')
     	
 	 	 })
 	 
-
-    
-    
+	 
     
     
 
