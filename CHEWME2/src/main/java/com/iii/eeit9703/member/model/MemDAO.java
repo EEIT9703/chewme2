@@ -234,7 +234,6 @@ public class MemDAO implements MemDAO_interface {
 				memVO.setmAddr(rs.getString("mAddr"));
 				memVO.setmPhone(rs.getString("mPhone"));
 				memVO.setmIntr(rs.getString("mIntr"));
-				memVO.setmIntr(rs.getString("mIntr"));
 				memVO.setmPhoto(rs.getBinaryStream("mPhoto"));
 				list.add(memVO); // Store the row in the list
 			}

@@ -14,12 +14,10 @@ public interface ActivityDAO_interface {
 	public ActivityVO findByPrimaryKey(Integer actID);
 	//查詢
 	public List<ActivityVO>getAll();
+	//
+	public ArrayList<ActivityVO> getActId(String actID);
 	
-	//新增行程(編輯)
-	//public void insertAch (AcheduleVO acheduleVO);
-	
-	//修改行程(編輯)
-	//public void updateAch (AcheduleVO acheduleVO);
+
 	
 	
 }

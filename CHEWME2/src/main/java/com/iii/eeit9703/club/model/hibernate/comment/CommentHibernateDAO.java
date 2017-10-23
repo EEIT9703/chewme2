@@ -109,14 +109,14 @@ public class CommentHibernateDAO implements CommentHibernateDAOI {
 //		empVO2.setEmpno(7014);
 //		session.delete(empVO2);			
 		
-		Query query = session.createQuery("from CommentVO order by commentId"); //HQL - Query���� - �i�ʸˬd�߱���
+		Query query = session.createQuery("from QuestionVO order by questionId"); //HQL - Query���� - �i�ʸˬd�߱���
 		List<CommentVO> list = query.list();
-		for (CommentVO aClub : list) {
-			System.out.print(aClub.getCommentId() + ",");
-			System.out.print(aClub.getIssueId() + ",");
-			System.out.print(aClub.getContent() + ",");
-			System.out.print(aClub.getCommenterId() + ",");
-			System.out.println(aClub.getCommentDate() + ",");
+		for (CommentVO var : list) {
+			System.out.print(var.getCommentId() + ",");
+			System.out.print(var.getIssueId() + ",");
+			System.out.print(var.getContent() + ",");
+			System.out.print(var.getCommenterId() + ",");
+			System.out.println(var.getCommentDate() + ",");
 		}
 
 		tx.commit();

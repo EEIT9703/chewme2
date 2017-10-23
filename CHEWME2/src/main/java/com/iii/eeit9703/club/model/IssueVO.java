@@ -6,10 +6,11 @@ import java.util.List;
 public class IssueVO implements java.io.Serializable{
 	private Integer issueId;
 	private Integer clubId;
+	private String issueTitle;
 	private String issueContent;
 	private Integer proposerId;
 	private Blob issuepic;
-	private List<CommentVO> comments;
+/*	private List<CommentVO> comments;*/
 	public Integer getIssueId() {
 		return issueId;
 	}
@@ -21,6 +22,12 @@ public class IssueVO implements java.io.Serializable{
 	}
 	public void setClubId(Integer clubId) {
 		this.clubId = clubId;
+	}
+	public String getIssueTitle() {
+		return issueTitle;
+	}
+	public void setIssueTitle(String issueTitle) {
+		this.issueTitle = issueTitle;
 	}
 	public String getIssueContent() {
 		return issueContent;
@@ -40,10 +47,10 @@ public class IssueVO implements java.io.Serializable{
 	public void setIssuepic(Blob issuepic) {
 		this.issuepic = issuepic;
 	}
-	public List<CommentVO> getComments() {
+ /*   public List<CommentVO> getComments() {
 		return comments;
 	}
 	public void setComments(List<CommentVO> comments) {
 		this.comments = comments;
 	}
-}
+*/}

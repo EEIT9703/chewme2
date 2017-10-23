@@ -3,18 +3,17 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.iii.eeit9703.club.model.CommentVO" table="clubs">
+	<class name="com.iii.eeit9703.club.model.ReplyVO" table="replys">
 
-		<id name="clubId" column="clubId">
+		<id name="reqlyId" column="reqlyId">
 			<generator class="identity" />
 		</id>
 
-		<property name="reqlyId" column="reqlyId" />
 		<property name="qId" column="qId" />
-		<property name="rContent" column="content" />
+		<property name="replyContent" column="content" />
 		<property name="replyerId" column="replyerId" />
 		<property name="replyDate" column="replyDate" />
-		<property name="read" column="read" />
+		<property name="readed" column="readed" />
 	</class>
 </hibernate-mapping>
 

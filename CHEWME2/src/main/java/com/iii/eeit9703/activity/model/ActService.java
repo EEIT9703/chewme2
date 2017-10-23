@@ -1,6 +1,7 @@
 package com.iii.eeit9703.activity.model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ActService {
@@ -28,7 +29,7 @@ public class ActService {
 	}
 	
 	//修改新增活動
-	public ActivityVO updateAct(Integer actID,String act_name,Integer act_groups,Integer act_current,java.sql.Date BDate,java.sql.Date EDate,Integer activity_state){
+	public ActivityVO updateAct(Integer actID,String act_name,Integer act_groups,Integer act_current,java.sql.Date BDate,java.sql.Date EDate,Integer activity_state,Integer collectID){
 		
 		ActivityVO activityVO = new ActivityVO();
 		
@@ -39,11 +40,17 @@ public class ActService {
 		activityVO.setBDate(BDate);
 		activityVO.setEDate(EDate);
 		activityVO.setActivity_state(activity_state);
+		activityVO.setCollectID(collectID);
 		
 		dao.update(activityVO);
 		
 		return dao.findByPrimaryKey(actID);
 		
+	}
+	
+	//
+	public ArrayList<ActivityVO> getActId(String actID){
+		return dao.getActId(actID);
 	}
 	
 	//查詢單一
