@@ -12,7 +12,6 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
 import com.iii.eeit9703.club.model.CommentVO;
-import com.iii.eeit9703.club.model.CommentVO;
 import com.iii.eeit9703.hibernate.util.HibernateUtil;
 
 public class CommentHibernateDAO implements CommentHibernateDAOI {
@@ -98,9 +97,11 @@ public class CommentHibernateDAO implements CommentHibernateDAOI {
 		CommentVO commentVO1 = new CommentVO();//POJO1-saveOrUpdate-�s�W�έק�
 		commentVO1.setCommentId(1);
 		commentVO1.setIssueId(1);
-		commentVO1.setContent("");
+		commentVO1.setContent("commentTest");
 		commentVO1.setCommenterId(1);
-		commentVO1.setCommentDate(java.sql.Date.valueOf(Calendar.getInstance().getTime().toString()));	
+		System.out.println(Calendar.getInstance().getTime().toString());
+		System.out.println(new java.sql.Date(Calendar.getInstance().getTime().getTime()));
+		commentVO1.setCommentDate(new java.sql.Date(Calendar.getInstance().getTime().getTime()));	
 		
 		session.saveOrUpdate(commentVO1);
 		
@@ -108,7 +109,7 @@ public class CommentHibernateDAO implements CommentHibernateDAOI {
 //		empVO2.setEmpno(7014);
 //		session.delete(empVO2);			
 		
-		Query query = session.createQuery("from ClubVO order by clubId"); //HQL - Query���� - �i�ʸˬd�߱���
+		Query query = session.createQuery("from CommentVO order by commentId"); //HQL - Query���� - �i�ʸˬd�߱���
 		List<CommentVO> list = query.list();
 		for (CommentVO aClub : list) {
 			System.out.print(aClub.getCommentId() + ",");
