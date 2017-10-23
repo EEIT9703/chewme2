@@ -8,8 +8,8 @@ import com.iii.eeit9703.club.model.CommentVO;
 public interface CommentHibernateDAOI {
 	public List<CommentVO> getAll();
 	public void getOne(Integer commentId);
-	public void insert(ClubVO CommentVO);
-	public void update(ClubVO CommentVO);
-	public void delete(Integer CommentVO);
+	public void insert(CommentVO commentVO);
+	public void update(CommentVO commentVO);
+	public void delete(Integer commentId);
 	
 }

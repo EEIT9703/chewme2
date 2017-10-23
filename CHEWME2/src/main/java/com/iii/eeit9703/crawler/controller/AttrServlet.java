@@ -1,16 +1,19 @@
 package com.iii.eeit9703.crawler.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+
 import com.iii.eeit9703.crawler.model.AttrService;
 import com.iii.eeit9703.crawler.model.AttrVO;
 
-@WebServlet("/Attraction.do")
+@MultipartConfig(maxFileSize = 16177215)
 public class AttrServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -19,19 +22,28 @@ public class AttrServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-		req.setCharacterEncoding("UTF-8");
+		req.setCharacterEncoding("UTF-8");	
 		String action = req.getParameter("action");
 
 		if ("insert".equals(action)) {
 
 			try {
-				
+				InputStream inputStream = null;
 				String name = req.getParameter("name");
 				String county = req.getParameter("county");
 				String type = req.getParameter("type");
 				String address = req.getParameter("address");
 				String tel = req.getParameter("tel");
 				String intro = req.getParameter("intro");
+				
+				Part filepart = req.getPart("photo");
+				
+				if (filepart != null) {
+					System.out.println(filepart.getName());
+                    System.out.println(filepart.getSize());
+                    System.out.println(filepart.getContentType());
+					inputStream = filepart.getInputStream();
+				}
 				
 				AttrVO attrVO = new AttrVO();
 				attrVO.setName(name);
@@ -40,12 +52,13 @@ public class AttrServlet extends HttpServlet {
 				attrVO.setAddress(address);
 				attrVO.setTel(tel);
 				attrVO.setIntro(intro);
-				
+				attrVO.setImage(inputStream);
 
 				req.setAttribute("attrVO", attrVO);
 
 				AttrService attr1 = new AttrService();
-				attrVO = attr1.addAttr(name, county, type, address, tel, intro);
+				attrVO = attr1.addAttr(name, county, type, address, tel, intro, inputStream);
+				
 
 				RequestDispatcher view = req.getRequestDispatcher("ShowView.jsp");
 				view.forward(req, res);
@@ -94,5 +107,8 @@ public class AttrServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		//if("up"){
+			
+		}
 	}
-}
+//}

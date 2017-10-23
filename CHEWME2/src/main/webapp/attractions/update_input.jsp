@@ -7,15 +7,37 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<style>
+.aaa {
+	position: absolute;
+	right: -10px;
+	border: 1px solid #fff;
+	background: #111111;
+	color: #fff;
+	border-radius: 100px;
+	font-size: 12px;
+	font-weight: 600;
+	text-align: center;
+	z-index: 15;
+	width: 20px;
+	height: 15px;
+}
+
+.nav-shopping-cart {
+	position: relative;
+	display: inline-block;
+}
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>資料修改</title>
-<script src="../js/jquery.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 <body>
+<header><%@ include file="../header.jsp"%></header>
 	<div style="margin: auto; width: 700px; background-color: #E8E8E8; border-radius: 10px; padding: 5px;">
 		<h2 style="text-align: center;">資料修改</h2>
+		
 		<form method="post" action="Attraction.do">
 			<div class="form-group">
 				<label for="name" style="margin-left: 10px;">名稱</label> <input
@@ -70,9 +92,12 @@
 						<input type="hidden" name="attractionID" value="${attrVO.attractionID}"> 
 						<input type="hidden" name="action" value="update">
 					</td>					
+					
 				</tr>
 			</div>
 		</form>
 	</div>
+	<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>

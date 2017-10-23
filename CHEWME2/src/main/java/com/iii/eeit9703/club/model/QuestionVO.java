@@ -6,7 +6,8 @@ public class QuestionVO implements java.io.Serializable{
 	private String qTitle;
 	private String qcontent;
 	private int askerId;
-	private boolean read;
+	private boolean readed;
+	
 	public Integer getQuestionId() {
 		return questionId;
 	}
@@ -19,17 +20,17 @@ public class QuestionVO implements java.io.Serializable{
 	public void setClubId(Integer clubId) {
 		this.clubId = clubId;
 	}
-	public String getqTitle() {
+	public String getQTitle() {
 		return qTitle;
 	}
-	public void setqTitle(String qTitle) {
+	public void setQTitle(String qTitle) {
 		this.qTitle = qTitle;
 	}
 	public String getQcontent() {
 		return qcontent;
 	}
-	public void setQcontent(String qcontent) {
-		this.qcontent = qcontent;
+	public void setQcontent(String qContent) {
+		this.qcontent = qContent;
 	}
 	public int getAskerId() {
 		return askerId;
@@ -37,10 +38,10 @@ public class QuestionVO implements java.io.Serializable{
 	public void setAskerId(int askerId) {
 		this.askerId = askerId;
 	}
-	public boolean isRead() {
-		return read;
+	public boolean getReaded() {
+		return readed;
 	}
-	public void setRead(boolean read) {
-		this.read = read;
+	public void setReaded(boolean readed) {
+		this.readed = readed;
 	}
 }

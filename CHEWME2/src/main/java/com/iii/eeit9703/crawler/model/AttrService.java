@@ -1,5 +1,6 @@
 package com.iii.eeit9703.crawler.model;
 
+import java.io.InputStream;
 import java.util.List;
 
 public class AttrService {
@@ -11,7 +12,7 @@ public class AttrService {
 	}
 
 	public AttrVO addAttr(String name, String county, String type, String address, String tel, 
-			String intro){
+			String intro, InputStream image){
 				
 		AttrVO attrVO = new AttrVO();
 		
@@ -21,9 +22,9 @@ public class AttrService {
 		attrVO.setAddress(address);
 		attrVO.setTel(tel);
 		attrVO.setIntro(intro);
+		attrVO.setImage(image);
 		
-		
-		dao.insert(attrVO);
+		dao.insert(attrVO, image);
 		return attrVO;		
 	}
 	public void deleteAttr(Integer attractionID){

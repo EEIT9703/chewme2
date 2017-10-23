@@ -5,10 +5,10 @@ import java.sql.Date;
 public class ReplyVO implements java.io.Serializable{
 	private Integer reqlyId;
 	private Integer qId;
-	private String rContent;
+	private String replyContent;
 	private Integer replyerId;
 	private Date replyDate;
-	private boolean read;
+	private boolean readed;
 	public Integer getReqlyId() {
 		return reqlyId;
 	}
@@ -21,11 +21,11 @@ public class ReplyVO implements java.io.Serializable{
 	public void setqId(Integer qId) {
 		this.qId = qId;
 	}
-	public String getRContent() {
-		return rContent;
+	public String getReplyContent() {
+		return replyContent;
 	}
-	public void setContent(String content) {
-		this.rContent = content;
+	public void setReplyContent(String content) {
+		this.replyContent = content;
 	}
 	public Integer getReplyerId() {
 		return replyerId;
@@ -39,11 +39,11 @@ public class ReplyVO implements java.io.Serializable{
 	public void setReplyDate(Date replyDate) {
 		this.replyDate = replyDate;
 	}
-	public boolean isRead() {
-		return read;
+	public boolean getReaded() {
+		return readed;
 	}
-	public void setRead(boolean read) {
-		this.read = read;
+	public void setReaded(boolean read) {
+		this.readed = read;
 	}
 
 }

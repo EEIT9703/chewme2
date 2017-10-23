@@ -1,7 +1,7 @@
 ﻿<nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
-		<a class="navbar-brand " href="#"><img src="image/letter-c.png" width="30" height="30" alt=""></a>	
+		<a class="navbar-brand " href="#"><img src="<%=request.getContextPath()%>/image/letter-c.png" width="30" height="30" alt=""></a>	
 		</div>
 		<div class="navbar-header">
 		<a class="navbar-brand " href="#">CHEWME</a>

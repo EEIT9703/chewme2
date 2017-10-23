@@ -1,5 +1,6 @@
 package com.iii.eeit9703.member.model;
 
+import java.io.InputStream;
 import java.sql.*;
 
 public class MemVO implements java.io.Serializable{
@@ -13,7 +14,7 @@ public class MemVO implements java.io.Serializable{
 	private String mPhone;
 	private String mIntr;
 	private String mFileName;
-	private Blob mPhoto;
+	private InputStream mPhoto;
 	private String mStatus;
 	private String mRole;
 	public String getmemberId() {
@@ -70,10 +71,10 @@ public class MemVO implements java.io.Serializable{
 	public void setmIntr(String mIntr) {
 		this.mIntr = mIntr;
 	}
-	public Blob getmPhoto() {
+	public InputStream getmPhoto() {
 		return mPhoto;
 	}
-	public void setmPhoto(Blob mPhoto) {
+	public void setmPhoto(InputStream mPhoto) {
 		this.mPhoto = mPhoto;
 	}
 

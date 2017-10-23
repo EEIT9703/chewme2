@@ -7,7 +7,7 @@
      ActivityVO activityVO = (ActivityVO) request.getAttribute("activityVO");
 %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -29,30 +29,43 @@
 <script>
 	//選擇活動
 	$(function() {
-		$("#actID").selectmenu();
-	});
+// 		$("#actID").selectmenu();
+// 	});
 
-	//出發日期
-	$(function() {
-		$("#BDate").datepicker({
-			changeMonth : true,
-			changeYear : true
-		});
-	});
-	//結束日期
-	$(function() {
-		$("#EDate").datepicker({
-			changeMonth : true,
-			changeYear : true
-		});
-	});
+// 	//出發日期
+// 	$(function() {
+// 		$("#BDate").datepicker({
+// 			changeMonth : true,
+// 			changeYear : true
+// 		});
+// 	});
+// 	//結束日期
+// 	$(function() {
+// 		$("#EDate").datepicker({
+// 			changeMonth : true,
+// 			changeYear : true
+// 		});
+// 	});
 
-	//上下架
-	$(function() {
-		$("#activity_state").selectmenu();
+// 	//上下架
+// 	$(function() {
+// 		$("#activity_state").selectmenu();
+// 	});
+	
+	//觸發actID
+	$("#actID").change(function(){
+		var actID = document.getElementById("actID");
+		$.get('/CHEWME2/ActivityServlet.do?action=getOne_For_Update',{'actID':actID},sendActID);
 	});
 	
-	
+	function sendActID(activityVO){
+//		var opt = $('#actID');
+//		opt.empty();//清除內容
+		
+		$('#act_name').val(activityVO.act_groups);
+		
+	}
+	})
 </script>
 </head>
 
@@ -109,7 +122,7 @@
 				<div class="from-group">
 					<label class="col-sm-2 control-lable" for="actID">選擇活動</label>
 					<div class="col-sm-10">
-						<select class="form-control input-sm" size="1" name="actID">
+						<select class="form-control input-sm" size="1" name="actID" id="actID">
 						<c:forEach var="activityVO" items="${actSvc.all}" > 
                         <option value="${activityVO.actID}">${activityVO.act_name}
                         </c:forEach> 
@@ -119,7 +132,7 @@
 				<div class="from-group">
 					<label for="actname" class="col-sm-2 control-lable">活動名稱</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control input-sm" id="act_name">
+						<input type="text" value=" " class="form-control input-sm" id="act_name">
 					</div>
 				</div>
 				<div class="from-group">
