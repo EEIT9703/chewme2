@@ -1,6 +1,7 @@
 package com.iii.eeit9703.crawler.model;
 
 import java.util.*;
+import java.io.InputStream;
 import java.sql.*;
 
 import javax.naming.Context;
@@ -21,17 +22,17 @@ public class AttrDAO implements AttrDAO_interface {
 
 	private static final String GET_ALL = "select attractionID,name,county,type,address,tel,intro from Attractions";
 	private static final String GET_ONE = "select attractionID, name, county, type, address, tel, intro from Attractions where attractionID=?";
-	private static final String INSERT = "insert into Attractions (name, county, type, address, tel, intro) values (?,?,?,?,?,?)";
+	private static final String INSERT = "insert into Attractions (name, county, type, address, tel, intro, image) values (?,?,?,?,?,?,?)";
 	private static final String UPDATE = "update Attractions set name=?, county=?, type=?, address=?, tel=?, intro=? where attractionID=?";
 	private static final String DELETE = "delete from Attractions where attractionID=?";
 
-	//新增
+	//�s�W
 	@Override
-	public void insert(AttrVO attrVO) {
+	public void insert(AttrVO attrVO, InputStream is) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-
-		try {
+		
+		try {			
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT);
 
@@ -41,6 +42,7 @@ public class AttrDAO implements AttrDAO_interface {
 			pstmt.setString(4, attrVO.getAddress());
 			pstmt.setString(5, attrVO.getTel());
 			pstmt.setString(6, attrVO.getIntro());
+			pstmt.setBinaryStream(7, is);
 			pstmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -63,7 +65,7 @@ public class AttrDAO implements AttrDAO_interface {
 		}
 	}
 
-	//修改
+	//�ק�
 	@Override
 	public void update(AttrVO attrVO) {
 		Connection con = null;
@@ -102,7 +104,7 @@ public class AttrDAO implements AttrDAO_interface {
 		}
 	}
 
-	//刪除
+	//�R��
 	@Override
 	public void delete(Integer attractionID) {
 		Connection con = null;
@@ -135,7 +137,7 @@ public class AttrDAO implements AttrDAO_interface {
 		}
 	}
 
-	//查單筆
+	//�d�浧
 	@Override
 	public AttrVO findByPK(Integer attractionID) {
 
@@ -172,7 +174,7 @@ public class AttrDAO implements AttrDAO_interface {
 		return attrvo;
 	}
 
-	//查全部
+	//�d����
 	@Override
 	public List<AttrVO> getAll() {
 		List<AttrVO> list = new ArrayList<AttrVO>();

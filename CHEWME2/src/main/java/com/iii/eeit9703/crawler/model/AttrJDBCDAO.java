@@ -1,5 +1,6 @@
 package com.iii.eeit9703.crawler.model;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,12 +16,12 @@ public class AttrJDBCDAO implements AttrDAO_interface {
 
 	private static final String GET_ALL = "select attractionID,name,county,type,address,tel,intro from Attractions";
 	private static final String GET_ONE = "select attractionID, name, county, type, address, tel, intro, image from Attractions where attractionID=?";
-	private static final String INSERT = "insert into Attractions (name, county, type, address, tel, intro) values (?,?,?,?,?,?)";
+	private static final String INSERT = "insert into Attractions (name, county, type, address, tel, intro, image) values (?,?,?,?,?,?,?)";
 	private static final String UPDATE = "update Attractions set county=? where attractionID=?";
 	private static final String DELETE = "delete from Attractions where attractionID=?";
 
 	@Override
-	public void insert(AttrVO attrvo) {
+	public void insert(AttrVO attrvo, InputStream is) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -29,12 +30,13 @@ public class AttrJDBCDAO implements AttrDAO_interface {
 			con = DriverManager.getConnection(url, userID, password);
 			pstmt = con.prepareStatement(INSERT);
 
-			pstmt.setString(1, "太魯閣國家公園");
-			pstmt.setString(2, "花蓮縣");
-			pstmt.setString(3, "景點");
-			pstmt.setString(4, "花蓮縣秀林鄉富世村富世291號");
+			pstmt.setString(1, "�Ӿ|�հ�a����");
+			pstmt.setString(2, "�Ὤ��");
+			pstmt.setString(3, "���I");
+			pstmt.setString(4, "�Ὤ���q�L�m�I�@���I�@291��");
 			pstmt.setString(5, " 03 862 1100");
-			pstmt.setString(6, "太魯閣國家公園是台灣第四座成立的國家公園，前身為日治時期成立之次高太魯閣國立公園。");
+			pstmt.setString(6, "�Ӿ|�հ�a����O�x�W�ĥ|�y���ߪ���a����A�e������v�ɴ����ߤ������Ӿ|�հ�ߤ���C");
+			pstmt.setBinaryStream(7, is);
 			pstmt.executeUpdate();
 
 		} catch (ClassNotFoundException e) {
@@ -69,7 +71,7 @@ public class AttrJDBCDAO implements AttrDAO_interface {
 			con = DriverManager.getConnection(url, userID, password);
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setString(1, "高雄");
+			pstmt.setString(1, "������");
 			pstmt.setInt(2, 3);
 			pstmt.executeUpdate();
 

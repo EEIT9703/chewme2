@@ -1,29 +1,56 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.iii.eeit9703.crawler.model.*"%>
 <%
 	AttrVO attrVO = (AttrVO) request.getAttribute("attrVO");
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
+<style>
+.aaa {
+	position: absolute;
+	right: -10px;
+	border: 1px solid #fff;
+	background: #111111;
+	color: #fff;
+	border-radius: 100px;
+	font-size: 12px;
+	font-weight: 600;
+	text-align: center;
+	z-index: 15;
+	width: 20px;
+	height: 15px;
+}
+
+.nav-shopping-cart {
+	position: relative;
+	display: inline-block;
+}
+</style>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>新增商家/景點/住宿</title>
-<script src="../js/jquery.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
 </head>
 <body>
-	<div style="margin: auto; width: 700px; background-color: #E8E8E8; border-radius: 10px; padding: 5px;">
+	<header><%@ include file="../header.jsp"%></header>
+	<div
+		style="margin: auto; width: 700px; background-color: #E8E8E8; border-radius: 10px; padding: 5px;">
 		<h2 style="text-align: center;">新增商家/景點/住宿</h2>
-		<form role="form" method="post" name="form1" action="Attraction.do">
+
+		<form method="post" name="form1" action="Attraction.do"
+			enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="name" style="margin-left: 10px;">名稱</label> <input
 					type="text" class="form-control" id="name" name="name"
 					placeholder="請輸入名稱" value="${attrVO.name}">
 			</div>
 			<div style="margin: 15px;">
-				<span> <span>所在地區</span> <select name="county">
+				<span> <span>所在地區</span> <select name="county"
+					class="selectpicker">
 						<option>台北市</option>
 						<option>新北市</option>
 						<option>桃園縣</option>
@@ -32,9 +59,12 @@
 						<option>嘉義縣</option>
 						<option>台南市</option>
 						<option>高雄市</option>
+						<option>宜蘭縣</option>
+						<option>花蓮縣</option>
+						<option>台東縣</option>
 				</select>
 				</span> <span> <span style="margin-left: 10px;">類型</span> <select
-					name="type">
+					name="type" class="selectpicker">
 						<option>餐廳</option>
 						<option>景點</option>
 						<option>住宿</option>
@@ -62,8 +92,8 @@
 					style="resize: none; width: 690px;" value="${attrVO.intro}"></textarea>
 			</div>
 			<div class="form-group">
-				<label for="inputfile" style="margin-left: 10px;">上傳圖片</label> 
-				<input type="file" id="inputfile" name="photo" value="upload_photo">
+				<label for="inputfile" style="margin-left: 10px;">上傳圖片</label> <input
+					type="file" id="inputfile" name="photo" value="upload_photo">
 				<p class="help-block"></p>
 			</div>
 			<div>
@@ -73,12 +103,14 @@
 						<button type="submit" class="btn btn-default">送出</button> <input
 						type="hidden" name="action" value="insert">
 					</td>
-					<td>
-					 <a href="ListAll.jsp" class="btn btn-primary">查詢</a>					
-					</td>					
+					<td><a href="ListAll.jsp" class="btn btn-primary">查詢</a></td>
 				</tr>
 			</div>
 		</form>
 	</div>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 </body>
 </html>
