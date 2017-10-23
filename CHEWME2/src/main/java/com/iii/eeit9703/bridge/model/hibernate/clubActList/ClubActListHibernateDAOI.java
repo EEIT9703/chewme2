@@ -1,11 +1,11 @@
-package com.iii.eeit9703.club.model.hibernate.clubMemList;
+package com.iii.eeit9703.bridge.model.hibernate.clubActList;
 
 import java.util.List;
 
-import com.iii.eeit9703.club.model.ClubActListVO;
+import com.iii.eeit9703.bridge.model.ClubActListVO;
 import com.iii.eeit9703.club.model.ClubVO;
 
-public interface ClubMemListHibernateDAOI {
+public interface ClubActListHibernateDAOI {
 	public List<ClubActListVO> getAll();
 	public void getOne(Integer clubId);
 	public void insert(ClubVO clubVO);

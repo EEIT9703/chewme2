@@ -1,8 +1,8 @@
-package com.iii.eeit9703.club.model.hibernate.clubActList;
+package com.iii.eeit9703.bridge.model.hibernate.clubActList;
 
 import java.util.List;
 
-import com.iii.eeit9703.club.model.ClubActListVO;
+import com.iii.eeit9703.bridge.model.ClubActListVO;
 import com.iii.eeit9703.club.model.ClubVO;
 
 public interface ClubActListHibernateDAO {

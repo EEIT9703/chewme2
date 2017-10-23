@@ -7,11 +7,11 @@
         <composite-id>
             <!-- key-property标签表示哪一些属性对应复合主键 -->
             <key-property name="clubId" column="clubId" type="Integer"></key-property>
-            <key-property name="actId" column="actId" type="Integer"></key-property>
+            <key-property name="memId" column="memId" type="Integer"></key-property>
         </composite-id>
                 
         <property name="clubId" column="clubId" />
-        <property name="actId" column="actId" />
+        <property name="memId" column="memId" />
         
     </class>
 </hibernate-mapping>
