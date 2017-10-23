@@ -1,8 +1,7 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="BIG5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html >
 <html lang="en">
 <head>
 <!-- jQuery CSS & JS -->
@@ -12,15 +11,6 @@
 <script src="/CHEWME2/js/jquery-3.2.1.min.js"></script>
 <script src="/CHEWME2/js/jquery-ui.min.js"></script>
 
-<!-- Bootstrap CSS & JS -->
-<link rel="stylesheet" href="/CHEWME2/css/bootstrap.css">
-<link rel="stylesheet" href="/CHEWME2/css/bootstrap.min.css">
-<link rel="stylesheet" href="/CHEWME2/css/bootstrap-responsive.css">
-<link rel="stylesheet" href="/CHEWME2/css/bootstrap-responsive.min.css">
-<script src="/CHEWME2/js/popper.min.js"></script>
-<script src="/CHEWME2/js/bootstrap.js"></script>
-<script src="/CHEWME2/js/bootstrap.min.js"></script>
-
 <!-- Fullcalendar scheduler -->
 <link href='/CHEWME2/css/fullcalendar.css' rel='stylesheet' />
 <link href='/CHEWME2/css/scheduler.css' rel='stylesheet' />
@@ -28,6 +18,16 @@
 <!-- <script src='/CHEWME2/js/jquery.js'></script> -->
 <script src='/CHEWME2/js/fullcalendar.min.js'></script>
 <script src='/CHEWME2/js/scheduler.js'></script>
+
+<!-- Bootstrap CSS & JS -->
+<!-- <link rel="stylesheet" href="/CHEWME2/css/bootstrap.css"> -->
+<link rel="stylesheet" href="/CHEWME2/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="/CHEWME2/css/bootstrap-responsive.css"> -->
+<link rel="stylesheet" href="/CHEWME2/css/bootstrap-responsive.min.css">
+<script src="/CHEWME2/js/popper.min.js"></script>
+<!-- <script src="/CHEWME2/js/bootstrap.js"></script> -->
+<script src="/CHEWME2/js/bootstrap.min.js"></script>
+
 
 
 <style type="text/css">
@@ -45,7 +45,7 @@ select{width:120px;height:40px;}
 
 <!-- calendar顯示div處 -->
 	<div id='calendar' class='span6' ></div>
-	
+
 <jsp:useBean id="dao" scope="page" class="com.iii.eeit9703.actEditor.CountryDAO"/>
 <FORM METHOD="post" ACTION="/AreaServlet.do">
 <div class="row">
@@ -73,13 +73,12 @@ select{width:120px;height:40px;}
 			<div class="modal-dialog">
 			<div class="modal-content">
 			<div class="modal-body">
-				<p>TEST</p>
 			<table border="1">
 				<tbody>
 					<tr><td>名　稱</td><td id=detailName></td><td rowspan=3 id=detailPhoto></td></tr>	
 					<tr><td>電　話</td><td id=detailTel></td></tr>
 					<tr><td>地　址</td><td id=detailAdd></td></tr>
-					<tr><td>簡　介</td><td colspan=2 id=detailIntor></td></tr>
+					<tr><td>簡　介</td><td colspan=2 id=detailIntro></td></tr>
 						
 				</tbody>
 			</table>
@@ -98,6 +97,8 @@ select{width:120px;height:40px;}
 
 <script>
 var i=1;
+var dataArray ;
+var item ;
 
 window.onload = function(){
 
@@ -130,6 +131,7 @@ window.onload = function(){
 	}
 
 	function sendAttraction(array){
+			dataArray = array;
 			var attr = $("#attr");
 			var rest = $("#rest");
 			var stay = $("#stay");
@@ -137,22 +139,35 @@ window.onload = function(){
 			rest.empty();
 			stay.empty();
 			var type=new Array("景點","餐廳","住宿");
-			for(var k=0;k<array.length;k++){
+			for(var k=0;k<dataArray.length;k++){
 //				alert(attraction.type);
 //				console.log(array.length);
-				var dataName = array[k].name;
-				var dataID = array[k].attractionID
+				var dataName = dataArray[k].name;
+				var dataID = dataArray[k].attractionID;
+				var dataTel=dataArray[k].tel;
+				var dataAdd=dataArray[k].address;
+				var dataIntro=dataArray[k].intro;
+				var dataPhoto=dataArray[k].image;
 				var name = $("<p></p>").text(dataName);
-				var item = $("<div class='item'></div>").append(name);
+//				var tel = $("<p style='display:none;'></p>").text(dataTel);
+//				var add = $("<p style='display:none;'></p>").text(dataAdd);
+//				var intro = $("<p style='display:none;'></p>").text(dataIntro);
+//				var photo = $("<p style='display:none;'></p>").text(dataPhoto);
+				item = $("<div class='item'></div>").append(name);
 				item.attr("id",dataID);
 				
-				if(type[0].match(array[k].type)){
+				
+				
+				if(type[0].match(dataArray[k].type)){
 					attr.append(item);
 					console.log(array[k].name);
 					$('#attr>div').css("background-color","#4EFEB3");
 					$('#attr>div').draggable();
 					$('#attr>div').attr("data-toggle","modal");
 					$('#attr>div').attr("data-target","#detail");
+					$('#attr>div').click(function(){
+						 alert($(this).attr("id"));
+					})
 					$('#attr>div').draggable({
 						zIndex: 999,
 						revert: true,		// will cause the event to go back to its
@@ -161,10 +176,15 @@ window.onload = function(){
 					
 				
 				}
-				else if(type[1].match(array[k].type)){
+				else if(type[1].match(dataArray[k].type)){
 					rest.append(item);
 					$('#rest>div').css("background-color","#FFA042");
 					$('#rest>div').draggable();
+					$('#rest>div').attr("data-toggle","modal");
+					$('#rest>div').attr("data-target","#detail");
+					$('#rest>div').click(function(){
+						 alert($(this).attr("id"));
+					})
 					$('#rest>div').draggable({
 						zIndex: 999,
 						revert: true,      
@@ -172,10 +192,15 @@ window.onload = function(){
 					});
 					
 				}
-				else if(type[2].match(array[k].type)){
+				else if(type[2].match(dataArray[k].type)){
 					stay.append(item);
 					$('#stay>div').css("background-color","#6A6AFF");
 					$('#stay>div').draggable();
+					$('#stay>div').attr("data-toggle","modal");
+					$('#stay>div').attr("data-target","#detail");
+					$('#stay>div').click(function(){
+						 alert($(this).attr("id"));
+					})
 					$('#stay>div').draggable({
 						zIndex: 999,
 						revert: true,      
@@ -185,13 +210,26 @@ window.onload = function(){
 				}
 				for(var item of  $('.item')){
 					$(item).data('event', { id:$(item).attr("id"), title:$(item).text() });
-					
 				}
 				
-				
-}	
-		}
+				function showDetail(){
+					console.log(dataArray);
+					console.log($(item).attr("id"));
+					for(var k=0;k<dataArray.length;k++){
+						if($(item).attr("id")==dataArray[k].attractionID){
+							$('#detailName').text(dataArray[k].name);
+							$('#detailTel').text(dataArray[k].tel);
+							$('#detailAdd').text(dataArray[k].address);
+							$('#detailIntor').text(dataArray[k].intro);
+						}
+				}
+			}	
+	}
+	
+	
+	
 		
+	}	
 
 
 $(function() {
@@ -226,11 +264,6 @@ $(function() {
     			// render the event on the calendar
     			// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
     			$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
-    			// is the "remove after drop" checkbox checked?
-    			if ($('#drop-remove').is(':checked')) {
-					// if so, remove the element from the "Draggable Events" list
-					$(this).remove();
-				}
     	    },
     	    eventReceive: function(event) { // called when a proper external event is dropped
 				console.log('eventReceive', event);
