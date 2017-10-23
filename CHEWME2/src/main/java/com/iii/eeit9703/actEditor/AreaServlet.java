@@ -70,7 +70,7 @@ public class AreaServlet extends HttpServlet {
 				out.print(attrArrayList.toString());
 				}
 			
-			if("getCounty".equals(mission)){
+			if("	".equals(mission)){
 				countyID =  Integer.parseInt(request.getParameter("county"));
 				System.out.println(countyID);
 				AttrDAO attrdao = new AttrDAO();

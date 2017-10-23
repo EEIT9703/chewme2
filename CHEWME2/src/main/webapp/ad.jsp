@@ -20,6 +20,13 @@
     <link href="backage/vendor/morrisjs/morris.css" rel="stylesheet">
 
     <link href="backage/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
 </head>
 
 
@@ -95,49 +102,65 @@
                
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-8">
-                    <div class="panel panel-default">
-                        內容區         <div class="panel-heading"> 
-                
-			         <form id="fileUploadForm" >
-					<input type="file" id="1" name="photo" >
-					 <input type="submit" value="上傳" id="btnSubmit"/>
-			       <div id="result"></div>
-			         </form>
+					<div class="col-lg-8">
+						<div class="panel panel-default">
+							內容區
+							<div class="panel-heading">
+
+								<form id="fileUploadForm">
+									<input type="file" id="1" name="photo"> <input
+										type="submit" value="上傳" id="btnSubmit" />
+									<div id="result"></div>
+								</form>
+								<table id="productTable" class="table table-bordered">
+									<thead>
+										<tr>
+											<th>產品編號</th>
+											<th>產品名稱</th>
+											<th>產品名稱</th>
+											<th>修改</th>
+											<th>刪除</th>
+										</tr>
+									</thead>
+									<tbody>
+
+									</tbody>
+									<tfoot>
+
+									</tfoot>
+								</table>
+							</div>
+						</div>
+					</div>
 
 
-			        	<table id="productTable" class="table table-bordered">
-                       <thead>
-                          <tr>
-                             <th>產品編號</th>
-                             <th>產品名稱</th>
-                             <th>產品名稱</th>
-                             <th>修改</th>  
-                             <th>刪除</th>                           
-                          </tr>
-                       </thead>
-                       <tbody>
-<%--         		<jsp:useBean id="dao" scope="page" class="com.iii.eeit9703.adphoto.model.PhotoDAO"/> --%>
-<%--           					  <c:forEach var="empVO" items="${dao.all}"> --%>
-<!--           					  <tr> -->
-<%--           					  		<td>${empVO.photo_no}</td> --%>
-<%--           					  		<td>${empVO.name}</td> --%>
-<!--           					  </tr> -->
-<%--           					  </c:forEach> --%>
+
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+						aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true">&times;</button>
+									<h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4>
+								</div>
+								<div class="modal-body">在这里添加一些文本</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">关闭</button>
+									<button type="button" class="btn btn-primary">提交更改</button>
+								</div>
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal -->
+					</div>
 
 
-                       </tbody>
-                       <tfoot>
-                     
-                      
-                       </tfoot>
-                   </table>
-			          
-                        </div>          
-                    </div>              
-                </div>
-                
-<!--                 右邊預留空間 -->
+
+
+
+					<!--                 右邊預留空間 -->
                 <div class="col-lg-4">
 
                     <div class="panel panel-default">
@@ -152,6 +175,12 @@
         </div>     
     </div>
     </div>
+    
+    
+    
+    
+    
+    
 
  	 <script src="js/bootstrap.min.js"></script>
 	 <script src="js/jquery.min.js"></script>
@@ -193,9 +222,12 @@ function search(){
          var cell1 = $('<td></td>').text(photo.photo_no);
          var cell2 = $('<td></td>').text(photo.name);
          var cell3 = $('<td></td>').html("<img src='data:image/png;base64,"+photo.photo+"'width=100px height=100px>");
-         var cell4 = $('<td></td>').html('<button id="update">修改</button>');
-         var cell5 = $('<td></td>').html('<button id="delete">刪除</button>');                             
-         var row = $('<tr></tr>').append([cell1, cell2,cell3,cell4,cell5]);
+//          var cell4 = $('<td></td>').html('<button id="update">修改</button>');
+//          var cell5 = $('<td></td>').html('<button id="delete">刪除</button>'); 
+         var cell4 = $('<td></td>').html('<button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button> '); 
+         var cell5 = $('<td></td>').html('<button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button>');
+       // var cell5= $('<td></td>').html('<li class="dropdown"><a class="dropdown-toggle" data-toggle="modal" data-target="#myModal"><button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a></li>');
+        var row = $('<tr></tr>').append([cell1, cell2,cell3,cell4,cell5]);
          opt.append(row);
 		
 		})
@@ -250,16 +282,35 @@ function search(){
     });
     
     
-    $('#delete').on('click',{},function(){
+//     $('#delete').on('click',{},function(){
     	
-	    	  var id = $(this).parents('tr').find('td:nth-child(1)').text();
+// 	    	  var id = $(this).parents('tr').find('td:nth-child(1)').text();
+// 	    	  alert(id);
+// 				$.getJSON('activity?action=delete',{'ID':id},function(){
+					
+// 					search();
+// 				})	
+// 	 	 })
+    
+    $('#productTable>tbody').on('click','td:nth-child(4)>button:nth-child(1)',function(){
+    	
+    	 var id = $(this).parents('tr').find('td:nth-child(1)').text();
+	    	
 				$.getJSON('activity?action=delete',{'ID':id},function(){
 					
 					search();
 				})	
+				
 	 	 })
     
-    
+    $('#productTable>tbody').on('click','td:nth-child(5) button:nth-child(1)',function(){
+    	
+    	alert('ss');
+    	$('#myModal').modal('show')
+    	
+	 	 })
+	 
+
     
     
     
@@ -269,6 +320,8 @@ function search(){
 	</script>
 	<script src='backage/full/moment.min.js'></script>
     <script src='backage/full/fullcalendar.min.js'></script>
+    
+    
 
 </body>
 </html>

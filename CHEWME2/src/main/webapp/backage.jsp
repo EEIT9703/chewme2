@@ -17,6 +17,9 @@
     <link href="backage/vendor/morrisjs/morris.css" rel="stylesheet">
 
     <link href="backage/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+	
+
 </head>
 
 
@@ -97,7 +100,14 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="panel panel-default">
-                        內容區                     
+                                 <div class="panel-heading">
+
+								內容區
+							
+
+
+
+							</div>      
                     </div>              
                 </div>
                 
@@ -116,7 +126,12 @@
         </div>     
     </div>
     </div>
+    <script>
     
+   
+    
+    
+    </script>
  	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.min.js"></script>
 
