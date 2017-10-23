@@ -17,8 +17,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.simple.JSONValue;
 
+import com.iii.eeit9703.actEditor.AttrVO;
+import com.iii.eeit9703.activity.model.ActService;
 import com.iii.eeit9703.activity.model.ActivityDAO;
 import com.iii.eeit9703.activity.model.ActivityVO;
+import com.iii.eeit9703.adphoto.model.PhotoDAO;
+import com.iii.eeit9703.adphoto.model.PhotoVO;
 
 /**
  * Servlet implementation class activity
@@ -54,19 +58,48 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 			PrintWriter out = response.getWriter();
 			
 			
-			if("getAll".equals(action)){
+			if("getAllphoto".equals(action)){
 				
-				ActivityDAO dao = new ActivityDAO();
-				List<ActivityVO> countyList =  dao.getAll();			
-			
-				
-				
-				 Map m2 = new HashMap();
-				 m2.put("data", countyList);
-				 String jsonString = JSONValue.toJSONString(m2);  
-				 out.println(jsonString);
+				PhotoDAO dao = new PhotoDAO();
+				//List<PhotoVO> countyList =  dao.getAll();			
+				//System.out.println(countyList.size());
+				ArrayList<PhotoVO> attrList = (ArrayList<PhotoVO>) dao.getAll();
+				for(PhotoVO  aa :attrList){
+				System.out.println(aa.getPhoto());
+					
+				}
+				JSONArray attrArrayList = new JSONArray(attrList);
+		
+				out.print(attrArrayList.toString());
 				}
 			
+				if("getAllactivity".equals(action)){
+				ActService ser= new ActService();
+			//	ActivityDAO dao = new ActivityDAO();
+				//List<PhotoVO> countyList =  dao.getAll();			
+				//System.out.println(countyList.size());
+				ArrayList<ActivityVO> attrList = (ArrayList<ActivityVO>) ser.getAll();
+				System.out.println("aaww");
+				
+				JSONArray attrArrayList = new JSONArray(attrList);
+		
+				out.print(attrArrayList.toString());
+				}
+			
+				if("delete".equals(action)){
+					System.out.println("delete");
+				Integer id =new Integer(request.getParameter("ID"));
+					PhotoDAO dao = new PhotoDAO();
+					//List<PhotoVO> countyList =  dao.getAll();			
+					//System.out.println(countyList.size());
+					dao.delete(id);
+					
+					ArrayList<PhotoVO> attrList = (ArrayList<PhotoVO>) dao.getAll();
+					
+					JSONArray attrArrayList = new JSONArray(attrList);
+			
+					out.print(attrArrayList.toString());
+					}
 		
 /*			HttpSession session = request.getSession();
 			session.setAttribute("countyList", countyList);

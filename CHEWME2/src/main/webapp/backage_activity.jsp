@@ -156,53 +156,28 @@
 	<script src="js/jquery.min.js"></script>
   	<script>
   	$(function(){
-		   loadProduct(1);
-//   		$.getJSON('activity?action=getall',{}, function (array){
-//   			  var docFrag = $(document.createDocumentFragment());
-// 	           var tb = $('#activity>tbody');
-// 	           tb.empty();
-//   			$.each(array,function(i,activity){
-			
-//   			  var cell1 = $('<td></td>').text(activity.actID);
-//               var cell2 = $('<td></td>').text(activity.act_name);
-//               var cell3 = $('<td></td>').text(activity.act_groups);
-//               var cell4 = $('<td></td>').text(activity.act_current);
-//               var cell5 = $('<td></td>').text(activity.BDdat);
-//               var cell6 = $('<td></td>').text(activity.Edate);
-//               var cell7 = $('<td></td>').text(activity.activity_state);
-//               var row = $('<tr></tr>').append([cell1, cell2, cell3, cell4,cell5,cell6,cell7]);
-//               docFrag.append(row);
-// 			});
-// 			 tb.append(docFrag);
-  			
+  		$.getJSON('activity?action=getAllactivity',{},sendCounty);
   		
-//   		});
-//     };
-	   function loadProduct(id){
-
-		    	 $.getJSON('activity?action=getAll',{ 'action':'getAll' }, function (datas) {			          
-			           var docFrag = $(document.createDocumentFragment());
-			           var tb = $('#activity>tbody');
-			           tb.empty();
-			           $.each(datas, function (idx,product) {
-			        	   var cell1 = $('<td></td>').text(activity.actID);
-			               var cell2 = $('<td></td>').text(activity.act_name);
-			               var cell3 = $('<td></td>').text(activity.act_groups);
-			               var cell4 = $('<td></td>').text(activity.act_current);
-			               var cell5 = $('<td></td>').text(activity.BDdat);
-			               var cell6 = $('<td></td>').text(activity.Edate);
-			               var cell7 = $('<td></td>').text(activity.activity_state);
-			               var row = $('<tr></tr>').append([cell1, cell2, cell3, cell4,cell5,cell6,cell7]);
-			               docFrag.append(row);
-			               //setTimeout(function(){
-			               //tb.append(row);
-			               //},idx*1000);
-			               docFrag.append(row);
-			           })
- 			           tb.append(docFrag);
-           
-			       })	   
-		   }
+  		function sendCounty(array){
+  			//var docFrag = $(document.createDocumentFragment());
+  			var opt = $('#activity>tbody');
+  			opt.empty();
+  			$.each(array,function(i,activity){
+  	         var cell1 = $('<td></td>').text(activity.actID); 	 
+  	       	 var cell2 = $('<td></td>').text(activity.act_name);
+	         var cell3 = $('<td></td>').text(activity.act_groups);
+	         var cell4 = $('<td></td>').text(activity.act_current);  
+	         var cell5 = $('<td></td>').text(activity.BDate);  
+	         var cell6 = $('<td></td>').text(activity.EDate);  
+	         var cell7 = $('<td></td>').text(activity.activity_state);
+	
+  	         var row = $('<tr></tr>').append([cell1, cell2,cell3,cell4,cell5,cell6,cell7]);
+  	         opt.append(row);
+  			
+  			})
+  		
+  		}
+ 				
 	   })
     </script>
     	<script src="js/bootstrap.min.js"></script>
