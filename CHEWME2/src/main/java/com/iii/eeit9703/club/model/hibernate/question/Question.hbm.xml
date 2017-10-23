@@ -3,17 +3,16 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.iii.eeit9703.club.model.CommentVO" table="clubs">
+	<class name="com.iii.eeit9703.club.model.QuestionVO" table="questions">
 
-		<id name="clubId" column="clubId">
+		<id name="questionId" column="questionId">
 			<generator class="identity" />
 		</id>
-
-		<property name="questionId" column="questionId" />
+		
 		<property name="clubId" column="clubId" />
 		<property name="qcontent" column="qcontent" />
 		<property name="askerId" column="askerId" />
-		<property name="read" column="read" />
+		<property name="readed" column="readed"/>
 	</class>
 </hibernate-mapping>
 
