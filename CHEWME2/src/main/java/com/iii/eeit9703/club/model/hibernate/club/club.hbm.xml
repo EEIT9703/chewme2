@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.iii.eeit9703.club.model.ClubVO" table="clubs">
+
+		<id name="clubId" column="clubId">
+			<generator class="identity" />
+		</id>
+
+		<property name="clubName" column="clubName" />
+		<property name="managerId" column="managerId" />
+		<property name="locationId" column="locationId" />
+		<property name="brief" column="brief" />
+		<property name="refURL" column="refURL" />
+		<property name="vistors" column="vistors" />
+		<property name="vistorsInMonth" column="vistorsInMonth" />
+		<property name="addr" column="addr" />
+	</class>
+</hibernate-mapping>
+
