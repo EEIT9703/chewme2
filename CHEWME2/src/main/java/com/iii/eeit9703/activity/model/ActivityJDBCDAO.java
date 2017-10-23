@@ -362,6 +362,7 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 		System.out.print(actVO3.getBDate() + ",");
 		System.out.print(actVO3.getEDate() + ",");
 		System.out.print(actVO3.getActivity_state() + ",");
+		System.out.println(actVO3.getCollectID()+",");
 		System.out.println("---------------------");
 		
 		// 查詢
@@ -373,6 +374,7 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 			System.out.print(aAct.getEDate() + ",");
 			System.out.print(aAct.getEDate() + ",");
 			System.out.print(aAct.getActivity_state() + ",");
+			System.out.println(aAct.getCollectID()+",");
 			System.out.println();
 		}
 		
