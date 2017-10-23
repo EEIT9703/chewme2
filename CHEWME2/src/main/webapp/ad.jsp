@@ -249,7 +249,7 @@ function search(){
 
 		// If you want to add an extra field for the FormData
       //  data.append("CustomField", "This is some extra data, testing");
-
+ 
 		// disabled the submit button
        // $("#btnSubmit").prop("disabled", true);
 
