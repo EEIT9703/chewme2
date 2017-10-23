@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -100,15 +101,37 @@
                 
 			         <form id="fileUploadForm" >
 					<input type="file" id="1" name="photo" >
-					<input type="file" id="2" name="photo" >
-<!-- 					<input type="file" id="picture3" name="photo" > -->
-<!-- 					<input type="file" id="picture4" name="photo" > -->
-<!-- 					<input type="file" id="picture5" name="photo" >	 -->
-<!-- 					<input id="send" type="button" value="上傳" > -->
 					 <input type="submit" value="上傳" id="btnSubmit"/>
 			       <div id="result"></div>
 			         </form>
-			        	
+
+
+			        	<table id="productTable" class="table table-bordered">
+                       <thead>
+                          <tr>
+                             <th>產品編號</th>
+                             <th>產品名稱</th>
+                             <th>產品名稱</th>
+                             <th>修改</th>  
+                             <th>刪除</th>                           
+                          </tr>
+                       </thead>
+                       <tbody>
+<%--         		<jsp:useBean id="dao" scope="page" class="com.iii.eeit9703.adphoto.model.PhotoDAO"/> --%>
+<%--           					  <c:forEach var="empVO" items="${dao.all}"> --%>
+<!--           					  <tr> -->
+<%--           					  		<td>${empVO.photo_no}</td> --%>
+<%--           					  		<td>${empVO.name}</td> --%>
+<!--           					  </tr> -->
+<%--           					  </c:forEach> --%>
+
+
+                       </tbody>
+                       <tfoot>
+                     
+                      
+                       </tfoot>
+                   </table>
 			          
                         </div>          
                     </div>              
@@ -142,7 +165,44 @@
 // 				$('#result').text("success");
 //  			});
 // 		});
+var i=1;
 $(document).ready(function () {
+	search();
+// 	 $.getJSON('activity?action=getAll', {}, function (datas) {			          
+//           var docFrag = $(document.createDocumentFragment());
+//           var tb = $('#productTable>tbody');
+//           tb.empty();
+//           $.each(datas, function (i,photo) {
+//               var cell1 = $('<td></td>').text(photo.photo_no);
+//               var cell2 = $('<td></td>').text(photo.name);
+//               var row = $('<tr></tr>').append([cell1, cell2]);
+
+//               docFrag.append(row);
+//           })
+//            tb.append(docFrag);
+
+//       })	
+function search(){
+	$.getJSON('activity?action=getAllphoto',{},sendCounty);
+	
+	function sendCounty(array){
+		//var docFrag = $(document.createDocumentFragment());
+		var opt = $('#productTable>tbody');
+		opt.empty();
+		$.each(array,function(i,photo){
+         var cell1 = $('<td></td>').text(photo.photo_no);
+         var cell2 = $('<td></td>').text(photo.name);
+         var cell3 = $('<td></td>').html("<img src='data:image/png;base64,"+photo.photo+"'width=100px height=100px>");
+         var cell4 = $('<td></td>').html('<button id="update">修改</button>');
+         var cell5 = $('<td></td>').html('<button id="delete">刪除</button>');                             
+         var row = $('<tr></tr>').append([cell1, cell2,cell3,cell4,cell5]);
+         opt.append(row);
+		
+		})
+	
+	}
+	
+}
 
     $("#btnSubmit").click(function (event) {
 
@@ -184,9 +244,26 @@ $(document).ready(function () {
                 $("#btnSubmit").prop("disabled", false);
 
             }
+           
         });
-
+        search();
     });
+    
+    
+    $('#delete').on('click',{},function(){
+    	
+	    	  var id = $(this).parents('tr').find('td:nth-child(1)').text();
+				$.getJSON('activity?action=delete',{'ID':id},function(){
+					
+					search();
+				})	
+	 	 })
+    
+    
+    
+    
+    
+    
 
 });
 	</script>

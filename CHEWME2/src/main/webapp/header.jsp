@@ -16,6 +16,7 @@
 		</ul>
 
 		<ul class="nav navbar-nav navbar-right">
+			<li class="nav-shopping-cart" ><img src="<%=request.getContextPath()%>/image/car.gif"  width=50px height=50px/><span class="aaa" data-reactid="65">2</span></li>
 			<li><a class="nav-link" href="#"><span
 					class="glyphicon glyphicon-log-in"></span> 登入</a></li>
 			<li><a class="nav-link" href="#"><span
