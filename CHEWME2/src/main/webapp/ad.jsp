@@ -275,17 +275,18 @@ function search(){
         $.ajax({
             type: "POST",
             enctype: 'multipart/form-data',
-            url:"upload",
+            url:"upload?action=insert",
             data: data,
             processData: false,
             contentType: false,
             cache: false,
-            timeout: 1000000,
+          
             success: function (data) {
 
                 $("#result").text(data);
                 console.log("SUCCESS : ", data);
                 $("#btnSubmit").prop("disabled", false);
+        		search();
 
             },
             error: function (e) {
@@ -297,7 +298,6 @@ function search(){
             }
            
         });
-        search();
     });
     
     
@@ -370,11 +370,12 @@ function search(){
              processData: false,
              contentType: false,
              cache: false,
-             timeout: 10000000,
+             
              success: function (data) {
                  $("#result").text(data);
                  console.log("SUCCESS : ", data);
                  $("#btnSubmit").prop("disabled", false);
+             search();
 
              },
              error: function (e) {
@@ -387,7 +388,7 @@ function search(){
    
          $('#myModal').modal('hide')
    
-    	  search();
+    	
     
     	 });//end confirm
   

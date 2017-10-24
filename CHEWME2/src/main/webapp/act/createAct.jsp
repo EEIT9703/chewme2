@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.*" %>
 <%@ page import="com.iii.eeit9703.activity.model.*" %>
 
 <%
       ActivityVO activityVO = (ActivityVO) request.getAttribute("activityVO");
+      
+      ActService act = new ActService();
+      List<ActivityVO> list = act.getAll();
+      pageContext.setAttribute("list",list);
 %>
 
 <!DOCTYPE html>
@@ -86,7 +91,7 @@
 					<div class="col-sm-10">
 						<select class="form-control input-sm" size="1" name="actID" id="actID">
 						<c:forEach var="activityVO" items="${actSvc.all}" > 
-                        <option value="${activityVO.actID}">${activityVO.act_name}
+                        	<option value="${activityVO.actID}">${activityVO.act_name}</option>
                         </c:forEach> 
 						</select>
 					</div>
@@ -94,7 +99,7 @@
 				<div class="from-group">
 					<label for="actname" class="col-sm-2 control-lable">活動名稱</label>
 					<div class="col-sm-10">
-						<input type="text"  class="form-control input-sm" id="act_name" value="">
+						<input type="text"  class="form-control input-sm" id="act_name" value=${activityVO.act_name}>
 					</div>
 				</div>
 				<div class="from-group">
@@ -163,11 +168,11 @@
 	 
 	//觸發actID
 	$("#actID").change(function(){
-		var actID = document.getElementById("actID");
-		alert(actID.val)
+ 		var actID = $(this).val();
+// 		alert(actID.val)
+		console.log($(this).val());
 	//	$.get('/CHEWME2/activityServlet?action=getOne_For_Update',{'actID':actID},sendActID);
-		$.get('/CHEWME2/activityServlet?action=getOne_For_Update',{'actID':actID},sendActID);
-	
+		$.getJSON('/CHEWME2/activityServlet.do?action=getOne_For_Update',{'actID':actID},sendActID);
 	});
 	
 	function sendActID(){
