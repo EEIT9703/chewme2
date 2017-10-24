@@ -20,17 +20,19 @@ public class Uploadfile extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		req.setCharacterEncoding("UTF-8");
-
-		// Integer ID = Integer.parseInt(req.getParameter("id"));
+		String action = req.getParameter("action");
+		 Integer id = Integer.parseInt(req.getParameter("id"));
+		 System.out.println(id);
+//		 String action = req.getParameter("action");
 		// System.out.println(ID);
 		for (Part part : req.getParts()) {
 	
-			wirtepicture(part);
+			wirtepicture(part,id,action);
 		}
 
 	}
 //binary
-	private void wirtepicture(Part part) {
+	private void wirtepicture(Part part,Integer id, String action) {
 		PhotoDAO dao = new PhotoDAO();
 		PhotoVO photoVO = new PhotoVO();
 		InputStream is = null;
@@ -56,9 +58,19 @@ public class Uploadfile extends HttpServlet {
 				
 //				BASE64Encoder encoder = new BASE64Encoder();
 //				String imageString = encoder.encode(buf);
+				
+				if("upload".equals(action)){
+				photoVO.setPhoto_no(id);
 				photoVO.setName(part.getSubmittedFileName());
 				photoVO.setPhoto(base64);
 				dao.insert(photoVO);
+				}
+				else{
+					
+					photoVO.setName(part.getSubmittedFileName());
+					photoVO.setPhoto(base64);
+					dao.insert(photoVO);									
+				}
 
 			}
 		} catch (IOException e) {

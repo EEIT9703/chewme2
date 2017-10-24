@@ -60,12 +60,12 @@ public class AttrServlet extends HttpServlet {
 				attrVO = attr1.addAttr(name, county, type, address, tel, intro, inputStream);
 				
 
-				RequestDispatcher view = req.getRequestDispatcher("ShowView.jsp");
+				RequestDispatcher view = req.getRequestDispatcher("showView.jsp");
 				view.forward(req, res);
 
 			} catch (Exception e) {
 				e.printStackTrace();
-				RequestDispatcher failure = req.getRequestDispatcher("InsertAttr.jsp");
+				RequestDispatcher failure = req.getRequestDispatcher("insertAttr.jsp");
 				failure.forward(req, res);
 			}
 		}
@@ -75,7 +75,7 @@ public class AttrServlet extends HttpServlet {
 				AttrService attrsvc = new AttrService();
 				attrsvc.deleteAttr(attractionID);
 
-				RequestDispatcher view = req.getRequestDispatcher("ListAll.jsp");
+				RequestDispatcher view = req.getRequestDispatcher("listAll.jsp");
 				view.forward(req, res);
 			} catch (Exception e) {
 				e.printStackTrace();

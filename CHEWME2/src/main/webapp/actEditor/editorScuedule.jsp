@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="BIG5"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html >
 <html lang="en">
@@ -32,38 +32,40 @@
 
 <style type="text/css">
 b{font-family: 'Arial','Microsoft JhengHei';font-size:20px;}
-p{font-family: 'Arial','Microsoft JhengHei';font-size:20px;font-weight:bolder}
+p{font-family: 'Arial','Microsoft JhengHei';font-size:20px;font-weight:bolder;}
 select{width:120px;height:40px;}
-.item{line-height:30px;border-radius:20px;width:240px;padding-left:20px}
+.item{line-height:30px;border-radius:20px;width:240px;padding-left:20px;}
+.detailItem{font-family: 'Arial','Microsoft JhengHei';font-size:20px;padding-left:10px;width:80px;}
+#detailName,#detailTel,#detailAdd,#detailIntro{font-family: 'Arial','Microsoft JhengHei';font-size:20px;padding-left:10px;}
 
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=BIG5">
-<title>½s¿è¦æµ{</title>
+<title>ç·¨è¼¯è¡Œç¨‹</title>
 
 </head>
 <body>
 
-<!-- calendarÅã¥Üdiv³B -->
+<!-- calendaré¡¯ç¤ºdivè™• -->
 	<div id='calendar' class='span6' ></div>
 
 <jsp:useBean id="dao" scope="page" class="com.iii.eeit9703.actEditor.CountryDAO"/>
 <FORM METHOD="post" ACTION="/AreaServlet.do">
 <div class="row">
 	<div class="span6">
-		<b>(1) ¿ï¾Ü¿¤¥«¡G</b>
+		<b>(1) é¸æ“‡ç¸£å¸‚ï¼š</b>
 		<select id="country" name="country">
 			<c:forEach var="countryVO" items="${dao.country}">
 				<option value="${countryVO.countryID}">${countryVO.countryName}
 			</c:forEach>
 		</select>
 		<br>
-		<b>(2) ¿ï¾Ü°Ï°ì¡G</b>
-		<select id="county" name="county"><option>½Ğ¿ï¾Ü¿¤¥«</option></select>
+		<b>(2) é¸æ“‡å€åŸŸï¼š</b>
+		<select id="county" name="county"><option>è«‹é¸æ“‡ç¸£å¸‚</option></select>
 		<div id="tabs">
 		  <ul>
-	    	<li><a href="#attr">´º¡@ÂI</a></li>
-			<li><a href="#rest">À\¡@Å¥</a></li>
-  			<li><a href="#stay">¦í¡@±J</a></li>
+	    	<li><a href="#attr">æ™¯ã€€é»</a></li>
+			<li><a href="#rest">é¤ã€€è½</a></li>
+  			<li><a href="#stay">ä½ã€€å®¿</a></li>
 		  </ul>
 		  <div id="attr"></div>
 		  <div id="rest"></div>
@@ -75,10 +77,10 @@ select{width:120px;height:40px;}
 			<div class="modal-body">
 			<table border="1">
 				<tbody>
-					<tr><td>¦W¡@ºÙ</td><td id=detailName></td><td rowspan=3 id=detailPhoto></td></tr>	
-					<tr><td>¹q¡@¸Ü</td><td id=detailTel></td></tr>
-					<tr><td>¦a¡@§}</td><td id=detailAdd></td></tr>
-					<tr><td>Â²¡@¤¶</td><td colspan=2 id=detailIntro></td></tr>
+					<tr><td class="detailItem">åã€€ç¨±</td><td id=detailName></td><td rowspan=3 id=detailPhoto style="width:200px;"></td></tr>	
+					<tr><td class="detailItem">é›»ã€€è©±</td><td id=detailTel></td></tr>
+					<tr><td class="detailItem">åœ°ã€€å€</td><td id=detailAdd></td></tr>
+					<tr><td class="detailItem">ç°¡ã€€ä»‹</td><td colspan=2 id=detailIntro></td></tr>
 						
 				</tbody>
 			</table>
@@ -108,14 +110,14 @@ window.onload = function(){
 //		});
 	$("#country").change(function (){
 		var country = document.getElementById("country");
-//		alert("¿ï¾Ü¿¤¥«¡G"+country.value);
+//		alert("é¸æ“‡ç¸£å¸‚ï¼š"+country.value);
 		$.getJSON('/CHEWME2/AreaServlet.do?mission=getCountry',{'country':country.value},sendCounty);
 		$.getJSON('/CHEWME2/AreaServlet.do?mission=getCountryAttr',{'country':country.value},sendAttraction);		
 	});
 	
 	$("#county").change(function (){
 		var county = document.getElementById("county");
-//		alert("¿ï¾Ü°Ï°ì¡G"+county.value);
+//		alert("é¸æ“‡å€åŸŸï¼š"+county.value);
 		$.getJSON('/CHEWME2/AreaServlet.do?mission=getCounty',{'county':county.value},sendAttraction);
 	});	
 	
@@ -138,7 +140,7 @@ window.onload = function(){
 			attr.empty();
 			rest.empty();
 			stay.empty();
-			var type=new Array("´ºÂI","À\ÆU","¦í±J");
+			var type=new Array("æ™¯é»","é¤å»³","ä½å®¿");
 			for(var k=0;k<dataArray.length;k++){
 //				alert(attraction.type);
 //				console.log(array.length);
@@ -166,7 +168,7 @@ window.onload = function(){
 					$('#attr>div').attr("data-toggle","modal");
 					$('#attr>div').attr("data-target","#detail");
 					$('#attr>div').click(function(){
-						 alert($(this).attr("id"));
+						showDetail($(this).attr("id"));
 					})
 					$('#attr>div').draggable({
 						zIndex: 999,
@@ -183,7 +185,7 @@ window.onload = function(){
 					$('#rest>div').attr("data-toggle","modal");
 					$('#rest>div').attr("data-target","#detail");
 					$('#rest>div').click(function(){
-						 alert($(this).attr("id"));
+						showDetail($(this).attr("id"));
 					})
 					$('#rest>div').draggable({
 						zIndex: 999,
@@ -199,7 +201,7 @@ window.onload = function(){
 					$('#stay>div').attr("data-toggle","modal");
 					$('#stay>div').attr("data-target","#detail");
 					$('#stay>div').click(function(){
-						 alert($(this).attr("id"));
+						showDetail($(this).attr("id"));
 					})
 					$('#stay>div').draggable({
 						zIndex: 999,
@@ -212,15 +214,16 @@ window.onload = function(){
 					$(item).data('event', { id:$(item).attr("id"), title:$(item).text() });
 				}
 				
-				function showDetail(){
+				function showDetail(id){
 					console.log(dataArray);
-					console.log($(item).attr("id"));
+					console.log(id);
 					for(var k=0;k<dataArray.length;k++){
-						if($(item).attr("id")==dataArray[k].attractionID){
+						if(id==dataArray[k].attractionID){
 							$('#detailName').text(dataArray[k].name);
 							$('#detailTel').text(dataArray[k].tel);
 							$('#detailAdd').text(dataArray[k].address);
-							$('#detailIntor').text(dataArray[k].intro);
+							$('#detailIntro').text(dataArray[k].intro);
+							var src=dataArray[k].image;
 						}
 				}
 			}	
@@ -284,7 +287,7 @@ $(function() {
 		},
 		customButtons:{
 			newDay: {
-		            text: '·s¼W¤@¤Ñ',
+		            text: 'æ–°å¢ä¸€å¤©',
 		            click: function(){
 		            	var I=null;
 		            	var T=null;
