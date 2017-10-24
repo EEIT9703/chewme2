@@ -86,7 +86,6 @@ public class AttrDAO {
 					attrVO.setAddress(rs.getString("address"));
 					attrVO.setTel(rs.getString("tel"));
 					attrVO.setIntro(rs.getString("intro"));
-					attrVO.setImage(rs.getBytes("image"));
 										
 					list.add(attrVO);
 				}

@@ -1,17 +1,17 @@
 package com.iii.eeit9703.actEditor;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Base64;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
+
 
 import org.json.JSONArray;
+
+import com.iii.eeit9703.adphoto.model.*;
 
 
 
@@ -35,6 +35,7 @@ public class AreaServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request,response);
 	}
+	
 
 	private void processRequest(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -68,6 +69,7 @@ public class AreaServlet extends HttpServlet {
 				JSONArray attrArrayList = new JSONArray(attrList);
 //				System.out.println(attrArrayList);
 				out.print(attrArrayList.toString());
+				
 				}
 			
 			if("getCounty".equals(mission)){
@@ -80,19 +82,46 @@ public class AreaServlet extends HttpServlet {
 				System.out.println(attrArrayList);
 				out.print(attrArrayList.toString());
 				
-			}
-/*			HttpSession session = request.getSession();
-			session.setAttribute("countyList", countyList);
+				}
 			
-			String url = "Success.jsp";
-			RequestDispatcher success = request.getRequestDispatcher(url);
-			success.forward(request, response);
-			return;
-*/			
+			if("showPhoto".equals(mission)){
+				Integer id = Integer.parseInt(request.getParameter("id"));
+				System.out.println(id);
+				
+				for(Part part : request.getParts()){
+					PhotoDAO dao = new PhotoDAO();
+					PhotoVO vo = new PhotoVO();
+					InputStream is = null;
+					ByteArrayOutputStream bos = null;
+					
+					is = part.getInputStream();
+					int len;
+					int size=1024;
+					byte[] buf;
+					
+					if(is instanceof ByteArrayInputStream){
+						size = is.available();
+						buf = new byte[size];
+						len = is.read(buf, 0, size);
+					}else{
+						bos = new ByteArrayOutputStream();
+						buf = new byte[size];
+						while ((len = is.read(buf, 0, size))!=-1)
+							bos.write(buf, 0, len);
+						buf = bos.toByteArray();
+						String base64 = Base64.getEncoder().encodeToString(buf);
+						
+					}
+				}
+			}
+
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ServletException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -158,12 +158,7 @@ window.onload = function(){
 				var dataTel=dataArray[k].tel;
 				var dataAdd=dataArray[k].address;
 				var dataIntro=dataArray[k].intro;
-				var dataPhoto=dataArray[k].image;
 				var name = $("<p></p>").text(dataName);
-//				var tel = $("<p style='display:none;'></p>").text(dataTel);
-//				var add = $("<p style='display:none;'></p>").text(dataAdd);
-//				var intro = $("<p style='display:none;'></p>").text(dataIntro);
-//				var photo = $("<p style='display:none;'></p>").text(dataPhoto);
 				item = $("<div class='item'></div>").append(name);
 				item.attr("id",dataID);
 				
