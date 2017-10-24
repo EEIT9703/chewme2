@@ -8,10 +8,10 @@
 		</div>
 			
 		<ul  class="nav navbar-nav" style="margin-left:50px"  >
-			<li><a href="#">Home</a></li>
-			<li><a href="#">揪人玩</a></li>
+			<li><a href="#">Home</a></li>			
 			<li><a href="#">創行程</a></li>
 			<li><a href="#">創社團</a></li>
+			<li><a href="club/findClub.do">找社團</a></li>
 
 		</ul>
 

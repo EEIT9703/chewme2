@@ -10,12 +10,13 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+import com.iii.eeit9703.club.model.ClubDAOI;
 import com.iii.eeit9703.club.model.ClubVO;
 import com.iii.eeit9703.hibernate.util.HibernateUtil;
 
-public class ClubHibernateDAO implements ClubHibernateDAOI{
+public class ClubHibernateDAO implements ClubDAOI{
 	
-	private static final String GET_ALL_STMT="from club order by clubId";
+	private static final String GET_ALL_STMT="from ClubVO order by clubId";
 	@Override
 	public List<ClubVO> getAll() {
 		List<ClubVO> list=null;
@@ -82,7 +83,20 @@ public class ClubHibernateDAO implements ClubHibernateDAOI{
 	}
 
 	public static void main(String[] args) {
-		// ���U�A��
+		ClubHibernateDAO chd = new ClubHibernateDAO();
+		List<ClubVO> list = chd.getAll();
+		for (ClubVO aClub : list) {
+			System.out.print(aClub.getClubId() + ",");
+			System.out.print(aClub.getClubName() + ",");
+			System.out.print(aClub.getManagerId() + ",");
+			System.out.print(aClub.getLocationId() + ",");
+			System.out.print(aClub.getBrief() + ",");
+			System.out.print(aClub.getRefURL() + ",");
+			System.out.print(aClub.getVistors() + ",");
+			System.out.print(aClub.getVistorsInMonth() + ",");
+			System.out.println(aClub.getAddr() + ",");
+		}
+		/*// ���U�A��
 		Configuration cfg = new Configuration().configure();
 		ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(cfg.getProperties()).build();
 		// �Ы�SessionFactory
@@ -132,7 +146,7 @@ public class ClubHibernateDAO implements ClubHibernateDAOI{
 		} finally {
 			session.close();
 			sessionFactory.close();
-		}
+		}*/
 	}
 	
 

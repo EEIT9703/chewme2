@@ -30,4 +30,12 @@
 		<servlet-name>AttrServlet</servlet-name>
 		<url-pattern>/attractions/Attraction.do</url-pattern>
 	</servlet-mapping>
+		<servlet>
+		<servlet-name>FindClubServlet</servlet-name>
+		<servlet-class>com.iii.eeit9703.club.controller.FindClubServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FindClubServlet</servlet-name>
+		<url-pattern>/club/findClub1.do</url-pattern>
+	</servlet-mapping>
 </web-app>

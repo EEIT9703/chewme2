@@ -1,11 +1,8 @@
-package com.iii.eeit9703.club.model.hibernate.comment;
+package com.iii.eeit9703.club.model;
 
 import java.util.List;
 
-import com.iii.eeit9703.club.model.ClubVO;
-import com.iii.eeit9703.club.model.CommentVO;
-
-public interface CommentHibernateDAOI {
+public interface CommentDAOI {
 	public List<CommentVO> getAll();
 	public void getOne(Integer commentId);
 	public void insert(CommentVO commentVO);

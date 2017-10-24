@@ -1,10 +1,8 @@
-package com.iii.eeit9703.club.model.hibernate.club;
+package com.iii.eeit9703.club.model;
 
 import java.util.List;
 
-import com.iii.eeit9703.club.model.ClubVO;
-
-public interface ClubHibernateDAOI {
+public interface ClubDAOI {
 	public List<ClubVO> getAll();
 	public void getOne(Integer clubId);
 	public void insert(ClubVO clubVO);
