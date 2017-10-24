@@ -92,15 +92,16 @@ public class ActivityServlet extends HttpServlet {
 				ActService actSvc = new ActService();
 				ActivityVO activityVO = actSvc.getOneAct(actID);
 				
-				String actJSON = JSONValue.toJSONString(actID);
-//				JSONObject actJSON = new JSONObject(activityVO);
+//				String actJSON = JSONValue.toJSONString(activityVO);
+				JSONObject actJSON = new JSONObject(activityVO);
 //				JSONArray actJSON = new JSONArray(activityVO);
 				out.print(actJSON.toString());
-				System.out.println(actID);
+				
+				System.out.println(actJSON);
 				
 				//3.查詢完成 準備轉交
-				req.setAttribute("activityVO", activityVO); //取出資料庫activityVO 存入req
-				String url = "/act/createAct.jsp";
+//				req.setAttribute("activityVO", activityVO); //取出資料庫activityVO 存入req
+//				String url = "/act/createAct.jsp";
 				
 //				RequestDispatcher successView = req.getRequestDispatcher(url); //成功轉交createActivity.jsp 
 //				successView.forward(req, resp);
