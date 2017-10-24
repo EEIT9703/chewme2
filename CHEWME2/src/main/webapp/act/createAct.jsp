@@ -4,7 +4,7 @@
 <%@ page import="com.iii.eeit9703.activity.model.*" %>
 
 <%
-     ActivityVO activityVO = (ActivityVO) request.getAttribute("activityVO");
+      ActivityVO activityVO = (ActivityVO) request.getAttribute("activityVO");
 %>
 
 <!DOCTYPE html>
@@ -15,58 +15,20 @@
 <link rel="styLesheet" href="../css/bootstrap.min.css">
 
 <!-- <script src="js/bootstrap.min.js"></script> -->
-<script src="js/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"> 
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script> 
+<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- Custom styles for this template -->
 <link href="../css/navbar-fixed-top.css" rel="stylesheet">
 
 <!-- jQuery UI Datepicker -->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!--   <link rel="stylesheet" href="/resources/demos/style.css"> -->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<script>
-	//選擇活動
-	$(function() {
-// 		$("#actID").selectmenu();
-// 	});
 
-// 	//出發日期
-// 	$(function() {
-// 		$("#BDate").datepicker({
-// 			changeMonth : true,
-// 			changeYear : true
-// 		});
-// 	});
-// 	//結束日期
-// 	$(function() {
-// 		$("#EDate").datepicker({
-// 			changeMonth : true,
-// 			changeYear : true
-// 		});
-// 	});
-
-// 	//上下架
-// 	$(function() {
-// 		$("#activity_state").selectmenu();
-// 	});
-	
-	//觸發actID
-	$("#actID").change(function(){
-		var actID = document.getElementById("actID");
-		$.get('/CHEWME2/ActivityServlet.do?action=getOne_For_Update',{'actID':actID},sendActID);
-	});
-	
-	function sendActID(activityVO){
-//		var opt = $('#actID');
-//		opt.empty();//清除內容
-		
-		$('#act_name').val(activityVO.act_groups);
-		
-	}
-	})
-</script>
 </head>
 
 <body>
@@ -118,7 +80,7 @@
 	<div class="jumbotron">
 		<div class="container">
 			<h1>Activity</h1>
-			<form class="form-horizontal" method="post" action="activity.do">
+			<form class="form-horizontal" method="post" action="activityServlet.do">
 				<div class="from-group">
 					<label class="col-sm-2 control-lable" for="actID">選擇活動</label>
 					<div class="col-sm-10">
@@ -132,31 +94,31 @@
 				<div class="from-group">
 					<label for="actname" class="col-sm-2 control-lable">活動名稱</label>
 					<div class="col-sm-10">
-						<input type="text" value=" " class="form-control input-sm" id="act_name">
+						<input type="text"  class="form-control input-sm" id="act_name" value="">
 					</div>
 				</div>
 				<div class="from-group">
 					<label class="col-sm-2 control-lable" for="act_groups">成團人數</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control input-sm" id="act_groups">
+						<input type="text" class="form-control input-sm" id="act_groups" value="">
 					</div>
 				</div>
 				<div class="from-group">
 					<label class="col-sm-2 control-lable" for="BDate">出發日期</label>
 					<div class="col-sm-10">
-						<input type="text" name="from" class="form-control input-sm" id="BDate">
+						<input type="text" name="from" class="form-control input-sm" id="BDate" value="">
 					</div>
 				</div>
 				<div class="from-group">
 					<label  class="col-sm-2 control-lable" for="EDate">結束日期</label>
 					<div class="col-sm-10">
-						<input type="text" name="to" class="form-control input-sm" id="EDate">
+						<input type="text" name="to" class="form-control input-sm" id="EDate" value="">
 					</div>
 				</div>
 				<div class="from-group">
 					<label class="col-sm-2 control-lable" for="activity_state">活動狀態</label>
 					<div class="col-sm-10">
-						<select class="form-control input-sm" id="activity_state">
+						<select class="form-control input-sm" id="activity_state" value=" ">
 							<option value="0">建構中</option>
 							<option value="1">上架</option>
 							<option value="3">下架</option>
@@ -174,8 +136,58 @@
 			</form>
 		</div>
 	</div>
+	<table>
+<tr>
+<td>${activityVO.act_name}</td>
+</tr>	
+	</table>
 	<!-- /container -->
 
+<script>
+		
+ $(function() {
+	//$.get('/CHEWME2/activityServlet?action=getOne_For_Update',{},sendActID);
+	// $.getJSON('aaa?action=getOne_For_Update',{},sendActID);
+	 //出發
+	 $( "#EDate" ).datepicker({
+	      changeMonth: true,
+	      changeYear: true
+	    });
+	 //結束
+    $( "#BDate" ).datepicker({
+      changeMonth: true,
+      changeYear: true
+    });
+	 
+    $("#activity_state").selectmenu();
+	 
+	//觸發actID
+	$("#actID").change(function(){
+		var actID = document.getElementById("actID");
+		alert(actID.val)
+	//	$.get('/CHEWME2/activityServlet?action=getOne_For_Update',{'actID':actID},sendActID);
+		$.get('/CHEWME2/activityServlet?action=getOne_For_Update',{'actID':actID},sendActID);
+	
+	});
+	
+	function sendActID(){
+		var opt = $('#actID');
+		opt.empty();//清除內容
+		//console.log(activitVO);
+		$('#act_name').val(activityVO.act_name);
+		$('#act_groups').val(activityVO.act_groups);
+		$('#BDate').val(activityVO.BDate);
+		$('#EDate').val(activityVO.EDate);
+		$('#EDate').val(activityVO.activity_state);
+			
+	} 
+	 
+  });
 
+
+
+	
+
+</script>
 </body>
 </html>

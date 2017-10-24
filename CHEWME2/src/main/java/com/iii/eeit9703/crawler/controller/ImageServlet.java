@@ -53,7 +53,7 @@ public class ImageServlet extends HttpServlet {
 				is = rs.getBinaryStream(1);
 				os = res.getOutputStream();
 				if (is == null) {
-					is = getServletContext().getResourceAsStream("/images/NoImage.jpg");
+					is = getServletContext().getResourceAsStream("/images/ NoImage.jpg");
 				}
 				int count = 0;
 				byte[] bytes = new byte[8192];
