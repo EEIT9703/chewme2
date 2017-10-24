@@ -139,8 +139,7 @@
 						</div>
 					</div>
 
-<<<<<<< HEAD
-=======
+
 
 
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
@@ -177,8 +176,6 @@
 
 	
 
-
->>>>>>> branch 'master' of https://github.com/EEIT9703/chewme2.git
 					<!--                 右邊預留空間 -->
                 <div class="col-lg-4">
 
