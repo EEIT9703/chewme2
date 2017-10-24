@@ -4,7 +4,7 @@
 <%
 	AttrVO attrVO = (AttrVO) request.getAttribute("attrVO");
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <style>
@@ -34,10 +34,9 @@
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 <body>
-<header><%@ include file="../header.jsp"%></header>
+<header><%@include file="../header.jsp"%></header>
 	<div style="margin: auto; width: 700px; background-color: #E8E8E8; border-radius: 10px; padding: 5px;">
 		<h2 style="text-align: center;">資料修改</h2>
-		
 		<form method="post" action="Attraction.do">
 			<div class="form-group">
 				<label for="name" style="margin-left: 10px;">名稱</label> <input

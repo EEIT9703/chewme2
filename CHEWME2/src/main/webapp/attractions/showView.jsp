@@ -12,7 +12,7 @@
 #tabs {
 	margin: auto;
 	width: 700px;
-	height: 700px;
+	height: 1000px;
 }
 
 .st1 {
@@ -22,11 +22,11 @@
 }
 
 #tabs-1 {
-	height: 450px;
+	height: 700px;
 }
 
 #tabs-2 {
-	height: 450px;
+	height: 700px;
 }
 
 #img1 {
@@ -34,15 +34,32 @@
 	width: 384px;
 	border-radius: 5px;
 }
+.aaa {
+	position: absolute;
+	right: -10px;
+	border: 1px solid #fff;
+	background: #111111;
+	color: #fff;
+	border-radius: 100px;
+	font-size: 12px;
+	font-weight: 600;
+	text-align: center;
+	z-index: 15;
+	width: 20px;
+	height: 15px;
+}
+
+.nav-shopping-cart {
+	position: relative;
+	display: inline-block;
+}
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>商家列表</title>
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<script src="js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<script src="../js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
@@ -52,6 +69,7 @@
 </script>
 </head>
 <body>
+<header><%@include file="../header.jsp"%></header>
 	<div id="tabs">
 		<div
 			style="margin-left: 20px;border-bottom: 4px double green; width: 650px;">
@@ -81,7 +99,7 @@
 		</div>
 		<div id="tabs-2"></div>
 		<div>
-			<a href="InsertAttr.jsp" class="btn btn-default">返回</a>
+			<a href="insertAttr.jsp" class="btn btn-default">返回</a>
 
 		</div>
 
