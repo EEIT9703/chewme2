@@ -13,7 +13,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class ActivityJDBCDAO implements ActivityDAO_interface {
+public  class ActivityJDBCDAO implements ActivityDAO_interface {
 	
 	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=CMDB";
@@ -22,18 +22,19 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 
 	//新增活動
 	private static final String INSERT_STMT =
-			"INSERT INTO activity (act_name,act_groups,act_current,BDate,EDate,activity_state,collectID) VALUES (?,?,?,?,?,?,?)";
+			"INSERT INTO activity (act_name,act_groups,act_current,BDate,EDate,activity_state) VALUES (?,?,?,?,?,?)";
 	//修改活動
 	private static final String UPDATE_STMT =
-			"UPDATE activity set act_name=?, act_groups=?, act_current=?, BDate=?, EDate=?, activity_state=?, collectID=?  where actID = ? ";
+			"UPDATE activity set act_name=?, act_groups=?, act_current=?, BDate=?, EDate=?, activity_state=?  where actID = ? ";
 	//刪除活動
 	private static final String DELETE_STMT =
 			"DELETE FROM activity actID = ?";
 	//查詢活動
 	private static final String GET_ALL_STMT =
-		      "SELECT act_name,act_groups,act_current,BDate,EDate,activity_state,collectID FROM activity order by actID";
+		      "SELECT actID,act_name,act_groups,act_current,BDate,EDate,activity_state FROM activity order by actID";
+	//單一查詢
 	private static final String GET_ONE_STMT =
-		      "SELECT act_name,act_groups,act_current,BDate,EDate,activity_state,collectID FROM activity where actID = ?";
+		      "SELECT actID,act_name,act_groups,act_current,BDate,EDate,activity_state FROM activity where actID = ?";
 
 	
 	//新增行程
@@ -56,7 +57,6 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 			pstmt.setDate(4, activityVO.getBDate());      //開始日期
 			pstmt.setDate(5, activityVO.getEDate());     //結束日期
 			pstmt.setInt(6, activityVO.getActivity_state()); //活動上下架
-			pstmt.setInt(7, activityVO.getCollectID());     //收藏表
 			
 			pstmt.executeUpdate();
 			
@@ -107,7 +107,7 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 			pstmt.setDate(4, activityVO.getBDate());      //開始日期
 			pstmt.setDate(5, activityVO.getEDate());     //結束日期
 			pstmt.setInt(6, activityVO.getActivity_state());  //活動上下架
-			pstmt.setInt(7, activityVO.getCollectID());     //收藏表
+
 			
 			pstmt.executeUpdate();
 			
@@ -207,13 +207,14 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 				
 				activityVO = new ActivityVO();
 				
+				activityVO.setActID(rs.getInt("actID"));
 				activityVO.setAct_name(rs.getString("act_name"));                //活動名稱
 				activityVO.setAct_groups(rs.getInt("act_groups"));              //成團人數
 				activityVO.setAct_current(rs.getInt("act_current"));           //當前人數
 				activityVO.setBDate(rs.getDate("BDate"));                     //開始日期
 				activityVO.setEDate(rs.getDate("EDate"));                    //結束日期
 				activityVO.setActivity_state(rs.getInt("activity_state"));  //活動型態
-				
+
 				
 				
 			}
@@ -276,7 +277,8 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 			while(rs.next()){
 				
                 activityVO = new ActivityVO();
-				
+                
+                activityVO.setActID(rs.getInt("actID"));
                 activityVO.setAct_name(rs.getString("act_name"));                //活動名稱
 				activityVO.setAct_groups(rs.getInt("act_groups"));              //成團人數
 				activityVO.setAct_current(rs.getInt("act_current"));           //當前人數
@@ -337,7 +339,6 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 		actVO1.setBDate(java.sql.Date.valueOf("2017-10-10"));
 		actVO1.setEDate(java.sql.Date.valueOf("2017-10-11"));
 		actVO1.setActivity_state(0);
-		actVO1.setCollectID(0);
 		dao.insert(actVO1);
 		
 		//修改
@@ -356,6 +357,7 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 		
 		// 查詢
 		ActivityVO actVO3 = dao.findByPrimaryKey(1);
+		System.out.print(actVO3.getActID() + ",");
 		System.out.print(actVO3.getAct_name() + ",");
 		System.out.print(actVO3.getAct_groups() + ",");
 		System.out.print(actVO3.getAct_current() + ",");
@@ -368,6 +370,7 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 		// 查詢
 		List<ActivityVO> list = dao.getAll();
 		for (ActivityVO aAct : list) {
+			System.out.print(aAct.getActID() + ",");
 			System.out.print(aAct.getAct_name() + ",");
 			System.out.print(aAct.getAct_groups() + ",");
 			System.out.print(aAct.getAct_current() + ",");
@@ -380,6 +383,9 @@ public class ActivityJDBCDAO implements ActivityDAO_interface {
 		
 
 	}
+
+
+
 
 
 	
