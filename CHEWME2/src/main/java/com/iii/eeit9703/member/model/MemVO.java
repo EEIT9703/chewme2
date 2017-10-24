@@ -96,7 +96,7 @@ public class MemVO implements java.io.Serializable{
 	public void setmFileName(String mFileName) {
 		this.mFileName = mFileName;
 	}
-	public MemVO(String memberId,String mName,String mNickN,String mPwd,java.sql.Date mBirthday,String mMail,String mAddr,String mPhone,String mIntr,String mFileName,Blob mPhoto,String mStatus,String mRole){
+	public MemVO(String memberId,String mName,String mNickN,String mPwd,java.sql.Date mBirthday,String mMail,String mAddr,String mPhone,String mIntr){
 		super();
 		this.setmemberId(memberId);
 		this.setmName(mName);
@@ -107,9 +107,6 @@ public class MemVO implements java.io.Serializable{
 		this.setmAddr(mAddr);
 		this.setmPhone(mPhone);
 		this.setmIntr(mIntr);
-		this.setmFileName(mFileName);
-		this.setmStatus(mStatus);
-		this.setmRole(mRole);	
 	}
 	public MemVO() {
 		
