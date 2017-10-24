@@ -1,6 +1,6 @@
 package com.iii.eeit9703.actEditor;
 
-import java.sql.Blob;
+import java.io.InputStream;
 
 public class AttrVO implements java.io.Serializable{
 
@@ -12,7 +12,8 @@ public class AttrVO implements java.io.Serializable{
 		private String address;         //地址
 		private String tel;             //電話
 		private String intro;           //商家簡介
-		private java.sql.Blob image;    //相關圖片
+		private byte[] image;    //相關圖片
+		
 		public Integer getAttractionID() {
 			return attractionID;
 		}
@@ -55,10 +56,10 @@ public class AttrVO implements java.io.Serializable{
 		public void setIntro(String intro) {
 			this.intro = intro;
 		}
-		public Blob getImage() {
+		public byte[] getImage() {
 			return image;
 		}
-		public void setImage(Blob image) {
+		public void setImage(byte[] image) {
 			this.image = image;
 		}
 }

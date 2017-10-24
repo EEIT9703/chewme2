@@ -86,8 +86,8 @@ public class AttrDAO {
 					attrVO.setAddress(rs.getString("address"));
 					attrVO.setTel(rs.getString("tel"));
 					attrVO.setIntro(rs.getString("intro"));
-					//attrVO.setImage(rs.getString("image"));				
-					
+					attrVO.setImage(rs.getBytes("image"));
+										
 					list.add(attrVO);
 				}
 				
@@ -115,6 +115,8 @@ public class AttrDAO {
 			
 			
 		}
+	
+
 
 //由區域取得景點資料	
 	public ArrayList<AttrVO> getAttrByCounty(Integer countyID){
@@ -190,6 +192,7 @@ public class AttrDAO {
 			System.out.print(area.getType()+",");
 			System.out.print(area.getAddress()+",");
 			System.out.println(area.getTel());
+			System.out.println(area.getImage());
 		}
 	}
 

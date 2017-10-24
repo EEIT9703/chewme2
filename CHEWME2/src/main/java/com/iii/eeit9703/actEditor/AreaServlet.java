@@ -77,7 +77,7 @@ public class AreaServlet extends HttpServlet {
 				ArrayList<AttrVO> attrList = attrdao.getAttrByCounty(countyID);
 				
 				JSONArray attrArrayList = new JSONArray(attrList);
-//				System.out.println(attrArrayList);
+				System.out.println(attrArrayList);
 				out.print(attrArrayList.toString());
 				
 			}
