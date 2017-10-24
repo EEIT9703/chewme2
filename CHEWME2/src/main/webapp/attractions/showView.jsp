@@ -29,7 +29,7 @@
 	height: 700px;
 }
 
-#img2 {
+#img1 {
 	height: 288px;
 	width: 384px;
 	border-radius: 5px;
@@ -70,54 +70,39 @@
 </head>
 <body>
 <header><%@include file="../header.jsp"%></header>
-	<form method="post" action="Attraction.do">
-		<div id="tabs">
-			<div
-				style="margin-left: 20px; border-bottom: 4px double green; width: 650px;">
-				<h2>${attrVO.name}</h2>
-			</div>
-			<div class="st1">
-				<li>地址：${attrVO.address}</li>
-				<li>電話：${attrVO.tel}</li>
-				<li>類型：${attrVO.type}</li>
-			</div>
-			<ul>
-				<li><a href="#tabs-1">介紹</a></li>
-				<li><a href="#tabs-2">分享文</a></li>
-
-			</ul>
-			<div id="tabs-1">
-				<table>
-					<tr>
-						<td style="padding: 10px;">
-							<h3>簡介：</h3>
-							<div style="width: 200px;">${attrVO.intro}</div>
-						</td>
-						<td style="padding: 20px;"><span><img id="img2"
-								src="<%=request.getContextPath()%>/getImage.do?id2=${attrVO.attractionID}&type=upimg">
-						</span></td>
-					</tr>
-				</table>
-			</div>
-			<div id="tabs-2"></div>
-			<div></div>
-			<div>
-				
-					<tr>
-						<td>
-							<div class="checkbox"></div>
-							<button type="submit" class="btn btn-default">編輯</button> <input
-							type="hidden" name="attractionID" value="${attrVO.attractionID}">
-							<input type="hidden" name="action" value="update_one">
-						</td>
-						<td>
-							<a href="listAll.jsp" class="btn btn-primary">返回</a>
-						</td>
-
-					</tr>
-				
-			</div>
+	<div id="tabs">
+		<div
+			style="margin-left: 20px;border-bottom: 4px double green; width: 650px;">
+			<h2>${attrVO.name}</h2>
 		</div>
-	</form>
+		<div class="st1">
+			<li>地址：${attrVO.address}</li>
+			<li>電話：${attrVO.tel}</li>
+		</div>
+		<ul>
+			<li><a href="#tabs-1">介紹</a></li>
+			<li><a href="#tabs-2">分享文</a></li>
+		</ul>
+		<div id="tabs-1">
+			<table>
+				<tr>
+					<td style="padding: 10px;">
+						<h3>簡介：</h3>
+
+						<div style="width: 200px;">${attrVO.intro}</div>
+					</td>
+					<td style="padding: 20px;"><span> <img id="img1"
+							src="<%=request.getContextPath()%>/getImage.do?id=${attrVO.name}&type=uploadimg">
+					</span></td>
+				</tr>
+			</table>
+		</div>
+		<div id="tabs-2"></div>
+		<div>
+			<a href="insertAttr.jsp" class="btn btn-default">返回</a>
+
+		</div>
+
+	</div>
 </body>
 </html>
