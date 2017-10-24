@@ -35,6 +35,7 @@
 		<mapping resource="com/iii/eeit9703/club/model/HibernateDAO/Issue.hbm.xml" />
 		<mapping resource="com/iii/eeit9703/club/model/HibernateDAO/Question.hbm.xml" />
 		<mapping resource="com/iii/eeit9703/club/model/HibernateDAO/Reply.hbm.xml" />
+		<mapping resource="com/iii/eeit9703/crawler/model/article.hbm.xml"/>
 <!-- 		收藏表的mapping -->
 <!-- 		<mapping resource="org/eeit/group3/collection/model/collection.hbm.xml" /> -->
 <!-- 		<mapping resource="org/eeit/group3/activity/model/activity.hbm.xml" /> -->

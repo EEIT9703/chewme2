@@ -1,7 +1,5 @@
 package com.iii.eeit9703.member.model;
 
-import java.io.InputStream;
-
 public class MemService {
 	private MemDAO_interface dao;
 

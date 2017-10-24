@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-// �q��Ʈw���ϩ�JJSP
+// 從資料庫取圖放入JSP
 @WebServlet("/getImage.do")
 public class ImageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -53,7 +53,7 @@ public class ImageServlet extends HttpServlet {
 				is = rs.getBinaryStream(1);
 				os = res.getOutputStream();
 				if (is == null) {
-					is = getServletContext().getResourceAsStream("/images/NoImage.jpg");
+					is = getServletContext().getResourceAsStream("/images/ NoImage.jpg");
 				}
 				int count = 0;
 				byte[] bytes = new byte[8192];

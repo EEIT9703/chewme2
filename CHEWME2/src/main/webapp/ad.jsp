@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html >
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
     <link href= "backage/full/fullcalendar.min.css" rel='stylesheet' />
 	<link href= "backage/full/fullcalendar.print.min.css"rel='stylesheet' media='print' />
 
@@ -108,10 +108,12 @@
 							<div class="panel-heading">
 
 								<form id="fileUploadForm">
-									<input type="file" id="1" name="photo"> <input
-										type="submit" value="上傳" id="btnSubmit" />
+									<input type="file" id="1" name="photo"> 
+                                      
+									<input type="submit" value="上傳" id="btnSubmit" />
 									<div id="result"></div>
 								</form>
+							
 								<table id="productTable" class="table table-bordered">
 									<thead>
 										<tr>
@@ -129,10 +131,54 @@
 
 									</tfoot>
 								</table>
+								
+								
+								
+								
 							</div>
 						</div>
 					</div>
 
+<<<<<<< HEAD
+=======
+
+
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">歡迎來到揪ME</h4>
+						</div>
+						<div class="modal-body">
+						<div class="form-group">
+						<form id="fileUpDate">					
+					<input type="file" id="2" name="photo"> 
+						</form>
+							<img alt=" " id="previewer" height="250px" width="250px">
+						</div>
+						<div class="form-group">
+													
+						</div>
+	
+					</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+							<button type="button" class="btn btn-primary" id="confirm" >go</button>
+<!-- 							<button type="submit" class="btn btn-primary"  id="confirm">確認</button> -->
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
+
+	
+
+
+>>>>>>> branch 'master' of https://github.com/EEIT9703/chewme2.git
 					<!--                 右邊預留空間 -->
                 <div class="col-lg-4">
 
@@ -227,9 +273,12 @@ $(document).ready(function () {
 //            tb.append(docFrag);
 
 //       })	
+
+  
+   	
 function search(){
 	$.getJSON('activity?action=getAllphoto',{},sendCounty);
-	
+
 	function sendCounty(array){
 		//var docFrag = $(document.createDocumentFragment());
 		var opt = $('#productTable>tbody');
@@ -272,17 +321,18 @@ function search(){
         $.ajax({
             type: "POST",
             enctype: 'multipart/form-data',
-            url:"upload",
+            url:"upload?action=insert",
             data: data,
             processData: false,
             contentType: false,
             cache: false,
-            timeout: 600000,
+          
             success: function (data) {
 
                 $("#result").text(data);
                 console.log("SUCCESS : ", data);
                 $("#btnSubmit").prop("disabled", false);
+        		search();
 
             },
             error: function (e) {
@@ -294,21 +344,20 @@ function search(){
             }
            
         });
-        search();
     });
     
     
-//     $('#delete').on('click',{},function(){
+    $('#delete').on('click',{},function(){
     	
-// 	    	  var id = $(this).parents('tr').find('td:nth-child(1)').text();
-// 	    	  alert(id);
-// 				$.getJSON('activity?action=delete',{'ID':id},function(){
+	    	  var id = $(this).parents('tr').find('td:nth-child(1)').text();
+	    	  alert(id);
+				$.getJSON('activity?action=delete',{'ID':id},function(){
 					
-// 					search();
-// 				})	
-// 	 	 })
+					search();
+				})	
+	 	 })
     
-    $('#productTable>tbody').on('click','td:nth-child(4)>button:nth-child(1)',function(){
+    $('#productTable>tbody').on('click','td:nth-child(4) button:nth-child(1)',function(){
     	
     	 var id = $(this).parents('tr').find('td:nth-child(1)').text();
 	    	
@@ -320,17 +369,76 @@ function search(){
 	 	 })
     
     $('#productTable>tbody').on('click','td:nth-child(5) button:nth-child(1)',function(){
-    	
-    	//alert('ss');
-    	$('#myModal').modal('show')
-    	
-	 	 })
-	 
-	 
-    
-    
 
-});
+     var id = $(this).parents('tr').find('td:nth-child(1)').text();
+
+    	$('#myModal').modal('show')
+
+		var filechooser = document.getElementById('2');
+    	var previewer = document.getElementById('previewer');
+  		filechooser.onchange = function() {
+        var files = this.files;
+        var file = files[0];
+
+        // 接受 jpeg, jpg, png 类型的图片
+        if (!/\/(?:jpeg|jpg|png)/i.test(file.type)) return;
+
+
+        var reader = new FileReader();
+
+        reader.onload = function() {
+            var result = this.result;
+
+            previewer.src = result;
+
+            // 清空图片上传框的值
+//             filechooser.value = '';
+        };
+
+        reader.readAsDataURL(file);
+    };
+    
+	 $("#confirm").on('click',function () { 
+		 var url="upload?action=upload&id=";
+				 
+         var form = $('#fileUpDate')[0];
+         var data = new FormData(form);
+ 		//上傳秀的圖片
+         $.ajax({
+             type: "POST",
+             enctype: 'multipart/form-data',
+              url:url+id,
+ //            url:"upload?action=upload&id=1",		 
+             data: data,
+             processData: false,
+             contentType: false,
+             cache: false,
+             
+             success: function (data) {
+                 $("#result").text(data);
+                 console.log("SUCCESS : ", data);
+                 $("#btnSubmit").prop("disabled", false);
+             search();
+
+             },
+             error: function (e) {
+
+                 $("#result").text(e.responseText);
+                 console.log("ERROR : ", e);
+                 $("#btnSubmit").prop("disabled", false);
+             }         
+         });
+   
+         $('#myModal').modal('hide')
+   
+    	
+    
+    	 });//end confirm
+  
+	 	 })	//end nth-child(5)
+	 	 
+
+});//end jquery
 	</script>
 	<script src='backage/full/moment.min.js'></script>
     <script src='backage/full/fullcalendar.min.js'></script>

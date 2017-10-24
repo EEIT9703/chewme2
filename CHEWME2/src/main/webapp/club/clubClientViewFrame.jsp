@@ -1,32 +1,22 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
 <html>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/mybootstrap.css">
+<link rel="stylesheet" href="css/mystyle.css">
 </head>
 <body>
 
-	<div class="container-fluid">
-		<div class="carousel-item active">
-			<div class="row">
-				<div class="col"></div>
-				<div class="col-7">
-					<nav class="navbar navbar-light bg-littleblue text-white"> <a
-						class="navbar-brand text-white" href="#"> <img
-						src="../image/letter-c.png" width="30" height="30"
-						class="d-inline-black align-top " alt=""> CHEWME
-					</a> </nav>
-				</div>
-				<div class="col"></div>
-			</div>
-		</div>
+	<header><%@ include file="../header.jsp"%></header>
+	<div class="container">
 		<div id="carouselExampleControls" class="carousel slide"
 			data-ride="carousel">
 			<div class="carousel-inner">
-
-
 				<div class="carousel-item active">
 					<div class="row">
 						<div class="col"></div>
@@ -37,12 +27,6 @@
 						<div class="col"></div>
 					</div>
 				</div>
-				<!--                 <div class="carousel-item">
-                    <img class="d-block w-100" src="image/beach.jpg" alt="Second slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="image/water_sporting.png" alt="Third slide">
-                </div> -->
 			</div>
 			<a class="carousel-control-prev" href="#carouselExampleControls"
 				role="button" data-slide="prev"> <span
@@ -54,21 +38,21 @@
 				class="sr-only">Next</span>
 			</a>
 		</div>
-		<div class="row">
+		<div class="row" id="tabs">
 			<div class="col"></div>
 			<div class="col-7">
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
-					<li class="nav-item"><a class="nav-link active" id="home-tab"
-						data-toggle="tab" href="#home" role="tab" aria-controls="home"
-						aria-expanded="true">推薦行程</a></li>
-					<li class="nav-item"><a class="nav-link" id="profile-tab"
-						data-toggle="tab" href="#profile" role="tab"
-						aria-controls="profile">過去行程</a></li>
-					<li class="nav-item"><a class="nav-link" id="profile-tab"
-						data-toggle="tab" href="#profile" role="tab"
+					<li class="nav-item"><a class="nav-link active"
+						id="new-travel-tab" data-toggle="tab" href="#newActList-page"
+						role="tab" aria-controls="home" aria-expanded="true">推薦行程</a></li>
+					<li class="nav-item"><a class="nav-link active"
+						id="pass-travel-tab" data-toggle="tab" href="#oldActList-page"
+						role="tab" aria-controls="profile">過去行程</a></li>
+					<li class="nav-item"><a class="nav-link active" id="forum-tab"
+						data-toggle="tab" href="#forum-page" role="tab"
 						aria-controls="profile">討論區</a></li>
-					<li class="nav-item"><a class="nav-link" id="profile-tab"
-						data-toggle="tab" href="#profile" role="tab"
+					<li class="nav-item"><a class="nav-link active"
+						id="myclub-tab" data-toggle="tab" href="#profile" role="tab"
 						aria-controls="profile">關於我們</a></li>
 					<li class="nav-item"><a class="nav-link" id="profile-tab"
 						data-toggle="tab" href="#profile" role="tab"
@@ -86,6 +70,15 @@
 				</ul>
 			</div>
 			<div class="col"></div>
+			<div id="forum-page">
+				<%@ include file="ccvForum.jsp"%>
+			</div>
+			<div id="newActList-page">
+				<%@ include file="ccvNewActList.jsp"%>
+			</div>
+			<div id="oldActList-page">
+				<%@ include file="ccvOldActList.jsp"%>
+			</div>
 		</div>
 
 
@@ -95,6 +88,9 @@
 
 
 	<script src="../js/jquery-3.2.1.min.js"></script>
+
 	<script src="../js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="js/clubClientViewFrameScript.js"></script>
 </body>
 </html>

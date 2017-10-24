@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,20 +40,20 @@
 	<div class="container-fluid"></div>
 
 	</nav> --> </header>
-	<form action="">
+	<form action="<c:url value='login.do'/>" method="post" name="loginForm">
 	<div>
 	<table>
 	<tr>
 	<td>帳號:</td>
-	<td><input type="text" name="userId" value="${sessionScope.user}"></td>
+	<td><input type="text" name="userId" value="${sessionScope.user}">&nbsp;<small><font color='red'>${ErrorMsgKey.AccountisEmpty}</font></small></td>
 	</tr>
 	<tr>
 	<td>密碼:</td>
-	<td><input type="password" name="pswd" value="${sessionScope.password}"></td>
+	<td><input type="password" name="pswd" value="${sessionScope.password}">&nbsp;<small><font color='red'>${ErrorMsgKey.PasswordisEmpty}</font></small></td>
 	</tr>
 	<tr>
 	<td><input type="submit" value="登入"></td>
-	<td><input type="submit" value="註冊" href=""></td>
+	<td><input type="submit" value="註冊"></td>
 	</tr>
 	
 	</table>

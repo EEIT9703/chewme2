@@ -20,61 +20,126 @@ public class Uploadfile extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		req.setCharacterEncoding("UTF-8");
-
-		// Integer ID = Integer.parseInt(req.getParameter("id"));
+//		String action = req.getParameter("action");
+		
+		 String action = req.getParameter("action");
 		// System.out.println(ID);
 		for (Part part : req.getParts()) {
-	
-			wirtepicture(part);
+	     //wirtepicture(req,res,part,action);
+			PhotoDAO dao = new PhotoDAO();
+			PhotoVO photoVO = new PhotoVO();
+			InputStream is = null;
+			ByteArrayOutputStream bos = null;
+			try {
+
+				is = part.getInputStream();
+				int len;
+				int size = 1024;
+				byte[] buf;
+
+				if (is instanceof ByteArrayInputStream) {
+					size = is.available();
+					buf = new byte[size];
+					len = is.read(buf, 0, size);
+				} else {
+					bos = new ByteArrayOutputStream();
+					buf = new byte[size];
+					while ((len = is.read(buf, 0, size)) != -1)
+						bos.write(buf, 0, len);
+					buf = bos.toByteArray();
+					String base64 = Base64.getEncoder().encodeToString(buf);
+					
+//					BASE64Encoder encoder = new BASE64Encoder();
+//					String imageString = encoder.encode(buf);
+					
+					if("upload".equals(action)){
+					Integer id = Integer.parseInt(req.getParameter("id"));
+					photoVO.setPhoto_no(id);
+					photoVO.setName(part.getSubmittedFileName());
+					photoVO.setPhoto(base64);
+					dao.insert(photoVO);
+					}
+				
+					if("insert".equals(action)){	
+						photoVO.setName(part.getSubmittedFileName());
+						photoVO.setPhoto(base64);
+						dao.insert(photoVO);									
+					}
+
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				try {
+					is.close();
+					bos.close();
+					// is.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
 		}
 
 	}
 //binary
-	private void wirtepicture(Part part) {
-		PhotoDAO dao = new PhotoDAO();
-		PhotoVO photoVO = new PhotoVO();
-		InputStream is = null;
-		ByteArrayOutputStream bos = null;
-		try {
-
-			is = part.getInputStream();
-			int len;
-			int size = 1024;
-			byte[] buf;
-
-			if (is instanceof ByteArrayInputStream) {
-				size = is.available();
-				buf = new byte[size];
-				len = is.read(buf, 0, size);
-			} else {
-				bos = new ByteArrayOutputStream();
-				buf = new byte[size];
-				while ((len = is.read(buf, 0, size)) != -1)
-					bos.write(buf, 0, len);
-				buf = bos.toByteArray();
-				String base64 = Base64.getEncoder().encodeToString(buf);
-				
-//				BASE64Encoder encoder = new BASE64Encoder();
-//				String imageString = encoder.encode(buf);
-				photoVO.setName(part.getSubmittedFileName());
-				photoVO.setPhoto(base64);
-				dao.insert(photoVO);
-
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			try {
-				is.close();
-				bos.close();
-				// is.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-
-	}
+//	private void wirtepicture(HttpServletRequest req, HttpServletResponse res,Part part,String action) {
+//		PhotoDAO dao = new PhotoDAO();
+//		PhotoVO photoVO = new PhotoVO();
+//		InputStream is = null;
+//		ByteArrayOutputStream bos = null;
+//		try {
+//
+//			is = part.getInputStream();
+//			int len;
+//			int size = 1024;
+//			byte[] buf;
+//
+//			if (is instanceof ByteArrayInputStream) {
+//				size = is.available();
+//				buf = new byte[size];
+//				len = is.read(buf, 0, size);
+//			} else {
+//				bos = new ByteArrayOutputStream();
+//				buf = new byte[size];
+//				while ((len = is.read(buf, 0, size)) != -1)
+//					bos.write(buf, 0, len);
+//				buf = bos.toByteArray();
+//				String base64 = Base64.getEncoder().encodeToString(buf);
+//				
+////				BASE64Encoder encoder = new BASE64Encoder();
+////				String imageString = encoder.encode(buf);
+//				
+//				if("upload".equals(action)){
+//				id = Integer.parseInt(req.getParameter("id"));
+//				photoVO.setPhoto_no(id);
+//				photoVO.setName(part.getSubmittedFileName());
+//				photoVO.setPhoto(base64);
+//				dao.insert(photoVO);
+//				}
+//			
+//				if("insert".equals(action)){	
+//					photoVO.setName(part.getSubmittedFileName());
+//					photoVO.setPhoto(base64);
+//					dao.insert(photoVO);									
+//				}
+//
+//			}
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				is.close();
+//				bos.close();
+//				// is.close();
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//
+//	}
 	
 	//base
 //	private void wirtepicture(Part part) {

@@ -70,14 +70,14 @@ public class AreaServlet extends HttpServlet {
 				out.print(attrArrayList.toString());
 				}
 			
-			if("	".equals(mission)){
+			if("getCounty".equals(mission)){
 				countyID =  Integer.parseInt(request.getParameter("county"));
 				System.out.println(countyID);
 				AttrDAO attrdao = new AttrDAO();
 				ArrayList<AttrVO> attrList = attrdao.getAttrByCounty(countyID);
 				
 				JSONArray attrArrayList = new JSONArray(attrList);
-//				System.out.println(attrArrayList);
+				System.out.println(attrArrayList);
 				out.print(attrArrayList.toString());
 				
 			}
