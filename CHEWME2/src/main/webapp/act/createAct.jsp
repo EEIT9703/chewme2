@@ -178,12 +178,12 @@
 	function sendActID(){
 		var opt = $('#actID');
 		opt.empty();//清除內容
-		//console.log(activitVO);
-		$('#act_name').val(activityVO.act_name);
-		$('#act_groups').val(activityVO.act_groups);
-		$('#BDate').val(activityVO.BDate);
-		$('#EDate').val(activityVO.EDate);
-		$('#EDate').val(activityVO.activity_state);
+		console.log(activitVO);
+		$('#act_name').val(actID.act_name);
+		$('#act_groups').val(actID.act_groups);
+		$('#BDate').val(actID.BDate);
+		$('#EDate').val(actID.EDate);
+		$('#EDate').val(actID.activity_state);
 			
 	} 
 	 
