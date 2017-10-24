@@ -280,7 +280,7 @@ function search(){
             processData: false,
             contentType: false,
             cache: false,
-            timeout: 100000,
+            timeout: 1000000,
             success: function (data) {
 
                 $("#result").text(data);
@@ -324,15 +324,17 @@ function search(){
     
     $('#productTable>tbody').on('click','td:nth-child(5) button:nth-child(1)',function(){
     	
+
      var id = $(this).parents('tr').find('td:nth-child(1)').text();
   
     	$('#myModal').modal('show')
-    
-    	//繡圖片
-    	var filechooser = document.getElementById('2');
+ 
+ 	
+	 	 
+	 
+		var filechooser = document.getElementById('2');
     	var previewer = document.getElementById('previewer');
-
-  		  filechooser.onchange = function() {
+  		 filechooser.onchange = function() {
         var files = this.files;
         var file = files[0];
 
@@ -368,7 +370,7 @@ function search(){
              processData: false,
              contentType: false,
              cache: false,
-             timeout: 100000,
+             timeout: 10000000,
              success: function (data) {
                  $("#result").text(data);
                  console.log("SUCCESS : ", data);
@@ -380,27 +382,17 @@ function search(){
                  $("#result").text(e.responseText);
                  console.log("ERROR : ", e);
                  $("#btnSubmit").prop("disabled", false);
-
-             }
-            
+             }         
          });
    
          $('#myModal').modal('hide')
-      $(function(){
+   
     	  search();
-      })
-         
-         
-         
-    	 });//end confirm
     
-
+    	 });//end confirm
   
 	 	 })	//end nth-child(5)
 	 	 
-	
- 
-
 
 });//end jquery
 	</script>
