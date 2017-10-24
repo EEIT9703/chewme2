@@ -306,7 +306,7 @@ function search(){
     $('#productTable>tbody').on('click','td:nth-child(5) button:nth-child(1)',function(){
     	
     	alert('ss');
-    	$('#myModal').modal('show')
+    
     	
 	 	 })
 	 
