@@ -101,8 +101,8 @@
 				<tr>
 					<td>
 						<div class="checkbox"></div>
-						<button type="submit" class="btn btn-default">送出</button> <input
-						type="hidden" name="action" value="insert">
+						<button type="submit" class="btn btn-default">送出</button> 
+						<input type="hidden" name="action" value="insert">
 					</td>
 					<td><a href="listAll.jsp" class="btn btn-primary">查詢</a></td>
 				</tr>

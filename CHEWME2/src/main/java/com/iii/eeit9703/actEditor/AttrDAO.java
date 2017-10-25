@@ -1,11 +1,16 @@
 package com.iii.eeit9703.actEditor;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 public class AttrDAO {
@@ -86,9 +91,66 @@ public class AttrDAO {
 					attrVO.setAddress(rs.getString("address"));
 					attrVO.setTel(rs.getString("tel"));
 					attrVO.setIntro(rs.getString("intro"));
-										
-					list.add(attrVO);
+					attrVO.setImage(rs.getBinaryStream("image"));
+					System.out.println(attrVO.getImage());
+					InputStream is 	 =attrVO.getImage();
+					
+					//InputStream is = null;
+					ByteArrayOutputStream bos = null;
+					try {
+
+						int len;
+						int size = 1024;
+						byte[] buf;
+
+						if (is instanceof ByteArrayInputStream) {
+							
+							//檔案大小若是60個byte 準備的byte陣列就設為60 剛好把檔案塞進去
+							size = is.available();
+							buf = new byte[size];
+							//將檔案讀入buf
+							is.read(buf, 0, size);
+							//將buf轉為base64
+							String strbase64 = Base64.getEncoder().encodeToString(buf);
+							//將strbase64放入attrVO
+							attrVO.setImg64(strbase64);
+							
+							list.add(attrVO);
+						} else {
+							bos = new ByteArrayOutputStream();
+							//一次讀size個byte
+							buf = new byte[size];
+							while ((len = is.read(buf, 0, size)) != -1)
+								//透過while迴圈一次寫size個byte到bos裡
+								bos.write(buf, 0, len);
+							//用toByteArray()方法把完整檔案轉成byte陣列存入buf
+							buf = bos.toByteArray();
+							//將buf轉為base64
+							String strbase64 = Base64.getEncoder().encodeToString(buf);
+//						System.out.println(strbase64);
+							attrVO.setImg64(strbase64);
+							
+							list.add(attrVO);
+						}	
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} finally {
+						try {
+							is.close();							
+							// is.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
 				}
+		
+					
+			
+					
+			
+	
+				
 				
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -184,7 +246,7 @@ public class AttrDAO {
 		AttrDAO aDao = new AttrDAO();
 		
 		//查區域景點、餐廳、民宿
-		List<AttrVO> list = aDao.getAttrByCountry("NWT");
+		List<AttrVO> list = aDao.getAttrByCountry("TPE");
 		for(AttrVO area : list){
 			System.out.print(area.getName()+",");
 			System.out.print(area.getCounty()+",");
@@ -194,5 +256,6 @@ public class AttrDAO {
 			System.out.println(area.getImage());
 		}
 	}
+	
 
 }

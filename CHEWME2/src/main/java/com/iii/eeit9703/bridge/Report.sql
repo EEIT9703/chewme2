@@ -22,5 +22,19 @@ CONSTRAINT [PK_report] PRIMARY KEY CLUSTERED
 )
 go
 
+BEGIN
+--增加外鍵(FK)
+Alter TABLE report ADD CONSTRAINT FK_CM_mId FOREIGN KEY([mId]) REFERENCES members([mId])
+END
+go
+
+IF EXISTS (SELECT name FROM sysobjects
+            WHERE type='u' AND name = 'activity')      
+BEGIN
+--增加外鍵(FK)
+Alter TABLE report ADD CONSTRAINT FK_CM_actID FOREIGN KEY([actID]) REFERENCES activity([actID])
+END
+go
+
 select * from report;
 go

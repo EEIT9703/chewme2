@@ -13,10 +13,11 @@ import org.hibernate.service.ServiceRegistry;
 
 import com.iii.eeit9703.club.model.ClubVO;
 import com.iii.eeit9703.club.model.CommentVO;
+import com.iii.eeit9703.club.model.ReplyDAOI;
 import com.iii.eeit9703.club.model.ReplyVO;
 import com.iii.eeit9703.hibernate.util.HibernateUtil;
 
-public class ReplyHibernateDAO implements ReplyHibernateDAOI{
+public class ReplyHibernateDAO implements ReplyDAOI{
 
 	private static final String GET_ALL_STMT="from reply order by replyId";
 	@Override

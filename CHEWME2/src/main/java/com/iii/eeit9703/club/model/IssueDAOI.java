@@ -1,11 +1,8 @@
-package com.iii.eeit9703.club.model.hibernate.issue;
+package com.iii.eeit9703.club.model;
 
 import java.util.List;
 
-import com.iii.eeit9703.club.model.ClubVO;
-import com.iii.eeit9703.club.model.IssueVO;
-
-public interface IssueHibernateDAOI {
+public interface IssueDAOI {
 	public List<IssueVO> getAll();
 	public void getOne(Integer issueId);
 	public void insert(IssueVO IssueVO);

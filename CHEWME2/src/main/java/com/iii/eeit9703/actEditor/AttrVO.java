@@ -13,6 +13,7 @@ public class AttrVO implements java.io.Serializable{
 		private String tel;             //電話
 		private String intro;           //商家簡介
 		private InputStream image;    //相關圖片
+		private String img64;
 		
 		public Integer getAttractionID() {
 			return attractionID;
@@ -62,4 +63,11 @@ public class AttrVO implements java.io.Serializable{
 		public void setImage(InputStream image) {
 			this.image = image;
 		}
+		public String getImg64() {
+			return img64;
+		}
+		public void setImg64(String img64) {
+			this.img64 = img64;
+		}
+		
 }

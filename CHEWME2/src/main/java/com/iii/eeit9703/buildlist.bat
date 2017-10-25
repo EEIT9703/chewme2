@@ -12,7 +12,7 @@ sqlcmd -E -i   member\3_CreateTableMsgRooms_Msgs.sql
 
 
 :: create bridge的子表
-sqlcmd -E -i   bridge\1_CreateTableClubActivityList.sql
+::sqlcmd -E -i   bridge\1_CreateTableClubActivityList.sql
 sqlcmd -E -i   bridge\2_CreateTableClubMemberList.sql
 
 :: create club的子表
