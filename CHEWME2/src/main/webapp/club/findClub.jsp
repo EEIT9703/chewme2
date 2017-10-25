@@ -14,7 +14,7 @@
 <body>
 	<header>
 		<%@ include file="../header.jsp"%></header>
-<%-- <jsp:getProperty name="clubList"/> --%>
+	<%-- <jsp:getProperty name="clubList"/> --%>
 	<div class="container">
 
 		<div class="row">
@@ -62,25 +62,19 @@
 			<!-- List group -->
 
 			<div>
-				<form action="findClub.do" method="POST">
+				<form id="findClubForm" action="findClub.do" method="POST">
 					<ul class="list-group">
-
-						<li class="list-group-item">club1<input type="submit"
-							name="example" value="1"></li>
-						<li class="list-group-item">club2<input type="submit"
-							name="example" value="2"></li>
-						<li class="list-group-item">club3<input type="submit"
-							name="example" value="3"></li>
-						<li class="list-group-item">club4<input type="submit"
-							name="example" value="4"></li>
-						<li class="list-group-item">club5<input type="submit"
-							name="example" value="5"></li>
-						<li class="list-group-item">club6<input type="submit"
-							name="example" value="6"></li>
-						<li class="list-group-item">club7<input type="submit"
-							name="example" value="7"></li>
-
-
+						<c:forEach var="club" items="${club_list}">
+							<div class="row">
+								<div class="col-md-12">${club.clubName}</div>
+								<div class="col-md-2">pic</div>
+								<div class="col-md-8">${club.brief}</div>
+								<div class="col-md-2">
+									<button type="submit" class="btn btn-primary btn-sm"
+										name="cchosen" value="The ClubId ${club.clubId} is chosen">點入觀看</button>
+								</div>
+							</div>
+						</c:forEach>
 					</ul>
 				</form>
 			</div>
@@ -89,6 +83,7 @@
 
 		</div>
 	</div>
+
 	<script src="../js/jquery-3.2.1.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="js/findClubScript.js"></script>
