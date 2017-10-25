@@ -2,6 +2,8 @@ package com.iii.eeit9703.crawler.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.ProcessBuilder.Redirect;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -29,6 +31,7 @@ public class AttrServlet extends HttpServlet {
 
 			try {
 				InputStream inputStream = null;
+				
 				String name = req.getParameter("name");
 				String county = req.getParameter("county");
 				String type = req.getParameter("type");
@@ -59,9 +62,9 @@ public class AttrServlet extends HttpServlet {
 				AttrService attr1 = new AttrService();
 				attrVO = attr1.addAttr(name, county, type, address, tel, intro, inputStream);
 				
-
 				RequestDispatcher view = req.getRequestDispatcher("showView.jsp");
 				view.forward(req, res);
+			
 
 			} catch (Exception e) {
 				e.printStackTrace();

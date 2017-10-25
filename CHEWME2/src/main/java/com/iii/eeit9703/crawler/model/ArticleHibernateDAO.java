@@ -34,7 +34,17 @@ public class ArticleHibernateDAO implements ArticleDAO_interface {
 	@Override
 	public ArticleVO findByPK(Integer articleID) {
 
-		return null;
+		ArticleVO articleVO = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			articleVO = (ArticleVO) session.get(ArticleVO.class, articleID);
+			session.getTransaction().commit();
+		} catch (RuntimeException e) {
+			session.getTransaction().rollback();
+			throw e;
+		}
+		return articleVO;
 	}
 
 	@Override
@@ -53,17 +63,34 @@ public class ArticleHibernateDAO implements ArticleDAO_interface {
 
 		return list;
 	}
-	public static void main(String[] args){
-		
+
+	public static void main(String[] args) {
+
 		ArticleHibernateDAO dao = new ArticleHibernateDAO();
-		List<ArticleVO> list = dao.getAll();
-		for(ArticleVO atc : list){
-			System.out.print(atc.getArticleID() + ",");
-			System.out.print(atc.getMemberID() + ",");
-			System.out.print(atc.getName() + ",");
-			System.out.print(atc.getContents() + ",");
-			System.out.println();
-		}
+		
+		// 查全部
+//		List<ArticleVO> list = dao.getAll();
+//		for (ArticleVO atc : list) {
+//			System.out.print(atc.getArticleID() + ",");
+//			System.out.print(atc.getMemberID() + ",");
+//			System.out.print(atc.getName() + ",");
+//			System.out.print(atc.getContents() + ",");
+//			System.out.println();
+//		}
+		
+		// 查單筆
+//		ArticleVO attrPK = dao.findByPK(3);
+//		System.out.print(attrPK.getArticleID() + ",");
+//		System.out.print(attrPK.getMemberID() + ",");
+//		System.out.print(attrPK.getName() + ",");
+//		System.out.print(attrPK.getContents() + ",");
+		
+		// 新增
+		ArticleVO articleVO = new ArticleVO();
+		articleVO.setMemberID(25);
+		articleVO.setName("Jack");
+		articleVO.setContents("好棒棒");
+		dao.insert(articleVO);
 	}
 
 }
