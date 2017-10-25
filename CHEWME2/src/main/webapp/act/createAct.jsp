@@ -1,8 +1,10 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.iii.eeit9703.activity.model.*"%>
+
 
 <%
 	ActivityVO activityVO = (ActivityVO) request.getAttribute("activityVO");
@@ -13,7 +15,7 @@
 %>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -126,17 +128,16 @@
 					</div>
 				</div>
 				<div class="from-group">
-					<label class="col-sm-2 control-lable" for="EDate">結束日期</label>
+					<label class="col-sm-2 control-lable" for="BDate">結束日期</label>
 					<div class="col-sm-10">
 						<input type="text" name="to" class="form-control input-sm"
-							id="EDate" value="">
+							id="EDate"  value="">
 					</div>
 				</div>
 				<div class="from-group">
 					<label class="col-sm-2 control-lable" for="activity_state">活動狀態</label>
 					<div class="col-sm-10">
-						<select class="form-control input-sm" id="activity_state"
-							value=" ">
+						<select class="form-control input-sm" id="activity_state"						>
 							<option value="0">建構中</option>
 							<option value="1">上架</option>
 							<option value="3">下架</option>
@@ -161,52 +162,71 @@
 	</table>
 	<!-- /container -->
 
-	<script>
-		$(function() {
-			//$.get('/CHEWME2/activityServlet?action=getOne_For_Update',{},sendActID);
-			// $.getJSON('aaa?action=getOne_For_Update',{},sendActID);
-			//出發
-			$("#EDate").datepicker({
-				changeMonth : true,
-				changeYear : true
+<script>
+		
+ $(function() {
+	//$.get('/CHEWME2/activityServlet?action=getOne_For_Update',{},sendActID);
+	// $.getJSON('aaa?action=getOne_For_Update',{},sendActID);
+	 //結束
+	 $( "#EDate" ).datepicker({
+		 changeMonth: true,
+		 changeYear: true});
+
+	 //出發
+    $( "#BDate" ).datepicker({
+      changeMonth: true,
+      changeYear: true
+    });
+	 
+    $("#activity_state").selectmenu();
+	 var data;
+	//觸發actID
+	$("#actID").change(function(){
+ 		var actID = $(this).val();
+// 		alert(actID.val)
+		console.log(actID);
+		console.log("hello");
+	//	$.get('/CHEWME2/activityServlet?action=getOne_For_Update',{'actID':actID},sendActID);
+	//$.getJSON('/CHEWME2/activityServlet.do?action=getOne_For_Update',{'actID':actID},sendActID);
+		
+		
+		$.get('/CHEWME2/activityServlet.do?action=getOne_For_Update',{'actID':actID},function(data){
+			actID = JSON.parse(data);
+			console.log(actID);
+			console.log("hello1");
+			$('#act_name').val(actID.act_name);
+			$('#act_groups').val(actID.act_groups);
+			$('#BDate').val(actID.BDate);
+			$('#EDate').val(actID.EDate);
+			$('#activity_state').val(actID.activity_state); 
+			
 			});
-			//結束
-			$("#BDate").datepicker({
-				changeMonth : true,
-				changeYear : true
-			});
+	
+	});
+	
+	function sendActID(dmestmset){
+/* 		var opt = $("#actID");
+		opt.empty();//清除內容 */
+		console.log("hello2")	
+/* 		$.each(object,function(actI,actID){
+			
+		}
+		)
+ */
+		
+	    
+		
+/* 		$('#act_name').append(actID.act_name);
+		$('#act_groups').append(actID.act_groups);
+		$('#BDate').append(actID.BDate);
+		$('#EDate').append(actID.EDate);
+		$('#EDate').append
+		(actID.activity_state);  */
+		
 
-			$("#activity_state").selectmenu();
-
-			//觸發actID
-			$("#actID")
-					.change(
-							function() {
-								var actID = $(this).val();
-								// 		alert(actID.val)
-								console.log($(this).val());
-								//	$.get('/CHEWME2/activityServlet?action=getOne_For_Update',{'actID':actID},sendActID);
-								$
-										.getJSON(
-												'/CHEWME2/activityServlet.do?action=getOne_For_Update',
-												{
-													'actID' : actID
-												}, sendActID);
-							});
-
-			function sendActID() {
-				var opt = $('#actID');
-				opt.empty();//清除內容
-				console.log(activitVO);
-				$('#act_name').val(actID.act_name);
-				$('#act_groups').val(actID.act_groups);
-				$('#BDate').val(actID.BDate);
-				$('#EDate').val(actID.EDate);
-				$('#EDate').val(actID.activity_state);
-
-			}
-
-		});
+	} 
+	 
+  });
 	</script>
 </body>
 </html>

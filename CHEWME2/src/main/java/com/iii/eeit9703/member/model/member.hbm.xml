@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.iii.eeit9703.member.model.MemVO" table="members" >
+        
+        <id name="memberId" column="memberId">
+            <generator class="identity"/>
+        </id>
+        
+        <property name="mName" column="mName" />
+        <property name="mNickN" column="mNickN" />
+        <property name="mPwd" column="mPwd" />
+        <property name="mBirthday" column="mBirthday" />
+        <property name="mMail" column="mMail" />
+        <property name="mAddr" column="mAddr" />
+        <property name="mPhone" column="mPhone" />
+        <property name="mIntr" column="mIntr" />
+        <property name="mFileName" column="mFileName" />
+        <property name="mPhoto" column="mPhoto" />
+      	<property name="mStatus" column="mStatus" />
+        <property name="mRole" column="mRole" />
+       
+<!--         order-by="empno asc" -->
+       <set name="Collects" table="collect" lazy="false" cascade="all"  inverse="true" >			
+			<key>
+				<column name="memberId" />
+			</key>
+			<one-to-many class="com.iii.eeit9703.collection.CollectionVO" />
+		</set>
+        
+    </class>
+</hibernate-mapping>

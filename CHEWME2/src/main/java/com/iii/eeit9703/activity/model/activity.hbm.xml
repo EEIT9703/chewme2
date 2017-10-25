@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.iii.eeit9703.activity.model.ActivityVO" table="activity" >
+        
+        <id name="activity_no" column="activity_no">
+            <generator class="identity"/>
+        </id>
+        
+        <property name="activity_name" column="activity_name" />
+        <property name="activity_people" column="activity_people" />
+        <property name="activity_start" column="activity_start" />
+        <property name="activity_end" column="activity_end" />
+        <property name="activity_cost" column="activity_cost" />
+        <property name="activity_click" column="activity_click" />
+        <property name="mem_no" column="mem_no" />    
+             <!--改 one-many -->
+       <set name="Collects" table="collect" lazy="false" cascade="all"  inverse="true" >			
+			<key>
+				<column name="activity_no" />
+			</key>
+			<one-to-many class="org.eeit.group3.collection.model.CollectionVO" />
+		</set>
+        
+    </class>
+</hibernate-mapping>
