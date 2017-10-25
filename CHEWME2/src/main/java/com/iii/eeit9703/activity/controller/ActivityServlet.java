@@ -32,14 +32,21 @@ public class ActivityServlet extends HttpServlet {
 		doPost(req, resp);
 	}
 
-	@SuppressWarnings("unused")
+
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
 		
 		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
+		resp.setHeader("content-type", "text/html;charset=UTF-8");
+		resp.setContentType("text/html; charset=UTF-8");
+		
+		
+		
 		String action = req.getParameter("action");
 		PrintWriter out = resp.getWriter();
+
 		//新增活動
 		if("insert".equals(action)){  //來自XXX.jsp的請求
 				
@@ -48,6 +55,8 @@ public class ActivityServlet extends HttpServlet {
 			
 			//尚未寫判斷
 			try {
+				
+				
 				String act_name = req.getParameter("act_name");
 				
 				Integer act_groups = new Integer(req.getParameter("act_groups"));
