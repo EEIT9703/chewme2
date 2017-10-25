@@ -105,7 +105,7 @@ public class ActivityServlet extends HttpServlet {
 				//處理錯誤
 			} catch (NumberFormatException e) {
 				errorMsgs.add("無法取得要修改的資料"+e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/act/createAct.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("createAct.jsp");
 				failureView.forward(req, resp);
 				e.printStackTrace();
 			}
@@ -142,7 +142,7 @@ public class ActivityServlet extends HttpServlet {
 				
 				if(!errorMsgs.isEmpty()){
 					req.setAttribute("activityVO", activityVO); //含有輸入錯誤的activityVO 也存入req
-					RequestDispatcher failureView =req.getRequestDispatcher("/act/createAct.jsp");
+					RequestDispatcher failureView =req.getRequestDispatcher("createAct.jsp");
 					failureView.forward(req, resp);
 					return;
 				}
@@ -153,13 +153,13 @@ public class ActivityServlet extends HttpServlet {
 				
 				//修改完成  準備轉交
 				req.setAttribute("activityVO", activityVO);  //資料庫update成功後 正確的activityVO 存入req
-				String url = "/act/createActi.jsp";
+				String url = "createAct.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, resp);
 				
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗"+e.getMessage());
-				RequestDispatcher failureView =req.getRequestDispatcher("/act/createActi.jsp");
+				RequestDispatcher failureView =req.getRequestDispatcher("createAct.jsp");
 				failureView.forward(req, resp);
 				e.printStackTrace();
 			}

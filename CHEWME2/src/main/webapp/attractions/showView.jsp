@@ -13,6 +13,7 @@
 	margin: auto;
 	width: 700px;
 	height: 1000px;
+	margin-top:50px;
 }
 
 .st1 {
@@ -55,8 +56,13 @@
 	display: inline-block;
 }
 
-.memo {
+#memo {
 	resize: none;
+	width:600px;
+	height:70px;
+	border-radius:10px;
+	border:3px solid blue;
+	
 }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -77,8 +83,7 @@
 <body>
 	<header><%@include file="../header.jsp"%></header>
 	<div id="tabs">
-		<div
-			style="margin-left: 20px; border-bottom: 4px double green; width: 650px;">
+		<div style="margin-left: 20px; border-bottom: 4px double green; width: 650px;">
 			<h2>${attrVO.name}</h2>
 		</div>
 		<div class="st1">
@@ -104,9 +109,9 @@
 			</table>
 		</div>
 		<div id="tabs-2">
-			<textarea cols="40" rows="5" class="memo" name="memo"></textarea>
+			<textarea id="memo"></textarea>
 			<input type="button" id="button1" value="送出">
-
+			
 		</div>
 		<div>
 			<a href="insertAttr.jsp" class="btn btn-default">返回</a>
@@ -116,12 +121,15 @@
 	</div>
 	<script>
 	$(function(){
-		$("#button1").on("click", function(){			
-			
-			
-			var item = "<div><textarea cols="40" rows="5"  name="memo"></textarea></div>";
-			
+		$("#button1").click(function(){						
+					
+			var val1 = $("#memo").val();
+		
+			var item = "<div><textarea>" + val1 + "</textarea></div>";			
 			$("#tabs-2").append(item);
+			
+	
+			
 			
 		});
 	})

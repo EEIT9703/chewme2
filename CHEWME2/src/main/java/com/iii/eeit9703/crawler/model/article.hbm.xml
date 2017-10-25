@@ -7,7 +7,7 @@
 		<id name="articleID" column="articleID">
 			<generator class="identity" />
 		</id>
-		<property name="mId" column="mId" />
+		<property name="memId" column="memId" />
 		<property name="attractionID" column="attractionID" />
 		<property name="contents" column="contents" />
 	</class>
