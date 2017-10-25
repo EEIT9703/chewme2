@@ -5,27 +5,29 @@
 <hibernate-mapping>
     <class name="com.iii.eeit9703.member.model.MemVO" table="members" >
         
-        <id name="memberId" column="memberId">
+        <id name="memId" column="memId">
             <generator class="identity"/>
         </id>
         
-        <property name="mName" column="mName" />
-        <property name="mNickN" column="mNickN" />
-        <property name="mPwd" column="mPwd" />
-        <property name="mBirthday" column="mBirthday" />
-        <property name="mMail" column="mMail" />
-        <property name="mAddr" column="mAddr" />
-        <property name="mPhone" column="mPhone" />
-        <property name="mIntr" column="mIntr" />
-        <property name="mFileName" column="mFileName" />
-        <property name="mPhoto" column="mPhoto" />
-      	<property name="mStatus" column="mStatus" />
-        <property name="mRole" column="mRole" />
+        <property name="memAccount" column="memAccount" />
+        <property name="memName" column="memName" />
+        <property name="memNickN" column="memNickN" />
+        <property name="memPwd" column="memPwd" />
+        <property name="memBirthday" column="memBirthday" />
+        <property name="memMail" column="memMail" />
+        <property name="memAddr" column="memAddr" />
+        <property name="memPhone" column="memPhone" />
+        <property name="memIntr" column="memIntr" />
+        <property name="memFileName" column="memFileName" />
+      	<property name="memPhoto" column="memPhoto" />
+        <property name="memStatus" column="memStatus" />
+        <property name="memRole" column="memRole" />
+   
        
 <!--         order-by="empno asc" -->
        <set name="Collects" table="collect" lazy="false" cascade="all"  inverse="true" >			
 			<key>
-				<column name="memberId" />
+				<column name="memId" />
 			</key>
 			<one-to-many class="com.iii.eeit9703.collection.CollectionVO" />
 		</set>
