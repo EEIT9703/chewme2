@@ -18,7 +18,6 @@ public class MemVO implements java.io.Serializable{
 	private String memAddr;
 	private String memPhone;
 	private String memIntr;
-	private String memFileName;
 	private InputStream memPhoto;
 	private String memStatus;
 	private String memRole;
@@ -83,12 +82,7 @@ public class MemVO implements java.io.Serializable{
 	public void setMemIntr(String memIntr) {
 		this.memIntr = memIntr;
 	}
-	public String getMemFileName() {
-		return memFileName;
-	}
-	public void setMemFileName(String memFileName) {
-		this.memFileName = memFileName;
-	}
+
 	public InputStream getMemPhoto() {
 		return memPhoto;
 	}
