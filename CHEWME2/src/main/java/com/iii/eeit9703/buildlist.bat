@@ -1,5 +1,11 @@
-﻿::  create各大項的主表,供之後子表的連接
+﻿
+
 sqlcmd -E -i   dropTables.sql
+sqlcmd -E -i   CreateCMDB.sql
+
+
+::  create各大項的主表,供之後子表的連接
+
 sqlcmd -E -i   club\1_CreateTableClubs.sql
 sqlcmd -E -i   member\1_CreateTableMembers.sql
 sqlcmd -E -i   activity\1_CreateTableActivity.sql
