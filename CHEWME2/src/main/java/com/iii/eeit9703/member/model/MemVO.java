@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.sql.*;
 
 public class MemVO implements java.io.Serializable{
+	private Integer mId;
 	private String memberId;
 	private String mName;
 	private String mNickN;
@@ -17,10 +18,18 @@ public class MemVO implements java.io.Serializable{
 	private InputStream mPhoto;
 	private String mStatus;
 	private String mRole;
-	public String getmemberId() {
+	
+	
+	public Integer getmId() {
+		return mId;
+	}
+	public void setmId(Integer mId) {
+		this.mId = mId;
+	}
+	public String getMemberId() {
 		return memberId;
 	}
-	public void setmemberId(String memberId) {
+	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
 	public String getmName() {
@@ -71,13 +80,18 @@ public class MemVO implements java.io.Serializable{
 	public void setmIntr(String mIntr) {
 		this.mIntr = mIntr;
 	}
+	public String getmFileName() {
+		return mFileName;
+	}
+	public void setmFileName(String mFileName) {
+		this.mFileName = mFileName;
+	}
 	public InputStream getmPhoto() {
 		return mPhoto;
 	}
 	public void setmPhoto(InputStream mPhoto) {
 		this.mPhoto = mPhoto;
 	}
-
 	public String getmStatus() {
 		return mStatus;
 	}
@@ -90,15 +104,9 @@ public class MemVO implements java.io.Serializable{
 	public void setmRole(String mRole) {
 		this.mRole = mRole;
 	}
-	public String getmFileName() {
-		return mFileName;
-	}
-	public void setmFileName(String mFileName) {
-		this.mFileName = mFileName;
-	}
 	public MemVO(String memberId,String mName,String mNickN,String mPwd,java.sql.Date mBirthday,String mMail,String mAddr,String mPhone,String mIntr){
 		super();
-		this.setmemberId(memberId);
+		this.setMemberId(memberId);
 		this.setmName(mName);
 		this.setmNickN(mNickN);
 		this.setmPwd(mPwd);

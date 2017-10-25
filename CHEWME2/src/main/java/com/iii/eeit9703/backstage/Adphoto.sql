@@ -17,6 +17,10 @@ go
 create table adphoto(
 	photo_no	int identity(1,1) PRIMARY KEY,
 	name		varchar(30)		, 
+<<<<<<< HEAD
 	photo		varchar(MAX)	NOT NULL
+=======
+	photo		varbinary(max)	NOT NULL
+>>>>>>> branch 'master' of https://github.com/EEIT9703/chewme2.git
 
 )
