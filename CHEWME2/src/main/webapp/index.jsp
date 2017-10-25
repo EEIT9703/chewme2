@@ -38,13 +38,13 @@
 	
 }
 #abgne-block-20110317 {
-	width: 740px;	/* 圖片的寬 */
-	height: 265px;	/* 圖片的高 + 30 */
+	width: 1140px;	/* 圖片的寬 */
+	height: 350px;	/* 圖片的高 + 30 */
 	border: 10px solid #ddd;
 }
 .abgne-player {
-	width: 720px;	/* 圖片的寬 */
-	height: 220px;	/* 圖片的高 */
+	width: 1120px;	/* 圖片的寬 */
+	height: 308px;	/* 圖片的高 */
 	position: relative;
 	overflow: hidden;
 }
@@ -55,7 +55,7 @@
 }
 .abgne-player ul.abgne-list li {
 	float: left;
-	width: 720px;	/* 圖片的寬 */
+	width: 1120px;	/* 圖片的寬 */
 	height: 100%;
 }
 .abgne-player ul.abgne-list img{
@@ -64,7 +64,7 @@
 	border: 0;
 }
 .abgne-control {
-	height: 24px;
+	height: 26px;
 	padding: 3px;
 	color: #fff;
 	font-size: 13px;
@@ -165,7 +165,7 @@
 	</div>
 
 	<script src="js/jquery.min.js"></script>
-<!-- 	<script src="js/bootstrap.min.js"></script> -->
+	<script src="js/bootstrap.min.js"></script>
 	
 
 <script>

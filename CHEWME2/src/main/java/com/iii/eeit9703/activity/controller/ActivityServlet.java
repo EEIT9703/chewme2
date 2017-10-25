@@ -37,12 +37,16 @@ public class ActivityServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
 		
-		resp.setCharacterEncoding("UTF-8");
 		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
+		resp.setHeader("content-type", "text/html;charset=UTF-8");
+		resp.setContentType("text/html; charset=UTF-8");
+		
 		
 		
 		String action = req.getParameter("action");
 		PrintWriter out = resp.getWriter();
+
 		//新增活動
 		if("insert".equals(action)){  //來自XXX.jsp的請求
 				
