@@ -10,10 +10,11 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+import com.iii.eeit9703.club.model.QuestionDAOI;
 import com.iii.eeit9703.club.model.QuestionVO;
 import com.iii.eeit9703.hibernate.util.HibernateUtil;
 
-public class QuestionHibernateDAO implements QuestionHibernateDAOI{
+public class QuestionHibernateDAO implements QuestionDAOI{
 	
 	private static final String GET_ALL_STMT="from question order by questionId";
 	@Override

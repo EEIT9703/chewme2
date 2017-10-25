@@ -11,10 +11,11 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+import com.iii.eeit9703.club.model.CommentDAOI;
 import com.iii.eeit9703.club.model.CommentVO;
 import com.iii.eeit9703.hibernate.util.HibernateUtil;
 
-public class CommentHibernateDAO implements CommentHibernateDAOI {
+public class CommentHibernateDAO implements CommentDAOI {
 
 	private static final String GET_ALL_STMT="from comment order by commentId";
 	@Override
