@@ -1,21 +1,20 @@
 
---�ϥ�CMDB��Ʈw
 use CMDB;
 go
 
---�إ߽s���{���
-
 IF EXISTS (SELECT name FROM sysobjects
-            WHERE type='u' AND name = 'adphoto')      
+            WHERE type='u' AND name = 'schedules')      
 BEGIN
-drop table adphoto;
+drop table schedules;
 
 END                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 go
 
-
-create table adphoto(
-	photo_no	int identity(1,1) PRIMARY KEY,
-	name		varchar(30)		, 
-	photo		varchar(MAX)	NOT NULL
-)
+create table schedules(
+scheduleID 		int IDENTITY(1,1)not null,
+actID					int,
+attractionID  	int,
+dayNo				int,
+period        		time,
+remark				varchar,
+constraint schedules_primary_key primary key(scheduleID));
