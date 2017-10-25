@@ -154,6 +154,9 @@
 				eventLimit : true, // allow "more" link when too many events
 				events:cell1,		
 				droppable: false,
+				eventClick: function(id){
+					alert("id=" + id.title);
+				},
 			   
 			});
 
