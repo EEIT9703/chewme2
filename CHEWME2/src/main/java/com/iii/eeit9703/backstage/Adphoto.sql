@@ -1,9 +1,9 @@
 
---¨Ï¥ÎCMDB¸ê®Æ®w
+--ï¿½Ï¥ï¿½CMDBï¿½ï¿½Æ®w
 use CMDB;
 go
 
---«Ø¥ß½s¿è¦æµ{ªí®æ
+--ï¿½Ø¥ß½sï¿½ï¿½ï¿½{ï¿½ï¿½ï¿½
 
 IF EXISTS (SELECT name FROM sysobjects
             WHERE type='u' AND name = 'adphoto')      
@@ -17,10 +17,5 @@ go
 create table adphoto(
 	photo_no	int identity(1,1) PRIMARY KEY,
 	name		varchar(30)		, 
-<<<<<<< HEAD
 	photo		varchar(MAX)	NOT NULL
-=======
-	photo		varbinary(max)	NOT NULL
->>>>>>> branch 'master' of https://github.com/EEIT9703/chewme2.git
-
 )
