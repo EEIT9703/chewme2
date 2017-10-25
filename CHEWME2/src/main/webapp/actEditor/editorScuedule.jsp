@@ -38,7 +38,8 @@ select{width:150px;height:40px;font-family: 'Arial','Microsoft JhengHei';font-si
 option{font-family: 'Arial','Microsoft JhengHei';font-size:20px;}
 .item{line-height:30px;border-radius:20px;width:240px;padding-left:20px;}
 .detailItem{font-family: 'Arial','Microsoft JhengHei';font-size:20px;padding-left:10px;width:80px;}
-#detailName,#detailTel,#detailAdd,#detailIntro{font-family: 'Arial','Microsoft JhengHei';font-size:20px;padding-left:10px;}
+#detailName,#detailTel,#detailAdd,#detailType{font-family: 'Arial','Microsoft JhengHei';font-size:20px;padding:10px;}
+#detailIntro{font-family: 'Arial','Microsoft JhengHei';font-size:20px;padding:10px;}
 #actName{font-family: 'Arial','Microsoft JhengHei';font-size:20px;padding-left:10px;height:35px;width:180px;}
 
 </style>
@@ -84,9 +85,10 @@ option{font-family: 'Arial','Microsoft JhengHei';font-size:20px;}
 			<div class="modal-dialog">
 			<div class="modal-content">
 			<div class="modal-body">
-			<table border="1">
+			<table border="1"  style="width:570px;">
 				<tbody>
-					<tr><td class="detailItem">名　稱</td><td id=detailName></td><td rowspan=3 id=detailPhoto style="width:200px;"><img id=photo></td></tr>	
+					<tr><td class="detailItem">名　稱</td><td id=detailName></td><td rowspan=4 id=detailPhoto style="height:220px;padding:10px;"></td></tr>	
+					<tr><td class="detailItem">類　型</td><td id=detailType></td></tr>
 					<tr><td class="detailItem">電　話</td><td id=detailTel></td></tr>
 					<tr><td class="detailItem">地　址</td><td id=detailAdd></td></tr>
 					<tr><td class="detailItem">簡　介</td><td colspan=2 id=detailIntro></td></tr>
@@ -224,20 +226,13 @@ window.onload = function(){
 					for(var k=0;k<dataArray.length;k++){
 						if(id==dataArray[k].attractionID){
 							$('#detailName').text(dataArray[k].name);
+							$('#detailType').text(dataArray[k].type);
 							$('#detailTel').text(dataArray[k].tel);
 							$('#detailAdd').text(dataArray[k].address);
-							$('#detailIntro').text(dataArray[k].intro);
-							var img = dataArray[k].image
-							$.getJSON("/Image",function(img){
-								$.each(img,function(i,field){
-									var byteArray = img.Img;
-									var base64 = base64js.fromByteArray(byteArray);
-									$("#photo").attr('src', 'data:image/jpeg;base64,' + base64);
-								})
-							})
-							console.log(dataArray[k].image);
+							$('#detailIntro').text(dataArray[k].intro);	
+							$('#detailPhoto').html("<img src='data:image/png;base64,"+dataArray[k].img64+"'height=200px>");
 						}
-				}
+					}
 			}	
 	}
 	

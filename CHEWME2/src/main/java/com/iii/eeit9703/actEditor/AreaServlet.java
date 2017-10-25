@@ -3,6 +3,7 @@ package com.iii.eeit9703.actEditor;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -52,8 +53,8 @@ public class AreaServlet extends HttpServlet {
 			if("getCountry".equals(mission)){
 				countryID = request.getParameter("country");
 				CountyDAO countydao = new CountyDAO();
-				ArrayList<CountyVO> countyList = countydao.getCounty(countryID);			
-			
+				ArrayList<CountyVO> countyList = countydao.getCounty(countryID);
+				
 				JSONArray countyArrayList = new JSONArray(countyList);
 //				System.out.print(countyArrayList);
 				out.print(countyArrayList.toString());
@@ -62,6 +63,7 @@ public class AreaServlet extends HttpServlet {
 			
 			if("getCountryAttr".equals(mission)){
 				countryID = request.getParameter("country");
+				
 				System.out.println(countryID);
 				AttrDAO attrdao = new AttrDAO();
 				ArrayList<AttrVO> attrList = attrdao.getAttrByCountry(countryID);
@@ -77,6 +79,8 @@ public class AreaServlet extends HttpServlet {
 				System.out.println(countyID);
 				AttrDAO attrdao = new AttrDAO();
 				ArrayList<AttrVO> attrList = attrdao.getAttrByCounty(countyID);
+				
+				
 				
 				JSONArray attrArrayList = new JSONArray(attrList);
 				System.out.println(attrArrayList);
@@ -110,6 +114,8 @@ public class AreaServlet extends HttpServlet {
 							bos.write(buf, 0, len);
 						buf = bos.toByteArray();
 						String base64 = Base64.getEncoder().encodeToString(buf);
+						
+						out.print(base64);
 						
 					}
 				}
