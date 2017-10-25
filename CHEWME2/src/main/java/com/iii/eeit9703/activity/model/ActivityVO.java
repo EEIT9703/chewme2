@@ -2,7 +2,10 @@ package com.iii.eeit9703.activity.model;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.HashSet;
+import java.util.Set;
 
+import com.iii.eeit9703.collection.CollectionVO;
 import com.iii.eeit9703.member.model.MemVO;
 
 public class ActivityVO implements java.io.Serializable {
@@ -18,8 +21,15 @@ public class ActivityVO implements java.io.Serializable {
 	private Date EDate;       //結束日期
 	private Integer activity_state; //活動型態  0 = 建構中, 1 = 上架  ,  2 = 被檢舉  , 3 = 下架 
 	private MemVO memVO;
+	private Set<CollectionVO> Collects = new HashSet<CollectionVO>();
 	
 
+	public Set<CollectionVO> getCollects() {
+		return Collects;
+	}
+	public void setCollects(Set<CollectionVO> collects) {
+		Collects = collects;
+	}
 	public MemVO getMemVO() {
 		return memVO;
 	}

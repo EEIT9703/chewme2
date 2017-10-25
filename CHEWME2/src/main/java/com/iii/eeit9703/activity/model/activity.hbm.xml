@@ -5,23 +5,23 @@
 <hibernate-mapping>
     <class name="com.iii.eeit9703.activity.model.ActivityVO" table="activity" >
         
-        <id name="activity_no" column="activity_no">
+        <id name="actID" column="actID">
             <generator class="identity"/>
         </id>
         
-        <property name="activity_name" column="activity_name" />
-        <property name="activity_people" column="activity_people" />
-        <property name="activity_start" column="activity_start" />
-        <property name="activity_end" column="activity_end" />
-        <property name="activity_cost" column="activity_cost" />
-        <property name="activity_click" column="activity_click" />
-        <property name="mem_no" column="mem_no" />    
+        <property name="member_ID" column="member_ID" />
+        <property name="act_name" column="act_name" />
+        <property name="act_groups" column="act_groups" />
+        <property name="act_current" column="act_current" />
+        <property name="BDate" column="BDate" />
+        <property name="EDate" column="EDate" />
+        <property name="activity_state" column="activity_state" />    
              <!--改 one-many -->
        <set name="Collects" table="collect" lazy="false" cascade="all"  inverse="true" >			
 			<key>
-				<column name="activity_no" />
+				<column name="actID" />
 			</key>
-			<one-to-many class="org.eeit.group3.collection.model.CollectionVO" />
+			<one-to-many class="com.iii.eeit9703.collecton.CollectionVO" />
 		</set>
         
     </class>

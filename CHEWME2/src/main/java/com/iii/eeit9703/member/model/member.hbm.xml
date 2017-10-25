@@ -5,7 +5,7 @@
 <hibernate-mapping>
     <class name="com.iii.eeit9703.member.model.MemVO" table="members" >
         
-        <id name="memberId" column="memberId">
+        <id name="mId" column="mId">
             <generator class="identity"/>
         </id>
         
@@ -25,7 +25,7 @@
 <!--         order-by="empno asc" -->
        <set name="Collects" table="collect" lazy="false" cascade="all"  inverse="true" >			
 			<key>
-				<column name="memberId" />
+				<column name="mId" />
 			</key>
 			<one-to-many class="com.iii.eeit9703.collection.CollectionVO" />
 		</set>

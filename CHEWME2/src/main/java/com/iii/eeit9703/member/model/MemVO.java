@@ -2,6 +2,10 @@ package com.iii.eeit9703.member.model;
 
 import java.io.InputStream;
 import java.sql.*;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.iii.eeit9703.collection.CollectionVO;
 
 public class MemVO implements java.io.Serializable{
 	private Integer mId;
@@ -18,8 +22,15 @@ public class MemVO implements java.io.Serializable{
 	private InputStream mPhoto;
 	private String mStatus;
 	private String mRole;
+	private Set<CollectionVO> Collects = new HashSet<CollectionVO>();
 	
 	
+	public Set<CollectionVO> getCollects() {
+		return Collects;
+	}
+	public void setCollects(Set<CollectionVO> collects) {
+		Collects = collects;
+	}
 	public Integer getmId() {
 		return mId;
 	}

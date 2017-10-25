@@ -3,15 +3,15 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="org.eeit.group3.collection.model.CollectionVO" table="Collect" >
+    <class name="com.iii.eeit9703.collection.CollectionVO" table="Collect" >
         
        <composite-id>
-        <key-many-to-one name ="memberVO" class="org.eeit.group3.member.model.MemberVO" lazy="false">
-        		<column name="member_no" />
+        <key-many-to-one name ="memVO" class="com.iii.eeit9703.member.model.MemberVO" lazy="false">
+        		<column name="mId" />
         </key-many-to-one>
         
-        <key-many-to-one name ="memberVO" class="org.eeit.group3.activity.model.ActivityVO" lazy="false">
-        		<column name="activity_no" />
+        <key-many-to-one name ="activityVO" class="com.iii.eeit9703.activity.model.ActivityVO" lazy="false">
+        		<column name="actID" />
         </key-many-to-one>
         
         </composite-id> 
