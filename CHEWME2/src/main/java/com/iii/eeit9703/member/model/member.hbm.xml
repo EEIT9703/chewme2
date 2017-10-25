@@ -18,7 +18,6 @@
         <property name="memAddr" column="memAddr" />
         <property name="memPhone" column="memPhone" />
         <property name="memIntr" column="memIntr" />
-        <property name="memFileName" column="memFileName" />
       	<property name="memPhoto" column="memPhoto" />
         <property name="memStatus" column="memStatus" />
         <property name="memRole" column="memRole" />
