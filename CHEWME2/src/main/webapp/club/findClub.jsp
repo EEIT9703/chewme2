@@ -61,15 +61,15 @@
 
 			<!-- List group -->
 
-			<div>
+			<div class="container">
 				<form id="findClubForm" action="findClub.do" method="POST">
 					<ul class="list-group">
 						<c:forEach var="club" items="${club_list}">
 							<div class="row">
-								<div class="col-md-12">${club.clubName}</div>
-								<div class="col-md-2">pic</div>
-								<div class="col-md-8">${club.brief}</div>
-								<div class="col-md-2">
+								<div class="col-sm-12 col-md-12">${club.clubName}</div>
+								<div class="col-sm-12 col-md-2">pic</div>
+								<div class="col-sm-12 col-md-8">${club.brief}</div>
+								<div class="col-sm-12 col-md-2">
 									<button type="submit" class="btn btn-primary btn-sm"
 										name="cchosen" value="The ClubId ${club.clubId} is chosen">點入觀看</button>
 								</div>

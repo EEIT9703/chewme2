@@ -1,10 +1,6 @@
-ï»¿
+sqlcmd -E -i   delete_FK.sql
 
-sqlcmd -E -i   dropTables.sql
-sqlcmd -E -i   CreateCMDB.sql
-
-
-::  createå„å¤§é …çš„ä¸»è¡¨,ä¾›ä¹‹å¾Œå­è¡¨çš„é€£æ¥
+::create¦U¤j¶µªº¥Dªí,¨Ñ¤§«á¤lªíªº³s±µ
 
 sqlcmd -E -i   club\1_CreateTableClubs.sql
 sqlcmd -E -i   member\1_CreateTableMembers.sql
@@ -12,7 +8,7 @@ sqlcmd -E -i   activity\1_CreateTableActivity.sql
 sqlcmd -E -i   crawler\1_CreateTableAttractions.sql
 sqlcmd -E -i   crawler\2_CreateTableArticleShare.sql
 
-::  create memberçš„å­è¡¨
+::  create memberªº¤lªí
 sqlcmd -E -i   member\2_CreateTableMFriendsLists.sql
 sqlcmd -E -i   member\3_CreateTableMsgRooms_Msgs.sql
 :: sqlcmd -E -i   member\4_CreateTableMCalendar.sql
@@ -20,24 +16,24 @@ sqlcmd -E -i   member\3_CreateTableMsgRooms_Msgs.sql
 
 
 
-:: create clubçš„å­è¡¨
+:: create clubªº¤lªí
 sqlcmd -E -i   club\2_CreateTableIssues.sql
 sqlcmd -E -i   club\3_CreateTableComments.sql
 sqlcmd -E -i   club\4_CreateTableQuestion.sql
 sqlcmd -E -i   club\5_CreateTableReplys.sql
 
-:: create1è¡Œç¨‹ç·¨è¼¯å™¨æ‰€æœƒç”¨åˆ°çš„åœ°é»ä»£ç¢¼
+:: create1¦æµ{½s¿è¾¹©Ò·|¥Î¨ìªº¦aÂI¥N½X
 sqlcmd -E -i   actEditor\1_CreateTableCountrys.sql
 sqlcmd -E -i   actEditor\2_CreateTableCountys.sql
 sqlcmd -E -i   actEditor\3_CreateTableSchedules.sql
 
-:: createå¾Œå°æ‰€æœƒç”¨åˆ°çš„è¡¨æ ¼
+:: create«á¥x©Ò·|¥Î¨ìªºªí®æ
 sqlcmd -E -i   backstage\Adphoto.sql
 
-:: create bridgeçš„å­è¡¨
+:: create bridgeªº¤lªí
 ::sqlcmd -E -i   bridge\1_CreateTableClubActivityList.sql
 sqlcmd -E -i   bridge\1_CreateTableClubMemberList.sql
-sqlcmd -E -i   bridge\2_CreateTableMemJoinActicvity.sql
+sqlcmd -E -i   bridge\2_CreateTableMemJoinActivity.sql
 sqlcmd -E -i   bridge\3_CreateTableCollection.sql
 sqlcmd -E -i   bridge\4_CreateTableReport.sql
 
