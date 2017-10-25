@@ -55,7 +55,7 @@
 	display: inline-block;
 }
 
-#memo {
+.memo {
 	resize: none;
 }
 </style>
@@ -104,7 +104,7 @@
 			</table>
 		</div>
 		<div id="tabs-2">
-			<textarea cols="40" rows="5" id="memo" name="memo"></textarea>
+			<textarea cols="40" rows="5" class="memo" name="memo"></textarea>
 			<input type="button" id="button1" value="送出">
 
 		</div>
@@ -116,13 +116,14 @@
 	</div>
 	<script>
 	$(function(){
-		$("#button1").click(function(){
+		$("#button1").on("click", function(){			
 			
 			
+			var item = "<div><textarea cols="40" rows="5"  name="memo"></textarea></div>";
 			
-			var v = $("#memo").val();
-			console.log(v);
-		})
+			$("#tabs-2").append(item);
+			
+		});
 	})
 	
 	

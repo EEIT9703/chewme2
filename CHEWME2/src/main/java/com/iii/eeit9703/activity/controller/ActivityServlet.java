@@ -46,7 +46,6 @@ public class ActivityServlet extends HttpServlet {
 		
 		String action = req.getParameter("action");
 		PrintWriter out = resp.getWriter();
-
 		//新增活動
 /*		if("insert".equals(action)){  //來自XXX.jsp的請求
 				

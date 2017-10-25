@@ -3,12 +3,12 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.iii.eeit9703.crawler.model.ArticleVO" table="ArticleShare">
+	<class name="com.iii.eeit9703.crawler.model.ArticleVO" table="article_share">
 		<id name="articleID" column="articleID">
 			<generator class="identity" />
 		</id>
-		<property name="memberID" column="memberID" />
-		<property name="name" column="name" />
+		<property name="mId" column="mId" />
+		<property name="attractionID" column="attractionID" />
 		<property name="contents" column="contents" />
 	</class>
 </hibernate-mapping>
