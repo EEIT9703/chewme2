@@ -34,6 +34,7 @@
 	width: 384px;
 	border-radius: 5px;
 }
+
 .aaa {
 	position: absolute;
 	right: -10px;
@@ -53,11 +54,16 @@
 	position: relative;
 	display: inline-block;
 }
+
+#memo {
+	resize: none;
+}
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>商家列表</title>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <script src="../js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -69,10 +75,10 @@
 </script>
 </head>
 <body>
-<header><%@include file="../header.jsp"%></header>
+	<header><%@include file="../header.jsp"%></header>
 	<div id="tabs">
 		<div
-			style="margin-left: 20px;border-bottom: 4px double green; width: 650px;">
+			style="margin-left: 20px; border-bottom: 4px double green; width: 650px;">
 			<h2>${attrVO.name}</h2>
 		</div>
 		<div class="st1">
@@ -81,7 +87,7 @@
 		</div>
 		<ul>
 			<li><a href="#tabs-1">介紹</a></li>
-			<li><a href="#tabs-2">分享文</a></li>
+			<li><a href="#tabs-2">留言板</a></li>
 		</ul>
 		<div id="tabs-1">
 			<table>
@@ -97,12 +103,31 @@
 				</tr>
 			</table>
 		</div>
-		<div id="tabs-2"></div>
+		<div id="tabs-2">
+			<textarea cols="40" rows="5" id="memo" name="memo"></textarea>
+			<input type="button" id="button1" value="送出">
+
+		</div>
 		<div>
 			<a href="insertAttr.jsp" class="btn btn-default">返回</a>
 
 		</div>
 
 	</div>
+	<script>
+	$(function(){
+		$("#button1").click(function(){
+			
+			
+			
+			var v = $("#memo").val();
+			console.log(v);
+		})
+	})
+	
+	
+	
+	
+	</script>
 </body>
 </html>

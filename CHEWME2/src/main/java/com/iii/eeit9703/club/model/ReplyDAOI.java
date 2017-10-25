@@ -1,11 +1,8 @@
-package com.iii.eeit9703.club.model.hibernate.reply;
+package com.iii.eeit9703.club.model;
 
 import java.util.List;
 
-import com.iii.eeit9703.club.model.ClubVO;
-import com.iii.eeit9703.club.model.ReplyVO;
-
-public interface ReplyHibernateDAOI {
+public interface ReplyDAOI {
 	public List<ReplyVO> getAll();
 	public void getOne(Integer reqlyId);
 	public void insert(ReplyVO replyVO);

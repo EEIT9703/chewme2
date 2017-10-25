@@ -1,0 +1,12 @@
+.full{
+hieght:100%;
+width:100%;	
+}
+
+.hidden{
+	visibility: hidden;
+}
+
+.appear{
+	visibility:visible;
+}
