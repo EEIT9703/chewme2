@@ -9,7 +9,7 @@
             <generator class="identity"/>
         </id>
         
-        <property name="member_ID" column="member_ID" />
+        <property name="memId" column="memId" />
         <property name="act_name" column="act_name" />
         <property name="act_groups" column="act_groups" />
         <property name="act_current" column="act_current" />

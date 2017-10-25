@@ -12,7 +12,7 @@ public class ActivityVO implements java.io.Serializable {
 	
 	//活動表
 	private Integer actID;       //行程編號(完成編輯)
-	private Integer member_ID;  //會員編號
+	private Integer memId;  //會員編號
 	private String  act_name;  //活動名稱
 	private Integer act_groups; //成團人數
 	private Integer act_current;//當前人數
@@ -35,11 +35,12 @@ public class ActivityVO implements java.io.Serializable {
 	public void setActID(Integer actID) {
 		this.actID = actID;
 	}
-	public Integer getMember_ID() {
-		return member_ID;
+	
+	public Integer getMemId() {
+		return memId;
 	}
-	public void setMember_ID(Integer member_ID) {
-		this.member_ID = member_ID;
+	public void setMemId(Integer memId) {
+		this.memId = memId;
 	}
 	public String getAct_name() {
 		return act_name;

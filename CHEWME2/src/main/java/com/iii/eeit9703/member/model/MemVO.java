@@ -8,128 +8,113 @@ import java.util.Set;
 import com.iii.eeit9703.collection.CollectionVO;
 
 public class MemVO implements java.io.Serializable{
-	private Integer mId;
-	private String memberId;
-	private String mName;
-	private String mNickN;
-	private String mPwd;
-	private java.sql.Date mBirthday;
-	private String mMail;
-	private String mAddr;
-	private String mPhone;
-	private String mIntr;
-	private String mFileName;
-	private InputStream mPhoto;
-	private String mStatus;
-	private String mRole;
+	private Integer memId;
+	private String memAccount;
+	private String memName;
+	private String memNickN;
+	private String memPwd;
+	private java.sql.Date memBirthday;
+	private String memMail;
+	private String memAddr;
+	private String memPhone;
+	private String memIntr;
+	private String memFileName;
+	private InputStream memPhoto;
+	private String memStatus;
+	private String memRole;
 	private Set<CollectionVO> Collects = new HashSet<CollectionVO>();
-	
-	
+	public Integer getMemId() {
+		return memId;
+	}
+	public void setMemId(Integer memId) {
+		this.memId = memId;
+	}
+	public String getMemAccount() {
+		return memAccount;
+	}
+	public void setMemAccount(String memAccount) {
+		this.memAccount = memAccount;
+	}
+	public String getMemName() {
+		return memName;
+	}
+	public void setMemName(String memName) {
+		this.memName = memName;
+	}
+	public String getMemNickN() {
+		return memNickN;
+	}
+	public void setMemNickN(String memNickN) {
+		this.memNickN = memNickN;
+	}
+	public String getMemPwd() {
+		return memPwd;
+	}
+	public void setMemPwd(String memPwd) {
+		this.memPwd = memPwd;
+	}
+	public java.sql.Date getMemBirthday() {
+		return memBirthday;
+	}
+	public void setMemBirthday(java.sql.Date memBirthday) {
+		this.memBirthday = memBirthday;
+	}
+	public String getMemMail() {
+		return memMail;
+	}
+	public void setMemMail(String memMail) {
+		this.memMail = memMail;
+	}
+	public String getMemAddr() {
+		return memAddr;
+	}
+	public void setMemAddr(String memAddr) {
+		this.memAddr = memAddr;
+	}
+	public String getMemPhone() {
+		return memPhone;
+	}
+	public void setMemPhone(String memPhone) {
+		this.memPhone = memPhone;
+	}
+	public String getMemIntr() {
+		return memIntr;
+	}
+	public void setMemIntr(String memIntr) {
+		this.memIntr = memIntr;
+	}
+	public String getMemFileName() {
+		return memFileName;
+	}
+	public void setMemFileName(String memFileName) {
+		this.memFileName = memFileName;
+	}
+	public InputStream getMemPhoto() {
+		return memPhoto;
+	}
+	public void setMemPhoto(InputStream memPhoto) {
+		this.memPhoto = memPhoto;
+	}
+	public String getMemStatus() {
+		return memStatus;
+	}
+	public void setMemStatus(String memStatus) {
+		this.memStatus = memStatus;
+	}
+	public String getMemRole() {
+		return memRole;
+	}
+	public void setMemRole(String memRole) {
+		this.memRole = memRole;
+	}
 	public Set<CollectionVO> getCollects() {
 		return Collects;
 	}
 	public void setCollects(Set<CollectionVO> collects) {
 		Collects = collects;
 	}
-	public Integer getmId() {
-		return mId;
-	}
-	public void setmId(Integer mId) {
-		this.mId = mId;
-	}
-	public String getMemberId() {
-		return memberId;
-	}
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
-	}
-	public String getmName() {
-		return mName;
-	}
-	public void setmName(String mName) {
-		this.mName = mName;
-	}
-	public String getmNickN() {
-		return mNickN;
-	}
-	public void setmNickN(String mNickN) {
-		this.mNickN = mNickN;
-	}
-	public String getmPwd() {
-		return mPwd;
-	}
-	public void setmPwd(String mPwd) {
-		this.mPwd = mPwd;
-	}
-	public java.sql.Date getmBirthday() {
-		return mBirthday;
-	}
-	public void setmBirthday(java.sql.Date mBirthday) {
-		this.mBirthday = mBirthday;
-	}
-	public String getmMail() {
-		return mMail;
-	}
-	public void setmMail(String mMail) {
-		this.mMail = mMail;
-	}
-	public String getmAddr() {
-		return mAddr;
-	}
-	public void setmAddr(String mAddr) {
-		this.mAddr = mAddr;
-	}
-	public String getmPhone() {
-		return mPhone;
-	}
-	public void setmPhone(String mPhone) {
-		this.mPhone = mPhone;
-	}
-	public String getmIntr() {
-		return mIntr;
-	}
-	public void setmIntr(String mIntr) {
-		this.mIntr = mIntr;
-	}
-	public String getmFileName() {
-		return mFileName;
-	}
-	public void setmFileName(String mFileName) {
-		this.mFileName = mFileName;
-	}
-	public InputStream getmPhoto() {
-		return mPhoto;
-	}
-	public void setmPhoto(InputStream mPhoto) {
-		this.mPhoto = mPhoto;
-	}
-	public String getmStatus() {
-		return mStatus;
-	}
-	public void setmStatus(String mStatus) {
-		this.mStatus = mStatus;
-	}
-	public String getmRole() {
-		return mRole;
-	}
-	public void setmRole(String mRole) {
-		this.mRole = mRole;
-	}
-	public MemVO(String memberId,String mName,String mNickN,String mPwd,java.sql.Date mBirthday,String mMail,String mAddr,String mPhone,String mIntr){
-		super();
-		this.setMemberId(memberId);
-		this.setmName(mName);
-		this.setmNickN(mNickN);
-		this.setmPwd(mPwd);
-		this.setmBirthday(mBirthday);
-		this.setmMail(mMail);
-		this.setmAddr(mAddr);
-		this.setmPhone(mPhone);
-		this.setmIntr(mIntr);
-	}
-	public MemVO() {
-		
-	}
+	
+
 
 	
 }
