@@ -48,7 +48,7 @@ public class ActivityServlet extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 
 		//新增活動
-		if("insert".equals(action)){  //來自XXX.jsp的請求
+/*		if("insert".equals(action)){  //來自XXX.jsp的請求
 				
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
@@ -83,39 +83,26 @@ public class ActivityServlet extends HttpServlet {
 				RequestDispatcher failure = req.getRequestDispatcher("xxx.jsp");
 				e.printStackTrace();
 			}
-		}
+		}*/
 		
 		//選擇行程
 		if("getOne_For_Update".equals(action)){
 			List<String>errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-			System.out.println("aa");
+
 			try {
-				//1.接收請求
-				//String actID = req.getParameter("actID");
-				
+				//1.接收請求	
 				Integer actID = new Integer(req.getParameter("actID")); 
-				System.out.println("aaa");
-				System.out.println(actID);
+
 				//2.開始查詢資料
 				ActService actSvc = new ActService();
 				ActivityVO activityVO = actSvc.getOneAct(actID);
-				
-//				String actJSON = JSONValue.toJSONString(activityVO);
+	
 				JSONObject actJSON = new JSONObject(activityVO);
 //				JSONArray actJSON = new JSONArray(activityVO);
 				out.print(actJSON.toString());
 				
-				System.out.println(actJSON);
-				
-				//3.查詢完成 準備轉交
-//				req.setAttribute("activityVO", activityVO); //取出資料庫activityVO 存入req
-//				String url = "/act/createAct.jsp";
-				
-//				RequestDispatcher successView = req.getRequestDispatcher(url); //成功轉交createActivity.jsp 
-//				successView.forward(req, resp);
-				
-				
+				System.out.println(actJSON);			
 				//處理錯誤
 			} catch (NumberFormatException e) {
 				errorMsgs.add("無法取得要修改的資料"+e.getMessage());
@@ -156,7 +143,7 @@ public class ActivityServlet extends HttpServlet {
 				
 				if(!errorMsgs.isEmpty()){
 					req.setAttribute("activityVO", activityVO); //含有輸入錯誤的activityVO 也存入req
-					RequestDispatcher failureView =req.getRequestDispatcher("/act/createActi.jsp");
+					RequestDispatcher failureView =req.getRequestDispatcher("/act/createAct.jsp");
 					failureView.forward(req, resp);
 					return;
 				}
