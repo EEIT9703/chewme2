@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.eeit.group3.collection.model.CollectionVO" table="Collect" >
+        
+       <composite-id>
+        <key-many-to-one name ="memberVO" class="org.eeit.group3.member.model.MemberVO" lazy="false">
+        		<column name="member_no" />
+        </key-many-to-one>
+        
+        <key-many-to-one name ="memberVO" class="org.eeit.group3.activity.model.ActivityVO" lazy="false">
+        		<column name="activity_no" />
+        </key-many-to-one>
+        
+        </composite-id> 
+        
+        <property name="context" column="context" />
+        <property name="status" column="status" />
+      
+<!--         <property name="activity_start" column="activity_start" /> -->
+<!--         <property name="activity_end" column="activity_end" /> -->
+<!--         <property name="activity_cost" column="activity_cost" /> -->
+<!--         <property name="activity_click" column="activity_click" /> -->
+<!--         <property name="mem_no" column="mem_no" />     -->
+             <!--改 one-many -->             
+    </class>
+</hibernate-mapping>
