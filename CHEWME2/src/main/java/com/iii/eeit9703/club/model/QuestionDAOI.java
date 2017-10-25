@@ -1,11 +1,8 @@
-package com.iii.eeit9703.club.model.hibernate.question;
+package com.iii.eeit9703.club.model;
 
 import java.util.List;
 
-import com.iii.eeit9703.club.model.ClubVO;
-import com.iii.eeit9703.club.model.QuestionVO;
-
-public interface QuestionHibernateDAOI {
+public interface QuestionDAOI {
 	public List<QuestionVO> getAll();
 	public void getOne(Integer questionId);
 	public void insert(QuestionVO QuestionVO);

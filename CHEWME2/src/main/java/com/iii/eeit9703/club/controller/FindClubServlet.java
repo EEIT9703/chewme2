@@ -1,8 +1,6 @@
 package com.iii.eeit9703.club.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.iii.eeit9703.club.model.ClubService;
-import com.iii.eeit9703.club.model.ClubVO;
 
 @WebServlet("/club/findClub.do")
 public class FindClubServlet extends HttpServlet {
@@ -40,12 +37,23 @@ public class FindClubServlet extends HttpServlet {
 		if (session != null) {      // 使用逾時
 		
 		}
-/*		List<ClubVO> clubList = new ArrayList();
+/*		List<ClubVO> clubList;
 		clubList = cs.getAll();
-		request.setAttribute("club_list", clubList);
-		System.out.println(clubList);*/
+		for (ClubVO aClub : clubList) {
+			System.out.print(aClub.getClubId() + ",");
+			System.out.print(aClub.getClubName() + ",");
+			System.out.print(aClub.getManagerId() + ",");
+			System.out.print(aClub.getLocationId() + ",");
+			System.out.print(aClub.getBrief() + ",");
+			System.out.print(aClub.getRefURL() + ",");
+			System.out.print(aClub.getVistors() + ",");
+			System.out.print(aClub.getVistorsInMonth() + ",");
+			System.out.println(aClub.getAddr() + ",");
+		}*/
+	/*	request.setAttribute("club_list", clubList);*/
 		RequestDispatcher rd = request.getRequestDispatcher("/club/findClub.jsp");
-		rd.forward(request, response);
+		response.sendRedirect("findClub.jsp");
+		/*rd.forward(request, response);*/
 				
 	}
 	
