@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.*" %>
 <%@ page import="com.iii.eeit9703.activity.model.*" %>
@@ -165,26 +164,51 @@
     });
 	 
     $("#activity_state").selectmenu();
-	 
+	 var data;
 	//觸發actID
 	$("#actID").change(function(){
  		var actID = $(this).val();
 // 		alert(actID.val)
-		console.log($(this).val());
+		console.log(actID);
+		console.log("hello");
 	//	$.get('/CHEWME2/activityServlet?action=getOne_For_Update',{'actID':actID},sendActID);
-		$.getJSON('/CHEWME2/activityServlet.do?action=getOne_For_Update',{'actID':actID},sendActID);
+	//$.getJSON('/CHEWME2/activityServlet.do?action=getOne_For_Update',{'actID':actID},sendActID);
+		
+		
+		$.get('/CHEWME2/activityServlet.do?action=getOne_For_Update',{'actID':actID},function(data){
+			actID = JSON.parse(data);
+			console.log(actID);
+			console.log("hello1");
+			$('#act_name').val(actID.act_name);
+			$('#act_groups').val(actID.act_groups);
+			$('#BDate').val(actID.BDate);
+			$('#EDate').val(actID.EDate);
+			$('#EDate').val(actID.activity_state); 
+			
+			});
+	
 	});
 	
-	function sendActID(){
-		var opt = $('#actID');
-		opt.empty();//清除內容
-		console.log(activitVO);
-		$('#act_name').val(actID.act_name);
-		$('#act_groups').val(actID.act_groups);
-		$('#BDate').val(actID.BDate);
-		$('#EDate').val(actID.EDate);
-		$('#EDate').val(actID.activity_state);
+	function sendActID(dmestmset){
+/* 		var opt = $("#actID");
+		opt.empty();//清除內容 */
+		console.log("hello2")	
+/* 		$.each(object,function(actI,actID){
 			
+		}
+		)
+ */
+		
+	    
+		
+/* 		$('#act_name').append(actID.act_name);
+		$('#act_groups').append(actID.act_groups);
+		$('#BDate').append(actID.BDate);
+		$('#EDate').append(actID.EDate);
+		$('#EDate').append
+		(actID.activity_state);  */
+		
+
 	} 
 	 
   });

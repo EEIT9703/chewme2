@@ -32,12 +32,15 @@ public class ActivityServlet extends HttpServlet {
 		doPost(req, resp);
 	}
 
-	@SuppressWarnings("unused")
+
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
 		
+		resp.setCharacterEncoding("UTF-8");
 		req.setCharacterEncoding("UTF-8");
+		
+		
 		String action = req.getParameter("action");
 		PrintWriter out = resp.getWriter();
 		//新增活動
@@ -48,6 +51,8 @@ public class ActivityServlet extends HttpServlet {
 			
 			//尚未寫判斷
 			try {
+				
+				
 				String act_name = req.getParameter("act_name");
 				
 				Integer act_groups = new Integer(req.getParameter("act_groups"));
