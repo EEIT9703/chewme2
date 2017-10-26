@@ -27,18 +27,18 @@ public class ActivityDAO implements ActivityDAO_interface {
 	
 	//新增活動
 		private static final String INSERT_STMT =
-				"INSERT INTO activity (act_name,act_groups,act_current,BDate,EDate,activity_state,collectID) VALUES (?,?,?,?,?,?,?) ";
+				"INSERT INTO activity (act_name,act_groups,act_current,BDate,EDate,activity_state) VALUES (?,?,?,?,?,?,?) ";
 		//修改活動
 		private static final String UPDATE_STMT =
-				"UPDATE activity set act_name=?, act_groups=?, act_current=?, BDate=?, EDate=?, activity_state=?, collectID=?  where actID = ? ";
+				"UPDATE activity set act_name=?, act_groups=?, BDate=?, EDate=?, activity_state=?,   where actID = ? ";
 		//刪除活動
 		private static final String DELETE_STMT =
 				"DELETE FROM activity actID = ?";
 		//查詢活動
 		private static final String GET_ALL_STMT =
-			      "SELECT actID,act_name,act_groups,act_current,BDate,EDate,activity_state,collectID FROM activity order by actID";
+			      "SELECT actID,act_name,act_groups,act_current,BDate,EDate,activity_state FROM activity order by actID";
 		private static final String GET_ONE_STMT =
-			      "SELECT actID,act_name,act_groups,act_current,BDate,EDate,activity_state,collectID FROM activity where actID = ?";
+			      "SELECT actID,act_name,act_groups,act_current,BDate,EDate,activity_state FROM activity where actID = ?";
 	
 	//新增活動
 	@Override
@@ -57,7 +57,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 			pstmt.setDate(4, activityVO.getBDate());      //開始日期
 			pstmt.setDate(5, activityVO.getEDate());     //結束日期
 			pstmt.setInt(6, activityVO.getActivity_state());  //活動上下架
-			pstmt.setInt(7, activityVO.getCollectID());
+
 		
 			pstmt.executeUpdate();
 			
@@ -98,11 +98,10 @@ public class ActivityDAO implements ActivityDAO_interface {
 			
 			pstmt.setString(1, activityVO.getAct_name());    //活動名稱
 			pstmt.setInt(2, activityVO.getAct_groups());    //成團人數
-			pstmt.setInt(3, activityVO.getAct_current());  //當前人數
-			pstmt.setDate(4, activityVO.getBDate());      //開始日期
-			pstmt.setDate(5, activityVO.getEDate());     //結束日期
-			pstmt.setInt(6, activityVO.getActivity_state());  //活動上下架
-			pstmt.setInt(7, activityVO.getCollectID());     //收藏表
+			pstmt.setDate(3, activityVO.getBDate());      //開始日期
+			pstmt.setDate(4, activityVO.getEDate());     //結束日期
+			pstmt.setInt(5, activityVO.getActivity_state());  //活動上下架
+
 
 			
 			
