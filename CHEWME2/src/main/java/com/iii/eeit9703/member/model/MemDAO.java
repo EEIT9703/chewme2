@@ -12,7 +12,7 @@ public class MemDAO implements MemDAO_interface {
 	static {//系統load進來時就做一次,且只做一次,除非系統關閉,否則一直存在
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdsbc/CMDB");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
