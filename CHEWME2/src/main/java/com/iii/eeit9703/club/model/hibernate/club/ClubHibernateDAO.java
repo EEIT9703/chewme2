@@ -17,6 +17,7 @@ import com.iii.eeit9703.hibernate.util.HibernateUtil;
 public class ClubHibernateDAO implements ClubDAOI{
 	
 	private static final String GET_ALL_STMT="from ClubVO order by clubId";
+	private static final String GET_ALL_STMT_SQL="from ClubVO where clubId = ?";
 	@Override
 	public List<ClubVO> getAll() {
 		List<ClubVO> list=null;
@@ -35,8 +36,21 @@ public class ClubHibernateDAO implements ClubDAOI{
 	}
 
 	@Override
-	public void getOne(Integer clubId) {
-		
+	public ClubVO getOne(Integer clubId) {
+		ClubVO clubVO=null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try{
+			session.beginTransaction();
+			Query query = session.createQuery(GET_ALL_STMT_SQL);
+			query.setParameter(0, clubId);
+			clubVO = (ClubVO)query.uniqueResult();
+			session.getTransaction().commit();
+				
+		}catch(RuntimeException ex){
+			session.getTransaction().rollback();
+			throw ex;			
+		}
+		return clubVO;
 	}
 
 	@Override
