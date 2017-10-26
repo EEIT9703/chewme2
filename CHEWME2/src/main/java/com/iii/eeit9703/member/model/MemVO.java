@@ -10,7 +10,7 @@ import com.iii.eeit9703.report.ReportVO;
 
 public class MemVO implements java.io.Serializable{
 	private Integer memId;
-	private String memAccount;
+	private String memberId;
 	private String memName;
 	private String memNickN;
 	private String memPwd;
@@ -23,19 +23,35 @@ public class MemVO implements java.io.Serializable{
 	private String memStatus;
 	private String memRole;
 	private Set<CollectionVO> Collects = new HashSet<CollectionVO>();
-	private Set<ReportVO> Reports = new HashSet<ReportVO>();
+//	private Set<ReportVO> Reports = new HashSet<ReportVO>();
+
+//	public MemVO(String memberId2, String memName2, String memNickN2, String memPwd2, Date memBirthday2,
+//			String memMail2, String memAddr2, String memPhone2, String memIntr2) {
+//		super();
+//		this.memberId=memberId2;
+//		this.memName=memName2;
+//		this.memNickN=memNickN2;
+//		this.memPwd=memPwd2;
+//		this.memBirthday=memBirthday2;
+//		this.memMail=memMail2;
+//		this.memAddr=memAddr2;
+//		this.memPhone=memPhone2;
+//		this.memIntr=memIntr2;
+//	}
+
 	public Integer getMemId() {
 		return memId;
 	}
 	public void setMemId(Integer memId) {
 		this.memId = memId;
 	}
-	public String getMemAccount() {
-		return memAccount;
+	public String getMemberId() {
+		return memberId;
 	}
-	public void setMemAccount(String memAccount) {
-		this.memAccount = memAccount;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
+	
 	public String getMemName() {
 		return memName;
 	}
@@ -109,7 +125,7 @@ public class MemVO implements java.io.Serializable{
 	public void setCollects(Set<CollectionVO> collects) {
 		Collects = collects;
 	}
-	
+
 
 
 	

@@ -1,0 +1,9 @@
+use CMDB
+go
+
+select distinct 'alter table '
++'['+Schema_name(FK.schema_id)
++'].['+object_name(FK.parent_object_id)
++']'+' drop constraint '
++'['+ fk.name +']' as DropConstraintQuery
+from sys.foreign_keys as FK
