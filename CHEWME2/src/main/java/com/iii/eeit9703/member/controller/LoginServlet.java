@@ -40,10 +40,8 @@ public class LoginServlet extends HttpServlet {
 		Cookie cookieUser = null;
 		Cookie cookiePassword = null;
 		Cookie cookieRememberMe = null;
-		System.out.println("BUG1");
 
 		if (rm != null) {   // rm存放瀏覽器送來之RememberMe的選項
-			System.out.println("BUG5");
 			cookieUser = new Cookie("user", userId);
 			cookieUser.setMaxAge(30*60*60);
 			cookieUser.setPath(req.getContextPath());
@@ -57,13 +55,10 @@ public class LoginServlet extends HttpServlet {
 			cookieRememberMe = new Cookie("rm", "true");
 			cookieRememberMe.setMaxAge(30*60*60);
 			cookieRememberMe.setPath(req.getContextPath());
-			System.out.println("BUG2");
 		} else {
-			System.out.println("BUG6");
 			cookieUser = new Cookie("user", userId);
 			cookieUser.setMaxAge(0);   // MaxAge==0 表示要請瀏覽器刪除此Cookie
 			cookieUser.setPath(req.getContextPath());
-			System.out.println("BUG7");
 			String encodePassword = DatatypeConverter.printBase64Binary(password.getBytes());
 			//String encodePassword = GlobalService.encryptString(password);
 			System.out.println("--->" + encodePassword + "<---");
@@ -73,9 +68,7 @@ public class LoginServlet extends HttpServlet {
 			cookieRememberMe = new Cookie("rm", "false");
 			cookieRememberMe.setMaxAge(30*60*60);
 			cookieRememberMe.setPath(req.getContextPath());
-			System.out.println("BUG3");
 		}
-		System.out.println("BUG4");
 		res.addCookie(cookieUser);
 		res.addCookie(cookiePassword);
 		res.addCookie(cookieRememberMe);
@@ -111,12 +104,10 @@ public class LoginServlet extends HttpServlet {
 			if (requestURI != null) {
 				requestURI = (requestURI.length() == 0 ? req
 						.getContextPath() : requestURI);
-				System.out.println("幹1");
-				res.sendRedirect(res.encodeRedirectURL("/CHEWME2/index.jsp"));
+				res.sendRedirect(res.encodeRedirectURL(requestURI));
 				return;
 			} else {
-				System.out.println("幹2");
-				res.sendRedirect(res.encodeRedirectURL("/CHEWME2/index.jsp"));
+				res.sendRedirect(res.encodeRedirectURL(req.getContextPath()));
 				return;
 			}
 		} else {

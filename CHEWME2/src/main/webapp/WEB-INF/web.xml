@@ -46,4 +46,5 @@
 		<servlet-name>ActivityServlet</servlet-name>
 		<url-pattern>/activity/activityServlet.do</url-pattern>
 	</servlet-mapping>
+
 </web-app>
