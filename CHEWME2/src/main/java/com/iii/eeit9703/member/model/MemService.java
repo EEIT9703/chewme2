@@ -35,20 +35,19 @@ public class MemService {
 		return dao.findByPrimaryKey(memId);
 	}
 
-	public List<MemVO> getAll() {
+	public List<MemVO> getAll() {//取出所有會員資料放入List裡
 		return dao.getAll();
 	}
 
-	public MemVO checkIDPassword(String userId, String password) {
+	public MemVO checkIDPassword(String userId, String password) {//檢查會員登入時的帳號密碼
 		MemService memSvc = new MemService();
-		for (MemVO memVO : memSvc.getAll()) {
-			System.out.println(memVO);
-			if (memVO.getMemberId().trim().equals(userId.trim())) {
+		for (MemVO memVO : memSvc.getAll()) {//將memSvc收集到的會員資料放入memVO裡
+			if (memVO.getMemberId().trim().equals(userId.trim())) {//從memVO的會員資料找出memberId欄位跟userId比對
 				//String encodePassword = DatatypeConverter.printBase64Binary(password.getBytes());
 				// String encrypedString=GlobalService.encryptString(password.trim());
 				// String pswd=GlobalService.getMD5Encoding(encrypedString);
 				String mvpwd = memVO.getMemPwd().trim();
-				if (mvpwd.equals(password.trim())) {
+				if (mvpwd.equals(password.trim())) {//從memVO的會員資料找出memPwd欄位跟password比對
 					return memVO;
 				}
 			}
@@ -56,7 +55,4 @@ public class MemService {
 		return null;
 	}
 
-	public static void main(String[] args) throws Exception {
-
-	}
 }
