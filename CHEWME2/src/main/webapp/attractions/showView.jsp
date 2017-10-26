@@ -13,7 +13,7 @@
 	margin: auto;
 	width: 700px;
 	height: 1000px;
-	margin-top:50px;
+	margin-top: 50px;
 }
 
 .st1 {
@@ -58,11 +58,10 @@
 
 #memo {
 	resize: none;
-	width:600px;
-	height:70px;
-	border-radius:10px;
-	border:3px solid blue;
-	
+	width: 600px;
+	height: 70px;
+	border-radius: 10px;
+	border: 3px solid blue;
 }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -83,7 +82,8 @@
 <body>
 	<header><%@include file="../header.jsp"%></header>
 	<div id="tabs">
-		<div style="margin-left: 20px; border-bottom: 4px double green; width: 650px;">
+		<div
+			style="margin-left: 20px; border-bottom: 4px double green; width: 650px;">
 			<h2>${attrVO.name}</h2>
 		</div>
 		<div class="st1">
@@ -109,12 +109,12 @@
 			</table>
 		</div>
 		<div id="tabs-2">
-		
-			
+
+
 			<textarea id="memo"></textarea>
-			
+
 			<input type="button" id="button1" value="送出">
-			
+
 		</div>
 		<div>
 			<a href="insertAttr.jsp" class="btn btn-default">返回</a>
@@ -123,29 +123,17 @@
 
 	</div>
 	<script>
-	$(function(){
-		$("#button1").click(function(){						
-					
-			$("textarea").html("123");
-			var val1 = $("#memo").val();		
-		
-			
-			$("#tabs-2").append("<div style='width:600px;height:70px;border-radius:10px;border:3px solid blue;margin:5px;'>" + val1  +"</div>");
-			
-			if(val1 == ""){
-				alert("請勿空白");
-				
-			}
-			
-	
-			
-			
-		});
-	})
-	
-	
-	
-	
+		$(function() {
+			$("#button1").click(function() {
+				var val1 = $("#memo").val();
+					if (val1 == "") {
+						alert("請勿空白");
+					} else {
+						$("#tabs-2").append("<div style='width:600px;height:70px;border-radius:10px;border:3px solid blue;margin:5px;'>" + val1 + "</div>");
+					}
+						$("#memo").val("");
+				});
+		})
 	</script>
 </body>
 </html>
