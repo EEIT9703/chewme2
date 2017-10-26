@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?> 
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
@@ -6,7 +6,7 @@
     <class name="com.iii.eeit9703.collection.CollectionVO" table="Collect" >
         
        <composite-id>
-        <key-many-to-one name ="memVO" class="com.iii.eeit9703.member.model.MemberVO" lazy="false">
+        <key-many-to-one name ="memVO" class="com.iii.eeit9703.member.model.MemVO" lazy="false">
         		<column name="memId" />
         </key-many-to-one>
         
@@ -16,7 +16,7 @@
         
         </composite-id> 
         
-        <property name="context" column="context" />
+<!--         <property name="context" column="context" /> -->
         <property name="status" column="status" />
       
 <!--         <property name="activity_start" column="activity_start" /> -->

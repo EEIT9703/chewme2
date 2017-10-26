@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?> 
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
@@ -9,13 +9,14 @@
             <generator class="identity"/>
         </id>
         
-        <property name="memId" column="memId" />
+        
         <property name="act_name" column="act_name" />
         <property name="act_groups" column="act_groups" />
         <property name="act_current" column="act_current" />
         <property name="BDate" column="BDate" />
         <property name="EDate" column="EDate" />
-        <property name="activity_state" column="activity_state" />    
+        <property name="activity_state" column="activity_state" /> 
+        <property name="clubID" column="clubID" />    
              <!--改 one-many -->
        <set name="Collects" table="collect" lazy="false" cascade="all"  inverse="true" >			
 			<key>
@@ -31,6 +32,9 @@
 			<one-to-many class="com.iii.eeit9703.report.ReportVO" />
 		</set>
 		
+		    <many-to-one name="memVO" class="com.iii.eeit9703.member.model.MemVO" lazy="false">
+            <column name="memId" />
+        </many-to-one>
         
     </class>
 </hibernate-mapping>

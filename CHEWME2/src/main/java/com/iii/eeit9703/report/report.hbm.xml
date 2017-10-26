@@ -6,7 +6,7 @@
     <class name="com.iii.eeit9703.report.ReportVO" table="report" >
         
        <composite-id>
-        <key-many-to-one name ="memVO" class="com.iii.eeit9703.member.model.MemberVO" lazy="false">
+        <key-many-to-one name ="memVO" class="com.iii.eeit9703.member.model.MemVO" lazy="false">
         		<column name="memId" />
         </key-many-to-one>
         
