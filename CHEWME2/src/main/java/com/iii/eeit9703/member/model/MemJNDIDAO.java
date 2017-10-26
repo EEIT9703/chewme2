@@ -17,11 +17,11 @@ public class MemJNDIDAO implements MemDAO_interface {
 			e.printStackTrace();
 		}
 	}
-	private static final String INSERT_STMT = "INSERT INTO members (memberId,mName,mNickN,mPwd,mBirthday,mMail,mAddr,mPhone,mIntr,mphoto,mstatus,mrole) VALUES(?,?,?,?,?,?,?,?,?,?,'正常','一般會員')";
-	private static final String GET_ALL_STMT = "SELECT  memberId,mName,mNickN,mPwd,mBirthday,mMail,mAddr,mPhone,mIntr,mphoto,mstatus,mrole FROM members order by memberId";
-	private static final String GET_ONE_STMT = "SELECT  memberId,mName,mNickN,mPwd,mBirthday,mMail,mAddr,mPhone,mIntr,mphoto,mstatus,mrole FROM members WHERE memberId=?";
-	private static final String DELETE = "DELETE FROM members WHERE memberId=?";
-	private static final String UPDATE = "UPDATE members set mName=?,mNickN=?, mPwd=?, mBirthday=?, mMail=?, mAddr=?, mPhone=?,mIntr=?,mphoto=?,mstatus=?,mrole=?  WHERE memberId=?";
+	private static final String INSERT_STMT = "INSERT INTO members (memberId,memName,memNickN,memPwd,memBirthday,memMail,memAddr,memPhone,memIntr,memPhoto,memStatus,memRole) VALUES(?,?,?,?,?,?,?,?,?,?,'正常','一般會員')";
+	private static final String GET_ALL_STMT = "SELECT  memId,memberId,memName,memNickN,memPwd,memBirthday,memMail,memAddr,memPhone,memIntr,memPhoto,memStatus,memRole FROM members order by memId";
+	private static final String GET_ONE_STMT = "SELECT  memId,memberId,memName,memNickN,memPwd,memBirthday,memMail,memAddr,memPhone,memIntr,memPhoto,memStatus,memRole FROM members WHERE memId=?";
+	private static final String DELETE = "DELETE FROM members WHERE memId=?";
+	private static final String UPDATE = "UPDATE members set memberId=? memName=?,memNickN=?, memPwd=?, memBirthday=?, memMail=?, memAddr=?, memPhone=?,memIntr=?,memPhoto=?  WHERE memId=?";
 
 	@Override
 	public void insert(MemVO memVO) {
@@ -32,16 +32,16 @@ public class MemJNDIDAO implements MemDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
-			pstmt.setString(1, memVO.getmemberId());
-			pstmt.setString(2, memVO.getmName());
-			pstmt.setString(3, memVO.getmNickN());
-			pstmt.setString(4, memVO.getmPwd());
-			pstmt.setDate(5, memVO.getmBirthday());
-			pstmt.setString(6, memVO.getmMail());
-			pstmt.setString(7, memVO.getmAddr());
-			pstmt.setString(8, memVO.getmPhone());
-			pstmt.setString(9, memVO.getmIntr());
-			pstmt.setBlob(10, memVO.getmPhoto());
+			pstmt.setString(1, memVO.getMemberId());
+			pstmt.setString(2, memVO.getMemName());
+			pstmt.setString(3, memVO.getMemNickN());
+			pstmt.setString(4, memVO.getMemPwd());
+			pstmt.setDate(5, memVO.getMemBirthday());
+			pstmt.setString(6, memVO.getMemMail());
+			pstmt.setString(7, memVO.getMemAddr());
+			pstmt.setString(8, memVO.getMemPhone());
+			pstmt.setString(9, memVO.getMemIntr());
+			pstmt.setBinaryStream(10, memVO.getMemPhoto());
 
 			pstmt.executeUpdate();
 
@@ -78,15 +78,17 @@ public class MemJNDIDAO implements MemDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setString(1, memVO.getmName());
-			pstmt.setString(2, memVO.getmNickN());
-			pstmt.setString(3, memVO.getmPwd());
-			pstmt.setDate(4, memVO.getmBirthday());
-			pstmt.setString(5, memVO.getmMail());
-			pstmt.setString(6, memVO.getmAddr());
-			pstmt.setString(7, memVO.getmPhone());
-			pstmt.setString(8, memVO.getmIntr());
-			pstmt.setString(9, memVO.getmemberId());
+			pstmt.setString(1, memVO.getMemberId());
+			pstmt.setString(2, memVO.getMemName());
+			pstmt.setString(3, memVO.getMemNickN());
+			pstmt.setString(4, memVO.getMemPwd());
+			pstmt.setDate(5, memVO.getMemBirthday());
+			pstmt.setString(6, memVO.getMemMail());
+			pstmt.setString(7, memVO.getMemAddr());
+			pstmt.setString(8, memVO.getMemPhone());
+			pstmt.setString(9, memVO.getMemIntr());
+			pstmt.setBinaryStream(10, memVO.getMemPhoto());
+			pstmt.setInt(11, memVO.getMemId());
 
 			pstmt.executeUpdate();
 
@@ -115,7 +117,7 @@ public class MemJNDIDAO implements MemDAO_interface {
 	}
 
 	@Override
-	public void delete(String memberId) {
+	public void delete(Integer memId) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		
@@ -123,7 +125,7 @@ public class MemJNDIDAO implements MemDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 
-			pstmt.setString(1, memberId);
+			pstmt.setInt(1, memId);
 
 			pstmt.executeUpdate();
 
@@ -150,9 +152,9 @@ public class MemJNDIDAO implements MemDAO_interface {
 
 
 	}
-
+	
 	@Override
-	public MemVO findByPrimaryKey(String memberId) {
+	public MemVO findByPrimaryKey(Integer memId) {
 		MemVO memVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -162,22 +164,24 @@ public class MemJNDIDAO implements MemDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
-			pstmt.setString(1, memberId);
+			pstmt.setInt(1, memId);
 
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				// empVo 也稱為 Domain objects
 				memVO = new MemVO();
-				memVO.setmemberId(rs.getString("memberId"));
-				memVO.setmName(rs.getString("mName"));
-				memVO.setmNickN(rs.getString("mNickN"));
-				memVO.setmPwd(rs.getString("mPwd"));
-				memVO.setmBirthday(rs.getDate("mBirthday"));
-				memVO.setmMail(rs.getString("mMail"));
-				memVO.setmAddr(rs.getString("mAddr"));
-				memVO.setmPhone(rs.getString("mPhone"));
-				memVO.setmIntr(rs.getString("mIntr"));
+				memVO.setMemId(rs.getInt("memId"));
+				memVO.setMemberId(rs.getString("memberId"));
+				memVO.setMemName(rs.getString("memName"));
+				memVO.setMemNickN(rs.getString("memNickN"));
+				memVO.setMemPwd(rs.getString("memPwd"));
+				memVO.setMemBirthday(rs.getDate("memBirthday"));
+				memVO.setMemMail(rs.getString("memMail"));
+				memVO.setMemAddr(rs.getString("memAddr"));
+				memVO.setMemPhone(rs.getString("memPhone"));
+				memVO.setMemIntr(rs.getString("memIntr"));
+				memVO.setMemPhoto(rs.getBinaryStream("memPhoto"));
 
 			}
 
@@ -221,15 +225,17 @@ public class MemJNDIDAO implements MemDAO_interface {
 			while (rs.next()) {
 				// memVO 也稱為 Domain objects
 				memVO = new MemVO();
-				memVO.setmemberId(rs.getString("memberId"));
-				memVO.setmName(rs.getString("mName"));
-				memVO.setmNickN(rs.getString("mNickN"));
-				memVO.setmPwd(rs.getString("mPwd"));
-				memVO.setmBirthday(rs.getDate("mBirthday"));
-				memVO.setmMail(rs.getString("mMail"));
-				memVO.setmAddr(rs.getString("mAddr"));
-				memVO.setmPhone(rs.getString("mPhone"));
-				memVO.setmIntr(rs.getString("mIntr"));
+				memVO.setMemId(rs.getInt("memId"));
+				memVO.setMemberId(rs.getString("memberId"));
+				memVO.setMemName(rs.getString("memName"));
+				memVO.setMemNickN(rs.getString("memNickN"));
+				memVO.setMemPwd(rs.getString("memPwd"));
+				memVO.setMemBirthday(rs.getDate("memBirthday"));
+				memVO.setMemMail(rs.getString("memMail"));
+				memVO.setMemAddr(rs.getString("memAddr"));
+				memVO.setMemPhone(rs.getString("memPhone"));
+				memVO.setMemIntr(rs.getString("memIntr"));
+				memVO.setMemPhoto(rs.getBinaryStream("memPhoto"));
 				list.add(memVO); // Store the row in the list
 			}
 

@@ -9,7 +9,7 @@ import com.iii.eeit9703.collection.CollectionVO;
 
 public class MemVO implements java.io.Serializable{
 	private Integer memId;
-	private String memAccount;
+	private String memberId;
 	private String memName;
 	private String memNickN;
 	private String memPwd;
@@ -28,12 +28,13 @@ public class MemVO implements java.io.Serializable{
 	public void setMemId(Integer memId) {
 		this.memId = memId;
 	}
-	public String getMemAccount() {
-		return memAccount;
+	public String getMemberId() {
+		return memberId;
 	}
-	public void setMemAccount(String memAccount) {
-		this.memAccount = memAccount;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
+	
 	public String getMemName() {
 		return memName;
 	}
@@ -107,7 +108,7 @@ public class MemVO implements java.io.Serializable{
 	public void setCollects(Set<CollectionVO> collects) {
 		Collects = collects;
 	}
-	
+
 
 
 	
