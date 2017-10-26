@@ -21,8 +21,14 @@
       	<property name="memPhoto" column="memPhoto" />
         <property name="memStatus" column="memStatus" />
         <property name="memRole" column="memRole" />
-   
-       
+        
+        <set name="Activitys" table="activity" lazy="false" cascade="all"  inverse="true"  order-by="actID asc">			
+			<key>
+				<column name="memId" />
+			</key>
+			<one-to-many class="com.iii.eeit9703.activity.model.ActivityVO" />
+		</set>
+
 <!--         order-by="empno asc" -->
        <set name="Collects" table="collect" lazy="false" cascade="all"  inverse="true" >			
 			<key>
@@ -30,6 +36,14 @@
 			</key>
 			<one-to-many class="com.iii.eeit9703.collection.CollectionVO" />
 		</set>
+		
+		<set name="Reports" table="report" lazy="false" cascade="all"  inverse="true" >			
+			<key>
+				<column name="memId" />
+			</key>
+			<one-to-many class="com.iii.eeit9703.report.ReportVO" />
+		</set>
+		
         
     </class>
 </hibernate-mapping>

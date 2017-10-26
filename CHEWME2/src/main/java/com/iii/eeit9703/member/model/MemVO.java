@@ -5,11 +5,13 @@ import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.iii.eeit9703.activity.model.ActivityVO;
 import com.iii.eeit9703.collection.CollectionVO;
+import com.iii.eeit9703.report.ReportVO;
 
 public class MemVO implements java.io.Serializable{
 	private Integer memId;
-	private String memAccount;
+	private String memberId;
 	private String memName;
 	private String memNickN;
 	private String memPwd;
@@ -21,19 +23,30 @@ public class MemVO implements java.io.Serializable{
 	private InputStream memPhoto;
 	private String memStatus;
 	private String memRole;
+	private Set<ActivityVO> Activitys = new HashSet<ActivityVO>();
 	private Set<CollectionVO> Collects = new HashSet<CollectionVO>();
+	private Set<ReportVO> Reports = new HashSet<ReportVO>();
+
+
 	public Integer getMemId() {
 		return memId;
 	}
 	public void setMemId(Integer memId) {
 		this.memId = memId;
 	}
-	public String getMemAccount() {
-		return memAccount;
+	public String getMemberId() {
+		return memberId;
 	}
-	public void setMemAccount(String memAccount) {
-		this.memAccount = memAccount;
+	public Set<ActivityVO> getActivitys() {
+		return Activitys;
 	}
+	public void setActivitys(Set<ActivityVO> activitys) {
+		Activitys = activitys;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+	
 	public String getMemName() {
 		return memName;
 	}
@@ -107,7 +120,13 @@ public class MemVO implements java.io.Serializable{
 	public void setCollects(Set<CollectionVO> collects) {
 		Collects = collects;
 	}
-	
+	public Set<ReportVO> getReports() {
+		return Reports;
+	}
+	public void setReports(Set<ReportVO> reports) {
+		Reports = reports;
+	}
+
 
 
 	

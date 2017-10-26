@@ -19,8 +19,7 @@ public class CollectionVO implements Serializable {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-	
-	
+		
 	public String getContext() {
 		return context;
 	}

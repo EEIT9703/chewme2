@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.iii.eeit9703.activity.model.ActivityVO;
+
 public class ScheduleDAO {
 
 	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
@@ -15,33 +17,70 @@ public class ScheduleDAO {
 	String userid = "sa";
 	String passwd = "P@ssw0rd";
 	
-	private static final String NEWACT= "INSERT INTO ";
+	private static final String NEWACTIVITY= "INSERT INTO activity(act_name,memId)VALUES(?,?) ";
+	private static final String SELECTACTIVITY= "SELECT actID,act_name from activity where act_name=?";
+	private static final String NEWSCHEDULES= "INSERT INTO schedules(actID,attractionID,dayNo,period)VALUES(?,?,?,?)";
 		
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	
 	
-	public ArrayList<CountyVO> getCounty(String countryID){
-
-		ArrayList<CountyVO> list = new ArrayList<CountyVO>();
-		CountyVO countyVO = null;
+	public ArrayList<ActivityVO> insertACT(String actName){
+		ArrayList<ActivityVO> list = new ArrayList<ActivityVO>();
 
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(COUNTY);
+			pstmt = con.prepareStatement(NEWACTIVITY);
 			
-			pstmt.setString(1, countryID);
+			pstmt.setString(1, actName);
+			pstmt.setInt(2, 3);
+			pstmt.executeUpdate();
+			
+			list = selectACT(actName);
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(rs != null){
+				try {rs.close();} 
+				catch (SQLException e) {e.printStackTrace();}
+			}
+			if(pstmt != null){
+				try {pstmt.close();} 
+				catch (SQLException e) {e.printStackTrace();}
+			}
+			if(con != null){
+				try {con.close();} 
+				catch (SQLException e) {e.printStackTrace();}
+			}
+		}
+		
+		return list;
+	}
+	
+	public ArrayList<ActivityVO> selectACT(String actName){
+		
+		ArrayList<ActivityVO> activitylist = new ArrayList<ActivityVO>();
+		ActivityVO activityVO=null;
+
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(SELECTACTIVITY);
+			
+			pstmt.setString(1, actName);
 			rs = pstmt.executeQuery();
-			
 			while(rs.next()){
-				countyVO = new CountyVO();
-				countyVO.setCountyID(rs.getInt("countyID"));
-				countyVO.setCountyName(rs.getString("countyName"));
-				countyVO.setCountryName(rs.getString("countryName"));
-				countyVO.setCountryID(rs.getString("countryID"));
-				list.add(countyVO);
+				activityVO = new ActivityVO();
+				activityVO.setActID(rs.getInt("actID"));
+				activityVO.setAct_name(actName);
+				activitylist.add(activityVO);
 			}
 			
 		} catch (ClassNotFoundException e) {
@@ -64,21 +103,57 @@ public class ScheduleDAO {
 				catch (SQLException e) {e.printStackTrace();}
 			}
 		}
-		return list;
+		return activitylist;
 	}
 	
+	public void insertSCH(ScheduleVO SCHlist){
+		
+		ArrayList<ScheduleVO> schedulelist = new ArrayList<ScheduleVO>();
+		
+
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(NEWSCHEDULES);
+			// NEWSCHEDULES= "INSERT INTO schedules(actID,attractionID,dayNo,period)VALUES(?,?,?,?)"
+			pstmt.setInt(1, SCHlist.getActID());
+			pstmt.setInt(2, SCHlist.getAttractionID());
+			pstmt.setInt(3, SCHlist.getDayNo());
+			pstmt.setString(4, SCHlist.getPeriod());
+			pstmt.executeUpdate();
+						
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(rs != null){
+				try {rs.close();} 
+				catch (SQLException e) {e.printStackTrace();}
+			}
+			if(pstmt != null){
+				try {pstmt.close();} 
+				catch (SQLException e) {e.printStackTrace();}
+			}
+			if(con != null){
+				try {con.close();} 
+				catch (SQLException e) {e.printStackTrace();}
+			}
+		}
+		
+	}
 	
 	public static void main(String[] args) {
 		
 		ScheduleDAO aDao = new ScheduleDAO();
 		
-		//查台北市區域
-		List<CountyVO> list = aDao.getCounty("TPE");
-		for(CountyVO area : list){
-			System.out.print(area.getCountyID()+",");
-			System.out.print(area.getCountyName()+",");
-			System.out.print(area.getCountryName()+",");
-			System.out.println(area.getCountryID());
+		//新增行程後查詢
+		List<ActivityVO> list = aDao.insertACT("花蓮一日遊");
+		for(ActivityVO act : list){
+			System.out.print(act.getActID()+",");
+			System.out.println(act.getAct_name());
 		}
 
 	}

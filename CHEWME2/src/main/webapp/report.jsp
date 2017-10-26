@@ -19,6 +19,7 @@
     <link href="backage/vendor/morrisjs/morris.css" rel="stylesheet">
 
     <link href="backage/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 
 
@@ -102,11 +103,74 @@
                     </div>              
                 </div>
                 
+                
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">歡迎來到揪ME</h4>
+						</div>
+						<div class="modal-body">
+						<div class="form-group">
+<!-- 						<form id="fileUpDate">					 -->
+								<input type="text" id="text" name="text">
+								 
+<!-- 						</form> -->
+							
+						</div>
+						<div class="form-group">
+													
+						</div>
+	
+					</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+							<button type="button" class="btn btn-primary" id="confirm" >go</button>
+<!-- 							<button type="submit" class="btn btn-primary"  id="confirm">確認</button> -->
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
+                  <input type="button" id="go" value="檢舉">
+                
+                
+                
 <!--                 右邊預留空間 -->
                 <div class="col-lg-4">
 
                     <div class="panel panel-default">
-                      			 預留空間	
+                      			 
+                      			 <table id="productTable" class="table table-bordered">
+									<thead>
+										<tr>
+											<th>檢舉人</th>																			
+										</tr>
+										    <td id="reporter"></td>		
+									</thead>
+									<tbody>
+									<tr>
+											<th>檢舉時間</th>																		
+									</tr>
+									        <td id="reportime"></td>		
+									<tr>
+											<th>檢舉內容</th>														
+									</tr>
+											<td id="reportcontext">幹你娘幹你娘幹你娘幹你娘幹你娘幹你娘</td>	
+									<tr>
+											<th>被檢舉對象</th>														
+									</tr>
+											<td id ="reported"><input type="button" value="確認"></td>					
+									</tbody>
+									<tfoot>
+
+									</tfoot>
+								</table>
+						
                     </div>
                 
                     <div class="chat-panel panel panel-default">
@@ -119,7 +183,7 @@
     </div>
 
  	 <script src="js/bootstrap.min.js"></script>
-	 <script src="js/jquery.min.js"></script>
+<!-- 	 <script src="js/jquery.min.js"></script> -->
 
 	<script>
 	var cell1=new Array();
@@ -133,7 +197,7 @@
 		$.getJSON('./ProductsAll', {}, function(data) {
 			count=data.data.length;					
 			$.each(data.data, function(i, product) {			
- 				cell1.push({ title: product.ProductID, start: '2017-10-05'});				
+ 				cell1.push({ title: product.ProductID, start: '2017-10-05',context:"你好阿"});				
 							
 			});			
  			//cell2=JSON.stringify(cell1); 	
@@ -152,14 +216,46 @@
 				navLinks : true, // can click day/week names to navigate views
 				editable : true,
 				eventLimit : true, // allow "more" link when too many events
-				events:cell1,		
+				events:cell1,
+				slotLabelFormat:"YYYY-MM-DD",				
+				//timeFormat: "YYYY-MM-DD",
 				droppable: false,
+				eventClick: function(id){
+					
+					$("#reporter").text(id.title)
+					$("#reportime").text(id.start)
+					console.log(id.start.toUTCString());
+					$("#reportcontext").text(id.context)
+					alert("wfqaafqw")
+				
+				},
 			   
 			});
 
 		});
 		}
-
+		
+		  $('#go').on('click',function(){
+			//正是時候 會click 得到他檢舉的那筆資料的id
+				$('#myModal').modal('show')
+		
+		
+			$("#confirm").on('click',function (){
+			//	這裡連同id 跟檢舉內容 送到servlet, servlet 得到 登入會員的sesseion資料  活動id 跟 檢舉內容
+			
+		//	alert($("#text").val())		
+				$.get("report",{"text":$("#text").val(),"id":"1"},function(data){
+					$("#show").html("<h2>"+data+"</h2>");
+				});
+			
+			
+			
+				})
+		  })
+		  
+		  
+		  
+		  
 	})
 	</script>
 	<script src='backage/full/moment.min.js'></script>
