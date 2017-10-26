@@ -22,6 +22,19 @@ public class MemVO implements java.io.Serializable{
 	private String memStatus;
 	private String memRole;
 	private Set<CollectionVO> Collects = new HashSet<CollectionVO>();
+//	public MemVO(String memberId2, String memName2, String memNickN2, String memPwd2, Date memBirthday2,
+//			String memMail2, String memAddr2, String memPhone2, String memIntr2) {
+//		super();
+//		this.memberId=memberId2;
+//		this.memName=memName2;
+//		this.memNickN=memNickN2;
+//		this.memPwd=memPwd2;
+//		this.memBirthday=memBirthday2;
+//		this.memMail=memMail2;
+//		this.memAddr=memAddr2;
+//		this.memPhone=memPhone2;
+//		this.memIntr=memIntr2;
+//	}
 	public Integer getMemId() {
 		return memId;
 	}
