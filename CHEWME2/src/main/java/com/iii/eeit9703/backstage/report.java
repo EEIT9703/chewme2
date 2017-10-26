@@ -94,8 +94,9 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 			//???	reportVO.setActivityVO(activityVO);
 			reportVO.setActivityVO(activityVO);
 			reportVO.setMemVO(memVO);
+			reportVO.setReportTime(date);
 			reportVO.setReportContext(text);			
-			reportVO.setReportTime(java.sql.Date.valueOf("2001-01-16"));
+		
 			ReportDAO_hibernate dao =new ReportDAO_hibernate();
 			dao.insert(reportVO);
 		
