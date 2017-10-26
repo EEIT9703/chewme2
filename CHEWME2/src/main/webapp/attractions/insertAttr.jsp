@@ -49,7 +49,7 @@
 			<div class="form-group">
 				<label for="name" style="margin-left: 10px;">名稱</label> <input
 					type="text" class="form-control" id="name" name="name"
-					placeholder="請輸入名稱" value="${attrVO.name}">
+					placeholder="請輸入名稱" value="${attrVO.name}" autofocus>
 			</div>
 			<div style="margin: 15px;">
 				<span> <span>所在地區</span> <select name="county"
