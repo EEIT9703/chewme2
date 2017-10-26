@@ -72,7 +72,7 @@ public class ArticleHibernateDAO implements ArticleDAO_interface {
 		List<ArticleVO> list = dao.getAll();
 		for (ArticleVO atc : list) {
 			System.out.print(atc.getArticleID() + ",");
-			System.out.print(atc.getmId() + ",");
+			System.out.print(atc.getMemId() + ",");
 			System.out.print(atc.getAttractionID() + ",");
 			System.out.print(atc.getContents() + ",");
 			System.out.println();

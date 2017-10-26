@@ -37,7 +37,9 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
 </head>
 <body>
-	<header><%@include file="../header.jsp"%></header>
+	<div>
+		<header><%@include file="../header.jsp"%></header>
+	</div>
 	<div
 		style="margin: auto; width: 700px; background-color: #E8E8E8; border-radius: 10px; padding: 5px;">
 		<h2 style="text-align: center;">新增商家/景點/住宿</h2>
@@ -101,8 +103,8 @@
 				<tr>
 					<td>
 						<div class="checkbox"></div>
-						<button type="submit" class="btn btn-default">送出</button> 
-						<input type="hidden" name="action" value="insert">
+						<button type="submit" class="btn btn-default">送出</button> <input
+						type="hidden" name="action" value="insert">
 					</td>
 					<td><a href="listAll.jsp" class="btn btn-primary">查詢</a></td>
 				</tr>

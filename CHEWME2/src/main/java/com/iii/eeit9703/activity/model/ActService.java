@@ -11,6 +11,7 @@ public class ActService {
 		dao = new ActivityDAO();
 	}
 	
+	
 	//新增活動
 	public ActivityVO addAct(String act_name,Integer act_groups,Integer act_current,java.sql.Date BDate,java.sql.Date EDate,Integer activity_state){
 		
@@ -28,22 +29,19 @@ public class ActService {
 	}
 	
 	//修改新增活動
-	public ActivityVO updateAct(Integer actID,String act_name,Integer act_groups,Integer act_current,java.sql.Date BDate,java.sql.Date EDate,Integer activity_state){
+	public void updateAct(String act_name,Integer act_groups,java.sql.Date BDate,java.sql.Date EDate,Integer activity_state){
 		
 		ActivityVO activityVO = new ActivityVO();
 		
-		activityVO.setActID(actID);
+
 		activityVO.setAct_name(act_name);
-		activityVO.setAct_groups(act_groups);
-		activityVO.setAct_current(act_current);
+		activityVO.setAct_groups(act_groups);	
 		activityVO.setBDate(BDate);
 		activityVO.setEDate(EDate);
 		activityVO.setActivity_state(activity_state);
 		
 		dao.update(activityVO);
-		
-		return dao.findByPrimaryKey(actID);
-		
+
 	}
 	
 	//查詢單一

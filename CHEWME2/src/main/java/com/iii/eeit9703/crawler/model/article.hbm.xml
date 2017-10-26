@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.iii.eeit9703.crawler.model.ArticleVO" table="article_share">
+	<class name="com.iii.eeit9703.crawler.model.ArticleVO" table="ArticleShare">
 		<id name="articleID" column="articleID">
 			<generator class="identity" />
 		</id>

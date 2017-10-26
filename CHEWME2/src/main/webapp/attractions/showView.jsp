@@ -109,7 +109,10 @@
 			</table>
 		</div>
 		<div id="tabs-2">
+		
+			
 			<textarea id="memo"></textarea>
+			
 			<input type="button" id="button1" value="送出">
 			
 		</div>
@@ -123,10 +126,16 @@
 	$(function(){
 		$("#button1").click(function(){						
 					
-			var val1 = $("#memo").val();
+			$("textarea").html("123");
+			var val1 = $("#memo").val();		
 		
-			var item = "<div><textarea>" + val1 + "</textarea></div>";			
-			$("#tabs-2").append(item);
+			
+			$("#tabs-2").append("<div style='width:600px;height:70px;border-radius:10px;border:3px solid blue;margin:5px;'>" + val1  +"</div>");
+			
+			if(val1 == ""){
+				alert("請勿空白");
+				
+			}
 			
 	
 			
