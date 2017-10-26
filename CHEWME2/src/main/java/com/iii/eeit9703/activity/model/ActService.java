@@ -28,18 +28,9 @@ public class ActService {
 		return activityVO;
 	}
 	
-	//修改新增活動
-	public void updateAct(String act_name,Integer act_groups,java.sql.Date BDate,java.sql.Date EDate,Integer activity_state){
-		
-		ActivityVO activityVO = new ActivityVO();
-		
+	//修改新增活動     工頭把包好的資料交給DAO去工作
+	public void updateAct(ActivityVO activityVO){
 
-		activityVO.setAct_name(act_name);
-		activityVO.setAct_groups(act_groups);	
-		activityVO.setBDate(BDate);
-		activityVO.setEDate(EDate);
-		activityVO.setActivity_state(activity_state);
-		
 		dao.update(activityVO);
 
 	}

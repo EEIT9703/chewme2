@@ -7,22 +7,30 @@ import java.util.Set;
 
 import com.iii.eeit9703.collection.CollectionVO;
 import com.iii.eeit9703.member.model.MemVO;
-import com.iii.eeit9703.report.ReportVO;
 
 public class ActivityVO implements java.io.Serializable {
 	
 	//活動表
 	private Integer actID;       //行程編號(完成編輯)
-	private Integer memId;  //會員編號
 	private String  act_name;  //活動名稱
 	private Integer act_groups; //成團人數
 	private Integer act_current;//當前人數
 	private Date BDate;        //開始日期
 	private Date EDate;       //結束日期
+	private java.lang.String act_photo; //預覽圖片
 	private Integer activity_state; //活動型態  0 = 建構中, 1 = 上架  ,  2 = 被檢舉  , 3 = 下架 
-	private Set<CollectionVO> Collects = new HashSet<CollectionVO>();
-	private Set<ReportVO> Reports = new HashSet<ReportVO>();
+	private Integer memId;  //會員編號
+	private Integer clubID;  //社團編號
+	
+	private Set<CollectionVO> Collects = new HashSet<CollectionVO>();  
+	
 
+	public Integer getClubID() {
+		return clubID;
+	}
+	public void setClubID(Integer clubID) {
+		this.clubID = clubID;
+	}
 	public Set<CollectionVO> getCollects() {
 		return Collects;
 	}
@@ -78,6 +86,12 @@ public class ActivityVO implements java.io.Serializable {
 	}
 	public void setActivity_state(Integer activity_state) {
 		this.activity_state = activity_state;
+	}
+	public java.lang.String getAct_photo() {
+		return act_photo;
+	}
+	public void setAct_photo(java.lang.String act_photo) {
+		this.act_photo = act_photo;
 	}
 	
 

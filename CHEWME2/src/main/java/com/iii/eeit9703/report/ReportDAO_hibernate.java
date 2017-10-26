@@ -44,11 +44,11 @@ public class ReportDAO_hibernate implements Report_interface {
 
 	}
 
-	@Override
-	public ReportVO findByPrimaryKey(ReportVO reportVO) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public ReportVO findByPrimaryKey(ReportVO reportVO) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 	@Override
 	public List<ReportVO> getAll() {

@@ -25,7 +25,7 @@ public  class ActivityJDBCDAO implements ActivityDAO_interface {
 			"INSERT INTO activity (act_name,act_groups,act_current,BDate,EDate,activity_state) VALUES (?,?,?,?,?,?)";
 	//修改活動
 	private static final String UPDATE_STMT =
-			"UPDATE activity set act_name=?, act_groups=?, act_current=?, BDate=?, EDate=?, activity_state=?  where actID = ? ";
+			"UPDATE activity set act_name=?, act_groups=?, BDate=?, EDate=?, activity_state=?  where actID = ? ";
 	//刪除活動
 	private static final String DELETE_STMT =
 			"DELETE FROM activity actID = ?";
@@ -103,10 +103,9 @@ public  class ActivityJDBCDAO implements ActivityDAO_interface {
 			
 			pstmt.setString(1, activityVO.getAct_name());    //活動名稱
 			pstmt.setInt(2, activityVO.getAct_groups());    //成團人數
-			pstmt.setInt(3, activityVO.getAct_current());  //當前人數
-			pstmt.setDate(4, activityVO.getBDate());      //開始日期
-			pstmt.setDate(5, activityVO.getEDate());     //結束日期
-			pstmt.setInt(6, activityVO.getActivity_state());  //活動上下架
+			pstmt.setDate(3, activityVO.getBDate());      //開始日期
+			pstmt.setDate(4, activityVO.getEDate());     //結束日期
+			pstmt.setInt(5, activityVO.getActivity_state());  //活動上下架
 
 			
 			pstmt.executeUpdate();

@@ -45,11 +45,11 @@ public class CollectionDAO_hibernate implements Collection_interface {
 
 	}
 
-	@Override
-	public CollectionVO findByPrimaryKey(CollectionVO collectionVO) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public CollectionVO findByPrimaryKey(CollectionVO collectionVO) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 	@Override
 	public List<CollectionVO> getAll() {
