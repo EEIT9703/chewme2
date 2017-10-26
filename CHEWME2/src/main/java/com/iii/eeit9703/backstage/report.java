@@ -67,8 +67,10 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 			ActivityVO activityVO= new ActivityVO();
 			MemVO memVO=new MemVO();
 			
-			activityVO.setActID(1);
-			memVO.setMemId(1);
+			Integer a=1;
+			Integer b=1;
+			activityVO.setActID(a);
+			memVO.setMemId(b);
 			
 			System.out.println(text);
 			System.out.println(id);
@@ -89,10 +91,11 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 			System.out.println(date);
 			
 			ReportVO reportVO=new ReportVO();
+			//???	reportVO.setActivityVO(activityVO);
 			reportVO.setActivityVO(activityVO);
 			reportVO.setMemVO(memVO);
 			reportVO.setReportContext(text);			
-			reportVO.setReportTime(date);
+			reportVO.setReportTime(java.sql.Date.valueOf("2001-01-16"));
 			ReportDAO_hibernate dao =new ReportDAO_hibernate();
 			dao.insert(reportVO);
 		

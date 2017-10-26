@@ -34,15 +34,17 @@ public class MemVO implements java.io.Serializable{
 	public void setMemId(Integer memId) {
 		this.memId = memId;
 	}
-	public String getMemberId() {
-		return memberId;
-	}
+	
 	public Set<ActivityVO> getActivitys() {
 		return Activitys;
 	}
 	public void setActivitys(Set<ActivityVO> activitys) {
 		Activitys = activitys;
 	}
+	public String getMemberId() {
+		return memberId;
+	}
+	
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}

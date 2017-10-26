@@ -8,8 +8,7 @@
         <id name="memId" column="memId">
             <generator class="identity"/>
         </id>
-        
-        <property name="memAccount" column="memAccount" />
+        <property name="memberId" column="memberId" />
         <property name="memName" column="memName" />
         <property name="memNickN" column="memNickN" />
         <property name="memPwd" column="memPwd" />
@@ -18,10 +17,11 @@
         <property name="memAddr" column="memAddr" />
         <property name="memPhone" column="memPhone" />
         <property name="memIntr" column="memIntr" />
-      	<property name="memPhoto" column="memPhoto" />
+<!--       	<property name="memPhoto" column="memPhoto" />  沒有圖片先不mapping -->
         <property name="memStatus" column="memStatus" />
         <property name="memRole" column="memRole" />
         
+<!--         一個會員可以有很多活動 -->
         <set name="Activitys" table="activity" lazy="false" cascade="all"  inverse="true"  order-by="actID asc">			
 			<key>
 				<column name="memId" />
@@ -29,7 +29,7 @@
 			<one-to-many class="com.iii.eeit9703.activity.model.ActivityVO" />
 		</set>
 
-<!--         order-by="empno asc" -->
+<!--         收藏表  一方的mapping -->
 <!--        <set name="Collects" table="collect" lazy="false" cascade="all"  inverse="true" >			 -->
 <!-- 			<key> -->
 <!-- 				<column name="memId" /> -->
@@ -37,12 +37,13 @@
 <!-- 			<one-to-many class="com.iii.eeit9703.collection.CollectionVO" /> -->
 <!-- 		</set> -->
 		
-<!-- 		<set name="Reports" table="report" lazy="false" cascade="all"  inverse="true" >			 -->
-<!-- 			<key> -->
-<!-- 				<column name="memId" /> -->
-<!-- 			</key> -->
-<!-- 			<one-to-many class="com.iii.eeit9703.report.ReportVO" /> -->
-<!-- 		</set> -->
+<!--         檢舉表  一方的mapping -->		
+		<set name="Reports" table="report" lazy="false" cascade="all"  inverse="true" >			
+			<key>
+				<column name="memId" />
+			</key>
+			<one-to-many class="com.iii.eeit9703.report.ReportVO" />
+		</set>
 		
         
     </class>
