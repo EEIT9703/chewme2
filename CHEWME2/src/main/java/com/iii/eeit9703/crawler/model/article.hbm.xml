@@ -7,8 +7,8 @@
 		<id name="articleID" column="articleID">
 			<generator class="identity" />
 		</id>
-		<property name="memberID" column="memberID" />
-		<property name="name" column="name" />
+		<property name="memId" column="memId" />
+		<property name="attractionID" column="attractionID" />
 		<property name="contents" column="contents" />
 	</class>
 </hibernate-mapping>

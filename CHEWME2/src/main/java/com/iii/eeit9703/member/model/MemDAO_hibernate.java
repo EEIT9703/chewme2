@@ -38,7 +38,7 @@ public class MemDAO_hibernate implements MemDAO_interface {
 	}
 
 	@Override
-	public void delete(String memberId) {
+	public void delete(Integer memId) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
@@ -50,7 +50,7 @@ public class MemDAO_hibernate implements MemDAO_interface {
 
 //        【或此時多方(也)可採用去除關聯關係後，再刪除的方式】
 			MemVO memVO = new MemVO();
-			memVO.setmemberId(memberId);
+			memVO.setMemId(memId);
 			session.delete(memVO);
 
 //        【此時多方不可(不宜)採用cascade聯級刪除】
@@ -67,12 +67,12 @@ public class MemDAO_hibernate implements MemDAO_interface {
 	}
 
 	@Override
-	public MemVO findByPrimaryKey(String memberId) {
+	public MemVO findByPrimaryKey(Integer memId) {
 		MemVO memVO = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			memVO = (MemVO) session.get(MemVO.class, memberId);
+			memVO = (MemVO) session.get(MemVO.class, memId);
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();

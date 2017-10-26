@@ -7,8 +7,8 @@ import java.util.*;
 public interface MemDAO_interface {
 	public void insert(MemVO memVO);
 	public void update(MemVO memVO);
-    public void delete(String memberId);
-    public MemVO findByPrimaryKey(String memberId);
+    public void delete(Integer memId);
+    public MemVO findByPrimaryKey(Integer memId);
     public List<MemVO> getAll();
 
 }

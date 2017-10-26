@@ -13,6 +13,7 @@
 	margin: auto;
 	width: 700px;
 	height: 1000px;
+	margin-top: 50px;
 }
 
 .st1 {
@@ -57,6 +58,10 @@
 
 #memo {
 	resize: none;
+	width: 600px;
+	height: 70px;
+	border-radius: 10px;
+	border: 3px solid blue;
 }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -104,7 +109,10 @@
 			</table>
 		</div>
 		<div id="tabs-2">
-			<textarea cols="40" rows="5" id="memo" name="memo"></textarea>
+
+
+			<textarea id="memo"></textarea>
+
 			<input type="button" id="button1" value="送出">
 
 		</div>
@@ -115,19 +123,17 @@
 
 	</div>
 	<script>
-	$(function(){
-		$("#button1").click(function(){
-			
-			
-			
-			var v = $("#memo").val();
-			console.log(v);
+		$(function() {
+			$("#button1").click(function() {
+				var val1 = $("#memo").val();
+					if (val1 == "") {
+						alert("請勿空白");
+					} else {
+						$("#tabs-2").append("<div style='width:600px;height:70px;border-radius:10px;border:3px solid blue;margin:5px;'>" + val1 + "</div>");
+					}
+						$("#memo").val("");
+				});
 		})
-	})
-	
-	
-	
-	
 	</script>
 </body>
 </html>
