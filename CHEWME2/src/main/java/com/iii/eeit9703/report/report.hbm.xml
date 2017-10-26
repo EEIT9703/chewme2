@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.iii.eeit9703.report.ReportVO" table="report" >
+        
+       <composite-id>
+        <key-many-to-one name ="memVO" class="com.iii.eeit9703.member.model.MemberVO" lazy="false">
+        		<column name="memId" />
+        </key-many-to-one>
+        
+        <key-many-to-one name ="activityVO" class="com.iii.eeit9703.activity.model.ActivityVO" lazy="false">
+        		<column name="actID" />
+        </key-many-to-one>
+        
+        </composite-id> 
+    
+        
+        <property name="reportTime" column="reportTime" />
+        <property name="reportContext" column="reportContext" />
+      
+<!--         <property name="activity_start" column="activity_start" /> -->
+<!--         <property name="activity_end" column="activity_end" /> -->
+<!--         <property name="activity_cost" column="activity_cost" /> -->
+<!--         <property name="activity_click" column="activity_click" /> -->
+<!--         <property name="mem_no" column="mem_no" />     -->
+             <!--改 one-many -->             
+    </class>
+</hibernate-mapping>

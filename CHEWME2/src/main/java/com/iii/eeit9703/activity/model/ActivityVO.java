@@ -7,6 +7,7 @@ import java.util.Set;
 
 import com.iii.eeit9703.collection.CollectionVO;
 import com.iii.eeit9703.member.model.MemVO;
+import com.iii.eeit9703.report.ReportVO;
 
 public class ActivityVO implements java.io.Serializable {
 	
@@ -20,7 +21,7 @@ public class ActivityVO implements java.io.Serializable {
 	private Date EDate;       //結束日期
 	private Integer activity_state; //活動型態  0 = 建構中, 1 = 上架  ,  2 = 被檢舉  , 3 = 下架 
 	private Set<CollectionVO> Collects = new HashSet<CollectionVO>();
-	
+	private Set<ReportVO> Reports = new HashSet<ReportVO>();
 
 	public Set<CollectionVO> getCollects() {
 		return Collects;

@@ -23,6 +23,14 @@
 			</key>
 			<one-to-many class="com.iii.eeit9703.collecton.CollectionVO" />
 		</set>
+		
+		<set name="Reports" table="report" lazy="false" cascade="all"  inverse="true" >			
+			<key>
+				<column name="actID" />
+			</key>
+			<one-to-many class="com.iii.eeit9703.report.ReportVO" />
+		</set>
+		
         
     </class>
 </hibernate-mapping>

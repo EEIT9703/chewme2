@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.iii.eeit9703.collection.CollectionVO;
+import com.iii.eeit9703.report.ReportVO;
 
 public class MemVO implements java.io.Serializable{
 	private Integer memId;
@@ -22,6 +23,7 @@ public class MemVO implements java.io.Serializable{
 	private String memStatus;
 	private String memRole;
 	private Set<CollectionVO> Collects = new HashSet<CollectionVO>();
+	private Set<ReportVO> Reports = new HashSet<ReportVO>();
 	public Integer getMemId() {
 		return memId;
 	}
