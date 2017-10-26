@@ -1,4 +1,5 @@
-﻿<nav class="navbar navbar-default navbar-fixed-top">
+﻿
+<nav class="navbar navbar-default navbar-static-top">
 	<div class="container-fluid">
 		<div>
 			<div>
@@ -7,10 +8,10 @@
 					height="30" alt=""></a>
 			</div>
 			<div class="navbar-header">
-				<a class="navbar-brand " href="#">CHEWME</a>			
+				<a class="navbar-brand " href="#">CHEWME</a>
 				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#navbar-right" aria-expanded="false"
-					aria-controls="navbar">
+					data-toggle="collapse" data-target="#navbar-right"
+					aria-expanded="false" aria-controls="navbar">
 					<span class="sr-only">Toggle navigation</span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
@@ -37,7 +38,9 @@
 						class="glyphicon glyphicon-registration-mark"></span> 註冊</a></li>
 			</ul>
 		</div>
-
 	</div>
+
+
 </nav>
+
 
