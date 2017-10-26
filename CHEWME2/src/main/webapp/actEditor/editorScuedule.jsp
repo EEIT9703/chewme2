@@ -32,15 +32,16 @@
 
 
 <style type="text/css">
-b{font-family: 'Arial','Microsoft JhengHei';font-size:20px;}
-p{font-family: 'Arial','Microsoft JhengHei';font-size:20px;}
-select{width:150px;height:40px;font-family: 'Arial','Microsoft JhengHei';font-size:20px;}
-option{font-family: 'Arial','Microsoft JhengHei';font-size:20px;}
-.item{line-height:30px;border-radius:20px;width:240px;padding-left:20px;}
-.detailItem{font-family: 'Arial','Microsoft JhengHei';font-size:20px;padding-left:10px;width:80px;}
-#detailName,#detailTel,#detailAdd,#detailType{font-family: 'Arial','Microsoft JhengHei';font-size:20px;padding:10px;}
-#detailIntro{font-family: 'Arial','Microsoft JhengHei';font-size:20px;padding:10px;}
-#actName{font-family: 'Arial','Microsoft JhengHei';font-size:20px;padding-left:10px;height:35px;width:180px;}
+b{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
+p{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
+select{width:150px;height:40px;font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
+option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
+.item{line-height:40px;border-radius:30px;width:250px;text-align:center;}
+.detailItem{font-family: 'Arial','Microsoft JhengHei';font-size:17px;padding-left:10px;width:80px;}
+#detailName,#detailTel,#detailAdd,#detailType{font-family: 'Arial','Microsoft JhengHei';font-size:17px;padding:10px;}
+#detailIntro{font-family: 'Arial','Microsoft JhengHei';font-size:17px;padding:10px;}
+#actName{font-family: 'Arial','Microsoft JhengHei';font-size:17px;padding-left:10px;height:35px;width:180px;}
+#calendar{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=BIG5">
@@ -51,6 +52,8 @@ option{font-family: 'Arial','Microsoft JhengHei';font-size:20px;}
 <jsp:useBean id="dao" scope="page" class="com.iii.eeit9703.actEditor.CountryDAO"/>
 <FORM METHOD="post" ACTION="/AreaServlet.do">
 
+<header><%@include file="../header.jsp"%></header>
+<br><br><br><br>
 <!-- calendar顯示div處 -->
 <div id='calendar' class='span6' ></div>
 
@@ -164,8 +167,6 @@ window.onload = function(){
 				item = $("<div class='item'></div>").append(name);
 				item.attr("id",dataID);
 				
-				
-				
 				if(type[0].match(dataArray[k].type)){
 					attr.append(item);
 					console.log(array[k].name);
@@ -252,16 +253,20 @@ $(function() {
 			
 //initialize the calendar
 	$('#calendar').fullCalendar({
-    	height: 680,
-    	allDaySlot: false,
-    	slotLabelInterval:"01:00",
-    	slotDuration:"01:00",
-    	slotLabelFormat:"HH:mm",
-    	minTime:"01:00",
-    	editable: true,					//可手動編輯事件
-    	droppable: true,
-    	eventOverlap:false,			//拖拉及resize無法重複
-    	//dropAccept:".item",
+    	height: 700,
+    	allDaySlot: false,													//是否顯示「allDay」欄位
+    	timeFormat: 'HH:mm',										//行程顯示時間為24時制
+    	slotLabelInterval:"00:30",								//設定時間軸標是時間的間隔(01:00表示小時)
+    	slotDuration:"01:00",											//設定時間軸每格的間格(01:00表示小時)
+    	slotLabelFormat:"HH:mm",	 							//設定時間軸顯示為24時制
+    	minTime:"01:00",												//設定時間軸從何時開始顯示(maxTime：結束時間)
+    	editable: true,														//設定可否手動編輯事件
+    	eventOverlap:false,												//設定事件可否重疊
+    	eventBackgroundColor: "#FFF8D7",			//設定日曆上所有事件的背景色
+    	eventBorderColor:"#00A600",						//設定日曆上所有事件的框線色
+    	eventTextColor:"#000000",								//設定日曆上所有事件的字體色
+    	droppable: true,													//設定可否放置物件
+    	//dropAccept:".item",											//設定允許放置的物件類型
     	drop: function(date,jsEven,ui,resourceId) {
     			console.log('drop', date.format(), resourceId);
 
@@ -286,7 +291,7 @@ $(function() {
     	//columnHeader:false,
 		defaultView: 'agendaDay',
 		header:{
-		    left:   'newDay',
+		    left:   'newDay,check',
 		    center: '',
 		    right:  ''
 		},

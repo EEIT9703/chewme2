@@ -12,6 +12,7 @@ import javax.servlet.http.*;
 
 import org.json.JSONArray;
 
+import com.iii.eeit9703.activity.model.ActivityVO;
 import com.iii.eeit9703.adphoto.model.*;
 
 
@@ -45,6 +46,7 @@ public class AreaServlet extends HttpServlet {
 			request.setCharacterEncoding("UTF-8");
 			String countryID = null;
 			Integer countyID = null;
+			String actName = null;
 			
 			response.setCharacterEncoding("UTF-8");
 			PrintWriter out = response.getWriter();
@@ -80,54 +82,26 @@ public class AreaServlet extends HttpServlet {
 				AttrDAO attrdao = new AttrDAO();
 				ArrayList<AttrVO> attrList = attrdao.getAttrByCounty(countyID);
 				
-				
-				
 				JSONArray attrArrayList = new JSONArray(attrList);
 				System.out.println(attrArrayList);
 				out.print(attrArrayList.toString());
 				
 				}
 			
-			if("showPhoto".equals(mission)){
-				Integer id = Integer.parseInt(request.getParameter("id"));
-				System.out.println(id);
+			if("insertACT".equals(mission)){
+				actName = request.getParameter("actName");
+				System.out.println(actName);
+				ScheduleDAO scheduledao = new ScheduleDAO();
+				ArrayList<ActivityVO> newACT = scheduledao.insertACT(actName);
+				System.out.println(newACT);
 				
-				for(Part part : request.getParts()){
-					PhotoDAO dao = new PhotoDAO();
-					PhotoVO vo = new PhotoVO();
-					InputStream is = null;
-					ByteArrayOutputStream bos = null;
-					
-					is = part.getInputStream();
-					int len;
-					int size=1024;
-					byte[] buf;
-					
-					if(is instanceof ByteArrayInputStream){
-						size = is.available();
-						buf = new byte[size];
-						len = is.read(buf, 0, size);
-					}else{
-						bos = new ByteArrayOutputStream();
-						buf = new byte[size];
-						while ((len = is.read(buf, 0, size))!=-1)
-							bos.write(buf, 0, len);
-						buf = bos.toByteArray();
-						String base64 = Base64.getEncoder().encodeToString(buf);
-						
-						out.print(base64);
-						
-					}
-				}
+				
 			}
 
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ServletException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

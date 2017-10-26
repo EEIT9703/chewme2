@@ -110,13 +110,13 @@ public class AttrDAO {
 							buf = new byte[size];
 							//將檔案讀入buf
 							is.read(buf, 0, size);
-							//將buf轉為base64
+/*							//將buf轉為base64
 							String strbase64 = Base64.getEncoder().encodeToString(buf);
 							//將strbase64放入attrVO
 							attrVO.setImg64(strbase64);
 							
 							list.add(attrVO);
-						} else {
+*/						} else {
 							bos = new ByteArrayOutputStream();
 							//一次讀size個byte
 							buf = new byte[size];
