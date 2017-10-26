@@ -108,74 +108,75 @@ ul, li {
 
 <body>
 	<header><%@ include file="header.jsp"%></header>
-	<div class="jumbotron">
-		<div class="container">
+	<article>
+		<div class="jumbotron">
+			<div class="container">
 
-			<div id="abgne-block-20110317">
-				<div class="abgne-player">
-					<ul class="abgne-list">
+				<div id="abgne-block-20110317">
+					<div class="abgne-player">
+						<ul class="abgne-list">
 
-					</ul>
+						</ul>
+					</div>
+					<div class="abgne-control">
+						<ul class="arrows" style="list-style-type: none">
+							<li style="list-style-type: none" class="prev">&lt;</li>
+							<li style="list-style-type: none" class="next">&gt;</li>
+						</ul>
+					</div>
 				</div>
-				<div class="abgne-control">
-					<ul class="arrows" style="list-style-type: none">
-						<li style="list-style-type: none" class="prev">&lt;</li>
-						<li style="list-style-type: none" class="next">&gt;</li>
-					</ul>
-				</div>
-			</div>
 
-			<ul class="nav nav-tabs" id="myTab" role="tablist">
-				<li class="nav-item"><a class="nav-link active" id="home-tab"
-					data-toggle="tab" href="#home" role="tab" aria-controls="home"
-					aria-expanded="true">Home</a></li>
-				<li class="nav-item"><a class="nav-link" id="profile-tab"
-					data-toggle="tab" href="#profile" role="tab"
-					aria-controls="profile">有趣經驗</a></li>
-				<li class="nav-item"><a class="nav-link" id="profile-tab"
-					data-toggle="tab" href="#profile" role="tab"
-					aria-controls="profile">旅遊景點</a></li>
-				<li class="nav-item"><a class="nav-link" id="profile-tab"
-					data-toggle="tab" href="#profile" role="tab"
-					aria-controls="profile">關於我們</a></li>
-				<li class="nav-item"><a class="nav-link" id="profile-tab"
-					data-toggle="tab" href="#profile" role="tab"
-					aria-controls="profile"></a></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
-					role="button" aria-haspopup="true" aria-expanded="false">
-						Dropdown </a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" id="dropdown1-tab" href="#dropdown1"
-							role="tab" data-toggle="tab" aria-controls="dropdown1">@fat</a> <a
-							class="dropdown-item" id="dropdown2-tab" href="#dropdown2"
-							role="tab" data-toggle="tab" aria-controls="dropdown2">@mdo</a>
-					</div></li>
-			</ul>
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+					<li class="nav-item"><a class="nav-link active" id="home-tab"
+						data-toggle="tab" href="#home" role="tab" aria-controls="home"
+						aria-expanded="true">Home</a></li>
+					<li class="nav-item"><a class="nav-link" id="profile-tab"
+						data-toggle="tab" href="#profile" role="tab"
+						aria-controls="profile">有趣經驗</a></li>
+					<li class="nav-item"><a class="nav-link" id="profile-tab"
+						data-toggle="tab" href="#profile" role="tab"
+						aria-controls="profile">旅遊景點</a></li>
+					<li class="nav-item"><a class="nav-link" id="profile-tab"
+						data-toggle="tab" href="#profile" role="tab"
+						aria-controls="profile">關於我們</a></li>
+					<li class="nav-item"><a class="nav-link" id="profile-tab"
+						data-toggle="tab" href="#profile" role="tab"
+						aria-controls="profile"></a></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+						role="button" aria-haspopup="true" aria-expanded="false">
+							Dropdown </a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" id="dropdown1-tab" href="#dropdown1"
+								role="tab" data-toggle="tab" aria-controls="dropdown1">@fat</a>
+							<a class="dropdown-item" id="dropdown2-tab" href="#dropdown2"
+								role="tab" data-toggle="tab" aria-controls="dropdown2">@mdo</a>
+						</div></li>
+				</ul>
 
-			<%-- 	<c:forEach var="activity" items=""> --%>
-			<div class="row">
-				<c:forEach var="x" varStatus="statusX" begin="1" end="3" step="1">
-					<div class="col-sm-6 col-md-4">
-						<div class="thumbnail">
-							<img src="..." alt="...">
-							<div class="caption">
-								<h3>Thumbnail label</h3>
-								<p>...</p>
-								<p>
-									<a href="#" class="btn btn-primary" role="button">Button</a> <a
-										href="#" class="btn btn-default" role="button">Button</a>
-								</p>
+				<%-- 	<c:forEach var="activity" items=""> --%>
+				<div class="row">
+					<c:forEach var="x" varStatus="statusX" begin="1" end="3" step="1">
+						<div class="col-sm-6 col-md-4">
+							<div class="thumbnail">
+								<img src="..." alt="...">
+								<div class="caption">
+									<h3>Thumbnail label</h3>
+									<p>...</p>
+									<p>
+										<a href="#" class="btn btn-primary" role="button">Button</a> <a
+											href="#" class="btn btn-default" role="button">Button</a>
+									</p>
+								</div>
 							</div>
 						</div>
-					</div>
-				</c:forEach>
+					</c:forEach>
+				</div>
+				<%-- </c:forEach>	 --%>
+
 			</div>
-			<%-- </c:forEach>	 --%>
-
 		</div>
-	</div>
-
+	</article>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 
