@@ -196,7 +196,7 @@
 		$.get('activity?action=getAllReport', {}, function(data) {
 			count=data.data.length;					
 			$.each(data.data, function(i,report) {
-				alert()
+				alert(report.memVO.memId)
 		
 //  				cell1.push({ title: report, start: '2017-10-05',context:"你好阿"});
 			})

@@ -127,10 +127,8 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 					ReportDAO_hibernate dao= new ReportDAO_hibernate();
 					
 					ArrayList<ReportVO> attrList = (ArrayList<ReportVO>) dao.getAll();
-					
-					JSONArray attrArrayList = new JSONArray(attrList);
-			
-					out.print(attrArrayList.toString());
+						
+				
 					}
 /*			HttpSession session = request.getSession();
 			session.setAttribute("countyList", countyList);
