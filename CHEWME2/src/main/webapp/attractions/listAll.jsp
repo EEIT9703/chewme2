@@ -13,7 +13,7 @@
 <style>
 #listtable {
 	margin: auto;
-	width: 950px;
+	width:1100px;
 }
 tr{
 text-align: center;
@@ -97,7 +97,7 @@ text-align: center;
 				</c:forEach>
 			</tbody>
 		</table>
-		<a href="insertAttr.jsp" class="btn btn-primary">返回</a>
+		<a href="insertAttr.jsp" class="btn btn-primary">我要新增</a>
 	</div>
 	<script src="../js/jquery-1.12.3.min.js"></script>
 	<script src="../js/jquery-ui.min.js"></script>

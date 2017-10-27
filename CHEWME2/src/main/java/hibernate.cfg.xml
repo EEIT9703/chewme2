@@ -47,7 +47,7 @@
 <!-- 		<mapping resource="com/iii/eeit9703/club/model/hibernate/issue/Issue.hbm.xml" /> -->
 <!--    		<mapping resource="com/iii/eeit9703/club/model/hibernate/question/Question.hbm.xml" /> -->
 <!-- 		<mapping resource="com/iii/eeit9703/club/model/hibernate/reply/Reply.hbm.xml" />  -->
-<!-- 		<mapping resource="com/iii/eeit9703/crawler/model/article.hbm.xml"/> -->
+		<mapping resource="com/iii/eeit9703/crawler/model/article.hbm.xml"/>
 	<!--<mapping resource="com/iii/eeit9703/club/model/hibernate/clubActList/clubActList.hbm.xml" />
 		<mapping resource="com/iii/eeit9703/club/model/hibernate/clubMemList/clubMemList.hbm.xml" />
 		
