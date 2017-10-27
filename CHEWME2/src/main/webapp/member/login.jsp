@@ -10,6 +10,7 @@
 	href="<%=request.getContextPath()%>/css/bootstrap.min.css">
 </head>
 <body>
+<header><%@ include file="/header.jsp"%></header>
 	<form action="login.do" method="post" name="loginForm">
 		<div>
 			<table>
@@ -39,7 +40,7 @@
 				<TR>
 					<TD colspan="2" align="center"><input type="submit" value="登入">
 					</TD>
-					<TD colspan="2" align="center"><input type="submit" value="註冊">
+					<TD colspan="2" align="center"><input type="button" value="註冊" onclick="location.href='register.jsp'">
 					</TD>
 
 				</TR>

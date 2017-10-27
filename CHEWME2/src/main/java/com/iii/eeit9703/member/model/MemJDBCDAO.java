@@ -40,7 +40,7 @@ public class MemJDBCDAO {
 			pstmt.setString(7, memVO.getMemAddr());
 			pstmt.setString(8, memVO.getMemPhone());
 			pstmt.setString(9, memVO.getMemIntr());
-			pstmt.setBinaryStream(10, memVO.getMemPhoto());
+			pstmt.setString(10, memVO.getMemPhoto());
 
 
 
@@ -92,7 +92,7 @@ public class MemJDBCDAO {
 			pstmt.setString(7, memVO.getMemAddr());
 			pstmt.setString(8, memVO.getMemPhone());
 			pstmt.setString(9, memVO.getMemIntr());
-			pstmt.setBinaryStream(10, memVO.getMemPhoto());
+			pstmt.setString(10, memVO.getMemPhoto());
 			pstmt.setInt(11, memVO.getMemId());
 
 			pstmt.executeUpdate();
@@ -194,7 +194,9 @@ public class MemJDBCDAO {
 				memVO.setMemAddr(rs.getString("memAddr"));
 				memVO.setMemPhone(rs.getString("memPhone"));
 				memVO.setMemIntr(rs.getString("memIntr"));
-				memVO.setMemPhoto(rs.getBinaryStream("memPhoto"));
+				memVO.setMemPhoto(rs.getString("memPhoto"));
+				memVO.setMemStatus(rs.getString("memStatus"));
+				memVO.setMemRole(rs.getString("memRole"));
 
 			}
 
@@ -253,7 +255,9 @@ public class MemJDBCDAO {
 				memVO.setMemAddr(rs.getString("memAddr"));
 				memVO.setMemPhone(rs.getString("memPhone"));
 				memVO.setMemIntr(rs.getString("memIntr"));
-				memVO.setMemPhoto(rs.getBinaryStream("memPhoto"));
+				memVO.setMemPhoto(rs.getString("memPhoto"));
+				memVO.setMemStatus(rs.getString("memStatus"));
+				memVO.setMemRole(rs.getString("memRole"));
 				list.add(memVO); // Store the row in the list
 			}
 
@@ -334,7 +338,9 @@ public class MemJDBCDAO {
 //		System.out.print(memVO3.getMemAddr() + ",");
 //		System.out.print(memVO3.getMemPhone() + ",");
 //		System.out.print(memVO3.getMemIntr()+",");
-//		System.out.println(memVO3.getMemPhoto()+",");
+//		System.out.print(memVO3.getMemPhoto()+",");
+//		System.out.print(memVO3.getMemStatus()+",");
+//		System.out.println(memVO3.getMemRole()+",");
 //		System.out.println("---------------------");
 //
 		List<MemVO> list = dao.getAll();
@@ -349,7 +355,9 @@ public class MemJDBCDAO {
 			System.out.print(aMem.getMemAddr() + ",");
 			System.out.print(aMem.getMemPhone() + ",");
 			System.out.print(aMem.getMemIntr()+",");
-			System.out.println(aMem.getMemPhoto()+",");
+			System.out.print(aMem.getMemPhoto()+",");
+			System.out.print(aMem.getMemStatus()+",");
+			System.out.println(aMem.getMemRole()+",");
 			System.out.println();
 
 		}

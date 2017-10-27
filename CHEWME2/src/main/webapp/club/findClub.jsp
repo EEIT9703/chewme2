@@ -59,7 +59,7 @@
 				<p>...</p>
 				
 			<div class="container">
-				<form id="findClubForm" action="clubClientView.do" method="POST">
+				<form id="findClubForm" action="clubClientView.do?action=chooseClub" method="POST">
 					<ul class="list-group">
 						<c:forEach var="club" items="${club_list}">
 							<div class="row">

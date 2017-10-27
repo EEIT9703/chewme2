@@ -189,19 +189,75 @@
 <!-- 	 <script src="js/jquery.min.js"></script> -->
 
 	<script>
-	
+	var cell1=new Array();
+	var cell2=new Array();
+	var cell3=new Array();
+	var obj = new Object;
 
 	$(function() {
 					
-		$.get('activity?action=getAllReport', {}, function(data) {
+		var count=0;	
+		$.getJSON('./ProductsAll', {}, function(data) {
 			count=data.data.length;					
-			$.each(data.data, function(i,report) {
-				alert()
-		
-//  				cell1.push({ title: report, start: '2017-10-05',context:"你好阿"});
-			})
+			$.each(data.data, function(i, product) {			
+ 				cell1.push({ title: product.ProductID, start: '2017-10-05',context:"你好阿"});				
 							
 			});			
+ 			//cell2=JSON.stringify(cell1); 	
+			loadProduct(cell1);
+		})	
+		   function loadProduct(cell1){	 
+		$(document).ready(function() {		
+			//alert( JSON.stringify(all));
+			$('#calendar').fullCalendar({
+				header : {
+					left : 'prev,next today',
+					center : 'title',
+					right : 'month,agendaWeek,agendaDay,listWeek'
+				},
+				defaultDate : '2017-10-10',
+				navLinks : true, // can click day/week names to navigate views
+				editable : true,
+				eventLimit : true, // allow "more" link when too many events
+				events:cell1,
+				slotLabelFormat:"YYYY-MM-DD",				
+				//timeFormat: "YYYY-MM-DD",
+				droppable: false,
+				eventClick: function(id){
+					
+					$("#reporter").text(id.title)
+					$("#reportime").text(id.start)
+					
+					$("#reportcontext").text(id.context)
+					
+				
+				},
+			   
+			});
+
+		});
+		}
+		
+		  $('#go').on('click',function(){
+			//正是時候 會click 得到他檢舉的那筆資料的id
+				$('#myModal').modal('show')
+		
+		
+			$("#confirm").on('click',function (){
+			//	這裡連同id 跟檢舉內容 送到servlet, servlet 得到 登入會員的sesseion資料  活動id 跟 檢舉內容
+			
+		//	alert($("#text").val())		
+				$.get("report",{"text":$("#text").val(),"id":"1"},function(data){
+					$("#show").html("<h2>"+data+"</h2>");
+				});
+			
+			
+			
+				})
+		  })
+		  
+		  
+		  
 		  
 	})
 	</script>

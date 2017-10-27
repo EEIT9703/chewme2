@@ -85,11 +85,16 @@ public class LoginServlet extends HttpServlet {
 		MemService memSvc;
 		memSvc = new MemService();
 		// 呼叫 ms物件的 checkIDPassword()，要記得傳入userid與password兩個參數
-		
+
 		MemVO mv = memSvc.checkIDPassword(userId, password);
+		System.out.println(mv);
 		if (mv != null) {
-			// OK, 將mb物件放入Session範圍內，識別字串為"LoginOK"
+			// OK, 將mv物件放入Session範圍內，識別字串為"LoginOK"
 			session.setAttribute("LoginOK", mv);
+			System.out.println(mv.getMemRole());
+			if(mv.getMemRole().trim().equals("系統管理員")){
+				session.setAttribute("Manager", mv);
+			}
 		} else {
 			// NG, userid與密碼的組合錯誤，放一個錯誤訊息到 errorMsgMap 之內
 			errorMsgMap.put("LoginError", "該帳號不存在或密碼錯誤");
