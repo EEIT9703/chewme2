@@ -96,6 +96,9 @@ public class MemDAO_hibernate implements MemDAO_interface {
 		System.out.print(memVO.getMemberId() + ",");
 		System.out.print(memVO.getMemMail() + ",");
 		System.out.print(memVO.getMemPhone());
+		System.out.print(memVO.getMemRole());
+		System.out.print(memVO.getMemStatus());
+	
 		System.out.println("\n-----------------");
 		Set<ActivityVO> Activitys =memVO.getActivitys();
 		
