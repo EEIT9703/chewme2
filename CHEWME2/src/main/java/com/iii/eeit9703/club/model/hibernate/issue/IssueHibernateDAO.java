@@ -97,35 +97,8 @@ public class IssueHibernateDAO implements IssueDAOI{
 		}
 	}
 	public static void main(String[] args){
-		// ���U�A��
-		Configuration cfg = new Configuration().configure();
-		ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(cfg.getProperties()).build();
-		// �Ы�SessionFactory
-		SessionFactory sessionFactory = cfg.buildSessionFactory(registry);
-		
-		Session session = sessionFactory.openSession();
-		Transaction tx = null;
-
-		try {
-			tx = session.beginTransaction();
-			
-			IssueVO issueVO1 = new IssueVO();//POJO1-saveOrUpdate-�s�W�έק�
-			issueVO1.setIssueId(1);
-			issueVO1.setClubId(1);
-			issueVO1.setIssueTitle("issueTest");
-			issueVO1.setIssueContent("issueTest");
-			issueVO1.setProposerId(1);
-			issueVO1.setIssuepic(null);
-//			issueVO1.setComments(null);	
-			
-			session.saveOrUpdate(issueVO1);
-			
-//			EmpVO empVO2 = new EmpVO();//POJO2-delete-�R��
-//			empVO2.setEmpno(7014);
-//			session.delete(empVO2);			
-			
-			Query query = session.createQuery("from IssueVO order by issueId"); //HQL - Query���� - �i�ʸˬd�߱���
-			List<IssueVO> list = query.list();
+		IssueHibernateDAO ihd = new IssueHibernateDAO();
+		List<IssueVO> list = ihd.getAll();
 			for (IssueVO var : list) {
 				System.out.print(var.getIssueId() + ",");
 				System.out.print(var.getClubId() + ",");
@@ -133,19 +106,9 @@ public class IssueHibernateDAO implements IssueDAOI{
 				System.out.print(var.getIssueContent() + ",");
 				System.out.print(var.getProposerId() + ",");
 				System.out.println(var.getIssuepic() + ",");
-//				System.out.println(var.getComments() + ",");
-				
-			}
+				//System.out.println(var.getComments() + ",");
+			}				
 
-			tx.commit();
-		} catch (RuntimeException ex) {
-			if (tx != null)
-				tx.rollback();
-			throw ex; //System.out.println(ex.getMessage());
-		} finally {
-			session.close();
-			sessionFactory.close();
-		}
 	}
 
 	

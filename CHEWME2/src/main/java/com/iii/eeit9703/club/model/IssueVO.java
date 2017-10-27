@@ -1,7 +1,8 @@
 package com.iii.eeit9703.club.model;
 
 import java.sql.Blob;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class IssueVO implements java.io.Serializable{
 	private Integer issueId;
@@ -10,7 +11,8 @@ public class IssueVO implements java.io.Serializable{
 	private String issueContent;
 	private Integer proposerId;
 	private Blob issuepic;
-/*	private List<CommentVO> comments;*/
+//	private List<CommentVO> comments = new ArrayList<CommentVO>();
+	private Set<CommentVO> comments = new HashSet<CommentVO>();
 	public Integer getIssueId() {
 		return issueId;
 	}
@@ -47,10 +49,18 @@ public class IssueVO implements java.io.Serializable{
 	public void setIssuepic(Blob issuepic) {
 		this.issuepic = issuepic;
 	}
- /*   public List<CommentVO> getComments() {
+/*	public List<CommentVO> getComments() {
 		return comments;
 	}
 	public void setComments(List<CommentVO> comments) {
 		this.comments = comments;
+	}*/
+	public Set<CommentVO> getComments() {
+		return comments;
 	}
-*/}
+	public void setComments(Set<CommentVO> comments) {
+		this.comments = comments;
+	}
+	
+
+}

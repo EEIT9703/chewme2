@@ -15,6 +15,10 @@
 		<property name="proposerId" column="proposerId" />
 		<property name="issuepic" column="issuepic" />
 <!-- 	<property name="comments" column="comments" /> -->
+		<set name="comments" table="comments" lazy="false" cascade="all" inverse="true" order-by="commentId asc">
+			<key><column name="commentId"/></key>
+			<one-to-many class="com.iii.eeit9703.club.model.CommentVO"/>
+		</set>
 	</class>
 </hibernate-mapping>
 
