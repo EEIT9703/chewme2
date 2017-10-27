@@ -22,7 +22,7 @@ public class ActivityVO implements java.io.Serializable {
 	private Integer activity_state; //活動型態  0 = 建構中, 1 = 上架  ,  2 = 被檢舉  , 3 = 下架 
 	private Set<CollectionVO> Collects = new HashSet<CollectionVO>();
 	private Set<ReportVO> Reports = new HashSet<ReportVO>();
-	private MemVO memVO;
+	private MemVO memVO; //維浪如果jdbc 要輸入會員ID 需要 程式碼改成memVO.getMemId 
 
 	public MemVO getMemVO() {
 		return memVO;
