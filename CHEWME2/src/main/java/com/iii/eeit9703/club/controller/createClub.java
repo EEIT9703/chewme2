@@ -49,6 +49,7 @@ public class createClub extends HttpServlet {
 			clubVO.setAddr((String)request.getAttribute("addr"));
 			clubVO.setClubPic((String)request.getAttribute("clubPic"));
 			*/
+			
 			System.out.println(request.getAttribute("uploadImage"));
 			clubVO.setClubId(8);
 			clubVO.setClubName("");

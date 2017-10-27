@@ -88,5 +88,14 @@ public class PhotoDAO implements Photo_interface {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public static void main(String[] args){
+		PhotoDAO phdao = new PhotoDAO();
+		List<PhotoVO> phvolist = phdao.getAll();
+		for(PhotoVO ph : phvolist){
+			System.out.println(ph.getName());
+		}
+		
+	}
 
 }

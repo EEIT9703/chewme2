@@ -16,7 +16,8 @@ import com.iii.eeit9703.hibernate.util.HibernateUtil;
 
 public class IssueHibernateDAO implements IssueDAOI{
 
-	private static final String GET_ALL_STMT="from issue order by issueId";
+	private static final String GET_ALL_STMT="from IssueVO order by issueId";
+	private static final String GET_ONE_STMT_SQL="from IssueVO order where issueId=(?)";
 	@Override
 	public List<IssueVO> getAll() {
 		List<IssueVO> list=null;
@@ -35,8 +36,22 @@ public class IssueHibernateDAO implements IssueDAOI{
 	}
 
 	@Override
-	public void getOne(Integer issueId) {
+	public IssueVO getOne(Integer issueId) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		IssueVO issueVO;
+		try{
+			session.beginTransaction();
+			Query query = session.createQuery(GET_ONE_STMT_SQL);
+			query.setParameter(0, issueId);
+			issueVO = (IssueVO)query.uniqueResult();
+			session.getTransaction().commit();
+				
+		}catch(RuntimeException ex){
+			session.getTransaction().rollback();
+			throw ex;			
+		}		
 		
+		return issueVO;
 	}
 
 	@Override

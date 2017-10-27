@@ -1,4 +1,5 @@
-﻿<div class="row">
+﻿
+<div class="row">
 	<div class="col"></div>
 	<div class="col-md-3">
 		<div class="dropdown">
@@ -38,22 +39,7 @@
 	</div>
 </div>
 
-
-<div class="panel panel-default">
-	<div class="panel-heading">
-		<h3 class="panel-title">Panel title</h3>
-	</div>
-	<div class="panel-body">
-		<div class="row">
-			<div class="col-md-3">
-				<img></img>
-			</div>
-			<div class="col-md-9">
-				<textarea class="full"></textarea>
-			</div>
-		</div>
-	</div>
-</div>
+<c:forEach var="issue" items="${issue_list}">
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h3 class="panel-title">Panel title</h3>
@@ -120,3 +106,4 @@
 		</ul>
 	</div>
 </div>
+</c:forEach>
