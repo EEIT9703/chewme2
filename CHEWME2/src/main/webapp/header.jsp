@@ -33,7 +33,7 @@
 					src="<%=request.getContextPath()%>/image/car.gif" width=50px
 					height=50px /><span class="aaa" data-reactid="65">2</span></li>
 				<li><c:if test="${  !empty LoginOK }"><c:if test="${  !empty Manager }">
-						<a class="nav-link" href="<%=request.getContextPath()%>/backage/backage.jsp"><span
+						<a class="nav-link" href="<%=request.getContextPath()%>/backage.jsp"><span
 							class="glyphicon glyphicon-log-in"></span>維護 </a>
 					</c:if></c:if></li>
 				<li><c:if test="${  empty LoginOK }">
