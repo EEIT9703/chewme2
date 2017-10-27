@@ -18,7 +18,7 @@
 	<div class="container">
 
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-xs-6 col-sm-6 col-md-6">
 				<div class="dropdown">
 					<button class="btn btn-default dropdown-toggle" type="button"
 						id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
@@ -34,7 +34,7 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col-md-9">
+			<div class="col-xs-6 col-sm-6 col-md-6">
 				<div class="dropdown">
 					<button class="btn btn-default dropdown-toggle" type="button"
 						id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
@@ -55,29 +55,32 @@
 		<div class="panel panel-default">
 			<!-- Default panel contents -->
 			<div class="panel-heading">社團名單</div>
-			<div class="panel-body">
+			<div class="panel-body" style="padding:0;">
 				<p>...</p>
-			</div>
-
-			<!-- List group -->
-
+				
 			<div class="container">
-				<form id="findClubForm" action="findClub.do" method="POST">
+				<form id="findClubForm" action="clubClientView.do?action=chooseClub" method="POST">
 					<ul class="list-group">
 						<c:forEach var="club" items="${club_list}">
 							<div class="row">
 								<div class="col-sm-12 col-md-12">${club.clubName}</div>
-								<div class="col-sm-12 col-md-2">pic</div>
-								<div class="col-sm-12 col-md-8">${club.brief}</div>
-								<div class="col-sm-12 col-md-2">
+								<div class="col-sm-6 col-md-2"><img src="http://via.placeholder.com/1980x1080" class="img-responsive">
+								</div>
+								<div class="col-sm-6 col-md-8">${club.brief}</div>
+								<div class="col-sm-6 col-md-2">
 									<button type="submit" class="btn btn-primary btn-sm"
-										name="cchosen" value="The ClubId ${club.clubId} is chosen">點入觀看</button>
+										name="club" value="${club.clubId}">點入觀看</button>
 								</div>
 							</div>
 						</c:forEach>
 					</ul>
 				</form>
 			</div>
+				
+			</div>
+
+			<!-- List group -->
+
 
 
 

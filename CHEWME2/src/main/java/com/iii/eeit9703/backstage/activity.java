@@ -23,6 +23,10 @@ import com.iii.eeit9703.activity.model.ActivityDAO;
 import com.iii.eeit9703.activity.model.ActivityVO;
 import com.iii.eeit9703.adphoto.model.PhotoDAO;
 import com.iii.eeit9703.adphoto.model.PhotoVO;
+import com.iii.eeit9703.member.model.MemDAO;
+import com.iii.eeit9703.member.model.MemDAO_hibernate;
+import com.iii.eeit9703.member.model.MemService;
+import com.iii.eeit9703.member.model.MemVO;
 
 /**
  * Servlet implementation class activity
@@ -85,6 +89,18 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 		
 				out.print(attrArrayList.toString());
 				}
+				
+				if("getAllmember".equals(action)){
+					//MemDAO_hibernate hib= new MemDAO_hibernate();
+					MemService hib=new MemService();
+
+					ArrayList<MemVO> attrList = (ArrayList<MemVO>)hib.getAll();
+				
+					
+					JSONArray attrArrayList = new JSONArray(attrList);
+			
+					out.print(attrArrayList.toString());
+					}
 			
 				if("delete".equals(action)){
 					System.out.println("delete");

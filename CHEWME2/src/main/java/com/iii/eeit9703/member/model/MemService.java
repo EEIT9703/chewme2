@@ -1,5 +1,6 @@
 package com.iii.eeit9703.member.model;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class MemService {
 	}
 
 	public MemVO addMem(String memberId, String memName, String memNickN, String memPwd, java.sql.Date memBirthday,
-			String memMail, String memAddr, String memPhone, String memIntr, InputStream memPhoto) {
+			String memMail, String memAddr, String memPhone, String memIntr, String memPhoto) {
 		MemVO memVO = new MemVO();
 		memVO.setMemberId(memberId);
 		memVO.setMemName(memName);
@@ -53,6 +54,17 @@ public class MemService {
 			}
 		}
 		return null;
+	}
+	synchronized public boolean idExists(String id) throws IOException {
+		boolean exist = false; // 檢查id是否已經存在
+		MemService memSvc = new MemService();
+		for (MemVO memVO : memSvc.getAll()) {
+			if (memVO.getMemberId().equals(id.trim())) {
+				exist = true;
+				break;
+			}
+		}
+		return exist;
 	}
 
 }

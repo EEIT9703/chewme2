@@ -19,12 +19,12 @@
 			<div class="carousel-inner">
 				<div class="carousel-item active">
 					<div class="row">
-						<div class="col"></div>
-						<div class="col-5">
+						<div class="col-md-3"></div>
+						<div class="col-md-6" >
 							<img class="d-block w-100" src="image/lion_logo.png"
-								alt="First slide">
+								alt="First slide" style="margin:auto;">
 						</div>
-						<div class="col"></div>
+						<div class="col-md-3"></div>
 					</div>
 				</div>
 			</div>
@@ -85,10 +85,7 @@
 
 	</div>
 
-
-
 	<script src="../js/jquery-3.2.1.min.js"></script>
-
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="js/clubClientViewFrameScript.js"></script>

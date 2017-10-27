@@ -13,10 +13,10 @@ public class ClubService {
 	public List<ClubVO> getAll(){
 		return clubDAO.getAll();
 	}
-	public void getOne(Integer clubId){
-		clubDAO.getOne(clubId);
+	public ClubVO getOneClub(Integer clubId){
+		return clubDAO.getOne(clubId);
 	}
-	public void insert(ClubVO clubVO){
+	public void insertClub(ClubVO clubVO){
 		clubDAO.insert(clubVO);
 	}
 	public void update(ClubVO clubVO){
