@@ -17,9 +17,6 @@
     <link href="backage/vendor/morrisjs/morris.css" rel="stylesheet">
 
     <link href="backage/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-	
-
 </head>
 
 
@@ -68,11 +65,10 @@
                         </li>
                         <li>
                             <a href="backage_activity.jsp"><i class="fa fa-edit fa-fw"></i>活動管理</a>
-                        </li>
+                        </li> 
                          <li>
                             <a href="backage_member.jsp"><i class="fa fa-edit fa-fw"></i>會員管理</a>
-                        </li>    
-                                            
+                        </li>                         
                         <li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -102,42 +98,112 @@
                
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                     <div class="panel panel-default">
-                                 <div class="panel-heading">
+                      
+                         <div class="panel-heading"> 
+						                        
+             <table id="member" class="table table-bordered">
+                       <thead>
+                          <tr>
+                             <th>會員ID</th>
+                             <th>會員帳號</th>
+                             <th>姓名</th>
+                             <th>暱稱</th>
+                          	 <th>會員密碼</th>
+                             <th>生日</th>
+                             <th>信箱</th>
+                             <th>地址</th>
+                             <th>電話</th>
+                             <th>介紹</th>
+<!--                         <th>圖片</th> -->
+                             <th>狀態</th>
+                             <th>角色</th>
+                                
+                          </tr>
+                       </thead>
+                       <tbody>
+                      
+                       </tbody>
+                       <tfoot>
+                       <tr>
 
-								內容區
-							
-
-
-
-							</div>      
+                       </tfoot>
+                   </table>     
+                       	                      	
+                       	</div>       
+                                   
                     </div>              
                 </div>
-                
-<!--                 右邊預留空間 -->
-                <div class="col-lg-4">
-
-                    <div class="panel panel-default">
-                      			 預留空間	
-                    </div>
-                
-                    <div class="chat-panel panel panel-default">
-                   			預留空間
-                    </div>               
-                </div>            
+        
             </div>      
         </div>     
     </div>
     </div>
-    <script>
-    
-   
-    
-    
-    </script>
+  
  	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.min.js"></script>
+  	<script>
+  	$(function(){
+  		$.getJSON('activity?action=getAllmember',{},sendCounty);
+  		
+  		function sendCounty(array){
+  			//var docFrag = $(document.createDocumentFragment()); 	
+  			var status=["正常","黑名單"];
+  			var roles=["一般會員","社團管理員","系統管理員"];
+  			
+  			var opt = $('#member>tbody');
+  			opt.empty();
+  			$.each(array,function(i,member){
+  	         var cell1 = $('<td></td>').text(member.memId); 	 
+  	       	 var cell2 = $('<td></td>').text(member.memberId);
+	         var cell3 = $('<td></td>').text(member.memName);
+	         var cell4 = $('<td></td>').text(member.memNickN);  
+	         var cell5 = $('<td></td>').text(member.memPwd);  
+	         var cell6 = $('<td></td>').text(member.memBirthday);
+	         var cell7 = $('<td></td>').text(member.memMail);
+	         var cell8 = $('<td></td>').text(member.memAddr);
+	         var cell9 = $('<td></td>').text(member.memPhone);
+	         var cell10 = $('<td></td>').text(member.memIntr);
+	        // var cell11 = $('<td></td>').text(member.memPhoto);
+	   
+	         var select1 =$('<select id="select1"></select');
+	         var select2 =$('<select id="select2"></select');
 
+         
+	      $.each(status,function(i){
+	    	  var sel1=$('<option></option>').text(status[i])
+	    	  		sel1.attr("value",i)
+	    	  		alert(status[i])
+	    	  		if(member.memStatus==status[i]){
+	    	  			sel1.attr("selected","selected")	
+	    	  		}
+	        		select1.append(sel1)
+	        	
+	        })
+	      var cell12 = $('<td></td>').html(select1)
+	       $.each(roles,function(i){
+	    	  var sel2=$('<option></option>').text(roles[i])
+	    	  		sel2.attr("value",i)
+	    	  		if(member.memRole==roles[i]){
+	    	  			sel2.attr("selected","selected")	
+	    	  		}
+	        		select2.append(sel2)
+	        		 
+	        })
+	        var cell13= $('<td></td>').html(select2)
+	        
+	      
+	          var row = $('<tr></tr>').append([cell1, cell2,cell3,cell4,cell5,cell6,cell7,cell8,cell9,cell10,cell12,cell13]); 
+	  	         opt.append(row);
+	        		
+  			})
+  		
+  		}
+ 				
+	   })
+    </script>
+    	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.min.js"></script>
 </body>
 </html>

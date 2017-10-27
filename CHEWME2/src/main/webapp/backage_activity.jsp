@@ -65,7 +65,10 @@
                         </li>
                         <li>
                             <a href="backage_activity.jsp"><i class="fa fa-edit fa-fw"></i>活動管理</a>
-                        </li>                      
+                        </li> 
+                         <li>
+                            <a href="backage_member.jsp"><i class="fa fa-edit fa-fw"></i>會員管理</a>
+                        </li>                         
                         <li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -181,9 +184,8 @@
   		$.getJSON('activity?action=getAllactivity',{},sendCounty);
   		
   		function sendCounty(array){
-  			//var docFrag = $(document.createDocumentFragment());
+  			//var docFrag = $(document.createDocumentFragment()); 			
   			var status=["上架","下架","待審核"];
-  			
   			var opt = $('#activity>tbody');
   			opt.empty();
   			$.each(array,function(i,activity){
@@ -192,12 +194,22 @@
 	         var cell3 = $('<td></td>').text(activity.act_groups);
 	         var cell4 = $('<td></td>').text(activity.act_current);  
 	         var cell5 = $('<td></td>').text(activity.BDate);  
-	         var cell6 = $('<td></td>').text(activity.EDate);  
-	         var cell7 = $('<td></td>').text(activity.activity_state);
-	
-  	         var row = $('<tr></tr>').append([cell1, cell2,cell3,cell4,cell5,cell6,cell7]);
-  	         opt.append(row);
-  			
+	         var cell6 = $('<td></td>').text(activity.EDate); 
+	         
+	         var select =$('<select id="selectID"></select');
+	        
+	      $.each(status,function(i){
+	    	  var sel=$('<option></option>').text(status[i])
+	    	  		sel.attr("value",i)
+	    	  		if(activity.activity_state==i){
+	    	  			sel.attr("selected","selected")	
+	    	  		}
+	        		select.append(sel)
+	        })
+	     	  var cell7 = $('<td></td>').html(select)
+	          var row = $('<tr></tr>').append([cell1, cell2,cell3,cell4,cell5,cell6,cell7]); 
+	  	         opt.append(row);
+	        		
   			})
   		
   		}
