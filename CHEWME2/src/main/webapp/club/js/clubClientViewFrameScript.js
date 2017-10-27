@@ -5,9 +5,8 @@ var viewCommentTemplate;
 
 $(document).ready(function() {
 	$("#tabs").tabs();
-	$("#forum-tab").on("click", loadIssues)
 	getTemplates();
-	loadIssues();
+	$("#forum-tab").on("click", loadIssues)
 })
 function loadIssues() {
 	$.getJSON("clubClientView.do?action=loadIssues", {
@@ -18,6 +17,7 @@ function loadIssues() {
 	}, function(data) {
 		console.log(data.length);
 		console.log(data);
+		console.log(issueTemplate);
 		$.each(data, function() {
 			insertIssuePanel();
 		})

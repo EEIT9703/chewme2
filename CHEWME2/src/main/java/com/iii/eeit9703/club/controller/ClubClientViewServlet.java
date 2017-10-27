@@ -3,9 +3,9 @@ package com.iii.eeit9703.club.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,9 +18,9 @@ import org.json.simple.JSONValue;
 
 import com.iii.eeit9703.club.model.ClubService;
 import com.iii.eeit9703.club.model.ClubVO;
+import com.iii.eeit9703.club.model.CommentVO;
 import com.iii.eeit9703.club.model.IssueService;
 import com.iii.eeit9703.club.model.IssueVO;
-import com.iii.eeit9703.utility.StringHelper;
 
 
 @WebServlet("/club/clubClientView.do")
@@ -59,22 +59,30 @@ public class ClubClientViewServlet extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			IssueService is = new IssueService();
 			List<IssueVO> issueVO_list = is.getIssueList();
-			Map m1 = new HashMap();
-			List<Map> issueList_json = new LinkedList();
+			Map issueMap = new HashMap();
+			Map commentMap = new HashMap();
+			List<Map> issueList_json;
+			Set<Map> commentList_json; 
 			IssueVO isvo;
+			Set<CommentVO> cmvoList;
 			for(int i =0;i<issueVO_list.size();i++){
 				isvo = issueVO_list.get(i);
-				m1.put("issueId", isvo.getIssueId());
-				m1.put("clubId", isvo.getClubId());
-				m1.put("issueTitle",isvo.getIssueTitle());
-				m1.put("issueContent", isvo.getIssueContent());
-				m1.put("proposerId", isvo.getProposerId());
-				m1.put("issuepic", isvo.getIssuepic());
-				issueList_json.add(m1);
+				issueMap.put("issueId", isvo.getIssueId());
+				issueMap.put("clubId", isvo.getClubId());
+				issueMap.put("issueTitle",isvo.getIssueTitle());
+				issueMap.put("issueContent", isvo.getIssueContent());
+				issueMap.put("proposerId", isvo.getProposerId());
+				issueMap.put("issuepic", isvo.getIssuepic());
+				cmvoList=isvo.getComments();
+				for(int i =0;;){
+					commentMap.put("", value)
+					commentList_json=add()
+				}
+				issueList_json.add(issueMap);
 				//StringHelper.testEncode(isvo.getIssueTitle());
 				//StringHelper.testEncode(isvo.getIssueContent());
 			}
-			
+			   
 			
 			
 			String jsonString = JSONValue.toJSONString(issueList_json);
