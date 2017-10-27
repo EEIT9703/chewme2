@@ -46,32 +46,23 @@ public class FindClubServlet extends HttpServlet {
 		if (session != null) {      // 使用逾時
 			session = request.getSession();
 		}
-		if(request.getParameter("cchosen") != null){
-			System.out.println(request.getParameter("cchosen"));
-			response.sendRedirect("findClub.jsp");
-			return;
-		}
+//		if(request.getParameter("club") != null){
+//			System.out.println(request.getParameter("club"));
+//			response.sendRedirect("findClub.jsp");
+//			return;
+//		}
+		
+		
 		/*開始執行hibernate DAO存取資料*/
-		System.out.println("test line");
 		ClubService cs =  new ClubService();
 		List<ClubVO> clubList;
-		clubList = cs.getAll();
-/*		for (ClubVO aClub : clubList) {
-			System.out.print(aClub.getClubId() + ",");
-			System.out.print(aClub.getClubName() + ",");
-			System.out.print(aClub.getManagerId() + ",");
-			System.out.print(aClub.getLocationId() + ",");
-			System.out.print(aClub.getBrief() + ",");
-			System.out.print(aClub.getRefURL() + ",");
-			System.out.print(aClub.getVistors() + ",");
-			System.out.print(aClub.getVistorsInMonth() + ",");
-			System.out.println(aClub.getAddr() + ",");
-		}*/
+		clubList = cs.getAll();		
 		session.setAttribute("club_list", clubList);		
 		response.sendRedirect("findClub.jsp");
-//		RequestDispatcher rd = request.getRequestDispatcher("findClub.jsp");
-//		rd.forward(request, response);
-		return;
+		
+/*		RequestDispatcher rd = request.getRequestDispatcher("findClub.jsp");
+		rd.forward(request, response);
+*/		return;
 				
 	}
 	

@@ -10,6 +10,7 @@ public class ClubVO implements java.io.Serializable{
 	private Integer vistors;
 	private Integer vistorsInMonth;
 	private String addr;
+	private String clubPic;
 	public String getAddr() {
 		return addr;
 	}
@@ -52,6 +53,12 @@ public class ClubVO implements java.io.Serializable{
 	public void setRefURL(String refURL) {
 		this.refURL = refURL;
 	}
+	public String getClubPic() {
+		return clubPic;
+	}
+	public void setClubPic(String clubPic) {
+		this.clubPic = clubPic;
+	}
 	public Integer getVistors() {
 		return vistors;
 	}
@@ -64,7 +71,5 @@ public class ClubVO implements java.io.Serializable{
 	public void setVistorsInMonth(Integer vistorsInMonth) {
 		this.vistorsInMonth = vistorsInMonth;
 	}
-	
 
-	
 }
