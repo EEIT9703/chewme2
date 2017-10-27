@@ -19,7 +19,9 @@ public class ScheduleDAO {
 	
 	private static final String NEWACTIVITY= "INSERT INTO activity(act_name,memId)VALUES(?,?) ";
 	private static final String SELECTACTIVITY= "SELECT actID,act_name from activity where act_name=?";
-	private static final String NEWSCHEDULES= "INSERT INTO schedules(actID,attractionID,dayNo,period,remark)VALUES(?,?,?,?,?)";
+	private static final String NEWSCHEDULES= "INSERT INTO schedules(attractionID,dayNo,period)VALUES(?,?,?)";
+	private static final String SELECTSCHEDULES= "SELECT TOP(1)scheduleID from schedules where attractionID=? and actID is null";
+	private static final String UPDATESCHEDULES= "UPDATE TOP(1)schedules set period=? WHERE attractionID=? and actID is null";
 		
 	Connection con = null;
 	PreparedStatement pstmt = null;
@@ -106,22 +108,22 @@ public class ScheduleDAO {
 		return activitylist;
 	}
 	
-	public void insertSCH(ScheduleVO SCHlist){
+	public Integer insertSCH(ScheduleVO SCHlist){
 		
 		ArrayList<ScheduleVO> schedulelist = new ArrayList<ScheduleVO>();
-		
+		Integer scheduleID = null;
 
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(NEWSCHEDULES);
-			// NEWSCHEDULES= "INSERT INTO schedules(actID,attractionID,dayNo,period,remark)VALUES(?,?,?,?,?)"
-			pstmt.setInt(1, SCHlist.getActID());
-			pstmt.setInt(2, SCHlist.getAttractionID());
-			pstmt.setInt(3, SCHlist.getDayNo());
-			pstmt.setString(4, SCHlist.getPeriod());
-			pstmt.setString(5, SCHlist.getRemark());
+			//NEWSCHEDULES= "INSERT INTO schedules(attractionID,dayNo,period)VALUES(?,?,?)"
+			pstmt.setInt(1, SCHlist.getAttractionID());
+			pstmt.setInt(2, SCHlist.getDayNo());
+			pstmt.setString(3, SCHlist.getPeriod());
 			pstmt.executeUpdate();
+			
+			scheduleID = selectSCH(SCHlist.getAttractionID());
 						
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -143,7 +145,78 @@ public class ScheduleDAO {
 				catch (SQLException e) {e.printStackTrace();}
 			}
 		}
+		return scheduleID;
+	}
+	
+	public Integer selectSCH(Integer attractionID){
 		
+		Integer scheduleID = null;
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(SELECTSCHEDULES);
+			
+			pstmt.setInt(1, attractionID);
+			rs = pstmt.executeQuery();
+			rs.next();
+			scheduleID = rs.getInt("scheduleID");
+			
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(rs != null){
+				try {rs.close();} 
+				catch (SQLException e) {e.printStackTrace();}
+			}
+			if(pstmt != null){
+				try {pstmt.close();} 
+				catch (SQLException e) {e.printStackTrace();}
+			}
+			if(con != null){
+				try {con.close();} 
+				catch (SQLException e) {e.printStackTrace();}
+			}
+		}
+		return scheduleID;
+	}
+	
+	public void updateSCH(ScheduleVO chVO){
+		System.out.println("XX");
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(UPDATESCHEDULES);
+			
+			pstmt.setString(1, chVO.getPeriod());
+			pstmt.setInt(2, chVO.getAttractionID());
+			pstmt.executeUpdate();		
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(rs != null){
+				try {rs.close();} 
+				catch (SQLException e) {e.printStackTrace();}
+			}
+			if(pstmt != null){
+				try {pstmt.close();} 
+				catch (SQLException e) {e.printStackTrace();}
+			}
+			if(con != null){
+				try {con.close();} 
+				catch (SQLException e) {e.printStackTrace();}
+			}
+		}
 	}
 	
 	public static void main(String[] args) {
@@ -152,21 +225,20 @@ public class ScheduleDAO {
 		ScheduleVO testVO = new ScheduleVO();
 		
 		//新增行程後查詢
-		List<ActivityVO> list = aDao.insertACT("花蓮一日遊");
+/*		List<ActivityVO> list = aDao.insertACT("花蓮一日遊");
 		for(ActivityVO act : list){
 			System.out.print(act.getActID()+",");
 			testVO.setActID(act.getActID());
 			System.out.println(act.getAct_name());
 		}
-		
+*/		
 		//新增行程明細
 		testVO.setAttractionID(15);
 		testVO.setDayNo(1);
 		testVO.setPeriod("09:00");
-		testVO.setRemark("測試資料,Data for test!!");
 		
-		aDao.insertSCH(testVO);
-		System.out.println("Success!!");
+		Integer scheduleID=aDao.insertSCH(testVO);
+		System.out.println(scheduleID);
 		
 
 	}
