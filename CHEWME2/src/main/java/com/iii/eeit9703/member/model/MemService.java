@@ -13,7 +13,7 @@ public class MemService {
 	}
 
 	public MemVO addMem(String memberId, String memName, String memNickN, String memPwd, java.sql.Date memBirthday,
-			String memMail, String memAddr, String memPhone, String memIntr, InputStream memPhoto) {
+			String memMail, String memAddr, String memPhone, String memIntr, String memPhoto) {
 		MemVO memVO = new MemVO();
 		memVO.setMemberId(memberId);
 		memVO.setMemName(memName);
