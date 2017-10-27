@@ -1,6 +1,6 @@
 package com.iii.eeit9703.member.model;
 
-import java.io.InputStream;
+
 import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,12 +20,13 @@ public class MemVO implements java.io.Serializable{
 	private String memAddr;
 	private String memPhone;
 	private String memIntr;
-	private InputStream memPhoto;
+	private String memPhoto;
 	private String memStatus;
 	private String memRole;
 	private Set<ActivityVO> Activitys = new HashSet<ActivityVO>();
 	private Set<CollectionVO> Collects = new HashSet<CollectionVO>();
 	private Set<ReportVO> Reports = new HashSet<ReportVO>();
+
 
 
 	public Integer getMemId() {
@@ -98,10 +99,10 @@ public class MemVO implements java.io.Serializable{
 		this.memIntr = memIntr;
 	}
 
-	public InputStream getMemPhoto() {
+	public String getMemPhoto() {
 		return memPhoto;
 	}
-	public void setMemPhoto(InputStream memPhoto) {
+	public void setMemPhoto(String memPhoto) {
 		this.memPhoto = memPhoto;
 	}
 	public String getMemStatus() {
