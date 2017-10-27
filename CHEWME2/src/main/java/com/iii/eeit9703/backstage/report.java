@@ -3,13 +3,7 @@ package com.iii.eeit9703.backstage;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.sql.Timestamp;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,16 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.engine.transaction.jta.platform.internal.SynchronizationRegistryBasedSynchronizationStrategy;
-import org.json.JSONArray;
-import org.json.simple.JSONValue;
-
-import com.iii.eeit9703.actEditor.AttrVO;
-import com.iii.eeit9703.activity.model.ActService;
-import com.iii.eeit9703.activity.model.ActivityDAO;
 import com.iii.eeit9703.activity.model.ActivityVO;
-import com.iii.eeit9703.adphoto.model.PhotoDAO;
-import com.iii.eeit9703.adphoto.model.PhotoVO;
 import com.iii.eeit9703.member.model.MemVO;
 import com.iii.eeit9703.report.ReportDAO_hibernate;
 import com.iii.eeit9703.report.ReportVO;
@@ -83,7 +68,7 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 			
 		//	SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			//Date date=sdFormat.format(System.currentTimeMillis());
-			Date date=new Date(System.currentTimeMillis());
+			Timestamp date=new Timestamp(System.currentTimeMillis());
 			//java.util.Date date = new java.util.Date(Long.MAX_VALUE);
 
 			
@@ -95,7 +80,7 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 			reportVO.setActivityVO(activityVO);
 			reportVO.setMemVO(memVO);
 			reportVO.setReportTime(date);
-			reportVO.setReportContext(text);			
+			reportVO.setReportContext("1");			
 		
 			ReportDAO_hibernate dao =new ReportDAO_hibernate();
 			dao.insert(reportVO);

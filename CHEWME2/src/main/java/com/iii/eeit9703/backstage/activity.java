@@ -6,7 +6,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,18 +14,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
-import org.json.simple.JSONValue;
 
-import com.iii.eeit9703.actEditor.AttrVO;
 import com.iii.eeit9703.activity.model.ActService;
-import com.iii.eeit9703.activity.model.ActivityDAO;
 import com.iii.eeit9703.activity.model.ActivityVO;
 import com.iii.eeit9703.adphoto.model.PhotoDAO;
 import com.iii.eeit9703.adphoto.model.PhotoVO;
-import com.iii.eeit9703.member.model.MemDAO;
 import com.iii.eeit9703.member.model.MemDAO_hibernate;
-import com.iii.eeit9703.member.model.MemService;
 import com.iii.eeit9703.member.model.MemVO;
+import com.iii.eeit9703.report.ReportDAO_hibernate;
+import com.iii.eeit9703.report.ReportVO;
 
 /**
  * Servlet implementation class activity
@@ -91,13 +87,22 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 				}
 				
 				if("getAllmember".equals(action)){
-					//MemDAO_hibernate hib= new MemDAO_hibernate();
-					MemService hib=new MemService();
+					MemDAO_hibernate hib= new MemDAO_hibernate();
+					//MemService hib=new MemService();
 
-					ArrayList<MemVO> attrList = (ArrayList<MemVO>)hib.getAll();
-				
+					List<MemVO> attrList = (ArrayList<MemVO>)hib.getAll();
 					
-					JSONArray attrArrayList = new JSONArray(attrList);
+					List<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
+					HashMap<String,String> map = null;
+					for(MemVO vo : attrList){
+						map = new HashMap<String,String>();
+						map.put("memAddr", vo.getMemAddr());
+						map.put("mamberId", vo.getMemberId().toString());
+						list.add(map);
+
+					}
+					
+					JSONArray attrArrayList = new JSONArray(list);
 			
 					out.print(attrArrayList.toString());
 					}
@@ -116,7 +121,17 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 			
 					out.print(attrArrayList.toString());
 					}
-		
+				
+					if("getAllReport".equals(action)){
+					System.out.println("getAllReport");
+					ReportDAO_hibernate dao= new ReportDAO_hibernate();
+					
+					ArrayList<ReportVO> attrList = (ArrayList<ReportVO>) dao.getAll();
+					
+					JSONArray attrArrayList = new JSONArray(attrList);
+			
+					out.print(attrArrayList.toString());
+					}
 /*			HttpSession session = request.getSession();
 			session.setAttribute("countyList", countyList);
 			

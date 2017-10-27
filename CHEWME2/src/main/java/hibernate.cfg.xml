@@ -42,9 +42,9 @@
 		<mapping resource="com/iii/eeit9703/report/report.hbm.xml" />
 <!-- 		<mapping resource="com/iii/eeit9703/collection/collection.hbm.xml" /> -->
 		<!--club 相關的映射表格 -->
- 		<mapping resource="com/iii/eeit9703/club/model/hibernate/club/club.hbm.xml" />
- 		<mapping resource="com/iii/eeit9703/club/model/hibernate/comment/Comment.hbm.xml" />
- 		<mapping resource="com/iii/eeit9703/club/model/hibernate/issue/Issue.hbm.xml" />
+<!--  		<mapping resource="com/iii/eeit9703/club/model/hibernate/club/club.hbm.xml" /> -->
+<!--  		<mapping resource="com/iii/eeit9703/club/model/hibernate/comment/Comment.hbm.xml" /> -->
+<!--  		<mapping resource="com/iii/eeit9703/club/model/hibernate/issue/Issue.hbm.xml" /> -->
 <!--    		<mapping resource="com/iii/eeit9703/club/model/hibernate/question/Question.hbm.xml" /> -->
 <!-- 		<mapping resource="com/iii/eeit9703/club/model/hibernate/reply/Reply.hbm.xml" />  -->
 <!-- 		<mapping resource="com/iii/eeit9703/crawler/model/article.hbm.xml"/> -->
