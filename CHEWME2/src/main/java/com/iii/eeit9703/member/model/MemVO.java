@@ -27,15 +27,14 @@ public class MemVO implements java.io.Serializable{
 	private Set<CollectionVO> Collects = new HashSet<CollectionVO>();
 	private Set<ReportVO> Reports = new HashSet<ReportVO>();
 
-
-
+	
+	
 	public Integer getMemId() {
 		return memId;
 	}
 	public void setMemId(Integer memId) {
 		this.memId = memId;
 	}
-	
 	public Set<ActivityVO> getActivitys() {
 		return Activitys;
 	}
@@ -45,7 +44,6 @@ public class MemVO implements java.io.Serializable{
 	public String getMemberId() {
 		return memberId;
 	}
-	
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
