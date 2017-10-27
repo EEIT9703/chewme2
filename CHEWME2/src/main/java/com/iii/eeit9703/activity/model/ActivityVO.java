@@ -1,5 +1,6 @@
 package com.iii.eeit9703.activity.model;
 
+import java.io.InputStream;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.HashSet;
@@ -20,6 +21,7 @@ public class ActivityVO implements java.io.Serializable {
 	private Date BDate;        //開始日期
 	private Date EDate;       //結束日期
 	private Integer activity_state; //活動型態  0 = 建構中, 1 = 上架  ,  2 = 被檢舉  , 3 = 下架 
+	private InputStream act_photo; //活動預覽圖
 	private Set<CollectionVO> Collects = new HashSet<CollectionVO>();
 	private Set<ReportVO> Reports = new HashSet<ReportVO>();
 	private MemVO memVO; //維浪如果jdbc 要輸入會員ID 需要 程式碼改成memVO.getMemId 
@@ -85,6 +87,12 @@ public class ActivityVO implements java.io.Serializable {
 	}
 	public void setActivity_state(Integer activity_state) {
 		this.activity_state = activity_state;
+	}
+	public InputStream getAct_photo() {
+		return act_photo;
+	}
+	public void setAct_photo(InputStream act_photo) {
+		this.act_photo = act_photo;
 	}
 	
 
