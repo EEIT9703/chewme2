@@ -153,7 +153,7 @@
   			var roles=["一般會員","社團管理員","系統管理員"];
   			
   			var opt = $('#member>tbody');
-  			opt.empty();
+  			opt.empty(); 
   			$.each(array,function(i,member){
   	         var cell1 = $('<td></td>').text(member.memId); 	 
   	       	 var cell2 = $('<td></td>').text(member.memberId);
@@ -173,8 +173,7 @@
          
 	      $.each(status,function(i){
 	    	  var sel1=$('<option></option>').text(status[i])
-	    	  		sel1.attr("value",i)
-	    	  		alert(status[i])
+	    	  		sel1.attr("value",i)  	  		
 	    	  		if(member.memStatus==status[i]){
 	    	  			sel1.attr("selected","selected")	
 	    	  		}

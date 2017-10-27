@@ -6,7 +6,10 @@ import java.util.Set;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.iii.eeit9703.activity.model.ActivityVO;
 import com.iii.eeit9703.hibernate.util.HibernateUtil;
+import com.iii.eeit9703.member.model.MemDAO_hibernate;
+import com.iii.eeit9703.member.model.MemVO;
 
 public class PhotoDAO implements Photo_interface {
 	private static final String GET_ALL_STMT = "from PhotoVO order by photo_no";
@@ -88,14 +91,16 @@ public class PhotoDAO implements Photo_interface {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	public static void main(String[] args){
-		PhotoDAO phdao = new PhotoDAO();
-		List<PhotoVO> phvolist = phdao.getAll();
-		for(PhotoVO ph : phvolist){
-			System.out.println(ph.getName());
+	public static void main(String[] args) {
+		
+		
+		PhotoDAO a=new PhotoDAO();
+		List<PhotoVO> vo=a.getAll();
+		for(PhotoVO photo : vo){
+			
+			System.out.println(photo.getPhoto_no());
 		}
 		
-	}
+		}
 
 }
