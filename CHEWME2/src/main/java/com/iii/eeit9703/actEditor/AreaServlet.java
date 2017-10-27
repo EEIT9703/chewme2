@@ -1,19 +1,20 @@
 package com.iii.eeit9703.actEditor;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
-
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.iii.eeit9703.activity.model.ActivityVO;
-import com.iii.eeit9703.adphoto.model.*;
 
 
 
@@ -47,6 +48,7 @@ public class AreaServlet extends HttpServlet {
 			String countryID = null;
 			Integer countyID = null;
 			String actName = null;
+			
 			
 			response.setCharacterEncoding("UTF-8");
 			PrintWriter out = response.getWriter();
@@ -88,19 +90,7 @@ public class AreaServlet extends HttpServlet {
 				
 				}
 			
-			if("insertACT".equals(mission)){
-				actName = request.getParameter("actName");
-				System.out.println(actName);
-				ScheduleDAO scheduledao = new ScheduleDAO();
-				ArrayList<ActivityVO> newACT = scheduledao.insertACT(actName);
-				System.out.println(newACT);
-				
-				ScheduleVO scheduleVO = new ScheduleVO();
-				scheduledao.insertSCH(scheduleVO);
-				System.out.println("insert success~");
-				
-				
-			}
+			
 
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block

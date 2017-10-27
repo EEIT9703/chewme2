@@ -68,13 +68,11 @@ input[type="file"] {
 	<div class="jumbotron">
 		<div class="container">
 			<h1>Activity</h1>
-			<form class="form-horizontal" method="post"
-				action="activityServlet.do" name="actForm">
+			<form enctype="multipart/form-data" class="form-horizontal"  method="post"  action="activityServlet.do" name="actForm">
 				<div class="from-group">
 					<label class="col-sm-2 control-lable" for="actID">選擇活動</label>
 					<div class="col-sm-10">
-						<select class="form-control input-sm" size="1" name="actID"
-							id="actID">
+						<select class="form-control input-sm" size="1" name="actID" id="actID">
 							<c:forEach var="activityVO" items="${actSvc.all}">
 								<option value="${activityVO.actID}">${activityVO.act_name}</option>
 							</c:forEach>
@@ -84,15 +82,13 @@ input[type="file"] {
 				<div class="from-group">
 					<label class="col-sm-2 control-lable" for="act_name">活動名稱</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control input-sm" name="act_name"
-							id="act_name" value=" ">
+						<input type="text" class="form-control input-sm" name="act_name" id="act_name" value=" ">
 					</div>
 				</div>
 				<div class="from-group">
 					<label class="col-sm-2 control-lable" for="act_groups">成團人數</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control input-sm" name="act_groups"
-							id="act_groups" value="">
+						<input type="text" class="form-control input-sm" name="act_groups" id="act_groups" value="">
 					</div>
 				</div>
 				<div class="from-group">
@@ -127,12 +123,11 @@ input[type="file"] {
 						</select>
 					</div>
 				</div>
-				<div class="form1">
-					<label for="file-upload"
-						class="col-sm-2 control-lable custom-file-upload glyphicon glyphicon-folder-open btn btn-success fileinput-button">
-						上傳圖片 </label>
+				<!-- <div class="form1">
+					<label for="file-upload" class="col-sm-2 control-lable custom-file-upload glyphicon glyphicon-folder-open btn btn-success fileinput-button">
+					上傳圖片 </label>
 					<div class="col-sm-4">
-						<input id="file-upload" type="file" name="upload[]" class="upload" multiple/>
+						<input id="file-upload" type="file" name="upload" value="" class="upload"/>
 						<div>
 							<div class="img"></div>
 							<div class="img"></div>
@@ -141,8 +136,12 @@ input[type="file"] {
 							<div class="img"></div>
 						</div>
 					</div>
-				</div>
-
+				</div> -->
+             <div class="form-group">
+				<label for="inputfile" style="margin-left: 10px;">上傳圖片</label> <input
+					type="file" id="inputfile" name="upload" value="upload_photo">
+				<p class="help-block"></p>
+			</div>
 
 				<div class="from-group">
 					<div class="col-sm-offset-2 col-sm-10">
@@ -195,23 +194,43 @@ input[type="file"] {
 				
                 });
 			});
-			
 			//送出更新資料
-			$('#submit').click(
-					function() {
-						var afrm = $('form[name="actForm"]');
-						//console.log(afrm)
-						$.post('/CHEWME2/activityServlet.do?action=Updata',
-								afrm.serialize(), function(data) {
-									swal('更新成功', 'Hello World!', 'success');
+			$('#submit').click(function(){
+				var formData= new FormData($('form')[0])
+				 $.ajax({
+				        type: "POST",
+				        url: "/CHEWME2/activityServlet.do?action=Updata",
+				        
+				        success: function (data) {
+				        	swal('更新成功', 'Hello World!', 'success');
 
-									$('#act_name').val(data.act_name);
-									$('#act_groups').val(data.act_groups);
-									$('#BDate').val(data.BDate);
-									$('#EDate').val(data.EDate);
-									$('#activity_state').val(data.activity_state);
-									});
-						});
+								$('#act_name').val(data.act_name);
+								$('#act_groups').val(data.act_groups);
+								$('#BDate').val(data.BDate);
+								$('#EDate').val(data.EDate);
+								$('#activity_state').val(data.activity_state);
+				        },
+				        data: formData,
+				        contentType: false,
+				        processData: false
+				    });
+			})
+			//送出更新資料
+// 			$('#submit').click(
+// 					function() {
+// 						var afrm = $('form[name="actForm"]');
+// 						//console.log(afrm)
+// 						$.post('/CHEWME2/activityServlet.do?action=Updata',
+// 								afrm.serialize(), function(data) {
+// 									swal('更新成功', 'Hello World!', 'success');
+
+// 									$('#act_name').val(data.act_name);
+// 									$('#act_groups').val(data.act_groups);
+// 									$('#BDate').val(data.BDate);
+// 									$('#EDate').val(data.EDate);
+// 									$('#activity_state').val(data.activity_state);
+// 									});
+// 						});
 			
 			$().filePreview({
 			    parent: ".form1",

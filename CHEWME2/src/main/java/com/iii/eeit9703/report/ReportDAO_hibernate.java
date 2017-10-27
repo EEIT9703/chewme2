@@ -1,6 +1,7 @@
 package com.iii.eeit9703.report;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Set;
 
@@ -89,31 +90,18 @@ public class ReportDAO_hibernate implements Report_interface {
 		ActivityVO activityVO= new ActivityVO();
 		MemVO memVO=new MemVO();
 		
-		Integer a=2;
+		Integer a=3;
 		Integer b=2;
 		activityVO.setActID(a);
 		memVO.setMemId(b);
+		Timestamp date=new Timestamp(System.currentTimeMillis());
 	
-		 	 
-//		 SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//		 Calendar tmpCal = Calendar.getInstance();
-//		 String strDate = sdFormat.format(tmpCal.getTime());
-//		 System.out.println(strDate);
-		
-	//	SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		//Date date=sdFormat.format(System.currentTimeMillis());
-		Date date=new Date(System.currentTimeMillis());
-		//Date date = new Date(Long.MAX_VALUE);
-
-		
-		System.out.println(date);
 		
 		ReportVO reportVO=new ReportVO();
-		//???	reportVO.setActivityVO(activityVO);
 		reportVO.setActivityVO(activityVO);
-		reportVO.setMemVO(memVO);
-		reportVO.setReportTime();
-		reportVO.setReportContext("3");			
+		reportVO.setMemVO(memVO);		
+		reportVO.setReportTime(date);
+		reportVO.setReportContext("apple");			
 	
 		ReportDAO_hibernate dao =new ReportDAO_hibernate();
 		dao.insert(reportVO);	
