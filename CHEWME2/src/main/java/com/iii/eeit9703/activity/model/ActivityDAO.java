@@ -1,5 +1,6 @@
 package com.iii.eeit9703.activity.model;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,8 +27,8 @@ public class ActivityDAO implements ActivityDAO_interface {
 	}
 	
 	    //新增活動
-		private static final String INSERT_STMT =
-				"INSERT INTO activity (act_name,act_groups,act_current,BDate,EDate,activity_state) VALUES (?,?,?,?,?,?) ";
+		//private static final String INSERT_STMT =
+		//		"INSERT INTO activity (act_name,act_groups,act_current,BDate,EDate,activity_state) VALUES (?,?,?,?,?,?) ";
 		//修改活動
 		private static final String UPDATE_STMT =
 				"UPDATE activity set act_name=?, act_groups=?, BDate=?, EDate=?, activity_state=?, act_photo=? where actID = ? ";
@@ -41,52 +42,52 @@ public class ActivityDAO implements ActivityDAO_interface {
 			      "SELECT actID,act_name,act_groups,act_current,BDate,EDate,activity_state FROM activity where actID = ?";
 	
 	//新增活動
-	@Override
-	public void insert(ActivityVO activityVO) {
-        
-		Connection con = null;
-		PreparedStatement pstmt =null;
-		
-		try {
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(INSERT_STMT);
-			
-			pstmt.setString(1, activityVO.getAct_name());    //活動名稱
-			pstmt.setInt(2, activityVO.getAct_groups());    //成團人數
-			pstmt.setInt(3, activityVO.getAct_current());  //當前人數
-			pstmt.setDate(4, activityVO.getBDate());      //開始日期
-			pstmt.setDate(5, activityVO.getEDate());     //結束日期
-			pstmt.setInt(6, activityVO.getActivity_state());  //活動上下架
-
-		
-			pstmt.executeUpdate();
-			
-		} catch (SQLException e) {
-			throw new RuntimeException("資料庫新增錯誤" + e.getMessage());
-			
-		}finally{
-			if(pstmt != null){	
-				try {
-					pstmt.close();
-				} catch (SQLException e1) {
-					e1.printStackTrace(System.err);
-				}
-			}
-		}
-		if(con !=null){
-			try {
-				con.close();
-			} catch (SQLException e1) {
-				e1.printStackTrace(System.err);
-			}
-		}
-		
-	}
+	//@Override
+//	public void insert(ActivityVO activityVO) {
+//        
+//		Connection con = null;
+//		PreparedStatement pstmt =null;
+//		
+//		try {
+//			con = ds.getConnection();
+//			pstmt = con.prepareStatement(INSERT_STMT);
+//			
+//			pstmt.setString(1, activityVO.getAct_name());    //活動名稱
+//			pstmt.setInt(2, activityVO.getAct_groups());    //成團人數
+//			pstmt.setInt(3, activityVO.getAct_current());  //當前人數
+//			pstmt.setDate(4, activityVO.getBDate());      //開始日期
+//			pstmt.setDate(5, activityVO.getEDate());     //結束日期
+//			pstmt.setInt(6, activityVO.getActivity_state());  //活動上下架
+//
+//		
+//			pstmt.executeUpdate();
+//			
+//		} catch (SQLException e) {
+//			throw new RuntimeException("資料庫新增錯誤" + e.getMessage());
+//			
+//		}finally{
+//			if(pstmt != null){	
+//				try {
+//					pstmt.close();
+//				} catch (SQLException e1) {
+//					e1.printStackTrace(System.err);
+//				}
+//			}
+//		}
+//		if(con !=null){
+//			try {
+//				con.close();
+//			} catch (SQLException e1) {
+//				e1.printStackTrace(System.err);
+//			}
+//		}
+//		
+//	}
 
 	
 	//修改
 	@Override
-	public void update(ActivityVO activityVO) {
+	public void update(ActivityVO activityVO,InputStream is) {
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -101,7 +102,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 			pstmt.setDate(3, activityVO.getBDate());      //開始日期
 			pstmt.setDate(4, activityVO.getEDate());     //結束日期
 			pstmt.setInt(5, activityVO.getActivity_state());  //活動上下架
-			pstmt.setBinaryStream(6, activityVO.getAct_photo());
+			pstmt.setBinaryStream(6, is);                  //預覽圖片
 			pstmt.setInt(7, activityVO.getActID());      //活動編號
 
 			pstmt.executeUpdate();
