@@ -8,22 +8,32 @@
         <id name="actID" column="actID">
             <generator class="identity"/>
         </id>
-        
-        <property name="memId" column="memId" />
+           
         <property name="act_name" column="act_name" />
         <property name="act_groups" column="act_groups" />
         <property name="act_current" column="act_current" />
         <property name="BDate" column="BDate" />
         <property name="EDate" column="EDate" />
-        <property name="activity_state" column="activity_state" />    
-             <!--改 one-many -->
-       <set name="Collects" table="collect" lazy="false" cascade="all"  inverse="true" >			
-			<key>
-				<column name="actID" />
-			</key>
-			<one-to-many class="com.iii.eeit9703.collecton.CollectionVO" />
-		</set>
-		
+        <property name="activity_state" column="activity_state" /> 
+<!--        <property name="clubID" column="clubID" />      宏宇的部分 我沒做mapping -->
+
+		<!-- 很多活動屬於一個會員 -->
+  		<many-to-one name="memVO" class="com.iii.eeit9703.member.model.MemVO" lazy="false">
+            <column name="memId" />
+        </many-to-one>
+
+
+<!--         收藏表  一方的mapping -->
+<!--        <set name="Collects" table="collect" lazy="false" cascade="all"  inverse="true" >			 -->
+<!-- 			<key> -->
+<!-- 				<column name="actID" /> -->
+<!-- 			</key> -->
+<!-- 			<one-to-many class="com.iii.eeit9703.collecton.CollectionVO" /> -->
+<!-- 		</set> -->
+	
+	
+	
+<!--         檢舉表  一方的mapping -->		
 		<set name="Reports" table="report" lazy="false" cascade="all"  inverse="true" >			
 			<key>
 				<column name="actID" />
@@ -31,6 +41,9 @@
 			<one-to-many class="com.iii.eeit9703.report.ReportVO" />
 		</set>
 		
+		
+        
+
         
     </class>
 </hibernate-mapping>

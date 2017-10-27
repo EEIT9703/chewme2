@@ -28,6 +28,8 @@
 
 #tabs-2 {
 	height: 700px;
+	border:1px solid green;
+	padding:0px;
 }
 
 #img1 {
@@ -58,10 +60,19 @@
 
 #memo {
 	resize: none;
-	width: 600px;
-	height: 70px;
-	border-radius: 10px;
-	border: 3px solid blue;
+	border-radius:3px 20px 20px 20px;	
+	border: 2px solid blue;	
+	width:600px;
+	margin-top:10px;
+	margin-left:5px;
+}
+#text1{
+	border:2px solid yellow;
+	width:690px;
+	height:500px;	
+}
+.btn.btn-info{
+	margin-left:600px;
 }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -82,8 +93,7 @@
 <body>
 	<header><%@include file="../header.jsp"%></header>
 	<div id="tabs">
-		<div
-			style="margin-left: 20px; border-bottom: 4px double green; width: 650px;">
+		<div style="margin-left: 20px; border-bottom: 4px double green; width: 650px;">
 			<h2>${attrVO.name}</h2>
 		</div>
 		<div class="st1">
@@ -110,11 +120,23 @@
 		</div>
 		<div id="tabs-2">
 
-
-			<textarea id="memo"></textarea>
-
-			<input type="button" id="button1" value="送出">
-
+			<h4 style="margin:10px 0px 10px 20px;"><strong>我要留言：</strong></h4></hr>
+			<div style="border:1px solid black;padding:3px;">
+			<table>
+			<tr>
+			<td>
+			<img src="img/portrait.png" width="40" height="40">
+			</td>
+			<td>
+				<textarea id="memo" placeholder="請輸入文字..."></textarea>
+			</td>
+			</tr>
+			</table>
+			</div>
+			<div>
+				<button type="button" class="btn btn-info" id="button1">送出留言</button>
+			</div>
+			<div id="text1"></div>
 		</div>
 		<div>
 			<a href="insertAttr.jsp" class="btn btn-default">返回</a>
@@ -129,7 +151,7 @@
 					if (val1 == "") {
 						alert("請勿空白");
 					} else {
-						$("#tabs-2").append("<div style='width:600px;height:70px;border-radius:10px;border:3px solid blue;margin:5px;'>" + val1 + "</div>");
+						$("#text1").append("<div style='width:670px;height:80px;border-radius:5px;border:1px solid blue;margin-left:8px;padding:10px;'><strong>" + val1 + "</strong></div>");
 					}
 						$("#memo").val("");
 				});

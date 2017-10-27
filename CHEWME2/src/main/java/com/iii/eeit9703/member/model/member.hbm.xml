@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?> 
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
@@ -8,8 +8,7 @@
         <id name="memId" column="memId">
             <generator class="identity"/>
         </id>
-        
-        <property name="memAccount" column="memAccount" />
+        <property name="memberId" column="memberId" />
         <property name="memName" column="memName" />
         <property name="memNickN" column="memNickN" />
         <property name="memPwd" column="memPwd" />
@@ -18,19 +17,27 @@
         <property name="memAddr" column="memAddr" />
         <property name="memPhone" column="memPhone" />
         <property name="memIntr" column="memIntr" />
-      	<property name="memPhoto" column="memPhoto" />
+<!--       	<property name="memPhoto" column="memPhoto" />  沒有圖片先不mapping -->
         <property name="memStatus" column="memStatus" />
         <property name="memRole" column="memRole" />
-   
-       
-<!--         order-by="empno asc" -->
-       <set name="Collects" table="collect" lazy="false" cascade="all"  inverse="true" >			
+        
+<!--         一個會員可以有很多活動 -->
+        <set name="Activitys" table="activity" lazy="false" cascade="all"  inverse="true"  order-by="actID asc">			
 			<key>
 				<column name="memId" />
 			</key>
-			<one-to-many class="com.iii.eeit9703.collection.CollectionVO" />
+			<one-to-many class="com.iii.eeit9703.activity.model.ActivityVO" />
 		</set>
+
+<!--         收藏表  一方的mapping -->
+<!--        <set name="Collects" table="collect" lazy="false" cascade="all"  inverse="true" >			 -->
+<!-- 			<key> -->
+<!-- 				<column name="memId" /> -->
+<!-- 			</key> -->
+<!-- 			<one-to-many class="com.iii.eeit9703.collection.CollectionVO" /> -->
+<!-- 		</set> -->
 		
+<!--         檢舉表  一方的mapping -->		
 		<set name="Reports" table="report" lazy="false" cascade="all"  inverse="true" >			
 			<key>
 				<column name="memId" />

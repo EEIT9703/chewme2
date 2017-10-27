@@ -95,6 +95,10 @@ public class AreaServlet extends HttpServlet {
 				ArrayList<ActivityVO> newACT = scheduledao.insertACT(actName);
 				System.out.println(newACT);
 				
+				ScheduleVO scheduleVO = new ScheduleVO();
+				scheduledao.insertSCH(scheduleVO);
+				System.out.println("insert success~");
+				
 				
 			}
 

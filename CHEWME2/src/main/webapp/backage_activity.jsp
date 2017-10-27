@@ -141,6 +141,28 @@
 
                     <div class="panel panel-default">
                       			 預留空間	
+                      			 <div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="btn-group">
+				 <button class="btn btn-default">Action</button> <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
+				<ul class="dropdown-menu">
+					<li>
+						 <a href="#">操作</a>
+					</li>
+					<li class="disabled">
+						 <a href="#">另一操作</a>
+					</li>
+					<li class="divider">
+					</li>
+					<li>
+						 <a href="#">其它</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
                     </div>
                 
                     <div class="chat-panel panel panel-default">
@@ -160,6 +182,8 @@
   		
   		function sendCounty(array){
   			//var docFrag = $(document.createDocumentFragment());
+  			var status=["上架","下架","待審核"];
+  			
   			var opt = $('#activity>tbody');
   			opt.empty();
   			$.each(array,function(i,activity){

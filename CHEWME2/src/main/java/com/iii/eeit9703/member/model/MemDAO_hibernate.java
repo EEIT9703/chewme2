@@ -1,10 +1,12 @@
 package com.iii.eeit9703.member.model;
 
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.iii.eeit9703.activity.model.ActivityVO;
 import com.iii.eeit9703.hibernate.util.HibernateUtil;
 
 public class MemDAO_hibernate implements MemDAO_interface {
@@ -42,21 +44,9 @@ public class MemDAO_hibernate implements MemDAO_interface {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-
-//        【此時多方(宜)可採用HQL刪除】
-//			Query query = session.createQuery("delete EmpVO where empno=?");
-//			query.setParameter(0, empno);
-//			System.out.println("刪除的筆數=" + query.executeUpdate());
-
-//        【或此時多方(也)可採用去除關聯關係後，再刪除的方式】
 			MemVO memVO = new MemVO();
 			memVO.setMemId(memId);
 			session.delete(memVO);
-
-//        【此時多方不可(不宜)採用cascade聯級刪除】
-//        【多方emp2.hbm.xml如果設為 cascade="all"或 cascade="delete"將會刪除所有相關資料-包括所屬部門與同部門的其它員工將會一併被刪除】
-//			EmpVO empVO = (EmpVO) session.get(EmpVO.class, empno);
-//			session.delete(empVO);
 
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
@@ -96,5 +86,33 @@ public class MemDAO_hibernate implements MemDAO_interface {
 		}
 		return list;
 	}
+	
+	
+	public static void main(String[] args) {
+	MemDAO_hibernate dao =new MemDAO_hibernate();
+		
+	List<MemVO> list2 = dao.getAll();
+	for (MemVO memVO : list2) {
+		System.out.print(memVO.getMemberId() + ",");
+		System.out.print(memVO.getMemMail() + ",");
+		System.out.print(memVO.getMemPhone());
+		System.out.println("\n-----------------");
+		Set<ActivityVO> Activitys =memVO.getActivitys();
+		
+		for (ActivityVO activityVO : Activitys) {
+			System.out.print(activityVO.getAct_name() + ",");
+			System.out.print(activityVO.getAct_groups() + ",");
+			System.out.print(activityVO.getAct_current());
+		
+		
+			System.out.println();
+		}
+		System.out.println();
+	}	
+	
+	
+	}
+	
+	
 
 }

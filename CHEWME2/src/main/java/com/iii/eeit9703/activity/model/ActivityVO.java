@@ -13,7 +13,7 @@ public class ActivityVO implements java.io.Serializable {
 	
 	//活動表
 	private Integer actID;       //行程編號(完成編輯)
-	private Integer memId;  //會員編號
+	//private Integer memId;  //會員編號
 	private String  act_name;  //活動名稱
 	private Integer act_groups; //成團人數
 	private Integer act_current;//當前人數
@@ -22,7 +22,20 @@ public class ActivityVO implements java.io.Serializable {
 	private Integer activity_state; //活動型態  0 = 建構中, 1 = 上架  ,  2 = 被檢舉  , 3 = 下架 
 	private Set<CollectionVO> Collects = new HashSet<CollectionVO>();
 	private Set<ReportVO> Reports = new HashSet<ReportVO>();
+	private MemVO memVO;
 
+	public MemVO getMemVO() {
+		return memVO;
+	}
+	public void setMemVO(MemVO memVO) {
+		this.memVO = memVO;
+	}
+	public Set<ReportVO> getReports() {
+		return Reports;
+	}
+	public void setReports(Set<ReportVO> reports) {
+		Reports = reports;
+	}
 	public Set<CollectionVO> getCollects() {
 		return Collects;
 	}
@@ -36,13 +49,7 @@ public class ActivityVO implements java.io.Serializable {
 	public void setActID(Integer actID) {
 		this.actID = actID;
 	}
-	
-	public Integer getMemId() {
-		return memId;
-	}
-	public void setMemId(Integer memId) {
-		this.memId = memId;
-	}
+
 	public String getAct_name() {
 		return act_name;
 	}

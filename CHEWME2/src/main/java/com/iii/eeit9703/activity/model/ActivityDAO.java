@@ -25,12 +25,12 @@ public class ActivityDAO implements ActivityDAO_interface {
 		}
 	}
 	
-	//新增活動
+	    //新增活動
 		private static final String INSERT_STMT =
-				"INSERT INTO activity (act_name,act_groups,act_current,BDate,EDate,activity_state) VALUES (?,?,?,?,?,?,?) ";
+				"INSERT INTO activity (act_name,act_groups,act_current,BDate,EDate,activity_state) VALUES (?,?,?,?,?,?) ";
 		//修改活動
 		private static final String UPDATE_STMT =
-				"UPDATE activity set act_name=?, act_groups=?, BDate=?, EDate=?, activity_state=?,   where actID = ? ";
+				"UPDATE activity set act_name=?, act_groups=?, BDate=?, EDate=?, activity_state=? where actID = ? ";
 		//刪除活動
 		private static final String DELETE_STMT =
 				"DELETE FROM activity actID = ?";
@@ -101,10 +101,8 @@ public class ActivityDAO implements ActivityDAO_interface {
 			pstmt.setDate(3, activityVO.getBDate());      //開始日期
 			pstmt.setDate(4, activityVO.getEDate());     //結束日期
 			pstmt.setInt(5, activityVO.getActivity_state());  //活動上下架
+			pstmt.setInt(6, activityVO.getActID());
 
-
-			
-			
 			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {

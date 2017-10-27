@@ -45,12 +45,9 @@ public class ActivityServlet extends HttpServlet {
 		
 		String action = req.getParameter("action");
 		PrintWriter out = resp.getWriter();
-<<<<<<< HEAD
-=======
 
 		System.out.println(action);
 		
->>>>>>> branch 'master' of https://github.com/EEIT9703/chewme2.git
 		//新增活動
 /*		if("insert".equals(action)){  //來自XXX.jsp的請求
 				
@@ -97,7 +94,7 @@ public class ActivityServlet extends HttpServlet {
 			try {
 				//1.接收請求	
 				Integer actID = new Integer(req.getParameter("actID")); 
-
+				System.out.println(actID);
 				//2.開始查詢資料
 				ActService actSvc = new ActService();
 				ActivityVO activityVO = actSvc.getOneAct(actID);
@@ -110,7 +107,7 @@ public class ActivityServlet extends HttpServlet {
 				//處理錯誤
 			} catch (NumberFormatException e) {
 				errorMsgs.add("無法取得要修改的資料"+e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("createAct.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/act/createAct.jsp");
 				failureView.forward(req, resp);
 				e.printStackTrace();
 			}
@@ -122,85 +119,55 @@ public class ActivityServlet extends HttpServlet {
 		if("Updata".equals(action)){  //來自/createActivity.jsp 請求
 			
 			System.out.println("XX");
+			System.out.println(req.getParameter("actID"));
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			
 			try {
-				//1.接收請求
-				Integer actID = new Integer(req.getParameter("a"));
-				System.out.println(actID);
-				String act_name = req.getParameter("b");
-				Integer act_groups = new Integer(req.getParameter("c"));
-				Date BDate = java.sql.Date.valueOf(req.getParameter("d"));
-				Date EDate = java.sql.Date.valueOf(req.getParameter("e"));
-				Integer activity_state = new Integer(req.getParameter("f"));
+				//1.接收請求 createAct.jsp
+				
+				Integer actID = new Integer(req.getParameter("actID"));
+				String act_name = req.getParameter("act_name");				
+				Integer act_groups = new Integer(req.getParameter("act_groups"));
+				Date BDate = java.sql.Date.valueOf(req.getParameter("BDate"));
+				Date EDate = java.sql.Date.valueOf(req.getParameter("EDate"));
+				Integer activity_state = new Integer(req.getParameter("activity_state"));
 				
 				System.out.println("HELLO");
 				
-//			Integer actID =new Integer(req.getParameter("actID").trim());
+//			    Integer actID =new Integer(req.getParameter("actID").trim());
 				
-<<<<<<< HEAD
 				ActivityVO activityVO = new ActivityVO();
+				
 				
 				activityVO.setAct_name(act_name);
 				activityVO.setAct_groups(act_groups);
-				activityVO.setAct_current(act_current);
 				activityVO.setBDate(BDate);
 				activityVO.setEDate(EDate);
 				activityVO.setActivity_state(activity_state);
+				activityVO.setActID(actID);
+				
 				
 				if(!errorMsgs.isEmpty()){
 					req.setAttribute("activityVO", activityVO); //含有輸入錯誤的activityVO 也存入req
-					RequestDispatcher failureView =req.getRequestDispatcher("createAct.jsp");
+					RequestDispatcher failureView =req.getRequestDispatcher("/act/createAct.jsp");
 					failureView.forward(req, resp);
 					return;
 				}
 				
-				//2.開始修改資料
+				//2.開始修改資料 呼叫工頭 ActService.java
 				ActService actSvc = new ActService();
-				activityVO = actSvc.updateAct(actID, act_name, act_groups, act_current, BDate, EDate, activity_state);
+				actSvc.updateAct(activityVO);
 				
 				//修改完成  準備轉交
 				req.setAttribute("activityVO", activityVO);  //資料庫update成功後 正確的activityVO 存入req
-				String url = "createAct.jsp";
+				String url = "/act/createAct.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, resp);
-=======
-//				ActivityVO activityVO = new ActivityVO();
-//				
-//				activityVO.setActID(actID);
-//				activityVO.setAct_name(act_name);
-//				activityVO.setAct_groups(act_groups);
-//			
-//				activityVO.setBDate(BDate);
-//				activityVO.setEDate(EDate);
-//				activityVO.setActivity_state(activity_state);
-//				
-//				if(!errorMsgs.isEmpty()){
-//					req.setAttribute("activityVO", activityVO); //含有輸入錯誤的activityVO 也存入req
-//					RequestDispatcher failureView =req.getRequestDispatcher("/act/createAct.jsp");
-//					failureView.forward(req, resp);
-//					return;
-//				}
-//				
-//				//2.開始修改資料
-//				ActService actSvc = new ActService();
-//				actSvc.updateAct(act_name, act_groups, BDate, EDate, activity_state);
-//				
-//				//修改完成  準備轉交
-//				req.setAttribute("activityVO", activityVO);  //資料庫update成功後 正確的activityVO 存入req
-//				String url = "/act/createAct.jsp";
-//				RequestDispatcher successView = req.getRequestDispatcher(url);
-//				successView.forward(req, resp);
->>>>>>> branch 'master' of https://github.com/EEIT9703/chewme2.git
 				
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗"+e.getMessage());
-<<<<<<< HEAD
-				RequestDispatcher failureView =req.getRequestDispatcher("createAct.jsp");
-=======
 				RequestDispatcher failureView =req.getRequestDispatcher("/act/createAct.jsp");
->>>>>>> branch 'master' of https://github.com/EEIT9703/chewme2.git
 				failureView.forward(req, resp);
 				e.printStackTrace();
 			}
