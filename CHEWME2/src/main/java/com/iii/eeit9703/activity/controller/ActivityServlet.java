@@ -1,6 +1,7 @@
 package com.iii.eeit9703.activity.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import org.json.*;
 import org.json.simple.JSONValue;
@@ -31,6 +33,7 @@ public class ActivityServlet extends HttpServlet {
 			throws ServletException, IOException {
 		doPost(req, resp);
 	}
+
 
 
 	@Override
@@ -125,6 +128,7 @@ public class ActivityServlet extends HttpServlet {
 			
 			try {
 				//1.接收請求 createAct.jsp
+				InputStream inputStream = null;
 				
 				Integer actID = new Integer(req.getParameter("actID"));
 				String act_name = req.getParameter("act_name");				
@@ -133,20 +137,25 @@ public class ActivityServlet extends HttpServlet {
 				Date EDate = java.sql.Date.valueOf(req.getParameter("EDate"));
 				Integer activity_state = new Integer(req.getParameter("activity_state"));
 				
+				Part act_photo = req.getPart("act_photo");
+				
+				//會員選擇的圖片不為空的,將圖片存入
+				if(act_photo != null){
+					inputStream = act_photo.getInputStream();
+				}
 				System.out.println("HELLO");
 				
 //			    Integer actID =new Integer(req.getParameter("actID").trim());
 				
 				ActivityVO activityVO = new ActivityVO();
-				
-				
+					
 				activityVO.setAct_name(act_name);
 				activityVO.setAct_groups(act_groups);
 				activityVO.setBDate(BDate);
 				activityVO.setEDate(EDate);
 				activityVO.setActivity_state(activity_state);
 				activityVO.setActID(actID);
-				
+				activityVO.setAct_photo(inputStream);
 				
 				if(!errorMsgs.isEmpty()){
 					req.setAttribute("activityVO", activityVO); //含有輸入錯誤的activityVO 也存入req

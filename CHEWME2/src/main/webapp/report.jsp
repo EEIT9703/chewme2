@@ -65,7 +65,10 @@
                         </li>
                         <li>
                             <a href="backage_activity.jsp"><i class="fa fa-edit fa-fw"></i>活動管理</a>
-                        </li>                      
+                        </li>
+                         <li>
+                            <a href="backage_member.jsp"><i class="fa fa-edit fa-fw"></i>會員管理</a>
+                        </li>                          
                         <li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">

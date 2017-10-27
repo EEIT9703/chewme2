@@ -41,23 +41,21 @@
 <!-- SweetAlert  -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-<script src="/js/jquery.fileupload.js"></script>
-<script src="/js/jquery.iframe-transport.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="../js/jquery.file-preview.js"></script>
 
 
 
 </head>
 <style>
 input[type="file"] {
-    display: none;
+	display: none;
 }
 
 .custom-file-upload {
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
+	border: 1px solid #ccc;
+	display: inline-block;
+	padding: 6px 12px;
+	cursor: pointer;
 }
 </style>
 
@@ -129,22 +127,21 @@ input[type="file"] {
 						</select>
 					</div>
 				</div>
-				<div class="form-group">
-<label for="file-upload" class="custom-file-upload">
-    Custom Upload
-</label>
-<input id="file-upload" type="file"/>					<i class="fa fa-photo"></i> 
-					<input style="display:none;" type='file' class="btn btn-success fileinput-button" name="files[]" multiple id="act_photo">
-					<div class="col-sm-10">
-						<img class="preview" style="max-width: 150px; max-height: 150px;">
-						<!--顯示檔案大小-->
-						<div class="size"></div>
+				<div class="form1">
+					<label for="file-upload"
+						class="col-sm-2 control-lable custom-file-upload glyphicon glyphicon-folder-open btn btn-success fileinput-button">
+						上傳圖片 </label>
+					<div class="col-sm-4">
+						<input id="file-upload" type="file" name="upload[]" class="upload" multiple/>
+						<div>
+							<div class="img"></div>
+							<div class="img"></div>
+							<div class="img"></div>
+							<div class="img"></div>
+							<div class="img"></div>
+						</div>
 					</div>
 				</div>
-				<span class="btn btn-success fileinput-button"> 
-				<i class="glyphicon glyphicon-plus"></i> <span>Add files...</span> 
-					<input id="fileupload" type="file" name="files[]" multiple>
-				</span>
 
 
 				<div class="from-group">
@@ -158,6 +155,8 @@ input[type="file"] {
 			</form>
 		</div>
 	</div>
+
+
 
 
 	<script>
@@ -176,44 +175,28 @@ input[type="file"] {
 				changeYear : true,
 				dateFormat : "yy-mm-dd"
 			});
-
+			
+			//選擇上架
 			$("#activity_state").selectmenu();
 
-			//觸發actID
-			$("#actID")
-					.change(
-							function() {
-								//var data;
-								var actID = $(this).val();
-								console.log(actID);
-
-								$
-										.getJSON(
-												'/CHEWME2/activityServlet.do?action=getOne_For_Update',
-												{
-													'actID' : actID
-												},
-												function(data) {
-
-													//actID = JSON.parse(data);
-													console.log(data);
-
-													$('#act_name').val(
-															data.act_name);
-													$('#act_groups').val(
-															data.act_groups);
-													$('#act_current').val(
-															data.act_current);
-													$('#BDate').val(data.BDate);
-													$('#EDate').val(data.EDate);
-													$('#activity_state')
-															.val(
-																	data.activity_state);
-
-												});
-
-							});
-
+			//觸發actID,帶入資料到<input>
+			$("#actID").change(function() {
+                var actID = $(this).val();
+                console.log(actID);
+                $.getJSON('/CHEWME2/activityServlet.do?action=getOne_For_Update',{'actID' : actID},function(data) {
+			    //actID = JSON.parse(data);
+			    console.log(data);
+			    $('#act_name').val(data.act_name);
+			    $('#act_groups').val(data.act_groups);
+			    $('#act_current').val(data.act_current);
+				$('#BDate').val(data.BDate);
+				$('#EDate').val(data.EDate);
+				$('#activity_state').val(data.activity_state);
+				
+                });
+			});
+			
+			//送出更新資料
 			$('#submit').click(
 					function() {
 						var afrm = $('form[name="actForm"]');
@@ -226,13 +209,18 @@ input[type="file"] {
 									$('#act_groups').val(data.act_groups);
 									$('#BDate').val(data.BDate);
 									$('#EDate').val(data.EDate);
-									$('#activity_state').val(
-											data.activity_state);
-
-								});
-					});
-
-		});
+									$('#activity_state').val(data.activity_state);
+									});
+						});
+			
+			$().filePreview({
+			    parent: ".form1",
+			    selector: ".upload",
+			    success: function (key, obj){
+			        console.log(obj)
+			    }
+			});
+			});
 	</script>
 </body>
 </html>
