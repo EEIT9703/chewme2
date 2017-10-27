@@ -8,6 +8,9 @@
 <html>
 <head>
 <style>
+input[type = "file"]{
+	display:none;
+}
 .aaa {
 	position: absolute;
 	right: -10px;
@@ -26,6 +29,13 @@
 .nav-shopping-cart {
 	position: relative;
 	display: inline-block;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
 }
 </style>
 
@@ -94,9 +104,9 @@
 				<textarea id="introduction" name="intro" cols="40" rows="5"
 					style="resize: none; width: 690px;" value="${attrVO.intro}"></textarea>
 			</div>
-			<div class="form-group">
-				<label for="inputfile" style="margin-left: 10px;">上傳圖片</label> <input
-					type="file" id="inputfile" name="photo" value="upload_photo">
+			<div class="form-group">			
+				<label for="inputfile" style="margin-left: 10px;">上傳圖片</label>				
+				<input type="file" id="inputfile" name="photo" value="upload_photo" class="	glyphicon glyphicon-folder-open">
 				<p class="help-block"></p>
 			</div>
 			<div>
@@ -106,7 +116,7 @@
 						<button type="submit" class="btn btn-default">送出</button> <input
 						type="hidden" name="action" value="insert">
 					</td>
-					<td><a href="listAll.jsp" class="btn btn-primary">查詢</a></td>
+					<td><a href="listAll.jsp" class="btn btn-primary">返回列表</a></td>
 				</tr>
 			</div>
 		</form>

@@ -112,8 +112,8 @@
 
 						<div style="width: 200px;">${attrVO.intro}</div>
 					</td>
-					<td style="padding: 20px;"><span> <img id="img1"
-							src="<%=request.getContextPath()%>/getImage.do?id=${attrVO.name}&type=uploadimg">
+					<td style="padding: 20px;"><span> 
+					<img id="img1" src="<%=request.getContextPath()%>/getImage.do?id=${attrVO.name}&type=uploadimg">
 					</span></td>
 				</tr>
 			</table>
@@ -128,7 +128,7 @@
 			<img src="img/portrait.png" width="40" height="40">
 			</td>
 			<td>
-				<textarea id="memo" placeholder="請輸入文字..."></textarea>
+				<textarea id="memo" placeholder="請輸入內容..."></textarea>
 			</td>
 			</tr>
 			</table>

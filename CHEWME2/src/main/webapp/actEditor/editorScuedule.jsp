@@ -21,12 +21,12 @@
 <script src='/CHEWME2/js/scheduler.js'></script>
 
 <!-- Bootstrap CSS & JS -->
-<!-- <link rel="stylesheet" href="/CHEWME2/css/bootstrap.css"> -->
+<link rel="stylesheet" href="/CHEWME2/css/bootstrap.css">
 <link rel="stylesheet" href="/CHEWME2/css/bootstrap.min.css">
-<!-- <link rel="stylesheet" href="/CHEWME2/css/bootstrap-responsive.css"> -->
+<link rel="stylesheet" href="/CHEWME2/css/bootstrap-responsive.css">
 <link rel="stylesheet" href="/CHEWME2/css/bootstrap-responsive.min.css">
 <script src="/CHEWME2/js/popper.min.js"></script>
-<!-- <script src="/CHEWME2/js/bootstrap.js"></script> -->
+<script src="/CHEWME2/js/bootstrap.js"></script>
 <script src="/CHEWME2/js/bootstrap.min.js"></script>
 
 
@@ -53,13 +53,13 @@ option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 <FORM METHOD="post" ACTION="/AreaServlet.do">
 
 <header><%@include file="../header.jsp"%></header>
-<br><br><br><br>
+
 <!-- calendar顯示div處 -->
-<div id='calendar' class='span6' ></div>
+<div id='calendar' class='span8' ></div>
 
 <!-- 選擇器區塊 -->
 <div class="row">
-	<div class="span6">
+	<div class="span4">
 		<br>
 		<b>行程名稱：</b> <input id="actName"><br><br>
 		<b>(1) 選擇縣市：</b>
@@ -251,6 +251,8 @@ $(function() {
 
 $(function() {
 			
+    			var schID = new Array();
+    			var status =0;
 //initialize the calendar
 	$('#calendar').fullCalendar({
     	height: 700,
@@ -262,30 +264,70 @@ $(function() {
     	minTime:"01:00",												//設定時間軸從何時開始顯示(maxTime：結束時間)
     	editable: true,														//設定可否手動編輯事件
     	eventOverlap:false,												//設定事件可否重疊
-    	eventBackgroundColor: "#FFF8D7",			//設定日曆上所有事件的背景色
+    	eventBackgroundColor: "	#FFE153",			//設定日曆上所有事件的背景色
     	eventBorderColor:"#00A600",						//設定日曆上所有事件的框線色
     	eventTextColor:"#000000",								//設定日曆上所有事件的字體色
     	droppable: true,													//設定可否放置物件
     	//dropAccept:".item",											//設定允許放置的物件類型
-    	drop: function(date,jsEven,ui,resourceId) {
+		drop: function(date,jsEven,ui,resourceId) {
     			console.log('drop', date.format(), resourceId);
 
     			// retrieve the dropped element's stored Event Object
     			var originalEventObject = $(this).data('eventObject');
 //    			alert(originalEventObject.id);
     			// we need to copy it, so that multiple events don't have a reference to the same object
-    			var copiedEventObject = $.extend({}, originalEventObject);
+    			var copiedEventObject = $.extend({}, originalEventObject);		//將選項值與預設合併，但不修改預設
     			// assign it the date that was reported
     			copiedEventObject.start = date;
     			// render the event on the calendar
     			// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
     			$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+    			
+
     	    },
-    	    eventReceive: function(event) { // called when a proper external event is dropped
-				console.log('eventReceive', event);
+		eventReceive: function(event) { // called when a proper external event is dropped
+				//console.log('eventReceive', event);
+    			//將資料寫入資料庫
+    			var eventObject=[];
+    			
+				console.log(event.id);
+    			console.log(event.resourceId.charAt(3));
+    			console.log(event.start.format("HH:mm"));
+    			
+    			if(status ==0){
+    				var attractionID = event.id;
+    				var dayNo = event.resourceId.charAt(3);
+    				var period = event.start.format("HH:mm");
+    				var eventData = {attractionID:attractionID,dayNo:dayNo,period:period};
+    				eventObject.push(eventData);
+    			
+    				$.post('/CHEWME2/Calendar.do?mission=insertSCH',{"events":JSON.stringify(eventObject)},function(scheduleID){
+        				console.log(scheduleID);
+        				schID.push(scheduleID);
+        				console.log(schID);
+        			});
+    				status ++;
+    			}else{
+    				//break;
+    			}
+    			
 			},
-			eventDrop: function(event) { // called when an event (already on the calendar) is moved
-				console.log('eventDrop', event);
+		eventDrop: function(event) { // called when an event (already on the calendar) is moved
+			var eventObject=[];	
+			
+			console.log('eventDrop', event);
+    		console.log(event.id);
+        	console.log(event.start.format("HH:mm"));
+        			
+        	var attractionID = event.id;
+        	var period = event.start.format("HH:mm");
+        	var eventData = {attractionID:attractionID,period:period};
+        	eventObject.push(eventData);
+        			
+    		$.post('/CHEWME2/Calendar.do?mission=updateSCH',{"events":JSON.stringify(eventObject)},function(scheduleID){
+        			console.log(period);
+        	});
+				
 			},
 
     	//columnHeader:false,

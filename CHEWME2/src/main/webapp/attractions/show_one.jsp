@@ -53,6 +53,22 @@
 	position: relative;
 	display: inline-block;
 }
+#memo {
+	resize: none;
+	border-radius:3px 20px 20px 20px;	
+	border: 2px solid blue;	
+	width:600px;
+	margin-top:10px;
+	margin-left:5px;
+}
+#text1{
+	border:2px solid yellow;
+	width:690px;
+	height:500px;	
+}
+.btn.btn-info{
+	margin-left:600px;
+}
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -99,19 +115,37 @@
 					</tr>
 				</table>
 			</div>
-			<div id="tabs-2"></div>
-			<div></div>
+			<div id="tabs-2">
+			<h4 style="margin:10px 0px 10px 20px;"><strong>我要留言：</strong></h4></hr>
+			<div style="border:1px solid black;padding:3px;">
+			<table>
+			<tr>
+			<td>
+			<img src="img/portrait.png" width="40" height="40">
+			</td>
+			<td>
+				<textarea id="memo" placeholder="請輸入內容..."></textarea>
+			</td>
+			</tr>
+			</table>
+			</div>
+			<div>
+				<button type="button" class="btn btn-info" id="button1">送出留言</button>
+			</div>
+			<div id="text1"></div>
+			</div>
+			
 			<div>
 				
 					<tr>
 						<td>
 							<div class="checkbox"></div>
 							<button type="submit" class="btn btn-default">編輯</button> <input
-							type="hidden" name="attractionID" value="${attrVO.attractionID}">
+							type="hidden" name="attractionID" id="id1" value="${attrVO.attractionID}">
 							<input type="hidden" name="action" value="update_one">
 						</td>
 						<td>
-							<a href="listAll.jsp" class="btn btn-primary">返回</a>
+							<a href="listAll.jsp" class="btn btn-primary">返回列表</a>
 						</td>
 
 					</tr>
@@ -119,5 +153,33 @@
 			</div>
 		</div>
 	</form>
+	<script>
+		$(function() {
+			$("#button1").click(function() {
+				//console.log(id1.value);
+				var val1 = $("#memo").val();
+					if (val1 == "") {
+						alert("請勿空白");
+					} else {
+						$("#text1").append("<div style='width:670px;height:80px;border-radius:5px;border:1px solid blue;margin-left:8px;padding:10px;'><strong>" + val1 + "</strong></div>");
+					}
+						$("#memo").val("");
+				});
+			$("#text1").each(function(){
+				var attr = document.getElementById("id1");
+				
+				console.log(attr);
+				
+				$.get("/CHWME2/ArticleServlet?action=getArticle",{""},function(data){
+					
+			})
+			
+			
+				
+				
+			})
+			
+		})
+	</script>
 </body>
 </html>

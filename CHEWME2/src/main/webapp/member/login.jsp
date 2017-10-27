@@ -10,7 +10,7 @@
 	href="<%=request.getContextPath()%>/css/bootstrap.min.css">
 </head>
 <body>
-<header><%@ include file="../header.jsp"%></header>
+<header><%@ include file="/header.jsp"%></header>
 	<form action="login.do" method="post" name="loginForm">
 		<div>
 			<table>

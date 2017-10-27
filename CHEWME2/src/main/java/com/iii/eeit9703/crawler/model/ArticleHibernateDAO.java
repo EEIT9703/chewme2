@@ -81,8 +81,8 @@ public class ArticleHibernateDAO implements ArticleDAO_interface {
 		// 查單筆
 //		ArticleVO attrPK = dao.findByPK(3);
 //		System.out.print(attrPK.getArticleID() + ",");
-//		System.out.print(attrPK.getMemberID() + ",");
-//		System.out.print(attrPK.getName() + ",");
+//		System.out.print(attrPK.getMemId() + ",");
+//		System.out.print(attrPK.getAttractionID() + ",");
 //		System.out.print(attrPK.getContents() + ",");
 		
 		// 新增
