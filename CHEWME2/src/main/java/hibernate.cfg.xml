@@ -2,11 +2,11 @@
 <!DOCTYPE hibernate-configuration PUBLIC
 		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
 		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
-		
+				
 <hibernate-configuration>
 	<session-factory>
         
-        <!-- 連線池c3p0設定-->
+        <!-- 連線池c3p0設定-->								
 		<property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
 		<property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;DatabaseName=CMDB</property>
 		<property name="hibernate.connection.username">sa</property>
