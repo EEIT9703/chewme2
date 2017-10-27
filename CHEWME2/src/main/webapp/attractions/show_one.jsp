@@ -141,7 +141,7 @@
 						<td>
 							<div class="checkbox"></div>
 							<button type="submit" class="btn btn-default">編輯</button> <input
-							type="hidden" name="attractionID" value="${attrVO.attractionID}">
+							type="hidden" name="attractionID" id="id1" value="${attrVO.attractionID}">
 							<input type="hidden" name="action" value="update_one">
 						</td>
 						<td>
@@ -156,6 +156,7 @@
 	<script>
 		$(function() {
 			$("#button1").click(function() {
+				//console.log(id1.value);
 				var val1 = $("#memo").val();
 					if (val1 == "") {
 						alert("請勿空白");
@@ -164,7 +165,19 @@
 					}
 						$("#memo").val("");
 				});
+			$("#text1").each(function(){
+				var attr = document.getElementById("id1");
+				
+				console.log(attr);
+				
+				$.get("/CHWME2/ArticleServlet?action=getArticle",{""},function(data){
+					
+			})
 			
+			
+				
+				
+			})
 			
 		})
 	</script>

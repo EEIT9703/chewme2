@@ -70,20 +70,20 @@ public class ArticleHibernateDAO implements ArticleDAO_interface {
 		
 		// 查全部
 		List<ArticleVO> list = dao.getAll();
-//		for (ArticleVO atc : list) {
-//			System.out.print(atc.getArticleID() + ",");
-//			System.out.print(atc.getMemId() + ",");
-//			System.out.print(atc.getAttractionID() + ",");
-//			System.out.print(atc.getContents() + ",");
-//			System.out.println();
-//		}
+		for (ArticleVO atc : list) {
+			System.out.print(atc.getArticleID() + ",");
+			System.out.print(atc.getMemId() + ",");
+			System.out.print(atc.getAttractionID() + ",");
+			System.out.print(atc.getContents() + ",");
+			System.out.println();
+		}
 		
 		// 查單筆
-		ArticleVO attrPK = dao.findByPK(3);
-		System.out.print(attrPK.getArticleID() + ",");
-		System.out.print(attrPK.getMemId() + ",");
-		System.out.print(attrPK.getAttractionID() + ",");
-		System.out.print(attrPK.getContents() + ",");
+//		ArticleVO attrPK = dao.findByPK(3);
+//		System.out.print(attrPK.getArticleID() + ",");
+//		System.out.print(attrPK.getMemId() + ",");
+//		System.out.print(attrPK.getAttractionID() + ",");
+//		System.out.print(attrPK.getContents() + ",");
 		
 		// 新增
 //		ArticleVO articleVO = new ArticleVO();
