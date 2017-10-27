@@ -110,6 +110,18 @@ public class ClubHibernateDAO implements ClubDAOI{
 			System.out.print(aClub.getVistorsInMonth() + ",");
 			System.out.println(aClub.getAddr() + ",");
 		}
+		
+		ClubVO aClub = chd.getOne(1);
+		System.out.print(aClub.getClubId() + ",");
+		System.out.print(aClub.getClubName() + ",");
+		System.out.print(aClub.getManagerId() + ",");
+		System.out.print(aClub.getLocationId() + ",");
+		System.out.print(aClub.getBrief() + ",");
+		System.out.print(aClub.getRefURL() + ",");
+		System.out.print(aClub.getVistors() + ",");
+		System.out.print(aClub.getVistorsInMonth() + ",");
+		System.out.println(aClub.getAddr() + ",");
+	
 		/*// ���U�A��
 		Configuration cfg = new Configuration().configure();
 		ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(cfg.getProperties()).build();
