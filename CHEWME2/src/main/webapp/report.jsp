@@ -193,10 +193,9 @@
 
 	$(function() {
 					
-		$.get('activity?action=getAllReport', {}, function(data) {
-			count=data.data.length;					
-			$.each(data.data, function(i,report) {
-				alert(report.memVO.memId)
+		$.get('activity?action=getAllReport', {}, function(data) {							
+			$.each(data, function(i,report) {
+				alert(report)
 		
 //  				cell1.push({ title: report, start: '2017-10-05',context:"你好阿"});
 			})

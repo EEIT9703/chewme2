@@ -90,8 +90,8 @@ public class ReportDAO_hibernate implements Report_interface {
 		ActivityVO activityVO= new ActivityVO();
 		MemVO memVO=new MemVO();
 		
-		Integer a=3;
-		Integer b=2;
+		Integer a=2;
+		Integer b=1;
 		activityVO.setActID(a);
 		memVO.setMemId(b);
 		Timestamp date=new Timestamp(System.currentTimeMillis());
@@ -101,7 +101,7 @@ public class ReportDAO_hibernate implements Report_interface {
 		reportVO.setActivityVO(activityVO);
 		reportVO.setMemVO(memVO);		
 		reportVO.setReportTime(date);
-		reportVO.setReportContext("apple");			
+		reportVO.setReportContext("fuck");			
 	
 		ReportDAO_hibernate dao =new ReportDAO_hibernate();
 		dao.insert(reportVO);	

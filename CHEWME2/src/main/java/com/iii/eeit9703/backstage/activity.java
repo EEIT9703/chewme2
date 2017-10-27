@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
+import org.json.simple.JSONValue;
 
 import com.iii.eeit9703.activity.model.ActService;
 import com.iii.eeit9703.activity.model.ActivityVO;
@@ -23,6 +25,8 @@ import com.iii.eeit9703.member.model.MemDAO_hibernate;
 import com.iii.eeit9703.member.model.MemVO;
 import com.iii.eeit9703.report.ReportDAO_hibernate;
 import com.iii.eeit9703.report.ReportVO;
+
+
 
 /**
  * Servlet implementation class activity
@@ -124,11 +128,15 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 				
 					if("getAllReport".equals(action)){
 					System.out.println("getAllReport");
-					ReportDAO_hibernate dao= new ReportDAO_hibernate();
-					
-					ArrayList<ReportVO> attrList = (ArrayList<ReportVO>) dao.getAll();
-						
-				
+					ReportDAO_hibernate dao= new ReportDAO_hibernate();				
+					List<ReportVO> List = dao.getAll();
+					for(ReportVO vo:List){
+						System.out.println(vo.getReportContext());
+						System.out.println(vo.getMemVO().getMemberId());
+					}
+					String jsonString =JSONValue.toJSONString(List);
+					System.out.println(jsonString);
+					out.println(jsonString);
 					}
 /*			HttpSession session = request.getSession();
 			session.setAttribute("countyList", countyList);
