@@ -32,10 +32,24 @@
 				<li class="nav-shopping-cart"><img
 					src="<%=request.getContextPath()%>/image/car.gif" width=50px
 					height=50px /><span class="aaa" data-reactid="65">2</span></li>
-				<li><a class="nav-link" href="member/login.jsp"><span
-						class="glyphicon glyphicon-log-in"></span> 登入</a></li>
-				<li><a class="nav-link" href="member/register.jsp"><span
-						class="glyphicon glyphicon-registration-mark"></span> 註冊</a></li>
+				<li><c:if test="${  empty LoginOK }">
+						<a class="nav-link" href="<c:url value='/member/login.jsp' />"><span
+							class="glyphicon glyphicon-log-in"></span>登入 </a>
+					</c:if></li>
+
+				<li><c:if test="${ ! empty LoginOK }">
+						<a class="nav-link" href="<c:url value='/member/logout.jsp' />"><span
+							class="glyphicon glyphicon-log-in"></span>登出 </a>
+					</c:if></li>
+
+				<li><c:if test="${  empty LoginOK }">
+						<a class="nav-link" href="<c:url value='/member/login.jsp' />"><span
+							class="glyphicon glyphicon-log-in"></span>註冊 </a>
+					</c:if></li>
+				<li><c:if test="${ ! empty LoginOK }">
+						<a><span class="glyphicon glyphicon-log-in">${LoginOK.memberId }</span></a>
+<%-- 							<img src='${LoginOK.memPhoto}'width=100px height=100px> --%>
+					</c:if></li>
 			</ul>
 		</div>
 	</div>

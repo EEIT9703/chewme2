@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
 <meta charset="utf-8" />
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
 <!-- <link rel="stylesheet" href="css/mybootstrap.css"> -->
 <style>
 .aaa {
@@ -177,11 +177,11 @@ ul, li {
 			</div>
 		</div>
 	</article>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 
 
-	<script src="js/slideshow.js">	</script>
+	<script src="<%=request.getContextPath()%>/js/slideshow.js">	</script>
 
 </body>
 

@@ -40,7 +40,7 @@ public class MemJDBCDAO {
 			pstmt.setString(7, memVO.getMemAddr());
 			pstmt.setString(8, memVO.getMemPhone());
 			pstmt.setString(9, memVO.getMemIntr());
-			pstmt.setBinaryStream(10, memVO.getMemPhoto());
+			pstmt.setString(10, memVO.getMemPhoto());
 
 
 
@@ -92,7 +92,7 @@ public class MemJDBCDAO {
 			pstmt.setString(7, memVO.getMemAddr());
 			pstmt.setString(8, memVO.getMemPhone());
 			pstmt.setString(9, memVO.getMemIntr());
-			pstmt.setBinaryStream(10, memVO.getMemPhoto());
+			pstmt.setString(10, memVO.getMemPhoto());
 			pstmt.setInt(11, memVO.getMemId());
 
 			pstmt.executeUpdate();
@@ -194,7 +194,7 @@ public class MemJDBCDAO {
 				memVO.setMemAddr(rs.getString("memAddr"));
 				memVO.setMemPhone(rs.getString("memPhone"));
 				memVO.setMemIntr(rs.getString("memIntr"));
-				memVO.setMemPhoto(rs.getBinaryStream("memPhoto"));
+				memVO.setMemPhoto(rs.getString("memPhoto"));
 
 			}
 
@@ -253,7 +253,7 @@ public class MemJDBCDAO {
 				memVO.setMemAddr(rs.getString("memAddr"));
 				memVO.setMemPhone(rs.getString("memPhone"));
 				memVO.setMemIntr(rs.getString("memIntr"));
-				memVO.setMemPhoto(rs.getBinaryStream("memPhoto"));
+				memVO.setMemPhoto(rs.getString("memPhoto"));
 				list.add(memVO); // Store the row in the list
 			}
 

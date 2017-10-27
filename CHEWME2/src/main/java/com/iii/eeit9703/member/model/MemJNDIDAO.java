@@ -12,7 +12,7 @@ public class MemJNDIDAO implements MemDAO_interface {
 	static {//系統load進來時就做一次,且只做一次,除非系統關閉,否則一直存在
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdsbc/CMDB");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -41,7 +41,7 @@ public class MemJNDIDAO implements MemDAO_interface {
 			pstmt.setString(7, memVO.getMemAddr());
 			pstmt.setString(8, memVO.getMemPhone());
 			pstmt.setString(9, memVO.getMemIntr());
-			pstmt.setBinaryStream(10, memVO.getMemPhoto());
+			pstmt.setString(10, memVO.getMemPhoto());
 
 			pstmt.executeUpdate();
 
@@ -87,7 +87,7 @@ public class MemJNDIDAO implements MemDAO_interface {
 			pstmt.setString(7, memVO.getMemAddr());
 			pstmt.setString(8, memVO.getMemPhone());
 			pstmt.setString(9, memVO.getMemIntr());
-			pstmt.setBinaryStream(10, memVO.getMemPhoto());
+			pstmt.setString(10, memVO.getMemPhoto());
 			pstmt.setInt(11, memVO.getMemId());
 
 			pstmt.executeUpdate();
@@ -181,7 +181,7 @@ public class MemJNDIDAO implements MemDAO_interface {
 				memVO.setMemAddr(rs.getString("memAddr"));
 				memVO.setMemPhone(rs.getString("memPhone"));
 				memVO.setMemIntr(rs.getString("memIntr"));
-				memVO.setMemPhoto(rs.getBinaryStream("memPhoto"));
+				memVO.setMemPhoto(rs.getString("memPhoto"));
 
 			}
 
@@ -235,7 +235,7 @@ public class MemJNDIDAO implements MemDAO_interface {
 				memVO.setMemAddr(rs.getString("memAddr"));
 				memVO.setMemPhone(rs.getString("memPhone"));
 				memVO.setMemIntr(rs.getString("memIntr"));
-				memVO.setMemPhoto(rs.getBinaryStream("memPhoto"));
+				memVO.setMemPhoto(rs.getString("memPhoto"));
 				list.add(memVO); // Store the row in the list
 			}
 
