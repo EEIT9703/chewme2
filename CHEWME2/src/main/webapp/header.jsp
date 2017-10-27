@@ -32,22 +32,26 @@
 				<li class="nav-shopping-cart"><img
 					src="<%=request.getContextPath()%>/image/car.gif" width=50px
 					height=50px /><span class="aaa" data-reactid="65">2</span></li>
+				<li><c:if test="${  !empty LoginOK }"><c:if test="${  !empty Manager }">
+						<a class="nav-link" href="<%=request.getContextPath()%>/backage/backage.jsp"><span
+							class="glyphicon glyphicon-log-in"></span>維護 </a>
+					</c:if></c:if></li>
 				<li><c:if test="${  empty LoginOK }">
-						<a class="nav-link" href="<c:url value='/member/login.jsp' />"><span
+						<a class="nav-link" href="<%=request.getContextPath()%>/member/login.jsp"><span
 							class="glyphicon glyphicon-log-in"></span>登入 </a>
 					</c:if></li>
 
 				<li><c:if test="${ ! empty LoginOK }">
-						<a class="nav-link" href="<c:url value='/member/logout.jsp' />"><span
+						<a class="nav-link" href="<%=request.getContextPath()%>/member/logout.jsp"><span
 							class="glyphicon glyphicon-log-in"></span>登出 </a>
 					</c:if></li>
 
 				<li><c:if test="${  empty LoginOK }">
-						<a class="nav-link" href="<c:url value='/member/login.jsp' />"><span
+						<a class="nav-link" href="<%=request.getContextPath()%>/member/login.jsp"><span
 							class="glyphicon glyphicon-log-in"></span>註冊 </a>
 					</c:if></li>
 				<li><c:if test="${ ! empty LoginOK }">
-						<a><span class="glyphicon glyphicon-log-in">${LoginOK.memberId }</span></a>
+						<a>${LoginOK.memberId }</a>
 <%-- 							<img src='${LoginOK.memPhoto}'width=100px height=100px> --%>
 					</c:if></li>
 			</ul>

@@ -1,7 +1,6 @@
 package com.iii.eeit9703.member.model;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 import javax.xml.bind.DatatypeConverter;
@@ -66,5 +65,5 @@ public class MemService {
 		}
 		return exist;
 	}
-
+	
 }

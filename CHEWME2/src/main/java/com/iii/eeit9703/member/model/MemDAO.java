@@ -182,6 +182,8 @@ public class MemDAO implements MemDAO_interface {
 				memVO.setMemPhone(rs.getString("memPhone"));
 				memVO.setMemIntr(rs.getString("memIntr"));
 				memVO.setMemPhoto(rs.getString("memPhoto"));
+				memVO.setMemStatus(rs.getString("memStatus"));
+				memVO.setMemRole(rs.getString("memRole"));
 
 			}
 
@@ -236,6 +238,8 @@ public class MemDAO implements MemDAO_interface {
 				memVO.setMemPhone(rs.getString("memPhone"));
 				memVO.setMemIntr(rs.getString("memIntr"));
 				memVO.setMemPhoto(rs.getString("memPhoto"));
+				memVO.setMemStatus(rs.getString("memStatus"));
+				memVO.setMemRole(rs.getString("memRole"));
 				list.add(memVO); // Store the row in the list
 			}
 
