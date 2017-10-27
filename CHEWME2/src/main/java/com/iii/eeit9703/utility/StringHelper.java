@@ -1,5 +1,7 @@
 package com.iii.eeit9703.utility;
 
+import java.io.UnsupportedEncodingException;
+
 public class StringHelper {
 	 
     // convert from UTF-8 -> internal Java String format
@@ -23,6 +25,22 @@ public class StringHelper {
         }
         return out;
     }
+    public static void testEncode(String target) throws UnsupportedEncodingException{
+        System.out.println(target.getBytes());
+        System.out.println(target.getBytes("GB2312"));
+        System.out.println(target.getBytes("ISO8859_1"));
+        System.out.println(new String(target.getBytes()));
+        System.out.println(new String(target.getBytes(),"UTF-8"));
+        System.out.println(new String(target.getBytes(), "GB2312"));
+        System.out.println(new String(target.getBytes(), "ISO8859_1"));
+        System.out.println(new String(target.getBytes("GB2312")));
+        System.out.println(new String(target.getBytes("GB2312"), "GB2312"));
+        System.out.println(new String(target.getBytes("GB2312"), "ISO8859_1"));
+        System.out.println(new String(target.getBytes("ISO8859_1")));
+        System.out.println(new String(target.getBytes("ISO8859_1"), "GB2312"));
+        System.out.println(new String(target.getBytes("ISO8859_1"), "ISO8859_1"));
+    }
+    
  
     public static void main(String[] args) {
         String xmlstring = "Здравей' хора";
