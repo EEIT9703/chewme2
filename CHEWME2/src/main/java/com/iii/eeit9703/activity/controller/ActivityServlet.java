@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +24,12 @@ import com.iii.eeit9703.activity.model.ActService;
 import com.iii.eeit9703.activity.model.ActivityDAO;
 import com.iii.eeit9703.activity.model.ActivityVO;
 
-
+@MultipartConfig(
+location="",
+maxRequestSize=1024*1024*1024,
+fileSizeThreshold=1024*1024*1024,
+maxFileSize=1024*1024*1024
+)
 @WebServlet("/activityServlet.do")
 public class ActivityServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -33,7 +39,6 @@ public class ActivityServlet extends HttpServlet {
 			throws ServletException, IOException {
 		doPost(req, resp);
 	}
-
 
 
 	@Override
@@ -121,7 +126,6 @@ public class ActivityServlet extends HttpServlet {
 		//活動上架
 		if("Updata".equals(action)){  //來自/createActivity.jsp 請求
 			
-			System.out.println("XX");
 			System.out.println(req.getParameter("actID"));
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
@@ -137,10 +141,13 @@ public class ActivityServlet extends HttpServlet {
 				Date EDate = java.sql.Date.valueOf(req.getParameter("EDate"));
 				Integer activity_state = new Integer(req.getParameter("activity_state"));
 				
-				Part act_photo = req.getPart("act_photo");
+				Part act_photo = req.getPart("upload");
 				
 				//會員選擇的圖片不為空的,將圖片存入
 				if(act_photo != null){
+					System.out.println(act_photo.getName());
+					System.out.println(act_photo.getContentType());
+					System.out.println(act_photo.getSize());
 					inputStream = act_photo.getInputStream();
 				}
 				System.out.println("HELLO");
@@ -166,13 +173,14 @@ public class ActivityServlet extends HttpServlet {
 				
 				//2.開始修改資料 呼叫工頭 ActService.java
 				ActService actSvc = new ActService();
-				actSvc.updateAct(activityVO);
+				actSvc.updateAct(activityVO, inputStream);
 				
 				//修改完成  準備轉交
 				req.setAttribute("activityVO", activityVO);  //資料庫update成功後 正確的activityVO 存入req
 				String url = "/act/createAct.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
-				successView.forward(req, resp);
+				successView.forward(req, 
+						resp);
 				
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗"+e.getMessage());

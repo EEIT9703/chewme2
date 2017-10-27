@@ -66,24 +66,13 @@ public class ClubClientViewServlet extends HttpServlet {
 				isvo = issueVO_list.get(i);
 				m1.put("issueId", isvo.getIssueId());
 				m1.put("clubId", isvo.getClubId());
-				m1.put("issueTitle", StringHelper.convertToUTF8(isvo.getIssueTitle()));
-				m1.put("issueContent", StringHelper.convertToUTF8(isvo.getIssueContent()));
+				m1.put("issueTitle",isvo.getIssueTitle());
+				m1.put("issueContent", isvo.getIssueContent());
 				m1.put("proposerId", isvo.getProposerId());
 				m1.put("issuepic", isvo.getIssuepic());
 				issueList_json.add(m1);
-			　　　System.out.println("中文");
-		        System.out.println("中文".getBytes());
-		        System.out.println("中文".getBytes("GB2312"));
-		        System.out.println("中文".getBytes("ISO8859_1"));
-		        System.out.println(new String("中文".getBytes()));
-		        System.out.println(new String("中文".getBytes(), "GB2312"));
-		        System.out.println(new String("中文".getBytes(), "ISO8859_1"));
-		        System.out.println(new String("中文".getBytes("GB2312")));
-		        System.out.println(new String("中文".getBytes("GB2312"), "GB2312"));
-		        System.out.println(new String("中文".getBytes("GB2312"), "ISO8859_1"));
-		        System.out.println(new String("中文".getBytes("ISO8859_1")));
-		        System.out.println(new String("中文".getBytes("ISO8859_1"), "GB2312"));
-		        System.out.println(new String("中文".getBytes("ISO8859_1"), "ISO8859_1"));
+				//StringHelper.testEncode(isvo.getIssueTitle());
+				//StringHelper.testEncode(isvo.getIssueContent());
 			}
 			
 			

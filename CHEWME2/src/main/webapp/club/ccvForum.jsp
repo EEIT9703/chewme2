@@ -1,5 +1,5 @@
 ﻿
-<div class="row">
+<div class="row" id="catagory_selector">
 	<div class="col"></div>
 	<div class="col-md-3">
 		<div class="dropdown">
@@ -39,8 +39,7 @@
 	</div>
 </div>
 
-<c:forEach var="issue" items="${issue_list}">
-<div class="panel panel-default">
+<div class="panel panel-default" id="">
 	<div class="panel-heading">
 		<h3 class="panel-title">Panel title</h3>
 	</div>
@@ -106,4 +105,3 @@
 		</ul>
 	</div>
 </div>
-</c:forEach>
