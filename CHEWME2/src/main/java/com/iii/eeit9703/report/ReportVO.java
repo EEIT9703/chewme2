@@ -1,6 +1,7 @@
 package com.iii.eeit9703.report;
 
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 import com.iii.eeit9703.activity.model.ActivityVO;
@@ -9,7 +10,7 @@ import com.iii.eeit9703.member.model.MemVO;
 public class ReportVO implements java.io.Serializable {
 	private ActivityVO activityVO;
 	private MemVO memVO;
-	private Timestamp reportTime;
+	private Date reportTime;
 	private String reportContext;
 	public ActivityVO getActivityVO() {
 		return activityVO;
@@ -23,10 +24,10 @@ public class ReportVO implements java.io.Serializable {
 	public void setMemVO(MemVO memVO) {
 		this.memVO = memVO;
 	}
-	public Timestamp getReportTime() {
+	public Date getReportTime() {
 		return reportTime;
 	}
-	public void setReportTime(Timestamp reportTime) {
+	public void setReportTime(Date reportTime) {
 		this.reportTime = reportTime;
 	}
 	public String getReportContext() {

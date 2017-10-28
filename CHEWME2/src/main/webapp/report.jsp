@@ -163,11 +163,13 @@
 									<tr>
 											<th>檢舉內容</th>														
 									</tr>
-											<td id="reportcontext">幹你娘幹你娘幹你娘幹你娘幹你娘幹你娘</td>	
+											<td id="reportcontext"></td>	
 									<tr>
 											<th>被檢舉對象</th>														
 									</tr>
-											<td id ="reported"><input type="button" value="確認"></td>					
+											<td id="act_name"></td>	
+									<tr></tr>			
+											<td id ="reported"><input type="button" value="前往確認"></td>					
 									</tbody>
 									<tfoot>
 
@@ -193,8 +195,9 @@
 	//context:report.reportContext
 	$(function() {												
 			$.getJSON('activity?action=getAllReport',{},function(data){
-				$.each(data, function(i,report) {				
-					cell1.push({ title:report.memName, start: report.reportTime, name:report.reportContext});	
+				$.each(data, function(i,report) {
+					var name =report.memName;
+					cell1.push({ title:name, start: report.reportTime,  eventSources: [report.reportContext,report.act_name,report,report.memName] });	
 				});
 				loadProduct(cell1);			
 			});
@@ -208,20 +211,21 @@
 								center : 'title',
 								right : 'month,agendaWeek,agendaDay,listWeek'
 							},
+							
 							defaultDate : '2017-10-10',
 							navLinks : true, // can click day/week names to navigate views
-							editable : true,
+							editable : false,
 							eventLimit : true, // allow "more" link when too many events
 							events:cell1,
-							slotLabelFormat:"YYYY-MM-DD",				
-							//timeFormat: "YYYY-MM-DD",
+							//slotLabelFormat:"YYYY-MM-DD",				
+							timeFormat: "YYYY-MM-DD",
 							droppable: false,
 							eventClick: function(id){
 								
 								$("#reporter").text(id.title)
 								$("#reportime").text(id.start)					
-								$("#reportcontext").text(id.name)
-								
+								$("#reportcontext").text(id.eventSources[0])
+								$("#act_name").text(id.eventSources[1])
 							
 							},
 						   
