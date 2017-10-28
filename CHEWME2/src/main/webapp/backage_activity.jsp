@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="com.iii.eeit9703.activity.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="com.iii.eeit9703.backstage.*" %>
+com.iii.eeit9703.backstage
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -183,12 +188,13 @@
   	$(function(){
   		$.getJSON('activity?action=getAllactivity',{},sendCounty);
   		
-  		function sendCounty(array){
+  		function sendCounty(array){	
   			//var docFrag = $(document.createDocumentFragment()); 			
   			var status=["上架","下架","待審核"];
   			var opt = $('#activity>tbody');
   			opt.empty();
   			$.each(array,function(i,activity){
+  				
   	         var cell1 = $('<td></td>').text(activity.actID); 	 
   	       	 var cell2 = $('<td></td>').text(activity.act_name);
 	         var cell3 = $('<td></td>').text(activity.act_groups);

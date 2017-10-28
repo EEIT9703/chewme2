@@ -200,7 +200,7 @@
 		$.getJSON('./ProductsAll', {}, function(data) {
 			count=data.data.length;					
 			$.each(data.data, function(i, product) {			
- 				cell1.push({ title: product.ProductID, start: '2017-10-05',context:"你好阿"});				
+ 				cell1.push({ title: product.ProductID, start: '2017-10-05'});				
 							
 			});			
  			//cell2=JSON.stringify(cell1); 	
@@ -226,8 +226,7 @@
 				eventClick: function(id){
 					
 					$("#reporter").text(id.title)
-					$("#reportime").text(id.start)
-					
+					$("#reportime").text(id.start)					
 					$("#reportcontext").text(id.context)
 					
 				

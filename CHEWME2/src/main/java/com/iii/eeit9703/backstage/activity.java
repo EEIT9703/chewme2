@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
+import javax.json.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,8 +17,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
+import org.json.simple.JSONValue;
 
 import com.iii.eeit9703.activity.model.ActService;
+import com.iii.eeit9703.activity.model.ActivityDAO_hibernate;
 import com.iii.eeit9703.activity.model.ActivityVO;
 import com.iii.eeit9703.adphoto.model.PhotoDAO;
 import com.iii.eeit9703.adphoto.model.PhotoVO;
@@ -24,11 +28,6 @@ import com.iii.eeit9703.member.model.MemDAO_hibernate;
 import com.iii.eeit9703.member.model.MemVO;
 import com.iii.eeit9703.report.ReportDAO_hibernate;
 import com.iii.eeit9703.report.ReportVO;
-
-import net.minidev.json.JSONValue;
-
-
-
 
 
 
@@ -81,34 +80,85 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 				}
 			
 				if("getAllactivity".equals(action)){
-				ActService ser= new ActService();
-				ArrayList<ActivityVO> attrList = (ArrayList<ActivityVO>) ser.getAll();			
-				JSONArray attrArrayList = new JSONArray(attrList);
-				System.out.println(attrArrayList.toString());
+				//ActService ser= new ActService();
+				ActivityDAO_hibernate ser =new ActivityDAO_hibernate();
+				List<ActivityVO> attrList = ser.getAll();
+				List<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
+				HashMap<String,String> map = null;
+				for(ActivityVO vo : attrList){
+					map = new HashMap<String,String>();						
+					map.put("actID", vo.getActID().toString());
+					map.put("act_name", vo.getAct_name());
+					map.put("act_groups", vo.getAct_groups().toString());
+					map.put("act_current", vo.getAct_current().toString());
+					map.put("BDate", vo.getBDate().toString());
+					map.put("EDate", vo.getEDate().toString());
+					map.put("activity_state", vo.getActivity_state().toString());		
+					list.add(map);
+				}				
+
+				JSONArray attrArrayList = new JSONArray(list);				
 				out.print(attrArrayList.toString());
+									
+//				String jsonString =JSONValue.toJSONString(attrList);
+//				System.out.println(jsonString);
+//				out.print(jsonString);
 				}
 				
 				if("getAllmember".equals(action)){
 					MemDAO_hibernate hib= new MemDAO_hibernate();
-					//MemService hib=new MemService();
-			
-					List<MemVO> attrList = (ArrayList<MemVO>)hib.getAll();
-					
+					//MemService hib=new MemService();			
+					List<MemVO> attrList = (ArrayList<MemVO>)hib.getAll();					
 					List<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
 					HashMap<String,String> map = null;
 					for(MemVO vo : attrList){
 						map = new HashMap<String,String>();
 						map.put("memAddr", vo.getMemAddr());
 						map.put("mamberId", vo.getMemberId().toString());
+						map.put("memStatus", vo.getMemStatus());
+						map.put("memRole", vo.getMemRole());
 						list.add(map);
-					}					
-					JSONArray attrArrayList = new JSONArray(list);			
+					}	
+					
+					JSONArray attrArrayList = new JSONArray(list);				
 					out.print(attrArrayList.toString());
 					}
+				if("getAllReport".equals(action)){
+					System.out.println("getAllReport");
+					ReportDAO_hibernate dao= new ReportDAO_hibernate();				
+//					ArrayList<ReportVO> attrList = (ArrayList<ReportVO>) dao.getAll();
+					List<ReportVO> attrList = dao.getAll();
+					for(ReportVO vo:attrList){
+						
+						System.out.println(vo.getReportContext());
+						System.out.println(vo.getMemVO().getMemberId());
+					}
+					
+					List<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
+					HashMap<String,String> map = null;
+					for(ReportVO vo : attrList){
+						map = new HashMap<String,String>();						
+						map.put("reportTime", vo.getReportTime().toString());
+						map.put("reportContext", vo.getReportContext());
+						map.put("act_name", vo.getActivityVO().getAct_name());
+						map.put("memName", vo.getMemVO().getMemName());
+							
+						list.add(map);
+					}				
+
+					JSONArray attrArrayList = new JSONArray(list);				
+					out.print(attrArrayList.toString());
+									
+//					String jsonString =JSONValue.toJSONString(attrList);
+//					out.print(jsonString);
+
+					}
+
+				
 			
 				if("delete".equals(action)){
 					System.out.println("delete");
-				Integer id =new Integer(request.getParameter("ID"));
+					Integer id =new Integer(request.getParameter("ID"));
 					PhotoDAO dao = new PhotoDAO();
 					//List<PhotoVO> countyList =  dao.getAll();			
 					//System.out.println(countyList.size());
@@ -121,24 +171,7 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 					out.print(attrArrayList.toString());
 					}
 				
-					if("getAllReport".equals(action)){
-					System.out.println("getAllReport");
-					ReportDAO_hibernate dao= new ReportDAO_hibernate();				
-//					ArrayList<ReportVO> attrList = (ArrayList<ReportVO>) dao.getAll();
-					List<ReportVO> attrList = dao.getAll();
-					for(ReportVO vo:attrList){
-						
-						System.out.println(vo.getReportContext());
-						System.out.println(vo.getMemVO().getMemberId());
-					}
-					String jsonString =JSONValue.toJSONString(attrList);
-			
-					out.print(jsonString);
-//				    JSONArray attrArrayList = new JSONArray(attrList);
-//					
-//					out.print(attrArrayList.toString());
-					}
-
+					
 		
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block

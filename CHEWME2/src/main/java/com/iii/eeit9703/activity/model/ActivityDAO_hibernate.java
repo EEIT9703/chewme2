@@ -2,15 +2,19 @@ package com.iii.eeit9703.activity.model;
 
 import java.io.InputStream;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.iii.eeit9703.hibernate.util.HibernateUtil;
+import com.iii.eeit9703.member.model.MemDAO_hibernate;
 import com.iii.eeit9703.member.model.MemVO;
 
+import net.minidev.json.JSONValue;
+
 public class ActivityDAO_hibernate implements ActivityDAO_interface {
-	private static final String GET_ALL_STMT = "from ActiivtyVO";
+	private static final String GET_ALL_STMT = "from ActivityVO";
 	@Override
 	public void insert(ActivityVO activityVO) {
 		// TODO Auto-generated method stub
@@ -51,6 +55,7 @@ public class ActivityDAO_hibernate implements ActivityDAO_interface {
 		try {
 			session.beginTransaction();
 			Query query = session.createQuery(GET_ALL_STMT);
+			
 			list = query.list();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
@@ -58,6 +63,14 @@ public class ActivityDAO_hibernate implements ActivityDAO_interface {
 			throw ex;
 		}
 		return list;
+	}
+	
+	
+	public static void main(String[] args) {
+		 ActivityDAO_hibernate dao =new ActivityDAO_hibernate();
+		 List<ActivityVO> list=dao.getAll();
+		 String jsonString =JSONValue.toJSONString(list);
+		 System.out.println(list);
 	}
 
 }

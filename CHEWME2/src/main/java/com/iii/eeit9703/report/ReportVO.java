@@ -1,6 +1,6 @@
 package com.iii.eeit9703.report;
 
-import java.io.Serializable;
+
 import java.sql.Timestamp;
 
 import com.iii.eeit9703.activity.model.ActivityVO;
