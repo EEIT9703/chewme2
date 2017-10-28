@@ -173,7 +173,7 @@ public class ActivityServlet extends HttpServlet {
 				
 				//2.開始修改資料 呼叫工頭 ActService.java
 				ActService actSvc = new ActService();
-				actSvc.updateAct(activityVO, inputStream);
+				actSvc.updateAct(activityVO);
 				
 				//修改完成  準備轉交
 				req.setAttribute("activityVO", activityVO);  //資料庫update成功後 正確的activityVO 存入req
