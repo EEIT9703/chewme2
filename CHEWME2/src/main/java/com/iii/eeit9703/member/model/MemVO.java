@@ -3,6 +3,8 @@ package com.iii.eeit9703.member.model;
 
 import java.sql.*;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import com.iii.eeit9703.activity.model.ActivityVO;
@@ -35,12 +37,7 @@ public class MemVO implements java.io.Serializable{
 	public void setMemId(Integer memId) {
 		this.memId = memId;
 	}
-	public Set<ActivityVO> getActivitys() {
-		return Activitys;
-	}
-	public void setActivitys(Set<ActivityVO> activitys) {
-		Activitys = activitys;
-	}
+	
 	public String getMemberId() {
 		return memberId;
 	}
@@ -115,6 +112,12 @@ public class MemVO implements java.io.Serializable{
 	public void setMemRole(String memRole) {
 		this.memRole = memRole;
 	}
+	public Set<ActivityVO> getActivitys() {
+		return Activitys;
+	}
+	public void setActivitys(Set<ActivityVO> activitys) {
+		Activitys = activitys;
+	}
 	public Set<CollectionVO> getCollects() {
 		return Collects;
 	}
@@ -127,6 +130,7 @@ public class MemVO implements java.io.Serializable{
 	public void setReports(Set<ReportVO> reports) {
 		Reports = reports;
 	}
+
 
 
 
