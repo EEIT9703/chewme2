@@ -80,7 +80,7 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 			reportVO.setActivityVO(activityVO);
 			reportVO.setMemVO(memVO);
 			reportVO.setReportTime(date);
-			reportVO.setReportContext("1");			
+			reportVO.setReportContext(text);			
 		
 			ReportDAO_hibernate dao =new ReportDAO_hibernate();
 			dao.insert(reportVO);

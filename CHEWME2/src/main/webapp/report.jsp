@@ -194,7 +194,7 @@
 	$(function() {												
 			$.getJSON('activity?action=getAllReport',{},function(data){
 				$.each(data, function(i,report) {				
-					cell1.push({ title:report.memName, start: report.reportTime});	
+					cell1.push({ title:report.memName, start: report.reportTime, name:report.reportContext});	
 				});
 				loadProduct(cell1);			
 			});
@@ -220,7 +220,7 @@
 								
 								$("#reporter").text(id.title)
 								$("#reportime").text(id.start)					
-								$("#reportcontext").text(id.context)
+								$("#reportcontext").text(id.name)
 								
 							
 							},
