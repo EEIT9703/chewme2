@@ -186,17 +186,15 @@
     </div>
 
  	 <script src="js/bootstrap.min.js"></script>
-<!-- 	 <script src="js/jquery.min.js"></script> -->
+	 <script src="js/jquery.min.js"></script>
 
 	<script>
-	
-
 	$(function() {
 					
 		$.get('activity?action=getAllReport', {}, function(data) {							
-			$.each(data, function(i,report) {
-				alert(report)
-		
+			$.each(data, function(i,aa) {
+				alert(aa)
+	
 //  				cell1.push({ title: report, start: '2017-10-05',context:"你好阿"});
 			})
 							
