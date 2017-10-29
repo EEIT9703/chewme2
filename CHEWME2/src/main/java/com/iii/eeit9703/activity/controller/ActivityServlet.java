@@ -56,43 +56,7 @@ public class ActivityServlet extends HttpServlet {
 
 		System.out.println(action);
 		
-		//新增活動
-/*		if("insert".equals(action)){  //來自XXX.jsp的請求
-				
-			List<String> errorMsgs = new LinkedList<String>();
-			req.setAttribute("errorMsgs", errorMsgs);
-			
-			//尚未寫判斷
-			try {
-				
-				
-				String act_name = req.getParameter("act_name");
-				
-				Integer act_groups = new Integer(req.getParameter("act_groups"));
-				
-				Integer act_current = new Integer(req.getParameter("act_current"));
-				
-				java.sql.Date BDate = null;
-				BDate = java.sql.Date.valueOf(req.getParameter("BDate"));
-				
-				java.sql.Date EDate = null;
-				EDate = java.sql.Date.valueOf(req.getParameter("EDate"));
-				
-				Integer activity_state = new Integer(req.getParameter("activity_state"));
-				
-				ActivityVO activityVO = new ActivityVO();
-				
-				req.setAttribute("activityVO", activityVO);
-				ActService act =new ActService();
-				activityVO = act.addAct(act_name, act_groups, act_current, BDate, EDate, activity_state);
-				
-				RequestDispatcher view = req.getRequestDispatcher("XXX.jsp");
-				view.forward(req, resp);
-			} catch (NumberFormatException e) {
-				RequestDispatcher failure = req.getRequestDispatcher("xxx.jsp");
-				e.printStackTrace();
-			}
-		}*/
+
 		
 		//選擇行程
 		if("getOne_For_Update".equals(action)){
@@ -150,6 +114,7 @@ public class ActivityServlet extends HttpServlet {
 					System.out.println(act_photo.getSize());
 					inputStream = act_photo.getInputStream();
 				}
+				
 				System.out.println("HELLO");
 				
 //			    Integer actID =new Integer(req.getParameter("actID").trim());

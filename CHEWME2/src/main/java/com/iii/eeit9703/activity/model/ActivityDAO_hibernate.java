@@ -4,11 +4,7 @@ import java.util.List;
 
 public class ActivityDAO_hibernate implements ActivityDAO_interface {
 
-	@Override
-	public void insert(ActivityVO activityVO) {
-		// TODO Auto-generated method stub
 
-	}
 
 	@Override
 	public void update(ActivityVO activityVO) {
