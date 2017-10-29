@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import com.iii.eeit9703.club.model.ClubService;
 import com.iii.eeit9703.club.model.ClubVO;
+import com.iii.eeit9703.member.model.MemberSession;
 
 @WebServlet("/club/createClub.do")
 public class createClub extends HttpServlet {
@@ -51,14 +52,14 @@ public class createClub extends HttpServlet {
 			*/
 			
 			System.out.println(request.getAttribute("uploadImage"));
-			clubVO.setClubId(8);
-			clubVO.setClubName("");
-			clubVO.setManagerId(1);
-			clubVO.setLocationId(1);
-			clubVO.setBrief("");
-			clubVO.setRefURL("");
-			clubVO.setAddr("");
-			clubVO.setClubPic("12321413414");
+		//	clubVO.setClubId(ㄍ);
+			clubVO.setClubName(request.getParameter("clubName"));
+			clubVO.setManagerId((MemberSession)session.getAttribute("Login").getMemId());
+			clubVO.setLocationId(Integer.parseInt(request.getParameter("")));
+			clubVO.setBrief(request.getParameter(""));
+			clubVO.setRefURL(request.getParameter(""));
+			clubVO.setAddr(request.getParameter("addr"));
+			clubVO.setClubPic(request.getParameter(""));
 			ClubService cs =  new ClubService();
 			cs.insertClub(clubVO);
 			session.setAttribute("club", clubVO);
