@@ -84,16 +84,16 @@
 					 <input type="text" class="form-control" name="act_groups" id="act_groups" value="" />
 				</div>
 				<div class="form-group">
+					 <label for="act_current">參加人數</label>
+					 <input type="text" class="form-control" name="act_current" id="act_current" value="" disabled="disabled" />
+				</div>
+				<div class="form-group">
 					 <label for="BDate">出發日期</label>
 					 <input type="text" class="form-control" name="BDate" id="BDate" value="" />
 				</div>
 				<div class="form-group">
 					 <label for="EDate">結束日期</label>
 					 <input type="text" class="form-control" name="EDate" id="EDate" value="" />
-				</div>
-				<div class="form-group">
-					 <label for="act_groups">成團人數</label>
-					 <input type="text" class="form-control" name="act_groups" id="act_groups" value="" />
 				</div>
 				<div class="from-group">
 					<label for="activity_state">活動狀態</label>
