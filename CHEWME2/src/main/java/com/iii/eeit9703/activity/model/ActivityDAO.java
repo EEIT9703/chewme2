@@ -26,9 +26,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 		}
 	}
 	
-	    //新增活動
-		//private static final String INSERT_STMT =
-		//		"INSERT INTO activity (act_name,act_groups,act_current,BDate,EDate,activity_state) VALUES (?,?,?,?,?,?) ";
+
 		//修改活動
 		private static final String UPDATE_STMT =
 				"UPDATE activity set act_name=?, act_groups=?, BDate=?, EDate=?, activity_state=?, act_photo=? where actID = ? ";
@@ -38,51 +36,11 @@ public class ActivityDAO implements ActivityDAO_interface {
 		//查詢活動
 		private static final String GET_ALL_STMT =
 			      "SELECT actID,act_name,act_groups,act_current,BDate,EDate,activity_state FROM activity order by actID";
+		//查詢單筆
 		private static final String GET_ONE_STMT =
 			      "SELECT actID,act_name,act_groups,act_current,BDate,EDate,activity_state FROM activity where actID = ?";
 	
-	//新增活動
-	//@Override
-//	public void insert(ActivityVO activityVO) {
-//        
-//		Connection con = null;
-//		PreparedStatement pstmt =null;
-//		
-//		try {
-//			con = ds.getConnection();
-//			pstmt = con.prepareStatement(INSERT_STMT);
-//			
-//			pstmt.setString(1, activityVO.getAct_name());    //活動名稱
-//			pstmt.setInt(2, activityVO.getAct_groups());    //成團人數
-//			pstmt.setInt(3, activityVO.getAct_current());  //當前人數
-//			pstmt.setDate(4, activityVO.getBDate());      //開始日期
-//			pstmt.setDate(5, activityVO.getEDate());     //結束日期
-//			pstmt.setInt(6, activityVO.getActivity_state());  //活動上下架
-//
-//		
-//			pstmt.executeUpdate();
-//			
-//		} catch (SQLException e) {
-//			throw new RuntimeException("資料庫新增錯誤" + e.getMessage());
-//			
-//		}finally{
-//			if(pstmt != null){	
-//				try {
-//					pstmt.close();
-//				} catch (SQLException e1) {
-//					e1.printStackTrace(System.err);
-//				}
-//			}
-//		}
-//		if(con !=null){
-//			try {
-//				con.close();
-//			} catch (SQLException e1) {
-//				e1.printStackTrace(System.err);
-//			}
-//		}
-//		
-//	}
+	
 
 	
 	//修改
@@ -169,7 +127,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 	}
 
 	
-	//
+	//查詢單筆
 	@Override
 	public ActivityVO findByPrimaryKey(Integer actID) {
 
@@ -198,6 +156,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 				activityVO.setBDate(rs.getDate("BDate"));                     //開始日期
 				activityVO.setEDate(rs.getDate("EDate"));                    //結束日期
 				activityVO.setActivity_state(rs.getInt("activity_state"));  //活動型態
+				//activityVO.setAct_photo(rs.getBinaryStream("act_photo"));
 				
 				
 			}
@@ -233,6 +192,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 		return activityVO;
 	}
 
+	//查詢全部活動
 	@Override
 	public List<ActivityVO> getAll() {
 		
@@ -259,6 +219,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 				activityVO.setBDate(rs.getDate("BDate"));                     //開始日期
 				activityVO.setEDate(rs.getDate("EDate"));                    //結束日期
 				activityVO.setActivity_state(rs.getInt("activity_state"));  //活動型態
+				//activityVO.setAct_photo(rs.getBinaryStream("act_photo"));
 				
 				list.add(activityVO);
 				
@@ -294,6 +255,46 @@ public class ActivityDAO implements ActivityDAO_interface {
 		return list;
 	}
 
+
+	public static void main(String[] args) {
+
+		ActivityJDBCDAO dao = new ActivityJDBCDAO();
+		
+
+		
+		//刪除
+		dao.delete(1);
+		
+		// 查詢
+		ActivityVO actVO3 = dao.findByPrimaryKey(1);
+		System.out.print(actVO3.getActID() + ",");
+		System.out.print(actVO3.getAct_name() + ",");
+		System.out.print(actVO3.getAct_groups() + ",");
+		System.out.print(actVO3.getAct_current() + ",");
+		System.out.print(actVO3.getBDate() + ",");
+		System.out.print(actVO3.getEDate() + ",");
+		System.out.print(actVO3.getActivity_state() + ",");
+		//System.out.println(actVO3.getAct_photo()+ ",");
+
+		System.out.println("---------------------");
+		
+		// 查詢
+		List<ActivityVO> list = dao.getAll();
+		for (ActivityVO aAct : list) {
+			System.out.print(aAct.getActID() + ",");
+			System.out.print(aAct.getAct_name() + ",");
+			System.out.print(aAct.getAct_groups() + ",");
+			System.out.print(aAct.getAct_current() + ",");
+			System.out.print(aAct.getEDate() + ",");
+			System.out.print(aAct.getEDate() + ",");
+			System.out.print(aAct.getActivity_state() + ",");
+			//System.out.println(actVO3.getAct_photo()+ ",");
+
+			System.out.println();
+		}
+		
+
+	}
 
 
 

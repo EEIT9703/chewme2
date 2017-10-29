@@ -232,13 +232,7 @@ input[type="file"] {
 // 									});
 // 						});
 			
-			$().filePreview({
-			    parent: ".form1",
-			    selector: ".upload",
-			    success: function (key, obj){
-			        console.log(obj)
-			    }
-			});
+			
 			});
 	</script>
 </body>

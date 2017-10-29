@@ -1,37 +1,36 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html;charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="com.iii.eeit9703.activity.model.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.iii.eeit9703.activity.model.*"%>
 
-<%
-     ActivityVO activityVO = (ActivityVO) request.getAttribute("activityVO");
-%>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="zh-tw">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
 <link rel="styLesheet" href="../css/bootstrap.min.css">
 
 <!-- <script src="js/bootstrap.min.js"></script> -->
-<script src="js/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- Custom styles for this template -->
 <link href="../css/navbar-fixed-top.css" rel="stylesheet">
 
 <!-- jQuery UI Datepicker -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<script>
-	//選擇活動
-	$(function() {
-		$("#actID").selectmenu();
-	});
+<!-- SweetAlert  -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+
+
+<script>
 	//出發日期
 	$(function() {
 		$("#BDate").datepicker({
@@ -47,120 +46,156 @@
 		});
 	});
 
-	//上下架
+ 	//上下架
 	$(function() {
 		$("#activity_state").selectmenu();
-	});
+	}); 
 </script>
 </head>
 
 <body>
-
-	<!-- Fixed navbar -->
-	<nav class="navbar navbar-default navbar-fixed-top">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-				data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-				aria-controls="navbar">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">Project name</a>
-		</div>
-		<div id="navbar" class="navbar-collapse collapse">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#about">About</a></li>
-				<li><a href="#contact">Contact</a></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Dropdown <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li role="separator" class="divider"></li>
-						<li class="dropdown-header">Nav header</li>
-						<li><a href="#">Separated link</a></li>
-						<li><a href="#">One more separated link</a></li>
-					</ul></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="../navbar/">Default</a></li>
-				<li><a href="../navbar-static-top/">Static top</a></li>
-				<li class="active"><a href="./">Fixed top <span
-						class="sr-only">(current)</span></a></li>
-			</ul>
-		</div>
-	</div>
-	</nav>
-
+  <header><%@ include file="../header.jsp"%></header>
+  
   <jsp:useBean id="actSvc" scope="page" class="com.iii.eeit9703.activity.model.ActService" />
 
-	<!-- Main component for a primary marketing message or call to action -->
+	<div class="container">
 	<div class="jumbotron">
-		<div class="container">
-			<h1>Activity</h1>
-			<form class="form-horizontal" method="post" action="activity.do">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+		<h1>Activity</h1>
+		
+			<form role="form" enctype="multipart/form-data" class="form-horizontal"  method="post"  action="activityServlet.do" name="actForm">
 				<div class="from-group">
-					<label class="col-sm-2 control-lable" for="actID">選擇活動</label>
-					<div class="col-sm-10">
-						<select class="form-control input-sm" size="1" name="actID">
-						<c:forEach var="activityVO" items="${actSvc.all}" > 
-                        <option value="${activityVO.actID}">${activityVO.act_name}
-                        </c:forEach> 
+					<label for="actID">選擇活動</label>
+
+						<select class="form-control" size="1" name="actID" id="actID">
+							<c:forEach var="activityVO" items="${actSvc.all}">
+								<option value="${activityVO.actID}">${activityVO.act_name}</option>
+							</c:forEach>
 						</select>
-					</div>
+
+				</div>
+				<div class="form-group">
+					 <label for="act_name">活動名稱</label>
+					 <input type="text" class="form-control" name="act_name" id="act_name" value="" />
+				</div>
+				<div class="form-group">
+					 <label for="act_groups">成團人數</label>
+					 <input type="text" class="form-control" name="act_groups" id="act_groups" value="" />
+				</div>
+				<div class="form-group">
+					 <label for="act_current">參加人數</label>
+					 <input type="text" class="form-control" name="act_current" id="act_current" value="" disabled="disabled" />
+				</div>
+				<div class="form-group">
+					 <label for="BDate">出發日期</label>
+					 <input type="text" class="form-control" name="BDate" id="BDate" value="" />
+				</div>
+				<div class="form-group">
+					 <label for="EDate">結束日期</label>
+					 <input type="text" class="form-control" name="EDate" id="EDate" value="" />
 				</div>
 				<div class="from-group">
-					<label for="actname" class="col-sm-2 control-lable">活動名稱</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control input-sm" id="act_name" value="<%=activityVO.getAct_name()%>"/>
-					</div>
-				</div>
-				<div class="from-group">
-					<label class="col-sm-2 control-lable" for="act_groups">成團人數</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control input-sm" id="act_groups">
-					</div>
-				</div>
-				<div class="from-group">
-					<label class="col-sm-2 control-lable" for="BDate">出發日期</label>
-					<div class="col-sm-10">
-						<input type="text" name="from" class="form-control input-sm" id="BDate">
-					</div>
-				</div>
-				<div class="from-group">
-					<label  class="col-sm-2 control-lable" for="EDate">結束日期</label>
-					<div class="col-sm-10">
-						<input type="text" name="to" class="form-control input-sm" id="EDate">
-					</div>
-				</div>
-				<div class="from-group">
-					<label class="col-sm-2 control-lable" for="activity_state">活動狀態</label>
-					<div class="col-sm-10">
-						<select class="form-control input-sm" id="activity_state">
+					<label for="activity_state">活動狀態</label>
+					<select class="form-control" name="activity_state" id="activity_state">
 							<option value="0">建構中</option>
 							<option value="1">上架</option>
 							<option value="3">下架</option>
 						</select>
-					</div>
 				</div>
-				<div class="from-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-lg btn-primary">送出
-							&raquo;</button>
-						<button type="reset" class="btn btn-lg btn-primary">清除
-							&raquo;</button>
-					</div>
+				<div class="form-group">
+					 <label for="exampleInputFile">File input</label>
+					 <input type="file" id="exampleInputFile" />
+					<p class="help-block">
+						Example block-level help text here.
+					</p>
 				</div>
+				
+				<div class="checkbox">
+				</div> <button type="button" class="btn btn-lg btn-primary" id="submit">Submit</button>
 			</form>
 		</div>
 	</div>
-	<!-- /container -->
+</div>
+</div>
 
+<script>
+		$(function() {
+
+			//結束
+			$("#EDate").datepicker({
+				changeMonth : true,
+				changeYear : true,
+				dateFormat : "yy-mm-dd"
+			});
+
+			//出發
+			$("#BDate").datepicker({
+				changeMonth : true,
+				changeYear : true,
+				dateFormat : "yy-mm-dd"
+			});
+			
+			//選擇上架
+			$("#activity_state").selectmenu();
+
+			//觸發actID,帶入資料到<input>
+			$("#actID").change(function() {
+                var actID = $(this).val();
+                console.log(actID);
+                $.getJSON('/CHEWME2/activityServlet.do?action=getOne_For_Update',{'actID' : actID},function(data) {
+			    //actID = JSON.parse(data);
+			    console.log(data);
+			    $('#act_name').val(data.act_name);
+			    $('#act_groups').val(data.act_groups);
+			    $('#act_current').val(data.act_current);
+				$('#BDate').val(data.BDate);
+				$('#EDate').val(data.EDate);
+				$('#activity_state').val(data.activity_state);
+				
+                });
+			});
+			//送出更新資料
+			$('#submit').click(function(){
+				var formData= new FormData($('form')[0])
+				 $.ajax({
+				        type: "POST",
+				        url: "/CHEWME2/activityServlet.do?action=Updata",
+				        
+				        success: function (data) {
+				        	swal('更新成功', 'Hello World!', 'success');
+
+								$('#act_name').val(data.act_name);
+								$('#act_groups').val(data.act_groups);
+								$('#BDate').val(data.BDate);
+								$('#EDate').val(data.EDate);
+								$('#activity_state').val(data.activity_state);
+				        },
+				        data: formData,
+				        contentType: false,
+				        processData: false
+				    });
+			})
+		});
+			//送出更新資料
+// 			$('#submit').click(
+// 					function() {
+// 						var afrm = $('form[name="actForm"]');
+// 						//console.log(afrm)
+// 						$.post('/CHEWME2/activityServlet.do?action=Updata',
+// 								afrm.serialize(), function(data) {
+// 									swal('更新成功', 'Hello World!', 'success');
+
+// 									$('#act_name').val(data.act_name);
+// 									$('#act_groups').val(data.act_groups);
+// 									$('#BDate').val(data.BDate);
+// 									$('#EDate').val(data.EDate);
+// 									$('#activity_state').val(data.activity_state);
+// 									});
+// 						});
+			
+
+	</script>
 
 </body>
 </html>

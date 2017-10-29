@@ -14,12 +14,15 @@ import com.iii.eeit9703.member.model.MemVO;
 import net.minidev.json.JSONValue;
 
 public class ActivityDAO_hibernate implements ActivityDAO_interface {
+<<<<<<< HEAD
+
+=======
 	private static final String GET_ALL_STMT = "from ActivityVO";
 	@Override
 	public void insert(ActivityVO activityVO) {
 		// TODO Auto-generated method stub
+>>>>>>> branch 'master' of https://github.com/EEIT9703/chewme2.git
 
-	}
 
 	@Override
 	public void update(ActivityVO activityVO,InputStream is) {
