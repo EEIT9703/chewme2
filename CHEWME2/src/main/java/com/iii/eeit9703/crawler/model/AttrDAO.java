@@ -23,7 +23,7 @@ public class AttrDAO implements AttrDAO_interface {
 	private static final String GET_ALL = "select attractionID,name,county,type,address,tel,intro from Attractions";
 	private static final String GET_ONE = "select attractionID, name, county, type, address, tel, intro from Attractions where attractionID=?";
 	private static final String INSERT = "insert into Attractions (name, county, type, address, tel, intro, image) values (?,?,?,?,?,?,?)";
-	private static final String UPDATE = "update Attractions set name=?, county=?, type=?, address=?, tel=?, intro=? where attractionID=?";
+	private static final String UPDATE = "update Attractions set name=?, county=?, type=?, address=?, tel=?, intro=?, image=? where attractionID=?";
 	private static final String DELETE = "delete from Attractions where attractionID=?";
 
 	//�s�W
@@ -67,7 +67,7 @@ public class AttrDAO implements AttrDAO_interface {
 
 	//�ק�
 	@Override
-	public void update(AttrVO attrVO) {
+	public void update(AttrVO attrVO, InputStream fis) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -81,7 +81,8 @@ public class AttrDAO implements AttrDAO_interface {
 			pstmt.setString(4, attrVO.getAddress());
 			pstmt.setString(5, attrVO.getTel());
 			pstmt.setString(6, attrVO.getIntro());
-			pstmt.setInt(7, attrVO.getAttractionID());
+			pstmt.setBinaryStream(7, fis);
+			pstmt.setInt(8, attrVO.getAttractionID());
 			pstmt.executeUpdate();
 
 		} catch (SQLException e) {

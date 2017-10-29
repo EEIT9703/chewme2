@@ -6,6 +6,6 @@ public interface ArticleDAO_interface {
 	public void insert(ArticleVO articleVO);
 	public void update(ArticleVO articleVO);
 	public void delete(Integer articleID);
-	public ArticleVO findByPK(Integer articleID);
+	public ArticleVO findByPK(Integer attractionID);
 	public List<ArticleVO> getAll();
 }

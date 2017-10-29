@@ -62,7 +62,7 @@ public class AttrJDBCDAO implements AttrDAO_interface {
 	}
 
 	@Override
-	public void update(AttrVO attrvo) {
+	public void update(AttrVO attrvo, InputStream fis) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
