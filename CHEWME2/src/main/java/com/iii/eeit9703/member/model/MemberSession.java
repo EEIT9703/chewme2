@@ -4,7 +4,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class MemberSession {
-	Integer memId;
+	private Integer memId;
+	public Integer getMemId() {
+		return memId;
+	}
+	public void setMemId(Integer memId) {
+		this.memId = memId;
+	}
 	List<Integer> authorizedClubList;
 	MemberSession(){
 	authorizedClubList = new LinkedList();
