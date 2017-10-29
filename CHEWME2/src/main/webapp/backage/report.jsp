@@ -181,7 +181,7 @@
     </div>
 
  	 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-	 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+<%-- 	 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script> --%>
 	 <script src="<%=request.getContextPath()%>/js/moment.min.js"></script>
    	 <script src="<%=request.getContextPath()%>/js/fullcalendar.min.js"></script>
 
