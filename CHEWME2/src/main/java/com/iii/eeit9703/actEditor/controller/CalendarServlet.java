@@ -1,4 +1,4 @@
-package com.iii.eeit9703.actEditor;
+package com.iii.eeit9703.actEditor.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.iii.eeit9703.actEditor.ScheduleDAO;
+import com.iii.eeit9703.actEditor.ScheduleVO;
 import com.iii.eeit9703.activity.model.ActivityVO;
 
 
