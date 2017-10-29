@@ -25,6 +25,8 @@
 				<li><a href="/CHEWME2/act/createAct.jsp">創行程</a></li>
 				<li><a href="/CHEWME2/club/createClub.do">創社團</a></li>
 				<li><a href="/CHEWME2/club/findClub.do">找社團</a></li>
+				<li><a href="/CHEWME2/club/findClub.do">我的社團</a></li>
+				<li><a href="/CHEWME2/club/findClub.do">社團管理員</a></li>
 
 			</ul>
 

@@ -12,6 +12,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java-version>1.8</java-version>
+		<jsonVersion>1.0.2</jsonVersion>
 	</properties>
 
 	<dependencies>
@@ -46,13 +47,19 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.json/json -->
+	
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.json</artifactId>
+			<version>${jsonVersion}</version>
+			<scope>compile</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
-			<version>20160810</version>
+			<version>20160810</version> 
 		</dependency>
-
-
 		<!-- 後台 -->
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>

@@ -6,19 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+ 	<link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
+	<link href="<%=request.getContextPath()%>/css/metisMenu/metisMenu.min.css" rel="stylesheet">
+  	<link href="<%=request.getContextPath()%>/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  	<link href="<%=request.getContextPath()%>/css/morrisjs/morris.css" rel="stylesheet">
+  	<link href="<%=request.getContextPath()%>/css/dist/css/sb-admin-2.css" rel="stylesheet">
 
-    <link href="backage/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="backage/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <link href="backage/dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <link href="backage/vendor/morrisjs/morris.css" rel="stylesheet">
-
-    <link href="backage/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-	
 
 </head>
 
@@ -57,22 +50,21 @@
                     <ul class="nav" id="side-menu">
                        
                         <li>
-                            <a href="index.jsp"><i class="fa fa-dashboard fa-fw"></i> 首頁</a>
+                            <a href="<%=request.getContextPath()%>/index.jsp"><i class="fa fa-dashboard fa-fw"></i> 首頁</a>
                         </li>
                         <li>
-                            <a href="ad.jsp"><i class="fa fa-bar-chart-o fa-fw"></i>廣告輪播</a>
+                            <a href="<%=request.getContextPath()%>/backage/ad.jsp"><i class="fa fa-bar-chart-o fa-fw"></i>廣告輪播</a>
                             
                         </li>
                         <li>
-                            <a href="report.jsp"><i class="fa fa-table fa-fw"></i>檢舉名單</a>
+                            <a href="<%=request.getContextPath()%>/backage/report.jsp"><i class="fa fa-table fa-fw"></i>檢舉名單</a>
                         </li>
                         <li>
-                            <a href="backage_activity.jsp"><i class="fa fa-edit fa-fw"></i>活動管理</a>
-                        </li>
+                            <a href="<%=request.getContextPath()%>/backage/backage_activity.jsp"><i class="fa fa-edit fa-fw"></i>活動管理</a>
+                        </li> 
                          <li>
-                            <a href="backage_member.jsp"><i class="fa fa-edit fa-fw"></i>會員管理</a>
-                        </li>    
-                                            
+                            <a href="<%=request.getContextPath()%>/backage/backage_member.jsp"><i class="fa fa-edit fa-fw"></i>會員管理</a>
+                        </li>                         
                         <li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -136,8 +128,8 @@
     
     
     </script>
- 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.min.js"></script>
+  	<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
 
 </body>
 </html>

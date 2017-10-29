@@ -3,6 +3,7 @@ package com.iii.eeit9703.backstage;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 import javax.servlet.ServletException;
@@ -52,8 +53,8 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 			ActivityVO activityVO= new ActivityVO();
 			MemVO memVO=new MemVO();
 			
-			Integer a=1;
-			Integer b=1;
+			Integer a=3;
+			Integer b=3;
 			activityVO.setActID(a);
 			memVO.setMemId(b);
 			
@@ -67,12 +68,12 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 //			 System.out.println(strDate);
 			
 		//	SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			//Date date=sdFormat.format(System.currentTimeMillis());
-			Timestamp date=new Timestamp(System.currentTimeMillis());
+			Date date=new Date(System.currentTimeMillis());
+		
 			//java.util.Date date = new java.util.Date(Long.MAX_VALUE);
 
 			
-			
+			//Timestamp date=new Timestamp(System.currentTimeMillis());
 			System.out.println(date);
 			
 			ReportVO reportVO=new ReportVO();
@@ -80,7 +81,7 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 			reportVO.setActivityVO(activityVO);
 			reportVO.setMemVO(memVO);
 			reportVO.setReportTime(date);
-			reportVO.setReportContext("1");			
+			reportVO.setReportContext(text);			
 		
 			ReportDAO_hibernate dao =new ReportDAO_hibernate();
 			dao.insert(reportVO);

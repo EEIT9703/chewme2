@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.json.simple.JSONValue;
 
 import com.iii.eeit9703.activity.model.ActivityVO;
 import com.iii.eeit9703.hibernate.util.HibernateUtil;
@@ -92,6 +93,9 @@ public class MemDAO_hibernate implements MemDAO_interface {
 	MemDAO_hibernate dao =new MemDAO_hibernate();
 		
 	List<MemVO> list2 = dao.getAll();
+//	System.out.println(list2);
+//	String jsonString =JSONValue.toJSONString(list2);
+//	System.out.println(jsonString);
 	for (MemVO memVO : list2) {
 		System.out.print(memVO.getMemberId() + ",");
 		System.out.print(memVO.getMemMail() + ",");
