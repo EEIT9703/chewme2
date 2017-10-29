@@ -5,26 +5,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
-<!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
-    <link href= "backage/full/fullcalendar.min.css" rel='stylesheet' />
-	<link href= "backage/full/fullcalendar.print.min.css"rel='stylesheet' media='print' />
-
-    <link href="backage/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="backage/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <link href="backage/dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <link href="backage/vendor/morrisjs/morris.css" rel="stylesheet">
-
-    <link href="backage/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="<%=request.getContextPath()%>/css/full/fullcalendar.print.min.css" rel="stylesheet" media='print'>
+	<link href="<%=request.getContextPath()%>/css/full/fullcalendar.min.css" rel="stylesheet">
+	<link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
+	<link href="<%=request.getContextPath()%>/css/metisMenu/metisMenu.min.css" rel="stylesheet">
+  	<link href="<%=request.getContextPath()%>/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  	<link href="<%=request.getContextPath()%>/css/morrisjs/morris.css" rel="stylesheet">
+  	<link href="<%=request.getContextPath()%>/css/dist/css/sb-admin-2.css" rel="stylesheet">
     <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    
 </head>
 
-
 <body>
-	<header> <nav class="navbar navbar-default navbar-fixed-top">
+	<header> <nav class="navbanavbar-default navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<a class="navbar-brand " href="#"><img src="image/letter-c.png"width="30" height="30" alt="">CHEWME</a>
@@ -51,24 +44,24 @@
   		<div id="wrapper">
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
+                     <ul class="nav" id="side-menu">
                        
                         <li>
-                            <a href="index.jsp"><i class="fa fa-dashboard fa-fw"></i> 首頁</a>
+                            <a href="<%=request.getContextPath()%>/index.jsp"><i class="fa fa-dashboard fa-fw"></i> 首頁</a>
                         </li>
                         <li>
-                            <a href="ad.jsp"><i class="fa fa-bar-chart-o fa-fw"></i>廣告輪播</a>
+                            <a href="<%=request.getContextPath()%>/backage/ad.jsp"><i class="fa fa-bar-chart-o fa-fw"></i>廣告輪播</a>
                             
                         </li>
                         <li>
-                            <a href="report.jsp"><i class="fa fa-table fa-fw"></i>檢舉名單</a>
+                            <a href="<%=request.getContextPath()%>/backage/report.jsp"><i class="fa fa-table fa-fw"></i>檢舉名單</a>
                         </li>
                         <li>
-                            <a href="backage_activity.jsp"><i class="fa fa-edit fa-fw"></i>活動管理</a>
-                        </li>
+                            <a href="<%=request.getContextPath()%>/backage/backage_activity.jsp"><i class="fa fa-edit fa-fw"></i>活動管理</a>
+                        </li> 
                          <li>
-                            <a href="backage_member.jsp"><i class="fa fa-edit fa-fw"></i>會員管理</a>
-                        </li>                          
+                            <a href="<%=request.getContextPath()%>/backage/backage_member.jsp"><i class="fa fa-edit fa-fw"></i>會員管理</a>
+                        </li>                         
                         <li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -163,11 +156,13 @@
 									<tr>
 											<th>檢舉內容</th>														
 									</tr>
-											<td id="reportcontext">幹你娘幹你娘幹你娘幹你娘幹你娘幹你娘</td>	
+											<td id="reportcontext"></td>	
 									<tr>
 											<th>被檢舉對象</th>														
 									</tr>
-											<td id ="reported"><input type="button" value="確認"></td>					
+											<td id="act_name"></td>	
+									<tr></tr>			
+											<td id ="reported"><input type="button" value="前往確認"></td>					
 									</tbody>
 									<tfoot>
 
@@ -185,83 +180,74 @@
     </div>
     </div>
 
- 	 <script src="js/bootstrap.min.js"></script>
-<!-- 	 <script src="js/jquery.min.js"></script> -->
+ 	 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+	 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+	 <script src="<%=request.getContextPath()%>/js/moment.min.js"></script>
+   	 <script src="<%=request.getContextPath()%>/js/fullcalendar.min.js"></script>
 
 	<script>
-	var cell1=new Array();
-	var cell2=new Array();
-	var cell3=new Array();
-	var obj = new Object;
-
-	$(function() {
-					
-		var count=0;	
-		$.getJSON('./ProductsAll', {}, function(data) {
-			count=data.data.length;					
-			$.each(data.data, function(i, product) {			
- 				cell1.push({ title: product.ProductID, start: '2017-10-05'});				
-							
-			});			
- 			//cell2=JSON.stringify(cell1); 	
-			loadProduct(cell1);
-		})	
-		   function loadProduct(cell1){	 
-		$(document).ready(function() {		
-			//alert( JSON.stringify(all));
-			$('#calendar').fullCalendar({
-				header : {
-					left : 'prev,next today',
-					center : 'title',
-					right : 'month,agendaWeek,agendaDay,listWeek'
-				},
-				defaultDate : '2017-10-10',
-				navLinks : true, // can click day/week names to navigate views
-				editable : true,
-				eventLimit : true, // allow "more" link when too many events
-				events:cell1,
-				slotLabelFormat:"YYYY-MM-DD",				
-				//timeFormat: "YYYY-MM-DD",
-				droppable: false,
-				eventClick: function(id){
-					
-					$("#reporter").text(id.title)
-					$("#reportime").text(id.start)					
-					$("#reportcontext").text(id.context)
-					
-				
-				},
-			   
+	var cell=new Array();
+	//context:report.reportContext
+	$(function() {	
+	
+			$.getJSON('<%=request.getContextPath()%>/activity?action=getAllReport',{},function(data){
+				$.each(data, function(i,report) {
+					var name =report.memName;
+					cell.push({ title:name, start: report.reportTime,  eventSources: [report.reportContext,report.act_name,report,report.memName] });	
+				});
+				loadReport(cell);			
 			});
 
-		});
-		}
-		
-		  $('#go').on('click',function(){
-			//正是時候 會click 得到他檢舉的那筆資料的id
-				$('#myModal').modal('show')
-		
-		
-			$("#confirm").on('click',function (){
-			//	這裡連同id 跟檢舉內容 送到servlet, servlet 得到 登入會員的sesseion資料  活動id 跟 檢舉內容
+			   function loadReport(cell){	 
+					$(document).ready(function() {		
+						//alert( JSON.stringify(all));
+						$('#calendar').fullCalendar({
+							header : {
+								left : 'prev,next today',
+								center : 'title',
+								right : 'month,agendaWeek,agendaDay,listWeek'
+							},
+							
+							defaultDate : '2017-10-10',
+							navLinks : true, // can click day/week names to navigate views
+							editable : false,
+							eventLimit : true, // allow "more" link when too many events
+							events:cell,
+							//slotLabelFormat:"YYYY-MM-DD",				
+							timeFormat: "YYYY-MM-DD",
+							droppable: false,
+							eventClick: function(id){
+								
+								$("#reporter").text(id.title)
+								$("#reportime").text(id.start)					
+								$("#reportcontext").text(id.eventSources[0])
+								$("#act_name").text(id.eventSources[1])
+							
+							},
+						   
+						});
+
+					});
+					}
+			   
+			   $('#go').on('click',function(){
+					//正是時候 會click 得到他檢舉的那筆資料的id
+						$('#myModal').modal('show')
+							
+					$("#confirm").on('click',function (){
+					//	這裡連同id 跟檢舉內容 送到servlet, servlet 得到 登入會員的sesseion資料  活動id 跟 檢舉內容				
+					//	alert($("#text").val())		
+						$.get("report",{"text":$("#text").val(),"id":"1"},function(data){
+							$("#show").html("<h2>"+data+"</h2>");
+						});
+					
+						})
+				  })
 			
-		//	alert($("#text").val())		
-				$.get("report",{"text":$("#text").val(),"id":"1"},function(data){
-					$("#show").html("<h2>"+data+"</h2>");
-				});
 			
-			
-			
-				})
-		  })
-		  
-		  
-		  
-		  
 	})
 	</script>
-	<script src='backage/full/moment.min.js'></script>
-    <script src='backage/full/fullcalendar.min.js'></script>
+
 
 </body>
 </html>
