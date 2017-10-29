@@ -1,6 +1,6 @@
 var sel = $();
 var issueTemplate;
-var commentTemplate;
+var commentBoxTemplate;
 var viewCommentTemplate;
 
 $(document).ready(function() {
@@ -14,22 +14,36 @@ function loadIssues() {
 		"number" : "",
 		"prev_or_next" : "",
 		"choose_date" : ""
-	}, function(data) {
-		console.log(data.length);
-		console.log(data);
-		console.log(issueTemplate);
-		$.each(data, function() {
-			insertIssuePanel();
+	}, function(issues) {
+		$.each(issues, function(i,issueVO) {
+			insertIssue(issueVO);
+			
 		})
 	});
 
 }
 
-function insertIssuePanel() {
-	$("#forum-page")
-			.append(issueTemplate);	
+function insertIssue(issueVO) {
+	var forum_page = $("#forum-page");
+	forum_page.append(issueTemplate);
+	forum_page.find("div:last-child").attr("id","issueId_"+issueVO.issueId)
+					.find(".panel-title").text(issueVO.issueTitle)
+					.closest("#"+issueVO.issueId).find(".well").text(issueVO.issueContent);
+	var issue_page =$("#"+issueVO.issueId);
+	$.each(issueVO.comments, function(i,commentVO){
+		insertViewComment(commentVO);
+	})
+	
 }
-function insertViewCommentTemplatePanel() {
+function insertViewComment(commentVO) {
+	var issue_page =$("#"+commentVO.getcommentId);
+	issue_page.after(viewCommentTemplate);
+	issue_page.next()
+	.attr("id","issueId_"+commentVO.getIssueId+"commentId"+commentVO.getCommentId)
+	.find(".well").text(commentVO.content);
+	;
+	
+	
 }
 
 function getTemplates(){
@@ -37,9 +51,9 @@ function getTemplates(){
 		console.log(issueTemplate=data);
 	})
 	$.get("_viewCommentTemplate.jsp",{},function(data){
-		console.log(commentTemplate=data);
+		console.log(viewCommentTemplate=data);
 	})
 	$.get("_commentTemplate.jsp",{},function(data){
-		console.log(commentTemplate=data);
+		console.log(commentBoxTemplate=data);
 	})
 }

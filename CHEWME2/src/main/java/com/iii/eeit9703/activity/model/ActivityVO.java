@@ -4,6 +4,8 @@ import java.io.InputStream;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import com.iii.eeit9703.collection.CollectionVO;
@@ -26,24 +28,15 @@ public class ActivityVO implements java.io.Serializable {
 	private Set<ReportVO> Reports = new HashSet<ReportVO>();
 	private MemVO memVO; //維浪如果jdbc 要輸入會員ID 需要 程式碼改成memVO.getMemId 
 
+
+	
 	public MemVO getMemVO() {
 		return memVO;
 	}
 	public void setMemVO(MemVO memVO) {
 		this.memVO = memVO;
 	}
-	public Set<ReportVO> getReports() {
-		return Reports;
-	}
-	public void setReports(Set<ReportVO> reports) {
-		Reports = reports;
-	}
-	public Set<CollectionVO> getCollects() {
-		return Collects;
-	}
-	public void setCollects(Set<CollectionVO> collects) {
-		Collects = collects;
-	}
+
 	
 	public Integer getActID() {
 		return actID;
@@ -93,6 +86,18 @@ public class ActivityVO implements java.io.Serializable {
 	}
 	public void setAct_photo(InputStream act_photo) {
 		this.act_photo = act_photo;
+	}
+	public Set<CollectionVO> getCollects() {
+		return Collects;
+	}
+	public void setCollects(Set<CollectionVO> collects) {
+		Collects = collects;
+	}
+	public Set<ReportVO> getReports() {
+		return Reports;
+	}
+	public void setReports(Set<ReportVO> reports) {
+		Reports = reports;
 	}
 	
 

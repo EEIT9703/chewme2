@@ -36,7 +36,7 @@ b{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 p{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 select{width:150px;height:40px;font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
-.item{line-height:40px;border-radius:30px;width:250px;text-align:center;}
+.item{color:#FFFFE8;font-family: 'Arial','Microsoft JhengHei';font-weight:bold;padding:20px;height:50px;background-position:left bottom;background-repeat:no-repeat;}
 .detailItem{font-family: 'Arial','Microsoft JhengHei';font-size:17px;padding-left:10px;width:80px;}
 #detailName,#detailTel,#detailAdd,#detailType{font-family: 'Arial','Microsoft JhengHei';font-size:17px;padding:10px;}
 #detailIntro{font-family: 'Arial','Microsoft JhengHei';font-size:17px;padding:10px;}
@@ -50,39 +50,39 @@ option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 </head>
 <body>
 <jsp:useBean id="dao" scope="page" class="com.iii.eeit9703.actEditor.CountryDAO"/>
+
 <FORM METHOD="post" ACTION="/AreaServlet.do">
 
 <header><%@include file="../header.jsp"%></header>
 
-<!-- calendar顯示div處 -->
-<div id='calendar' class='span8' ></div>
-
-<!-- 選擇器區塊 -->
-<div class="row">
-	<div class="span4">
-		<br>
-		<b>行程名稱：</b> <input id="actName"><br><br>
-		<b>(1) 選擇縣市：</b>
-		<select id="country" name="country">
-			<c:forEach var="countryVO" items="${dao.country}">
-				<option value="${countryVO.countryID}">${countryVO.countryName}
-			</c:forEach>
-		</select>
-		<br><br>
-		<b>(2) 選擇區域：</b>
-		<select id="county" name="county"><option>請選擇縣市</option></select>
-		<br><br><br>
-		<div id="tabs">
-		  <ul>
-	    	<li><a href="#attr">景　點</a></li>
-			<li><a href="#rest">餐　聽</a></li>
-  			<li><a href="#stay">住　宿</a></li>
-		  </ul>
-		  <div id="attr"></div>
-		  <div id="rest"></div>
-		  <div id="stay"></div>
-		</div>
-		
+<div class="container-fluid">
+	<div class="row">
+		<!-- calendar顯示div處 -->
+		<div id='calendar' class='col-xs-7 col-sm-8 col-lg-7' style="padding:10"></div>
+		<!-- 選擇器區塊 -->
+		<div class="col-xs-5 col-sm-4 col-lg-5" style="padding:10">
+			<br>
+			<b>行程名稱：</b> <input id="actName"><br><br>
+			<b>(1) 選擇縣市：</b>
+			<select id="country" name="country">
+				<c:forEach var="countryVO" items="${dao.country}">
+					<option value="${countryVO.countryID}">${countryVO.countryName}
+				</c:forEach>
+			</select>
+			<br><br>
+			<b>(2) 選擇區域：</b>
+			<select id="county" name="county"><option>請選擇縣市</option></select>
+			<br><br><br>
+			<div id="tabs" style="width:350px">
+			  <ul>
+		    	<li><a href="#attr">景　點</a></li>
+				<li><a href="#rest">餐　聽</a></li>
+ 	 			<li><a href="#stay">住　宿</a></li>
+			  </ul>
+			  <div id="attr"></div>
+			  <div id="rest"></div>
+			  <div id="stay"></div>
+			</div>
 <!-- 		單一景點簡介視窗    -->
 		<div class="modal fade" id="detail" aria-labelledby="modalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -103,9 +103,8 @@ option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 			</div>
 		</div>
 	</div>
-	<div ></div>
 </div>		
-
+</div>		
 
 
 </FORM>
@@ -170,7 +169,7 @@ window.onload = function(){
 				if(type[0].match(dataArray[k].type)){
 					attr.append(item);
 					console.log(array[k].name);
-					$('#attr>div').css("background-color","#4EFEB3");
+					$('#attr>div').css("background-image","url('../image/trip_tab.png')");
 					$('#attr>div').draggable();
 					$('#attr>div').attr("data-toggle","modal");
 					$('#attr>div').attr("data-target","#detail");
@@ -187,7 +186,7 @@ window.onload = function(){
 				}
 				else if(type[1].match(dataArray[k].type)){
 					rest.append(item);
-					$('#rest>div').css("background-color","#FFA042");
+					$('#rest>div').css("background-image","url('../image/rest_tab.png')");
 					$('#rest>div').draggable();
 					$('#rest>div').attr("data-toggle","modal");
 					$('#rest>div').attr("data-target","#detail");
@@ -203,7 +202,7 @@ window.onload = function(){
 				}
 				else if(type[2].match(dataArray[k].type)){
 					stay.append(item);
-					$('#stay>div').css("background-color","#6A6AFF");
+					$('#stay>div').css("background-image","url('../image/stay_tab.png')");
 					$('#stay>div').draggable();
 					$('#stay>div').attr("data-toggle","modal");
 					$('#stay>div').attr("data-target","#detail");

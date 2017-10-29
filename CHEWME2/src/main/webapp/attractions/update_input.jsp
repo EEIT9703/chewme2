@@ -37,7 +37,7 @@
 <header><%@include file="../header.jsp"%></header>
 	<div style="margin: auto; width: 700px; background-color: #E8E8E8; border-radius: 10px; padding: 5px;">
 		<h2 style="text-align: center;">資料修改</h2>
-		<form method="post" action="Attraction.do">
+		<form method="post" action="Attraction.do" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="name" style="margin-left: 10px;">名稱</label> <input
 					type="text" class="form-control" id="name" name="name"
@@ -82,7 +82,11 @@
 				<textarea id="introduction" name="intro" cols="40" rows="5"
 					style="resize: none; width: 690px;">${attrVO.intro}</textarea>
 			</div>
-			
+			<div class="form-group">			
+				<label for="inputfile" style="margin-left: 10px;">上傳圖片</label>				
+				<input type="file" id="inputfile" name="photo" value="upload_photo" class="	glyphicon glyphicon-folder-open">
+				<p class="help-block"></p>
+			</div>
 			<div>
 				<tr>
 					<td>

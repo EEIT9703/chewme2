@@ -3,7 +3,7 @@ package com.iii.eeit9703.crawler.model;
 public class ArticleVO implements java.io.Serializable{
 	private Integer articleID;
 	private Integer memId;
-	private String attractionID;
+	private Integer attractionID;
 	private String contents;
 	public Integer getArticleID() {
 		return articleID;
@@ -17,10 +17,10 @@ public class ArticleVO implements java.io.Serializable{
 	public void setMemId(Integer memId) {
 		this.memId = memId;
 	}
-	public String getAttractionID() {
+	public Integer getAttractionID() {
 		return attractionID;
 	}
-	public void setAttractionID(String attractionID) {
+	public void setAttractionID(Integer attractionID) {
 		this.attractionID = attractionID;
 	}
 	public String getContents() {

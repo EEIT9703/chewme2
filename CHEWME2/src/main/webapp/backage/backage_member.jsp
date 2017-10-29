@@ -6,17 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
-
-    <link href="backage/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="backage/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <link href="backage/dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <link href="backage/vendor/morrisjs/morris.css" rel="stylesheet">
-
-    <link href="backage/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
+	<link href="<%=request.getContextPath()%>/css/metisMenu/metisMenu.min.css" rel="stylesheet">
+  	<link href="<%=request.getContextPath()%>/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  	<link href="<%=request.getContextPath()%>/css/morrisjs/morris.css" rel="stylesheet">
+  	<link href="<%=request.getContextPath()%>/css/dist/css/sb-admin-2.css" rel="stylesheet">
 </head>
 
 
@@ -51,23 +45,23 @@
   		<div id="wrapper">
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
+                     <ul class="nav" id="side-menu">
                        
                         <li>
-                            <a href="index.jsp"><i class="fa fa-dashboard fa-fw"></i> 首頁</a>
+                            <a href="<%=request.getContextPath()%>/index.jsp"><i class="fa fa-dashboard fa-fw"></i> 首頁</a>
                         </li>
                         <li>
-                            <a href="ad.jsp"><i class="fa fa-bar-chart-o fa-fw"></i>廣告輪播</a>
+                            <a href="<%=request.getContextPath()%>/backage/ad.jsp"><i class="fa fa-bar-chart-o fa-fw"></i>廣告輪播</a>
                             
                         </li>
                         <li>
-                            <a href="report.jsp"><i class="fa fa-table fa-fw"></i>檢舉名單</a>
+                            <a href="<%=request.getContextPath()%>/backage/report.jsp"><i class="fa fa-table fa-fw"></i>檢舉名單</a>
                         </li>
                         <li>
-                            <a href="backage_activity.jsp"><i class="fa fa-edit fa-fw"></i>活動管理</a>
+                            <a href="<%=request.getContextPath()%>/backage/backage_activity.jsp"><i class="fa fa-edit fa-fw"></i>活動管理</a>
                         </li> 
                          <li>
-                            <a href="backage_member.jsp"><i class="fa fa-edit fa-fw"></i>會員管理</a>
+                            <a href="<%=request.getContextPath()%>/backage/backage_member.jsp"><i class="fa fa-edit fa-fw"></i>會員管理</a>
                         </li>                         
                         <li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
@@ -141,17 +135,16 @@
     </div>
     </div>
   
- 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.min.js"></script>
+ 	<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
   	<script>
   	$(function(){
-  		$.getJSON('activity?action=getAllmember',{},sendCounty);
+  		$.getJSON('<%=request.getContextPath()%>/activity?action=getAllmember',{},sendmembers);
   		
-  		function sendCounty(array){
+  		function sendmembers(array){
   			//var docFrag = $(document.createDocumentFragment()); 	
   			var status=["正常","黑名單"];
-  			var roles=["一般會員","社團管理員","系統管理員"];
-  			
+  			var roles=["一般會員","社團管理員","系統管理員"];		
   			var opt = $('#member>tbody');
   			opt.empty(); 
   			$.each(array,function(i,member){
@@ -165,8 +158,7 @@
 	         var cell8 = $('<td></td>').text(member.memAddr);
 	         var cell9 = $('<td></td>').text(member.memPhone);
 	         var cell10 = $('<td></td>').text(member.memIntr);
-	        // var cell11 = $('<td></td>').text(member.memPhoto);
-	   
+	        // var cell11 = $('<td></td>').text(member.memPhoto);  
 	         var select1 =$('<select id="select1"></select');
 	         var select2 =$('<select id="select2"></select');
 
@@ -187,22 +179,17 @@
 	    	  		if(member.memRole==roles[i]){
 	    	  			sel2.attr("selected","selected")	
 	    	  		}
-	        		select2.append(sel2)
-	        		 
+	        		select2.append(sel2)        		 
 	        })
-	        var cell13= $('<td></td>').html(select2)
-	        
-	      
-	          var row = $('<tr></tr>').append([cell1, cell2,cell3,cell4,cell5,cell6,cell7,cell8,cell9,cell10,cell12,cell13]); 
+	        var cell13= $('<td></td>').html(select2)             
+	        var row = $('<tr></tr>').append([cell1, cell2,cell3,cell4,cell5,cell6,cell7,cell8,cell9,cell10,cell12,cell13]); 
 	  	         opt.append(row);
 	        		
-  			})
-  		
+  			}) 		
   		}
  				
 	   })
     </script>
-    	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.min.js"></script>
+
 </body>
 </html>

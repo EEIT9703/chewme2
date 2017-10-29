@@ -5,7 +5,12 @@ import java.util.*;
 
 public interface ActivityDAO_interface {
 	
+<<<<<<< HEAD
 
+=======
+	//新增活動
+	public void insert (ActivityVO activityVO);
+>>>>>>> branch 'master' of https://github.com/EEIT9703/chewme2.git
     //修改活動
 	public void update (ActivityVO activityVO);
 	//刪除
