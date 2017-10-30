@@ -78,8 +78,8 @@ ul.list___3xuJM {
 }
 
 .sidebar___2Ft6w {
-
-    width: 1150px;
+margin:0px 70px 0px 70px;
+    width: 1300px;
     min-height: 600px;
     height: inherit;
     border-right: 1px solid #a4a3a4;
@@ -177,7 +177,7 @@ margin-right:10px
 	<article>
   	<div>
 	<div class="row clearfix">
-		<div class="col-md-3 column">
+		<div class="col-md-2 column">
 			<div class=sidebar___2Ft5w>
 				<div class="myPhoto___3FFnp">
 			   	<div style="background-image:url('<%=request.getContextPath()%>/image/101.jpg')" class="img-circle user-photo___7yyZ6"></div>	
@@ -204,12 +204,8 @@ margin-right:10px
 			</div>
 		</div>
 		<div class="col-md-9 column">
-			<div class="row clearfix">
-				
-				<div id="container" class=sidebar___2Ft6w>
-				
-				</div>
-		
+			<div class="row clearfix">				
+				<div id="cc" class=sidebar___2Ft6w>	</div>		
   			</div>
 			
 		</div>
@@ -279,11 +275,11 @@ $(function(){
 		
 		
 		
-		$("#container").wrecker({
+		$("#cc").wrecker({
 			  itemSelector : ".item",
 			  maxColumns : 4
 			});
-		$("#container").wrecker({
+		$("#cc").wrecker({
 			  itemSelector : ".item",
 			  maxColumns : 4,
 			  responsiveColumns : [
