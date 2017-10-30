@@ -37,25 +37,28 @@ input[type = "file"]{
     padding: 6px 12px;
     cursor: pointer;
 }
-#errname{
-margin-left:10px;
+#errarea{
+	margin-left:10px;	
+	color:red;
+}
+.form-group{
+	
 }
 </style>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>新增商家/景點/住宿</title>
-<link rel="stylesheet" type="text/css" href="path/to/sweetalert2/dist/sweetalert2.min.css">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="../js/jquery.file-preview.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"></link>
+<!-- <script src="../js/jquery.file-preview.js"></script> -->
+
 </head>
 <body>
 	<div>
 		<header><%@include file="../header.jsp"%></header>
 	</div>
-	<div
-		style="margin: auto; width: 700px; background-color: #E8E8E8; border-radius: 10px; padding: 5px;">
+	<div style="margin: auto; width: 700px; background-color: #E8E8E8; border-radius: 10px; padding:5px;">
 		<h2 style="text-align: center;">新增商家/景點/住宿</h2>
 
 		<form method="post" name="form1" action="Attraction.do"
@@ -65,10 +68,10 @@ margin-left:10px;
 					type="text" class="form-control" id="name" name="name"
 					placeholder="請輸入名稱" value="${attrVO.name}" autofocus>
 			</div>
-			<div style="height:1px;color:red;" id="errname"><small></small></div>
-			<div style="margin:19px;">
-				<span> <span>所在地區</span> <select name="county"
-					class="selectpicker">
+			<div id="errarea"><small>${error.nameerror}</small></div>
+			
+			<div style="margin:10px;">
+				<span> <span>所在地區</span> <select name="county"	class="selectpicker">
 						<option>台北市</option>
 						<option>新北市</option>
 						<option>桃園縣</option>
@@ -97,30 +100,32 @@ margin-left:10px;
 					type="text" class="form-control" id="address" name="address"
 					placeholder="請輸入地址" value="${attrVO.address}">
 			</div>
+			<div id="errarea"><small>${error.addresserror}</small></div>
 			<div class="form-group">
 				<label for="tel" style="margin-left: 10px;">電話</label> <input
 					type="text" class="form-control" id="tel" name="tel"
 					placeholder="請輸入電話" value="${attrVO.tel}">
 			</div>
+			<div id="errarea"><small>${error.telerror}</small></div>
 			<div class="form-group">
 				<div>
 					<label for="introduction" style="margin-left: 10px;">簡介</label>
 				</div>
 				<textarea id="introduction" name="intro" cols="40" rows="5"
 					style="resize: none; width: 690px;border-radius:7px;" value="${attrVO.intro}"></textarea>
-			</div>
-			<div class="form-group">			
-				<label for="inputfile" style="margin-left: 10px;">上傳圖片</label>		
-						
-				<input type="file" id="inputfile" name="photo" value="upload_photo">
-				
-				<p class="help-block"></p>
-			</div>
+			</div>	
+			<div id="errarea"><small>${error.introerror}</small></div>		
+			<div class="form-group">				
+				<label class="btn btn-info" for="inputfile">
+                <input id="inputfile" name="photo" style="display:none;" type="file" value="upload_photo">
+            	<i class="fa fa-folder-open-o"></i> 上傳圖片
+                </label>  
+			</div>			
 			<div>
 				<tr>
 					<td>
 						<div class="checkbox"></div>
-						<button type="submit" class="btn btn-default" id="submit">送出</button> <input
+						<button type="submit" class="btn btn-default">送出</button> <input
 						type="hidden" name="action" value="insert">
 					</td>
 					<td><a href="listAll.jsp" class="btn btn-primary">返回列表</a></td>
@@ -128,21 +133,16 @@ margin-left:10px;
 			</div>
 		</form>
 	</div>
-	<script src="/CHEWME2/js/jquery-3.2.1.min.js"></script>
+	<script src="/CHEWME2/js/jquery-3.2.1.min.js"></script>	
 	<script>
-	$(function(){
-		$("#name").blur(function(){
-			var a = jQuery("#name").val();
-			//alert(a);
-			
-			if(a == ""){
-				$("#errname").text("名稱欄位請勿空白！");
-			}			
-		})
-		$(".btn.btn-default").click(function(){
-			
-		})
-		
+	$(function(){		
+// 		$("#name").blur(function(){
+// 			var a = jQuery("#name").val();
+// 			//alert(a);			
+// 			if(a == ""){
+// 				$("#errarea").text("名稱欄位請勿空白！");				
+// 			}			
+// 		})		
 	})
 	</script>
 	<script src="../js/jquery.min.js"></script>

@@ -2,6 +2,7 @@ package com.iii.eeit9703.crawler.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,33 +15,36 @@ import org.json.JSONObject;
 
 import com.iii.eeit9703.crawler.model.ArticleDAO;
 import com.iii.eeit9703.crawler.model.ArticleVO;
+import com.sun.jersey.json.impl.writer.JacksonArrayWrapperGenerator;
 
 @WebServlet("/ArticleServlet")
 public class ArticleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {	
-		
+			throws ServletException, IOException {
+
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setHeader("content-type", "text/html;charset=UTF-8");
-		response.setContentType("text/html; charset=UTF-8");	
-		
+		response.setContentType("text/html; charset=UTF-8");
+
 		String action = request.getParameter("action");
 		PrintWriter out = response.getWriter();
 
 		if ("getmessage".equals(action)) {
 			Integer message = Integer.parseInt(request.getParameter("message"));
 			// out.print(message);
-			//System.out.println(message);
+			// System.out.println(message);
 
 			ArticleDAO artd = new ArticleDAO();
-			ArticleVO articleVO = artd.findByPK(message);
-			JSONObject artjson = new JSONObject(articleVO);
-			out.print(artjson.getString("contents"));
+			ArrayList<ArticleVO> meslist = artd.findByPK(message);
 			
-			System.out.println(artjson.getString("contents"));
+			JSONArray artarry = new JSONArray(meslist);
+			out.println(artarry.toString());
+			System.out.print(artarry);
+
+			
 		}
 	}
 
