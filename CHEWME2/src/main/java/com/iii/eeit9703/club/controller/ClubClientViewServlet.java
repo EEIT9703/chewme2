@@ -159,7 +159,10 @@ public class ClubClientViewServlet extends HttpServlet {
 			out.println(jsonString);
 			//return;
 		}
-		
+		if(action.matches("comment")){
+			System.out.println("request.content is "+request.getParameter("content"));
+			return;
+		}	
 	}
 	
 	
