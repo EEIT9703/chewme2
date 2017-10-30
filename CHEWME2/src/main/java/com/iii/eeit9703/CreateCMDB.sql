@@ -1,4 +1,3 @@
-drop database CMDB
 CREATE DATABASE CMDB
 on 
 PRIMARY(NAME=CMData,
@@ -13,4 +12,4 @@ SIZE=3MB,
 MAXSIZE=500MB,
 FILEGROWTH=1MB)
 
-COLLATE Chinese_Taiwan_Stroke_CI_AS --©w§Ç
+COLLATE Chinese_Taiwan_Stroke_CI_AS --ï¿½wï¿½ï¿½
