@@ -96,10 +96,10 @@ public class ActivityServlet extends HttpServlet {
 		//活動上架
 		if("Updata".equals(action)){  //來自/createActivity.jsp 請求
 			
+			
 			System.out.println(req.getParameter("actID"));
 			
-			Map<String, String> error = new HashMap<String, String>();
-			
+			Map<String, String> error = new HashMap<String, String>();			
 			req.setAttribute("error", error);			
 			
 			try {
@@ -154,8 +154,6 @@ public class ActivityServlet extends HttpServlet {
 				System.out.println(act_photo.getSize());
 				System.out.println(act_photo.getName());
 				
-				//會員選擇的圖片不為空的,將圖片存入
-				
 				//二進制轉64
 				inputStream = act_photo.getInputStream();
 				int len;
@@ -185,30 +183,34 @@ public class ActivityServlet extends HttpServlet {
 				activityVO.setActivity_state(activity_state);
 				activityVO.setActID(actID);
 				activityVO.setAct_photo(base64);
-				
-				if(!error.isEmpty()){
+
+/*				if(!error.isEmpty()){
 					req.setAttribute("activityVO", activityVO); //含有輸入錯誤的activityVO 也存入req
-					RequestDispatcher failureView =req.getRequestDispatcher("/act/createAct.jsp");
+					RequestDispatcher failureView =req.getRequestDispatcher("/act/createAct2.jsp");
 					failureView.forward(req, resp);
+					System.out.println("test");
 					return;
 				}
-				
+				*/
 				//2.開始修改資料 呼叫工頭 ActService.java
-				ActService actSvc = new ActService();
-				actSvc.updateAct(activityVO);
+/*				ActService actSvc = new ActService();
+				actSvc.updateAct(activityVO);*/
 				
 				//修改完成  準備轉交
-				req.setAttribute("activityVO", activityVO);  //資料庫update成功後 正確的activityVO 存入req
-				String url = "/act/createAct.jsp";
+/*				req.setAttribute("activityVO", activityVO);  //資料庫update成功後 正確的activityVO 存入req
+				String url = "/act/createAct2.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, 
-						resp);
+						resp);*/
 				
 			} catch (Exception e) {
-				error.put("修改資料失敗",e.getMessage());
-				RequestDispatcher failureView =req.getRequestDispatcher("/act/createAct.jsp");
-				failureView.forward(req, resp);
-				e.printStackTrace();
+				PrintWriter out1 = resp.getWriter();
+				out1.append("<input value='123456'></input>");
+				return;
+				//error.put("修改資料失敗",e.getMessage());
+				//RequestDispatcher failureView =req.getRequestDispatcher("/act/createAct2.jsp");
+				//failureView.forward(req, resp);
+				//e.printStackTrace();
 			}
 			
 			
