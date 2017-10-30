@@ -93,7 +93,7 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("LoginOK", mv);
 			System.out.println(mv.getMemRole());
 			if(mv.getMemRole().trim().equals("系統管理員")){
-				session.setAttribute("Manager", mv);
+				session.setAttribute("SysManager", mv);
 			}
 		} else {
 			// NG, userid與密碼的組合錯誤，放一個錯誤訊息到 errorMsgMap 之內
