@@ -237,8 +237,8 @@
 					$("#confirm").on('click',function (){
 					//	這裡連同id 跟檢舉內容 送到servlet, servlet 得到 登入會員的sesseion資料  活動id 跟 檢舉內容				
 					//	alert($("#text").val())		
-						$.get("report",{"text":$("#text").val(),"id":"1"},function(data){
-							$("#show").html("<h2>"+data+"</h2>");
+						$.get("<%=request.getContextPath()%>/report",{"text":$("#text").val(),"id":"1"},function(data){
+// 							$("#show").html("<h2>"+data+"</h2>");
 						});
 					
 						})

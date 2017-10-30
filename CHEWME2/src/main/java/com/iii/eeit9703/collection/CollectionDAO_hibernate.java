@@ -73,4 +73,9 @@ public class CollectionDAO_hibernate implements Collection_interface {
 //		return null;
 //	}
 
+//	@Override
+//	public Set<CollectionVO> getMemberByDeptno(CollectionVO collectionVO) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 }

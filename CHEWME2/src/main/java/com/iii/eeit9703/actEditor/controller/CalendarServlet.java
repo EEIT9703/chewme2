@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,7 +43,7 @@ public class CalendarServlet extends HttpServlet {
 	}
 	
 
-	private void processRequest(HttpServletRequest request, HttpServletResponse response) {
+	private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException {
 		
 		try {
 			String mission = request.getParameter("mission");
@@ -113,14 +114,20 @@ public class CalendarServlet extends HttpServlet {
 				
 			}
 			
-			if("updateSCH2".equals(mission)){
-//				System.out.println(request.getParameter("actID"));
+			if ("updateSCH2".equals(mission)) {
+
 				String actID = new String(request.getParameter("actID").trim().replaceAll("\"", ""));
 				Integer schID = Integer.parseInt(request.getParameter("schID"));
-				System.out.println(actID+";"+schID);	
+				System.out.println(actID + ";" + schID);
 				ScheduleDAO scheduledao = new ScheduleDAO();
-				scheduledao.updateSCH2(actID,schID);
-				}
+				scheduledao.updateSCH2(actID, schID);
+//從這邊開始				
+				String url = "/actEditor/schedule.jsp";
+				request.setAttribute("key", actID);
+				RequestDispatcher successView = request.getRequestDispatcher(url);
+				successView.forward(request, response);
+
+			}
 
 
 		} catch (UnsupportedEncodingException e) {
