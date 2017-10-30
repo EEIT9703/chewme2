@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.iii.eeit9703.actEditor.ScheduleDAO;
-import com.iii.eeit9703.actEditor.ScheduleVO;
+import com.iii.eeit9703.actEditor.model.ScheduleDAO;
+import com.iii.eeit9703.actEditor.model.ScheduleVO;
 import com.iii.eeit9703.activity.model.ActivityVO;
 
 
@@ -58,12 +58,10 @@ public class CalendarServlet extends HttpServlet {
 				actName = request.getParameter("actName");
 				System.out.println(actName);
 				ScheduleDAO scheduledao = new ScheduleDAO();
-				ArrayList<ActivityVO> newACT = scheduledao.insertACT(actName);
-				System.out.println(newACT);
+				Integer actID = scheduledao.insertACT(actName);
+				System.out.println(actID);
 				
-				ScheduleVO scheduleVO = new ScheduleVO();
-				scheduledao.insertSCH(scheduleVO);
-				System.out.println("insert success~");				
+				out.println(actID);
 				
 			}
 			
@@ -114,6 +112,16 @@ public class CalendarServlet extends HttpServlet {
 				System.out.println("update success~");				
 				
 			}
+			
+			if("updateSCH2".equals(mission)){
+//				System.out.println(request.getParameter("actID"));
+				String actID = new String(request.getParameter("actID").trim().replaceAll("\"", ""));
+				Integer schID = Integer.parseInt(request.getParameter("schID"));
+				System.out.println(actID+";"+schID);	
+				ScheduleDAO scheduledao = new ScheduleDAO();
+				scheduledao.updateSCH2(actID,schID);
+				}
+
 
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
