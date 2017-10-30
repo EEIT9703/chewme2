@@ -11,7 +11,7 @@
         var FR= new FileReader();
         FR.onload = function(e) {
           //e.target.result = base64 format picture
-          $('#img').attr( "src", e.target.result );
+          $('#img ').attr( "src", e.target.result );
         };       
         FR.readAsDataURL( input.files[0] );
       }
