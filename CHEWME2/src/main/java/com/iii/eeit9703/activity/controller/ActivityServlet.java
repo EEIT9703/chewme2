@@ -94,9 +94,11 @@ public class ActivityServlet extends HttpServlet {
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			
+			InputStream inputStream = null;	
+			
 			try {
 				//1.接收請求 createAct.jsp
-				InputStream inputStream = null;
+							
 				
 				Integer actID = new Integer(req.getParameter("actID"));
 				String act_name = req.getParameter("act_name");				
