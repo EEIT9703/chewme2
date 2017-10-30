@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>jQuery Wrecker Plugin Example</title>
+<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="advanced.css"/>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<style>
+body { font-family:'Roboto'; background-color:#333;}
+h1 { color:#fff;}
+</style>
+<!--[if lt IE 9]>
+<script type="text/javascript" src="libs/jquery-extra-selectors.js"></script>
+<script type="text/javascript" src="libs/html5shiv.js"></script>
+<script type="text/javascript" src="libs/selectivizr-min.js"></script>
+<![endif]-->
+<script type="text/javascript" src="jquery.wrecker.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#container").wrecker({
+		// options
+		itemSelector : ".item",
+		maxColumns : 4,
+		responsiveColumns : [
+			// windowMaxWidth : columns
+			// windowMaxWidth order and values should match those in your responsive CSS
+			{1024 : 3},
+			{800  : 2},
+			{640  : 1}
+		]
+	});
+});
+</script>
+
+<script type="text/javascript" src="jquery.wrecker.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#container").wrecker({
+		// options
+		itemSelector : ".item",
+		maxColumns : 4,
+		responsiveColumns : [
+			// windowMaxWidth : columns
+			// windowMaxWidth order and values should match those in your responsive CSS
+			{1024 : 3},
+			{800  : 2},
+			{640  : 1}
+		]
+	});
+});
+</script>
+</head>
+<body>
+<div id="jquery-script-menu">
+<div class="jquery-script-center">
+<ul>
+<li><a href="http://www.jqueryscript.net/layout/Responsive-Equal-Height-Grid-Layout-Plugin-For-jQuery-Wrecker.html">Download This Plugin</a></li>
+<li><a href="http://www.jqueryscript.net/">Back To jQueryScript.Net</a></li>
+</ul>
+<div class="jquery-script-ads"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-2783044520727903";
+/* jQuery_demo */
+google_ad_slot = "2780937993";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div class="jquery-script-clear"></div>
+</div>
+</div>
+<div class="max-width">
+	<h1>jQuery Wrecker Plugin Example</h1>
+	
+	<div id="container">
+<!-- 	  <div class="item"><img src="https://placeimg.com/640/480/animals" width="640" height="480" alt=""/> -->
+<!--       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></div> -->
+<!-- 		<div class="item"> -->
+<!-- 			<img src="https://placeimg.com/640/480/people" width="640" height="480" alt=""/> -->
+<!-- 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget placerat mi. Sed eget leo eget dui aliquam interdum id id elit. Aenean fermentum, eros quis imperdiet mollis, metus ante volutpat leo.</p> -->
+<!-- 		</div> -->
+<!-- 		<div class="item"><img src="https://placeimg.com/640/480/arch" width="640" height="480" alt=""/> -->
+<!--         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget placerat mi.</p></div> -->
+<!-- 		<div class="item"> -->
+<!-- 			<img src="https://placeimg.com/640/480/nature" width="640" height="480" alt=""/> -->
+<!-- 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget placerat mi. Sed eget leo eget dui aliquam interdum id id elit.</p> -->
+<!-- 		</div> -->
+		
+<!-- 		<div class="item"><img src="https://placeimg.com/640/480/tech" width="640" height="480" alt=""/></div> -->
+<!-- 		<div class="item"> -->
+<!-- 			<img src="https://placeimg.com/640/480/nature/grayscale" width="640" height="480" alt=""/> -->
+<!-- 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget placerat mi. Sed eget leo eget dui aliquam interdum id id elit. Aenean fermentum, eros quis imperdiet mollis, metus ante volutpat leo, vitae gravida ante leo rhoncus eros. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse ullamcorper ultrices elementum.</p> -->
+<!-- 		</div> -->
+<!-- 		<div class="item"><img src="https://placeimg.com/640/480/people/sepia" width="640" height="480" alt=""/></div> -->
+<!-- 		<div class="item"> -->
+<!-- 			<img src="https://placeimg.com/640/480/animals/sepia" width="640" height="480" alt=""/> -->
+<!-- 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget placerat mi. Sed eget leo eget dui aliquam interdum id id elit.</p> -->
+<!-- 		</div> -->
+	</div>
+</div>
+<script>
+$(function(){
+		$.getJSON('<%=request.getContextPath()%>/activity?action=getAllactivity',{},snedActivity);
+		
+		function snedActivity(array){	
+			//var docFrag = $(document.createDocumentFragment()); 			
+			var status=["上架","下架","待審核"];
+			var opt = $('#container');
+			opt.empty();
+			$.each(array,function(i,activity){
+				alert(activity.act_name)
+	         var cell1 = $('<img>').attr("src","image/101.jpg")	 
+	       	 var cell2 = $('p').text(activity.act_name);
+         	 var row = $('<div class="item"></div>').append([cell1, cell2]); 
+  	         opt.append(row);
+        		
+			})
+		
+		}
+				
+   })
+
+
+
+
+
+
+</script>
+
+
+
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>

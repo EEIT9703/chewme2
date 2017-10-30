@@ -11,6 +11,8 @@
 <script src="/CHEWME2/js/jquery-3.2.1.min.js"></script>
 <script src="/CHEWME2/js/jquery-ui.min.js"></script>
 <script src="/CHEWME2/js/base64js.min.js"></script>
+<!-- <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script> -->
+
 
 <!-- Fullcalendar scheduler -->
 <link href='/CHEWME2/css/fullcalendar.css' rel='stylesheet' />
@@ -191,6 +193,7 @@ window.onload = function(){
 					$('#rest>div').attr("data-toggle","modal");
 					$('#rest>div').attr("data-target","#detail");
 					$('#rest>div').click(function(){
+					
 						showDetail($(this).attr("id"));
 					})
 					$('#rest>div').draggable({
@@ -233,10 +236,12 @@ window.onload = function(){
 							$('#detailPhoto').html("<img src='data:image/png;base64,"+dataArray[k].img64+"'height=200px>");
 						}
 					}
-			}	
+					
+			}
+				  
 	}
 	
-	
+
 	
 		
 	}	
