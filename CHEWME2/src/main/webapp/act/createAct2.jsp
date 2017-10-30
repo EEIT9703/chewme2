@@ -30,8 +30,7 @@
 <body>
 	<header><%@ include file="../header.jsp"%></header>
 
-	<jsp:useBean id="actSvc" scope="page"
-		class="com.iii.eeit9703.activity.model.ActService" />
+	<jsp:useBean id="actSvc" scope="page" class="com.iii.eeit9703.activity.model.ActService" />
 
 	<div class="container">
 		<div class="jumbotron">
@@ -55,13 +54,13 @@
 						</div>
 						<div class="form-group">
 							<label for="act_name">活動名稱</label> 
-							<input type="text" class="form-control" name="act_name" id="act_name" value="${error.errorName}" />
+							<input type="text" class="form-control" name="act_name" id="act_name" value="" />
 							<font color="red" size="-1">${error.errorName}</font>
-						</div>
+						</div>	
 						<div class="form-group">
 							<label for="act_groups">成團人數</label> 
 							<input type="text" class="form-control" name="act_groups" id="act_groups" value="" />
-						</div>
+						</div>			
 						<div class="form-group">
 							<label for="act_current">參加人數</label> 
 							<input type="text" class="form-control" name="act_current" id="act_current" value="" disabled="disabled" />

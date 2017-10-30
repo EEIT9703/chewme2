@@ -19,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import org.json.*;
@@ -60,7 +61,7 @@ public class ActivityServlet extends HttpServlet {
 
 		System.out.println(action);
 		
-
+		HttpSession session = req.getSession();
 		
 		//選擇行程
 		if("getOne_For_Update".equals(action)){
@@ -98,6 +99,7 @@ public class ActivityServlet extends HttpServlet {
 			System.out.println(req.getParameter("actID"));
 			
 			Map<String, String> error = new HashMap<String, String>();
+			
 			req.setAttribute("error", error);			
 			
 			try {
@@ -106,8 +108,10 @@ public class ActivityServlet extends HttpServlet {
 				Integer actID = new Integer(req.getParameter("actID"));
 				
 				String act_name = req.getParameter("act_name");
+				System.out.println(act_name);
 				if(act_name == null||act_name.trim().length() == 0){
 					error.put("errorName","旅遊名稱必須輸入");
+							
 				}				
 				
 				String act_groups = req.getParameter("act_groups");
@@ -142,15 +146,16 @@ public class ActivityServlet extends HttpServlet {
 
 				//取得圖片
 				Part act_photo = req.getPart("upload");
-				
-				//會員選擇的圖片不為空的,將圖片存入
-				if(act_photo != null){
-					System.out.println(act_photo.getName());
-					System.out.println(act_photo.getContentType());
-					System.out.println(act_photo.getSize());
-				}else{
+				if(act_photo != null){										
 					error.put("errorPhoto","請選擇一張圖片");
 				}
+				
+				System.out.println(act_photo.getContentType());
+				System.out.println(act_photo.getSize());
+				System.out.println(act_photo.getName());
+				
+				//會員選擇的圖片不為空的,將圖片存入
+				
 				//二進制轉64
 				inputStream = act_photo.getInputStream();
 				int len;
