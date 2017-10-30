@@ -31,6 +31,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>資料修改</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"></link>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 <body>
