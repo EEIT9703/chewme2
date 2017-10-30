@@ -1,12 +1,16 @@
 package com.iii.eeit9703.activity.controller;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Base64;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -60,8 +64,9 @@ public class ActivityServlet extends HttpServlet {
 		
 		//選擇行程
 		if("getOne_For_Update".equals(action)){
+			
 			List<String>errorMsgs = new LinkedList<String>();
-			req.setAttribute("errorMsgs", errorMsgs);
+			req.setAttribute("error", errorMsgs);
 
 			try {
 				//1.接收請求	
@@ -91,20 +96,51 @@ public class ActivityServlet extends HttpServlet {
 		if("Updata".equals(action)){  //來自/createActivity.jsp 請求
 			
 			System.out.println(req.getParameter("actID"));
-			List<String> errorMsgs = new LinkedList<String>();
-			req.setAttribute("errorMsgs", errorMsgs);
+			
+			Map<String, String> error = new HashMap<String, String>();
+			req.setAttribute("error", error);			
 			
 			try {
-				//1.接收請求 createAct.jsp
-				InputStream inputStream = null;
+				//1.接收請求 createAct.jsp							
 				
 				Integer actID = new Integer(req.getParameter("actID"));
-				String act_name = req.getParameter("act_name");				
-				Integer act_groups = new Integer(req.getParameter("act_groups"));
-				Date BDate = java.sql.Date.valueOf(req.getParameter("BDate"));
-				Date EDate = java.sql.Date.valueOf(req.getParameter("EDate"));
+				
+				String act_name = req.getParameter("act_name");
+				if(act_name == null||act_name.trim().length() == 0){
+					error.put("errorName","旅遊名稱必須輸入");
+				}				
+				
+				String act_groups = req.getParameter("act_groups");
+				if(act_groups == null ||act_groups.trim().length() == 0){
+					error.put("errorGroups","旅遊人數必須輸入");
+				}
+				String act_groupsReg ="^[(0-9_)]$";
+				if(!act_groups.trim().matches(act_groupsReg)){
+					error.put("errorGroups2","旅遊人數只能為數字");
+				}
+				
+				java.sql.Date BDate = null;
+				try {
+					BDate = java.sql.Date.valueOf(req.getParameter("BDate").trim());
+				} catch (Exception e) {
+					error.put("errorBDate","請選擇出發日期");
+					e.printStackTrace();
+				}
+				
+				java.sql.Date EDate = null;				
+				try {
+					EDate = java.sql.Date.valueOf(req.getParameter("EDate"));
+				} catch (Exception e) {
+					error.put("errorMsgEDate","請選擇結束日期");
+					e.printStackTrace();
+				}
+				
 				Integer activity_state = new Integer(req.getParameter("activity_state"));
 				
+				InputStream inputStream = null;
+				ByteArrayOutputStream bos = null;
+
+				//取得圖片
 				Part act_photo = req.getPart("upload");
 				
 				//會員選擇的圖片不為空的,將圖片存入
@@ -112,9 +148,25 @@ public class ActivityServlet extends HttpServlet {
 					System.out.println(act_photo.getName());
 					System.out.println(act_photo.getContentType());
 					System.out.println(act_photo.getSize());
-					inputStream = act_photo.getInputStream();
+				}else{
+					error.put("errorPhoto","請選擇一張圖片");
 				}
+				//二進制轉64
+				inputStream = act_photo.getInputStream();
+				int len;
+				int size = 1024;
+				byte[] buf;
 				
+				bos = new ByteArrayOutputStream();
+				buf = new byte[size];
+				
+				while ((len = inputStream.read(buf, 0, size)) != -1)
+					bos.write(buf, 0, len);
+				
+				buf = bos.toByteArray();
+				String base64 = Base64.getEncoder().encodeToString(buf);
+				
+				System.out.println(base64);
 				System.out.println("HELLO");
 				
 //			    Integer actID =new Integer(req.getParameter("actID").trim());
@@ -127,9 +179,9 @@ public class ActivityServlet extends HttpServlet {
 				activityVO.setEDate(EDate);
 				activityVO.setActivity_state(activity_state);
 				activityVO.setActID(actID);
-				activityVO.setAct_photo(inputStream);
+				activityVO.setAct_photo(base64);
 				
-				if(!errorMsgs.isEmpty()){
+				if(!error.isEmpty()){
 					req.setAttribute("activityVO", activityVO); //含有輸入錯誤的activityVO 也存入req
 					RequestDispatcher failureView =req.getRequestDispatcher("/act/createAct.jsp");
 					failureView.forward(req, resp);
@@ -148,7 +200,7 @@ public class ActivityServlet extends HttpServlet {
 						resp);
 				
 			} catch (Exception e) {
-				errorMsgs.add("修改資料失敗"+e.getMessage());
+				error.put("修改資料失敗",e.getMessage());
 				RequestDispatcher failureView =req.getRequestDispatcher("/act/createAct.jsp");
 				failureView.forward(req, resp);
 				e.printStackTrace();
