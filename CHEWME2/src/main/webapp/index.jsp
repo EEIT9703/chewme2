@@ -125,6 +125,7 @@ ul, li {
 						</ul>
 					</div>
 				</div>
+				
 
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 					<li class="nav-item"><a class="nav-link active" id="home-tab"
@@ -133,9 +134,7 @@ ul, li {
 					<li class="nav-item"><a class="nav-link" id="profile-tab"
 						data-toggle="tab" href="#profile" role="tab"
 						aria-controls="profile">有趣經驗</a></li>
-					<li class="nav-item"><a class="nav-link" id="profile-tab"
-						data-toggle="tab" href="#profile" role="tab"
-						aria-controls="profile">旅遊景點</a></li>
+					<li class="nav-item"><a  href="/CHEWME2/attractions/listAll.jsp" >旅遊景點</a></li>
 					<li class="nav-item"><a class="nav-link" id="profile-tab"
 						data-toggle="tab" href="#profile" role="tab"
 						aria-controls="profile">關於我們</a></li>

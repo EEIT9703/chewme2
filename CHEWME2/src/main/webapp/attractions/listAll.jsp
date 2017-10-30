@@ -104,7 +104,7 @@ text-align: center;
 	<script>
 		$(function() {
 			$(".btn.btn-danger").click(function(){
-				alert("123");
+				alert("是否刪除?");
 			});
 		
 		})

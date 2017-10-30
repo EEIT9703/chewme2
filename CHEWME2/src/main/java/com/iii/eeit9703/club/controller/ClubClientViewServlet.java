@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -23,9 +24,12 @@ import org.json.simple.JSONValue;
 
 import com.iii.eeit9703.club.model.ClubService;
 import com.iii.eeit9703.club.model.ClubVO;
+import com.iii.eeit9703.club.model.CommentService;
 import com.iii.eeit9703.club.model.CommentVO;
 import com.iii.eeit9703.club.model.IssueService;
 import com.iii.eeit9703.club.model.IssueVO;
+import com.iii.eeit9703.member.model.MemberSession;
+import com.iii.eeit9703.utility.DateUtil;
 
 
 @WebServlet("/club/clubClientView.do")
@@ -86,10 +90,13 @@ public class ClubClientViewServlet extends HttpServlet {
 		String action = request.getParameter("action");
 		System.out.println("The action is " + action);
 		HttpSession session = request.getSession(false);
+		/*MemberSession memSession = (MemberSession)session.getAttribute("LoginOK");*/
 		if(session == null){
 			
 		}
-		
+		/*if(memSession!=null){
+			memSession.getMemId();			
+		}*/
 		/*服務從findClub導過來的service,顯示club的Service*/
 		if(action.matches("chooseClub")){
 			System.out.println("In ClubClientVIEW, start the choose club");
@@ -116,6 +123,7 @@ public class ClubClientViewServlet extends HttpServlet {
 			Set<CommentVO> cmvoSet;
 			Map commentMap;
 			for(Iterator<IssueVO> itero=issueVO_list.iterator();itero.hasNext();){
+				int i= 0;
 				issueMap = new HashMap();
 				commentList_json  = new ArrayList(); 
 				isvo = itero.next();
@@ -150,19 +158,32 @@ public class ClubClientViewServlet extends HttpServlet {
 				}
 				
 				issueMap.put("comments",commentList_json);
-				System.out.println("issue map ok");
+				System.out.println("issue map ok" + i);
+				i++;
 				issueList_json.add(issueMap);
 				//StringHelper.testEncode(isvo.getIssueContent());
 			}
+			System.out.println("issue map ok out");
 			String jsonString = JSONValue.toJSONString(issueList_json);
 			System.out.println(jsonString);
 			out.println(jsonString);
-			//return;
+			
 		}
-		
+	if(action.matches("insertComment")){
+			System.out.println("request.content is "+request.getParameter("content"));
+			System.out.println("the issue id is " + request.getParameter("issueId"));
+			CommentService cs = new CommentService();
+			CommentVO cmvo = new CommentVO();
+			
+			cmvo.setCommenterId(1);			
+			cmvo.setIssueId(Integer.parseInt(request.getParameter("issueId")));
+			cmvo.setContent( request.getParameter("content"));	        
+			cmvo.setCommentDate(DateUtil.getCurrentTimeStamp());		
+			cs.insertComment(cmvo);
+			return;
+		}	
 	}
-	
-	
+		
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 

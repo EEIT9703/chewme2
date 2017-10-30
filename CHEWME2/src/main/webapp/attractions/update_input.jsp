@@ -30,7 +30,7 @@
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>資料修改</title>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 <body>
@@ -44,7 +44,7 @@
 					placeholder="請輸入名稱" value="${attrVO.name}">
 			</div>
 			<div style="margin: 15px;">
-				<span> <span>所在地區</span> <select name="county">
+				<span> <span>所在地區</span> <select name="county" class="selectpicker">
 						<option>台北市</option>
 						<option>新北市</option>
 						<option>桃園縣</option>
@@ -55,7 +55,7 @@
 						<option>高雄市</option>
 				</select>
 				</span> <span> <span style="margin-left: 10px;">類型</span> <select
-					name="type">
+					name="type" class="selectpicker">
 						<option>餐廳</option>
 						<option>景點</option>
 						<option>住宿</option>
@@ -82,11 +82,12 @@
 				<textarea id="introduction" name="intro" cols="40" rows="5"
 					style="resize: none; width: 690px;">${attrVO.intro}</textarea>
 			</div>
-			<div class="form-group">			
-				<label for="inputfile" style="margin-left: 10px;">上傳圖片</label>				
-				<input type="file" id="inputfile" name="photo" value="upload_photo" class="	glyphicon glyphicon-folder-open">
-				<p class="help-block"></p>
-			</div>
+			<div class="form-group">
+				<label class="btn btn-info" for="inputfile">
+                <input id="inputfile" name="photo" style="display:none;" type="file" value="upload_photo">
+            	<i class="fa fa-folder-open-o"></i> 上傳圖片
+                </label>
+			</div>	
 			<div>
 				<tr>
 					<td>
@@ -101,6 +102,7 @@
 		</form>
 	</div>
 	<script src="../js/jquery.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 </body>
 </html>

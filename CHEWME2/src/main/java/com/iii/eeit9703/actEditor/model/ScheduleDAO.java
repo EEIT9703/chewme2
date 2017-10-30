@@ -1,4 +1,4 @@
-package com.iii.eeit9703.actEditor;
+package com.iii.eeit9703.actEditor.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,14 +22,16 @@ public class ScheduleDAO {
 	private static final String NEWSCHEDULES= "INSERT INTO schedules(attractionID,dayNo,period)VALUES(?,?,?)";
 	private static final String SELECTSCHEDULES= "SELECT TOP(1)scheduleID from schedules where attractionID=? and actID is null";
 	private static final String UPDATESCHEDULES= "UPDATE TOP(1)schedules set period=? WHERE attractionID=? and actID is null";
+	private static final String UPDATESCHEDULES2= "UPDATE schedules set actID=? WHERE scheduleID=? and actID is null";
 		
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	
 	
-	public ArrayList<ActivityVO> insertACT(String actName){
+	public Integer insertACT(String actName){
 		ArrayList<ActivityVO> list = new ArrayList<ActivityVO>();
+		int actID = 0;
 
 		try {
 			Class.forName(driver);
@@ -40,7 +42,7 @@ public class ScheduleDAO {
 			pstmt.setInt(2, 3);
 			pstmt.executeUpdate();
 			
-			list = selectACT(actName);
+			actID = selectACT(actName);
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -63,13 +65,14 @@ public class ScheduleDAO {
 			}
 		}
 		
-		return list;
+		return actID;
 	}
 	
-	public ArrayList<ActivityVO> selectACT(String actName){
+	public Integer selectACT(String actName){
 		
 		ArrayList<ActivityVO> activitylist = new ArrayList<ActivityVO>();
 		ActivityVO activityVO=null;
+		int actID = 0;
 
 		try {
 			Class.forName(driver);
@@ -78,12 +81,9 @@ public class ScheduleDAO {
 			
 			pstmt.setString(1, actName);
 			rs = pstmt.executeQuery();
-			while(rs.next()){
-				activityVO = new ActivityVO();
-				activityVO.setActID(rs.getInt("actID"));
-				activityVO.setAct_name(actName);
-				activitylist.add(activityVO);
-			}
+			rs.next();
+			actID = rs.getInt("actID");
+
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -105,7 +105,7 @@ public class ScheduleDAO {
 				catch (SQLException e) {e.printStackTrace();}
 			}
 		}
-		return activitylist;
+		return actID;
 	}
 	
 	public Integer insertSCH(ScheduleVO SCHlist){
@@ -187,7 +187,6 @@ public class ScheduleDAO {
 	}
 	
 	public void updateSCH(ScheduleVO chVO){
-		System.out.println("XX");
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
@@ -215,6 +214,49 @@ public class ScheduleDAO {
 			if(con != null){
 				try {con.close();} 
 				catch (SQLException e) {e.printStackTrace();}
+			}
+		}
+	}
+
+	public void updateSCH2(String actID,Integer schID) {
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(UPDATESCHEDULES2);
+			
+			Integer Nact = Integer.parseInt(actID);
+
+			pstmt.setInt(1, Nact);
+			pstmt.setInt(2, schID);
+			pstmt.executeUpdate();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}

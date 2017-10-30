@@ -31,69 +31,75 @@ public class RegisterServlet extends HttpServlet {
 		String action = req.getParameter("action");
 
 		if ("insert".equals(action)) {
-			List<String> errorMsgs = new LinkedList<String>();
-
-			req.setAttribute("errorMsgs", errorMsgs);
-
+			// List<String> errorMsgs = new LinkedList<String>();
+			Map<String, String> errorMsgs = new HashMap<String, String>();
+			// req.setAttribute("errorMsgs", errorMsgs);
+			req.setAttribute("MsgMap", errorMsgs);
 			try {
-				System.out.println("1");
 				String memberId = req.getParameter("memberId");
 				if (memberId == null || memberId.trim().length() == 0) {
-					errorMsgs.add("帳號欄位必須輸入");
+					// errorMsgs.add("帳號欄位必須輸入");
+					errorMsgs.put("IDEmpty", "帳號欄位必須輸入;");
 				}
 
 				String memName = req.getParameter("memName");
 				if (memName == null || memName.trim().length() == 0) {
-					errorMsgs.add("姓名欄位必須輸入");
+					// errorMsgs.add("姓名欄位必須輸入");
+					errorMsgs.put("NameEmpty", "姓名欄位必須輸入;");
 				}
 				String memNameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 				if (!memName.trim().matches(memNameReg)) {
-					errorMsgs.add("姓名:只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
+					// errorMsgs.add("姓名:只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
+					errorMsgs.put("NameFormatError", "姓名格式錯誤:只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
 				}
 				String memNickN = req.getParameter("memNickN");
 				if (memNickN == null || memNickN.trim().length() == 0) {
-					errorMsgs.add("暱稱欄位必須輸入");
+					// errorMsgs.add("暱稱欄位必須輸入");
+					errorMsgs.put("NickNEmpty", "暱稱欄位必須輸入;");
 				}
 				String memPwd = req.getParameter("memPwd");
 				if (memPwd == null || memPwd.trim().length() == 0) {
-					errorMsgs.add("密碼欄位必須輸入");
+					// errorMsgs.add("密碼欄位必須輸入");
+					errorMsgs.put("PswdEmpty", "密碼欄位必須輸入;");
 				}
 				java.sql.Date memBirthday = null;
 				try {
 					memBirthday = java.sql.Date.valueOf(req.getParameter("memBirthday"));
 				} catch (IllegalArgumentException e) {
 					memBirthday = new java.sql.Date(System.currentTimeMillis());
-					errorMsgs.add("生日欄位必須選擇");
+					// errorMsgs.add("生日欄位必須選擇");
+					errorMsgs.put("BirthdayEmpty", "生日欄位必須選擇;");
 				}
 				String memMail = req.getParameter("memMail");
 				if (memMail == null || memMail.trim().length() == 0) {
-					errorMsgs.add("信箱欄位必須輸入");
+					// errorMsgs.add("信箱欄位必須輸入");
+					errorMsgs.put("MailEmpty", "信箱欄位必須輸入;");
 				}
 				String emailReg = "^([\\w]+)(([-\\.][\\w]+)?)*@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([\\w-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$";
 				if (!memMail.trim().matches(emailReg)) {
-					errorMsgs.add("信箱格式錯誤");
+					// errorMsgs.add("信箱格式錯誤");
+					errorMsgs.put("MailFormatError", "信箱格式錯誤;");
 				}
 				String memAddr = req.getParameter("memAddr");
 				if (memAddr == null || memAddr.trim().length() == 0) {
-					errorMsgs.add("地址欄位必須輸入");
+					// errorMsgs.add("地址欄位必須輸入");
+					errorMsgs.put("AddrEmpty", "地址欄位必須輸入;");
 				}
 				String memPhone = req.getParameter("memPhone");
 				if (memPhone == null || memPhone.trim().length() == 0) {
-					errorMsgs.add("電話欄位必須輸入");
+					// errorMsgs.add("電話欄位必須輸入");
+					errorMsgs.put("PhoneEmpty", "電話欄位必須輸入;");
 				}
 				String memIntr = req.getParameter("memIntr");
 				if (memIntr == null || memIntr.trim().length() == 0) {
-					errorMsgs.add("自我介紹必須輸入");
+					// errorMsgs.add("自我介紹必須輸入");
+					errorMsgs.put("IntrEmpty", "自我介紹必須輸入;");
 				}
 
 				InputStream is = null;
 				ByteArrayOutputStream bos = null;
 				Part memPhoto = req.getPart("memPhoto");
-				System.out.println(memPhoto);
-				if(memPhoto==null){
-					System.out.println("aa");
-					errorMsgs.add("請放入圖片");
-				}
+				
 				is = memPhoto.getInputStream();
 				int len;
 				int size = 1024;
@@ -105,7 +111,11 @@ public class RegisterServlet extends HttpServlet {
 					bos.write(buf, 0, len);
 				buf = bos.toByteArray();
 				String base64 = Base64.getEncoder().encodeToString(buf);
-
+				if (base64 == null||base64.trim().length()==0) {
+					// errorMsgs.add("請放入圖片");
+					errorMsgs.put("PicEmpty", "請放入圖片");
+				}
+				System.out.println(base64);
 				MemVO memVO = new MemVO();
 				memVO.setMemberId(memberId);
 				memVO.setMemName(memName);
@@ -117,19 +127,19 @@ public class RegisterServlet extends HttpServlet {
 				memVO.setMemPhone(memPhone);
 				memVO.setMemAddr(memIntr);
 				memVO.setMemPhoto(base64);
-				
+
 				MemService memSvc = new MemService();
-				if(memSvc.idExists(memberId)){
-					errorMsgs.add("帳號已存在");
+				if (memSvc.idExists(memberId)) {
+					// errorMsgs.add("帳號已存在");
+					errorMsgs.put("IDExistError", "帳號已存在");
 				}
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("memVO", memVO);
 					RequestDispatcher failureView = req.getRequestDispatcher("/member/register.jsp");
-					System.out.println("2");
 					failureView.forward(req, res);
 					return;
 				}
-				
+
 				memVO = memSvc.addMem(memberId, memName, memNickN, memPwd, memBirthday, memMail, memAddr, memPhone,
 						memIntr, base64);
 
@@ -139,9 +149,9 @@ public class RegisterServlet extends HttpServlet {
 				successView.forward(req, res);
 
 			} catch (Exception e) {
-				errorMsgs.add(e.getMessage());
+				// errorMsgs.add(e.getMessage());
+				errorMsgs.put("errorIDDup", e.getMessage());
 				RequestDispatcher failureView = req.getRequestDispatcher("/member/register.jsp");
-				System.out.println("4");
 				failureView.forward(req, res);
 			}
 
