@@ -8,6 +8,7 @@ $(document).ready(function() {
 	$("#tabs").tabs();
 	getTemplates();
 	$("#forum-tab").on("click", loadIssues)
+
 })
 function loadIssues() {
 	$.getJSON("clubClientView.do?action=loadIssues", {
@@ -22,6 +23,7 @@ function loadIssues() {
 		})
 	});
 	$("#forum-tab").off("click",loadIssues);
+	$(".well").css("height", "15px");
 }
 
 function insertIssue(issueVO) {
@@ -43,7 +45,7 @@ function insertViewComment(content) {
 	thsIssue.find("ul").append(viewCommentTemplate);
 	thsIssue.find("li:last")
 	//.attr("id","issueId_"+commentVO.getIssueId+"commentId"+commentVO.getCommentId)
-	.find(".well").text(content);	
+	.find(".well").text(content).attr("min-heigth","20px");	
 }
 function insertCommentBox(){
 	console.log("build the commentBoxTemplate");
@@ -60,7 +62,7 @@ function sendContent(button){
 	console.log(sender=$(button).closest('li[class="list-group-item"]'));
 	console.log(content=$(button).closest("ul").find("textarea").val());
 	console.log(id=$(button).closest("div[class='panel panel-default']").attr("id").substr(8));
-	$.get("clubClientView.do?action=insertComment", {
+	$.post("clubClientView.do?action=insertComment", {
 		"content":content ,	
 		"issueId": id
 	}, function() {
