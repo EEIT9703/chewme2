@@ -38,11 +38,13 @@ $(function() {
 	$('#act_name').blur(function() {
 		var act_name = $(this).val();
 		console.log(act_name);
-		if (act_name == ""||act_name.trim()) {
+		if (act_name == null) {
 			console.log(act_name);
 			$('#act_name+font').text('請輸入旅行名稱');
 		}
 		
+		//^[0-9]{4}/(((0[13578]|(10|12))/(0[1-9]|[1-2][0-9]|3[0-1]))|
+		//(02/(0[1-9]|[1-2][0-9]))|((0[469]|11)/(0[1-9]|[1-2][0-9]|30)))$
 
 /*		$.get('/CHEWME2/activityServlet.do?action=Updata', {'act_name' : $(this).val()}, 
 				function(data) {
@@ -55,11 +57,11 @@ $(function() {
 	});
 	$('#act_groups').blur(function(){
 		var act_groups = $(this).val();
-		var act_groupsReg ='^[(0-9_)]$'
-			if(isNaN(act_groups)||act_groups.trim()){
+		var re = act_groups.match(/^[0-9]+$/);
+			if(act_groups == ""){
 				console.log(act_groups);
 				$('#act_groups+font').text('請輸入旅行人數');
-			}else if(!act_groupsReg){
+			}else if(re == null){
 				console.log(act_groups);
 				$('#act_groups+font').text('旅行人數只能為數字');
 			}
