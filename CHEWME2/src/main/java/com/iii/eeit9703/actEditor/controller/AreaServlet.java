@@ -14,10 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.iii.eeit9703.actEditor.AttrDAO;
-import com.iii.eeit9703.actEditor.AttrVO;
-import com.iii.eeit9703.actEditor.CountyDAO;
-import com.iii.eeit9703.actEditor.CountyVO;
+import com.iii.eeit9703.actEditor.model.AttrDAO;
+import com.iii.eeit9703.actEditor.model.AttrVO;
+import com.iii.eeit9703.actEditor.model.CountyDAO;
+import com.iii.eeit9703.actEditor.model.CountyVO;
 import com.iii.eeit9703.activity.model.ActivityVO;
 
 

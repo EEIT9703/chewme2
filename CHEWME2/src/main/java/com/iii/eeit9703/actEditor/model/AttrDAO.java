@@ -1,4 +1,4 @@
-package com.iii.eeit9703.actEditor;
+package com.iii.eeit9703.actEditor.model;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

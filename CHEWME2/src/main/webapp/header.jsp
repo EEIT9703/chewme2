@@ -22,7 +22,12 @@
 		<div id="navbar-right" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav" style="margin-left: 50px">
 				<li><a href="/CHEWME2/index.jsp">Home</a></li>
-				<li><a href="/CHEWME2/act/createAct.jsp">創行程</a></li>
+				<li ><a class="dropdown-toggle" data-toggle="dropdown" href="#">揪旅行<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="/CHEWME2/actEditor/editorScuedule.jsp">創行程</a></li>
+      					<li><a href="/CHEWME2/act/createAct2.jsp">揪新團</a></li>
+					</ul>
+				</li>
 				<li><a href="/CHEWME2/club/createClub.do">創社團</a></li>
 				<li><a href="/CHEWME2/club/findClub.do">找社團</a></li>
 
