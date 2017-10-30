@@ -12,36 +12,13 @@
   	<link href="<%=request.getContextPath()%>/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   	<link href="<%=request.getContextPath()%>/css/morrisjs/morris.css" rel="stylesheet">
   	<link href="<%=request.getContextPath()%>/css/dist/css/sb-admin-2.css" rel="stylesheet">
-<!--     <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script> -->
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 
 </head>
 
 
 <body>
-	<header> <nav class="navbar navbar-default navbar-fixed-top">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<a class="navbar-brand " href="#"><img src="image/letter-c.png"width="30" height="30" alt="">CHEWME</a>
-		</div>
-		<ul class="nav navbar-nav">
-			<li><a href="#">Home</a></li>
-			<li><a href="#">揪人玩</a></li>
-			<li><a href="#">創行程</a></li>
-			<li><a href="#">創社團</a></li>
-
-		</ul>
-
-		<ul class="nav navbar-nav navbar-right">
-			<li><a class="nav-link" href="#"><span
-					class="glyphicon glyphicon-log-in"></span> 登入</a></li>
-			<li><a class="nav-link" href="#"><span
-					class="glyphicon glyphicon-registration-mark"></span> 註冊</a></li>
-		</ul>
-	</div>
-	</nav> <nav class="navbar navbar-expand-lg">
-	<div class="container-fluid"></div>
-
-	</nav> </header>
+	<header><%@ include file="/header.jsp"%></header>
   		<div id="wrapper">
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
@@ -183,56 +160,10 @@
     </div>
     </div>
     
-       <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-				aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true">&times;</button>
-							<h4 class="modal-title" id="myModalLabel">歡迎來到揪ME</h4>
-						</div>
-						<div class="modal-body">
-						<div class="form-group">
-							<input class="form-control" placeholder="E-mail" name="email"
-								type="email" autofocus>
-						</div>
-						<div class="form-group">
-							<input class="form-control" placeholder="Password"
-								name="password" type="password" value="">
-						</div>
-						<div class="checkbox">
-							<label> <input name="remember" type="checkbox"
-								value="Remember Me">Remember Me
-							</label>
-						</div>
-						
-						
-						<div><a href="#">忘記密碼?</a></div>
-					</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">離開</button>
-							<button type="button" class="btn btn-primary">登入</button>
-						</div>
-					</div>
-					<!-- /.modal-content -->
-				</div>
-				<!-- /.modal -->
-			</div>
-    
-   
-    
-    
-    
-    
-    
-    
-    
-    
+      
 
  	 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-	 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+<%-- 	 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script> --%>
 
 
 	<script>
