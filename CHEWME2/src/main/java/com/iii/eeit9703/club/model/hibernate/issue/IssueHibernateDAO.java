@@ -106,7 +106,7 @@ public class IssueHibernateDAO implements IssueDAOI{
 				System.out.print(var.getIssueContent() + ",");
 				System.out.print(var.getProposerId() + ",");
 				System.out.println(var.getIssuepic() + ",");
-				//System.out.println(var.getComments() + ",");
+				System.out.println(var.getComments() + ",");
 			}				
 
 	}
