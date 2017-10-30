@@ -90,7 +90,7 @@ public class ClubClientViewServlet extends HttpServlet {
 		String action = request.getParameter("action");
 		System.out.println("The action is " + action);
 		HttpSession session = request.getSession(false);
-		MemberSession memSession = (MemberSession)session.getAttribute("LoginOK");
+		/*MemberSession memSession = (MemberSession)session.getAttribute("LoginOK");*/
 		if(session == null){
 			
 		}
@@ -123,6 +123,7 @@ public class ClubClientViewServlet extends HttpServlet {
 			Set<CommentVO> cmvoSet;
 			Map commentMap;
 			for(Iterator<IssueVO> itero=issueVO_list.iterator();itero.hasNext();){
+				int i= 0;
 				issueMap = new HashMap();
 				commentList_json  = new ArrayList(); 
 				isvo = itero.next();
@@ -157,29 +158,31 @@ public class ClubClientViewServlet extends HttpServlet {
 				}
 				
 				issueMap.put("comments",commentList_json);
-				System.out.println("issue map ok");
+				System.out.println("issue map ok" + i);
+				i++;
 				issueList_json.add(issueMap);
 				//StringHelper.testEncode(isvo.getIssueContent());
 			}
+			System.out.println("issue map ok out");
 			String jsonString = JSONValue.toJSONString(issueList_json);
 			System.out.println(jsonString);
 			out.println(jsonString);
-			return;
+			
 		}
-/*	if(action.matches("insertComment")){
+	if(action.matches("insertComment")){
 			System.out.println("request.content is "+request.getParameter("content"));
+			System.out.println("the issue id is " + request.getParameter("issueId"));
 			CommentService cs = new CommentService();
 			CommentVO cmvo = new CommentVO();
+			
 			cmvo.setCommenterId(1);			
 			cmvo.setIssueId(Integer.parseInt(request.getParameter("issueId")));
-			
-			cmvo.setContent(request.getParameter("content"));
-	        request.getParameter("content");
+			cmvo.setContent( request.getParameter("content"));	        
 			cmvo.setCommentDate(DateUtil.getCurrentTimeStamp());		
 			cs.insertComment(cmvo);
 			return;
 		}	
-*/	}
+	}
 		
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
