@@ -13,7 +13,11 @@
   	<link href="<%=request.getContextPath()%>/css/morrisjs/morris.css" rel="stylesheet">
   	<link href="<%=request.getContextPath()%>/css/dist/css/sb-admin-2.css" rel="stylesheet">
   	
+  	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/js/advanced.css"/>
   	<style>
+  	body { font-family:'Roboto';}
+h1 { color:#fff;}
+  	
 ul, ol {
     margin-top: 0;
     margin-bottom: 10px;
@@ -64,7 +68,7 @@ ul.list___3xuJM {
 }
 
 .sidebar___2Ft5w {
-    width: 250px;
+    width: 340px;
     min-height: 600px;
     height: inherit;
     border-right: 1px solid #a4a3a4;
@@ -74,7 +78,8 @@ ul.list___3xuJM {
 }
 
 .sidebar___2Ft6w {
-    width: 1000px;
+
+    width: 1150px;
     min-height: 600px;
     height: inherit;
     border-right: 1px solid #a4a3a4;
@@ -118,6 +123,23 @@ ul.list___3xuJM {
     color: #fff;
     cursor: pointer;
 }
+.myPhoto___3FFnp .shortText___3j1uo {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 185px;
+    width: auto;
+    color: #FFFFFF;
+    
+}
+.btnShop{
+margin-top:150px;
+margin-left:500px;
+}
+
+
+
 </style>
 
 
@@ -152,21 +174,23 @@ ul.list___3xuJM {
 	<div class="container-fluid"></div>
 
 	</nav> </header>
-  	<div class="container">
+	<article>
+  	<div>
 	<div class="row clearfix">
-		<div class="col-md-4 column">
+		<div class="col-md-3 column">
 			<div class=sidebar___2Ft5w>
 				<div class="myPhoto___3FFnp">
 			   	<div style="background-image:url('<%=request.getContextPath()%>/image/101.jpg')" class="img-circle user-photo___7yyZ6"></div>	
+				<p class="shortText___3j1uo" title="黃彥坤">黃彥坤</p>
 				</div>
 				<div>
 					<ul class="list___3xuJM">
-						<li class="item___2dDze">
+						<li class="item___2dDze  selected___2Hy4k" id="collection">
 						
 						<span><img src="<%=request.getContextPath()%>/image/car.gif" width=10px height=10px></span>
-						<span class="types___3m74H">我的收藏</span>
+						<span class="types___3m74H">購物車清單</span>
 						</li>
-						<li class="item___2dDze selected___2Hy4k">
+						<li class="item___2dDze" id="Order">
 						<span><img src="<%=request.getContextPath()%>/image/car.gif" width=10px height=10px></span>
 						<span class="types___3m74H">我的訂單</span>
 						</li>
@@ -174,10 +198,16 @@ ul.list___3xuJM {
 				</div>
 			</div>
 		</div>
-		<div class="col-md-8 column">
+		<div class="col-md-9 column">
 			<div class="row clearfix">
 				
-				<div class=sidebar___2Ft6w>
+				<div id="container" class=sidebar___2Ft6w>
+					
+					<div>
+					
+					
+					</div>
+					
 			
 				</div>
 		
@@ -186,19 +216,16 @@ ul.list___3xuJM {
 		</div>
 	
 </div>
-
-
-
 </div>	
-  		
-    <script>
-    
-   
-    
-    
-    </script>
+</article>
   	<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/jquery.wrecker.js"></script>	
+ <script>
+//  var cell4 ='<button type="button" class="btnShop">前往課程庫購買課程</button>';
+
+</script>
+  	
 
 </body>
 </html>

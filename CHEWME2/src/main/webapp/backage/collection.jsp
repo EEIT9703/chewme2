@@ -133,6 +133,12 @@ ul.list___3xuJM {
     color: #FFFFFF;
     
 }
+.inder_price{
+margin-left:120px;
+margin-right:10px
+
+
+}
 
 </style>
 
@@ -182,12 +188,17 @@ ul.list___3xuJM {
 						<li class="item___2dDze  selected___2Hy4k" id="collection">
 						
 						<span><img src="<%=request.getContextPath()%>/image/car.gif" width=10px height=10px></span>
-						<span class="types___3m74H">我的收藏</span>
+						<span class="types___3m74H">購物清單</span>
 						</li>
 						<li class="item___2dDze" id="Order">
 						<span><img src="<%=request.getContextPath()%>/image/car.gif" width=10px height=10px></span>
 						<span class="types___3m74H">我的活動</span>
 						</li>
+						<li class="item___2dDze" id="list">
+						<span><img src="<%=request.getContextPath()%>/image/car.gif" width=10px height=10px></span>
+						<span class="types___3m74H">我的訂單</span> 
+						</li>
+						
 					</ul>
 				</div>
 			</div>
@@ -196,7 +207,7 @@ ul.list___3xuJM {
 			<div class="row clearfix">
 				
 				<div id="container" class=sidebar___2Ft6w>
-			
+				
 				</div>
 		
   			</div>
@@ -212,7 +223,7 @@ ul.list___3xuJM {
  <script>
  
 $(function(){
-		$.getJSON('<%=request.getContextPath()%>/activity?action=getAllactivity',{},snedActivity);
+		$.getJSON('<%=request.getContextPath()%>/activity?action=getMyCollection',{},snedActivity);
 		
 		function snedActivity(array){	
 			//var docFrag = $(document.createDocumentFragment()); 			
@@ -220,10 +231,24 @@ $(function(){
 			var opt = $('.sidebar___2Ft6w');
 			opt.empty();
 			$.each(array,function(i,activity){			
-	         var cell1 = $('<img>').attr("src","image/101.jpg")	       
+	         var cell1 = $('<img>').attr("src","<%=request.getContextPath()%>/image/101.jpg")	       
 	       	 var cell2 = $('<p></p>').text(activity.act_name);
-			 var cell3 ='<input type="button" value="加入購物車">';
-         	 var row = $('<div class="item"></div>').append([cell1, cell2,cell3]); 
+	         
+	         
+	         var span =$('<span></span>')
+	         var select =$('<select id="selectID"></select');
+	      		for(var a=1;a<=8;a++){
+	      			var sel=$('<option></option>').text(a)
+	      			sel.attr("value",a)
+	      			select.append(sel)
+	      		}
+	      		span.append(select)
+	        	span.append("人")
+	         
+	         var cell3=$('<span class="inder_price"></span>').text("2580$");
+	         var input="<input type='button' value='購買' id=" +activity.actID+">" ;
+			 var cell4 = input;			
+         	 var row = $('<div class="item"></div>').append([cell1, cell2,span,cell3,cell4]); 
   	         opt.append(row);
         		
 			})
@@ -233,15 +258,26 @@ $(function(){
 		$('#collection').click(function (event){
 			$(this).attr("class","item___2dDze  selected___2Hy4k")
 			$('#Order').attr("class","item___2dDze")
-			$.getJSON('<%=request.getContextPath()%>/activity?action=getAllactivity',{},snedActivity);
+			$('#list').attr("class","item___2dDze")
+			$.getJSON('<%=request.getContextPath()%>/activity?action=getMyCollection',{},snedActivity);
 		})
 		
 		$('#Order').click(function (event){
 			$(this).attr("class","item___2dDze  selected___2Hy4k")
 			$('#collection').attr("class","item___2dDze")
+			$('#list').attr("class","item___2dDze")
 			$("#container").empty();
 			
 		})
+		$('#list').click(function (event){
+			$(this).attr("class","item___2dDze  selected___2Hy4k")
+			$('#Order').attr("class","item___2dDze")
+			$('#collection').attr("class","item___2dDze")
+			$("#container").empty();
+			
+		})
+		
+		
 		
 		$("#container").wrecker({
 			  itemSelector : ".item",

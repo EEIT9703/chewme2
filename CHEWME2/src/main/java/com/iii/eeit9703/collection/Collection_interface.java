@@ -13,5 +13,6 @@ public interface Collection_interface {
 	  //   查詢某部門的員工(一對多)(回傳 Set)
 //	     public Set<CollectionVO> findByMemId(Integer memId);
 //	     public Set<CollectionVO> findByActId(Integer actID);
+	     
 	
 }

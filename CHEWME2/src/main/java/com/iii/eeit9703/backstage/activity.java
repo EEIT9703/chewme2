@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.json.*;
 import javax.servlet.ServletException;
@@ -24,6 +25,7 @@ import com.iii.eeit9703.activity.model.ActivityDAO_hibernate;
 import com.iii.eeit9703.activity.model.ActivityVO;
 import com.iii.eeit9703.adphoto.model.PhotoDAO;
 import com.iii.eeit9703.adphoto.model.PhotoVO;
+import com.iii.eeit9703.collection.CollectionVO;
 import com.iii.eeit9703.member.model.MemDAO_hibernate;
 import com.iii.eeit9703.member.model.MemVO;
 import com.iii.eeit9703.report.ReportDAO_hibernate;
@@ -59,13 +61,33 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 		
 		try {
 			String action = request.getParameter("action");
-			request.setCharacterEncoding("UTF-8");
-			
-			
+			request.setCharacterEncoding("UTF-8");		
 			response.setCharacterEncoding("UTF-8");
 			PrintWriter out = response.getWriter();
+		
 			
+                if("getMyCollection".equals(action)){
+                	
+            		MemDAO_hibernate dao =new MemDAO_hibernate();
+            		Set<CollectionVO> set=dao.getCollByMemNo(1);
+            		List<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
+    				HashMap<String,String> map = null;
+            		   	for(CollectionVO collectionVO :set){
+            		   		map = new HashMap<String,String>();						
+        					map.put("actID", collectionVO.getActivityVO().getActID().toString());
+        					map.put("act_name",collectionVO.getActivityVO().getAct_name());
+        					map.put("act_groups",collectionVO.getActivityVO().getAct_groups().toString());
+        					map.put("act_current",collectionVO.getActivityVO().getAct_current().toString());
+        					map.put("BDate",collectionVO.getActivityVO().getBDate().toString());
+        					map.put("EDate", collectionVO.getActivityVO().getEDate().toString());
+        					map.put("activity_state",collectionVO.getActivityVO().getActivity_state().toString());		
+        					list.add(map);
+            		   	}
+            		   	JSONArray attrArrayList = new JSONArray(list);				
+        				out.print(attrArrayList.toString());
+                }
 			
+	
 			if("getAllphoto".equals(action)){
 				
 				PhotoDAO dao = new PhotoDAO();
