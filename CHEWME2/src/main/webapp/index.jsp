@@ -8,8 +8,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
 <meta charset="utf-8" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
-<!-- <link rel="stylesheet" href="css/mybootstrap.css"> -->
+<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="advanced.css"/>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <style>
 .aaa {
 	position: absolute;
