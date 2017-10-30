@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface CommentDAOI {
 	public List<CommentVO> getAll();
-	public void getOne(Integer commentId);
+	public CommentVO getOne(Integer commentId);
 	public void insert(CommentVO commentVO);
 	public void update(CommentVO commentVO);
 	public void delete(Integer commentId);

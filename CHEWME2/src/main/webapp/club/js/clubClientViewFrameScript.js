@@ -46,7 +46,20 @@ function insertViewComment(commentVO) {
 function insertCommentBox(issueVO){
 	thsIssue.find("ul").append(commentBoxTemplate);	
 	thsIssue.find("li:last")
-	.attr("id","sendId"+issueVO.issueId).find("textarea").attr("name","content");	
+	.attr("id","sendId"+issueVO.issueId).find("textarea").attr("name","content");
+	thsIssue.find("button").on("click",function(){sendContent(this)})
+	
+}
+function sendContent(button){
+	var content;
+	var id;
+	console.log(content=$(button).closest("ul").find("textarea").val());
+	console.log(id=$(button).closest("div[class='panel panel-default']").attr("id").substr(8));
+	$.getJSON("clubClientView.do?action=insertComment", {
+		"content":content ,	
+		"issueId": id
+	}, function() {		
+	});
 }
 function getTemplates(){
 	$.get("_issueTemplate.jsp",{},function(data){
