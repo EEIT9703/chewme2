@@ -39,8 +39,8 @@
 					placeholder="外部連結網址">
 			</div>
 			<div class="form-group">
-				<label for="exampleInputPassword1">簡述</label>
 				<textarea class="form-control" rows="5" id="brief"
+				<label for="exampleInputPassword1">簡述</label>
 					style="resize: none;" placeholder="本文會顯示在社團搜尋結果中"></textarea>
 
 			</div>

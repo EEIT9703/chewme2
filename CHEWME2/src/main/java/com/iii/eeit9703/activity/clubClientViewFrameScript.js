@@ -2,6 +2,7 @@ var sel = $();
 var issueTemplate;
 var commentBoxTemplate;
 var viewCommentTemplate;
+var thsIssue;
 
 $(document).ready(function() {
 	$("#tabs").tabs();
@@ -17,35 +18,49 @@ function loadIssues() {
 	}, function(issues) {
 		$.each(issues, function(i,issueVO) {
 			insertIssue(issueVO);
-			
+			insertCommentBox(issueVO);
 		})
 	});
-
+	$("#forum-tab").off("click",loadIssues);
 }
 
 function insertIssue(issueVO) {
 	var forum_page = $("#forum-page");
 	forum_page.append(issueTemplate);
-	forum_page.find("div:last-child").attr("id","issueId_"+issueVO.issueId)
+	forum_page.find('div[class="panel panel-default"]:last').attr("id","issueId_"+issueVO.issueId)
 					.find(".panel-title").text(issueVO.issueTitle)
-					.closest("#"+issueVO.issueId).find(".well").text(issueVO.issueContent);
-	var issue_page =$("#"+issueVO.issueId);
+					.closest("#issueId_"+issueVO.issueId).find(".well").text(issueVO.issueContent);
+	thsIssue =$("#issueId_"+issueVO.issueId);
+	console.log(thsIssue);
 	$.each(issueVO.comments, function(i,commentVO){
 		insertViewComment(commentVO);
 	})
 	
 }
 function insertViewComment(commentVO) {
-	var issue_page =$("#"+commentVO.getcommentId);
-	issue_page.after(viewCommentTemplate);
-	issue_page.next()
+	thsIssue.find("ul").append(viewCommentTemplate);
+	thsIssue.find("li:last")
 	.attr("id","issueId_"+commentVO.getIssueId+"commentId"+commentVO.getCommentId)
-	.find(".well").text(commentVO.content);
-	;
-	
+	.find(".well").text(commentVO.getContent);	
+}
+function insertCommentBox(issueVO){
+	thsIssue.find("ul").append(commentBoxTemplate);	
+	thsIssue.find("li:last")
+	.attr("id","sendId"+issueVO.issueId).find("textarea").attr("name","content");
+	thsIssue.find("button").on("click",function(){sendContent(this)})
 	
 }
-
+function sendContent(button){
+	var content;
+	var id;
+	console.log(content=$(button).closest("ul").find("textarea").val());
+	console.log(id=$(button).closest("div[class='panel panel-default']").attr("id").substr(8));
+	$.getJSON("clubClientView.do?action=insertComment", {
+		"content":content ,	
+		"issueId": id
+	}, function() {		
+	});
+}
 function getTemplates(){
 	$.get("_issueTemplate.jsp",{},function(data){
 		console.log(issueTemplate=data);

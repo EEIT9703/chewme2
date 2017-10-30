@@ -41,8 +41,10 @@ public class ArticleDAO implements ArticleDAO_interface {
 	}
 
 	@Override
-	public ArticleVO findByPK(Integer attractionID) {
+	public ArrayList<ArticleVO> findByPK(Integer attractionID) {
 
+		ArrayList<ArticleVO> list = new ArrayList<ArticleVO>();
+		
 		ArticleVO articleVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -54,12 +56,14 @@ public class ArticleDAO implements ArticleDAO_interface {
 			pstmt.setInt(1, attractionID);
 			
 			rs = pstmt.executeQuery();
+			
 			while(rs.next()){
 				articleVO = new ArticleVO();
 				articleVO.setArticleID(rs.getInt("articleID"));
 				articleVO.setMemId(rs.getInt("memId"));
 				articleVO.setAttractionID(rs.getInt("attractionID"));
-				articleVO.setContents(rs.getString("contents"));				
+				articleVO.setContents(rs.getString("contents"));	
+				list.add(articleVO);
 			}
 			rs.close();
 			pstmt.close();
@@ -69,12 +73,13 @@ public class ArticleDAO implements ArticleDAO_interface {
 			e.printStackTrace();
 		}
 
-		return articleVO;
+		return list;
 	}
 
 	@Override
 	public List<ArticleVO> getAll() {
 
+		
 		return null;
 	}
 }

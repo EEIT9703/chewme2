@@ -7,12 +7,13 @@ import org.hibernate.Session;
 
 import com.iii.eeit9703.club.model.CommentDAOI;
 import com.iii.eeit9703.club.model.CommentVO;
+import com.iii.eeit9703.club.model.IssueVO;
 import com.iii.eeit9703.hibernate.util.HibernateUtil;
 
 public class CommentHibernateDAO implements CommentDAOI {
 
 	private static final String GET_ALL_STMT = "from CommentVO order by commentId";
-
+	private static final String GET_ONE_STMT_SQL="from CommentVO order where issueId=(?)";
 	@Override
 	public List<CommentVO> getAll() {
 		List<CommentVO> list = null;
@@ -31,8 +32,22 @@ public class CommentHibernateDAO implements CommentDAOI {
 	}
 
 	@Override
-	public void getOne(Integer commentId) {
-
+	public CommentVO getOne(Integer commentId) {
+		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		CommentVO commentVO;
+		try{
+			session.beginTransaction();
+			Query query = session.createQuery(GET_ONE_STMT_SQL);
+			query.setParameter(0, commentId);
+			commentVO = (CommentVO)query.uniqueResult();
+			session.getTransaction().commit();
+				
+		}catch(RuntimeException ex){
+			session.getTransaction().rollback();
+			throw ex;			
+		}		
+		return commentVO;
 	}
 
 	@Override

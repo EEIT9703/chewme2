@@ -13,11 +13,11 @@ import com.iii.eeit9703.member.model.MemVO;
 @WebFilter(
 		urlPatterns = { "/*" }, 
 		initParams = { 
-//				@WebInitParam(name = "mustLogin1", value = "/attractions/*"), 
+				@WebInitParam(name = "mustLogin1", value = "/backage/*"), 
 //				@WebInitParam(name = "mustLogin2", value = "/act/*"), 
 				//請自行加入需要過濾的jsp頁面
 		})
-public class LoginFilter implements Filter {
+public class SystemManagerFilter implements Filter {
 	Collection<String> url = new ArrayList<String>();
 	String servletPath;
 	String contextPath;
@@ -51,7 +51,7 @@ public class LoginFilter implements Filter {
 					if ( ! isRequestedSessionIdValid ) {
 						session.setAttribute("timeOut", "使用逾時，請重新登入");
 					}
-					resp.sendRedirect(contextPath + "/member/login.jsp");
+					resp.sendRedirect(contextPath + "/index.jsp");
 					return;
 				}
 			} else {   //不需要登入
@@ -63,7 +63,7 @@ public class LoginFilter implements Filter {
 	}
 	private boolean checkLogin(HttpServletRequest req) {
 		HttpSession session = req.getSession();
-		MemVO loginToken = (MemVO) session.getAttribute("LoginOK");
+		MemVO loginToken = (MemVO) session.getAttribute("SysManager");
 		if (loginToken == null) {
 			return false;
 		} else {
