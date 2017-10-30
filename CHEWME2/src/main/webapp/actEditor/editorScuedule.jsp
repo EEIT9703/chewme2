@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="/CHEWME2/css/jquery-ui.theme.min.css">
 <script src="/CHEWME2/js/jquery-3.2.1.min.js"></script>
 <script src="/CHEWME2/js/jquery-ui.min.js"></script>
-<script src="/CHEWME2/js/base64js.min.js"></script>
 
 <!-- Fullcalendar scheduler -->
 <link href='/CHEWME2/css/fullcalendar.css' rel='stylesheet' />
@@ -21,12 +20,12 @@
 <script src='/CHEWME2/js/scheduler.js'></script>
 
 <!-- Bootstrap CSS & JS -->
-<link rel="stylesheet" href="/CHEWME2/css/bootstrap.css">
+<!-- <link rel="stylesheet" href="/CHEWME2/css/bootstrap.css"> -->
 <link rel="stylesheet" href="/CHEWME2/css/bootstrap.min.css">
-<link rel="stylesheet" href="/CHEWME2/css/bootstrap-responsive.css">
+<!-- <link rel="stylesheet" href="/CHEWME2/css/bootstrap-responsive.css"> -->
 <link rel="stylesheet" href="/CHEWME2/css/bootstrap-responsive.min.css">
 <script src="/CHEWME2/js/popper.min.js"></script>
-<script src="/CHEWME2/js/bootstrap.js"></script>
+<!-- <script src="/CHEWME2/js/bootstrap.js"></script> -->
 <script src="/CHEWME2/js/bootstrap.min.js"></script>
 
 
@@ -49,7 +48,7 @@ option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 
 </head>
 <body>
-<jsp:useBean id="dao" scope="page" class="com.iii.eeit9703.actEditor.CountryDAO"/>
+<jsp:useBean id="dao" scope="page" class="com.iii.eeit9703.actEditor.model.CountryDAO"/>
 
 <FORM METHOD="post" ACTION="/AreaServlet.do">
 
@@ -251,7 +250,6 @@ $(function() {
 $(function() {
 			
     			var schID = new Array();
-    			var status =0;
 //initialize the calendar
 	$('#calendar').fullCalendar({
     	height: 700,
@@ -289,11 +287,10 @@ $(function() {
     			//將資料寫入資料庫
     			var eventObject=[];
     			
-				console.log(event.id);
-    			console.log(event.resourceId.charAt(3));
-    			console.log(event.start.format("HH:mm"));
+				//console.log(event.id);
+    			//console.log(event.resourceId.charAt(3));
+    			//console.log(event.start.format("HH:mm"));
     			
-    			if(status ==0){
     				var attractionID = event.id;
     				var dayNo = event.resourceId.charAt(3);
     				var period = event.start.format("HH:mm");
@@ -304,11 +301,7 @@ $(function() {
         				console.log(scheduleID);
         				schID.push(scheduleID);
         				console.log(schID);
-        			});
-    				status ++;
-    			}else{
-    				//break;
-    			}
+        			});   			
     			
 			},
 		eventDrop: function(event) { // called when an event (already on the calendar) is moved
@@ -353,7 +346,21 @@ $(function() {
 		        },
 		    check:{
 		    	text:'儲存行程',
-//		    	click:function(){}
+		    	click:function(){
+		    		if($('#actName').val()==""){
+		    			alert("請輸入行程名稱!!");
+		    		}else{
+		    			var actName = $('#actName').val();
+		    			$.post('/CHEWME2/Calendar.do?mission=insertACT',{actName:actName},function(actID){
+		    				for(var i=0;i<schID.length;i++){
+		    					console.log(actID+";"+schID[i]);
+		    					$.post('/CHEWME2/Calendar.do?mission=updateSCH2',{"actID":actID,"schID":schID[i]},function(){
+		    						console.log(schID+"歸入"+actID);
+		    					});
+		    				}
+		    			});
+		    		}
+		    	}
 		    }
 		    },
     	events: [
