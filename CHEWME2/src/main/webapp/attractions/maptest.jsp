@@ -11,15 +11,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
-html {
-	height: 100%
-}
+html { 
+ 	height: 100% 
+ } 
 
-body {
-	height: 100%;
-	margin: 0 20%;
-	padding: 0px
-}
+ body { 
+ 	height: 100%; 
+ 	margin: 0 20%; 
+ 	padding: 0px 
+ } 
 
 #map_canvas {
 	height:500px;
@@ -29,28 +29,30 @@ body {
 </style>
 
 
-<script src="../js/jquery-1.12.3.min.js" type="text/javascript"></script>
-<script async defer
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfX3HNjv2RvHE8gBJg5WDetgOUzjwsEpk&callback=initMap"></script>
+<!-- <script src="../js/jquery-1.12.3.min.js" type="text/javascript"></script> -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
 </head>
 <body>
 	  
 	<div style="height: 150;">
 		<div>
 			地址：<input id="address_val" name="address_val"
-				style="width: 400px;" type="text" value="台北市信義區市府路45號">
+				style="width: 400px;" type="text" value="台北市文山區新光路二段30號">
 		</div>
-		<div id="SearchLatLng" style="display:none;">【您輸入的地址位置】</div>
-		<div id="NowLatLng" style="display:none;">【移動標記點後的位置】</div>
+		<div id="SearchLatLng">【您輸入的地址位置】</div>
+		<div id="NowLatLng">【移動標記點後的位置】</div>
 	</div>
 	<div id="map_canvas"></div>
 	
 
 	<script>
+//	$(document).ready(function() {
 		var map;
 		var marker;
+		
 		function initMap() {
-
+			console.log("1");
 			//初始化地圖時的定位經緯度設定
 			var latlng = new google.maps.LatLng(23.973875, 120.982024); //台灣緯度Latitude、經度Longitude：23.973875,120.982024
 			//初始化地圖options設定
@@ -77,17 +79,21 @@ body {
 								"【移動標記點後的位置】緯度：" + LatLng.lat() + "經度："
 										+ LatLng.lng());
 					});
-
+			GetAddressMarker();
 		}
+		
 
 		function GetAddressMarker() {//重新定位地圖位置與標記點位置
+			
+			console.log("2");
 			address = $("#address_val").val();
+			console.log(address);
 			geocoder = new google.maps.Geocoder();
 			geocoder.geocode({
 				'address' : address
 			}, function(results, status) {
 				if (status == google.maps.GeocoderStatus.OK) {
-					//console.log(results[0].geometry.location);
+					console.log(results[0].geometry.location);
 					LatLng = results[0].geometry.location;
 					map.setCenter(LatLng); //將地圖中心定位到查詢結果
 
@@ -99,14 +105,18 @@ body {
 				}
 			});
 		}
-
-		$(document).ready(function() {
+		
+	
+			
+//			console.log("3");
 			//綁定地址輸入框的keyup事件以即時重新定位
-			$("#address_val").bind("keyup", function() {
-				GetAddressMarker();
-				$("#NowLatLng").html("【移動標記點後的位置】");
-			});
-		});
+// 			$("#address_val").bind("keyup", function() {
+				
+// 				$("#NowLatLng").html("【移動標記點後的位置】");
+// 			});
+//		});
 	</script>
+	<script async defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfX3HNjv2RvHE8gBJg5WDetgOUzjwsEpk&callback=initMap"></script>
 </body>
 </html>
