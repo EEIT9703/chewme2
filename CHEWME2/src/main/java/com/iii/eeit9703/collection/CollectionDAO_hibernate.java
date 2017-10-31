@@ -7,6 +7,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.iii.eeit9703.hibernate.util.HibernateUtil;
+import com.iii.eeit9703.member.model.MemVO;
 import com.iii.eeit9703.report.ReportVO;
 
 public class CollectionDAO_hibernate implements Collection_interface {
@@ -66,7 +67,28 @@ public class CollectionDAO_hibernate implements Collection_interface {
 		}
 		return list;
 	}
+	
+	
 
+//	@Override
+//	public Set<CollectionVO> findByMemId(MemVO memVO) {
+//		Set<CollectionVO> collectionVO = null;
+//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+//		try {
+//			session.beginTransaction();		
+//			collectionVO = (Set<CollectionVO>) session.get(CollectionVO.class, memVO);
+//			session.getTransaction().commit();
+//		} catch (RuntimeException ex) {
+//			session.getTransaction().rollback();
+//			throw ex;
+//		}
+//		return collectionVO;
+//	}
+
+	public static void main(String[] args){
+	
+		
+	
 //	@Override
 //	public Set<CollectionVO> getMemberByDeptno(CollectionVO collectionVO) {
 //		// TODO Auto-generated method stub
@@ -78,4 +100,5 @@ public class CollectionDAO_hibernate implements Collection_interface {
 //		// TODO Auto-generated method stub
 //		return null;
 //	}
+	}
 }

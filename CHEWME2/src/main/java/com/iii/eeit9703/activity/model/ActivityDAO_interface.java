@@ -17,7 +17,5 @@ public interface ActivityDAO_interface {
 	
 
 	
-
-	
 	
 }
