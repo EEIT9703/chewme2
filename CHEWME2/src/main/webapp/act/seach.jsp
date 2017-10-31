@@ -20,11 +20,14 @@
 </head>
 <body>
   <header><%@ include file="../header.jsp"%></header>
+  
+  <jsp:useBean id="actSvc" scope="page" class="com.iii.eeit9703.activity.model.ActService" />
 
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<div class="row">
+
 				<div class="col-md-4">
 					<div class="thumbnail">
 						<img alt="300x200" src="../act/image/act1.jpeg" />
@@ -41,9 +44,11 @@
 						</div>
 					</div>
 				</div>
+
+            <c:forEach var="activityVO" items="${actSvc.all}">
 				<div class="col-md-4">
 					<div class="thumbnail">
-						<img alt="300x200" src="v3/default5.jpg" />
+						<img alt="300x200" src="/image?actID=${activityVO.act_photo}" />
 						<div class="caption">
 							<h3>
 								Thumbnail label
@@ -57,6 +62,7 @@
 						</div>
 					</div>
 				</div>
+			</c:forEach>
 				<div class="col-md-4">
 					<div class="thumbnail">
 						<img alt="300x200" src="v3/default6.jpg" />
