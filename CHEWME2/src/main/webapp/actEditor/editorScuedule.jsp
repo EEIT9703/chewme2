@@ -53,7 +53,7 @@ option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 <body>
 <jsp:useBean id="dao" scope="page" class="com.iii.eeit9703.actEditor.model.CountryDAO"/>
 
-<FORM METHOD="post" ACTION="/AreaServlet.do">
+<FORM METHOD="post" ACTION="/CHEWME2/Calendar.do">
 
 <header><%@include file="../header.jsp"%></header>
 
@@ -108,6 +108,23 @@ option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 </div>		
 </div>		
 
+<!-- 轉換頁面框 -->
+<FORM METHOD="post" ACTION="Calendar.do" name="form1">
+<div class="modal fade" id="pass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header"></div>
+			<div class="modal-body"><h3>行程建立成功!!</h3><h4>將前往行程預覽頁面</h4></div>
+			<div class="modal-footer">
+				<input type="hidden" name="mission" value="goPass">
+				<input type="hidden" id="activityID" name="activityID" >
+				<button type="submit" class="btn btn-primary">確認</button>
+			</div>
+		</div>
+	</div>
+</div>
+</FORM>
+
 
 </FORM>
 
@@ -116,6 +133,7 @@ option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 var i=1;
 var dataArray ;
 var item ;
+var activityID;
 
 window.onload = function(){
 
@@ -247,14 +265,11 @@ window.onload = function(){
 	}	
 
 
-$(function() {
-				$("#tabs").tabs({event: "mouseover"});
-	  		 });	
+	$(function() {	$("#tabs").tabs({event: "mouseover"});	});
 
 }
 
 $(function() {
-			
     			var schID = new Array();
 //initialize the calendar
 	$('#calendar').fullCalendar({
@@ -358,11 +373,14 @@ $(function() {
 		    		}else{
 		    			var actName = $('#actName').val();
 		    			$.post('/CHEWME2/Calendar.do?mission=insertACT',{actName:actName},function(actID){
+		    				activityID = actID
 		    				for(var i=0;i<schID.length;i++){
 		    					console.log(actID+";"+schID[i]);
 		    					$.post('/CHEWME2/Calendar.do?mission=updateSCH2',{"actID":actID,"schID":schID[i]},function(){
 		    						console.log(schID+"歸入"+actID);
 		    					});
+		    						$('#activityID').attr("value",actID);
+		    						$('#pass').modal();
 		    				}
 		    			});
 		    		}

@@ -141,7 +141,7 @@ public class ClubClientViewServlet extends HttpServlet {
 					cmvo = iter.next();
 					System.out.println(cmvo.getCommentId());
 					for(Method method: Class.forName("com.iii.eeit9703.club.model.CommentVO").getDeclaredMethods()){
-						System.out.println(method.getName());
+						//System.out.println(method.getName());
 						if(method.getName().matches("get(.*)")){
 								if(method.getReturnType().equals(Integer.class)){									
 									commentMap.put(method.getName(),method.invoke(cmvo,null));
@@ -149,7 +149,7 @@ public class ClubClientViewServlet extends HttpServlet {
 									commentMap.put(method.getName(),
 											   URLDecoder.decode(method.invoke(cmvo,null).toString(),"utf-8"));
 								}
-								System.out.println(method.getName());							
+							//	System.out.println(method.getName());							
 						}
 						
 					}
@@ -158,7 +158,7 @@ public class ClubClientViewServlet extends HttpServlet {
 				}
 				
 				issueMap.put("comments",commentList_json);
-				System.out.println("issue map ok" + i);
+				//System.out.println("issue map ok" + i);
 				i++;
 				issueList_json.add(issueMap);
 				//StringHelper.testEncode(isvo.getIssueContent());
@@ -167,9 +167,10 @@ public class ClubClientViewServlet extends HttpServlet {
 			String jsonString = JSONValue.toJSONString(issueList_json);
 			System.out.println(jsonString);
 			out.println(jsonString);
-			
+			return;
 		}
 	if(action.matches("insertComment")){
+		PrintWriter out = response.getWriter();
 			System.out.println("request.content is "+request.getParameter("content"));
 			System.out.println("the issue id is " + request.getParameter("issueId"));
 			CommentService cs = new CommentService();
@@ -180,6 +181,7 @@ public class ClubClientViewServlet extends HttpServlet {
 			cmvo.setContent( request.getParameter("content"));	        
 			cmvo.setCommentDate(DateUtil.getCurrentTimeStamp());		
 			cs.insertComment(cmvo);
+			out.println("回傳了喔");
 			return;
 		}	
 	}

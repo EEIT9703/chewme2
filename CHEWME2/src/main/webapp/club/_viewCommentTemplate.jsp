@@ -4,7 +4,7 @@
 			<img src="http://via.placeholder.com/50x50"></img>
 		</div>
 		<div class="col-xs-10 col-sm-10 col-md-10">
-			<div class="well">...</div>
+			<div class="well" >...</div>
 		</div>
 	</div>
 </li>
