@@ -13,7 +13,7 @@ import com.iii.eeit9703.member.model.MemVO;
 @WebFilter(
 		urlPatterns = { "/*" }, 
 		initParams = { 
-				@WebInitParam(name = "mustLogin1", value = "/backage/*"), 
+				//@WebInitParam(name = "mustLogin1", value = "/backage/*"), 
 //				@WebInitParam(name = "mustLogin2", value = "/act/*"), 
 				//請自行加入需要過濾的jsp頁面
 		})

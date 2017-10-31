@@ -12,7 +12,7 @@
   	<link href="<%=request.getContextPath()%>/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   	<link href="<%=request.getContextPath()%>/css/morrisjs/morris.css" rel="stylesheet">
   	<link href="<%=request.getContextPath()%>/css/dist/css/sb-admin-2.css" rel="stylesheet">
-<!--     <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script> -->
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 
 </head>
 
@@ -183,7 +183,7 @@
     </div>
     </div>
     
-       <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+       <div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -232,7 +232,7 @@
     
 
  	 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-	 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+<%-- 	 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script> --%>
 
 
 	<script>
