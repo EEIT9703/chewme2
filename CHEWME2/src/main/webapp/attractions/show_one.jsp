@@ -9,6 +9,7 @@
 <html>
 <head>
 <style>
+
 #tabs {
 	margin: auto;
 	width: 700px;
@@ -73,6 +74,30 @@
 .btn.btn-info {
 	margin-left: 600px;
 }
+
+/*  地圖 */
+ /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+ #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+
+ #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+      
+      
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -105,7 +130,7 @@
 			<ul>
 				<li><a href="#tabs-1">介紹</a></li>
 				<li><a href="#tabs-2" id="message">留言板</a></li>
-
+				<li><a href="#map">地圖</a></li>
 			</ul>
 			<div id="tabs-1">
 				<table>
@@ -139,9 +164,18 @@
 				</div>
 				<div id="text1"></div>
 			</div>
-
+			
+			
+			
+<!-- 			放地圖的區塊 -->
+			<div id="map">
+			<div id="floating-panel">
+			
+     			<input id="address" type="textbox" value="Sydney, NSW">
+      			<input id="submit" type="button" value="Geocode">
+    		</div>
+			</div>					
 			<div>
-
 				<tr>
 					<td>
 						<div class="checkbox"></div>
@@ -151,9 +185,7 @@
 						name="action" value="update_one">
 					</td>
 					<td><a href="listAll.jsp" class="btn btn-primary">返回列表</a></td>
-
 				</tr>
-
 			</div>
 		</div>
 	</form>
@@ -178,44 +210,33 @@
 			// 取得 1.使用者輸入的留言內容  2.當前頁面的景點編號   傳送到後端servlet寫進資料庫
 			$.post("/CHEWME2/ArticleServlet?action=sendmessage",{"contents":val1, "attractionID":anum}, function(data){
 				
-			})
-			
-			
+				})			
 			});
 			
 			// 點擊留言版的標籤發生事件
 			$("#message").click(function(){				
-				
+				// 取得當前景點ID
 				var num = document.getElementById("id1").innerHTML;
 				//console.log(num);
   				$.getJSON("/CHEWME2/ArticleServlet?action=getmessage",{'message':num},function(data){
   					//var i = data.length;
-  					for(i = 0; i < data.length; i ++){
-  						var val2 = data[i].contents;
+  					for(i = 0; i < data.length; i ++){     
+  						var val2 = data[i].contents;      // 取得陣列內的contents值，放入div
   						$("#text1").append("<div style='width:670px;height:80px;border-radius:5px;border:1px solid blue;margin-left:8px;padding:10px;'><strong>" + val2	+ "</strong></div>");
-  					}
-  					
-  					//console.log(val2);
-  					
-//   					$("#text1").text(data.contents);
-  					
-  					
-  					
-  					
-  					
+  					}  					
+  					//console.log(val2);  					
+//   					$("#text1").text(data.contents);	
 //   					var div1 = $("#text1");
 //   					$.each(data, function(i, val){
 //   						var mes = $("<div></div>").text(data.contents);
 //   						div1.append(mes);
-//   					}) 			
-  				
-  				})
- 				
- 				
-  				
-			})
-		})
- 		
+//   					}) 			  				
+  				})			 				
+			})			
+		})		
 	</script>
+	
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfX3HNjv2RvHE8gBJg5WDetgOUzjwsEpk&callback=initMap">
+    </script>
 </body>
 </html>

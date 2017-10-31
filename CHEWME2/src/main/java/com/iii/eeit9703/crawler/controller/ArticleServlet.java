@@ -33,8 +33,9 @@ public class ArticleServlet extends HttpServlet {
 		String action = request.getParameter("action");
 		PrintWriter out = response.getWriter();
 
+		// 顯示當前景點的所有留言內容(從資料庫讀取)
 		if ("getmessage".equals(action)) {
-			Integer message = Integer.parseInt(request.getParameter("message"));
+			Integer message = Integer.parseInt(request.getParameter("message"));  // 取得當前景點ID
 			// out.print(message);
 			// System.out.println(message);
 
@@ -59,6 +60,7 @@ public class ArticleServlet extends HttpServlet {
 		String action = request.getParameter("action");
 		PrintWriter out = response.getWriter();
 
+		// 按下送出留言傳送景點ID&留言內容進資料庫
 		if ("sendmessage".equals(action)) {
 			Integer attractionID = Integer.parseInt(request.getParameter("attractionID"));
 			String contents = request.getParameter("contents");
