@@ -15,8 +15,8 @@
 <!-- <script src="js/bootstrap.min.js"></script> -->
 <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<!-- Custom styles for this template -->
-<link href="../css/navbar-fixed-top.css" rel="stylesheet">
+<!-- 置頂  -->
+<!-- <link href="../css/navbar-fixed-top.css" rel="stylesheet">-->
 
 <!-- jQuery UI Datepicker -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -40,9 +40,7 @@
 
 
 
-					<form role="form" enctype="multipart/form-data"
-						class="form-horizontal" method="post" action="<%=request.getContextPath()%>/activityServlet.do"
-						name="actForm">
+					<form role="form" enctype="multipart/form-data" class="form-horizontal" method="post" action="<%=request.getContextPath()%>/activityServlet.do" name="actForm">
 						<div class="from-group">
 							<label for="actID">選擇活動</label> <select class="form-control"
 								size="1" name="actID" id="actID">

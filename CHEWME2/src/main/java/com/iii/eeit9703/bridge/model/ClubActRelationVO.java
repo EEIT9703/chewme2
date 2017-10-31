@@ -1,6 +1,6 @@
 package com.iii.eeit9703.bridge.model;
 
-public class ClubActListVO implements java.io.Serializable{
+public class ClubActRelationVO implements java.io.Serializable{
 	private Integer clubId;
 	private Integer actId;
 	public Integer getClubId() {
