@@ -29,6 +29,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="F:/專題/練習/AllPay.Payment.Integration-1.0.17.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
