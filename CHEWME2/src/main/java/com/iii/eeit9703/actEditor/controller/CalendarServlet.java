@@ -121,9 +121,13 @@ public class CalendarServlet extends HttpServlet {
 				System.out.println(actID + ";" + schID);
 				ScheduleDAO scheduledao = new ScheduleDAO();
 				scheduledao.updateSCH2(actID, schID);
-//從這邊開始				
+
+			}
+			
+			if ("goPass".equals(mission)) {
 				String url = "/actEditor/schedule.jsp";
-				request.setAttribute("key", actID);
+				String actID = new String(request.getParameter("activityID").trim());
+				request.setAttribute("actID", actID);
 				RequestDispatcher successView = request.getRequestDispatcher(url);
 				successView.forward(request, response);
 

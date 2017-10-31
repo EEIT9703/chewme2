@@ -2,8 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% 
-		String SactID = (String) request.getAttribute("key");
+		String SactID = (String) request.getAttribute("actID");
 		Integer actID = Integer.parseInt(SactID);
+		
 %>
 <!DOCTYPE html>
 <html>
@@ -25,7 +26,7 @@
 
 <header><%@include file="../header.jsp"%></header>
 
-<h1>行程表</h1>
+<h1>行程表(ID=${actID})</h1>
 <div id="vt1">
     <div data-vtdate="用 p 呈現">
         <h3>測試景點</h3>

@@ -14,6 +14,7 @@ public class AttrVO implements java.io.Serializable{
 		private String intro;           //商家簡介
 		private InputStream image;    //相關圖片
 		private String img64;
+		private ScheduleVO scheduleData;
 		
 		public Integer getAttractionID() {
 			return attractionID;
@@ -68,6 +69,12 @@ public class AttrVO implements java.io.Serializable{
 		}
 		public void setImg64(String img64) {
 			this.img64 = img64;
+		}
+		public ScheduleVO getScheduleData() {
+			return scheduleData;
+		}
+		public void setScheduleData(ScheduleVO scheduleData) {
+			this.scheduleData = scheduleData;
 		}
 		
 }
