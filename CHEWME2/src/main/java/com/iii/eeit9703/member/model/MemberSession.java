@@ -6,6 +6,7 @@ import java.util.List;
 import com.iii.eeit9703.bridge.model.ClubMemRelationService;
 import com.iii.eeit9703.bridge.model.MemActRelationService;
 import com.iii.eeit9703.club.model.ClubService;
+import com.iii.eeit9703.collection.CollectionService;
 
 public class MemberSession {
 	private Integer memId;
@@ -14,9 +15,11 @@ public class MemberSession {
 	private List<Integer> joinedActList;
 	private List<Integer> ownClubList;
 	private List<Integer> ownActivityList;
+	private List<Integer> ownColList;
 	ClubService cbService;
 	MemActRelationService marService;
-	ClubMemRelationService cmrService;		
+	ClubMemRelationService cmrService;
+	CollectionService colService;
 	//private List<> 
 	
 	MemberSession(){
@@ -26,7 +29,8 @@ public class MemberSession {
 		ownActivityList = new LinkedList<Integer>();
 		cbService = new ClubService();
 		marService = new MemActRelationService();
-		cmrService = new ClubMemRelationService();	
+		cmrService = new ClubMemRelationService();
+		colService = new CollectionService();
 	}
 	
 	MemberSession(MemVO memVO){
@@ -45,6 +49,7 @@ public class MemberSession {
 		ownClubList =  cbService.getClubIdListByManagerId(memId);
 		joinedActList = marService.getRelationByMemId(memId);
 		joinedClubList = cmrService.getRelationByMemId(memId);
+		ownColList =  colService.getColIdListByMemId(memId);
 	}
 	
 	

@@ -109,15 +109,9 @@ public class MemDAO_hibernate implements MemDAO_interface {
 //	MemDAO_hibernate dao =new MemDAO_hibernate();
 //	Set<ReportVO> set=dao.getRepByMemNo(1);
 //	   	for(ReportVO reportVO :set){
-//	   		System.out.println(reportVO.getReportContext());
-//	   		
-//	   		
-//	   		
-//	   		
+//	   		System.out.println(reportVO.getReportContext());		
 //	   	}
 	
-//		
-//		
 //		MemDAO_hibernate dao =new MemDAO_hibernate();
 //		Set<CollectionVO> set=dao.getCollByMemNo(1);
 //		
@@ -126,9 +120,6 @@ public class MemDAO_hibernate implements MemDAO_interface {
 //		   		
 //   		
 //		   	}
-		
-		
-
 
 //	System.out.println(list2);
 //	String jsonString =JSONValue.toJSONString(list2);
