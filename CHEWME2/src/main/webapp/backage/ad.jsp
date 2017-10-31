@@ -159,8 +159,46 @@
         </div>     
     </div>
     </div>
+
+       <div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">歡迎來到揪ME</h4>
+						</div>
+						<div class="modal-body">
+						<div class="form-group">
+							<input class="form-control" placeholder="E-mail" name="email"
+								type="email" autofocus>
+						</div>
+						<div class="form-group">
+							<input class="form-control" placeholder="Password"
+								name="password" type="password" value="">
+						</div>
+						<div class="checkbox">
+							<label> <input name="remember" type="checkbox"
+								value="Remember Me">Remember Me
+							</label>
+						</div>
+						
+						
+						<div><a href="#">忘記密碼?</a></div>
+					</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">離開</button>
+							<button type="button" class="btn btn-primary">登入</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
     
-      
+
 
  	 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 <%-- 	 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script> --%>

@@ -78,8 +78,8 @@ ul.list___3xuJM {
 }
 
 .sidebar___2Ft6w {
-margin:0px 70px 0px 70px;
-    width: 1300px;
+	margin:0px 0px 0px 100px;
+    width: 1100px;
     min-height: 600px;
     height: inherit;
     border-right: 1px solid #a4a3a4;

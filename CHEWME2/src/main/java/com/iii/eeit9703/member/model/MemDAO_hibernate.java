@@ -120,6 +120,7 @@ public class MemDAO_hibernate implements MemDAO_interface {
 //		
 //		MemDAO_hibernate dao =new MemDAO_hibernate();
 //		Set<CollectionVO> set=dao.getCollByMemNo(1);
+//		
 //		   	for(CollectionVO collectionVO :set){
 //		   		System.out.println(collectionVO.getMemVO().getMemMail());
 //		   		
