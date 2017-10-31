@@ -73,30 +73,7 @@
 
 .btn.btn-info {
 	margin-left: 600px;
-}
-
-/*  地圖 */
- /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
- #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-
- #floating-panel {
-        position: absolute;
-        top: 10px;
-        left: 25%;
-        z-index: 5;
-        background-color: #fff;
-        padding: 5px;
-        border: 1px solid #999;
-        text-align: center;
-        font-family: 'Roboto','sans-serif';
-        line-height: 30px;
-        padding-left: 10px;
-      }
-      
+}     
       
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -169,13 +146,12 @@
 			
 <!-- 			放地圖的區塊 -->
 			<div id="map">
-			<div id="floating-panel">
 			
-     			<input id="address" type="textbox" value="Sydney, NSW">
-      			<input id="submit" type="button" value="Geocode">
-    		</div>
-			</div>					
+			</div>		
+				
+			
 			<div>
+
 				<tr>
 					<td>
 						<div class="checkbox"></div>
@@ -185,7 +161,9 @@
 						name="action" value="update_one">
 					</td>
 					<td><a href="listAll.jsp" class="btn btn-primary">返回列表</a></td>
+
 				</tr>
+
 			</div>
 		</div>
 	</form>
@@ -234,7 +212,7 @@
   				})			 				
 			})			
 		})		
-	</script>
+	</script>	
 	
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfX3HNjv2RvHE8gBJg5WDetgOUzjwsEpk&callback=initMap">
     </script>
