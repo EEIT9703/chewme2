@@ -1,21 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.List" %>
-<%@ page import="com.iii.eeit9703.activity.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="com.iii.eeit9703.backstage.*" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
-
- 	<link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
+	<link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
 	<link href="<%=request.getContextPath()%>/css/metisMenu/metisMenu.min.css" rel="stylesheet">
-  	<link href="<%=request.getContextPath()%>/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  	<link href="<%=request.getContextPath()%>/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   	<link href="<%=request.getContextPath()%>/css/morrisjs/morris.css" rel="stylesheet">
   	<link href="<%=request.getContextPath()%>/css/dist/css/sb-admin-2.css" rel="stylesheet">
+  	<link href="<%=request.getContextPath()%>/css/datatables.min.css" rel="stylesheet"  type="text/css">
 </head>
 
 
@@ -76,7 +73,7 @@
                       
                          <div class="panel-heading"> 
 						                        
-             <table id="activity" class="table table-bordered">
+             <table id="activity" class="table table-hover">
                        <thead>
                           <tr>
                              <th>活動編號</th>
@@ -91,18 +88,7 @@
                        <tbody>
                       
                        </tbody>
-                       <tfoot>
-                       <tr>
-<!--                        <form name="myForm"> -->
-<!--                         <td><input type="hidden" id="ProductID" name="ProductID"><span></span></td> -->
-<!--                         <td><input type="text" class="form-control" id="ProductName" name="ProductName" placeholder="產品名稱"></td> -->
-<!--                         <td><input type="text" style="width:100px" class="form-control" id="UnitPrice" name="UnitPrice" placeholder="價格"></td> -->
-<!--                         <td><input type="text" style="width:100px" class="form-control" id="UnitsInStock" name="UnitsInStock" placeholder="庫存量"></td> -->
-<!--                         <td><button id="buttonAdd" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span></button> -->
-<!--                         <button id="buttonUpdate" type="button" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></button></td> -->
-<!--                        </tr> -->
-<!--                        </form> -->
-                       </tfoot>
+                      
                    </table>     
                        	
                        	
@@ -113,45 +99,46 @@
                 </div>
                 
 <!--                 右邊預留空間 -->
-                <div class="col-lg-4">
+<!--                 <div class="col-lg-4"> -->
 
-                    <div class="panel panel-default">
-                      			 預留空間	
-                      			 <div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<div class="btn-group">
-				 <button class="btn btn-default">Action</button> <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
-				<ul class="dropdown-menu">
-					<li>
-						 <a href="#">操作</a>
-					</li>
-					<li class="disabled">
-						 <a href="#">另一操作</a>
-					</li>
-					<li class="divider">
-					</li>
-					<li>
-						 <a href="#">其它</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
-                    </div>
+<!--                     <div class="panel panel-default"> -->
+<!--                       			 預留空間	 -->
+<!--                       			 <div class="container"> -->
+<!-- 	<div class="row clearfix"> -->
+<!-- 		<div class="col-md-12 column"> -->
+<!-- 			<div class="btn-group"> -->
+<!-- 				 <button class="btn btn-default">Action</button> <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button> -->
+<!-- 				<ul class="dropdown-menu"> -->
+<!-- 					<li> -->
+<!-- 						 <a href="#">操作</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="disabled"> -->
+<!-- 						 <a href="#">另一操作</a> -->
+<!-- 					</li> -->
+<!-- 					<li class="divider"> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						 <a href="#">其它</a> -->
+<!-- 					</li> -->
+<!-- 				</ul> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+<!-- </div> -->
+<!--                     </div> -->
                 
-                    <div class="chat-panel panel panel-default">
-                   			預留空間
-                    </div>               
-                </div>            
+<!--                     <div class="chat-panel panel panel-default"> -->
+<!--                    			預留空間 -->
+<!--                     </div>                -->
+<!--                 </div>             -->
             </div>      
         </div>     
     </div>
     </div>
   
  	<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/datatables.min.js" type="text/javascript"></script>
   	<script>
   	$(function(){
   		$.getJSON('<%=request.getContextPath()%>/activity?action=getAllactivity',{},snedActivity);
@@ -185,12 +172,32 @@
 	  	         opt.append(row);
 	        		
   			})
-  		
-  		}
- 				
-	   })
-    </script>
-    <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+  			
+  			
+				var opt = {
+							"oLanguage" : {
+								"sProcessing" : "處理中...",
+								"sLengthMenu" : "顯示 _MENU_ 項結果",
+								"sZeroRecords" : "沒有匹配結果",
+								"sInfo" : "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+								"sInfoEmpty" : "顯示第 0 至 0 項結果，共 0 項",
+								"sInfoFiltered" : "(從 _MAX_ 項結果過濾)",
+								"sSearch" : "搜索:",
+								"oPaginate" : {
+									"sFirst" : "首頁",
+									"sPrevious" : "上頁",
+									"sNext" : "下頁",
+									"sLast" : "尾頁"
+									
+								}
+							}
+						};
+						$("#activity").dataTable(opt);
+
+					}
+
+				})
+			</script>
+  	
 </body>
 </html>

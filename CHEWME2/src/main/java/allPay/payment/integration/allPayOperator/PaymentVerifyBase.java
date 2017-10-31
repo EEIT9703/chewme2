@@ -13,7 +13,7 @@ import allPay.payment.integration.errorMsg.ErrorMessage;
 import allPay.payment.integration.exception.AllPayException;
 
 public class PaymentVerifyBase{
-	protected String confPath = "/AllPay/Payment/Integration/Config/AllpayPayment.xml";
+	protected String confPath = "/allPay/payment/integration/config/AllpayPayment.xml";
 	protected Document doc;
 	public PaymentVerifyBase(){
 		URL fileURL = this.getClass().getResource(confPath);
@@ -23,7 +23,7 @@ public class PaymentVerifyBase{
 	
 	protected void requireCheck(String FieldName, String objValue, String require){
 		if(require.equals("1") && objValue.isEmpty())
-			throw new AllPayException(FieldName+"¬°¥²¶ñ");
+			throw new AllPayException(FieldName+"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 	}
 	
 	protected void valueCheck(String type, String objValue, Element ele){
@@ -55,13 +55,13 @@ public class PaymentVerifyBase{
 			}
 			int value = Integer.valueOf(objValue);
 			if(mode.equals("GE") && value < Integer.valueOf(minimum)){
-				throw new AllPayException(ele.getAttribute("name")+"¤£¯à¤p©ó"+minimum);
+				throw new AllPayException(ele.getAttribute("name")+"ï¿½ï¿½ï¿½ï¿½pï¿½ï¿½"+minimum);
 			} else if(mode.equals("LE") && value > Integer.valueOf(maximum)){
-				throw new AllPayException(ele.getAttribute("name")+"¤£¯à¤j©ó"+maximum);
+				throw new AllPayException(ele.getAttribute("name")+"ï¿½ï¿½ï¿½ï¿½jï¿½ï¿½"+maximum);
 			} else if(mode.equals("BETWEEN") && value < Integer.valueOf(minimum) && value > Integer.valueOf(maximum)){
-				throw new AllPayException(ele.getAttribute("name")+"¥²¶·¤¶©ó"+minimum+"©M"+maximum+"¤§¶¡");
+				throw new AllPayException(ele.getAttribute("name")+"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"+minimum+"ï¿½M"+maximum+"ï¿½ï¿½ï¿½ï¿½");
 			} else if(mode.equals("EXCLUDE") && value >= Integer.valueOf(minimum) && value <= Integer.valueOf(maximum)){
-				throw new AllPayException(ele.getAttribute("name")+"¥²¶·¤p©ó"+minimum+"©Î¤j©ó"+maximum);
+				throw new AllPayException(ele.getAttribute("name")+"ï¿½ï¿½ï¿½ï¿½ï¿½pï¿½ï¿½"+minimum+"ï¿½Î¤jï¿½ï¿½"+maximum);
 			}
 		} else if(type.equals("DepOpt")){
 			// TODO

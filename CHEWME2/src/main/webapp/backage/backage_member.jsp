@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,8 +12,8 @@
   	<link href="<%=request.getContextPath()%>/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   	<link href="<%=request.getContextPath()%>/css/morrisjs/morris.css" rel="stylesheet">
   	<link href="<%=request.getContextPath()%>/css/dist/css/sb-admin-2.css" rel="stylesheet">
+  	<link href="<%=request.getContextPath()%>/css/datatables.min.css" rel="stylesheet"  type="text/css">
 </head>
-
 
 <body>
 	<header><%@ include file="/header.jsp"%></header>
@@ -93,10 +94,7 @@
                        <tbody>
                       
                        </tbody>
-                       <tfoot>
-                       <tr>
-
-                       </tfoot>
+                    
                    </table>     
                        	                      	
                        	</div>       
@@ -111,6 +109,7 @@
   
  	<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/datatables.min.js" type="text/javascript"></script>
   	<script>
   	$(function(){
   		$.getJSON('<%=request.getContextPath()%>/activity?action=getAllmember',{},sendmembers);
@@ -159,10 +158,15 @@
 	        var row = $('<tr></tr>').append([cell1, cell2,cell3,cell4,cell5,cell6,cell7,cell8,cell9,cell10,cell12,cell13]); 
 	  	         opt.append(row);
 	        		
-  			}) 		
+  			})
+  			 $('#member').DataTable();
   		}
+  		
+  		
  				
 	   })
+	   
+	
     </script>
 
 </body>

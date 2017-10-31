@@ -1,24 +1,24 @@
-package com.iii.eeit9703.bridge.model.hibernate.clubMemList;
+package com.iii.eeit9703.bridge.model.hibernate.memActRelation;
 
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.iii.eeit9703.bridge.model.ClubMemListDAOI;
-import com.iii.eeit9703.bridge.model.ClubMemListVO;
-import com.iii.eeit9703.club.model.ClubVO;
+import com.iii.eeit9703.bridge.model.ClubMemRelationVO;
+import com.iii.eeit9703.bridge.model.MemActRelationDAOI;
+import com.iii.eeit9703.bridge.model.MemActRelationVO;
 import com.iii.eeit9703.hibernate.util.HibernateUtil;
 import com.iii.eeit9703.member.model.MemVO;
 
-public class ClubMemListHibernateDAO implements ClubMemListDAOI{
+public class MemActRelationHibernateDAO implements MemActRelationDAOI{
 
-	private static final String GET_ALL_STMT="from ClubMemListVO";
-	private static final String GET_CLUB_BY_MEM_STMT="from ClubMemListVO where memId = ? ";
-	
+	private static final String GET_ALL_STMT="from MemActRelationVO";
+	private static final String GET_CLUB_BY_MEM_STMT="from MemActRelationVO where memId = ? ";
+
 	@Override
-	public List<ClubMemListVO> getAll() {
-		List<ClubMemListVO> list=null;
+	public List<MemActRelationVO> getAll() {
+		List<MemActRelationVO> list=null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try{
 			session.beginTransaction();
@@ -31,18 +31,11 @@ public class ClubMemListHibernateDAO implements ClubMemListDAOI{
 			throw ex;			
 		}
 		return list;
-
 	}
 
 	@Override
-	public ClubMemListVO getOne(Integer memId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<ClubMemListVO> getListClubByMemId(Integer memId) {
-		List<ClubMemListVO> list=null;
+	public List<MemActRelationVO> geActByMemId(Integer memId) {
+		List<MemActRelationVO> list=null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try{
 			session.beginTransaction();
@@ -60,11 +53,35 @@ public class ClubMemListHibernateDAO implements ClubMemListDAOI{
 	}
 
 	@Override
-	public void insert(MemVO memVO) {
+	public void getOne(Integer pk) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void insert(MemActRelationVO mjaVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try{
 			session.beginTransaction();
-			session.saveOrUpdate(memVO);
+			session.saveOrUpdate(mjaVO);
+			session.getTransaction().commit();
+				
+		}catch(RuntimeException ex){
+			session.getTransaction().rollback();
+			throw ex;			
+		}
+		
+		
+	}
+
+
+	@Override
+	public void update(MemActRelationVO mjaVO) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try{
+			session.beginTransaction();
+			session.saveOrUpdate(mjaVO);
 			session.getTransaction().commit();
 				
 		}catch(RuntimeException ex){
@@ -74,12 +91,14 @@ public class ClubMemListHibernateDAO implements ClubMemListDAOI{
 		
 	}
 
+
 	@Override
-	public void update(MemVO memVO) {
+	public void delete(Integer pk) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try{
 			session.beginTransaction();
-			session.saveOrUpdate(memVO);
+			MemActRelationVO mjaVO = (MemActRelationVO)session.get(MemActRelationVO.class, pk);
+			session.delete(mjaVO);
 			session.getTransaction().commit();
 				
 		}catch(RuntimeException ex){
@@ -89,27 +108,14 @@ public class ClubMemListHibernateDAO implements ClubMemListDAOI{
 		
 	}
 
-	@Override
-	public void delete(Integer memId) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try{
-			session.beginTransaction();
-			MemVO memVO = (MemVO)session.get(MemVO.class, memId);
-			session.delete(memVO);
-			session.getTransaction().commit();
-				
-		}catch(RuntimeException ex){
-			session.getTransaction().rollback();
-			throw ex;			
-		}
-		
-	}
+	
+	
 	public static void main(String[] args) {
-		ClubMemListHibernateDAO cmlhd = new ClubMemListHibernateDAO();
-		List<ClubMemListVO> list = cmlhd.getListClubByMemId(2);
+		MemActRelationHibernateDAO mjahd = new MemActRelationHibernateDAO();
+		List<MemActRelationVO> list = mjahd.geActByMemId(1);
 //		List<ClubMemListVO> list = cmlhd.getAll();
-		for (ClubMemListVO aClub : list) {
-			System.out.print(aClub.getClubId() + ",");
+		for (MemActRelationVO aClub : list) {
+			System.out.print(aClub.getActId() + ",");
 			System.out.print(aClub.getMemId() + ",");
 			System.out.println(aClub.getDate() + ",");
 		}
