@@ -30,12 +30,12 @@
 		</set>
 
 <!--         收藏表  一方的mapping -->
-<!--        <set name="Collects" table="collect" lazy="false" cascade="all"  inverse="true" >			 -->
-<!-- 			<key> -->
-<!-- 				<column name="memId" /> -->
-<!-- 			</key> -->
-<!-- 			<one-to-many class="com.iii.eeit9703.collection.CollectionVO" /> -->
-<!-- 		</set> -->
+       <set name="Collects" table="collect" lazy="false" cascade="all"  inverse="true" >			
+			<key>
+				<column name="memId" />
+			</key>
+			<one-to-many class="com.iii.eeit9703.collection.CollectionVO" />
+		</set>
 		
 <!--         檢舉表  一方的mapping -->		
 		<set name="Reports" table="report" lazy="false" cascade="all"  inverse="true" >			

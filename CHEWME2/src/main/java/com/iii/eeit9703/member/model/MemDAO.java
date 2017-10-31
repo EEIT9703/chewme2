@@ -22,7 +22,7 @@ public class MemDAO implements MemDAO_interface {
 	private static final String GET_ONE_STMT = "SELECT  memId,memberId,memName,memNickN,memPwd,memBirthday,memMail,memAddr,memPhone,memIntr,memPhoto,memStatus,memRole FROM members WHERE memId=?";
 	private static final String DELETE = "DELETE FROM members WHERE memId=?";
 	private static final String UPDATE = "UPDATE members set memberId=? ,memName=?,memNickN=?, memPwd=?, memBirthday=?, memMail=?, memAddr=?, memPhone=?,memIntr=?,memPhoto=?  WHERE memId=?";
-
+	
 	@Override
 	public void insert(MemVO memVO) {
 		Connection con=null;
@@ -272,5 +272,4 @@ public class MemDAO implements MemDAO_interface {
 		}
 		return list;
 	}
-
 }

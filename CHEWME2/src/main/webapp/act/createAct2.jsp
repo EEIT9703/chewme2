@@ -30,8 +30,7 @@
 <body>
 	<header><%@ include file="../header.jsp"%></header>
 
-	<jsp:useBean id="actSvc" scope="page"
-		class="com.iii.eeit9703.activity.model.ActService" />
+	<jsp:useBean id="actSvc" scope="page" class="com.iii.eeit9703.activity.model.ActService" />
 
 	<div class="container">
 		<div class="jumbotron">
@@ -42,7 +41,7 @@
 
 
 					<form role="form" enctype="multipart/form-data"
-						class="form-horizontal" method="post" action="activityServlet.do"
+						class="form-horizontal" method="post" action="<%=request.getContextPath()%>/activityServlet.do"
 						name="actForm">
 						<div class="from-group">
 							<label for="actID">選擇活動</label> <select class="form-control"
@@ -55,13 +54,14 @@
 						</div>
 						<div class="form-group">
 							<label for="act_name">活動名稱</label> 
-							<input type="text" class="form-control" name="act_name" id="act_name" value="${error.errorName}" />
-							<font color="red" size="-1">${error.errorName}</font>
-						</div>
+							<input type="text" class="form-control" name="act_name" id="act_name" value="" placeholder=""/>
+							<font color="red" size="-1"></font>
+						</div>	
 						<div class="form-group">
 							<label for="act_groups">成團人數</label> 
 							<input type="text" class="form-control" name="act_groups" id="act_groups" value="" />
-						</div>
+							<font color="red" size="-1"></font>
+						</div>			
 						<div class="form-group">
 							<label for="act_current">參加人數</label> 
 							<input type="text" class="form-control" name="act_current" id="act_current" value="" disabled="disabled" />
@@ -69,10 +69,12 @@
 						<div class="form-group">
 							<label for="BDate">出發日期</label> 
 							<input type="text" class="form-control" name="BDate" id="BDate" value="" />
+							<font color="red" size="-1"></font>
 						</div>
 						<div class="form-group">
 							<label for="EDate">結束日期</label> 
 							<input type="text" class="form-control" name="EDate" id="EDate" value="" />
+							<font color="red" size="-1"></font>
 						</div>
 						<div class="from-group">
 							<label for="activity_state">活動狀態</label> <select class="form-control" name="activity_state" id="activity_state">
@@ -84,10 +86,10 @@
 
 						<div class="form-group">
 							<label class="btn btn-info" for="upload"> <input id="upload" name="upload" style="display: none;" type="file">
-								<i class="fa fa-folder-open-o"></i> 上傳圖片
+							<i class="fa fa-folder-open-o"></i> 上傳圖片
 							</label>
+							<font color="red" size="-1"></font>
 						</div>
-
 						<div class="form-group"></div>
 						<button type="button" class="btn btn-lg btn-primary" id="submit">Submit</button>
 					</form>

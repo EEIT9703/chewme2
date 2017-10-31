@@ -8,8 +8,11 @@
 <title>logout</title>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/bootstrap.min.css">
+		  <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="237459292600-4nc82k5o9iq1caepr82fsukrcpsflah0.apps.googleusercontent.com">
+	
 </head>
-<body>
+<body onload="myFunction()">
 <!-- 先將使用者名稱取出 -->
 <c:set var="memName" value="${ LoginOK.memName }" />
 <!-- 移除放在session物件內的屬性物件 -->
@@ -25,6 +28,13 @@
 <%
   session.invalidate();
 %>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+   <script>
+      function myFunction() {
+      gapi.auth2.getAuthInstance().disconnect();
+      location.reload();
+   }
+   </script>
 <jsp:forward page="/index.jsp"/>
 </body>
 </html>

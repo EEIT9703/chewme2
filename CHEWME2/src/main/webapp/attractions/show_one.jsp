@@ -9,6 +9,7 @@
 <html>
 <head>
 <style>
+
 #tabs {
 	margin: auto;
 	width: 700px;
@@ -72,7 +73,8 @@
 
 .btn.btn-info {
 	margin-left: 600px;
-}
+}     
+      
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -105,7 +107,7 @@
 			<ul>
 				<li><a href="#tabs-1">介紹</a></li>
 				<li><a href="#tabs-2" id="message">留言板</a></li>
-
+				<li><a href="#map">地圖</a></li>
 			</ul>
 			<div id="tabs-1">
 				<table>
@@ -139,7 +141,15 @@
 				</div>
 				<div id="text1"></div>
 			</div>
-
+			
+			
+			
+<!-- 			放地圖的區塊 -->
+			<div id="map">
+			
+			</div>		
+				
+			
 			<div>
 
 				<tr>
@@ -159,51 +169,52 @@
 	</form>
 	<script>
 		$(function() {
+			
+			// 當按下"送出留言"發生事件
 			$("#button1").click(function() {
 				//console.log(id1.value);
-			var val1 = $("#memo").val();
+				
+			var val1 = $("#memo").val();                // 取得textarea內輸入的留言
+			var anum = document.getElementById("id1").innerHTML;    // 取得當前頁面的景點標號
 				if (val1 == "") {
 					alert("請勿空白");
 				} else {
+					// 按下送出留言，底下區塊新增一個div
 					$("#text1").append("<div style='width:670px;height:80px;border-radius:5px;border:1px solid blue;margin-left:8px;padding:10px;'><strong>" + val1	+ "</strong></div>");
-				}
-				
-				
-				
+				}	
+			
 			$("#memo").val("");
+			//alert(mnum);
+			// 取得 1.使用者輸入的留言內容  2.當前頁面的景點編號   傳送到後端servlet寫進資料庫
+			$.post("/CHEWME2/ArticleServlet?action=sendmessage",{"contents":val1, "attractionID":anum}, function(data){
+				
+				})			
 			});
 			
+			// 點擊留言版的標籤發生事件
 			$("#message").click(function(){				
+				// 取得當前景點ID
 				var num = document.getElementById("id1").innerHTML;
 				//console.log(num);
   				$.getJSON("/CHEWME2/ArticleServlet?action=getmessage",{'message':num},function(data){
   					//var i = data.length;
-  					for(i = 0; i < data.length; i ++){
-  						var val2 = data[i].contents;
+  					for(i = 0; i < data.length; i ++){     
+  						var val2 = data[i].contents;      // 取得陣列內的contents值，放入div
   						$("#text1").append("<div style='width:670px;height:80px;border-radius:5px;border:1px solid blue;margin-left:8px;padding:10px;'><strong>" + val2	+ "</strong></div>");
-  					}
-  					
-  					//console.log(val2);
-  					
-//   					$("#text1").text(data.contents);
-  					
-  					
-  					
-  					
-  					
+  					}  					
+  					//console.log(val2);  					
+//   					$("#text1").text(data.contents);	
 //   					var div1 = $("#text1");
 //   					$.each(data, function(i, val){
 //   						var mes = $("<div></div>").text(data.contents);
 //   						div1.append(mes);
-//   					}) 			
-  				
-  				})
- 				
- 				
-  				
-			})
-		})
- 		
-	</script>
+//   					}) 			  				
+  				})			 				
+			})			
+		})		
+	</script>	
+	
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfX3HNjv2RvHE8gBJg5WDetgOUzjwsEpk&callback=initMap">
+    </script>
 </body>
 </html>
