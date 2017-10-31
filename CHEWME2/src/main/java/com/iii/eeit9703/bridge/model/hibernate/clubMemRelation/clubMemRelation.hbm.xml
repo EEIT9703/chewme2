@@ -3,16 +3,16 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.iii.eeit9703.bridge.model.MemJoinActVO" table="join_activitys" >
+    <class name="com.iii.eeit9703.bridge.model.ClubMemRelationVO" table="club_member_list" >
         <composite-id>
             <!-- key-property标签表示哪一些属性对应复合主键 -->
            <!--  <key-property name="clubId" column="clubID" type="int"></key-property>
             <key-property name="memId" column="memID" type="int"></key-property> -->           
-            <key-property name="actId" column="actID"></key-property>
+            <key-property name="clubId" column="clubID"></key-property>
             <key-property name="memId" column="memID" ></key-property>           
         </composite-id>
                 
-        <property name="actId" column="actId" />
+        <property name="clubId" column="clubId" />
         <property name="memId" column="memId" />
         
          <property name="date" column="joinTime" />

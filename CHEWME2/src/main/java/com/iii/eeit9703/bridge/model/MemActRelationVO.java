@@ -1,6 +1,6 @@
 package com.iii.eeit9703.bridge.model;
 
-public class MemJoinActVO implements java.io.Serializable {
+public class MemActRelationVO implements java.io.Serializable {
 	private Integer memId;
 	private Integer actId;
 	private java.sql.Date date;

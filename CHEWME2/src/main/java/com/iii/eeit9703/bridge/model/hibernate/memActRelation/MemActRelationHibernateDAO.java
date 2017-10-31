@@ -1,24 +1,24 @@
-package com.iii.eeit9703.bridge.model.hibernate.memJoinAct;
+package com.iii.eeit9703.bridge.model.hibernate.memActRelation;
 
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.iii.eeit9703.bridge.model.ClubMemListVO;
-import com.iii.eeit9703.bridge.model.MemJoinActDAOI;
-import com.iii.eeit9703.bridge.model.MemJoinActVO;
+import com.iii.eeit9703.bridge.model.ClubMemRelationVO;
+import com.iii.eeit9703.bridge.model.MemActRelationDAOI;
+import com.iii.eeit9703.bridge.model.MemActRelationVO;
 import com.iii.eeit9703.hibernate.util.HibernateUtil;
 import com.iii.eeit9703.member.model.MemVO;
 
-public class MemJoinActHibernateDAO implements MemJoinActDAOI{
+public class MemActRelationHibernateDAO implements MemActRelationDAOI{
 
-	private static final String GET_ALL_STMT="from MemJoinActVO";
-	private static final String GET_CLUB_BY_MEM_STMT="from MemJoinActVO where memId = ? ";
+	private static final String GET_ALL_STMT="from MemActRelationVO";
+	private static final String GET_CLUB_BY_MEM_STMT="from MemActRelationVO where memId = ? ";
 
 	@Override
-	public List<MemJoinActVO> getAll() {
-		List<MemJoinActVO> list=null;
+	public List<MemActRelationVO> getAll() {
+		List<MemActRelationVO> list=null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try{
 			session.beginTransaction();
@@ -34,8 +34,8 @@ public class MemJoinActHibernateDAO implements MemJoinActDAOI{
 	}
 
 	@Override
-	public List<MemJoinActVO> geActByMemId(Integer memId) {
-		List<MemJoinActVO> list=null;
+	public List<MemActRelationVO> geActByMemId(Integer memId) {
+		List<MemActRelationVO> list=null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try{
 			session.beginTransaction();
@@ -60,7 +60,7 @@ public class MemJoinActHibernateDAO implements MemJoinActDAOI{
 
 
 	@Override
-	public void insert(MemJoinActVO mjaVO) {
+	public void insert(MemActRelationVO mjaVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try{
 			session.beginTransaction();
@@ -77,7 +77,7 @@ public class MemJoinActHibernateDAO implements MemJoinActDAOI{
 
 
 	@Override
-	public void update(MemJoinActVO mjaVO) {
+	public void update(MemActRelationVO mjaVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try{
 			session.beginTransaction();
@@ -97,7 +97,7 @@ public class MemJoinActHibernateDAO implements MemJoinActDAOI{
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try{
 			session.beginTransaction();
-			MemJoinActVO mjaVO = (MemJoinActVO)session.get(MemJoinActVO.class, pk);
+			MemActRelationVO mjaVO = (MemActRelationVO)session.get(MemActRelationVO.class, pk);
 			session.delete(mjaVO);
 			session.getTransaction().commit();
 				
@@ -111,10 +111,10 @@ public class MemJoinActHibernateDAO implements MemJoinActDAOI{
 	
 	
 	public static void main(String[] args) {
-		MemJoinActHibernateDAO mjahd = new MemJoinActHibernateDAO();
-		List<MemJoinActVO> list = mjahd.geActByMemId(1);
+		MemActRelationHibernateDAO mjahd = new MemActRelationHibernateDAO();
+		List<MemActRelationVO> list = mjahd.geActByMemId(1);
 //		List<ClubMemListVO> list = cmlhd.getAll();
-		for (MemJoinActVO aClub : list) {
+		for (MemActRelationVO aClub : list) {
 			System.out.print(aClub.getActId() + ",");
 			System.out.print(aClub.getMemId() + ",");
 			System.out.println(aClub.getDate() + ",");

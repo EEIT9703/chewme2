@@ -1,24 +1,22 @@
-package com.iii.eeit9703.bridge.model.hibernate.clubMemList;
+package com.iii.eeit9703.bridge.model.hibernate.clubMemRelation;
 
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.iii.eeit9703.bridge.model.ClubMemListDAOI;
-import com.iii.eeit9703.bridge.model.ClubMemListVO;
-import com.iii.eeit9703.club.model.ClubVO;
+import com.iii.eeit9703.bridge.model.ClubMemRelationDAOI;
+import com.iii.eeit9703.bridge.model.ClubMemRelationVO;
 import com.iii.eeit9703.hibernate.util.HibernateUtil;
-import com.iii.eeit9703.member.model.MemVO;
 
-public class ClubMemListHibernateDAO implements ClubMemListDAOI{
+public class ClubMemRelatoimHibernateDAO implements ClubMemRelationDAOI{
 
-	private static final String GET_ALL_STMT="from ClubMemListVO";
-	private static final String GET_CLUB_BY_MEM_STMT="from ClubMemListVO where memId = ? ";
+	private static final String GET_ALL_STMT="from ClubMemRelationVO";
+	private static final String GET_CLUB_BY_MEM_STMT="from ClubMemRelationVO where memId = ? ";
 	
 	@Override
-	public List<ClubMemListVO> getAll() {
-		List<ClubMemListVO> list=null;
+	public List<ClubMemRelationVO> getAll() {
+		List<ClubMemRelationVO> list=null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try{
 			session.beginTransaction();
@@ -35,14 +33,15 @@ public class ClubMemListHibernateDAO implements ClubMemListDAOI{
 	}
 
 	@Override
-	public ClubMemListVO getOne(Integer memId) {
+	public ClubMemRelationVO getOne(Integer clubId, Integer memId) {
 		// TODO Auto-generated method stub
-		return null;
+		ClubMemRelationVO cmlVO = new ClubMemRelationVO();
+		return cmlVO;
 	}
 
 	@Override
-	public List<ClubMemListVO> getListClubByMemId(Integer memId) {
-		List<ClubMemListVO> list=null;
+	public List<ClubMemRelationVO> getListClubByMemId(Integer memId) {
+		List<ClubMemRelationVO> list=null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try{
 			session.beginTransaction();
@@ -60,11 +59,11 @@ public class ClubMemListHibernateDAO implements ClubMemListDAOI{
 	}
 
 	@Override
-	public void insert(MemVO memVO) {
+	public void insert(ClubMemRelationVO cmlVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try{
 			session.beginTransaction();
-			session.saveOrUpdate(memVO);
+			session.saveOrUpdate(cmlVO);
 			session.getTransaction().commit();
 				
 		}catch(RuntimeException ex){
@@ -75,11 +74,11 @@ public class ClubMemListHibernateDAO implements ClubMemListDAOI{
 	}
 
 	@Override
-	public void update(MemVO memVO) {
+	public void update(ClubMemRelationVO cmlVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try{
 			session.beginTransaction();
-			session.saveOrUpdate(memVO);
+			session.saveOrUpdate(cmlVO);
 			session.getTransaction().commit();
 				
 		}catch(RuntimeException ex){
@@ -90,12 +89,12 @@ public class ClubMemListHibernateDAO implements ClubMemListDAOI{
 	}
 
 	@Override
-	public void delete(Integer memId) {
+	public void delete(ClubMemRelationVO cmlVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try{
 			session.beginTransaction();
-			MemVO memVO = (MemVO)session.get(MemVO.class, memId);
-			session.delete(memVO);
+			ClubMemRelationVO cml2VO = (ClubMemRelationVO)session.get(ClubMemRelationVO.class, cmlVO);
+			session.delete(cml2VO);
 			session.getTransaction().commit();
 				
 		}catch(RuntimeException ex){
@@ -105,10 +104,10 @@ public class ClubMemListHibernateDAO implements ClubMemListDAOI{
 		
 	}
 	public static void main(String[] args) {
-		ClubMemListHibernateDAO cmlhd = new ClubMemListHibernateDAO();
-		List<ClubMemListVO> list = cmlhd.getListClubByMemId(2);
+		ClubMemRelatoimHibernateDAO cmlhd = new ClubMemRelatoimHibernateDAO();
+		List<ClubMemRelationVO> list = cmlhd.getListClubByMemId(2);
 //		List<ClubMemListVO> list = cmlhd.getAll();
-		for (ClubMemListVO aClub : list) {
+		for (ClubMemRelationVO aClub : list) {
 			System.out.print(aClub.getClubId() + ",");
 			System.out.print(aClub.getMemId() + ",");
 			System.out.println(aClub.getDate() + ",");

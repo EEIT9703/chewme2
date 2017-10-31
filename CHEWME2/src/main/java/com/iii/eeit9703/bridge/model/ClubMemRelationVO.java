@@ -2,7 +2,7 @@ package com.iii.eeit9703.bridge.model;
 
 import java.util.Date;
 
-public class ClubMemListVO implements java.io.Serializable {
+public class ClubMemRelationVO implements java.io.Serializable {
 	private Integer clubId;
 	private Integer memId;
 	private Date date;
