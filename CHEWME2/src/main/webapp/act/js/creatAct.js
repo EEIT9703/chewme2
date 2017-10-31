@@ -4,14 +4,16 @@ $(function() {
 	$("#EDate").datepicker({
 		changeMonth : true,
 		changeYear : true,
-		dateFormat : "yy-mm-dd"
+		dateFormat : "yy-mm-dd",
+		minDate: new Date()
 	});
 
 	// 出發
 	$("#BDate").datepicker({
 		changeMonth : true,
 		changeYear : true,
-		dateFormat : "yy-mm-dd"
+		dateFormat : "yy-mm-dd",
+		minDate: new Date()
 	});
 
 	// 選擇上架
@@ -34,11 +36,12 @@ $(function() {
 
 		});
 	});
-
+	
+	//判斷旅行名稱
 	$('#act_name').blur(function() {
 		var act_name = $(this).val();
 		console.log(act_name);
-		if (act_name == null) {
+		if (act_name.trim() == "") {
 			console.log(act_name);
 			$('#act_name+font').text('請輸入旅行名稱');
 		}
@@ -55,17 +58,55 @@ $(function() {
 
 		});*/
 	});
+	
+	//判斷旅行人數
 	$('#act_groups').blur(function(){
 		var act_groups = $(this).val();
-		var re = act_groups.match(/^[0-9]+$/);
-			if(act_groups == ""){
+		var re = new RegExp(/^[\d]+$/);
+			if(act_groups.trim() == ""){
 				console.log(act_groups);
-				$('#act_groups+font').text('請輸入旅行人數');
-			}else if(re == null){
+				$('#act_groups+font').text('旅行人數不能為空');
+			}else if(!re.test(act_groups)){
 				console.log(act_groups);
 				$('#act_groups+font').text('旅行人數只能為數字');
 			}
-	})
+	});
+	
+	//判斷日期
+	$('#BDate').change(function(){
+		var BD = $(this).datepicker('getDate');
+		//var BDate = $(this).val();
+		BD = $.datepicker.formatDate('yy-mm-dd',BD)
+		console.log(BD);
+		var nowDate = new Date();
+		console.log(nowDate);
+		var re = new RegExp(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);
+		if(BD == ""){
+			console.log(BD);
+			$('#BDate+font').text('出發日期不能為空');
+		}else if(!re.test(BD)){			
+			$('#BDate+font').text('日期格式為yyyy-MM-dd');
+		}
+	});
+	
+	//判斷日期
+	$('#EDate').change(function(){
+		var ED = $(this).datepicker('getDate');
+		//var BDate = $(this).val();
+		ED = $.datepicker.formatDate('yy-mm-dd',ED)
+		console.log(ED);
+		var nowDate = new Date();
+		console.log(nowDate);
+		var re = new RegExp(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);
+		if(ED == ""){
+			console.log(ED);
+			$('#BDate+font').text('出發日期不能為空');
+		}else if(!re.test(ED)){			
+			$('#BDate+font').text('日期格式為yyyy-MM-dd');
+		}
+	});
+
+	
 
 	// 送出更新資料
 	$('#submit').click(function() {
@@ -77,7 +118,7 @@ $(function() {
 
 				// swal('更新成功', 'Hello World!', 'success');
 				// alert(3345678);
-				if (data.trim == 'ok') {
+				if (data.trim() == 'ok') {
 					$('#act_name').val(data.act_name);
 					$('#act_groups').val(data.act_groups);
 					$('#BDate').val(data.BDate);

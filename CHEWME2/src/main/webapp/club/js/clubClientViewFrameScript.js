@@ -8,6 +8,7 @@ $(document).ready(function() {
 	$("#tabs").tabs();
 	getTemplates();
 	$("#forum-tab").on("click", loadIssues)
+
 })
 function loadIssues() {
 	$.getJSON("clubClientView.do?action=loadIssues", {
@@ -22,6 +23,7 @@ function loadIssues() {
 		})
 	});
 	$("#forum-tab").off("click",loadIssues);
+	$(".well").css("height", "15px");
 }
 
 function insertIssue(issueVO) {
@@ -33,32 +35,43 @@ function insertIssue(issueVO) {
 	thsIssue =$("#issueId_"+issueVO.issueId);
 	console.log(thsIssue);
 	$.each(issueVO.comments, function(i,commentVO){
-		insertViewComment(commentVO);
+		var content = commentVO.getContent;
+		insertViewComment(content);
 	})
 	
 }
-function insertViewComment(commentVO) {
+function insertViewComment(content) {
+	console.log("build the viewCommentTemplate");
 	thsIssue.find("ul").append(viewCommentTemplate);
 	thsIssue.find("li:last")
-	.attr("id","issueId_"+commentVO.getIssueId+"commentId"+commentVO.getCommentId)
-	.find(".well").text(commentVO.getContent);	
+	//.attr("id","issueId_"+commentVO.getIssueId+"commentId"+commentVO.getCommentId)
+	.find(".well").text(content).attr("min-heigth","20px");	
 }
-function insertCommentBox(issueVO){
+function insertCommentBox(){
+	console.log("build the commentBoxTemplate");
 	thsIssue.find("ul").append(commentBoxTemplate);	
 	thsIssue.find("li:last")
-	.attr("id","sendId"+issueVO.issueId).find("textarea").attr("name","content");
+	.attr("id","sendId"+thsIssue.issueId).find("textarea").attr("name","content");
 	thsIssue.find("button").on("click",function(){sendContent(this)})
 	
 }
 function sendContent(button){
 	var content;
 	var id;
+	var sender;
+	console.log(sender=$(button).closest('li[class="list-group-item"]'));
 	console.log(content=$(button).closest("ul").find("textarea").val());
 	console.log(id=$(button).closest("div[class='panel panel-default']").attr("id").substr(8));
-	$.getJSON("clubClientView.do?action=insertComment", {
+	$.post("clubClientView.do?action=insertComment", {
 		"content":content ,	
 		"issueId": id
-	}, function() {		
+	}, function() {
+		console.log("ajax回收資料完成");
+		console.log(id)
+		thsIssue=$("#issueId_"+id);
+		sender.remove();
+		insertViewComment(content);
+		insertCommentBox();
 	});
 }
 function getTemplates(){

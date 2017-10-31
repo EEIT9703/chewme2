@@ -8,6 +8,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import javax.xml.bind.DatatypeConverter;
 
 import com.sun.jersey.core.util.Base64;
-
+@WebFilter("/member/login.jsp")
 public class FindUserPassword implements Filter {
 	String requestURI;
 
@@ -60,11 +61,11 @@ public class FindUserPassword implements Filter {
 					}
 				}
 			} else {
-
+				//沒幹嘛
 			}
 			session.setAttribute("rememberMe", rememberMe);
 			session.setAttribute("user", user);
-			session.setAttribute("password", rememberMe);
+			session.setAttribute("password", password);
 		}
 		chain.doFilter(request, response);
 	}

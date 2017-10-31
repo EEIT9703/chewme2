@@ -1,6 +1,7 @@
 package com.iii.eeit9703.member.model;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 import javax.xml.bind.DatatypeConverter;
@@ -30,6 +31,9 @@ public class MemService {
 		return memVO;
 	}
 
+	public void updateMem(MemVO memVO) {
+		dao.update(memVO);
+	}
 	public MemVO getOneMem(Integer memId) {
 
 		return dao.findByPrimaryKey(memId);
@@ -65,5 +69,25 @@ public class MemService {
 		}
 		return exist;
 	}
+
+	public MemVO updateMem(Integer memId,String memberId, String memName, String memNickN, String memPwd, Date memBirthday,
+			String memMail, String memAddr, String memPhone, String memIntr,String memPhoto) {
+		MemVO memVO = new MemVO();
+		memVO.setMemId(memId);
+		memVO.setMemberId(memberId);
+		memVO.setMemName(memName);
+		memVO.setMemNickN(memNickN);
+		memVO.setMemPwd(memPwd);
+		memVO.setMemBirthday(memBirthday);
+		memVO.setMemMail(memMail);
+		memVO.setMemAddr(memAddr);
+		memVO.setMemPhone(memPhone);
+		memVO.setMemIntr(memIntr);
+		memVO.setMemPhoto(memPhoto);
+		dao.update(memVO);
+
+		return dao.findByPrimaryKey(memId);
+	}
 	
+
 }

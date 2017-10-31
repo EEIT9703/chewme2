@@ -12,6 +12,7 @@ import javax.xml.bind.DatatypeConverter;
 
 import com.iii.eeit9703.member.model.MemService;
 import com.iii.eeit9703.member.model.MemVO;
+import com.iii.eeit9703.member.model.VerifyRecaptcha;
 
 @WebServlet("/member/login.do")
 public class LoginServlet extends HttpServlet {
@@ -19,6 +20,14 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
+		String action = req.getParameter("action");
+		if ("google".equals(action)) {
+			try {
+				String gId = req.getParameter("googleId");
+				System.out.println(gId);
+			} catch (Exception e) {
+			}
+		}
 		HttpSession session = req.getSession();
 
 		Map<String, String> errorMsgMap = new HashMap<String, String>();// 準備存放錯誤訊息的Map物件
@@ -28,6 +37,7 @@ public class LoginServlet extends HttpServlet {
 		String userId = req.getParameter("userId");
 		String password = req.getParameter("pswd");
 		String rm = req.getParameter("rememberMe");
+		String gRecaptchaResponse = req.getParameter("g-recaptcha-response");
 		String requestURI = (String) session.getAttribute("requestURI");
 
 		if (userId == null || userId.trim().length() == 0) {
@@ -36,46 +46,52 @@ public class LoginServlet extends HttpServlet {
 		if (password == null || password.trim().length() == 0) {
 			errorMsgMap.put("PasswordisEmpty", "密碼欄位必須輸入");// 如果密碼空白就放錯誤訊息到errorMsgMap裡
 		}
+		System.out.println(gRecaptchaResponse);
+		if (gRecaptchaResponse == null || gRecaptchaResponse.trim().length() == 0) {
+			errorMsgMap.put("RecaptchaisEmpty", "請進行驗證");
+		}
+		boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
+
 		// Remember ME記住密碼cookie
 		Cookie cookieUser = null;
 		Cookie cookiePassword = null;
 		Cookie cookieRememberMe = null;
 
-		if (rm != null) {   // rm存放瀏覽器送來之RememberMe的選項
+		if (rm != null) { // rm存放瀏覽器送來之RememberMe的選項
 			cookieUser = new Cookie("user", userId);
-			cookieUser.setMaxAge(30*60*60);
+			cookieUser.setMaxAge(30 * 60 * 60);
 			cookieUser.setPath(req.getContextPath());
 			// 稍微編碼(不算是加密)
 			String encodePassword = DatatypeConverter.printBase64Binary(password.getBytes());
-			//String encodePassword = GlobalService.encryptString(password);
+			// String encodePassword = GlobalService.encryptString(password);
 			System.out.println("--->" + encodePassword + "<---");
 			cookiePassword = new Cookie("password", encodePassword);
-			cookiePassword.setMaxAge(30*60*60);
+			cookiePassword.setMaxAge(30 * 60 * 60);
 			cookiePassword.setPath(req.getContextPath());
 			cookieRememberMe = new Cookie("rm", "true");
-			cookieRememberMe.setMaxAge(30*60*60);
+			cookieRememberMe.setMaxAge(30 * 60 * 60);
 			cookieRememberMe.setPath(req.getContextPath());
 		} else {
 			cookieUser = new Cookie("user", userId);
-			cookieUser.setMaxAge(0);   // MaxAge==0 表示要請瀏覽器刪除此Cookie
+			cookieUser.setMaxAge(0); // MaxAge==0 表示要請瀏覽器刪除此Cookie
 			cookieUser.setPath(req.getContextPath());
 			String encodePassword = DatatypeConverter.printBase64Binary(password.getBytes());
-			//String encodePassword = GlobalService.encryptString(password);
+			// String encodePassword = GlobalService.encryptString(password);
 			System.out.println("--->" + encodePassword + "<---");
 			cookiePassword = new Cookie("password", encodePassword);
 			cookiePassword.setMaxAge(0);
 			cookiePassword.setPath(req.getContextPath());
 			cookieRememberMe = new Cookie("rm", "false");
-			cookieRememberMe.setMaxAge(30*60*60);
+			cookieRememberMe.setMaxAge(30 * 60 * 60);
 			cookieRememberMe.setPath(req.getContextPath());
 		}
 		res.addCookie(cookieUser);
 		res.addCookie(cookiePassword);
 		res.addCookie(cookieRememberMe);
 
-		//********************************************
+		// ********************************************
 		// 如果 errorMsgMap 不是空的，表示有錯誤，交棒給login.jsp
-		if (!errorMsgMap.isEmpty()) {
+		if (!errorMsgMap.isEmpty() && !verify) {
 			RequestDispatcher rd = req.getRequestDispatcher("/member/login.jsp");
 			rd.forward(req, res);
 			return;
@@ -92,7 +108,7 @@ public class LoginServlet extends HttpServlet {
 			// OK, 將mv物件放入Session範圍內，識別字串為"LoginOK"
 			session.setAttribute("LoginOK", mv);
 			System.out.println(mv.getMemRole());
-			if(mv.getMemRole().trim().equals("系統管理員")){
+			if (mv.getMemRole().trim().equals("系統管理員")) {
 				session.setAttribute("SysManager", mv);
 			}
 		} else {
@@ -102,13 +118,12 @@ public class LoginServlet extends HttpServlet {
 
 		// 5.依照 Business Logic 運算結果來挑選適當的畫面
 		// 如果 errorMsgMap 是空的，表示沒有任何錯誤，交棒給下一棒
-		if (errorMsgMap.isEmpty()) {
+		if (errorMsgMap.isEmpty() && verify) {
 			// 此時不要用下面兩個敘述，因為網址列的URL不會改變
 			// reqDispatcher rd = req.getreqDispatcher("...");
 			// rd.forward(req, res);
 			if (requestURI != null) {
-				requestURI = (requestURI.length() == 0 ? req
-						.getContextPath() : requestURI);
+				requestURI = (requestURI.length() == 0 ? req.getContextPath() : requestURI);
 				res.sendRedirect(res.encodeRedirectURL(requestURI));
 				return;
 			} else {
@@ -123,5 +138,5 @@ public class LoginServlet extends HttpServlet {
 		}
 
 	}
-	
+
 }
