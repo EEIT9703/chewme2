@@ -57,10 +57,10 @@
 				</tr>
 			</table>
 		</div>
-		<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">
-		<input type="hidden" name="googleId" value="" id="googleId">
 		
-		<input type="hidden" name="memName" value="" id="memName">
+		<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">		
+			<input type="hidden" name="googleId" value="" id="googleId" >
+			<input type="hidden" name="memName" value="" id="memName">
 		</div>
 	</form>
 	<script src='https://www.google.com/recaptcha/api.js'></script>
@@ -69,16 +69,16 @@
 		function onSignIn(googleUser) {
 			// Useful data for your client-side scripts:
 			var profile = googleUser.getBasicProfile();
-// 			console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-// 			console.log('Full Name: ' + profile.getName());
-// 			console.log('Given Name: ' + profile.getGivenName());
-// 			console.log('Family Name: ' + profile.getFamilyName());
-// 			console.log("Image URL: " + profile.getImageUrl());
-// 			console.log("Email: " + profile.getEmail());
-$.post("LoginServlet.java", { googleId: profile.getId()} );
+			// 			console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+			// 			console.log('Full Name: ' + profile.getName());
+			// 			console.log('Given Name: ' + profile.getGivenName());
+			// 			console.log('Family Name: ' + profile.getFamilyName());
+			// 			console.log("Image URL: " + profile.getImageUrl());
+			// 			console.log("Email: " + profile.getEmail());
+			$("#googleId").attr("value", profile.getId())
 			// The ID token you need to pass to your backend:
 			var id_token = googleUser.getAuthResponse().id_token;
-// 			console.log("ID Token: " + id_token);
+			// 			console.log("ID Token: " + id_token);
 		};
 	</script>
 	<button onclick="myFunction()"></button>
@@ -88,6 +88,6 @@ $.post("LoginServlet.java", { googleId: profile.getId()} );
 			location.reload();
 		}
 	</script>
-		<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
 </body>
 </html>

@@ -7,9 +7,6 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import com.iii.eeit9703.collection.CollectionVO;
-import com.iii.eeit9703.report.ReportVO;
-
 public class MemDAO implements MemDAO_interface {
 	private static DataSource ds = null;
 	static {//系統load進來時就做一次,且只做一次,除非系統關閉,否則一直存在
@@ -274,17 +271,5 @@ public class MemDAO implements MemDAO_interface {
 			}
 		}
 		return list;
-	}
-
-	@Override
-	public Set<CollectionVO> getCollByMemNo(Integer memId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Set<ReportVO> getRepByMemNo(Integer memId) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
