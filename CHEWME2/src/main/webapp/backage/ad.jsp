@@ -18,30 +18,7 @@
 
 
 <body>
-	<header> <nav class="navbar navbar-default navbar-fixed-top">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<a class="navbar-brand " href="#"><img src="image/letter-c.png"width="30" height="30" alt="">CHEWME</a>
-		</div>
-		<ul class="nav navbar-nav">
-			<li><a href="#">Home</a></li>
-			<li><a href="#">揪人玩</a></li>
-			<li><a href="#">創行程</a></li>
-			<li><a href="#">創社團</a></li>
-
-		</ul>
-
-		<ul class="nav navbar-nav navbar-right">
-			<li><a class="nav-link" href="#"><span
-					class="glyphicon glyphicon-log-in"></span> 登入</a></li>
-			<li><a class="nav-link" href="#"><span
-					class="glyphicon glyphicon-registration-mark"></span> 註冊</a></li>
-		</ul>
-	</div>
-	</nav> <nav class="navbar navbar-expand-lg">
-	<div class="container-fluid"></div>
-
-	</nav> </header>
+	<header><%@ include file="/header.jsp"%></header>
   		<div id="wrapper">
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
@@ -182,7 +159,7 @@
         </div>     
     </div>
     </div>
-    
+
        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
@@ -221,15 +198,7 @@
 				<!-- /.modal -->
 			</div>
     
-   
-    
-    
-    
-    
-    
-    
-    
-    
+
 
  	 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 <%-- 	 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script> --%>
