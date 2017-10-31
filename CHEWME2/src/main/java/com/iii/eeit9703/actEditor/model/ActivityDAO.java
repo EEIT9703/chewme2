@@ -20,8 +20,8 @@ public class ActivityDAO {
 	String userid = "sa";
 	String passwd = "P@ssw0rd";
 	
-	private static final String SelectAttraction = "select * from schedules S join attractions A on S.attractionID=A.attractionID where actID=?";
-	private static final String SelectActivity = "SELECT  act_name  FROM Activitys WHERE actID = ? ";
+	private static final String SelectAttraction = "select * from schedules S join attractions A on S.attractionID=A.attractionID where actID=? order by dayNo, period";
+	private static final String SelectActivity = "SELECT  act_name  FROM activity WHERE actID = ? ";
 		
 	Connection con = null;
 	PreparedStatement pstmt = null;
@@ -94,11 +94,8 @@ public class ActivityDAO {
 					attrVO.setTel(rs.getString("tel"));
 					attrVO.setIntro(rs.getString("intro"));
 					attrVO.setImage(rs.getBinaryStream("image"));
-					schVO.setDayNo(rs.getInt("dayNo"));
-					schVO.setPeriod(rs.getString("period"));
-					attrVO.setScheduleData(schVO);
 					
-					System.out.println(attrVO.getImage());
+//					System.out.println(attrVO.getImage());
 					InputStream is 	 =attrVO.getImage();
 					
 					//InputStream is = null;
@@ -148,6 +145,9 @@ public class ActivityDAO {
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
+						schVO.setDayNo(rs.getInt("dayNo"));
+						schVO.setPeriod(rs.getString("period"));
+						attrVO.setScheduleData(schVO);
 					}
 				}
 			} catch (ClassNotFoundException e) {
@@ -180,14 +180,14 @@ public class ActivityDAO {
 		ActivityDAO aDao = new ActivityDAO();
 		
 		
-		List<AttrVO> list = aDao.getTrip(79);
+		List<AttrVO> list = aDao.getTrip(84);
 		for(AttrVO area : list){
 			System.out.print(area.getName()+",");
 			System.out.print(area.getCounty()+",");
 			System.out.print(area.getType()+",");
 			System.out.print(area.getAddress()+",");
 			System.out.println(area.getTel());
-			System.out.println(area.getScheduleData());
+			System.out.println(area.getScheduleData().getPeriod());
 		}
 	}
 	
