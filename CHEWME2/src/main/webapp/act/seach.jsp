@@ -30,6 +30,7 @@
 
 				<div class="col-md-4">
 					<div class="thumbnail">
+<!-- 						<div id="photo"></div> -->
 						<img alt="300x200" src="../act/image/act1.jpeg" />
 						<div class="caption">
 							<h3>
@@ -48,7 +49,8 @@
             <c:forEach var="activityVO" items="${actSvc.all}">
 				<div class="col-md-4">
 					<div class="thumbnail">
-						<img alt="300x200" src="/image?actID=${activityVO.act_photo}" />
+						<img alt="300x200" src="${activityVO.act_photo}" />
+						console.log(${activityVO.act_photo});
 						<div class="caption">
 							<h3>
 								Thumbnail label
@@ -84,4 +86,21 @@
 	</div>
 </div>
 </body>
+<script type="text/javascript">
+
+/* 	$(document).ready(function(){
+		$.post('/CHEWME2/activityServlet.do?action=getOne_For_Update', {'actID' : actID}, function(data){
+			
+		$('#photo').html("<img src='data:image/png;base64,"+________+"'height=200px>");
+	});
+	}) */
+	
+	
+
+
+
+
+
+	
+</script>
 </html>
