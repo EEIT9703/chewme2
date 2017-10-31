@@ -136,7 +136,7 @@ public class AttrServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		// 送出以修改的資料
+		// 送出已修改的資料
 		if ("update".equals(action)) {
 
 			Integer attractionID = new Integer(req.getParameter("attractionID"));
