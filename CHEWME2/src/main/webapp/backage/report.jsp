@@ -17,30 +17,7 @@
 </head>
 
 <body>
-	<header> <nav class="navbanavbar-default navbar-fixed-top">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<a class="navbar-brand " href="#"><img src="image/letter-c.png"width="30" height="30" alt="">CHEWME</a>
-		</div>
-		<ul class="nav navbar-nav">
-			<li><a href="#">Home</a></li>
-			<li><a href="#">揪人玩</a></li>
-			<li><a href="#">創行程</a></li>
-			<li><a href="#">創社團</a></li>
-
-		</ul>
-
-		<ul class="nav navbar-nav navbar-right">
-			<li><a class="nav-link" href="#"><span
-					class="glyphicon glyphicon-log-in"></span> 登入</a></li>
-			<li><a class="nav-link" href="#"><span
-					class="glyphicon glyphicon-registration-mark"></span> 註冊</a></li>
-		</ul>
-	</div>
-	</nav> <nav class="navbar navbar-expand-lg">
-	<div class="container-fluid"></div>
-
-	</nav> </header>
+	<header><%@ include file="/header.jsp"%></header>
   		<div id="wrapper">
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
@@ -237,8 +214,8 @@
 					$("#confirm").on('click',function (){
 					//	這裡連同id 跟檢舉內容 送到servlet, servlet 得到 登入會員的sesseion資料  活動id 跟 檢舉內容				
 					//	alert($("#text").val())		
-						$.get("report",{"text":$("#text").val(),"id":"1"},function(data){
-							$("#show").html("<h2>"+data+"</h2>");
+						$.get("<%=request.getContextPath()%>/report",{"text":$("#text").val(),"id":"1"},function(data){
+// 							$("#show").html("<h2>"+data+"</h2>");
 						});
 					
 						})

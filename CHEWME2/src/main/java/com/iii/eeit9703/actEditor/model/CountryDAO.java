@@ -1,4 +1,4 @@
-package com.iii.eeit9703.actEditor;
+package com.iii.eeit9703.actEditor.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,40 +8,36 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CountyDAO {
+public class CountryDAO {
 
 	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=CMDB";
 	String userid = "sa";
 	String passwd = "P@ssw0rd";
 	
-	private static final String COUNTY = "SELECT * FROM countys where countryID = ? order by countyID";
+	private static final String COUNTRY = "SELECT * FROM countrys order by queue";
 		
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	
-	
-	public ArrayList<CountyVO> getCounty(String countryID){
+	public List<CountryVO> getCountry(){
 
-		ArrayList<CountyVO> list = new ArrayList<CountyVO>();
-		CountyVO countyVO = null;
+		List<CountryVO> list = new ArrayList<CountryVO>();
+		CountryVO countryVO = null;
 
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(COUNTY);
-			
-			pstmt.setString(1, countryID);
+			pstmt = con.prepareStatement(COUNTRY);
 			rs = pstmt.executeQuery();
-			
+						
 			while(rs.next()){
-				countyVO = new CountyVO();
-				countyVO.setCountyID(rs.getInt("countyID"));
-				countyVO.setCountyName(rs.getString("countyName"));
-				countyVO.setCountryName(rs.getString("countryName"));
-				countyVO.setCountryID(rs.getString("countryID"));
-				list.add(countyVO);
+				countryVO = new CountryVO();
+				countryVO.setQueue(rs.getInt("queue"));
+				countryVO.setCountryID(rs.getString("countryID"));
+				countryVO.setCountryName(rs.getString("countryName"));
+				list.add(countryVO);
 			}
 			
 		} catch (ClassNotFoundException e) {
@@ -65,22 +61,22 @@ public class CountyDAO {
 			}
 		}
 		return list;
+		
+		
 	}
+	
 	
 	
 	public static void main(String[] args) {
 		
-		CountyDAO aDao = new CountyDAO();
+		CountryDAO aDao = new CountryDAO();
 		
-		//查台北市區域
-		List<CountyVO> list = aDao.getCounty("TPE");
-		for(CountyVO area : list){
-			System.out.print(area.getCountyID()+",");
-			System.out.print(area.getCountyName()+",");
-			System.out.print(area.getCountryName()+",");
-			System.out.println(area.getCountryID());
+		//查台灣縣市
+		List<CountryVO> list = aDao.getCountry();
+		for(CountryVO area : list){
+			System.out.print(area.getCountryID()+",");
+			System.out.println(area.getCountryName());
 		}
-
 	}
 
 }

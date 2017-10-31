@@ -1,4 +1,4 @@
-package com.iii.eeit9703.actEditor;
+package com.iii.eeit9703.actEditor.model;
 
 public class ScheduleVO implements java.io.Serializable{
 

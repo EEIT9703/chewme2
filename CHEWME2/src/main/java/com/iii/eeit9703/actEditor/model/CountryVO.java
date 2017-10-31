@@ -1,4 +1,4 @@
-package com.iii.eeit9703.actEditor;
+package com.iii.eeit9703.actEditor.model;
 
 public class CountryVO implements java.io.Serializable{
 

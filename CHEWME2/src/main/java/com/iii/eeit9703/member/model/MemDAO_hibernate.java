@@ -8,7 +8,9 @@ import org.hibernate.Session;
 import org.json.simple.JSONValue;
 
 import com.iii.eeit9703.activity.model.ActivityVO;
+import com.iii.eeit9703.collection.CollectionVO;
 import com.iii.eeit9703.hibernate.util.HibernateUtil;
+import com.iii.eeit9703.report.ReportVO;
 
 public class MemDAO_hibernate implements MemDAO_interface {
 	private static final String GET_ALL_STMT = "from MemVO order by memberId";
@@ -24,6 +26,20 @@ public class MemDAO_hibernate implements MemDAO_interface {
 			throw ex;
 		}
 
+	}
+
+	
+	@Override
+	public Set<ReportVO> getRepByMemNo(Integer memId) {
+		Set<ReportVO> set = findByPrimaryKey(memId).getReports();
+		return set;
+	}
+
+
+	@Override
+	public Set<CollectionVO> getCollByMemNo(Integer memId) {
+		Set<CollectionVO> set = findByPrimaryKey(memId).getCollects();
+		return set;
 	}
 
 	@Override
@@ -90,32 +106,54 @@ public class MemDAO_hibernate implements MemDAO_interface {
 	
 	
 	public static void main(String[] args) {
-	MemDAO_hibernate dao =new MemDAO_hibernate();
+//	MemDAO_hibernate dao =new MemDAO_hibernate();
+//	Set<ReportVO> set=dao.getRepByMemNo(1);
+//	   	for(ReportVO reportVO :set){
+//	   		System.out.println(reportVO.getReportContext());
+//	   		
+//	   		
+//	   		
+//	   		
+//	   	}
+	
+//		
+//		
+//		MemDAO_hibernate dao =new MemDAO_hibernate();
+//		Set<CollectionVO> set=dao.getCollByMemNo(1);
+//		
+//		   	for(CollectionVO collectionVO :set){
+//		   		System.out.println(collectionVO.getMemVO().getMemMail());
+//		   		
+//   		
+//		   	}
 		
-	List<MemVO> list2 = dao.getAll();
+		
+
+
 //	System.out.println(list2);
 //	String jsonString =JSONValue.toJSONString(list2);
 //	System.out.println(jsonString);
-	for (MemVO memVO : list2) {
-		System.out.print(memVO.getMemberId() + ",");
-		System.out.print(memVO.getMemMail() + ",");
-		System.out.print(memVO.getMemPhone());
-		System.out.print(memVO.getMemRole());
-		System.out.print(memVO.getMemStatus());
-	
-		System.out.println("\n-----------------");
-		Set<ActivityVO> Activitys =memVO.getActivitys();
-		
-		for (ActivityVO activityVO : Activitys) {
-			System.out.print(activityVO.getAct_name() + ",");
-			System.out.print(activityVO.getAct_groups() + ",");
-			System.out.print(activityVO.getAct_current());
-		
-		
-			System.out.println();
-		}
-		System.out.println();
-	}	
+//	List<MemVO> list2 = dao.getAll();
+//	for (MemVO memVO : list2) {
+//		System.out.print(memVO.getMemberId() + ",");
+//		System.out.print(memVO.getMemMail() + ",");
+//		System.out.print(memVO.getMemPhone());
+//		System.out.print(memVO.getMemRole());
+//		System.out.print(memVO.getMemStatus());
+//	
+//		System.out.println("\n-----------------");
+//		Set<ActivityVO> Activitys =memVO.getActivitys();
+//		
+//		for (ActivityVO activityVO : Activitys) {
+//			System.out.print(activityVO.getAct_name() + ",");
+//			System.out.print(activityVO.getAct_groups() + ",");
+//			System.out.print(activityVO.getAct_current());
+//		
+//		
+//			System.out.println();
+//		}
+//		System.out.println();
+//	}	
 	
 	
 	}

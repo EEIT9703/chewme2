@@ -31,21 +31,6 @@ public class ArticleHibernateDAO implements ArticleDAO_interface {
 
 	}
 
-	@Override
-	public ArticleVO findByPK(Integer articleID) {
-
-		ArticleVO articleVO = null;
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-			articleVO = (ArticleVO) session.get(ArticleVO.class, articleID);
-			session.getTransaction().commit();
-		} catch (RuntimeException e) {
-			session.getTransaction().rollback();
-			throw e;
-		}
-		return articleVO;
-	}
 
 	@Override
 	public List<ArticleVO> getAll() {
@@ -91,6 +76,12 @@ public class ArticleHibernateDAO implements ArticleDAO_interface {
 //		articleVO.setName("Jack");
 //		articleVO.setContents("好棒棒");
 //		dao.insert(articleVO);
+	}
+
+	@Override
+	public ArrayList<ArticleVO> findByPK(Integer attractionID) {
+		
+		return null;
 	}
 
 }

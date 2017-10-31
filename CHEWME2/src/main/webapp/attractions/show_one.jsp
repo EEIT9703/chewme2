@@ -66,7 +66,7 @@
 
 #text1 {
 	border: 2px solid yellow;
-	width: 690px;
+	width: 650px;
 	height: 500px;
 }
 
@@ -80,7 +80,7 @@
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="../css/bootstrap.min.css">
-<script src="../js/bootstrap.min.js"></script>
+<!-- <script src="../js/bootstrap.min.js"></script> -->
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
@@ -104,7 +104,7 @@
 			</div>
 			<ul>
 				<li><a href="#tabs-1">介紹</a></li>
-				<li><a href="#tabs-2" id="message">分享文</a></li>
+				<li><a href="#tabs-2" id="message">留言板</a></li>
 
 			</ul>
 			<div id="tabs-1">
@@ -159,25 +159,45 @@
 	</form>
 	<script>
 		$(function() {
+			
+			// 當按下"送出留言"發生事件
 			$("#button1").click(function() {
-				console.log(id1.value);
-			var val1 = $("#memo").val();
+				//console.log(id1.value);
+				
+			var val1 = $("#memo").val();                // 取得textarea內輸入的留言
+			var anum = document.getElementById("id1").innerHTML;    // 取得當前頁面的景點標號
 				if (val1 == "") {
 					alert("請勿空白");
 				} else {
+					// 按下送出留言，底下區塊新增一個div
 					$("#text1").append("<div style='width:670px;height:80px;border-radius:5px;border:1px solid blue;margin-left:8px;padding:10px;'><strong>" + val1	+ "</strong></div>");
-				}
+				}	
+			
 			$("#memo").val("");
+			//alert(mnum);
+			// 取得 1.使用者輸入的留言內容  2.當前頁面的景點編號   傳送到後端servlet寫進資料庫
+			$.post("/CHEWME2/ArticleServlet?action=sendmessage",{"contents":val1, "attractionID":anum}, function(data){
+				
+			})
+			
+			
 			});
 			
+			// 點擊留言版的標籤發生事件
 			$("#message").click(function(){				
+				
 				var num = document.getElementById("id1").innerHTML;
-				console.log(num);
+				//console.log(num);
   				$.getJSON("/CHEWME2/ArticleServlet?action=getmessage",{'message':num},function(data){
-  					console.log(data);
-  					$.each(data, function(key, value){
-  						//alert(value);
-  					})
+  					//var i = data.length;
+  					for(i = 0; i < data.length; i ++){
+  						var val2 = data[i].contents;
+  						$("#text1").append("<div style='width:670px;height:80px;border-radius:5px;border:1px solid blue;margin-left:8px;padding:10px;'><strong>" + val2	+ "</strong></div>");
+  					}
+  					
+  					//console.log(val2);
+  					
+//   					$("#text1").text(data.contents);
   					
   					
   					

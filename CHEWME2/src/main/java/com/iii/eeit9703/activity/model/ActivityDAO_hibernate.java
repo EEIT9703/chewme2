@@ -14,25 +14,38 @@ import com.iii.eeit9703.member.model.MemVO;
 import net.minidev.json.JSONValue;
 
 public class ActivityDAO_hibernate implements ActivityDAO_interface {
-<<<<<<< HEAD
 
-=======
 	private static final String GET_ALL_STMT = "from ActivityVO";
-	@Override
-	public void insert(ActivityVO activityVO) {
-		// TODO Auto-generated method stub
->>>>>>> branch 'master' of https://github.com/EEIT9703/chewme2.git
-
+	
+	
 
 	@Override
-	public void update(ActivityVO activityVO,InputStream is) {
-		// TODO Auto-generated method stub
+	public void update(ActivityVO activityVO) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			session.saveOrUpdate(activityVO	);
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
 
 	}
 
 	@Override
 	public void delete(Integer actID) {
-		// TODO Auto-generated method stub
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			ActivityVO activityVO = new ActivityVO();
+			activityVO.setActID(actID);
+			session.delete(activityVO);
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
 
 	}
 
