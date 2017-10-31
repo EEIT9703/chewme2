@@ -1,10 +1,10 @@
 package com.iii.eeit9703.bridge.model;
 
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.iii.eeit9703.bridge.model.hibernate.clubMemRelation.ClubMemRelatoimHibernateDAO;
-import com.iii.eeit9703.club.model.ClubDAOI;
-import com.iii.eeit9703.club.model.ClubVO;
 
 public class ClubMemRelationService {
 	ClubMemRelationDAOI cmlDAO; 
@@ -16,6 +16,14 @@ public class ClubMemRelationService {
 	}
 	public ClubMemRelationVO getOneRelation(Integer clubId, Integer memId){
 		return cmlDAO.getOne(clubId, memId);
+	}
+	public List<Integer> getRelationByMemId(Integer memId){
+		List<Integer> clubIdList;
+		Iterator<ClubMemRelationVO> iter = cmlDAO.getListClubByMemId(memId).iterator();
+		for(clubIdList = new LinkedList();iter.hasNext();){
+			clubIdList.add(iter.next().getClubId());
+		}
+		return clubIdList;
 	}
 	public void insertClubMemRelation(ClubMemRelationVO cmlVO){
 		cmlDAO.insert(cmlVO);
