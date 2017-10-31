@@ -29,18 +29,18 @@ public class MemDAO_hibernate implements MemDAO_interface {
 	}
 
 	
-	@Override
-	public Set<ReportVO> getRepByMemNo(Integer memId) {
-		Set<ReportVO> set = findByPrimaryKey(memId).getReports();
-		return set;
-	}
-
-
-	@Override
-	public Set<CollectionVO> getCollByMemNo(Integer memId) {
-		Set<CollectionVO> set = findByPrimaryKey(memId).getCollects();
-		return set;
-	}
+//	@Override
+//	public Set<ReportVO> getRepByMemNo(Integer memId) {
+//		Set<ReportVO> set = findByPrimaryKey(memId).getReports();
+//		return set;
+//	}
+//
+//
+//	@Override
+//	public Set<CollectionVO> getCollByMemNo(Integer memId) {
+//		Set<CollectionVO> set = findByPrimaryKey(memId).getCollects();
+//		return set;
+//	}
 
 	@Override
 	public void update(MemVO memVO) {
