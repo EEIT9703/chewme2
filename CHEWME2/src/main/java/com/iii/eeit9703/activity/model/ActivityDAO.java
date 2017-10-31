@@ -28,17 +28,17 @@ public class ActivityDAO implements ActivityDAO_interface {
 	
 
 		//修改活動
-		private static final String UPDATE_STMT =
-				"UPDATE activity set act_name=?, act_groups=?, BDate=?, EDate=?, activity_state=?, act_photo=? where actID = ? ";
+		private static final String UPDATE_ACT =
+				"UPDATE activity set act_name=?, act_groups=?, BDate=?, EDate=?, activity_state=?, act_photo=? where actID = ?";
 		//刪除活動
-		private static final String DELETE_STMT =
-				"DELETE FROM activity actID = ?";
+		private static final String DELETE_ACT =
+				"DELETE FROM activity where actID = ?";
 		//查詢活動
-		private static final String GET_ALL_STMT =
-			      "SELECT actID,act_name,act_groups,act_current,BDate,EDate,activity_state FROM activity order by actID";
+		private static final String GET_ALL_ACT =
+			      "SELECT actID,act_name,act_groups,act_current,BDate,EDate,activity_state,act_photo FROM activity";
 		//查詢單筆
-		private static final String GET_ONE_STMT =
-			      "SELECT actID,act_name,act_groups,act_current,BDate,EDate,activity_state FROM activity where actID = ?";
+		private static final String GET_ONE_ACT =
+			      "SELECT actID,act_name,act_groups,act_current,BDate,EDate,activity_state,act_photo FROM activity where actID = ?";
 	
 	
 
@@ -53,7 +53,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 		try {
 			
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(UPDATE_STMT);
+			pstmt = con.prepareStatement(UPDATE_ACT);
 			
 			pstmt.setString(1, activityVO.getAct_name());    //活動名稱
 			pstmt.setString(2, activityVO.getAct_groups());    //成團人數
@@ -98,7 +98,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 		try {
 			
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(DELETE_STMT);
+			pstmt = con.prepareStatement(DELETE_ACT);
 			
 			pstmt.setInt(1, actID);
 			
@@ -139,7 +139,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 		try {
 			
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_ONE_STMT);
+			pstmt = con.prepareStatement(GET_ONE_ACT);
 			
 			pstmt.setInt(1, actID);
 			
@@ -156,7 +156,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 				activityVO.setBDate(rs.getDate("BDate"));                     //開始日期
 				activityVO.setEDate(rs.getDate("EDate"));                    //結束日期
 				activityVO.setActivity_state(rs.getInt("activity_state"));  //活動型態
-				//activityVO.setAct_photo(rs.getBinaryStream("act_photo"));
+				activityVO.setAct_photo(rs.getString("act_photo"));
 				
 				
 			}
@@ -206,7 +206,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 		try {
 			
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_ALL_STMT);
+			pstmt = con.prepareStatement(GET_ALL_ACT);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()){
@@ -214,12 +214,12 @@ public class ActivityDAO implements ActivityDAO_interface {
                 activityVO = new ActivityVO();
                 activityVO.setActID(rs.getInt("actID"));   
                 activityVO.setAct_name(rs.getString("act_name"));                //活動名稱
-				activityVO.setAct_groups(rs.getString("act_groups"));              //成團人數
-				activityVO.setAct_current(rs.getString("act_current"));           //當前人數
+				activityVO.setAct_groups(rs.getString("act_groups"));           //成團人數
+				activityVO.setAct_current(rs.getString("act_current"));        //當前人數
 				activityVO.setBDate(rs.getDate("BDate"));                     //開始日期
 				activityVO.setEDate(rs.getDate("EDate"));                    //結束日期
 				activityVO.setActivity_state(rs.getInt("activity_state"));  //活動型態
-				//activityVO.setAct_photo(rs.getBinaryStream("act_photo"));
+				activityVO.setAct_photo(rs.getString("act_photo"));        //預覽圖片
 				
 				list.add(activityVO);
 				
@@ -258,7 +258,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 
 	public static void main(String[] args) {
 
-		ActivityJDBCDAO dao = new ActivityJDBCDAO();
+		ActivityDAO dao = new ActivityDAO();
 		
 
 		
@@ -274,7 +274,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 		System.out.print(actVO3.getBDate() + ",");
 		System.out.print(actVO3.getEDate() + ",");
 		System.out.print(actVO3.getActivity_state() + ",");
-		//System.out.println(actVO3.getAct_photo()+ ",");
+		System.out.println(actVO3.getAct_photo()+ ",");
 
 		System.out.println("---------------------");
 		
@@ -288,7 +288,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 			System.out.print(aAct.getEDate() + ",");
 			System.out.print(aAct.getEDate() + ",");
 			System.out.print(aAct.getActivity_state() + ",");
-			//System.out.println(actVO3.getAct_photo()+ ",");
+			System.out.println(actVO3.getAct_photo()+ ",");
 
 			System.out.println();
 		}

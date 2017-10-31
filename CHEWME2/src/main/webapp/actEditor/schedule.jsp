@@ -18,7 +18,7 @@
 <script src="/CHEWME2/js/vertical-timeline.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>行程表</title>
+<title>行程表  ${actID}</title>
 </head>
 <style>
 </style>
@@ -26,7 +26,7 @@
 
 <header><%@include file="../header.jsp"%></header>
 
-<h1>行程表(ID=${actID})</h1>
+<h1 id="name"></h1>
 <div id="vt1">
     <div data-vtdate="用 p 呈現">
         <h3>測試景點</h3>
@@ -48,7 +48,43 @@
 </div>
 
 <script>
+	var actID=${actID};
 	$('#vt1').verticalTimeline();
+
+window.onload = function(){
+	
+	$.get("/CHEWME2/Schedule.do?mission=getActName",{'actID':actID},function(actName){
+		console.log(actName);
+		$('#name').html(actName+"的行程明細");
+	});
+	
+ 	$.get("/CHEWME2/Schedule.do?mission=getTrip",{'actID':actID},showTimeLine);
+	//這裡有問題
+	function showTimeLine(array){
+		var dataArray = array;
+		console.log(dataArray[0].name);
+		
+		for(var i=0;i<dataArray;i++){
+			var period = text(dataArray[i].period.subString(0,4));
+			var name =  $("<p></p>").text(dataArray[i].name);
+			name.attr("id","name");
+			var tel =  $("<p></p>").text(dataArray[i].tel);
+			tel.attr("id","tel");
+			var addr =  $("<p></p>").text(dataArray[i].address);
+			addr.attr("id","addr");
+			var intro =  $("<p></p>").text(dataArray[i].intro);
+			intro.attr("id","intro");
+//			var photo = $("<p></p>").html("<img src='data:image/png;base64,"+dataArray[i].img64+"'height=200px>")
+//			photo.attr("id","photo");
+			var point = $("<div></div>").append([name,tel,add,intro]);
+			point.attr("id","period");
+			point.attr("data-vtdate",period);
+			$("#vt1").append(point);
+		}
+	}
+}
+	
+
 </script>
 </body>
 </html>

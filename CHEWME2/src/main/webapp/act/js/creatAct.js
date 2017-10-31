@@ -1,4 +1,4 @@
-$(function() {
+$(document).ready(function() {
 
 	// 結束
 	$("#EDate").datepicker({
@@ -137,12 +137,10 @@ $(function() {
 	})
 });
 // 送出更新資料
-// $('#submit').click(
-// function() {
+// $('#submit').click(function() {
 // var afrm = $('form[name="actForm"]');
 // //console.log(afrm)
-// $.post('/CHEWME2/activityServlet.do?action=Updata',
-// afrm.serialize(), function(data) {
+// $.post('/CHEWME2/activityServlet.do?action=Updata',afrm.serialize(), function(data) {
 // swal('更新成功', 'Hello World!', 'success');
 
 // $('#act_name').val(data.act_name);
