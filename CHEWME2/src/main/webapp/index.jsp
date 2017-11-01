@@ -117,7 +117,7 @@ ul, li {
 	<article>
 		<div class="jumbotron">
 			<div class="container">
-<!-- <span><input type="button" class="itt" id="1" value="測試加入購物車"></span><span><input type="button" id="1" value="檢舉"></span> -->
+
 				<div id="abgne-block-20110317">
 					<div class="abgne-player">
 						<ul class="abgne-list">
@@ -182,6 +182,11 @@ ul, li {
 
 			</div>
 		</div>
+		<div id="3">
+		<span><input type="button" class="inputCar" value="測試加入購物車"></span>
+		<span><input type="button" class="report" value="檢舉"></span>
+		</div>
+		
 	</article>
 	<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
@@ -189,7 +194,20 @@ ul, li {
 
 
 <script>
-
+$(function(){
+	$('.inputCar').click(function(){
+		 var id = $(this).parents('div').attr('id');
+		 $.getJSON('<%=request.getContextPath()%>/activity?action=inputCar',{'ID':id},function(){
+				
+				search();
+			})	
+		
+		
+	})
+	
+	
+	
+})
 
 </script>
 </body>

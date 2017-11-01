@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
 import org.json.simple.JSONValue;
@@ -25,6 +26,7 @@ import com.iii.eeit9703.activity.model.ActivityDAO_hibernate;
 import com.iii.eeit9703.activity.model.ActivityVO;
 import com.iii.eeit9703.adphoto.model.PhotoDAO;
 import com.iii.eeit9703.adphoto.model.PhotoVO;
+import com.iii.eeit9703.collection.CollectionService;
 import com.iii.eeit9703.collection.CollectionVO;
 import com.iii.eeit9703.member.model.MemDAO_hibernate;
 import com.iii.eeit9703.member.model.MemVO;
@@ -65,7 +67,20 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 			request.setCharacterEncoding("UTF-8");		
 			response.setCharacterEncoding("UTF-8");
 			PrintWriter out = response.getWriter();
-		
+			
+			HttpSession session = request.getSession();
+			 if("inputCar".equals(action)){
+				 MemVO memVO=(MemVO) session.getAttribute("LoginOK");
+				Integer memID= memVO.getMemId();
+				Integer ID = Integer.parseInt(request.getParameter("ID"));
+				ActivityVO actVO=new ActivityVO();
+				actVO.setActID(ID);
+				CollectionService ser= new CollectionService();
+				CollectionVO colVO=new CollectionVO();
+				colVO.setMemVO(memVO);
+				colVO.setActivityVO(actVO);
+				ser.insert(colVO);
+			 }
 //			
                 if("getMyCollection".equals(action)){
 //                	
