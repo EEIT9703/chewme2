@@ -7,6 +7,7 @@ import com.iii.eeit9703.bridge.model.ClubMemRelationService;
 import com.iii.eeit9703.bridge.model.MemActRelationService;
 import com.iii.eeit9703.club.model.ClubService;
 import com.iii.eeit9703.collection.CollectionService;
+import com.iii.eeit9703.collection.CollectionVO;
 
 public class MemberSession {
 	private Integer memId;
@@ -15,7 +16,8 @@ public class MemberSession {
 	private List<Integer> joinedActList;
 	private List<Integer> ownClubList;
 	private List<Integer> ownActivityList;
-	private List<Integer> ownColList;
+	//private List<Integer> ownColList;
+	private List<CollectionVO> ownColVoList;//collection改用拿VO
 	ClubService cbService;
 	MemActRelationService marService;
 	ClubMemRelationService cmrService;
@@ -46,10 +48,11 @@ public class MemberSession {
 	
 	private void init(Integer memId){		
 		setAuthorizedclubList();
-		ownClubList =  cbService.getClubIdListByManagerId(memId);
-		joinedActList = marService.getRelationByMemId(memId);
-		joinedClubList = cmrService.getRelationByMemId(memId);
-		ownColList =  colService.getColIdListByMemId(memId);
+//		ownClubList =  cbService.getClubIdListByManagerId(memId);
+//		joinedActList = marService.getRelationByMemId(memId);
+//		joinedClubList = cmrService.getRelationByMemId(memId);
+//		ownColList =  colService.getColIdListByMemId(memId);
+		ownColVoList = colService.getColVOListByMemId(memId);//測試
 	}
 	
 	
@@ -68,9 +71,20 @@ public class MemberSession {
 	public List<Integer> getOwnActivityList() {
 		return ownActivityList;
 	}
+		
 	public void setOwnActivityList(List<Integer> ownActivityList) {
 		this.ownActivityList = ownActivityList;
 	}
+	
+	
+//	public List<Integer> getOwnColList() {
+//		return ownColList;
+//	}
+//
+//	public void setOwnColList(List<Integer> ownColList) {
+//		this.ownColList = ownColList;
+//	}
+
 	public void setMemVO(MemVO memVO){
 		this.memVO = memVO;
 	}
@@ -108,17 +122,36 @@ public class MemberSession {
 	}
 	
 	
+	
+	
+	public List<CollectionVO> getOwnColVoList() {
+		return ownColVoList;
+	}
+
+	public void setOwnColVoList(List<CollectionVO> ownColVoList) {
+		this.ownColVoList = ownColVoList;
+	}
+
 	public static void main(String[] args) {
 		MemberSession chd = new MemberSession(new Integer(1));
-		List<Integer> joinClubList = chd.getJoinedClubList();
-		List<Integer> joinActList = chd.getJoinedActList();
-		List<Integer> ownClubList = chd.getOwnClubList();
-		List<Integer> ownActList = chd.getOwnActivityList();
-		System.out.println(joinClubList);
-		System.out.println(joinActList);
-		System.out.println(ownActList);
-		System.out.println(ownClubList);
-		
+//		List<Integer> joinClubList = chd.getJoinedClubList();
+//		List<Integer> joinActList = chd.getJoinedActList();
+//		List<Integer> ownClubList = chd.getOwnClubList();
+//		List<Integer> ownActList = chd.getOwnActivityList();
+//		System.out.println(joinClubList);
+//		System.out.println(joinActList);
+//		System.out.println(ownActList);
+//		System.out.println(ownClubList);	
+//		 List<Integer> owncolList =chd.getOwnColList();
+//		 System.out.println(owncolList.size());
+		 
+		 List<CollectionVO> colVOs=chd.getOwnColVoList();
+		 
+		 for(CollectionVO vo:colVOs){
+			 
+			 System.out.println(vo.getActivityVO().getAct_name());
+			 
+		 }
 	}
 
 

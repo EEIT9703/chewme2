@@ -13,38 +13,47 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
-public class ActivityDAO {
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
-	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=CMDB";
-	String userid = "sa";
-	String passwd = "P@ssw0rd";
+public class AttrDAO_JNDI {
+
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
 	
-	private static final String SelectAttraction = "select * from schedules S join attractions A on S.attractionID=A.attractionID where actID=? order by dayNo, period";
-	private static final String SelectActivity = "SELECT  act_name  FROM activity WHERE actID = ? ";
+	private static final String COUNTY = "SELECT countyName FROM countys where countyID = ?";
+	private static final String AttrByCountry = "SELECT  *  FROM Attractions A join countrys c on A.county=c.countryName WHERE countryID = ? ";
+	private static final String AttrByCounty = "SELECT  *  FROM Attractions A join countys c on A.county=c.countryName WHERE countyID = ? and address like ?";
 		
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	
-	//由actID取得actName
-	public String getActName(Integer actID){
+	public String getCountyName(Integer countyID){
 		
-		String actName = null;
+		String countryName = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(SelectActivity);
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(COUNTY);
 			
-			pstmt.setInt(1, actID);
+			pstmt.setInt(1, countyID);
 			rs = pstmt.executeQuery();
-			rs.next();
-			actName = rs.getString("act_name");
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			while(rs.next()){
+				countryName = rs.getString("countyName");
+			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -62,30 +71,27 @@ public class ActivityDAO {
 				catch (SQLException e) {e.printStackTrace();}
 			}
 		}
-		return actName;		
+		return countryName;		
 	}
 
-	//由actID取得旅遊資料	
-		public ArrayList<AttrVO> getTrip(Integer actID){
+	//由縣市取得景點資料	
+		public ArrayList<AttrVO> getAttrByCountry(String countryID){
 
 			ArrayList<AttrVO> list = new ArrayList<AttrVO>();
 			AttrVO attrVO = null;
-			ScheduleVO schVO =null;
 
 			try {
-				Class.forName(driver);
-				con = DriverManager.getConnection(url, userid, passwd);
-				pstmt = con.prepareStatement(SelectAttraction);
+				
+				con = ds.getConnection();
+				pstmt = con.prepareStatement(AttrByCountry);
 				
 				
-				pstmt.setInt(1, actID);
+				pstmt.setString(1, countryID);
 				
 				rs = pstmt.executeQuery();
 							
 				while(rs.next()){
 					attrVO = new AttrVO();
-					schVO = new ScheduleVO();
-					
 					attrVO.setAttractionID(rs.getInt("attractionID"));
 					attrVO.setName(rs.getString("name"));
 					attrVO.setCounty(rs.getString("county"));
@@ -94,8 +100,7 @@ public class ActivityDAO {
 					attrVO.setTel(rs.getString("tel"));
 					attrVO.setIntro(rs.getString("intro"));
 					attrVO.setImage(rs.getBinaryStream("image"));
-					
-//					System.out.println(attrVO.getImage());
+					System.out.println(attrVO.getImage());
 					InputStream is 	 =attrVO.getImage();
 					
 					//InputStream is = null;
@@ -112,8 +117,8 @@ public class ActivityDAO {
 							size = is.available();
 							buf = new byte[size];
 							//將檔案讀入buf
-/*							is.read(buf, 0, size);
-							//將buf轉為base64
+							is.read(buf, 0, size);
+/*							//將buf轉為base64
 							String strbase64 = Base64.getEncoder().encodeToString(buf);
 							//將strbase64放入attrVO
 							attrVO.setImg64(strbase64);
@@ -145,15 +150,9 @@ public class ActivityDAO {
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
-						schVO.setDayNo(rs.getInt("dayNo"));
-						schVO.setPeriod(rs.getString("period").substring(0, 5));
-						
-						attrVO.setScheduleData(schVO);
 					}
 				}
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -172,23 +171,84 @@ public class ActivityDAO {
 				}
 			}
 			return list;
+			
+			
 		}
+	
+
+
+//由區域取得景點資料	
+	public ArrayList<AttrVO> getAttrByCounty(Integer countyID){
+
+		ArrayList<AttrVO> list = new ArrayList<AttrVO>();
+		AttrVO attrVO = null;
+		
+		String countryName = getCountyName(countyID);
+		countryName = "%"+countryName+"%";
+//		System.out.println(countryName);
+
+		try {
+			
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(AttrByCounty);
+			
+			
+			pstmt.setInt(1, countyID);
+			pstmt.setString(2, countryName);
+			
+			rs = pstmt.executeQuery();
+						
+			while(rs.next()){
+				attrVO = new AttrVO();
+				attrVO.setAttractionID(rs.getInt("attractionID"));
+				attrVO.setName(rs.getString("name"));
+				attrVO.setCounty(rs.getString("county"));
+				attrVO.setType(rs.getString("type"));
+				attrVO.setAddress(rs.getString("address"));
+				attrVO.setTel(rs.getString("tel"));
+				attrVO.setIntro(rs.getString("intro"));
+				//attrVO.setImage(rs.getString("image"));				
+				
+				list.add(attrVO);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(rs != null){
+				try {rs.close();} 
+				catch (SQLException e) {e.printStackTrace();}
+			}
+			if(pstmt != null){
+				try {pstmt.close();} 
+				catch (SQLException e) {e.printStackTrace();}
+			}
+			if(con != null){
+				try {con.close();} 
+				catch (SQLException e) {e.printStackTrace();}
+			}
+		}
+		return list;
+		
+		
+	}
 	
 	
 	
 	public static void main(String[] args) {
 		
-		ActivityDAO aDao = new ActivityDAO();
+		AttrDAO_JNDI aDao = new AttrDAO_JNDI();
 		
-		
-		List<AttrVO> list = aDao.getTrip(113);
+		//查區域景點、餐廳、民宿
+		List<AttrVO> list = aDao.getAttrByCountry("TPE");
 		for(AttrVO area : list){
 			System.out.print(area.getName()+",");
 			System.out.print(area.getCounty()+",");
 			System.out.print(area.getType()+",");
 			System.out.print(area.getAddress()+",");
 			System.out.println(area.getTel());
-			System.out.println(area.getScheduleData().getPeriod());
+			System.out.println(area.getImage());
 		}
 	}
 	

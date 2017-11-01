@@ -15,7 +15,7 @@ import net.minidev.json.JSONValue;
 
 public class ActivityDAO_hibernate implements ActivityDAO_interface {
 
-	private static final String GET_ALL_STMT = "from ActivityVO";
+	private static final String GET_ALL_STMT = "from ActivityVO order by actID";
 	
 	
 
@@ -70,8 +70,7 @@ public class ActivityDAO_hibernate implements ActivityDAO_interface {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			Query query = session.createQuery(GET_ALL_STMT);
-			
+			Query query = session.createQuery(GET_ALL_STMT);			
 			list = query.list();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
@@ -85,8 +84,8 @@ public class ActivityDAO_hibernate implements ActivityDAO_interface {
 	public static void main(String[] args) {
 		 ActivityDAO_hibernate dao =new ActivityDAO_hibernate();
 		 List<ActivityVO> list=dao.getAll();
-		 String jsonString =JSONValue.toJSONString(list);
-		 System.out.println(list);
+		// String jsonString =JSONValue.toJSONString(list);
+		 System.out.println(list.size());
 	}
 
 }
