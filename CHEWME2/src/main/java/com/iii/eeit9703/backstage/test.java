@@ -30,15 +30,17 @@ public class test extends HttpServlet {
 	         String product = request.getParameter("product");//讀
 	         String money = request.getParameter("money");//讀
 
+	         
+	         //寫一個訂單VO放入訂單
 			obj= new AioCheckOutDevide();					
 			all = new AllInOne("");
 			
-			obj.setMerchantTradeNo(ID);
-			obj.setMerchantTradeDate("2017/10/13 14:16:38");
-			obj.setTotalAmount(money);
+			obj.setMerchantTradeNo(ID);//訂單編號
+			obj.setMerchantTradeDate("2017/10/13 14:16:38"); //訂單時間
+			obj.setTotalAmount(money);//金額
 			obj.setTradeDesc("test Description");
 			obj.setItemName(product);
-			obj.setReturnURL("https://developers.allpay.com.tw/AioMock/MerchantReturnUrl");
+			obj.setReturnURL("https://developers.allpay.com.tw/AioMock/MerchantReturnUrl");//成功回到哪裡
 			obj.setNeedExtraPaidInfo("N");
 			obj.setHoldTradeAMT("0");
 			obj.setUseRedeem("N");

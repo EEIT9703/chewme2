@@ -143,13 +143,13 @@
   	$(function(){
   		$.getJSON('<%=request.getContextPath()%>/activity?action=getAllactivity',{},snedActivity);
   		
-  		function snedActivity(array){	
+  		function snedActivity(array){
+  			
   			//var docFrag = $(document.createDocumentFragment()); 			
   			var status=["上架","下架","待審核"];
   			var opt = $('#activity>tbody');
   			opt.empty();
-  			$.each(array,function(i,activity){
-  				
+  			$.each(array,function(i,activity){				
   	         var cell1 = $('<td></td>').text(activity.actID); 	 
   	       	 var cell2 = $('<td></td>').text(activity.act_name);
 	         var cell3 = $('<td></td>').text(activity.act_groups);

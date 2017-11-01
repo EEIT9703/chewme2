@@ -65,28 +65,28 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 			response.setCharacterEncoding("UTF-8");
 			PrintWriter out = response.getWriter();
 		
-			
-                if("getMyCollection".equals(action)){
-                	
-            		MemDAO_hibernate dao =new MemDAO_hibernate();
-            		Set<CollectionVO> set=dao.getCollByMemNo(1);
-            		List<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
-    				HashMap<String,String> map = null;
-            		   	for(CollectionVO collectionVO :set){
-            		   		map = new HashMap<String,String>();						
-        					map.put("actID", collectionVO.getActivityVO().getActID().toString());
-        					map.put("act_name",collectionVO.getActivityVO().getAct_name());
-        					map.put("act_groups",collectionVO.getActivityVO().getAct_groups().toString());
-        					map.put("act_current",collectionVO.getActivityVO().getAct_current().toString());
-        					map.put("BDate",collectionVO.getActivityVO().getBDate().toString());
-        					map.put("EDate", collectionVO.getActivityVO().getEDate().toString());
-        					map.put("activity_state",collectionVO.getActivityVO().getActivity_state().toString());		
-        					list.add(map);
-            		   	}
-            		   	JSONArray attrArrayList = new JSONArray(list);				
-        				out.print(attrArrayList.toString());
-                }
-			
+//			
+//                if("getMyCollection".equals(action)){
+//                	
+//            		MemDAO_hibernate dao =new MemDAO_hibernate();
+//            		Set<CollectionVO> set=dao.getCollByMemNo(1);
+//            		List<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
+//    				HashMap<String,String> map = null;
+//            		   	for(CollectionVO collectionVO :set){
+//            		   		map = new HashMap<String,String>();						
+//        					map.put("actID", collectionVO.getActivityVO().getActID().toString());
+//        					map.put("act_name",collectionVO.getActivityVO().getAct_name());
+//        					map.put("act_groups",collectionVO.getActivityVO().getAct_groups().toString());
+//        					map.put("act_current",collectionVO.getActivityVO().getAct_current().toString());
+//        					map.put("BDate",collectionVO.getActivityVO().getBDate().toString());
+//        					map.put("EDate", collectionVO.getActivityVO().getEDate().toString());
+//        					map.put("activity_state",collectionVO.getActivityVO().getActivity_state().toString());		
+//        					list.add(map);
+//            		   	}
+//            		   	JSONArray attrArrayList = new JSONArray(list);				
+//        				out.print(attrArrayList.toString());
+//                }
+//			
 	
 			if("getAllphoto".equals(action)){
 				
@@ -104,18 +104,18 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 				if("getAllactivity".equals(action)){
 				//ActService ser= new ActService();
 				ActivityDAO_hibernate ser =new ActivityDAO_hibernate();
-				List<ActivityVO> attrList = ser.getAll();
+				List<ActivityVO> attrList = (ArrayList<ActivityVO>)ser.getAll();
 				List<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
 				HashMap<String,String> map = null;
-				for(ActivityVO vo : attrList){
+				for(ActivityVO act : attrList){
 					map = new HashMap<String,String>();						
-					map.put("actID", vo.getActID().toString());
-					map.put("act_name", vo.getAct_name());
-					map.put("act_groups", vo.getAct_groups().toString());
-					map.put("act_current", vo.getAct_current().toString());
-					map.put("BDate", vo.getBDate().toString());
-					map.put("EDate", vo.getEDate().toString());
-					map.put("activity_state", vo.getActivity_state().toString());		
+					map.put("actID", act.getActID().toString());
+					map.put("act_name", act.getAct_name());
+					map.put("act_groups", act.getAct_groups().toString());
+					map.put("act_current", act.getAct_current().toString());
+					map.put("BDate", act.getBDate().toString());
+					map.put("EDate", act.getEDate().toString());
+					map.put("activity_state", act.getActivity_state().toString());		
 					list.add(map);
 				}				
 
@@ -135,8 +135,13 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 					HashMap<String,String> map = null;
 					for(MemVO vo : attrList){
 						map = new HashMap<String,String>();
-						map.put("memAddr", vo.getMemAddr());
-						map.put("mamberId", vo.getMemberId().toString());
+						map.put("memId", vo.getMemId().toString());
+						map.put("memberId", vo.getMemberId());
+						map.put("memName", vo.getMemName());
+						map.put("memPwd", vo.getMemPwd());
+						map.put("memBirthday", vo.getMemBirthday().toString());
+						map.put("memMail", vo.getMemMail());
+						map.put("memPhone", vo.getMemPhone());			
 						map.put("memStatus", vo.getMemStatus());
 						map.put("memRole", vo.getMemRole());
 						list.add(map);
