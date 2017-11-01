@@ -72,7 +72,8 @@ public class ActivityServlet extends HttpServlet {
 
 			try {
 				//1.接收請求	
-				Integer actID = new Integer(req.getParameter("actID")); 
+				Integer actID = new Integer(req.getParameter("actID"));
+				
 				System.out.println(actID);
 				//2.開始查詢資料
 				ActService actSvc = new ActService();
@@ -83,6 +84,7 @@ public class ActivityServlet extends HttpServlet {
 				out.print(actJSON.toString());
 				
 				System.out.println(actJSON);			
+				
 				//處理錯誤
 			} catch (NumberFormatException e) {
 				errorMsgs.add("無法取得要修改的資料"+e.getMessage());
@@ -105,7 +107,7 @@ public class ActivityServlet extends HttpServlet {
 			
 			try {
 				//1.接收請求 createAct.jsp							
-				
+				System.out.println("12345");
 				Integer actID = new Integer(req.getParameter("actID"));
 				
 				String act_name = req.getParameter("act_name");
@@ -151,9 +153,9 @@ public class ActivityServlet extends HttpServlet {
 					error.put("errorPhoto","請選擇一張圖片");
 				}
 				
-				System.out.println(act_photo.getContentType());
+/*				System.out.println(act_photo.getContentType());
 				System.out.println(act_photo.getSize());
-				System.out.println(act_photo.getName());
+				System.out.println(act_photo.getName());*/
 				
 				//二進制轉64
 				inputStream = act_photo.getInputStream();
@@ -185,13 +187,14 @@ public class ActivityServlet extends HttpServlet {
 				activityVO.setActID(actID);
 				activityVO.setAct_photo(base64);
 
-				if(!error.isEmpty()){
+/*				if(!error.isEmpty()){
 					req.setAttribute("activityVO", activityVO); //含有輸入錯誤的activityVO 也存入req
 					RequestDispatcher failureView =req.getRequestDispatcher("/act/createAct2.jsp");
 					failureView.forward(req, resp);
+					
 					System.out.println("test");
 					return;
-				}
+				}*/
 				
 				//2.開始修改資料 呼叫工頭 ActService.java
 				ActService actSvc = new ActService();
@@ -199,10 +202,10 @@ public class ActivityServlet extends HttpServlet {
 				
 				//修改完成  準備轉交
 				req.setAttribute("activityVO", activityVO);  //資料庫update成功後 正確的activityVO 存入req
+				session.setAttribute("activityVO", activityVO);
 				String url = "/act/createAct2.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
-				successView.forward(req, 
-						resp);
+				successView.forward(req,resp);
 				
 			} catch (Exception e) {
 
