@@ -12,7 +12,7 @@
   	<link href="<%=request.getContextPath()%>/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   	<link href="<%=request.getContextPath()%>/css/morrisjs/morris.css" rel="stylesheet">
   	<link href="<%=request.getContextPath()%>/css/dist/css/sb-admin-2.css" rel="stylesheet">
-<!--     <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script> -->
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 
 </head>
 
@@ -201,7 +201,7 @@
 
 
  	 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-	 <script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
+<%-- 	 <script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script> --%>
 
 
 	<script>
