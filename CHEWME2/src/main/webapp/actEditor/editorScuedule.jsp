@@ -281,7 +281,7 @@ $(function() {
     	slotLabelFormat:"HH:mm",	 							//設定時間軸顯示為24時制
     	minTime:"01:00",												//設定時間軸從何時開始顯示(maxTime：結束時間)
     	editable: true,														//設定可否手動編輯事件
-    	eventOverlap:false,												//設定事件可否重疊
+    	eventOverlap:true,												//設定事件可否重疊
     	eventBackgroundColor: "	#FFE153",			//設定日曆上所有事件的背景色
     	eventBorderColor:"#00A600",						//設定日曆上所有事件的框線色
     	eventTextColor:"#000000",								//設定日曆上所有事件的字體色
