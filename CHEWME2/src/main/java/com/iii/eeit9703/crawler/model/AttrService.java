@@ -1,6 +1,7 @@
 package com.iii.eeit9703.crawler.model;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AttrService {
@@ -34,7 +35,7 @@ public class AttrService {
 
 	}
 
-	public List<AttrVO> getAll() {
+	public ArrayList<AttrVO> getAll() {
 		return dao.getAll();
 	}
 

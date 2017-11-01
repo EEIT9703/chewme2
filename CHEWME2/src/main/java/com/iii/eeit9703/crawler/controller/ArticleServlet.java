@@ -43,8 +43,9 @@ public class ArticleServlet extends HttpServlet {
 			ArrayList<ArticleVO> meslist = artd.findByPK(message);
 
 			JSONArray artarry = new JSONArray(meslist);
+			
 			out.println(artarry.toString());
-			// System.out.print(artarry);
+			 System.out.print(artarry);
 
 		}
 	}

@@ -43,6 +43,13 @@ public class MemDAO_hibernate implements MemDAO_interface {
 //	}
 
 	@Override
+	public void insertGoogle(MemVO memVO) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
 	public void update(MemVO memVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {

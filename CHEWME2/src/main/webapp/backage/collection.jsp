@@ -52,6 +52,7 @@ ul.list___3xuJM {
     padding: 20px 0 16px;
     padding-top: 20px;
     padding-right: 0px;
+    
     padding-bottom: 16px;
     padding-left: 0px;
     display: -webkit-flex;
@@ -69,19 +70,21 @@ ul.list___3xuJM {
 }
 
 .sidebar___2Ft5w {
+	margin-top:20px; 
     width: 340px;
-    min-height: 600px;
+    min-height: 650px;
     height: inherit;
     border-right: 1px solid #a4a3a4;
     -webkit-box-shadow: 2px 5px 10px #909090;
     -moz-box-shadow: 2px 5px 10px #909090;
     box-shadow: 2px 5px 10px #909090;
+    
 }
 
 .sidebar___2Ft6w {
-	margin:0px 0px 0px 100px;
-    width: 1100px;
-    min-height: 600px;
+	margin:20px 0px 0px 100px;
+    width: 1150px;
+    min-height:650px;
     height: inherit;
     border-right: 1px solid #a4a3a4;
     -webkit-box-shadow: 2px 5px 10px #909090;
@@ -158,39 +161,12 @@ margin:0px 80px 30px 0px;
 
 
 <body>
-	<header> <nav class="navbar navbar-default navbar-fixed-top">
-	<div class="container-fluid">
-		<div class="navbar-header">
-		<a class="navbar-brand " href="#"><img src="<%=request.getContextPath()%>/image/letter-c.png" width="30" height="30" alt=""></a>	
-		</div>
-		
-		<div class="navbar-header">
-		<a class="navbar-brand " href="#">CHEWME</a>
-		</div>
-		<ul class="nav navbar-nav" style="margin-left:50px" >
-			<li><a href="#">Home</a></li>
-			<li><a href="#">揪人玩</a></li>
-			<li><a href="#">創行程</a></li>
-			<li><a href="#">創社團</a></li>
-
-		</ul>
-
-		<ul class="nav navbar-nav navbar-right">
-			<li><a class="nav-link" href="#"><span
-					class="glyphicon glyphicon-log-in"></span> 登入</a></li>
-			<li><a class="nav-link" href="#"><span
-					class="glyphicon glyphicon-registration-mark"></span> 註冊</a></li>
-		</ul>
-	</div>
-	</nav> <nav class="navbar navbar-expand-lg">
-	<div class="container-fluid"></div>
-
-	</nav> </header>
+	<header><%@ include file="../header.jsp"%></header>
 	<article>
-  	<div>
-	<div class="row clearfix">
-		<div class="col-md-2 column">
-			<div class=sidebar___2Ft5w>
+ 
+	<div class="row">
+		<div class="col-md-2 column ">
+			<div class="sidebar___2Ft5w">
 				<div class="myPhoto___3FFnp">
 			   	<div style="background-image:url('<%=request.getContextPath()%>/image/101.jpg')" class="img-circle user-photo___7yyZ6"></div>	
 				<p class="shortText___3j1uo" title="黃彥坤">黃彥坤</p>
@@ -215,15 +191,17 @@ margin:0px 80px 30px 0px;
 				</div>
 			</div>
 		</div>
-		<div class="col-md-9 column">
-			<div class="row clearfix">				
-				<div id="cc" class=sidebar___2Ft6w>	</div>		
-  			</div>
-			
+		<div class="col-md-9 column">					
+				<div id="cc" class="sidebar___2Ft6w">
+				
+				
+				
+				</div>		
+  				
 		</div>
 	
 </div>
-</div>	
+	
 </article>
   	<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>

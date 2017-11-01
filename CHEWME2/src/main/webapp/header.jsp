@@ -1,4 +1,14 @@
-﻿﻿<style>
+﻿<%@ page import="java.util.*"%>
+<%@ page import="com.iii.eeit9703.member.model.*"%>
+<%@ page import="com.iii.eeit9703.collection.*"%>
+<%
+CollectionService ser=new CollectionService();
+List<CollectionVO> list=ser.getColVOListByMemId(1);
+pageContext.setAttribute("list",list);
+int a=list.size();
+pageContext.setAttribute("all",a);
+%>
+<style>
 .aaa {
 	position: absolute;
 	right: -10px;
@@ -33,9 +43,13 @@
     width:150px;
     height:30px;
 }
+header{
+height:50px;
 
+}
 
 </style>
+
 <nav class="navbar navbar-default navbar-static-top">
 	<div class="container-fluid">
 		<div>
@@ -74,15 +88,27 @@
 			
 				<li class="nav-shopping-cart"><div class="dropdown"><img id="drop" data-toggle="dropdown" 
 				src="<%=request.getContextPath()%>/image/car.gif" width=30px
-					height=30px /><span class="aaa" data-reactid="65">2</span>
+					height=30px /><span class="aaa" data-reactid="65">${all}</span>
 						<ul class="dropdown-menu pull-right" role="menu"
 							aria-labelledby="drop">
+						<c:choose >
+							<c:when test="${ empty list}">							
 							<li role="presentation"><a role="menuitem" tabindex="-1"
-								href="#">11111</a></li>
-							<li role="presentation"><a role="menuitem" tabindex="-1"
-								href="#">212222</a></li>
-							<li role="presentation"><a role="menuitem" tabindex="-1"
-								href="#">333333</a></li>
+								href="#">快去購物喔</a></li>
+							</c:when>
+							<c:otherwise>	
+								<c:forEach var="total" items="${list}">
+									<li role="presentation"><a role="menuitem" tabindex="-1"
+										href="#">${total.activityVO.act_name}</a></li>
+									
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+						
+						
+							
+							
+							
 							<li role="presentation" class="divider"></li>
 							<li role="presentation"><input type="button" value="前往結帳" class="btn btn-primary"></li>
 						</ul>
