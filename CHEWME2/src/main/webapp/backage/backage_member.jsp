@@ -13,6 +13,9 @@
   	<link href="<%=request.getContextPath()%>/css/morrisjs/morris.css" rel="stylesheet">
   	<link href="<%=request.getContextPath()%>/css/dist/css/sb-admin-2.css" rel="stylesheet">
   	<link href="<%=request.getContextPath()%>/css/datatables.min.css" rel="stylesheet"  type="text/css">
+  	
+  	
+  	
 </head>
 
 <body>
@@ -21,7 +24,7 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                      <ul class="nav" id="side-menu">
-                       
+                  
                         <li>
                             <a href="<%=request.getContextPath()%>/index.jsp"><i class="fa fa-dashboard fa-fw"></i> 首頁</a>
                         </li>
@@ -77,14 +80,12 @@
                           <tr>
                              <th>會員ID</th>
                              <th>會員帳號</th>
-                             <th>姓名</th>
-                             <th>暱稱</th>
+                             <th>姓名</th>                         
                           	 <th>會員密碼</th>
                              <th>生日</th>
                              <th>信箱</th>
                              <th>地址</th>
-                             <th>電話</th>
-                             <th>介紹</th>
+                             <th>電話</th>                            
 <!--                         <th>圖片</th> -->
                              <th>狀態</th>
                              <th>角色</th>
@@ -115,22 +116,22 @@
   		$.getJSON('<%=request.getContextPath()%>/activity?action=getAllmember',{},sendmembers);
   		
   		function sendmembers(array){
+  			
   			//var docFrag = $(document.createDocumentFragment()); 	
   			var status=["正常","黑名單"];
   			var roles=["一般會員","社團管理員","系統管理員"];		
   			var opt = $('#member>tbody');
   			opt.empty(); 
   			$.each(array,function(i,member){
+  				
   	         var cell1 = $('<td></td>').text(member.memId); 	 
   	       	 var cell2 = $('<td></td>').text(member.memberId);
-	         var cell3 = $('<td></td>').text(member.memName);
-	         var cell4 = $('<td></td>').text(member.memNickN);  
-	         var cell5 = $('<td></td>').text(member.memPwd);  
-	         var cell6 = $('<td></td>').text(member.memBirthday);
-	         var cell7 = $('<td></td>').text(member.memMail);
-	         var cell8 = $('<td></td>').text(member.memAddr);
-	         var cell9 = $('<td></td>').text(member.memPhone);
-	         var cell10 = $('<td></td>').text(member.memIntr);
+	         var cell3 = $('<td></td>').text(member.memName);        
+	         var cell4 = $('<td></td>').text(member.memPwd);  
+	         var cell5 = $('<td></td>').text(member.memBirthday);
+	         var cell6 = $('<td></td>').text(member.memMail);
+	         var cell7 = $('<td></td>').text(member.memAddr);
+	         var cell8 = $('<td></td>').text(member.memPhone);	      
 	        // var cell11 = $('<td></td>').text(member.memPhoto);  
 	         var select1 =$('<select id="select1"></select');
 	         var select2 =$('<select id="select2"></select');
@@ -145,7 +146,7 @@
 	        		select1.append(sel1)
 	        	
 	        })
-	      var cell12 = $('<td></td>').html(select1)
+	      var cell9 = $('<td></td>').html(select1)
 	       $.each(roles,function(i){
 	    	  var sel2=$('<option></option>').text(roles[i])
 	    	  		sel2.attr("value",i)
@@ -154,8 +155,8 @@
 	    	  		}
 	        		select2.append(sel2)        		 
 	        })
-	        var cell13= $('<td></td>').html(select2)             
-	        var row = $('<tr></tr>').append([cell1, cell2,cell3,cell4,cell5,cell6,cell7,cell8,cell9,cell10,cell12,cell13]); 
+	        var cell10= $('<td></td>').html(select2)             
+	        var row = $('<tr></tr>').append([cell1, cell2,cell3,cell4,cell5,cell6,cell7,cell8,cell9,cell10]); 
 	  	         opt.append(row);
 	        		
   			})

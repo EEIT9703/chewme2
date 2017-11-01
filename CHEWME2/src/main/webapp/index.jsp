@@ -1,5 +1,5 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -15,20 +15,24 @@
 	position: absolute;
 	right: -10px;
 	border: 1px solid #fff;
-	background: #111111;
+	background: #FF5511;
+	
 	color: #fff;
 	border-radius: 100px;
 	font-size: 12px;
-	font-weight: 600;
+	font-weight: 800;
 	text-align: center;
 	z-index: 15;
 	width: 20px;
 	height: 15px;
+			
 }
 
 .nav-shopping-cart {
 	position: relative;
 	display: inline-block;
+	margin-top:8px;
+	margin-right:25px;
 }
 
 ul, li {
@@ -107,7 +111,7 @@ ul, li {
 </head>
 
 <body>
-	<header><%@ include file="header.jsp"%></header>
+	<header ><%@ include file="header.jsp"%></header>
 	<article>
 		<div class="jumbotron">
 			<div class="container">
@@ -126,6 +130,7 @@ ul, li {
 					</div>
 				</div>
 				
+
 
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 					<li class="nav-item"><a class="nav-link active" id="home-tab"

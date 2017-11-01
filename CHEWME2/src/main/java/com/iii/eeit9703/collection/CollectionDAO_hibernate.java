@@ -120,8 +120,8 @@ public class CollectionDAO_hibernate implements Collection_interface {
 		MemVO memVO=new MemVO();
 		Integer a=1;
 		memVO.setMemId(a);
-		List<Integer> li=ser.getColIdListByMemId(memVO.getMemId());//直接給Id 不用包VO
-	    System.out.println(li.size());
+//		List<Integer> li=ser.getColIdListByMemId(memVO.getMemId());//直接給Id 不用包VO
+//	    System.out.println(li.size());
 //	    
 //	    List<CollectionVO> all= ser.getAll();
 //	    System.out.println(all.size());

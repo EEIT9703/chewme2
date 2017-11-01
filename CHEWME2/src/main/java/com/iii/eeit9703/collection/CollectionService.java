@@ -17,13 +17,18 @@ public class CollectionService {
 	}	
 	public List<CollectionVO> getAll(){
 		return CollectionDAO.getAll(); 		
-	}	
-	public List<Integer> getColIdListByMemId(Integer memId){
-		List<Integer> ownColList;
-		Iterator<CollectionVO> iter=CollectionDAO.getColIdListByMemId(memId).iterator();	
-		for(ownColList = new LinkedList();iter.hasNext();){
-			ownColList.add(iter.next().getMemVO().getMemId());
-		}
-		 return ownColList;
 	}
+	public List<CollectionVO> getColVOListByMemId(Integer memId){
+	
+		return CollectionDAO.getColIdListByMemId(memId);
+	}
+	
+//	public List<Integer> getColIdListByMemId(Integer memId){
+//		List<Integer> ownColList;
+//		Iterator<CollectionVO> iter=CollectionDAO.getColIdListByMemId(memId).iterator();	
+//		for(ownColList = new LinkedList();iter.hasNext();){
+//			ownColList.add(iter.next().getMemVO().getMemId());
+//		}
+//		 return ownColList;
+//	}
 }
