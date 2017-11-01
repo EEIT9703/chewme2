@@ -21,6 +21,13 @@
 <title>行程表  ${actID}</title>
 </head>
 <style>
+h1{text-align: center;font-family: 'Arial','Microsoft JhengHei';}
+span{color: #004B97;font-family: 'Arial','Microsoft JhengHei';font-size:25px;font-weight:bold;p}
+#name{font-family: 'Arial','Microsoft JhengHei';font-size:25px;font-weight:bold;padding-left:10px;}
+#tel{color: #9F5000;font-family: 'Arial','Microsoft JhengHei';font-size:20px;font-weight:bold;padding-left:10px;}
+#addr{font-family: 'Arial','Microsoft JhengHei';font-size:20px;font-weight:bold;padding-left:10px;}
+#intro{font-family: 'Arial','Microsoft JhengHei';font-size:15px;padding-left:10px;}
+#photo{padding:10px;vertical-align : middle;}
 </style>
 <body>
 
@@ -28,24 +35,24 @@
 
 <h1 id="name"></h1>
 <div id="vt1">
-    <div data-vtdate="用 p 呈現">
-        <h3>測試景點</h3>
-        <p>名稱 </p>
-        <p>類型</p>
-        <p>簡介</p>
-    </div>
-    <div data-vtdate="用 table 呈現">
-        <table border="1" >
-				<tbody>
-					<tr><td class="detailItem">名　稱</td><td id=detailName></td><td rowspan=4 id=detailPhoto style="height:220px;padding:10px;"></td></tr>	
-					<tr><td class="detailItem">類　型</td><td id=detailType></td></tr>
-					<tr><td class="detailItem">電　話</td><td id=detailTel></td></tr>
-					<tr><td class="detailItem">地　址</td><td id=detailAdd></td></tr>
-					<tr><td class="detailItem">簡　介</td><td colspan=2 id=detailIntro></td></tr>		
-				</tbody>
-			</table>
-    </div>
-</div>
+<!--     <div data-vtdate="用 p 呈現"> -->
+<!--         <h3>測試景點</h3> -->
+<!--         <p>名稱 </p> -->
+<!--         <p>類型</p> -->
+<!--         <p>簡介</p> -->
+<!--     </div> -->
+<!--     <div data-vtdate="用 table 呈現"> -->
+<!--         <table border="1" > -->
+<!-- 				<tbody> -->
+<!-- 					<tr><td class="detailItem">名　稱</td><td id=detailName></td><td rowspan=4 id=detailPhoto style="height:220px;padding:10px;"></td></tr>	 -->
+<!-- 					<tr><td class="detailItem">類　型</td><td id=detailType></td></tr> -->
+<!-- 					<tr><td class="detailItem">電　話</td><td id=detailTel></td></tr> -->
+<!-- 					<tr><td class="detailItem">地　址</td><td id=detailAdd></td></tr> -->
+<!-- 					<tr><td class="detailItem">簡　介</td><td colspan=2 id=detailIntro></td></tr>		 -->
+<!-- 				</tbody> -->
+<!-- 			</table> -->
+<!--     </div> -->
+<!-- </div> -->
 
 <script>
 	var actID=${actID};
@@ -62,29 +69,37 @@ window.onload = function(){
 	//這裡有問題
 	function showTimeLine(array){
 		var dataArray = array;
-		console.log(dataArray[0].name);
-/*		
-		for(var i=0;i<dataArray;i++){
-			var period = text(dataArray[i].period.subString(0,4));
-			var name =  $("<p id='name'></p>").text(dataArray[i].name);
-			var tel =  $("<p id='tel'></p>").text(dataArray[i].tel);
-			var addr =  $("<p id='addr'></p>").text(dataArray[i].address);
-			var intro =  $("<p id='intro'></p>").text(dataArray[i].intro);
-//			var photo = $("<p></p>").html("<img src='data:image/png;base64,"+dataArray[i].img64+"'height=200px>")
-//			photo.attr("id","photo");
-			var point = $("<div id='period'></div>").append([name,tel,add,intro]);
-			point.attr("data-vtdate",period);
-			$("#vt1").append(point);
-*/			
-			$("#detailName").text(dataArray[0].name);
-			console.log(dataArray[0].name);
-			$("#detailType").text("TYPE");
-			$("#detailTel").text(dataArray[0].tel);
-			$("#detailAdd").text(dataArray[0].address);
-			console.log(dataArray[0].address);
-			$("#detailIntro").text(dataArray[0].intro);
+		console.log(array.length);
+		
+		for(var i=0;i<array.length;i++){
 			
-//		}
+			console.log(dataArray[i].scheduleData.period);
+			var name =  $("<p id='name'></p>").append(dataArray[i].name);
+			var tel =  $("<p id='tel'></p>").append(dataArray[i].tel);
+			var addr =  $("<p id='addr'></p>").append(dataArray[i].address);
+			var intro =  $("<p id='intro'></p>").append(dataArray[i].intro);
+			var photo = $("<p></p>").html("<img src='data:image/png;base64,"+dataArray[i].img64+"'height=200px>")
+					photo.attr("id","photo");
+			
+			var period =  $("<span id='period' class='vtimeline-date'></span>").append(dataArray[i].scheduleData.period);
+			
+			var attrpoint = $("<div id='period' class='vtimeline-content'></div>").append([name,tel,addr,intro,photo]);
+					attrpoint.attr("data-vtdate",period);
+					
+			var block=$("<div class='vtimeline-block'></div>").append([period,attrpoint])
+			
+			var point=$("<div class='vtimeline-point'></div>").append(block);
+			point.attr("id",dataArray[i].attractionID);
+			$("#vt1").append(point);
+			
+			if(i%2==0){
+				block.attr("class","vtimeline-block vtimeline-left");
+			}else{
+				block.attr("class","vtimeline-block vtimeline-right");
+			}
+
+			
+		}
 	}
 }
 	

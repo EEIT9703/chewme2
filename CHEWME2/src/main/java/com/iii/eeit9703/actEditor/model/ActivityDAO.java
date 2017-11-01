@@ -146,7 +146,7 @@ public class ActivityDAO {
 							e.printStackTrace();
 						}
 						schVO.setDayNo(rs.getInt("dayNo"));
-						schVO.setPeriod(rs.getString("period"));
+						schVO.setPeriod(rs.getString("period").substring(0, 5));
 						attrVO.setScheduleData(schVO);
 					}
 				}
@@ -180,7 +180,7 @@ public class ActivityDAO {
 		ActivityDAO aDao = new ActivityDAO();
 		
 		
-		List<AttrVO> list = aDao.getTrip(84);
+		List<AttrVO> list = aDao.getTrip(113);
 		for(AttrVO area : list){
 			System.out.print(area.getName()+",");
 			System.out.print(area.getCounty()+",");
