@@ -39,6 +39,8 @@ public class ActivityDAO implements ActivityDAO_interface {
 		//查詢單筆
 		private static final String GET_ONE_ACT =
 			      "SELECT actID,act_name,act_groups,act_current,BDate,EDate,activity_state,act_photo FROM activity where actID = ?";
+		
+
 	
 	
 

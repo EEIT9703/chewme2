@@ -10,26 +10,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<link rel="styLesheet" href="../css/bootstrap.min.css">
-
-<!-- <script src="js/bootstrap.min.js"></script> -->
-<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-
-<!-- 置頂  -->
-<!-- <link href="../css/navbar-fixed-top.css" rel="stylesheet">-->
-
-<!-- jQuery UI Datepicker -->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" >
 
 <!-- Font Awesome  -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"></link>
+
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 
 
 </head>
 
 <body>
-	<header><%@ include file="../header.jsp"%></header>
-
+<%-- 	<header><%@ include file="../header.jsp"%></header> --%>
+	<p hidden id="activityVO" value="">${activityVO.actID}</p>
+	
 	<jsp:useBean id="actSvc" scope="page" class="com.iii.eeit9703.activity.model.ActService" />
 
 	<div class="container">
@@ -37,60 +32,113 @@
 			<div class="row clearfix">
 				<div class="col-md-12 column">
 					<h1>Activity</h1>
+						<!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div style="height:40px"></div>
+                <div class="row carousel-holder">
+                    <div class="col-md-12">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img class="slide-image" src="https://cache-graphicslib.viator.com/graphicslib/destination/rhine-river-133772.jpg" alt="">
+                                </div>
+                                <div class="item">
+                                    <img class="slide-image" src="https://cache-graphicslib.viator.com/graphicslib/destination/rhine-river-133772.jpg" alt="">
+                                </div>
+                                <div class="item">
+                                    <img class="slide-image" src="https://cache-graphicslib.viator.com/graphicslib/destination/rhine-river-133772.jpg" alt="">
+                                </div>
+                            </div>
+                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left" style="color:red;"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right" style="color:red;"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="heading">
+                    <h2>Heading</h2>
+                </div>
+                <div class="item-desc">
+                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi eum cupiditate alias, accusantium necessitatibus sequi, labore soluta iste, repellendus ratione a! Fugiat, dolore placeat est, non iste ab repudiandae assumenda.</p>
+                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi eum cupiditate alias, accusantium necessitatibus sequi, labore soluta iste, repellendus ratione a! Fugiat, dolore placeat est, non iste ab repudiandae assumenda.</p>
+                </div>
+            </div>
+            <div style="height:40px"></div>
+            <form class="col-md-6" role="form">               
+                <div class="date-time row">
+                    <!-- <div class="co-md-12">-->
+                    <div class="form-group col-md-6">
+                        <div class="form-group">
+                    <label for="destination">活動名稱:</label>
+                </div>
+                
+                <div class="form-group">
+                    <label for="destination">成團人數:</label>
+                </div>
+                
+                <div class="form-group">
+                    <label for="destination">旅程時間:</label>
+                </div>
+                
+                <div class="form-group">
+                    <label for="destination">價格:</label>
+                </div>
+                    </div>
+                    </div>
+                <div class="btn-group btn-group-justified">
+                    <a href="#" class="btn btn-default">參加行程</a>
+                    <a href="#" class="btn btn-default"><i class="fa fa-heart-o" aria-hidden="true" style="color:red;"></i> 加入我的收藏</a>
+                </div>
+                <!-- button group ---->
 
+                <div class="card" style="margin-top:20px;">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Highlights</a></li>
+                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Review</a></li>
+                    </ul>
 
-
-					<form role="form" enctype="multipart/form-data" class="form-horizontal" method="post" action="<%=request.getContextPath()%>/activityServlet.do" name="actForm">
-						<div class="from-group">
-							<label for="actID">選擇活動</label> <select class="form-control"
-								size="1" name="actID" id="actID">
-								<c:forEach var="activityVO" items="${actSvc.all}">
-									<option value="${activityVO.actID}">${activityVO.act_name}</option>
-								</c:forEach>
-							</select>
-
-						</div>
-						<div class="form-group">
-							<label for="act_name">活動名稱</label> 
-							<input type="text" class="form-control" name="act_name" id="act_name" value="" placeholder=""/>
-							<font color="red" size="-1"></font>
-						</div>	
-						<div class="form-group">
-							<label for="act_groups">成團人數</label> 
-							<input type="text" class="form-control" name="act_groups" id="act_groups" value="" />
-							<font color="red" size="-1"></font>
-						</div>			
-						<div class="form-group">
-							<label for="act_current">參加人數</label> 
-							<input type="text" class="form-control" name="act_current" id="act_current" value="" disabled="disabled" />
-						</div>
-						<div class="form-group">
-							<label for="BDate">出發日期</label> 
-							<input type="text" class="form-control" name="BDate" id="BDate" value="" />
-							<font color="red" size="-1"></font>
-						</div>
-						<div class="form-group">
-							<label for="EDate">結束日期</label> 
-							<input type="text" class="form-control" name="EDate" id="EDate" value="" />
-							<font color="red" size="-1"></font>
-						</div>
-						<div class="from-group">
-							<label for="activity_state">活動狀態</label> <select class="form-control" name="activity_state" id="activity_state">
-								<option value="0">建構中</option>
-								<option value="1">上架</option>
-								<option value="3">下架</option>
-							</select>
-						</div>
-
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="home">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+                        <div role="tabpanel" class="tab-pane" id="profile">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</div>
+                    </div>
+                </div>
+                <!-- Tabs --->
+            </form>
+        </div>
+    </div>
+    <!-- /.container -->
+						
+						
+						
+						
+						<div id="summernote"><p>Hello Summernote</p></div>
 						<div class="form-group">
 							<label class="btn btn-info" for="upload"> <input id="upload" name="upload" style="display: none;" type="file">
 							<i class="fa fa-folder-open-o"></i> 上傳圖片
 							</label>
 							<font color="red" size="-1"></font>
 						</div>
+
+						<div>
+						
+	<%-- 			<jsp:include page="/CHEWME2/actEditor/schedule.jsp" /> --%>
+ 	<%-- 						<%@ include file="../actEditor/schedule.jsp"%> --%>
+						</div>
+						
 						<div class="form-group"></div>
-						<button type="button" class="btn btn-lg btn-primary" id="submit">Submit</button>
-					</form>
+						<button type="submit" class="btn btn-lg btn-primary" id="submit">送出</button>
+					
 				</div>
 			</div>
 		</div>
@@ -100,13 +148,18 @@
 		
 	</script>
 
-	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js">
+	
 	<!-- SweetAlert  -->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
-	<script src="../act/js/creatAct.js"></script>
+	
+	<script src="../act/js/creatAct2.js"></script>
 </body>
 </html>
