@@ -147,6 +147,7 @@ public class ActivityDAO {
 						}
 						schVO.setDayNo(rs.getInt("dayNo"));
 						schVO.setPeriod(rs.getString("period").substring(0, 5));
+						
 						attrVO.setScheduleData(schVO);
 					}
 				}
