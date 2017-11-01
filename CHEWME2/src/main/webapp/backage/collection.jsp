@@ -13,6 +13,7 @@
   	<link href="<%=request.getContextPath()%>/css/morrisjs/morris.css" rel="stylesheet">
   	<link href="<%=request.getContextPath()%>/css/dist/css/sb-admin-2.css" rel="stylesheet">
   	
+  	
   	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/js/advanced.css"/>
   	<style>
   	body { font-family:'Roboto';}
@@ -139,7 +140,17 @@ margin-right:10px
 
 
 }
+.allpay_button{
+ margin:10px 0px 20px 0px; 
+ 
 
+
+}
+.item{
+/* margin-left:0px; */
+/* margin-right:80px; */
+margin:0px 80px 30px 0px;
+}
 </style>
 
 
@@ -152,6 +163,7 @@ margin-right:10px
 		<div class="navbar-header">
 		<a class="navbar-brand " href="#"><img src="<%=request.getContextPath()%>/image/letter-c.png" width="30" height="30" alt=""></a>	
 		</div>
+		
 		<div class="navbar-header">
 		<a class="navbar-brand " href="#">CHEWME</a>
 		</div>
@@ -226,6 +238,8 @@ $(function(){
 			var status=["上架","下架","待審核"];
 			var opt = $('.sidebar___2Ft6w');
 			opt.empty();
+			var cell5=$('<div class="allpay_button"></div>').html("<input type='button' value='前往歐付寶付款'>")
+			opt.append(cell5);
 			$.each(array,function(i,activity){			
 	         var cell1 = $('<img>').attr("src","<%=request.getContextPath()%>/image/101.jpg")	       
 	       	 var cell2 = $('<p></p>').text(activity.act_name);
@@ -247,8 +261,8 @@ $(function(){
          	 var row = $('<div class="item"></div>').append([cell1, cell2,span,cell3,cell4]); 
   	         opt.append(row);
         		
-			})
-		
+			})	
+			
 		}
 		
 		$('#collection').click(function (event){

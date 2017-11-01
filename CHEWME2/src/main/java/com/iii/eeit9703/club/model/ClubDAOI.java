@@ -4,6 +4,8 @@ import java.util.List;
 
 public interface ClubDAOI {
 	public List<ClubVO> getAll();
+	public List<ClubVO> getClubListByManagerId(Integer managerId);
+	
 	public ClubVO getOne(Integer clubId);
 	public void insert(ClubVO clubVO);
 	public void update(ClubVO clubVO);

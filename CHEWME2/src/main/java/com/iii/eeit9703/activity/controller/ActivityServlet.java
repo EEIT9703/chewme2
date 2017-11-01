@@ -35,6 +35,7 @@ maxRequestSize=1024*1024*1024,
 fileSizeThreshold=1024*1024*1024,
 maxFileSize=1024*1024*1024
 )
+
 @WebServlet("/activityServlet.do")
 public class ActivityServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -184,34 +185,32 @@ public class ActivityServlet extends HttpServlet {
 				activityVO.setActID(actID);
 				activityVO.setAct_photo(base64);
 
-/*				if(!error.isEmpty()){
+				if(!error.isEmpty()){
 					req.setAttribute("activityVO", activityVO); //含有輸入錯誤的activityVO 也存入req
 					RequestDispatcher failureView =req.getRequestDispatcher("/act/createAct2.jsp");
 					failureView.forward(req, resp);
 					System.out.println("test");
 					return;
 				}
-				*/
+				
 				//2.開始修改資料 呼叫工頭 ActService.java
-/*				ActService actSvc = new ActService();
-				actSvc.updateAct(activityVO);*/
+				ActService actSvc = new ActService();
+				actSvc.updateAct(activityVO);
 				
 				//修改完成  準備轉交
-/*				req.setAttribute("activityVO", activityVO);  //資料庫update成功後 正確的activityVO 存入req
+				req.setAttribute("activityVO", activityVO);  //資料庫update成功後 正確的activityVO 存入req
 				String url = "/act/createAct2.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, 
-						resp);*/
+						resp);
 				
 			} catch (Exception e) {
-				PrintWriter out1 = resp.getWriter();
-				out1.append("<input value='123456'></input>");
-				return;
-				//error.put("修改資料失敗",e.getMessage());
-				//RequestDispatcher failureView =req.getRequestDispatcher("/act/createAct2.jsp");
-				//failureView.forward(req, resp);
-				//e.printStackTrace();
-			}
+
+				error.put("修改資料失敗",e.getMessage());
+				RequestDispatcher failureView =req.getRequestDispatcher("/act/createAct2.jsp");
+				failureView.forward(req, resp);
+				e.printStackTrace();
+		}
 			
 			
 			
