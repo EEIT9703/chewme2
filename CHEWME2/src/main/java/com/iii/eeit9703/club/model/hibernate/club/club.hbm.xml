@@ -17,7 +17,7 @@
 		<property name="vistors" column="vistors" />
 		<property name="vistorsInMonth" column="vistorsInMonth" />
 		<property name="addr" column="addr" />
-		<property name="clubPic" column="clubPic" />
+		<!-- <property name="clubPic" column="clubPic" /> -->		
 	</class>
 </hibernate-mapping>
 

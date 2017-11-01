@@ -100,9 +100,17 @@ public class ClubClientViewServlet extends HttpServlet {
 		/*服務從findClub導過來的service,顯示club的Service*/
 		if(action.matches("chooseClub")){
 			System.out.println("In ClubClientVIEW, start the choose club");
-			System.out.println(request.getParameter("club"));
+			System.out.println(request.getParameter("clubId"));
 			ClubService cs = new ClubService();
-			ClubVO clubVO = cs.getOneClub(Integer.parseInt(request.getParameter("club")));
+			Integer search_club;
+			if(request.getParameter("clubId") != null){
+				search_club = Integer.parseInt(request.getParameter("clubId"));
+			}else{
+				search_club = (Integer)request.getAttribute("clubId");
+			}
+			
+			ClubVO clubVO = cs.getOneClub(search_club);
+			session.setAttribute("clubVOForView", clubVO);
 			System.out.println(clubVO.getClubName());
 			System.out.println("Redirect to the clubClientViewFrame.jsp");
 			response.sendRedirect("clubClientViewFrame.jsp");
@@ -112,9 +120,11 @@ public class ClubClientViewServlet extends HttpServlet {
 		if(action.matches("loadIssues")){		
 			System.out.println("In ClubClientVIEW, get in to load issues.");
 			/*準備get方法內傳回參數的基本物件(DAO及writer)*/
+			
+			Integer clubId= Integer.parseInt(request.getParameter("clubId"));
 			PrintWriter out = response.getWriter();
 			IssueService is = new IssueService();
-			List<IssueVO> issueVO_list = is.getIssueList();						
+			List<IssueVO> issueVO_list = is.getIssueListByClubId(clubId);						
 			List<Map> issueList_json = new ArrayList();			
 			IssueVO isvo;
 			List<Map> commentList_json;

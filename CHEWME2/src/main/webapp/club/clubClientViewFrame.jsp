@@ -13,6 +13,7 @@
 <body>
 
 	<header><%@ include file="../header.jsp"%></header>
+	<p hidden id="clubIdforView" value="">${clubVOForView.clubId}</p>
 	<div class="container">
 		<div id="carouselExampleControls" class="carousel slide"
 			data-ride="carousel">
@@ -21,7 +22,7 @@
 					<div class="row">
 						<div class="col-md-3"></div>
 						<div class="col-md-6" >
-							<img class="d-block w-100" src="image/lion_logo.png"
+							<img class="d-block w-100" src="clubImageDealer.do?clubId=${clubVOForView.clubId}"
 								alt="First slide" style="margin:auto;">
 						</div>
 						<div class="col-md-3"></div>
