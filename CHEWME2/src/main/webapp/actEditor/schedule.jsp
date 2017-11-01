@@ -58,29 +58,33 @@ window.onload = function(){
 		$('#name').html(actName+"的行程明細");
 	});
 	
- 	$.get("/CHEWME2/Schedule.do?mission=getTrip",{'actID':actID},showTimeLine);
+ 	$.getJSON("/CHEWME2/Schedule.do?mission=getTrip",{'actID':actID},showTimeLine);
 	//這裡有問題
 	function showTimeLine(array){
 		var dataArray = array;
 		console.log(dataArray[0].name);
-		
+/*		
 		for(var i=0;i<dataArray;i++){
 			var period = text(dataArray[i].period.subString(0,4));
-			var name =  $("<p></p>").text(dataArray[i].name);
-			name.attr("id","name");
-			var tel =  $("<p></p>").text(dataArray[i].tel);
-			tel.attr("id","tel");
-			var addr =  $("<p></p>").text(dataArray[i].address);
-			addr.attr("id","addr");
-			var intro =  $("<p></p>").text(dataArray[i].intro);
-			intro.attr("id","intro");
+			var name =  $("<p id='name'></p>").text(dataArray[i].name);
+			var tel =  $("<p id='tel'></p>").text(dataArray[i].tel);
+			var addr =  $("<p id='addr'></p>").text(dataArray[i].address);
+			var intro =  $("<p id='intro'></p>").text(dataArray[i].intro);
 //			var photo = $("<p></p>").html("<img src='data:image/png;base64,"+dataArray[i].img64+"'height=200px>")
 //			photo.attr("id","photo");
-			var point = $("<div></div>").append([name,tel,add,intro]);
-			point.attr("id","period");
+			var point = $("<div id='period'></div>").append([name,tel,add,intro]);
 			point.attr("data-vtdate",period);
 			$("#vt1").append(point);
-		}
+*/			
+			$("#detailName").text(dataArray[0].name);
+			console.log(dataArray[0].name);
+			$("#detailType").text("TYPE");
+			$("#detailTel").text(dataArray[0].tel);
+			$("#detailAdd").text(dataArray[0].address);
+			console.log(dataArray[0].address);
+			$("#detailIntro").text(dataArray[0].intro);
+			
+//		}
 	}
 }
 	

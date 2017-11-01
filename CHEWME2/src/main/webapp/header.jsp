@@ -109,7 +109,7 @@
 
 				<li><c:if test="${  empty LoginOK }">
 						<a class="nav-link"
-							href="<%=request.getContextPath()%>/member/login.jsp"><span
+							href="<%=request.getContextPath()%>/member/register.jsp"><span
 							class="glyphicon glyphicon-log-in"></span>註冊 </a>
 					</c:if></li>
 				<li><c:if test="${ ! empty LoginOK }">
