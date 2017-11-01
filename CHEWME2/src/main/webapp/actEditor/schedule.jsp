@@ -22,6 +22,7 @@
 </head>
 <style>
 h1{text-align: center;font-family: 'Arial','Microsoft JhengHei';}
+h2{text-align: center;font-family: 'Arial','Microsoft JhengHei';}
 span{color: #004B97;font-family: 'Arial','Microsoft JhengHei';font-size:25px;font-weight:bold;p}
 #name{font-family: 'Arial','Microsoft JhengHei';font-size:25px;font-weight:bold;padding-left:10px;}
 #tel{color: #9F5000;font-family: 'Arial','Microsoft JhengHei';font-size:20px;font-weight:bold;padding-left:10px;}
@@ -34,6 +35,7 @@ span{color: #004B97;font-family: 'Arial','Microsoft JhengHei';font-size:25px;fon
 <header><%@include file="../header.jsp"%></header>
 
 <h1 id="name"></h1>
+<h2 id="day1"></h2>
 <div id="vt1">
 <!--     <div data-vtdate="用 p 呈現"> -->
 <!--         <h3>測試景點</h3> -->
@@ -52,11 +54,16 @@ span{color: #004B97;font-family: 'Arial','Microsoft JhengHei';font-size:25px;fon
 <!-- 				</tbody> -->
 <!-- 			</table> -->
 <!--     </div> -->
-<!-- </div> -->
-
+</div>
+<h2 id="day2"></h2>
+<div id="vt2" style="display:none"></div>		//繼續測試隱藏
+<h2 id="day3"></h2>
+<div id="vt3" style="display:none"></div>
 <script>
 	var actID=${actID};
-	$('#vt1').verticalTimeline();
+ 	$('#vt1').verticalTimeline();
+ 	$('#vt2').verticalTimeline();
+ 	$('#vt3').verticalTimeline();
 
 window.onload = function(){
 	
@@ -66,44 +73,53 @@ window.onload = function(){
 	});
 	
  	$.getJSON("/CHEWME2/Schedule.do?mission=getTrip",{'actID':actID},showTimeLine);
-	//這裡有問題
-	function showTimeLine(array){
-		var dataArray = array;
-		console.log(array.length);
-		
-		for(var i=0;i<array.length;i++){
-			
-			console.log(dataArray[i].scheduleData.period);
-			var name =  $("<p id='name'></p>").append(dataArray[i].name);
-			var tel =  $("<p id='tel'></p>").append(dataArray[i].tel);
-			var addr =  $("<p id='addr'></p>").append(dataArray[i].address);
-			var intro =  $("<p id='intro'></p>").append(dataArray[i].intro);
-			var photo = $("<p></p>").html("<img src='data:image/png;base64,"+dataArray[i].img64+"'height=200px>")
-					photo.attr("id","photo");
-			
-			var period =  $("<span id='period' class='vtimeline-date'></span>").append(dataArray[i].scheduleData.period);
-			
-			var attrpoint = $("<div id='period' class='vtimeline-content'></div>").append([name,tel,addr,intro,photo]);
-					attrpoint.attr("data-vtdate",period);
-					
-			var block=$("<div class='vtimeline-block'></div>").append([period,attrpoint])
-			
-			var point=$("<div class='vtimeline-point'></div>").append(block);
-			point.attr("id",dataArray[i].attractionID);
-			$("#vt1").append(point);
-			
-			if(i%2==0){
-				block.attr("class","vtimeline-block vtimeline-left");
-			}else{
-				block.attr("class","vtimeline-block vtimeline-right");
-			}
 
+	function showTimeLine(array){
+
+		console.log(array.length);
+		var maxDay = array[array.length-1].scheduleData.dayNo;
+		var k=0;
+	
+		for (var i = k; i < array.length; i++) {			
+				
+			var name = $("<p id='name'></p>").append(array[i].name);
+			var tel = $("<p id='tel'></p>").append(array[i].tel);
+			var addr = $("<p id='addr'></p>").append(array[i].address);
+			var intro = $("<p id='intro'></p>").append(array[i].intro);
+			var photo = $("<p></p>").html("<img src='data:image/png;base64,"+array[i].img64+"'height=200px>")
+					photo.attr("id", "photo");
+			var period = $(	"<span id='period' class='vtimeline-date'></span>").append(array[i].scheduleData.period);
+			var attrpoint = $(	"<div id='period' class='vtimeline-content'></div>").append([ name, tel, addr, intro, photo ]);
+					attrpoint.attr("data-vtdate", period);
+			var block = $("<div class='vtimeline-block'></div>").append([ period, attrpoint ])
+			var point = $("<div class='vtimeline-point'></div>").append(block);
+					point.attr("id", array[i].attractionID);
 			
+			switch(array[i].scheduleData.dayNo){
+			
+			case 1:
+				var day = $("#day1").append("DAY - 1");
+				$("#vt1").append(point);
+				break;
+			case 2:
+				var day = $("#day2").append("DAY - 2");
+				$("#vt2").append(point);
+				break;
+			case 3:
+				var day = $("#day3").append("DAY - 3");
+				$("#vt3").append(point);
+				break;
+			
+			}
+			if (i % 2 == 0) {
+						block.attr("class", "vtimeline-block vtimeline-left");
+			} else {
+						block.attr("class", "vtimeline-block vtimeline-right");
+			}
+		}
+		
 		}
 	}
-}
-	
-
 </script>
 </body>
 </html>

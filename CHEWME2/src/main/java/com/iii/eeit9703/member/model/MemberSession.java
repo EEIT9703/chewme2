@@ -41,7 +41,7 @@ public class MemberSession {
 		setMemVO(memVO);
 		init(memVO.getMemId());
 	}
-	MemberSession(Integer memId){
+	public MemberSession(Integer memId){
 		this();
 		init(memId);
 	}

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -106,16 +107,17 @@ ul, li {
 	background: #fff;
 	color: #000;
 }
+
 </style>
 
 </head>
 
 <body>
-	<header ><%@ include file="header.jsp"%></header>
+	<header><%@ include file="header.jsp"%></header>
 	<article>
 		<div class="jumbotron">
 			<div class="container">
-
+<!-- <span><input type="button" class="itt" id="1" value="測試加入購物車"></span><span><input type="button" id="1" value="檢舉"></span> -->
 				<div id="abgne-block-20110317">
 					<div class="abgne-player">
 						<ul class="abgne-list">
@@ -183,10 +185,13 @@ ul, li {
 	</article>
 	<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-
-
 	<script src="<%=request.getContextPath()%>/js/slideshow.js">	</script>
 
+
+<script>
+
+
+</script>
 </body>
 
 </html>

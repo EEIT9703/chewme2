@@ -12,6 +12,7 @@ $(document).ready(function() {
 })
 function loadIssues() {
 	$.getJSON("clubClientView.do?action=loadIssues", {
+		"clubId" : $("#clubIdforView").text(),		
 		"now_list_no" : "",
 		"number" : "",
 		"prev_or_next" : "",
