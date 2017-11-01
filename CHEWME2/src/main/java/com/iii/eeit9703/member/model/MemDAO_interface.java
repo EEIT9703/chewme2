@@ -15,4 +15,5 @@ public interface MemDAO_interface {
     public List<MemVO> getAll();
     public Set<CollectionVO> getCollByMemNo(Integer memId);
     public Set<ReportVO> getRepByMemNo(Integer memId);
+	public void insertGoogle(MemVO memVO);
 }
