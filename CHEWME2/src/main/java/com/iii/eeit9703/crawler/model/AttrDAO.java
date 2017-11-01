@@ -177,8 +177,8 @@ public class AttrDAO implements AttrDAO_interface {
 
 	//�d����
 	@Override
-	public List<AttrVO> getAll() {
-		List<AttrVO> list = new ArrayList<AttrVO>();
+	public ArrayList<AttrVO> getAll() {
+		ArrayList<AttrVO> list = new ArrayList<AttrVO>();
 		AttrVO attrvo = null;
 
 		Connection con = null;

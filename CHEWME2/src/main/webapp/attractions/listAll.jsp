@@ -4,7 +4,7 @@
 <%@ page import="com.iii.eeit9703.crawler.model.*"%>
 <%
 	AttrService attr = new AttrService();
-	List<AttrVO> lis = attr.getAll();
+	ArrayList<AttrVO> lis = attr.getAll();
 	pageContext.setAttribute("list1", lis);
 %>
 <!DOCTYPE html>

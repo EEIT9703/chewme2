@@ -7,14 +7,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.json.JsonObject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
 import org.json.simple.JSONValue;
 
+import com.google.gson.JsonArray;
 import com.iii.eeit9703.crawler.model.ArticleVO;
 import com.iii.eeit9703.crawler.model.AttrDAO;
 import com.iii.eeit9703.crawler.model.AttrService;
@@ -28,19 +31,23 @@ public class DataServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.setHeader("Access-Control-Allow-Origin", "*");
-		response.setHeader("content-type", "text/html;charset=UTF-8");
+		
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
-
-		AttrDAO attr = new AttrDAO();
-		List<AttrVO> list = attr.getAll();
-		Map m1 = new HashMap();
-		m1.put("data", list);
 		
-		String jsonString = JSONValue.toJSONString(m1);
-		System.out.println(jsonString);
-		System.out.println("test!");
+		
+
+		AttrDAO attrDAO = new AttrDAO();
+		
+		
+		List<AttrVO> list = attrDAO.getAll();
+		 Map m2 = new HashMap();
+		 m2.put("data", list);
+		JSONArray artarry = new JSONArray(list);
+		String jsonString = JSONValue.toJSONString(m2); 
+		out.print(jsonString.toString());
+		System.out.println(jsonString.toString() + "123");
+		
 		
 	}
 

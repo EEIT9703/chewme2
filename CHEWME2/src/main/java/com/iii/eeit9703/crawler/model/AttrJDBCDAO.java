@@ -180,8 +180,8 @@ public class AttrJDBCDAO implements AttrDAO_interface {
 	}
 
 	@Override
-	public List<AttrVO> getAll() {
-		List<AttrVO> list = new ArrayList<AttrVO>();
+	public ArrayList<AttrVO> getAll() {
+		ArrayList<AttrVO> list = new ArrayList<AttrVO>();
 		AttrVO attrvo = null;
 
 		Connection con = null;
