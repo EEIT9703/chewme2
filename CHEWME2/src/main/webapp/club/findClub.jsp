@@ -69,7 +69,7 @@
 								<div class="col-sm-6 col-md-8">${club.brief}</div>
 								<div class="col-sm-6 col-md-2">
 									<button type="submit" class="btn btn-primary btn-sm"
-										name="club" value="${club.clubId}">點入觀看</button>
+										name="clubId" value="${club.clubId}">點入觀看</button>
 								</div>
 							</div>
 						</c:forEach>

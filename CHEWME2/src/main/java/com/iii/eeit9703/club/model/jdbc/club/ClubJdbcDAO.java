@@ -1,4 +1,4 @@
-package com.iii.eeit9703.club.model.jdbc;
+package com.iii.eeit9703.club.model.jdbc.club;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

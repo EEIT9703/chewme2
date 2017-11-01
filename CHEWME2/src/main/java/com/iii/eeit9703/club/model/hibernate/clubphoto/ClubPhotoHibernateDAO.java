@@ -1,25 +1,24 @@
 package com.iii.eeit9703.club.model.hibernate.clubphoto;
 
+import java.sql.Blob;
 import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.iii.eeit9703.activity.model.ActivityVO;
 import com.iii.eeit9703.club.model.ClubPhotoDAOI;
 import com.iii.eeit9703.club.model.ClubPhotoVO;
 import com.iii.eeit9703.hibernate.util.HibernateUtil;
-import com.iii.eeit9703.member.model.MemDAO_hibernate;
-import com.iii.eeit9703.member.model.MemVO;
 
 public class ClubPhotoHibernateDAO implements ClubPhotoDAOI {
 	private static final String GET_ALL_STMT = "from ClubPhotoVO order by photoId";
+
 	@Override
 	public void insert(ClubPhotoVO photoVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
-			session.beginTransaction();
+			session.beginTransaction();		
 			session.saveOrUpdate(photoVO);
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
@@ -29,7 +28,7 @@ public class ClubPhotoHibernateDAO implements ClubPhotoDAOI {
 	}
 
 	@Override
-	public void update(ClubPhotoVO photoVO) {
+	public void update(ClubPhotoVO photoVO, InputStream is) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
@@ -43,11 +42,11 @@ public class ClubPhotoHibernateDAO implements ClubPhotoDAOI {
 	}
 
 	@Override
-	public void delete(Integer photo_no) {
+	public void delete(Integer photoId) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			ClubPhotoVO photoVO = (ClubPhotoVO) session.get(ClubPhotoVO.class, photo_no);
+			ClubPhotoVO photoVO = (ClubPhotoVO) session.get(ClubPhotoVO.class, photoId);
 			session.delete(photoVO);
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
@@ -58,12 +57,13 @@ public class ClubPhotoHibernateDAO implements ClubPhotoDAOI {
 	}
 
 	@Override
-	public ClubPhotoVO findByPrimaryKey(Integer photo_no) {
+	public ClubPhotoVO findByPrimaryKey(Integer photoId) {
 		ClubPhotoVO photoVO = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			photoVO = (ClubPhotoVO) session.get(ClubPhotoVO.class, photo_no);
+			
+			photoVO = (ClubPhotoVO) session.get(ClubPhotoVO.class, photoId);
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
@@ -93,16 +93,16 @@ public class ClubPhotoHibernateDAO implements ClubPhotoDAOI {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	public static void main(String[] args) {
-		
-		
-		Clu+9bPhotoHibernateDAO a=new ClubPhotoHibernateDAO();
-		List<ClubPhotoVO> vo=a.getAll();
-		for(ClubPhotoVO photo : vo){
-			
-			System.out.println(photo.getPhoto_no());
+
+		ClubPhotoHibernateDAO a = new ClubPhotoHibernateDAO();
+		List<ClubPhotoVO> vo = a.getAll();
+		for (ClubPhotoVO photo : vo) {
+
+			System.out.println(photo.getPhotoId());
 		}
-		
-		}
+
+	}
 
 }

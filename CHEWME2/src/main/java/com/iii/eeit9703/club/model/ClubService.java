@@ -27,8 +27,8 @@ public class ClubService {
 		return clubListByManager;
 	}
 	
-	public void insertClub(ClubVO clubVO){
-		clubDAO.insert(clubVO);
+	public Integer insertClub(ClubVO clubVO){
+		return clubDAO.insert(clubVO);
 	}
 	public void update(ClubVO clubVO){
 		clubDAO.update(clubVO);

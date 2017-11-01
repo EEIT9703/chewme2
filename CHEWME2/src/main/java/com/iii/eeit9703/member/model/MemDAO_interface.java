@@ -13,7 +13,7 @@ public interface MemDAO_interface {
     public void delete(Integer memId);
     public MemVO findByPrimaryKey(Integer memId);
     public List<MemVO> getAll();
-	public void insertGoogle(MemVO memVO);
+//	public void insertGoogle(MemVO memVO);
 
     //public Set<CollectionVO> getCollByMemNo(Integer memId);
     //public Set<ReportVO> getRepByMemNo(Integer memId);

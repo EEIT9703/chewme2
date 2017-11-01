@@ -18,6 +18,7 @@ public class IssueHibernateDAO implements IssueDAOI{
 
 	private static final String GET_ALL_STMT="from IssueVO order by issueId";
 	private static final String GET_ONE_STMT_SQL="from IssueVO order where issueId=(?)";
+	private static final String GET_LIST_BY_CLUBID_STMT_SQL="from IssueVO order where clubId=(?)";
 	@Override
 	public List<IssueVO> getAll() {
 		List<IssueVO> list=null;
@@ -25,6 +26,22 @@ public class IssueHibernateDAO implements IssueDAOI{
 		try{
 			session.beginTransaction();
 			Query query = session.createQuery(GET_ALL_STMT);
+			list = query.list();
+			session.getTransaction().commit();
+				
+		}catch(RuntimeException ex){
+			session.getTransaction().rollback();
+			throw ex;			
+		}
+		return list;
+	}
+	public List<IssueVO> getListByClubId(Integer clubId) {
+		List<IssueVO> list=null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try{
+			session.beginTransaction();
+			Query query = session.createQuery(GET_LIST_BY_CLUBID_STMT_SQL);
+			query.setParameter(0, clubId);
 			list = query.list();
 			session.getTransaction().commit();
 				

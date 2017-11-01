@@ -4,10 +4,10 @@ import java.io.InputStream;
 import java.io.Serializable;
 
 public class ClubPhotoVO implements Serializable{
-		private Integer photo_no;		
+		private Integer photoId;		
 		private String name;
-		private String photo;
-		private Integer photoId;
+		private InputStream photo;
+		private Integer clubId;
 		
 		
 		public Integer getPhotoId() {
@@ -16,23 +16,24 @@ public class ClubPhotoVO implements Serializable{
 		public void setPhotoId(Integer photoId) {
 			this.photoId = photoId;
 		}
-		public Integer getPhoto_no() {
-			return photo_no;
-		}
-		public void setPhoto_no(Integer photo_no) {
-			this.photo_no = photo_no;
-		}
+
 				
+		public Integer getClubId() {
+			return clubId;
+		}
+		public void setClubId(Integer clubId) {
+			this.clubId = clubId;
+		}
 		public String getName() {
 			return name;
 		}
 		public void setName(String name) {
 			this.name = name;
 		}
-		public String getPhoto() {
+		public InputStream getPhoto() {
 			return photo;
 		}
-		public void setPhoto(String photo) {
+		public void setPhoto(InputStream photo) {
 			this.photo = photo;
 		}
 		

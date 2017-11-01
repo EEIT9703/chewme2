@@ -10,6 +10,10 @@ public class IssueService {
 		isdi = new IssueHibernateDAO();	
 	}
 	
+	public List<IssueVO> getIssueListByClubId(Integer clubId){
+		return isdi.getListByClubId(clubId);		
+	}
+	
 	public List<IssueVO> getIssueList(){
 		return isdi.getAll();		
 	}

@@ -1,9 +1,9 @@
 package com.iii.eeit9703.club.controller;
 
 import java.io.IOException;
-import java.util.Enumeration;
-import java.util.Iterator;
+import java.io.InputStream;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -13,9 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import com.iii.eeit9703.club.model.ClubPhotoService;
+import com.iii.eeit9703.club.model.ClubPhotoVO;
 import com.iii.eeit9703.club.model.ClubService;
 import com.iii.eeit9703.club.model.ClubVO;
-import com.iii.eeit9703.member.model.MemberSession;
 
 @WebServlet("/club/createClub.do")
 @MultipartConfig(maxFileSize=1024*1024*500)
@@ -34,13 +35,10 @@ public class createClub extends HttpServlet {
 	protected void doService(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-
-		response.setCharacterEncoding("UTF-8");
-		response.setHeader("content-type", "text/html;charset=UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		
 		String action = request.getParameter("action");
-		//Part part = request.getPart("image");
+		if (action == null) {
+			action = "";
+		}
 		HttpSession session = request.getSession(false);
 		if (session != null) { // 使用逾時
 			session = request.getSession();
@@ -52,44 +50,64 @@ public class createClub extends HttpServlet {
 		System.out.println("getin");
 		if (action.matches("create_club")) {
 			ClubVO clubVO = new ClubVO();
-			/*clubVO.setClubId(Integer.parseInt((String)request.getAttribute("clubId")));
-			clubVO.setClubName((String)request.getAttribute("clubName"));
-			clubVO.setManagerId(1);
-			clubVO.setLocationId(Integer.parseInt((String)request.getAttribute("clubName")));
-			clubVO.setBrief((String)request.getAttribute("brief"));
-			clubVO.setRefURL((String)request.getAttribute("refURL"));
-			clubVO.setAddr((String)request.getAttribute("addr"));
-			clubVO.setClubPic((String)request.getAttribute("clubPic"));
-			*/
-			Iterator<Part> iter = request.getParts().iterator();
-			for(int i = 0; iter.hasNext();){				
-				System.out.println(iter.next().getName());
-				
-			}
+			ClubPhotoVO clubPhotoVO = new ClubPhotoVO();
+//			// Retrieves <input  type="text" name="clubName">
+//			String description = request.getParameter("clubName"); 
+//			// Retrieves <input type="file" name="uploadImage">
+			Part filePart = request.getPart("uploadImage"); 
+//			// MSIE
+//			String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); 
+//			InputStream fileContent = filePart.getInputStream();
+//			int len = 10;
+//			byte[] buffer = new byte[len];
+//			int readNum = 0;
+//			while (readNum >= 0) {
+//				try {
+//					readNum = fileContent.read(buffer, 0, len);
+//					// fos2.write(buffer, 0, len);
+//
+//					System.out.print(readNum + " : ");
+//					System.out.println(new String(buffer, "UTf-8"));
+//
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			}
 			
-			Enumeration<String> iter2 = request.getParameterNames();
-			for(String i; iter2.hasMoreElements();){				
-				System.out.println(iter2.nextElement());				
-			}
-			System.out.println(request.getPart("clubName"));
 			System.out.println(request.getParameter("clubName"));
-			
-			System.out.println(request.getPart("uploadImage").toString());
-			//clubVO.setClubName(request.getPart("clubName").ge);
-			//clubVO.setManagerId((MemberSession)session.getAttribute("Login").getMemId());
-			clubVO.setManagerId(2);
-			//clubVO.setLocationId(Integer.parseInt(request.getPart("city")));
+			System.out.println(1);
+			System.out.println(Integer.parseInt("0"));
+			System.out.println(request.getParameter("brief"));
+			System.out.println(request.getParameter("url"));
+			System.out.println(request.getParameter("address"));
+			System.out.println(request.getParameter("uploadImage"));
+			clubVO.setClubName(request.getParameter("clubName"));
+			clubVO.setManagerId(1);
+			clubVO.setLocationId(Integer.parseInt("0"));
 			clubVO.setBrief(request.getParameter("brief"));
 			clubVO.setRefURL(request.getParameter("url"));
 			clubVO.setAddr(request.getParameter("address"));
-			clubVO.setClubPic(request.getParameter(""));
-			//ClubService cs =  new ClubService();
-			//cs.insertClub(clubVO);
-			//session.setAttribute("club", clubVO);
+			//clubVO.setClubPic("");
+			ClubService cs = new ClubService();
+			Integer clubId = cs.insertClub(clubVO);
+			ClubPhotoService cps = new ClubPhotoService();
+			clubPhotoVO.setClubId(clubId);
+			clubPhotoVO.setName(request.getParameter("clubName"));
+			clubPhotoVO.setPhoto(request.getPart("uploadImage").getInputStream());			
+			cps.insertPhoto(clubPhotoVO);
+			
+			session.setAttribute("club", clubVO);			
 			System.out.println("deal");
-			//response.sendRedirect("/CHEWME2/club/ClubClientViewFrame.jsp");
+			
+			request.setAttribute("clubId",clubId);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("clubClientView.do?action=chooseClub");
+			dispatcher.forward(request, response);
+			return;
 		}
-
+		if (action == "") {
+			response.sendRedirect("/CHEWME2/club/createClub.jsp");
+		}
 	}
 
 }

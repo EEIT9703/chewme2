@@ -7,7 +7,7 @@ public interface ClubDAOI {
 	public List<ClubVO> getClubListByManagerId(Integer managerId);
 	
 	public ClubVO getOne(Integer clubId);
-	public void insert(ClubVO clubVO);
+	public Integer insert(ClubVO clubVO);
 	public void update(ClubVO clubVO);
 	public void delete(Integer clubId);
 	

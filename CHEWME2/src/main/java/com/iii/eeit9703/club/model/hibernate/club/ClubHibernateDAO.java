@@ -4,11 +4,6 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
 
 import com.iii.eeit9703.club.model.ClubDAOI;
 import com.iii.eeit9703.club.model.ClubVO;
@@ -35,6 +30,7 @@ public class ClubHibernateDAO implements ClubDAOI{
 		}
 		return list;
 	}
+		
 	@Override
 	public ClubVO getOne(Integer clubId) {
 		ClubVO clubVO=null;
@@ -71,13 +67,13 @@ public class ClubHibernateDAO implements ClubDAOI{
 	
 	
 	@Override
-	public void insert(ClubVO clubVO) {
+	public Integer insert(ClubVO clubVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try{
 			session.beginTransaction();
 			session.saveOrUpdate(clubVO);
 			session.getTransaction().commit();
-				
+			return clubVO.getClubId();
 		}catch(RuntimeException ex){
 			session.getTransaction().rollback();
 			throw ex;			
