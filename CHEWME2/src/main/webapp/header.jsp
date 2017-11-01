@@ -1,4 +1,41 @@
-﻿﻿
+﻿﻿<style>
+.aaa {
+	position: absolute;
+	right: -10px;
+	border: 1px solid #fff;
+	background: #FF5511;
+	color: #fff;
+	border-radius: 100px;
+	font-size: 12px;
+	font-weight: 800;
+	text-align: center;
+	z-index: 15;
+	width: 20px;
+	height: 15px;
+			
+}
+.nav-shopping-cart {
+	position: relative;
+	display: inline-block;
+	margin-top:8px;
+	margin-right:25px;
+}
+.navbar-default {
+    background-color: #f8f8f8;
+    border-color: #e7e7e7;
+    margin-top:0px
+  	
+  	}
+.btn-primary {
+    color: #fff;
+    background-color: #286090;
+    border-color: #204d74;
+    width:150px;
+    height:30px;
+}
+
+
+</style>
 <nav class="navbar navbar-default navbar-static-top">
 	<div class="container-fluid">
 		<div>
@@ -16,27 +53,43 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-
 			</div>
 		</div>
 		<div id="navbar-right" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav" style="margin-left: 50px">
-				<li><a href="/CHEWME2/index.jsp">Home</a></li>
-				<li ><a class="dropdown-toggle" data-toggle="dropdown" href="#">揪旅行<span class="caret"></span></a>
+				<li><a href="/CHEWME2/index.jsp"><img src="<%=request.getContextPath()%>/image/gohome.png" width=40px height=30px >Home</a></li>
+				<li ><a class="dropdown-toggle" data-toggle="dropdown" href="#"><img src="<%=request.getContextPath()%>/image/travel.png" width=40px height=30px >揪旅行<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="/CHEWME2/actEditor/editorScuedule.jsp">創行程</a></li>
       					<li><a href="/CHEWME2/act/createAct2.jsp">揪新團</a></li>
 					</ul>
 				</li>
-				<li><a href="/CHEWME2/club/createClub.do">創社團</a></li>
-				<li><a href="/CHEWME2/club/findClub.do">找社團</a></li>
-
+				<li><a href="/CHEWME2/club/createClub.do"><img src="<%=request.getContextPath()%>/image/finclub.png" width=40px height=30px >創社團</a></li>
+				<li><a href="/CHEWME2/club/findClub.do"><img src="<%=request.getContextPath()%>/image/createclub.png" width=40px height=30px >找社團</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li class="nav-shopping-cart"><img
-					src="<%=request.getContextPath()%>/image/car.gif" width=50px
-					height=50px /><span class="aaa" data-reactid="65">2</span></li>
+			
+			
+			
+				<li class="nav-shopping-cart"><div class="dropdown"><img id="drop" data-toggle="dropdown" 
+				src="<%=request.getContextPath()%>/image/car.gif" width=30px
+					height=30px /><span class="aaa" data-reactid="65">2</span>
+						<ul class="dropdown-menu pull-right" role="menu"
+							aria-labelledby="drop">
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								href="#">11111</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								href="#">212222</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								href="#">333333</a></li>
+							<li role="presentation" class="divider"></li>
+							<li role="presentation"><input type="button" value="前往結帳" class="btn btn-primary"></li>
+						</ul>
+					</div>
+					
+					</li>
+					
 				<li><c:if test="${  !empty SysManager }">
 						<a class="nav-link"
 							href="<%=request.getContextPath()%>/backage/backage.jsp"><span
@@ -65,6 +118,11 @@
 						<%-- 							<img src='${LoginOK.memPhoto}'width=100px height=100px> --%>
 					</c:if></li>
 			</ul>
+			
+			
+		
+			
+			
 		</div>
 	</div>
 
