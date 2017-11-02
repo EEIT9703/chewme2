@@ -15,7 +15,7 @@ import com.iii.eeit9703.hibernate.util.HibernateUtil;
 import com.iii.eeit9703.report.ReportVO;
 
 public class MemDAO implements MemDAO_interface {
-	private static final String GET_ALL_STMT = "from MemVO order by memberId";
+	private static final String GET_ALL_STMT = "from MemVO order by memId";
 	@Override
 	public void insert(MemVO memVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
