@@ -17,9 +17,12 @@ public class ActService {
 	
 	//修改新增活動     工頭把包好的資料交給DAO去工作
 	public void updateAct(ActivityVO activityVO){
-
 		dao.update(activityVO);
-
+	}
+	
+	//上傳預覽圖  編輯簡介
+	public void finalAct(ActivityVO activityVO){
+		dao.finalAct(activityVO);
 	}
 	
 	//查詢單一

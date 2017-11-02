@@ -16,6 +16,12 @@
 <script src="/CHEWME2/js/jquery-ui.min.js"></script>
 <script src="/CHEWME2/js/bootstrap.min.js"></script>
 <script src="/CHEWME2/js/vertical-timeline.js"></script>
+<script src="/CHEWME2/js/canvas2image.js"></script>
+<script src="/CHEWME2/js/html2canvas.js"></script>
+
+
+<!-- <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.0.0.js "></script> -->
+<script src="/CHEWME2/js/html2canvas.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>行程表  ${actID}</title>
@@ -33,32 +39,19 @@ span{color: #004B97;font-family: 'Arial','Microsoft JhengHei';font-size:25px;fon
 <body>
 
 <header><%@include file="../header.jsp"%></header>
-
-<h1 id="name"></h1>
-<h2 id="day1"></h2>
-<div id="vt1">
-<!--     <div data-vtdate="用 p 呈現"> -->
-<!--         <h3>測試景點</h3> -->
-<!--         <p>名稱 </p> -->
-<!--         <p>類型</p> -->
-<!--         <p>簡介</p> -->
-<!--     </div> -->
-<!--     <div data-vtdate="用 table 呈現"> -->
-<!--         <table border="1" > -->
-<!-- 				<tbody> -->
-<!-- 					<tr><td class="detailItem">名　稱</td><td id=detailName></td><td rowspan=4 id=detailPhoto style="height:220px;padding:10px;"></td></tr>	 -->
-<!-- 					<tr><td class="detailItem">類　型</td><td id=detailType></td></tr> -->
-<!-- 					<tr><td class="detailItem">電　話</td><td id=detailTel></td></tr> -->
-<!-- 					<tr><td class="detailItem">地　址</td><td id=detailAdd></td></tr> -->
-<!-- 					<tr><td class="detailItem">簡　介</td><td colspan=2 id=detailIntro></td></tr>		 -->
-<!-- 				</tbody> -->
-<!-- 			</table> -->
-<!--     </div> -->
+<br>
+<br>
+<button id=save><i class="glyphicon glyphicon-picture"></i>儲存行程</button>
+<div id=showSchedule></div>
+<div id=schedule>
+	<h1 id="name"></h1>
+	<h2 id="day1"></h2>
+	<div id="vt1"></div>
+	<h2 id="day2"></h2>
+	<div id="vt2" ></div>
+	<h2 id="day3"></h2>
+	<div id="vt3" ></div>
 </div>
-<h2 id="day2"></h2>
-<div id="vt2" style="display:none"></div>
-<h2 id="day3"></h2>
-<div id="vt3" style="display:none"></div>
 <script>
 	var actID=${actID};
  	$('#vt1').verticalTimeline();
@@ -79,27 +72,34 @@ window.onload = function(){
 		console.log(array.length);
 		var maxDay = array[array.length-1].scheduleData.dayNo;
 		var k=0;
+			
+		switch(maxDay){
 		
-		if(maxDay>1){
-			for(var d=2;d<=maxDay;d++){
-				var svt = "'#vt"+d+"'";
-				$(svt).css("display","");
-			}
+		case 1:
+			$("#vt2").hide();
+			$("#vt3").hide();
+			break;
+		case 2:
+			$("#vt3").hide();
+			break;
+			
 		}
-	
+		
 		for (var i = k; i < array.length; i++) {			
 				
 			var name = $("<p id='name'></p>").append(array[i].name);
 			var tel = $("<p id='tel'></p>").append(array[i].tel);
 			var addr = $("<p id='addr'></p>").append(array[i].address);
 			var intro = $("<p id='intro'></p>").append(array[i].intro);
-			var photo = $("<p></p>").html("<img src='data:image/png;base64,"+array[i].img64+"'height=200px>")
+			var photo = $("<p></p>").html("<img src='data:image/png;base64,"+array[i].img64+"'height=200px>");
 					photo.attr("id", "photo");
 			var period = $(	"<span id='period' class='vtimeline-date'></span>").append(array[i].scheduleData.period);
 			var attrpoint = $(	"<div id='period' class='vtimeline-content'></div>").append([ name, tel, addr, intro, photo ]);
 					attrpoint.attr("data-vtdate", period);
-			var block = $("<div class='vtimeline-block'></div>").append([ period, attrpoint ])
-			var point = $("<div class='vtimeline-point'></div>").append(block);
+			var block = $("<div class='vtimeline-block'></div>").append([ period, attrpoint ]);
+			var icon = $("<div class='vtimeline-icon'><i class='glyphicon glyphicon-heart'></i></div>");
+			
+			var point = $("<div class='vtimeline-point'></div>").append([icon,block]);
 					point.attr("id", array[i].attractionID);
 			
 			switch(array[i].scheduleData.dayNo){
@@ -124,8 +124,43 @@ window.onload = function(){
 						block.attr("class", "vtimeline-block vtimeline-right");
 			}
 		}
-		
+
 		}
+	
+		$('#save').click(function() {
+			
+			//var pic="";
+			
+			html2canvas($("#schedule"), {
+	        	onrendered: function(canvas) {
+	         		$("<img />", { src: canvas.toDataURL("image/png") }).appendTo($("#showSchedule"));
+	         	//document.body.appendChild(canvas); 
+	        	 pic = canvas.toDataURL("image/png");
+	        	}
+	      	});
+			//存圖檔未完成
+	      	console.log(window.pic);
+			var link = document.createElement('a');
+			link.download = "test.png";
+			link.href = pic.replace("image/png", "image/octet-stream");;
+			link.click();
+			
+/*	      matches = pic.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/), imageBuffer = {};
+	      if (matches.length !== 3) {
+	  			return new Error('無效的影像編碼');
+	  			}
+	   
+	      imageBuffer.type = matches[1];
+	      imageBuffer.data = new Buffer(matches[2], 'base64');
+	      
+	      require('fs').writeFile('/CHEWME2/src/main/webapp/image/'+actID, imageBuffer.data, function(err) {
+	  		if(err){
+	  			console.error(err);
+	  		}
+	  		console.log('file '+actID+' saved.')
+	  	});
+*/
+	    });
 	}
 </script>
 </body>

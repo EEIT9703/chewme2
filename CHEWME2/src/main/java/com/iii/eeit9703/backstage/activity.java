@@ -69,18 +69,64 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 			PrintWriter out = response.getWriter();
 			
 			HttpSession session = request.getSession();
-			 if("inputCar".equals(action)){
-				 MemVO memVO=(MemVO) session.getAttribute("LoginOK");
-				Integer memID= memVO.getMemId();
+				if("inputCar".equals(action)){			
 				Integer ID = Integer.parseInt(request.getParameter("ID"));
-				ActivityVO actVO=new ActivityVO();
-				actVO.setActID(ID);
-				CollectionService ser= new CollectionService();
-				CollectionVO colVO=new CollectionVO();
-				colVO.setMemVO(memVO);
-				colVO.setActivityVO(actVO);
-				ser.insert(colVO);
-			 }
+				MemVO memVO=(MemVO) session.getAttribute("LoginOK");
+				Integer memID= memVO.getMemId();
+						
+				MemberSession chd = new MemberSession(memID);
+				List<CollectionVO> collList=chd.getOwnColVoList();
+				System.out.println(collList.size());
+				List<HashMap<String,String>> errorMsgMap = new ArrayList<HashMap<String,String>>();
+				HashMap<String,String> map = null;
+				for(CollectionVO collection :collList){
+					System.out.println(collection.getActivityVO().getActID());
+											
+					if(collection.getActivityVO().getActID()==ID){
+						System.out.println("if");
+						System.out.println(ID);
+						map =new HashMap<String,String>();
+						map.put("existColl", "已加入購物車");						
+						errorMsgMap.add(map);
+						JSONArray attrArrayList = new JSONArray(errorMsgMap);				
+						out.print(attrArrayList.toString());
+						return;       				
+					}				
+				}			
+					CollectionService ser= new CollectionService();						
+					ActivityVO actVO=new ActivityVO();
+					actVO.setActID(ID);
+					CollectionVO colVO=new CollectionVO();
+					colVO.setMemVO(memVO);
+					colVO.setActivityVO(actVO);
+					ser.insert(colVO);
+					map =new HashMap<String,String>();
+					map.put("inputOK","加入");
+					errorMsgMap.add(map);
+					JSONArray attrArrayList = new JSONArray(errorMsgMap);				
+					out.print(attrArrayList.toString());
+	
+				}
+				
+				if("deleteCar".equals(action)){			
+					Integer ID = Integer.parseInt(request.getParameter("ID"));
+					MemVO memVO=(MemVO) session.getAttribute("LoginOK");
+					Integer memID= memVO.getMemId();
+					
+						CollectionService ser= new CollectionService();						
+						ActivityVO actVO=new ActivityVO();
+						actVO.setActID(ID);
+						CollectionVO colVO=new CollectionVO();
+						colVO.setMemVO(memVO);
+						colVO.setActivityVO(actVO);
+						ser.delete(colVO);
+
+					
+		
+					}
+				
+				
+				
 //			
                 if("getMyCollection".equals(action)){
 //                	

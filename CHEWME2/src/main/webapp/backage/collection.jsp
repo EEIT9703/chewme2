@@ -234,9 +234,9 @@ $(function(){
 	        	span.append("人")
 	         
 	         var cell3=$('<span class="inder_price"></span>').text("2580$");
-	         var input="<input type='button' value='購買' id=" +activity.actID+">" ;
+	         var input="<input type='button' class='delete' value='刪除'>" ;
 			 var cell4 = input;			
-         	 var row = $('<div class="item"></div>').append([cell1, cell2,span,cell3,cell4]); 
+         	 var row = $("<div class='item' id="+activity.actID+ "></div>").append([cell1, cell2,span,cell3,cell4]); 
   	         opt.append(row);
         		
 			})	
@@ -264,6 +264,8 @@ $(function(){
 			$("#container").empty();
 			
 		})
+		
+		
 		
 		
 		

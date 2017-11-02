@@ -223,7 +223,7 @@ html {
 				
 			})	
 				
-				
+	// 地圖開始			
 		var map;
 		var marker;
 		
@@ -259,7 +259,7 @@ html {
 		}
 		
 
-		function GetAddressMarker() {//重新定位地圖位置與標記點位置
+		function GetAddressMarker() {    //重新定位地圖位置與標記點位置
 			
 			console.log("2");
 			address = $("#address_val").val();
@@ -282,7 +282,7 @@ html {
 			});
 		}
 		
-		
+		// 地圖結束
 		
 		
 		

@@ -21,15 +21,18 @@ pageContext.setAttribute("all",a);
 	text-align: center;
 	z-index: 15;
 	width: 20px;
-	height: 15px;
-			
-}
+	height:15px;
+	
+	}
 .nav-shopping-cart {
 	position: relative;
 	display: inline-block;
 	margin-top:8px;
 	margin-right:25px;
 }
+	
+	
+
 .navbar-default {
     background-color: #f8f8f8;
     border-color: #e7e7e7;
@@ -88,28 +91,85 @@ body { padding-bottom: 100px; }
 				<li class="nav-shopping-cart"><div class="dropdown"><img id="drop" data-toggle="dropdown" 
 				src="<%=request.getContextPath()%>/image/car.gif" width=30px
 					height=30px /><span class="aaa" data-reactid="65">${all}</span>
-						<ul class="dropdown-menu pull-right" role="menu"
+						<ul style="width: 465px;" class="dropdown-menu pull-right  role="menu"
 							aria-labelledby="drop">
-						<c:choose >
-							<c:when test="${ empty list}">							
-							<li role="presentation"><a role="menuitem" tabindex="-1"
-								href="#">快去購物喔</a></li>
-							</c:when>
-							<c:otherwise>	
-								<c:forEach var="total" items="${list}">
-									<li role="presentation"><a role="menuitem" tabindex="-1"
-										href="#">${total.activityVO.act_name}</a></li>
+<!-- 						<ul class="dropdown-menu" style="width: 465px;"> -->
+<!-- 											<li class="dropdown-header" -->
+<!-- 												style="border-bottom: 1px solid #aaaaaa;"><h3>4444</h3></li> -->
+							
+					<div class="cartrows"> 
+								<div width=60px height=60px>
+								<div style="text-align:right"><button  type="button" class="close glyphicon glyphicon-remove"></button></div>
+								<div style="float:left"><img src='image/101.jpg' width=50px height=50px></div>
+<!-- 								<div style="float:left">							 -->
+<!-- 										<div> -->
+<!-- 											<a role="menuitem" tabindex="-1" href="#"> -->
+											
+											
+											<div>							
+												<span style="text-align:left">九份一u日遊</span>
+												<span style="text-align:left">2888$</span>											
+											</div>	
+											
+<!-- 										</a> -->
+<!-- 										</div> -->
 									
-								</c:forEach>
-							</c:otherwise>
-						</c:choose>
+<!-- 								</div> -->
+
+									
+								</div>
+											
+								<div height=60px>
+								<div style="text-align:right"><button  type="button" class="close glyphicon glyphicon-remove"></button></div>
+								<div style="float:left"><img src='image/101.jpg' width=50px height=50px></div>
+<!-- 								<div style="float:left">							 -->
+<!-- 										<div> -->
+<!-- 											<a role="menuitem" tabindex="-1" href="#"> -->
+											
+											
+											<div>							
+												<span style="text-align:left">九份一u日遊</span>
+												<span style="text-align:left">2888$</span>											
+											</div>	
+											
+<!-- 										</a> -->
+<!-- 										</div> -->
+									
+<!-- 								</div> -->
+
+									
+								</div>
+								
+								<div  height=60px>
+								<div style="text-align:right"><button  type="button" class="close glyphicon glyphicon-remove"></button></div>
+								<div style="float:left"><img src='image/101.jpg' width=50px height=50px></div>
+<!-- 								<div style="float:left">							 -->
+<!-- 										<div> -->
+<!-- 											<a role="menuitem" tabindex="-1" href="#"> -->
+											
+											
+											<div>							
+												<span style="text-align:left">九份一u日遊</span>
+												<span style="text-align:left">2888$</span>											
+											</div>	
+											
+<!-- 										</a> -->
+<!-- 										</div> -->
+									
+<!-- 								</div> -->
+
+									
+								</div>
+									
+
+									</div>
+	
+<!-- 					<li role="presentation" class="divider"></li> -->
+<!-- 					<li role="presentation" class=""><input type="button" value="前往結帳" class="btn btn-primary" style="text-align:center"></li>	 -->
 						
+				
+				
 						
-							
-							
-							
-							<li role="presentation" class="divider"></li>
-							<li role="presentation"><input type="button" value="前往結帳" class="btn btn-primary"></li>
 						</ul>
 					</div>
 					

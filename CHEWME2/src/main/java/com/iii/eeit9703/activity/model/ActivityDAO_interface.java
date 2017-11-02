@@ -8,6 +8,8 @@ public interface ActivityDAO_interface {
 
     //修改活動
 	public void update (ActivityVO activityVO);
+	//上傳預覽圖和內容
+	public void finalAct(ActivityVO activityVO);
 	//刪除
 	public void delete (Integer actID);
 	//主鍵

@@ -12,6 +12,62 @@ pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
 <!-- <link rel="stylesheet" href="css/mybootstrap.css"> -->
 <style>
+
+/* shopping car start */
+/* .courseTitle { */
+/* 	font-size: 20px; */
+/* 	color: #3e3d3e; */
+/* 	width: 70%; */
+/* 	white-space: nowrap; */
+/* 	text-overflow: ellipsis; */
+/* 	overflow: hidden; */
+/* 	float: right; */
+/* 	font-weight: bold; */
+/* } */
+/* .courseSubtitle { */
+/* 	font-size: 16px; */
+/* 	float: left; */
+/* } */
+/* .courseDelete { */
+/* 	float: right; */
+/* 	padding-right: 10px; */
+/* } */
+/* .cartrows { */
+/* 	overflow-x: hide; */
+/* 	overflow: auto; */
+/* 	max-height: 40vh; */
+/* 	width:400px */
+/* } */
+/* .cartrow { */
+/* 	width: 90%; */
+/* 	padding: 20px; */
+/* 	border-bottom: 1px solid #cccccc; */
+/* 	margin: auto; */
+/* } */
+/* .cartrow img { */
+/* 	width: 30%; */
+/* 	height: 70px; */
+/* } */
+/* .close { */
+/* 	float: none; */
+/* } */
+/* .cartcount { */
+/* 	position: absolute; */
+/* 	right: 5px; */
+/* 	border: 1px solid #FFF; */
+/* 	background: #F68867; */
+/* 	color: #FFF; */
+/* 	border-radius: 100px; */
+/* 	font-size: 12px; */
+/* 	font-weight: bold; */
+/* 	text-align: center; */
+/* 	z-index: 15; */
+/* 	width: 20px; */
+/* 	height: 20px; */
+/* } */
+
+/* shopping car end */
+
 .aaa {
 	position: absolute;
 	right: -10px;
@@ -28,6 +84,26 @@ pageEncoding="UTF-8"%>
 	height: 15px;
 			
 }
+.close {
+	float: none;
+}
+
+.Carli{
+
+width:600px;
+
+}
+.goshop {
+
+	margin-left:30px;
+
+}
+
+.carlist{
+	padding:5px;
+
+}
+	
 
 .nav-shopping-cart {
 	position: relative;
@@ -182,7 +258,7 @@ ul, li {
 
 			</div>
 		</div>
-		<div id="3">
+		<div id="4">
 		<span><input type="button" class="inputCar" value="測試加入購物車"></span>
 		<span><input type="button" class="report" value="檢舉"></span>
 		</div>
@@ -193,17 +269,87 @@ ul, li {
 	<script src="<%=request.getContextPath()%>/js/slideshow.js">	</script>
 
 
+
 <script>
 $(function(){
-	$('.inputCar').click(function(){
-		 var id = $(this).parents('div').attr('id');
-		 $.getJSON('<%=request.getContextPath()%>/activity?action=inputCar',{'ID':id},function(){
-				
-				search();
-			})	
+	$.getJSON('<%=request.getContextPath()%>/activity?action=getMyCollection',{},snedActivity);
+	
+	function snedActivity(array){
+
+// 		var fg = $(document.createDocumentFragment());
+// 		var opt = $(".cartrows");
+// 			opt.empty();
 		
+// 		$.each(array,function(i,activity){		
+// 			var cell1=$("<div style='float:left'></div>").html("<img src='image/101.jpg' width=30px height=30px>");
+			
+// 			var cell2=$("<div style='text-align:left'></div>").text(activity.act_name);
+// 			var cell3=$("<div style='text-align:left'></div>").text("價錢9527");
+			
+// 			var Div1= $("<div style='float:right'></div>").append([cell2,cell3])
+// 			var a=$('<a role="menuitem" tabindex="-1" href="#"></a>').append(Div1);
+// 			var Div2= $("<div></div>").append(a)
+		
+				
+// 			var butt =$('<button></button>').css('color','red').addClass('close glyphicon glyphicon-remove').attr({'id':"www",'type':'button','name':activity.actID});
+// 			var butDiv= $("<div style='float:right'></div>").append(butt);
+			
+// 			var cell4=$("<div style='float:left'></div>").append([Div2,butDiv])
+// 			var cell5=$('<li role="presentation" class="Carli"></li>').append(cell4);
+	
+						
+// 			opt.append(cell5);
+// 		})
+		
+		
+		
+// 		var fg = $(document.createDocumentFragment());	
+// 		$('.cartrows').empty();
+// 		$.each(array,function(i,activity){			
+// 			var cell1 = $('<div></div>').addClass('cartrow').val(activity.act_name);
+// 			var cell2 = $('<div></div>').css('text-align','right');
+// 			var cell3 = $('<div></div>').css(['float','left','width','80%','text-align','left']);
+// 			var cell4 = $('<button></button>').css('color','red').addClass('close glyphicon glyphicon-remove').attr({'type':'button','name':activity.act_name});
+<%-- var cell5 = $('<img>').attr({'src':'<%=request.getContextPath() %>/image/101.jpg'}); --%>
+// 			var cell5 = $("<img src='image/101.jpg' width=30px height=30px>");
+// 			var cell6 = $('<span></span>').addClass('courseTitle').text(activity.act_name);
+// 			var cell7 = $('<br>')
+// 			var cell8 = $('<span></span>').addClass('courseSubtitle').text("aaa");
+// 			var cell9 = $('<span></span>').addClass('courseDelete')
+// 			var cell10 = $('<br>');				
+//          var cell11 = $('<span></span>').addClass('courseDelete').text('$1000元');
+// 			cell2.append([cell3,cell4])
+// 			cell6.append([cell7,cell8,cell9,cell10,cell11])
+// 			cell1.append([cell2,cell5,cell6])
+// 			fg.append(cell1)	
+// 		})
+// 		$('.cartrows').append(fg);
+	}
+	
+	$('#www').on('click',{},function(){
+		
+				alert('aa')
 		
 	})
+	
+	
+	
+	$('.inputCar').click(function(){
+		 var id = $(this).parents('div').attr('id');
+		 $.getJSON('<%=request.getContextPath()%>/activity?action=inputCar',{'ID':id},result);
+			
+	})	
+	function result(array){	
+		$.each(array,function(i,result){				
+		if(result.existColl=="已加入購物車"){
+				alert(result.existColl)		
+		}
+		else {		
+			alert(result.inputOK)
+		}
+		})	
+		
+	}
 	
 	
 	
