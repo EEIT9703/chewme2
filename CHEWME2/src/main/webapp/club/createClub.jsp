@@ -7,13 +7,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/mybootstrap.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../css/igs/imgareaselect-default.css" />
+<%-- <script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery.min.js"></script> --%>
+
 </head>
 <body>
-
-
 	<header><%@ include file="../header.jsp"%></header>
+
+
 
 	<div class="container" style="width: 50%">
 
@@ -53,8 +55,11 @@
 				<label for="exampleInputFile">照片</label> <input accept="image/*" type="file"
 					id="uploadImage" name="uploadImage">
 				<p class="help-block">請輸入你的社團首頁圖片</p>
-				<img id="img" src="" class="img-responsive" >
+<!-- 				<img id="img" src="" class="img-responsive" > -->
+				<img id="img" src="">
 			</div>
+			<canvas id="myCanvas" style="border:1px solid #000000;"></canvas>
+
 			
 			<div class="checkbox">
 				<label> <input type="checkbox" name="checkbox"> 請同意合約內容
@@ -65,9 +70,10 @@
 
 	</div>
 
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery.imgareaselect.pack.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/club/js/createClub.js"></script>
 
-	<script src="../js/jquery-3.2.1.min.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
-	<script src="js/upload.js"></script>
 </body>
 </html>
