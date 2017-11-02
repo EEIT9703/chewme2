@@ -8,14 +8,24 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import com.iii.eeit9703.activity.model.ActivityVO;
 
 public class ScheduleDAO {
 
-	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=CMDB";
-	String userid = "sa";
-	String passwd = "P@ssw0rd";
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	private static final String NEWACTIVITY= "INSERT INTO activity(act_name,memId)VALUES(?,?) ";
 	private static final String SELECTACTIVITY= "SELECT actID,act_name from activity where act_name=?";
@@ -34,8 +44,8 @@ public class ScheduleDAO {
 		int actID = 0;
 
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(NEWACTIVITY);
 			
 			pstmt.setString(1, actName);
@@ -44,9 +54,6 @@ public class ScheduleDAO {
 			
 			actID = selectACT(actName);
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -75,8 +82,8 @@ public class ScheduleDAO {
 		int actID = 0;
 
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(SELECTACTIVITY);
 			
 			pstmt.setString(1, actName);
@@ -85,9 +92,6 @@ public class ScheduleDAO {
 			actID = rs.getInt("actID");
 
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -114,8 +118,8 @@ public class ScheduleDAO {
 		Integer scheduleID = null;
 
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(NEWSCHEDULES);
 			//NEWSCHEDULES= "INSERT INTO schedules(attractionID,dayNo,period)VALUES(?,?,?)"
 			pstmt.setInt(1, SCHlist.getAttractionID());
@@ -125,9 +129,6 @@ public class ScheduleDAO {
 			
 			scheduleID = selectSCH(SCHlist.getAttractionID());
 						
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -153,8 +154,8 @@ public class ScheduleDAO {
 		Integer scheduleID = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(SELECTSCHEDULES);
 			
 			pstmt.setInt(1, attractionID);
@@ -163,9 +164,6 @@ public class ScheduleDAO {
 			scheduleID = rs.getInt("scheduleID");
 			
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -188,17 +186,14 @@ public class ScheduleDAO {
 	
 	public void updateSCH(ScheduleVO chVO){
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATESCHEDULES);
 			
 			pstmt.setString(1, chVO.getPeriod());
 			pstmt.setInt(2, chVO.getAttractionID());
 			pstmt.executeUpdate();		
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -220,8 +215,8 @@ public class ScheduleDAO {
 
 	public void updateSCH2(String actID,Integer schID) {
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATESCHEDULES2);
 			
 			Integer Nact = Integer.parseInt(actID);
@@ -230,9 +225,6 @@ public class ScheduleDAO {
 			pstmt.setInt(2, schID);
 			pstmt.executeUpdate();
 
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

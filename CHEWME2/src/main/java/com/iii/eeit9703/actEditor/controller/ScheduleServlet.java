@@ -24,9 +24,9 @@ import javax.sql.DataSource;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.iii.eeit9703.actEditor.model.ActivityDAO;
+import com.iii.eeit9703.actEditor.model.ActivityDAO_JDBC;
 import com.iii.eeit9703.actEditor.model.AttrVO;
-import com.iii.eeit9703.actEditor.model.ScheduleDAO;
+import com.iii.eeit9703.actEditor.model.ScheduleDAO_JDBC;
 import com.iii.eeit9703.actEditor.model.ScheduleVO;
 
 
@@ -78,7 +78,7 @@ public class ScheduleServlet extends HttpServlet {
 				actIDs = new String(request.getParameter("actID").trim().replaceAll("\"", ""));
 				Integer actID = Integer.parseInt(actIDs);
 				System.out.println("getActName："+actID);
-				ActivityDAO activitydao = new ActivityDAO();
+				ActivityDAO_JDBC activitydao = new ActivityDAO_JDBC();
 //				ScheduleVO scheduleVO = new ScheduleVO();
 //				AttrVO attrVO = new AttrVO();
 				
@@ -93,7 +93,7 @@ public class ScheduleServlet extends HttpServlet {
 				Integer actID = Integer.parseInt(actIDs);
 				System.out.println("getTrip："+actID);
 				
-				ActivityDAO activitydao = new ActivityDAO();
+				ActivityDAO_JDBC activitydao = new ActivityDAO_JDBC();
 				ScheduleVO scheduleVO = new ScheduleVO();
 				AttrVO attrVO = new AttrVO();
 				

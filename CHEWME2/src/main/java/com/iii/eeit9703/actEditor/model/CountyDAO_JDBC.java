@@ -8,22 +8,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
+public class CountyDAO_JDBC {
 
-public class CountyDAO_JNDI {
-
-	private static DataSource ds = null;
-	static {
-		try {
-			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-	}
+	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=CMDB";
+	String userid = "sa";
+	String passwd = "P@ssw0rd";
 	
 	private static final String COUNTY = "SELECT * FROM countys where countryID = ? order by countyID";
 		
@@ -38,8 +28,8 @@ public class CountyDAO_JNDI {
 		CountyVO countyVO = null;
 
 		try {
-
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(COUNTY);
 			
 			pstmt.setString(1, countryID);
@@ -54,6 +44,9 @@ public class CountyDAO_JNDI {
 				list.add(countyVO);
 			}
 			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -77,7 +70,7 @@ public class CountyDAO_JNDI {
 	
 	public static void main(String[] args) {
 		
-		CountyDAO_JNDI aDao = new CountyDAO_JNDI();
+		CountyDAO_JDBC aDao = new CountyDAO_JDBC();
 		
 		//查台北市區域
 		List<CountyVO> list = aDao.getCounty("TPE");

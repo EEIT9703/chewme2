@@ -346,9 +346,9 @@ $(function() {
     	//columnHeader:false,
 		defaultView: 'agendaDay',
 		header:{
-		    left:   'newDay,check',
+		    left:   'newDay,removeDay',
 		    center: '',
-		    right:  ''
+		    right:  'check'
 		},
 		eventClick: function(id){
 			alert("id=" + id.id);
@@ -365,27 +365,38 @@ $(function() {
 		            	$('#calendar').fullCalendar('addResource', { id:I, title:T});
 		            }
 		        },
-		    check:{
-		    	text:'儲存行程',
-		    	click:function(){
-		    		if($('#actName').val()==""){
-		    			alert("請輸入行程名稱!!");
-		    		}else{
-		    			var actName = $('#actName').val();
-		    			$.post('/CHEWME2/Calendar.do?mission=insertACT',{actName:actName},function(actID){
-		    				activityID = actID
-		    				for(var i=0;i<schID.length;i++){
-		    					console.log(actID+";"+schID[i]);
-		    					$.post('/CHEWME2/Calendar.do?mission=updateSCH2',{"actID":actID,"schID":schID[i]},function(){
-		    						console.log(schID+"歸入"+actID);
-		    					});
-		    						$('#activityID').attr("value",actID);
-		    						$('#pass').modal();
-		    				}
-		    			});
-		    		}
-		    	}
-		    }
+		        removeDay: {
+		            text: '刪除一天',
+		            click: function(){
+			            var I=null;
+			            var T=null;
+			            I='day'+i;
+			            T='DAY '+i;
+			            $('#calendar').fullCalendar('removeResource', { id:I, title:T});
+			           	i=i-1;           		
+		            }
+		        },
+		        check:{
+			    	text:'儲存行程',
+			    	click:function(){
+			    		if($('#actName').val()==""){
+			    			alert("請輸入行程名稱!!");
+			    		}else{
+			    			var actName = $('#actName').val();
+			    			$.post('/CHEWME2/Calendar.do?mission=insertACT',{actName:actName},function(actID){
+			    				activityID = actID
+			    				for(var i=0;i<schID.length;i++){
+			    					console.log(actID+";"+schID[i]);
+			    					$.post('/CHEWME2/Calendar.do?mission=updateSCH2',{"actID":actID,"schID":schID[i]},function(){
+			    						console.log(schID+"歸入"+actID);
+			    					});
+			    						$('#activityID').attr("value",actID);
+			    						$('#pass').modal();
+			    				}
+			    			});
+			    		}
+			    	}
+			    }
 		    },
     	events: [
         // events go here
@@ -396,6 +407,28 @@ $(function() {
     	// other options go here...
 	});		
 	
+	
+	//設定日期最多3日，最少1日
+	$('#calendar button').eq(0).click(function(){
+		if(i>=3){
+			$('#calendar button').eq(0).attr('disabled',"true");
+		}
+		});
+	$('#calendar button').eq(1).click(function(){
+		if(i<3){
+			$('#calendar button').eq(0).removeAttr('disabled');
+		}
+		});
+	$('#calendar button').eq(1).click(function(){
+		if(i==1){
+			$('#calendar button').eq(1).attr('disabled',"true");
+		}
+		});
+	$('#calendar button').eq(0).click(function(){
+		if(i!=1){
+			$('#calendar button').eq(1).removeAttr('disabled');
+		}
+		});
 })
 
 
