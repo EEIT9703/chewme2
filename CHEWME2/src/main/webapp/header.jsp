@@ -1,4 +1,4 @@
-﻿<%@ page import="java.util.*"%>
+﻿<%-- <%@ page import="java.util.*"%>
 <%@ page import="com.iii.eeit9703.member.model.*"%>
 <%@ page import="com.iii.eeit9703.collection.*"%>
 <%
@@ -7,7 +7,7 @@ List<CollectionVO> list=ser.getColVOListByMemId(1);
 pageContext.setAttribute("list",list);
 int a=list.size();
 pageContext.setAttribute("all",a);
-%>
+%> --%>
 <style>
 .aaa {
 	position: absolute;
@@ -43,10 +43,8 @@ pageContext.setAttribute("all",a);
     width:150px;
     height:30px;
 }
-header{
-height:50px;
 
-}
+body { padding-bottom: 100px; }
 
 </style>
 
