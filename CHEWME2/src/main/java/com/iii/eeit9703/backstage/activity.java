@@ -74,7 +74,7 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 				MemVO memVO=(MemVO) session.getAttribute("LoginOK");
 				Integer memID= memVO.getMemId();
 						
-				MemberSession chd = new MemberSession(memID);
+				MemberSession chd = new MemberSession(1);
 				List<CollectionVO> collList=chd.getOwnColVoList();
 				System.out.println(collList.size());
 				List<HashMap<String,String>> errorMsgMap = new ArrayList<HashMap<String,String>>();
