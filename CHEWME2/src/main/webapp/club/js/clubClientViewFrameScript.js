@@ -5,6 +5,7 @@ var viewCommentTemplate;
 var thsIssue;
 
 $(document).ready(function() {
+	console.log("<%= request.getContextPath() %>")
 	$("#tabs").tabs();
 	getTemplates();
 	$("#forum-tab").on("click", loadIssues)

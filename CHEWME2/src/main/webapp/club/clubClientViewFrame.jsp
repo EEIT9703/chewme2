@@ -6,9 +6,11 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<link rel="stylesheet" href="css/mystyle.css">
+<title>歡迎蒞臨${clubVOForView.clubName}</title>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/club/css/mystyle.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap-adjust.min.css">
+
 </head>
 <body>
 
@@ -22,7 +24,7 @@
 					<div class="row">
 						<div class="col-md-3"></div>
 						<div class="col-md-6" >
-							<img class="d-block w-100" src="clubImageDealer.do?clubId=${clubVOForView.clubId}"
+							<img class="d-block w-100" src="<%=request.getContextPath() %>/getImageInChewme.do?type=clubPic&id=${clubVOForView.clubId}"
 								alt="First slide" style="margin:auto;">
 						</div>
 						<div class="col-md-3"></div>

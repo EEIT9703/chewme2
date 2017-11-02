@@ -64,7 +64,7 @@
 						<c:forEach var="club" items="${club_list}">
 							<div class="row">
 								<div class="col-sm-12 col-md-12">${club.clubName}</div>
-								<div class="col-sm-6 col-md-2"><img src="http://via.placeholder.com/1980x1080" class="img-responsive">
+								<div class="col-sm-6 col-md-2"><img src="<%=request.getContextPath() %>/getImageInChewme.do?type=clubPic&id=${club.clubId}" class="img-responsive">
 								</div>
 								<div class="col-sm-6 col-md-8">${club.brief}</div>
 								<div class="col-sm-6 col-md-2">
