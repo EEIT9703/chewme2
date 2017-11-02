@@ -296,15 +296,15 @@ function search(){
     });
     
     
-    $('#delete').on('click',{},function(){
+//     $('#delete').on('click',{},function(){
     	
-	    	  var id = $(this).parents('tr').find('td:nth-child(1)').text();
-	    	  alert(id);
-				$.getJSON('<%=request.getContextPath()%>/activity?action=delete',{'ID':id},function(){
+// 	    	  var id = $(this).parents('tr').find('td:nth-child(1)').text();
+// 	    	  alert(id);
+<%-- 				$.getJSON('<%=request.getContextPath()%>/activity?action=delete',{'ID':id},function(){ --%>
 					
-					search();
-				})	
-	 	 })
+// 					search();
+// 				})	
+// 	 	 })
     
     $('#productTable>tbody').on('click','td:nth-child(4) button:nth-child(1)',function(){
     	
