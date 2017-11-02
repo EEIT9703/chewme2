@@ -90,86 +90,32 @@ body { padding-bottom: 100px; }
 			
 				<li class="nav-shopping-cart"><div class="dropdown"><img id="drop" data-toggle="dropdown" 
 				src="<%=request.getContextPath()%>/image/car.gif" width=30px
-					height=30px /><span class="aaa" data-reactid="65">${all}</span>
-						<ul style="width: 465px;" class="dropdown-menu pull-right  role="menu"
+					height=30px /><span class="aaa" data-reactid="65"></span>
+						<ul style="width: 300px;" class="dropdown-menu pull-right  role="menu"
 							aria-labelledby="drop">
 <!-- 						<ul class="dropdown-menu" style="width: 465px;"> -->
-<!-- 											<li class="dropdown-header" -->
-<!-- 												style="border-bottom: 1px solid #aaaaaa;"><h3>4444</h3></li> -->
+<!--  											<li class="dropdown-header"  -->
+<!--  												style="border-bottom: 1px solid #aaaaaa;"><h3>4444</h3></li>  -->
 							
-					<div class="cartrows"> 
-								<div width=60px height=60px>
-								<div style="text-align:right"><button  type="button" class="close glyphicon glyphicon-remove"></button></div>
-								<div style="float:left"><img src='image/101.jpg' width=50px height=50px></div>
-<!-- 								<div style="float:left">							 -->
-<!-- 										<div> -->
-<!-- 											<a role="menuitem" tabindex="-1" href="#"> -->
-											
-											
-											<div>							
-												<span style="text-align:left">九份一u日遊</span>
-												<span style="text-align:left">2888$</span>											
-											</div>	
-											
-<!-- 										</a> -->
-<!-- 										</div> -->
-									
-<!-- 								</div> -->
+					<div class="cartrows">
 
-									
-								</div>
-											
-								<div height=60px>
-								<div style="text-align:right"><button  type="button" class="close glyphicon glyphicon-remove"></button></div>
-								<div style="float:left"><img src='image/101.jpg' width=50px height=50px></div>
-<!-- 								<div style="float:left">							 -->
-<!-- 										<div> -->
-<!-- 											<a role="menuitem" tabindex="-1" href="#"> -->
-											
-											
-											<div>							
-												<span style="text-align:left">九份一u日遊</span>
-												<span style="text-align:left">2888$</span>											
-											</div>	
-											
-<!-- 										</a> -->
-<!-- 										</div> -->
-									
-<!-- 								</div> -->
+<!-- 							<div class="cartrow"> -->
+<!-- 									<div style="float: left"> -->
+<!-- 										<img src="image/101.jpg" height=50px width=50px> -->
+<!-- 									</div> -->
 
-									
-								</div>
-								
-								<div  height=60px>
-								<div style="text-align:right"><button  type="button" class="close glyphicon glyphicon-remove"></button></div>
-								<div style="float:left"><img src='image/101.jpg' width=50px height=50px></div>
-<!-- 								<div style="float:left">							 -->
-<!-- 										<div> -->
-<!-- 											<a role="menuitem" tabindex="-1" href="#"> -->
-											
-											
-											<div>							
-												<span style="text-align:left">九份一u日遊</span>
-												<span style="text-align:left">2888$</span>											
-											</div>	
-											
-<!-- 										</a> -->
-<!-- 										</div> -->
-									
-<!-- 								</div> -->
+<!-- 									<div> -->
+<!-- 										<span>九份一ssssssssssss日遊</span>  -->
+<!-- 										<span><button type="button" class="close glyphicon glyphicon-remove"></button></span> -->
+<!-- 									</div> -->
 
+<!-- 									<div>$5880</div> -->
 									
-								</div>
-									
-
-									</div>
-	
-<!-- 					<li role="presentation" class="divider"></li> -->
-<!-- 					<li role="presentation" class=""><input type="button" value="前往結帳" class="btn btn-primary" style="text-align:center"></li>	 -->
-						
+<!-- 							</div>		 -->
+					</div>
+					<li role="presentation" class="divider"></li>
+					<li role="presentation" class="goshop"><input type="button" value="前往結帳" class="btn btn-primary" style="text-align:center"></li>	
 				
-				
-						
 						</ul>
 					</div>
 					

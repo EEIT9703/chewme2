@@ -26,7 +26,7 @@
 
 <body>
 <%-- 	<header><%@ include file="../header.jsp"%></header> --%>
-	<p hidden id="activityVO" value="">${activityVO.actID}</p>
+
 	
 	<jsp:useBean id="actSvc" scope="page" class="com.iii.eeit9703.activity.model.ActService" />
 
@@ -118,7 +118,8 @@
                     </div>
                 </div>
                 <!-- Tabs --->
-                <div id="summernote"><p>行程特點</p></div>
+                <div id="summernote" name="act_news"><p>行程特點</p></div>
+                
 						<div class="form-group">
 							<label class="btn btn-info" for="upload"> 
 							<input id="upload" name="upload" style="display: none;" type="file">
@@ -129,7 +130,7 @@
 						</div>
                         <div class="form-group"></div>
 						<button type="submit" class="btn btn-lg btn-primary" id="submit">送出</button>
-						<input type="hidden" value="${activityVO.actID}">
+						<input type="hidden" value="${activityVO.actID}" name="actID">
 						<input type="hidden" name="action" value="Final">          
             </form>
         </div>

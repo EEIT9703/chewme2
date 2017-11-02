@@ -278,7 +278,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 			pstmt.setString(2, activityVO.getAct_news());
 			pstmt.setInt(3, activityVO.getActID());
 			
-			pstmt.executeQuery();
+			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			throw new RuntimeException("資料庫更新錯誤" + e.getMessage());
