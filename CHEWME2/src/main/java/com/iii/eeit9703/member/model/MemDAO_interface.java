@@ -14,6 +14,7 @@ public interface MemDAO_interface {
     public MemVO findByPrimaryKey(Integer memId);
     public List<MemVO> getAll();
 //	public void insertGoogle(MemVO memVO);
+	MemVO findByGID(String googleId);
 
     //public Set<CollectionVO> getCollByMemNo(Integer memId);
     //public Set<ReportVO> getRepByMemNo(Integer memId);

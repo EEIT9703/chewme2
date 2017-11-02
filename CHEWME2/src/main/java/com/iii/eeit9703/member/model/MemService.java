@@ -13,6 +13,19 @@ public class MemService {
 		dao = new MemDAO();
 	}
 
+	public MemVO insertGoogle(String memberId,String memName,String memNickN, String memMail, String googleId) {
+		MemVO memVO = new MemVO();
+		memVO.setMemberId(memberId);
+		memVO.setMemName(memName);
+		memVO.setMemNickN(memNickN);
+		memVO.setMemMail(memMail);
+		memVO.setGoogleId(googleId);
+		dao.insert(memVO);
+		
+		return memVO;
+
+	}
+
 	public MemVO addMem(String memberId, String memName, String memNickN, String memPwd, java.sql.Date memBirthday,
 			String memMail, String memAddr, String memPhone, String memIntr, String memPhoto) {
 		MemVO memVO = new MemVO();
@@ -34,30 +47,39 @@ public class MemService {
 	public void updateMem(MemVO memVO) {
 		dao.update(memVO);
 	}
+
 	public MemVO getOneMem(Integer memId) {
 
 		return dao.findByPrimaryKey(memId);
 	}
+	public MemVO getGID(String googleId) {
 
-	public List<MemVO> getAll() {//取出所有會員資料放入List裡
+		return dao.findByGID(googleId);
+	}
+
+	public List<MemVO> getAll() {// 取出所有會員資料放入List裡
 		return dao.getAll();
 	}
 
-	public MemVO checkIDPassword(String userId, String password) {//檢查會員登入時的帳號密碼
+	public MemVO checkIDPassword(String userId, String password) {// 檢查會員登入時的帳號密碼
 		MemService memSvc = new MemService();
-		for (MemVO memVO : memSvc.getAll()) {//將memSvc收集到的會員資料放入memVO裡
-			if (memVO.getMemberId().trim().equals(userId.trim())) {//從memVO的會員資料找出memberId欄位跟userId比對
-				//String encodePassword = DatatypeConverter.printBase64Binary(password.getBytes());
-				// String encrypedString=GlobalService.encryptString(password.trim());
+		for (MemVO memVO : memSvc.getAll()) {// 將memSvc收集到的會員資料放入memVO裡
+			if (memVO.getMemberId().trim().equals(userId.trim())) {// 從memVO的會員資料找出memberId欄位跟userId比對
+				// String encodePassword =
+				// DatatypeConverter.printBase64Binary(password.getBytes());
+				// String
+				// encrypedString=GlobalService.encryptString(password.trim());
 				// String pswd=GlobalService.getMD5Encoding(encrypedString);
 				String mvpwd = memVO.getMemPwd().trim();
-				if (mvpwd.equals(password.trim())) {//從memVO的會員資料找出memPwd欄位跟password比對
+				if (mvpwd.equals(password.trim())) {// 從memVO的會員資料找出memPwd欄位跟password比對
 					return memVO;
 				}
 			}
 		}
 		return null;
 	}
+
+
 	synchronized public boolean idExists(String id) throws IOException {
 		boolean exist = false; // 檢查id是否已經存在
 		MemService memSvc = new MemService();
@@ -70,8 +92,9 @@ public class MemService {
 		return exist;
 	}
 
-	public MemVO updateMem(Integer memId,String memberId, String memName, String memNickN, String memPwd, Date memBirthday,
-			String memMail, String memAddr, String memPhone, String memIntr,String memPhoto) {
+
+	public MemVO updateMem(Integer memId, String memberId, String memName, String memNickN, String memPwd,
+			Date memBirthday, String memMail, String memAddr, String memPhone, String memIntr, String memPhoto) {
 		MemVO memVO = new MemVO();
 		memVO.setMemId(memId);
 		memVO.setMemberId(memberId);
@@ -88,6 +111,5 @@ public class MemService {
 
 		return dao.findByPrimaryKey(memId);
 	}
-	
 
 }
