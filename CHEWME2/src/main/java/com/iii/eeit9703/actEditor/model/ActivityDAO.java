@@ -151,13 +151,13 @@ public class ActivityDAO {
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
-						schVO.setDayNo(rs.getInt("dayNo"));
-						schVO.setPeriod(rs.getString("period").substring(0, 5));
-					
-						
-						attrVO.setScheduleData(schVO);
 					}
 				}
+				schVO.setDayNo(rs.getInt("dayNo"));
+				schVO.setPeriod(rs.getString("period").substring(0, 5));
+				
+				
+				attrVO.setScheduleData(schVO);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

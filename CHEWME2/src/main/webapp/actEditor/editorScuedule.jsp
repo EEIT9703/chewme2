@@ -56,7 +56,8 @@ option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 <FORM METHOD="post" ACTION="/CHEWME2/Calendar.do">
 
 <header><%@include file="../header.jsp"%></header>
-
+<br>
+<br>
 <div class="container-fluid">
 	<div class="row">
 		<!-- calendar顯示div處 -->
