@@ -13,12 +13,22 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 public class AttrDAO {
 
-	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=CMDB";
-	String userid = "sa";
-	String passwd = "P@ssw0rd";
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	private static final String COUNTY = "SELECT countyName FROM countys where countyID = ?";
 	private static final String AttrByCountry = "SELECT  *  FROM Attractions A join countrys c on A.county=c.countryName WHERE countryID = ? ";
@@ -27,13 +37,14 @@ public class AttrDAO {
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
+	
 	public String getCountyName(Integer countyID){
 		
 		String countryName = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(COUNTY);
 			
 			pstmt.setInt(1, countyID);
@@ -43,9 +54,6 @@ public class AttrDAO {
 				countryName = rs.getString("countyName");
 			}
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -73,8 +81,8 @@ public class AttrDAO {
 			AttrVO attrVO = null;
 
 			try {
-				Class.forName(driver);
-				con = DriverManager.getConnection(url, userid, passwd);
+				
+				con = ds.getConnection();
 				pstmt = con.prepareStatement(AttrByCountry);
 				
 				
@@ -144,17 +152,7 @@ public class AttrDAO {
 						}
 					}
 				}
-		
-					
-			
-					
-			
-	
 				
-				
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -190,8 +188,8 @@ public class AttrDAO {
 //		System.out.println(countryName);
 
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(AttrByCounty);
 			
 			
@@ -214,9 +212,6 @@ public class AttrDAO {
 				list.add(attrVO);
 			}
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -13,12 +13,22 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
-public class ActivityDAO {
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
-	String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	String url = "jdbc:sqlserver://localhost:1433;DatabaseName=CMDB";
-	String userid = "sa";
-	String passwd = "P@ssw0rd";
+public class ActivityDAO {
+	
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	private static final String SelectAttraction = "select * from schedules S join attractions A on S.attractionID=A.attractionID where actID=? order by dayNo, period";
 	private static final String SelectActivity = "SELECT  act_name  FROM activity WHERE actID = ? ";
@@ -33,8 +43,7 @@ public class ActivityDAO {
 		String actName = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(SelectActivity);
 			
 			pstmt.setInt(1, actID);
@@ -42,9 +51,6 @@ public class ActivityDAO {
 			rs.next();
 			actName = rs.getString("act_name");
 			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -73,8 +79,8 @@ public class ActivityDAO {
 			ScheduleVO schVO =null;
 
 			try {
-				Class.forName(driver);
-				con = DriverManager.getConnection(url, userid, passwd);
+				
+				con = ds.getConnection();
 				pstmt = con.prepareStatement(SelectAttraction);
 				
 				
@@ -147,13 +153,11 @@ public class ActivityDAO {
 						}
 						schVO.setDayNo(rs.getInt("dayNo"));
 						schVO.setPeriod(rs.getString("period").substring(0, 5));
+					
 						
 						attrVO.setScheduleData(schVO);
 					}
 				}
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -56,7 +56,7 @@ span{color: #004B97;font-family: 'Arial','Microsoft JhengHei';font-size:25px;fon
 <!--     </div> -->
 </div>
 <h2 id="day2"></h2>
-<div id="vt2" style="display:none"></div>		//繼續測試隱藏
+<div id="vt2" style="display:none"></div>
 <h2 id="day3"></h2>
 <div id="vt3" style="display:none"></div>
 <script>
@@ -79,6 +79,13 @@ window.onload = function(){
 		console.log(array.length);
 		var maxDay = array[array.length-1].scheduleData.dayNo;
 		var k=0;
+		
+		if(maxDay>1){
+			for(var d=2;d<=maxDay;d++){
+				var svt = "'#vt"+d+"'";
+				$(svt).css("display","");
+			}
+		}
 	
 		for (var i = k; i < array.length; i++) {			
 				
@@ -98,15 +105,15 @@ window.onload = function(){
 			switch(array[i].scheduleData.dayNo){
 			
 			case 1:
-				var day = $("#day1").append("DAY - 1");
+				$("#day1").replaceWith("<h2 id='day1'>DAY - 1</h2>");
 				$("#vt1").append(point);
 				break;
 			case 2:
-				var day = $("#day2").append("DAY - 2");
+				$("#day2").replaceWith("<h2 id='day2'>DAY - 2</h2>");
 				$("#vt2").append(point);
 				break;
 			case 3:
-				var day = $("#day3").append("DAY - 3");
+				$("#day3").replaceWith("<h2 id='day3'>DAY - 3</h2>");
 				$("#vt3").append(point);
 				break;
 			
