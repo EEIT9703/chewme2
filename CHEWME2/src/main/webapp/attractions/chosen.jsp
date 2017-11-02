@@ -45,7 +45,9 @@ pageEncoding="UTF-8"%>
   		var i = $("#tags").val();
   		console.log(i);
   		
-  		$.getJSON("/CHEWME2/SearchServlet?action=")
+  		$.getJSON("/CHEWME2/SearchServlet?action=getonesearch", {"searchone":i}, function(data){
+  			
+  		})
   	})
   });
   </script>
