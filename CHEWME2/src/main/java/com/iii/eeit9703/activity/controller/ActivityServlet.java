@@ -172,7 +172,7 @@ public class ActivityServlet extends HttpServlet {
 					RequestDispatcher failureView =req.getRequestDispatcher("createAct.jsp");
 					failureView.forward(req, resp);
 					
-					System.out.println("test");
+					System.out.println("errorisEmpty");
 					return;
 				}
 				
@@ -202,11 +202,12 @@ public class ActivityServlet extends HttpServlet {
 		//最後編輯階段
 		
 		if("Final".equals(action)){
-			
+
 			try {
 				
-
 				Integer actID = new Integer(req.getParameter("actID"));
+//				System.out.println(req.getParameter("actID"));
+				
 				String act_news = req.getParameter("act_news");
 				
 				InputStream inputStream = null;
