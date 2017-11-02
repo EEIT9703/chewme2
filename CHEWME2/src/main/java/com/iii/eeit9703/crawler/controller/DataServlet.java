@@ -41,12 +41,11 @@ public class DataServlet extends HttpServlet {
 		
 		
 		List<AttrVO> list = attrDAO.getAll();
-		 Map m2 = new HashMap();
-		 m2.put("data", list);
+		
 		JSONArray artarry = new JSONArray(list);
-		String jsonString = JSONValue.toJSONString(m2); 
-		out.print(jsonString.toString());
-		System.out.println(jsonString.toString() + "123");
+		 
+		out.print(artarry.toString());
+		System.out.println(artarry);
 		
 		
 	}

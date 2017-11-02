@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.iii.eeit9703.actEditor.model.ScheduleDAO;
+import com.iii.eeit9703.actEditor.model.ScheduleDAO_JDBC;
 import com.iii.eeit9703.actEditor.model.ScheduleVO;
 import com.iii.eeit9703.activity.model.ActivityVO;
 
@@ -58,7 +58,7 @@ public class CalendarServlet extends HttpServlet {
 			if("insertACT".equals(mission)){
 				actName = request.getParameter("actName");
 				System.out.println(actName);
-				ScheduleDAO scheduledao = new ScheduleDAO();
+				ScheduleDAO_JDBC scheduledao = new ScheduleDAO_JDBC();
 				Integer actID = scheduledao.insertACT(actName);
 				System.out.println(actID);
 				
@@ -71,7 +71,7 @@ public class CalendarServlet extends HttpServlet {
 				System.out.println(events);
 
 				JSONArray eventsArray = new JSONArray(events);
-				ScheduleDAO scheduledao = new ScheduleDAO();
+				ScheduleDAO_JDBC scheduledao = new ScheduleDAO_JDBC();
 				ScheduleVO scheduleVO = new ScheduleVO();
 				Integer scheduleID = null;
 				for(int i=0;i<eventsArray.length();i++){
@@ -97,7 +97,7 @@ public class CalendarServlet extends HttpServlet {
 				System.out.println(events);
 				
 				JSONArray eventsArray = new JSONArray(events);
-				ScheduleDAO scheduledao = new ScheduleDAO();
+				ScheduleDAO_JDBC scheduledao = new ScheduleDAO_JDBC();
 				ScheduleVO scheduleVO = new ScheduleVO();
 				for(int i=0;i<eventsArray.length();i++){
 					JSONObject object = eventsArray.getJSONObject(i);
@@ -119,7 +119,7 @@ public class CalendarServlet extends HttpServlet {
 				String actID = new String(request.getParameter("actID").trim().replaceAll("\"", ""));
 				Integer schID = Integer.parseInt(request.getParameter("schID"));
 				System.out.println(actID + ";" + schID);
-				ScheduleDAO scheduledao = new ScheduleDAO();
+				ScheduleDAO_JDBC scheduledao = new ScheduleDAO_JDBC();
 				scheduledao.updateSCH2(actID, schID);
 
 			}

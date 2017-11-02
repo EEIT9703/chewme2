@@ -33,12 +33,5 @@
     <servlet-name>FindClubServlet</servlet-name>
     <url-pattern>/club/findClub1.do</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <servlet-name>ActivityServlet</servlet-name>
-    <servlet-class>com.iii.eeit9703.activity.controller.ActivityServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ActivityServlet</servlet-name>
-    <url-pattern>/activity/activityServlet.do</url-pattern>
-  </servlet-mapping>
+
 </web-app>

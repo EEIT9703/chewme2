@@ -1,10 +1,11 @@
 package com.iii.eeit9703.member.controller;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.iii.eeit9703.member.model.MemService;
@@ -143,7 +145,7 @@ public class RegisterServlet extends HttpServlet {
 				memVO = memSvc.addMem(memberId, memName, memNickN, memPwd, memBirthday, memMail, memAddr, memPhone,
 						memIntr, base64);
 
-				String url = "../index.jsp";// 成功後轉交的連結
+				String url = "/member/login.jsp";// 成功後轉交的連結
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				System.out.println("3");
 				successView.forward(req, res);
@@ -156,6 +158,7 @@ public class RegisterServlet extends HttpServlet {
 			}
 
 		}
+		
 	}
 
 }

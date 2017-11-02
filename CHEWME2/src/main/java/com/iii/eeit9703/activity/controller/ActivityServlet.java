@@ -29,6 +29,7 @@ import com.iii.eeit9703.activity.model.ActService;
 import com.iii.eeit9703.activity.model.ActivityDAO;
 import com.iii.eeit9703.activity.model.ActivityVO;
 
+@WebServlet("/act/actServlet")
 @MultipartConfig(
 location="",
 maxRequestSize=1024*1024*1024,
@@ -36,7 +37,6 @@ fileSizeThreshold=1024*1024*1024,
 maxFileSize=1024*1024*1024
 )
 
-@WebServlet("/activityServlet.do")
 public class ActivityServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
@@ -64,23 +64,23 @@ public class ActivityServlet extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 		
-		//選擇行程
+		//取得資料庫 行程進行編輯
 		if("getOne_For_Update".equals(action)){
 			
 			List<String>errorMsgs = new LinkedList<String>();
 			req.setAttribute("error", errorMsgs);
 
 			try {
-				//1.接收請求	
+				//1.選擇想要編輯行程	
 				Integer actID = new Integer(req.getParameter("actID"));
 				
 				System.out.println(actID);
-				//2.開始查詢資料
+				//2.查詢一筆資料
 				ActService actSvc = new ActService();
 				ActivityVO activityVO = actSvc.getOneAct(actID);
 	
 				JSONObject actJSON = new JSONObject(activityVO);
-//				JSONArray actJSON = new JSONArray(activityVO);
+
 				out.print(actJSON.toString());
 				
 				System.out.println(actJSON);			
@@ -88,7 +88,7 @@ public class ActivityServlet extends HttpServlet {
 				//處理錯誤
 			} catch (NumberFormatException e) {
 				errorMsgs.add("無法取得要修改的資料"+e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/act/createAct.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("createAct.jsp");
 				failureView.forward(req, resp);
 				e.printStackTrace();
 			}
@@ -96,9 +96,8 @@ public class ActivityServlet extends HttpServlet {
 		
 		
 		
-		//活動上架
-		if("Updata".equals(action)){  //來自/createActivity.jsp 請求
-			
+		//進入下一個編輯行程存取資料的介紹
+		if("Next".equals(action)){  //來自/createActivity.jsp 請求			
 			
 			System.out.println(req.getParameter("actID"));
 			
@@ -123,7 +122,7 @@ public class ActivityServlet extends HttpServlet {
 				}
 				String act_groupsReg ="^[(0-9_)]$";
 				if(!act_groups.trim().matches(act_groupsReg)){
-					error.put("errorGroups2","旅遊人數只能為數字");
+					//error.put("errorGroups2","旅遊人數只能為數字");
 				}
 				
 				java.sql.Date BDate = null;
@@ -142,7 +141,73 @@ public class ActivityServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 				
+				String act_price = req.getParameter("act_price");
+				if(act_price == null||act_price.trim().length() == 0){
+					error.put("act_price", "價位必須輸入");
+				}
+				String act_priceReg ="^[(0-9)*]$";
+				if(!act_price.trim().matches(act_priceReg)){
+					//error.put("act_price2", "價位只能為數字");
+				}
+				
 				Integer activity_state = new Integer(req.getParameter("activity_state"));
+				
+
+				
+				
+				ActivityVO activityVO = new ActivityVO();
+					
+				activityVO.setAct_name(act_name);
+				activityVO.setAct_groups(act_groups);
+				activityVO.setBDate(BDate);
+				activityVO.setEDate(EDate);
+				activityVO.setAct_price(act_price);
+				activityVO.setActivity_state(activity_state);
+				activityVO.setActID(actID);
+//				activityVO.setAct_photo(base64);
+				req.setAttribute("activityVO", activityVO); //含有輸入錯誤的activityVO 也存入req
+
+				if(!error.isEmpty()){
+					
+					RequestDispatcher failureView =req.getRequestDispatcher("createAct.jsp");
+					failureView.forward(req, resp);
+					
+					System.out.println("test");
+					return;
+				}
+				
+				//2.開始修改資料 呼叫工頭 ActService.java
+				ActService actSvc = new ActService();
+				actSvc.updateAct(activityVO);
+				
+				//修改完成  準備轉交
+				req.setAttribute("activityVO", activityVO);  //資料庫update成功後 正確的activityVO 存入req
+				session.setAttribute("activityVO", activityVO);
+				
+				RequestDispatcher view = req.getRequestDispatcher("createAct2.jsp");
+				view.forward(req,resp);
+				
+			} catch (Exception e) {
+
+				error.put("修改資料失敗",e.getMessage());
+				RequestDispatcher failureView =req.getRequestDispatcher("createAct.jsp");
+				failureView.forward(req, resp);
+				e.printStackTrace();
+		}
+			
+			
+			
+		}
+		
+		//最後編輯階段
+		
+		if("Final".equals(action)){
+			
+			try {
+				
+
+				Integer actID = new Integer(req.getParameter("actID"));
+				String act_news = req.getParameter("act_news");
 				
 				InputStream inputStream = null;
 				ByteArrayOutputStream bos = null;
@@ -150,12 +215,12 @@ public class ActivityServlet extends HttpServlet {
 				//取得圖片
 				Part act_photo = req.getPart("upload");
 				if(act_photo != null){										
-					error.put("errorPhoto","請選擇一張圖片");
+					//error.put("errorPhoto","請選擇一張圖片");
 				}
 				
-/*				System.out.println(act_photo.getContentType());
+				System.out.println(act_photo.getContentType());
 				System.out.println(act_photo.getSize());
-				System.out.println(act_photo.getName());*/
+				System.out.println(act_photo.getName());
 				
 				//二進制轉64
 				inputStream = act_photo.getInputStream();
@@ -175,21 +240,16 @@ public class ActivityServlet extends HttpServlet {
 				System.out.println(base64);
 				System.out.println("HELLO");
 				
-//			    Integer actID =new Integer(req.getParameter("actID").trim());
-				
 				ActivityVO activityVO = new ActivityVO();
-					
-				activityVO.setAct_name(act_name);
-				activityVO.setAct_groups(act_groups);
-				activityVO.setBDate(BDate);
-				activityVO.setEDate(EDate);
-				activityVO.setActivity_state(activity_state);
-				activityVO.setActID(actID);
+				
 				activityVO.setAct_photo(base64);
-
-/*				if(!error.isEmpty()){
-					req.setAttribute("activityVO", activityVO); //含有輸入錯誤的activityVO 也存入req
-					RequestDispatcher failureView =req.getRequestDispatcher("/act/createAct2.jsp");
+				activityVO.setAct_news(act_news);
+				activityVO.setActID(actID);
+				
+				req.setAttribute("activityVO", activityVO);
+				
+/*                   if(!error.isEmpty()){					
+					RequestDispatcher failureView =req.getRequestDispatcher("createAct.jsp");
 					failureView.forward(req, resp);
 					
 					System.out.println("test");
@@ -198,24 +258,20 @@ public class ActivityServlet extends HttpServlet {
 				
 				//2.開始修改資料 呼叫工頭 ActService.java
 				ActService actSvc = new ActService();
-				actSvc.updateAct(activityVO);
+				actSvc.finalAct(activityVO);
 				
 				//修改完成  準備轉交
 				req.setAttribute("activityVO", activityVO);  //資料庫update成功後 正確的activityVO 存入req
 				session.setAttribute("activityVO", activityVO);
-				String url = "/act/createAct2.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);
-				successView.forward(req,resp);
 				
-			} catch (Exception e) {
-
-				error.put("修改資料失敗",e.getMessage());
-				RequestDispatcher failureView =req.getRequestDispatcher("/act/createAct2.jsp");
-				failureView.forward(req, resp);
+				RequestDispatcher view = req.getRequestDispatcher("createAct.jsp");
+				view.forward(req,resp);
+				
+				
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
-		}
-			
-			
+			}
 			
 		}
 			

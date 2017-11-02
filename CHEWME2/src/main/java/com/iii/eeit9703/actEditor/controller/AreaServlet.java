@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.iii.eeit9703.actEditor.model.AttrDAO;
+import com.iii.eeit9703.actEditor.model.AttrDAO_JDBC;
 import com.iii.eeit9703.actEditor.model.AttrVO;
-import com.iii.eeit9703.actEditor.model.CountyDAO;
+import com.iii.eeit9703.actEditor.model.CountyDAO_JDBC;
 import com.iii.eeit9703.actEditor.model.CountyVO;
 import com.iii.eeit9703.activity.model.ActivityVO;
 
@@ -60,7 +60,7 @@ public class AreaServlet extends HttpServlet {
 			
 			if("getCountry".equals(mission)){
 				countryID = request.getParameter("country");
-				CountyDAO countydao = new CountyDAO();
+				CountyDAO_JDBC countydao = new CountyDAO_JDBC();
 				ArrayList<CountyVO> countyList = countydao.getCounty(countryID);
 				
 				JSONArray countyArrayList = new JSONArray(countyList);
@@ -73,7 +73,7 @@ public class AreaServlet extends HttpServlet {
 				countryID = request.getParameter("country");
 				
 				System.out.println(countryID);
-				AttrDAO attrdao = new AttrDAO();
+				AttrDAO_JDBC attrdao = new AttrDAO_JDBC();
 				ArrayList<AttrVO> attrList = attrdao.getAttrByCountry(countryID);
 				
 				JSONArray attrArrayList = new JSONArray(attrList);
@@ -85,7 +85,7 @@ public class AreaServlet extends HttpServlet {
 			if("getCounty".equals(mission)){
 				countyID =  Integer.parseInt(request.getParameter("county"));
 				System.out.println(countyID);
-				AttrDAO attrdao = new AttrDAO();
+				AttrDAO_JDBC attrdao = new AttrDAO_JDBC();
 				ArrayList<AttrVO> attrList = attrdao.getAttrByCounty(countyID);
 				
 				JSONArray attrArrayList = new JSONArray(attrList);

@@ -20,6 +20,7 @@
 <!--       	<property name="memPhoto" column="memPhoto" />  沒有圖片先不mapping -->
         <property name="memStatus" column="memStatus" />
         <property name="memRole" column="memRole" />
+        <property name="googleId" column="googleId" />
         
 <!--         一個會員可以有很多活動 -->
         <set name="Activitys" table="activity" lazy="false" cascade="all"  inverse="true"  order-by="actID asc">			

@@ -87,12 +87,25 @@ $(document).ready(function() {
 			$('#BDate+font').text('日期格式為yyyy-MM-dd');
 		}
 	});
+	
+	//判斷旅行人數
+	$('#act_price').blur(function(){
+		var act_groups = $(this).val();
+		var re = new RegExp(/^[\d]+$/);
+			if(act_groups.trim() == ""){
+				console.log(act_groups);
+				$('#act_price+font').text('價格不能為空');
+			}else if(!re.test(act_groups)){
+				console.log(act_groups);
+				$('#act_price+font').text('價格只能為數字');
+			}
+	});
 
 	// 觸發actID,帶入資料到<input>
 	$("#actID").change(function() {
 		var actID = $(this).val();
 		console.log(actID);
-		$.getJSON('/CHEWME2/activityServlet.do?action=getOne_For_Update', {'actID' : actID
+		$.getJSON('/CHEWME2/act/actServlet?action=getOne_For_Update', {'actID' : actID
 		}, function(data) {
 			// actID = JSON.parse(data);
 			console.log(data);
@@ -101,18 +114,19 @@ $(document).ready(function() {
 			$('#act_current').val(data.act_current);
 			$('#BDate').val(data.BDate);
 			$('#EDate').val(data.EDate);
+			$('act_price').val(data.act_price)
 			$('#activity_state').val(data.activity_state);
 
 		});
 	});
 
 	// 送出更新資料
-	$('#submit').click(function() {
+	/*$('#submit').click(function() {
 		console.log("3345678");
 		var formData = new FormData($('form')[0])
 		$.ajax({
 			type : "POST",
-			url : "/CHEWME2/activityServlet.do?action=Updata",
+			url : "/CHEWME2/activityServlet.do?action=Next",
 			success : function(data) {
 				// swal('更新成功', 'Hello World!', 'success');
 				alert(3345678);				
@@ -131,14 +145,8 @@ $(document).ready(function() {
 			contentType : false,
 			processData : false
 		});
-	});
+	});*/
 	
-	$('#summernote').summernote({
-		  height: 300,                 // set editor height
-		  minHeight: null,             // set minimum height of editor
-		  maxHeight: null,             // set maximum height of editor
-		  focus: true                  // set focus to editable area after initializing summernote
-		});
 });
 // 送出更新資料
 // $('#submit').click(function() {
