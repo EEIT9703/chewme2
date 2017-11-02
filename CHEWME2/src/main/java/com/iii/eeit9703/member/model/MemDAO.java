@@ -1,275 +1,202 @@
 package com.iii.eeit9703.member.model;
 
-import java.util.*;
-import java.sql.*;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.json.simple.JSONValue;
+
+import com.iii.eeit9703.activity.model.ActivityVO;
+import com.iii.eeit9703.collection.CollectionVO;
+import com.iii.eeit9703.hibernate.util.HibernateUtil;
+import com.iii.eeit9703.report.ReportVO;
 
 public class MemDAO implements MemDAO_interface {
-	private static DataSource ds = null;
-	static {//系統load進來時就做一次,且只做一次,除非系統關閉,否則一直存在
-		try {
-			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-	}
-	private static final String INSERT_STMT = "INSERT INTO members (memberId,memName,memNickN,memPwd,memBirthday,memMail,memAddr,memPhone,memIntr,memPhoto,memStatus,memRole) VALUES(?,?,?,?,?,?,?,?,?,?,'正常','一般會員')";
-	private static final String GET_ALL_STMT = "SELECT  memId,memberId,memName,memNickN,memPwd,memBirthday,memMail,memAddr,memPhone,memIntr,memPhoto,memStatus,memRole FROM members order by memId";
-	private static final String GET_ONE_STMT = "SELECT  memId,memberId,memName,memNickN,memPwd,memBirthday,memMail,memAddr,memPhone,memIntr,memPhoto,memStatus,memRole FROM members WHERE memId=?";
-	private static final String DELETE = "DELETE FROM members WHERE memId=?";
-	private static final String UPDATE = "UPDATE members set memberId=? ,memName=?,memNickN=?, memPwd=?, memBirthday=?, memMail=?, memAddr=?, memPhone=?,memIntr=?,memPhoto=?  WHERE memId=?";
-	
+	private static final String GET_ALL_STMT = "from MemVO order by memberId";
 	@Override
 	public void insert(MemVO memVO) {
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(INSERT_STMT);
-
-			pstmt.setString(1, memVO.getMemberId());
-			pstmt.setString(2, memVO.getMemName());
-			pstmt.setString(3, memVO.getMemNickN());
-			pstmt.setString(4, memVO.getMemPwd());
-			pstmt.setDate(5, memVO.getMemBirthday());
-			pstmt.setString(6, memVO.getMemMail());
-			pstmt.setString(7, memVO.getMemAddr());
-			pstmt.setString(8, memVO.getMemPhone());
-			pstmt.setString(9, memVO.getMemIntr());
-			pstmt.setString(10, memVO.getMemPhoto());
-
-			pstmt.executeUpdate();
-
-			// Handle any SQL errors
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-			// Clean up JDBC resources
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
+			session.beginTransaction();
+			session.saveOrUpdate(memVO);
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
 		}
 
-
 	}
+
+	
+//	@Override
+//	public Set<ReportVO> getRepByMemNo(Integer memId) {
+//		Set<ReportVO> set = findByPrimaryKey(memId).getReports();
+//		return set;
+//	}
+//
+//
+//	@Override
+//	public Set<CollectionVO> getCollByMemNo(Integer memId) {
+//		Set<CollectionVO> set = findByPrimaryKey(memId).getCollects();
+//		return set;
+//	}
 
 	@Override
 	public void update(MemVO memVO) {
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(UPDATE);
-
-			pstmt.setString(1, memVO.getMemberId());
-			pstmt.setString(2, memVO.getMemName());
-			pstmt.setString(3, memVO.getMemNickN());
-			pstmt.setString(4, memVO.getMemPwd());
-			pstmt.setDate(5, memVO.getMemBirthday());
-			pstmt.setString(6, memVO.getMemMail());
-			pstmt.setString(7, memVO.getMemAddr());
-			pstmt.setString(8, memVO.getMemPhone());
-			pstmt.setString(9, memVO.getMemIntr());
-			pstmt.setString(10, memVO.getMemPhoto());
-			pstmt.setInt(11, memVO.getMemId());
-
-			pstmt.executeUpdate();
-
-			// Handle any SQL errors
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-			// Clean up JDBC resources
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
+			session.beginTransaction();
+			session.saveOrUpdate(memVO);
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
 		}
-
 
 	}
 
 	@Override
 	public void delete(Integer memId) {
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(DELETE);
+			session.beginTransaction();
+			MemVO memVO = new MemVO();
+			memVO.setMemId(memId);
+			session.delete(memVO);
 
-			pstmt.setInt(1, memId);
-
-			pstmt.executeUpdate();
-
-			// Handle any SQL errors
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-			// Clean up JDBC resources
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
 		}
 
-
 	}
-	
+
 	@Override
 	public MemVO findByPrimaryKey(Integer memId) {
 		MemVO memVO = null;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_ONE_STMT);
-
-			pstmt.setInt(1, memId);
-
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				// empVo 也稱為 Domain objects
-				memVO = new MemVO();
-				memVO.setMemId(rs.getInt("memId"));
-				memVO.setMemberId(rs.getString("memberId"));
-				memVO.setMemName(rs.getString("memName"));
-				memVO.setMemNickN(rs.getString("memNickN"));
-				memVO.setMemPwd(rs.getString("memPwd"));
-				memVO.setMemBirthday(rs.getDate("memBirthday"));
-				memVO.setMemMail(rs.getString("memMail"));
-				memVO.setMemAddr(rs.getString("memAddr"));
-				memVO.setMemPhone(rs.getString("memPhone"));
-				memVO.setMemIntr(rs.getString("memIntr"));
-				memVO.setMemPhoto(rs.getString("memPhoto"));
-				memVO.setMemStatus(rs.getString("memStatus"));
-				memVO.setMemRole(rs.getString("memRole"));
+			session.beginTransaction();
+			memVO = (MemVO) session.get(MemVO.class, memId);
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return memVO;
+	}
+	
+	@Override
+	public MemVO findByGID(String googleId) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		Iterator result=null;
+		Transaction tx=null;
+		MemVO memVO=new MemVO();
+		try{
+			tx=session.beginTransaction();
+			
+			Query query=session.createQuery("from MemVO where googleId=?");
+			query.setParameter(0, googleId);
+			List<MemVO> list=query.list();
+			for(MemVO mv:list){
+				memVO.setMemberId(mv.getMemberId());
+				memVO.setMemName(mv.getMemName());
+				memVO.setMemNickN(mv.getMemNickN());
+				memVO.setMemBirthday(mv.getMemBirthday());
+				memVO.setMemMail(mv.getMemMail());
+				memVO.setMemAddr(mv.getMemAddr());
+				memVO.setMemPhone(mv.getMemPhone());
+				memVO.setMemIntr(mv.getMemIntr());
+				memVO.setMemPhoto(mv.getMemPhoto());
+				memVO.setMemStatus(mv.getMemStatus());
+				memVO.setMemRole(mv.getMemRole());
+				memVO.setGoogleId(mv.getGoogleId());				
 
 			}
-
-			// Handle any SQL errors
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-			// Clean up JDBC resources
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
+			tx.commit();
+		}catch(RuntimeException re){
+			session.getTransaction().rollback();
+			throw re;
 		}
 		return memVO;
 	}
 
 	@Override
 	public List<MemVO> getAll() {
-		List<MemVO> list = new ArrayList<MemVO>();
-		MemVO memVO = null;
-
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		List<MemVO> list = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
-
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_ALL_STMT);
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				// memVO 也稱為 Domain objects
-				memVO = new MemVO();
-				memVO.setMemId(rs.getInt("memId"));
-				memVO.setMemberId(rs.getString("memberId"));
-				memVO.setMemName(rs.getString("memName"));
-				memVO.setMemNickN(rs.getString("memNickN"));
-				memVO.setMemPwd(rs.getString("memPwd"));
-				memVO.setMemBirthday(rs.getDate("memBirthday"));
-				memVO.setMemMail(rs.getString("memMail"));
-				memVO.setMemAddr(rs.getString("memAddr"));
-				memVO.setMemPhone(rs.getString("memPhone"));
-				memVO.setMemIntr(rs.getString("memIntr"));
-				memVO.setMemPhoto(rs.getString("memPhoto"));
-				memVO.setMemStatus(rs.getString("memStatus"));
-				memVO.setMemRole(rs.getString("memRole"));
-				list.add(memVO); // Store the row in the list
-			}
-
-			// Handle any SQL errors
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-			// Clean up JDBC resources
-		}finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
+			session.beginTransaction();
+			Query query = session.createQuery(GET_ALL_STMT);
+			list = query.list();
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
 		}
 		return list;
 	}
+	
+	
+	public static void main(String[] args) {
+//		MemDAO dao=new MemDAO();
+//		dao.findByGID("102650579172462005148");
+//		System.out.println(dao.findByGID("102650579172462005148").getGoogleId());
+//		System.out.println(dao.findByGID("102650579172462005148").getMemName());
+//		System.out.println(dao.findByGID("102650579172462005148").getMemMail());
+//	MemDAO_hibernate dao =new MemDAO_hibernate();
+//	Set<ReportVO> set=dao.getRepByMemNo(1);
+//	   	for(ReportVO reportVO :set){
+//	   		System.out.println(reportVO.getReportContext());		
+//	   	}
+	
+//		MemDAO_hibernate dao =new MemDAO_hibernate();
+//		Set<CollectionVO> set=dao.getCollByMemNo(1);
+//		
+//		   	for(CollectionVO collectionVO :set){
+//		   		System.out.println(collectionVO.getMemVO().getMemMail());
+//		   		
+//   		
+//		   	}
+
+//	System.out.println(list2);
+//	String jsonString =JSONValue.toJSONString(list2);
+//	System.out.println(jsonString);
+//	List<MemVO> list2 = dao.getAll();
+//	for (MemVO memVO : list2) {
+//		System.out.print(memVO.getMemberId() + ",");
+//		System.out.print(memVO.getMemMail() + ",");
+//		System.out.print(memVO.getMemPhone());
+//		System.out.print(memVO.getMemRole());
+//		System.out.print(memVO.getMemStatus());
+//	
+//		System.out.println("\n-----------------");
+//		Set<ActivityVO> Activitys =memVO.getActivitys();
+//		
+//		for (ActivityVO activityVO : Activitys) {
+//			System.out.print(activityVO.getAct_name() + ",");
+//			System.out.print(activityVO.getAct_groups() + ",");
+//			System.out.print(activityVO.getAct_current());
+//		
+//		
+//			System.out.println();
+//		}
+//		System.out.println();
+//	}	
+	
+	
+	}
+
+
+
+
+
+
+	
+	
+
 }

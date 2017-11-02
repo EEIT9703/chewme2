@@ -1,16 +1,13 @@
 package com.iii.eeit9703.member.model;
 
+import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.json.simple.JSONValue;
+import org.hibernate.Transaction;
 
-import com.iii.eeit9703.activity.model.ActivityVO;
-import com.iii.eeit9703.collection.CollectionVO;
 import com.iii.eeit9703.hibernate.util.HibernateUtil;
-import com.iii.eeit9703.report.ReportVO;
 
 public class MemDAO_hibernate implements MemDAO_interface {
 	private static final String GET_ALL_STMT = "from MemVO order by memberId";
@@ -42,11 +39,8 @@ public class MemDAO_hibernate implements MemDAO_interface {
 //		return set;
 //	}
 
-	@Override
-	public void insertGoogle(MemVO memVO) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 
 
 	@Override
@@ -95,6 +89,43 @@ public class MemDAO_hibernate implements MemDAO_interface {
 		return memVO;
 	}
 
+
+	@Override
+	public MemVO findByGID(String googleId) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		Iterator result=null;
+		Transaction tx=null;
+		MemVO memVO=new MemVO();
+		try{
+			tx=session.beginTransaction();
+			
+			Query query=session.createQuery("from MemVO where googleId=?");
+			query.setParameter(0, googleId);
+			List<MemVO> list=query.list();
+			for(MemVO mv:list){
+				memVO.setMemberId(mv.getMemberId());
+				memVO.setMemName(mv.getMemName());
+				memVO.setMemNickN(mv.getMemNickN());
+				memVO.setMemBirthday(mv.getMemBirthday());
+				memVO.setMemMail(mv.getMemMail());
+				memVO.setMemAddr(mv.getMemAddr());
+				memVO.setMemPhone(mv.getMemPhone());
+				memVO.setMemIntr(mv.getMemIntr());
+				memVO.setMemPhoto(mv.getMemPhoto());
+				memVO.setMemStatus(mv.getMemStatus());
+				memVO.setMemRole(mv.getMemRole());
+				memVO.setGoogleId(mv.getGoogleId());				
+
+			}
+			tx.commit();
+		}catch(RuntimeException re){
+			session.getTransaction().rollback();
+			throw re;
+		}
+		return memVO;
+	}
+
+	
 	@Override
 	public List<MemVO> getAll() {
 		List<MemVO> list = null;

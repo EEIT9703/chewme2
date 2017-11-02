@@ -22,12 +22,12 @@ public class MemVO implements java.io.Serializable{
 	private String memPhoto;
 	private String memStatus;
 	private String memRole;
+	private String googleId;
 	private Set<ActivityVO> Activitys = new HashSet<ActivityVO>();
 	private Set<CollectionVO> Collects = new HashSet<CollectionVO>();
 	private Set<ReportVO> Reports = new HashSet<ReportVO>();
 	private Integer clubId;
 
-	
 	
 	public Integer getMemId() {
 		return memId;
@@ -134,10 +134,10 @@ public class MemVO implements java.io.Serializable{
 	public void setClubId(Integer clubId) {
 		this.clubId = clubId;
 	}
-
-
-
-
-
-	
+	public String getGoogleId() {
+		return googleId;
+	}
+	public void setGoogleId(String googleId) {
+		this.googleId = googleId;
+	}	
 }

@@ -20,14 +20,6 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
-		String action = req.getParameter("action");
-		if ("google".equals(action)) {
-			try {
-				String gId = req.getParameter("googleId");
-				System.out.println(gId);
-			} catch (Exception e) {
-			}
-		}
 		HttpSession session = req.getSession();
 
 		Map<String, String> errorMsgMap = new HashMap<String, String>();// 準備存放錯誤訊息的Map物件
@@ -36,8 +28,8 @@ public class LoginServlet extends HttpServlet {
 
 		String userId = req.getParameter("userId");
 		String password = req.getParameter("pswd");
-		String rm = req.getParameter("rememberMe");
 		String gRecaptchaResponse = req.getParameter("g-recaptcha-response");
+		String rm = req.getParameter("rememberMe");
 		String requestURI = (String) session.getAttribute("requestURI");
 
 		if (userId == null || userId.trim().length() == 0) {
@@ -46,12 +38,10 @@ public class LoginServlet extends HttpServlet {
 		if (password == null || password.trim().length() == 0) {
 			errorMsgMap.put("PasswordisEmpty", "密碼欄位必須輸入");// 如果密碼空白就放錯誤訊息到errorMsgMap裡
 		}
-		System.out.println(gRecaptchaResponse);
 		if (gRecaptchaResponse == null || gRecaptchaResponse.trim().length() == 0) {
 			errorMsgMap.put("RecaptchaisEmpty", "請進行驗證");
 		}
 		boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
-
 		// Remember ME記住密碼cookie
 		Cookie cookieUser = null;
 		Cookie cookiePassword = null;
@@ -103,7 +93,6 @@ public class LoginServlet extends HttpServlet {
 		// 呼叫 ms物件的 checkIDPassword()，要記得傳入userid與password兩個參數
 
 		MemVO mv = memSvc.checkIDPassword(userId, password);
-		System.out.println(mv);
 		if (mv != null) {
 			// OK, 將mv物件放入Session範圍內，識別字串為"LoginOK"
 			session.setAttribute("LoginOK", mv);
