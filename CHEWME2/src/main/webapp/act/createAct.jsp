@@ -36,60 +36,63 @@
 		<div class="jumbotron">
 			<div class="row clearfix">
 				<div class="col-md-12 column">
-					<h1>Activity</h1>
+					<h1>Activity1</h1>
 
 
 
-					<form role="form" enctype="multipart/form-data" class="form-horizontal" method="post" action="activityServlet" name="actForm">
+					<form role="form" enctype="multipart/form-data" class="form-horizontal" method="post" action="actServlet" name="actForm">
 						<div class="from-group">
-							<label for="actID">選擇活動</label> <select class="form-control"
-								size="1" name="actID" id="actID">
+							<label for="actID">選擇活動</label> 
+							<select class="form-control" size="1" name="actID" id="actID">
 								<c:forEach var="activityVO" items="${actSvc.all}">
-									<option value="${activityVO.actID}">${activityVO.act_name}</option>
-								</c:forEach>
+									<option value="${activityVO.actID}">${activityVO.act_name}</option>								</c:forEach>
 							</select>
 
 						</div>
 						<div class="form-group">
 							<label for="act_name">活動名稱</label> 
-							<input type="text" class="form-control" name="act_name" id="act_name" value="" placeholder=""/>
+							<input type="text" class="form-control" name="act_name" id="act_name" value="${activityVO.act_name}" />
 							<font color="red" size="-1"></font>
 						</div>	
 						<div class="form-group">
 							<label for="act_groups">成團人數</label> 
-							<input type="text" class="form-control" name="act_groups" id="act_groups" value="" />
+							<input type="text" class="form-control" name="act_groups" id="act_groups" value="${activityVO.act_groups}" />
 							<font color="red" size="-1"></font>
 						</div>			
 						<div class="form-group">
-							<label for="act_current">參加人數</label> 
-							<input type="text" class="form-control" name="act_current" id="act_current" value="" disabled="disabled" />
+							<label for="act_current">參與人數</label> 
+							<input type="text" class="form-control" name="act_current" id="act_current" value="${activityVO.act_current}" disabled="disabled" />
 						</div>
 						<div class="form-group">
 							<label for="BDate">出發日期</label> 
-							<input type="text" class="form-control" name="BDate" id="BDate" value="" />
+							<input type="text" class="form-control" name="BDate" id="BDate" value="${activityVO.BDate}" />
 							<font color="red" size="-1"></font>
 						</div>
 						<div class="form-group">
 							<label for="EDate">結束日期</label> 
-							<input type="text" class="form-control" name="EDate" id="EDate" value="" />
+							<input type="text" class="form-control" name="EDate" id="EDate" value="${activityVO.EDate}" />
 							<font color="red" size="-1"></font>
 						</div>
+						<div class="form-group">
+							<label for="act_price">價格</label> 
+							<input type="text" class="form-control" name="act_price" id="act_price" value="${activityVO.act_price}" />
+							<font color="red" size="-1"></font>
+						</div>
+												
+						
 						<div class="from-group">
-							<label for="activity_state">活動狀態</label> <select class="form-control" name="activity_state" id="activity_state">
+							<label for="activity_state">活動狀態</label> 
+							<select class="form-control" name="activity_state" id="activity_state">
 								<option value="0">建構中</option>
 								<option value="1">上架</option>
 								<option value="3">下架</option>
 							</select>
 						</div>
-
-						<div class="form-group">
-							<label class="btn btn-info" for="upload"> <input id="upload" name="upload" style="display: none;" type="file">
-							<i class="fa fa-folder-open-o"></i> 上傳圖片
-							</label>
-							<font color="red" size="-1"></font>
-						</div>
+			
 						<div class="form-group"></div>
 						<button type="submit" class="btn btn-lg btn-primary" id="submit">下一步</button>
+						<input type="hidden" value="${activityVO.actID}">
+						<input type="hidden" name="action" value="Next">
 					</form>
 				</div>
 			</div>
@@ -102,6 +105,7 @@
 
 	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<!-- SweetAlert  -->

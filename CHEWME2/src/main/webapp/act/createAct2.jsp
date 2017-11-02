@@ -10,13 +10,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+
+
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" >
+
 
 <!-- Font Awesome  -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"></link>
 
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+
 
 
 </head>
@@ -31,8 +34,8 @@
 		<div class="jumbotron">
 			<div class="row clearfix">
 				<div class="col-md-12 column">
-					<h1>Activity</h1>
-						<!-- Page Content -->
+					<h1>${activityVO.act_name}</h1>
+						<!-- 預覽內容 -->
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -47,13 +50,13 @@
                             </ol>
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img class="slide-image" src="https://cache-graphicslib.viator.com/graphicslib/destination/rhine-river-133772.jpg" alt="">
+                                    <img class="slide-image" src="" id="" alt="">
                                 </div>
                                 <div class="item">
-                                    <img class="slide-image" src="https://cache-graphicslib.viator.com/graphicslib/destination/rhine-river-133772.jpg" alt="">
+                                    <img class="slide-image" src="" alt="">
                                 </div>
                                 <div class="item">
-                                    <img class="slide-image" src="https://cache-graphicslib.viator.com/graphicslib/destination/rhine-river-133772.jpg" alt="">
+                                    <img class="slide-image" src="" alt="">
                                 </div>
                             </div>
                             <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
@@ -66,54 +69,68 @@
                     </div>
                 </div>
                 <div class="heading">
-                    <h2>Heading</h2>
+                    <h2>行程介紹</h2>
                 </div>
                 <div class="item-desc">
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi eum cupiditate alias, accusantium necessitatibus sequi, labore soluta iste, repellendus ratione a! Fugiat, dolore placeat est, non iste ab repudiandae assumenda.</p>
                     <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi eum cupiditate alias, accusantium necessitatibus sequi, labore soluta iste, repellendus ratione a! Fugiat, dolore placeat est, non iste ab repudiandae assumenda.</p>
                 </div>
             </div>
             <div style="height:40px"></div>
-            <form class="col-md-6" role="form">               
+            <form class="col-md-6" method="post" role="form" enctype="multipart/form-data">               
+               <a type="hidden">${activityVO.actID}</a> 
                 <div class="date-time row">
                     <!-- <div class="co-md-12">-->
                     <div class="form-group col-md-6">
-                        <div class="form-group">
-                    <label for="destination">活動名稱:</label>
+                 <div class="form-group">
+                    <label for="destination">成團人數:${activityVO.act_groups}</label>
+                </div>
+              
+                <div class="form-group">
+                    <label for="destination">參與人數:${activityVO.act_current}</label>
                 </div>
                 
                 <div class="form-group">
-                    <label for="destination">成團人數:</label>
+                    <label for="destination">旅程時間:${activityVO.BDate}-${activityVO.EDate}</label>
                 </div>
                 
                 <div class="form-group">
-                    <label for="destination">旅程時間:</label>
-                </div>
-                
-                <div class="form-group">
-                    <label for="destination">價格:</label>
+                    <label for="destination">價格:${activityVO.act_price}</label>
                 </div>
                     </div>
                     </div>
                 <div class="btn-group btn-group-justified">
                     <a href="#" class="btn btn-default">參加行程</a>
                     <a href="#" class="btn btn-default"><i class="fa fa-heart-o" aria-hidden="true" style="color:red;"></i> 加入我的收藏</a>
-                </div>
-                <!-- button group ---->
+                </div>               
 
                 <div class="card" style="margin-top:20px;">
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Highlights</a></li>
-                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Review</a></li>
+                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">景點</a></li>
+                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">餐廳</a></li>
+                        <li role="presentation"><a href="#S" aria-controls="S" role="tab" data-toggle="tab">住宿</a></li>                 
                     </ul>
 
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="home">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
-                        <div role="tabpanel" class="tab-pane" id="profile">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</div>
+                        <div role="tabpanel" class="tab-pane active" id="home">景點</div>
+                        <div role="tabpanel" class="tab-pane" id="profile">住宿</div>
+                        <div role="tabpanel" class="tab-pane" id="S">餐廳</div>       
                     </div>
                 </div>
                 <!-- Tabs --->
+                <div id="summernote"><p>行程特點</p></div>
+						<div class="form-group">
+							<label class="btn btn-info" for="upload"> 
+							<input id="upload" name="upload" style="display: none;" type="file">
+							<img id="blah" src="#" alt="" />
+							<i class="fa fa-folder-open-o"></i> 上傳圖片
+							</label>
+							<font color="red" size="-1"></font>
+						</div>
+                        <div class="form-group"></div>
+						<button type="submit" class="btn btn-lg btn-primary" id="submit">送出</button>
+						<input type="hidden" value="${activityVO.actID}">
+						<input type="hidden" name="action" value="Final">          
             </form>
         </div>
     </div>
@@ -122,13 +139,9 @@
 						
 						
 						
-						<div id="summernote"><p>Hello Summernote</p></div>
-						<div class="form-group">
-							<label class="btn btn-info" for="upload"> <input id="upload" name="upload" style="display: none;" type="file">
-							<i class="fa fa-folder-open-o"></i> 上傳圖片
-							</label>
-							<font color="red" size="-1"></font>
-						</div>
+						
+						
+
 
 						<div>
 						
@@ -136,23 +149,24 @@
  	<%-- 						<%@ include file="../actEditor/schedule.jsp"%> --%>
 						</div>
 						
-						<div class="form-group"></div>
-						<button type="submit" class="btn btn-lg btn-primary" id="submit">送出</button>
-					
+						
+
+
 				</div>
 			</div>
 		</div>
 	</div>
 
+
+
 	<script>
 		
 	</script>
 
-	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
-  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+	
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
 
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js">
 	
 	<!-- SweetAlert  -->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
