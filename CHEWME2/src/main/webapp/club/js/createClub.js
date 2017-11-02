@@ -6,10 +6,8 @@ $(document).ready(
 		function() {
 			//選擇我們要的canvas
 			var mycanvas = $("#myCanvas");			
-			//mycanvas.css("width",100);
-			//mycanvas.css("height",100);
 			var ctx = mycanvas[0].getContext("2d");			
-			
+			var dataURL;
 			
 			//生成一個image空間來儲存我們要的空間
 			var image = new Image();
@@ -19,13 +17,13 @@ $(document).ready(
 			var ias = $('#img').imgAreaSelect({
 				instance : true
 			});
-			//ias.setSelection(50, 50, 150, 200, true);
 			ias.setOptions({
 				show : true
 			});
 			ias.update();			
 			
 			$("#uploadImage").change(function() {
+				
 				readImage(this);
 			});
 
@@ -49,31 +47,31 @@ $(document).ready(
 			}
 			
 			$('#img').imgAreaSelect({
-				//aspectRatio : '350:200',
+				aspectRatio : '350:200',
 				handles : true,
-				x1 : 0,	y1 : 0, x2 : 100, y2 : 100,
+				x1 : 0,	y1 : 0, x2 : 0, y2 : 0,
 				onSelectEnd : function(img, selection) {
+					
 					console.log("in the imgAreaSelect");
-					//image = $("img")[0];
+					image = $("#img")[0];
 					var height = selection.y2-selection.y1;
 					var width = selection.x2-selection.x1;
-					mycanvas.css("height",height);
-					mycanvas.css("width",width);
-					console.log(image);
-					console.log(img);
-					console.log(selection.x1);
-					console.log(selection.x2);
-					console.log(selection.y1);
-					console.log(selection.y2);
-					console.log(width);
-					console.log(height);
-					console.log(ctx);
-					ctx.drawImage(image, selection.x1, selection.y1, width,height, 0, 0,width,height);
+					//ctx.clearRect(0, 0, mycanvas.width, mycanvas.height);
+					setWidthHeight(width,height)
+					canvasDrawImage(img,selection.x1,selection.y1,width,height);
+					dataURL = mycanvas[0].toDataURL();
+					console.log(dataURL);
 				}
 			});
-			
-			
-
+			function setWidthHeight(width, height){				
+				ctx.canvas.height = height;
+				ctx.canvas.width = width;
+				
+			}
+			function canvasDrawImage(img,x,y,w,h){
+				ctx.drawImage(img, x, y, w,h, 0, 0,w,h);
+				
+			}
 			
 			//var data=mycanvas[0].toDataURL();
 
