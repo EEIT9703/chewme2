@@ -19,7 +19,7 @@ pageEncoding="UTF-8"%>
         	<div class="input-group col-md-12">
             	<input type="text" class="search-query form-control" placeholder="Search" id="tags"/>
                 	<span class="input-group-btn">
-                		<button class="btn btn-info" type="button" id="button1">
+                		<button class="btn btn-info" type="submit" id="button1">
                 	<span class=" glyphicon glyphicon-search"></span>
                 		</button>
                 	</span>
@@ -46,7 +46,8 @@ pageEncoding="UTF-8"%>
   		console.log(i);
   		
   		$.getJSON("/CHEWME2/SearchServlet?action=getonesearch", {"searchone":i}, function(data){
-  			
+  			console.log("123");
+  			console.log(data);
   		})
   	})
   });
