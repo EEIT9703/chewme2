@@ -46,6 +46,7 @@ pageContext.setAttribute("all",a);
 
 body { padding-bottom: 100px; }
 
+/* header不要加 50px 以上body裡面的內容為bootstrap網站裡面的解決方法*/
 </style>
 
 <nav class="navbar navbar-default navbar-static-top">
@@ -69,15 +70,15 @@ body { padding-bottom: 100px; }
 		</div>
 		<div id="navbar-right" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav" style="margin-left: 50px">
-				<li><a href="/CHEWME2/index.jsp"><img src="<%=request.getContextPath()%>/image/gohome.png" width=40px height=30px >Home</a></li>
+				<li><a href="<%=request.getContextPath() %>/index.jsp"><img src="<%=request.getContextPath()%>/image/gohome.png" width=40px height=30px >Home</a></li>
 				<li ><a class="dropdown-toggle" data-toggle="dropdown" href="#"><img src="<%=request.getContextPath()%>/image/travel.png" width=40px height=30px >揪旅行<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="/CHEWME2/actEditor/editorScuedule.jsp">創行程</a></li>
-      					<li><a href="/CHEWME2/act/createAct2.jsp">揪新團</a></li>
+						<li><a href="<%=request.getContextPath() %>/actEditor/editorScuedule.jsp">創行程</a></li>
+      					<li><a href="<%=request.getContextPath() %>/act/createAct2.jsp">揪新團</a></li>
 					</ul>
 				</li>
-				<li><a href="/CHEWME2/club/createClub.do"><img src="<%=request.getContextPath()%>/image/finclub.png" width=40px height=30px >創社團</a></li>
-				<li><a href="/CHEWME2/club/findClub.do"><img src="<%=request.getContextPath()%>/image/createclub.png" width=40px height=30px >找社團</a></li>
+				<li><a href="<%=request.getContextPath() %>/club/createClub.do"><img src="<%=request.getContextPath()%>/image/finclub.png" width=40px height=30px >創社團</a></li>
+				<li><a href="<%=request.getContextPath() %>/club/findClub.do"><img src="<%=request.getContextPath()%>/image/createclub.png" width=40px height=30px >找社團</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
