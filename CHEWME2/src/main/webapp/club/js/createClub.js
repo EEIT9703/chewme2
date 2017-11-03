@@ -22,9 +22,9 @@ $(document).ready(
 			});
 			ias.update();			
 			
-			$("#uploadImage").change(function() {
-				
+			$("#uploadImage").change(function() {				
 				readImage(this);
+				$("#img-help-block").text("請截取圖片想要之部分");
 			});
 
 
@@ -47,20 +47,18 @@ $(document).ready(
 			}
 			
 			$('#img').imgAreaSelect({
-				aspectRatio : '350:200',
+				aspectRatio : '370:200',
 				handles : true,
 				x1 : 0,	y1 : 0, x2 : 0, y2 : 0,
-				onSelectEnd : function(img, selection) {
-					
-					console.log("in the imgAreaSelect");
+				onSelectEnd : function(img, selection) {					
 					image = $("#img")[0];
 					var height = selection.y2-selection.y1;
 					var width = selection.x2-selection.x1;
 					//ctx.clearRect(0, 0, mycanvas.width, mycanvas.height);
 					setWidthHeight(width,height)
 					canvasDrawImage(img,selection.x1,selection.y1,width,height);
-					dataURL = mycanvas[0].toDataURL();
-					console.log(dataURL);
+					dataURL = mycanvas[0].toDataURL('image/jpeg');
+					//console.log(dataURL);
 				}
 			});
 			function setWidthHeight(width, height){				
@@ -69,9 +67,15 @@ $(document).ready(
 				
 			}
 			function canvasDrawImage(img,x,y,w,h){
+
 				ctx.drawImage(img, x, y, w,h, 0, 0,w,h);
 				
 			}
+			$("#submit").on("click",function(){
+				$("#uploadImage").after("<textarea type='text' name='uploadImage' id='newImage'></textarea>").remove();
+				$('#newImage').val(dataURL);
+				$('#createClubForm').submit();
+			})
 			
 			//var data=mycanvas[0].toDataURL();
 

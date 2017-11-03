@@ -1,5 +1,6 @@
 package com.iii.eeit9703.club.model.hibernate.clubphoto;
 
+import java.io.InputStream;
 import java.sql.Blob;
 import java.util.List;
 import java.util.Set;
@@ -27,19 +28,20 @@ public class ClubPhotoHibernateDAO implements ClubPhotoDAOI {
 		}
 	}
 
+
 	@Override
 	public void update(ClubPhotoVO photoVO, InputStream is) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-			session.saveOrUpdate(photoVO);
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		}
-
+		// TODO Auto-generated method stub
+		
 	}
+
+
+	@Override
+	public List<ClubPhotoVO> getClubPhotoByClubId(Integer clubId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 	@Override
 	public void delete(Integer photoId) {
@@ -72,9 +74,9 @@ public class ClubPhotoHibernateDAO implements ClubPhotoDAOI {
 		return photoVO;
 	}
 
-	@Override
+
 	public List<ClubPhotoVO> getAll() {
-		List<ClubPhotoVO> list = null;
+/*		List<ClubPhotoVO> list = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
@@ -85,10 +87,11 @@ public class ClubPhotoHibernateDAO implements ClubPhotoDAOI {
 			session.getTransaction().rollback();
 			throw ex;
 		}
-		return list;
+		return list;*/
+		return null;
 	}
 
-	@Override
+
 	public Set<ClubPhotoVO> getMemberByDeptno(Integer photo_no) {
 		// TODO Auto-generated method stub
 		return null;

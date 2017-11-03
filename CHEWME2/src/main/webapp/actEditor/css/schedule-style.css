@@ -1,0 +1,9 @@
+
+h1{text-align: center;font-family: 'Arial','Microsoft JhengHei';}
+h2{text-align: center;font-family: 'Arial','Microsoft JhengHei';}
+span{color: #004B97;font-family: 'Arial','Microsoft JhengHei';font-size:25px;font-weight:bold;p}
+#name{font-family: 'Arial','Microsoft JhengHei';font-size:25px;font-weight:bold;padding-left:10px;}
+#tel{color: #9F5000;font-family: 'Arial','Microsoft JhengHei';font-size:20px;font-weight:bold;padding-left:10px;}
+#addr{font-family: 'Arial','Microsoft JhengHei';font-size:20px;font-weight:bold;padding-left:10px;}
+#intro{font-family: 'Arial','Microsoft JhengHei';font-size:15px;padding-left:10px;}
+#photo{padding:10px;vertical-align : middle;}

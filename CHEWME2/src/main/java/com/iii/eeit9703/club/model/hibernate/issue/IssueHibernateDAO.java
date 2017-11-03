@@ -72,13 +72,13 @@ public class IssueHibernateDAO implements IssueDAOI{
 	}
 
 	@Override
-	public void insert(IssueVO IssueVO) {
+	public int insert(IssueVO issueVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try{
 			session.beginTransaction();
-			session.saveOrUpdate(IssueVO);
+			session.saveOrUpdate(issueVO);
 			session.getTransaction().commit();
-				
+			return issueVO.getIssueId();
 		}catch(RuntimeException ex){
 			session.getTransaction().rollback();
 			throw ex;			

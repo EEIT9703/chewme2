@@ -164,6 +164,12 @@ public class ClubPhotoJDBCDAO implements ClubPhotoDAOI {
 	}
 
 	// �d�浧
+	
+	
+	public InputStream findPhotoById(Integer photoId){
+		
+		return null;
+	}
 	@Override
 	public ClubPhotoVO findByPrimaryKey(Integer photoId) {
 

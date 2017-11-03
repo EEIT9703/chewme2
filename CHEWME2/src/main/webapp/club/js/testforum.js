@@ -6,8 +6,7 @@ var thsIssue;
 
 $(document).ready(function() {
 	
-	getTemplates();
-	
+	getTemplates();	
 	initialForumPanel();
 	
 })

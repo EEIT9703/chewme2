@@ -23,7 +23,10 @@ public class GetImageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
+		res.setCharacterEncoding("UTF-8");
+		res.setHeader("content-type", "image/*;charset=UTF-8");
+		res.setContentType("text/plain;charset=ISO-8859-1");
+		
 		String id = req.getParameter("id");
 		String type = req.getParameter("type");
 		System.out.println("Start to get the image where  type is "+type+" id is "+id+"! " );
@@ -63,6 +66,7 @@ public class GetImageServlet extends HttpServlet {
 				byte[] bytes = new byte[8192];
 				
 				while ((count = is.read(bytes)) != -1) {
+					System.out.println(bytes);
 					os.write(bytes, 0, count);
 					
 				}

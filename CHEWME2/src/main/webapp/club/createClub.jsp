@@ -19,21 +19,21 @@
 
 	<div class="container" style="width: 50%">
 
-		<form name="createClub" action="createClub.do?action=create_club"
+		<form id="createClubForm"　name="createClub" action="createClub.do?action=create_club"
 			method="POST" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="exampleInputEmail1">社團名稱</label> <input type="text"
-					class="form-control" name="clubName" id="clubname" placeholder="名稱">
+					class="form-control" name="clubName" id="clubname" placeholder="名稱" >
 			</div>
 			<div class="form-group">
 				<label for="exampleInputPassword1">城市</label> <input type="text"
 					class="form-control" id="city" name="city"
-					placeholder="location">
+					placeholder="location" >
 			</div>
 			<div class="form-group">
 				<label for="exampleInputPassword1">住址</label> <input type="text"
 					class="form-control" id="address" name="address"
-					placeholder="address">
+					placeholder="address" >
 			</div>
 			<div class="form-group">
 				<label for="exampleInputPassword1">外部連結網址</label> <input type="url"
@@ -43,18 +43,18 @@
 			<div class="form-group">
 				<label for="exampleInputPassword1">聯絡信箱</label> <input type="email"
 					class="form-control" id="email" name="email"
-					placeholder="email-address">
+					placeholder="email-address" >
 			</div>
 			<div class="form-group">
 				<label for="exampleInputPassword1">簡述</label>
 				<textarea class="form-control" rows="5" id="brief" name="brief"
-					style="resize: none;" placeholder="本文會顯示在社團搜尋結果中"></textarea>
+					style="resize: none;" placeholder="本文會顯示在社團搜尋結果中" ></textarea>
 
 			</div>
 			<div class="form-group">
 				<label for="exampleInputFile">照片</label> <input accept="image/*" type="file"
-					id="uploadImage" name="uploadImage">
-				<p class="help-block">請輸入你的社團首頁圖片</p>
+					id="uploadImage" name="uploadImage" >
+				<p class="help-block" id="img-help-block">請輸入你的社團首頁圖片</p>
 <!-- 				<img id="img" src="" class="img-responsive" > -->
 				<img id="img" src="">
 			</div>
@@ -62,11 +62,11 @@
 
 			
 			<div class="checkbox">
-				<label> <input type="checkbox" name="checkbox"> 請同意合約內容
+				<label> <input type="checkbox" name="checkbox" > 請同意合約內容
 				</label>
 			</div>
-			<button type="submit" class="btn btn-default">送出</button>
 		</form>
+			<button class="btn btn-default" id="submit">送出</button>
 
 	</div>
 

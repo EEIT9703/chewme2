@@ -9,13 +9,14 @@
 <title>歡迎蒞臨${clubVOForView.clubName}</title>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/club/css/mystyle.css">
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap-adjust.min.css">
 
 </head>
 <body>
 
 	<header><%@ include file="../header.jsp"%></header>
 	<p hidden id="clubIdforView" value="">${clubVOForView.clubId}</p>
+	<p hidden id="reqContextPath" value=""><%=request.getContextPath() %></p>
+	
 	<div class="container">
 		<div id="carouselExampleControls" class="carousel slide"
 			data-ride="carousel">
@@ -24,7 +25,9 @@
 					<div class="row">
 						<div class="col-md-3"></div>
 						<div class="col-md-6" >
-							<img class="d-block w-100" src="<%=request.getContextPath() %>/getImageInChewme.do?type=clubPic&id=${clubVOForView.clubId}"
+<%-- 						<img class="d-block w-100" src="<%=request.getContextPath() %>/getImageInChewme.do?type=clubPic&id=${clubVOForView.clubId}"
+								alt="First slide" style="margin:auto;"> --%>
+							<img class="d-block w-100" src="" id=""
 								alt="First slide" style="margin:auto;">
 						</div>
 						<div class="col-md-3"></div>
