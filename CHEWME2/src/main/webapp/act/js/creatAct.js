@@ -114,7 +114,7 @@ $(document).ready(function() {
 			$('#act_current').val(data.act_current);
 			$('#BDate').val(data.BDate);
 			$('#EDate').val(data.EDate);
-			$('act_price').val(data.act_price)
+			$('#act_price').val(data.act_price)
 			$('#activity_state').val(data.activity_state);
 
 		});

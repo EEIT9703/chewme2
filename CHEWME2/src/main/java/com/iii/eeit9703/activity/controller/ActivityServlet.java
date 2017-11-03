@@ -182,7 +182,8 @@ public class ActivityServlet extends HttpServlet {
 				
 				//修改完成  準備轉交
 				req.setAttribute("activityVO", activityVO);  //資料庫update成功後 正確的activityVO 存入req
-				session.setAttribute("activityVO", activityVO);
+				session.setAttribute("actVO", activityVO);
+	
 				
 				RequestDispatcher view = req.getRequestDispatcher("createAct2.jsp");
 				view.forward(req,resp);
@@ -262,10 +263,11 @@ public class ActivityServlet extends HttpServlet {
 				actSvc.finalAct(activityVO);
 				
 				//修改完成  準備轉交
-				req.setAttribute("activityVO", activityVO);  //資料庫update成功後 正確的activityVO 存入req
+//				req.setAttribute("activityVO", activityVO);  //資料庫update成功後 正確的activityVO 存入req
 				session.setAttribute("activityVO", activityVO);
+
 				
-				RequestDispatcher view = req.getRequestDispatcher("createAct.jsp");
+				RequestDispatcher view = req.getRequestDispatcher("showAct.jsp");
 				view.forward(req,resp);
 				
 				

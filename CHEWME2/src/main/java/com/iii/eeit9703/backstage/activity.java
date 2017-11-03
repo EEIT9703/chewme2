@@ -125,6 +125,23 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 		
 					}
 				
+				 if("deleteCollection".equals(action)){
+					 
+					 	Integer ID = Integer.parseInt(request.getParameter("actID"));
+						MemVO memVO=(MemVO) session.getAttribute("LoginOK");
+						ActivityVO activityVO =new ActivityVO();
+						activityVO.setActID(ID);
+						CollectionVO collectionVO =new CollectionVO();
+						collectionVO.setMemVO(memVO);
+						collectionVO.setActivityVO(activityVO);
+						CollectionService ser =new CollectionService();
+						ser.delete(collectionVO);
+						
+//	            		   	JSONArray attrArrayList = new JSONArray(list);				
+//	        				out.print(attrArrayList.toString());
+						out.println();
+	               }
+				
 				
 				
 //			
@@ -169,6 +186,7 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 				//ActService ser= new ActService();
 				ActivityDAO_hibernate ser =new ActivityDAO_hibernate();
 				List<ActivityVO> attrList = (ArrayList<ActivityVO>)ser.getAll();
+				System.out.println(attrList.size());
 				List<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
 				HashMap<String,String> map = null;
 				for(ActivityVO act : attrList){

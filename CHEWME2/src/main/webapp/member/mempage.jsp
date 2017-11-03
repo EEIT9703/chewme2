@@ -47,7 +47,7 @@
 			</tr>
 		</table>
 	<input type="hidden" name="memId" value="${LoginOK.memId }">
-	<input type="button" value="修改" onclick="location.href='memeditor.jsp'">
+	<input type="button" value="修改" onclick="location.href='<%=request.getContextPath()%>/member/memeditor.jsp'">
 	</form>
 </body>
 </html>

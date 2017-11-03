@@ -16,15 +16,19 @@ import net.minidev.json.JSONValue;
 public class ActivityDAO_hibernate implements ActivityDAO_interface {
 
 	private static final String GET_ALL_STMT = "from ActivityVO order by actID";
-	
-	
+
+	@Override
+	public void finalAct(ActivityVO activityVO) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	@Override
 	public void update(ActivityVO activityVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			session.saveOrUpdate(activityVO	);
+			session.saveOrUpdate(activityVO);
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
@@ -70,7 +74,7 @@ public class ActivityDAO_hibernate implements ActivityDAO_interface {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			Query query = session.createQuery(GET_ALL_STMT);			
+			Query query = session.createQuery(GET_ALL_STMT);
 			list = query.list();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
@@ -79,13 +83,26 @@ public class ActivityDAO_hibernate implements ActivityDAO_interface {
 		}
 		return list;
 	}
-	
-	
+
 	public static void main(String[] args) {
-		 ActivityDAO_hibernate dao =new ActivityDAO_hibernate();
-		 List<ActivityVO> list=dao.getAll();
+		ActivityDAO_hibernate dao = new ActivityDAO_hibernate();
+		List<ActivityVO> list = dao.getAll();
 		// String jsonString =JSONValue.toJSONString(list);
-		 System.out.println(list.size());
+		System.out.println(list.size());
+	}
+
+	@Override
+	public void finalAct(ActivityVO activityVO) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+		try {
+			session.beginTransaction();
+			session.saveOrUpdate(activityVO);
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			session.getTransaction().rollback();
+			throw e ;
+		}
 	}
 
 }

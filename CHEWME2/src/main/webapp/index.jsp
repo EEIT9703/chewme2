@@ -18,12 +18,11 @@ pageEncoding="UTF-8"%>
  	overflow-x: hide; 
  	overflow: auto; 
  	max-height: 40vh; 
- 	width:300px 
+ 	width:298px 
  } 
  .cartrow { 
  	width: 100%; 
  	padding: 20px; 
- 	border-bottom: 1px solid #cccccc; 
  	margin: auto; 
  } 
   .close {  
@@ -242,7 +241,7 @@ ul, li {
 		<span><input type="button" class="inputCar" value="測試加入購物車"></span>
 		<span><input type="button" class="report" value="檢舉"></span>
 		</div>
-		
+		<button class="test" value="aa"></button>
 	</article>
 	<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
@@ -252,49 +251,57 @@ ul, li {
 
 <script>
 $(function(){
-	$.getJSON('<%=request.getContextPath()%>/activity?action=getMyCollection',{},snedActivity);
 	
-	function snedActivity(array){
+	loadActivity();
 
- 		var fg = $(document.createDocumentFragment());
- 		var opt = $(".cartrows");
- 			opt.empty();
-		var count=0;
- 		$.each(array,function(i,activity){
- 			var div_out=$("<div></div>").addClass('cartrow');
- 		
- 			var cell1=$("<div></div>").css("float","left");
- 			var img =$('<img>').attr({'src':'<%=request.getContextPath() %>/image/101.jpg','width':'50px','height':'50px'});
- 			
- 			
- 			var span1=$('<span></span>').text(activity.act_name)
- 			var button = $('<button id="opop"></button>').css('color','red').addClass('close glyphicon glyphicon-remove').attr({'type':'button','name':activity.act_name});
- 			var span2=$('<span></span>').append(button)			
- 			var cell2=$("<div></div>").append([span1,span2])	
- 			var cell3=$("<div></div>").text("$5888")
- 			
- 			cell1.append(img);
- 			div_out.append([cell1,cell2,cell3]);
- 			fg.append(div_out);
- 			count++;
- 		})
- 		$('.aaa').text(count);
- 		$('.cartrows').append(fg);
- 		
+	function loadActivity(){		
+		$.getJSON('<%=request.getContextPath()%>/activity?action=getMyCollection',{},function(array){
+	 		var fg = $(document.createDocumentFragment());
+	 		var opt = $(".cartrows");
+	 			opt.empty();
+			var count=0;
+	 		$.each(array,function(i,activity){
+	 			var div_out=$("<div></div>").addClass('cartrow');
+	 		
+	 			var cell1=$("<div></div>").css("float","left");
+	 			var img =$('<img>').attr({'src':'<%=request.getContextPath() %>/image/101.jpg','width':'50px','height':'50px'});
+	 			
+	 			
+	 			var span1=$('<span></span>').text(activity.act_name)
+	 			var button = $('<button id="opop"></button>').css('color','red').addClass('close glyphicon glyphicon-remove').attr({'type':'button','name':activity.actID});
+	 			var span2=$('<span></span>').append(button)			
+	 			var cell2=$("<div></div>").append([span1,span2])	
+	 			var cell3=$("<div></div>").text("$5888")
+	 			
+	 			cell1.append(img);
+	 			div_out.append([cell1,cell2,cell3]);
+	 			fg.append(div_out);
+	 			count++;
+	 		})
+	 		$('.aaa').text(count);
+	 		$('.cartrows').append(fg);
+	 		
+		})
+			
+			
 	}
+		
+
+	
+	$('.cartrows').on('click','button',function(){
+		var actID=$(this).attr('name');
+		
+		$.post('<%=request.getContextPath()%>/activity?action=deleteCollection',{"actID":actID},loadActivity);
 	
 	
-	$('#opop').click(function(){
-		
-				console.log('aa')
-		
 	})
 	
-	
+
 	
 	$('.inputCar').click(function(){
 		 var id = $(this).parents('div').attr('id');
 		 $.getJSON('<%=request.getContextPath()%>/activity?action=inputCar',{'ID':id},result);
+		
 			
 	})	
 	function result(array){	
@@ -304,6 +311,7 @@ $(function(){
 		}
 		else {		
 			alert(result.inputOK)
+			loadActivity();
 		}
 		})	
 		

@@ -114,7 +114,7 @@ body { padding-bottom: 100px; }
 <!-- 							</div>		 -->
 					</div>
 					<li role="presentation" class="divider"></li>
-					<li role="presentation" class="goshop"><input type="button" value="前往結帳" class="btn btn-primary" style="text-align:center"></li>	
+					<li role="presentation" class="goshop"><a href="<%= request.getContextPath() %>/backage/collection.jsp"><input type="button" value="前往結帳" class="btn btn-primary" style="text-align:center"></a></li>	
 				
 						</ul>
 					</div>
@@ -145,7 +145,7 @@ body { padding-bottom: 100px; }
 					</c:if></li>
 				<li><c:if test="${ ! empty LoginOK }">
 						<a class="nav-link"
-							href="<%=request.getContextPath()%>/member/mempage.jsp" a>${LoginOK.memberId }</a>
+							href="<%=request.getContextPath()%>/member/mempage.jsp" a>${LoginOK.memName }</a>
 						<%-- 							<img src='${LoginOK.memPhoto}'width=100px height=100px> --%>
 					</c:if></li>
 			</ul>
