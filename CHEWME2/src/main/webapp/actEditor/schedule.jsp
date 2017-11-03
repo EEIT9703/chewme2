@@ -9,19 +9,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="/CHEWME2/css/jquery-ui.min.css">
-<link rel="stylesheet" href="/CHEWME2/css/bootstrap.min.css">
-<link rel="stylesheet" href="/CHEWME2/css/vertical-timeline.css">
-<script src="/CHEWME2/js/jquery-3.2.1.min.js"></script>
-<script src="/CHEWME2/js/jquery-ui.min.js"></script>
-<script src="/CHEWME2/js/bootstrap.min.js"></script>
-<script src="/CHEWME2/js/vertical-timeline.js"></script>
-<script src="/CHEWME2/js/canvas2image.js"></script>
-<script src="/CHEWME2/js/html2canvas.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery-ui.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/vertical-timeline.css">
+<script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery-ui.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/vertical-timeline.js"></script>
+<script src="<%=request.getContextPath()%>/js/canvas2image.js"></script>
+<script src="<%=request.getContextPath()%>/js/html2canvas.js"></script>
 
 
 <!-- <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.0.0.js "></script> -->
-<script src="/CHEWME2/js/html2canvas.js"></script>
+<script src="<%=request.getContextPath()%>/js/html2canvas.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>行程表  ${actID}</title>
@@ -61,13 +61,13 @@ span{color: #004B97;font-family: 'Arial','Microsoft JhengHei';font-size:25px;fon
 
 window.onload = function(){
 	
-	$.get("/CHEWME2/Schedule.do?mission=getActName",{'actID':actID},function(actName){
+	$.get("<%=request.getContextPath()%>/Schedule.do?mission=getActName",{'actID':actID},function(actName){
 		console.log(actName);
 		$('#name').html(actName+"的行程明細");
 		name=actName;
 	});
 	
- 	$.getJSON("/CHEWME2/Schedule.do?mission=getTrip",{'actID':actID},showTimeLine);
+ 	$.getJSON("<%=request.getContextPath()%>/Schedule.do?mission=getTrip",{'actID':actID},showTimeLine);
 
 	function showTimeLine(array){
 
@@ -135,33 +135,17 @@ window.onload = function(){
 			
 			html2canvas($("#schedule"), {
 	        	onrendered: function(canvas) {
-	         		$("<img />", { src: canvas.toDataURL("image/png") }).appendTo($("#showSchedule"));
+	         	//	$("<img />", { src: canvas.toDataURL("image/png") }).appendTo($("#showSchedule"));
 	         	//document.body.appendChild(canvas); 
 	        	 var pic = canvas.toDataURL("image/png");
 	        	 console.log(pic);
-	        	 $.get("/CHEWME2/Schedule.do?mission=savePic",{'actID':actID,'pic':pic},function(){
+	        	 $.get("<%=request.getContextPath()%>/Schedule.do?mission=savePic",{'actID':actID,'pic':pic},function(){
 	        			console.log(name);
 	        			alert(name+"儲存成功!!\n請前往「揪新團」進行揪團功能");
 	        		});
 	        	}
 	      	});
 
-			
-/*	      matches = pic.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/), imageBuffer = {};
-	      if (matches.length !== 3) {
-	  			return new Error('無效的影像編碼');
-	  			}
-	   
-	      imageBuffer.type = matches[1];
-	      imageBuffer.data = new Buffer(matches[2], 'base64');
-	      
-	      require('fs').writeFile('/CHEWME2/src/main/webapp/image/'+actID, imageBuffer.data, function(err) {
-	  		if(err){
-	  			console.error(err);
-	  		}
-	  		console.log('file '+actID+' saved.')
-	  	});
-*/
 	    });
 	}
 </script>

@@ -23,7 +23,7 @@ import com.iii.eeit9703.crawler.model.AttrDAO;
 import com.iii.eeit9703.crawler.model.AttrService;
 import com.iii.eeit9703.crawler.model.AttrVO;
 
-// DataTable 查全部資料
+//  查全部資料，回傳給chosen.jsp，搜尋欄輸入關鍵字會顯示資料庫資料
 @WebServlet("/DataServlet")
 public class DataServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

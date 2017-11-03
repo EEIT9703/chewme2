@@ -195,7 +195,7 @@ ul, li {
 					<li class="nav-item"><a class="nav-link" id="profile-tab"
 						data-toggle="tab" href="#profile" role="tab"
 						aria-controls="profile">有趣經驗</a></li>
-					<li class="nav-item"><a  href="/CHEWME2/attractions/listAll.jsp" >旅遊景點</a></li>
+					<li class="nav-item"><a  href="/CHEWME2/attractions/chosen.jsp" >旅遊景點</a></li>
 					<li class="nav-item"><a class="nav-link" id="profile-tab"
 						data-toggle="tab" href="#profile" role="tab"
 						aria-controls="profile">關於我們</a></li>
@@ -212,6 +212,7 @@ ul, li {
 							<a class="dropdown-item" id="dropdown2-tab" href="#dropdown2"
 								role="tab" data-toggle="tab" aria-controls="dropdown2">@mdo</a>
 						</div></li>
+					
 				</ul>
 
 				<%-- 	<c:forEach var="activity" items=""> --%>

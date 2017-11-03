@@ -5,31 +5,31 @@
 <html lang="en">
 <head>
 <!-- jQuery CSS & JS -->
-<link rel="stylesheet" href="/CHEWME2/css/jquery-ui.min.css">
-<link rel="stylesheet" href="/CHEWME2/css/jquery-ui.structure.min.css">
-<link rel="stylesheet" href="/CHEWME2/css/jquery-ui.theme.min.css">
-<script src="/CHEWME2/js/jquery-3.2.1.min.js"></script>
-<script src="/CHEWME2/js/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery-ui.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery-ui.structure.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery-ui.theme.min.css">
+<script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery-ui.min.js"></script>
 
 <!-- <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script> -->
 
 
 <!-- Fullcalendar scheduler -->
-<link href='/CHEWME2/css/fullcalendar.css' rel='stylesheet' />
-<link href='/CHEWME2/css/scheduler.css' rel='stylesheet' />
-<script src='/CHEWME2/js/moment.min.js'></script>
-<!-- <script src='/CHEWME2/js/jquery.js'></script> -->
-<script src='/CHEWME2/js/fullcalendar.min.js'></script>
-<script src='/CHEWME2/js/scheduler.js'></script>
+<link href='<%=request.getContextPath()%>/css/fullcalendar.css' rel='stylesheet' />
+<link href='<%=request.getContextPath()%>/css/scheduler.css' rel='stylesheet' />
+<script src='<%=request.getContextPath()%>/js/moment.min.js'></script>
+<!-- <script src='<%=request.getContextPath()%>/js/jquery.js'></script> -->
+<script src='<%=request.getContextPath()%>/js/fullcalendar.min.js'></script>
+<script src='<%=request.getContextPath()%>/js/scheduler.js'></script>
 
 <!-- Bootstrap CSS & JS -->
-<!-- <link rel="stylesheet" href="/CHEWME2/css/bootstrap.css"> -->
-<link rel="stylesheet" href="/CHEWME2/css/bootstrap.min.css">
-<!-- <link rel="stylesheet" href="/CHEWME2/css/bootstrap-responsive.css"> -->
-<link rel="stylesheet" href="/CHEWME2/css/bootstrap-responsive.min.css">
-<script src="/CHEWME2/js/popper.min.js"></script>
-<!-- <script src="/CHEWME2/js/bootstrap.js"></script> -->
-<script src="/CHEWME2/js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.css"> -->
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap-responsive.css"> -->
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap-responsive.min.css">
+<script src="<%=request.getContextPath()%>/js/popper.min.js"></script>
+<!-- <script src="<%=request.getContextPath()%>/js/bootstrap.js"></script> -->
+<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 
 
 
@@ -38,7 +38,7 @@ b{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 p{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 select{width:150px;height:40px;font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
-.item{color:#FFFFE8;font-family: 'Arial','Microsoft JhengHei';font-weight:bold;padding:20px;height:50px;background-position:left bottom;background-repeat:no-repeat;}
+.item{font-family: 'Arial','Microsoft JhengHei';font-size:20px;font-weight:bold;line-height:300%;padding-left:60px;height:60px;background-repeat:no-repeat;}
 .detailItem{font-family: 'Arial','Microsoft JhengHei';font-size:17px;padding-left:10px;width:80px;}
 #detailName,#detailTel,#detailAdd,#detailType{font-family: 'Arial','Microsoft JhengHei';font-size:17px;padding:10px;}
 #detailIntro{font-family: 'Arial','Microsoft JhengHei';font-size:17px;padding:10px;}
@@ -53,7 +53,7 @@ option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 <body>
 <jsp:useBean id="dao" scope="page" class="com.iii.eeit9703.actEditor.model.CountryDAO"/>
 
-<FORM METHOD="post" ACTION="/CHEWME2/Calendar.do">
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Calendar.do">
 
 <header><%@include file="../header.jsp"%></header>
 <br>
@@ -61,9 +61,9 @@ option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 <div class="container-fluid">
 	<div class="row">
 		<!-- calendar顯示div處 -->
-		<div id='calendar' class='col-xs-7 col-sm-8 col-lg-7' style="padding:10"></div>
+		<div id='calendar' class='col-xs-7 col-sm-8 col-lg-7' style="padding:10;"></div>
 		<!-- 選擇器區塊 -->
-		<div class="col-xs-5 col-sm-4 col-lg-5" style="padding:10">
+		<div class="col-xs-5 col-sm-4 col-lg-5" style="padding:10;">
 			<br>
 			<b>行程名稱：</b> <input id="actName"><br><br>
 			<b>(1) 選擇縣市：</b>
@@ -145,14 +145,14 @@ window.onload = function(){
 	$("#country").change(function (){
 		var country = document.getElementById("country");
 //		alert("選擇縣市："+country.value);
-		$.getJSON('/CHEWME2/AreaServlet.do?mission=getCountry',{'country':country.value},sendCounty);
-		$.getJSON('/CHEWME2/AreaServlet.do?mission=getCountryAttr',{'country':country.value},sendAttraction);		
+		$.getJSON("<%=request.getContextPath()%>/AreaServlet.do?mission=getCountry",{'country':country.value},sendCounty);
+		$.getJSON("<%=request.getContextPath()%>/AreaServlet.do?mission=getCountryAttr",{'country':country.value},sendAttraction);		
 	});
 	
 	$("#county").change(function (){
 		var county = document.getElementById("county");
 //		alert("選擇區域："+county.value);
-		$.getJSON('/CHEWME2/AreaServlet.do?mission=getCounty',{'county':county.value},sendAttraction);
+		$.getJSON("<%=request.getContextPath()%>/AreaServlet.do?mission=getCounty",{'county':county.value},sendAttraction);
 	});	
 	
 	function sendCounty(array){
@@ -190,7 +190,8 @@ window.onload = function(){
 				if(type[0].match(dataArray[k].type)){
 					attr.append(item);
 					console.log(array[k].name);
-					$('#attr>div').css("background-image","url('../image/trip_tab.png')");
+					$('#attr>div').css("background-image","url('../image/trip.png')");
+					$('#attr>div').css("color","#007500");
 					$('#attr>div').draggable();
 					$('#attr>div').attr("data-toggle","modal");
 					$('#attr>div').attr("data-target","#detail");
@@ -207,7 +208,8 @@ window.onload = function(){
 				}
 				else if(type[1].match(dataArray[k].type)){
 					rest.append(item);
-					$('#rest>div').css("background-image","url('../image/rest_tab.png')");
+					$('#rest>div').css("background-image","url('../image/rest.png')");
+					$('#rest>div').css("color","#0000C6");
 					$('#rest>div').draggable();
 					$('#rest>div').attr("data-toggle","modal");
 					$('#rest>div').attr("data-target","#detail");
@@ -224,7 +226,8 @@ window.onload = function(){
 				}
 				else if(type[2].match(dataArray[k].type)){
 					stay.append(item);
-					$('#stay>div').css("background-image","url('../image/stay_tab.png')");
+					$('#stay>div').css("background-image","url('../image/stay.png')");
+					$('#stay>div').css("color","#EAC100");
 					$('#stay>div').draggable();
 					$('#stay>div').attr("data-toggle","modal");
 					$('#stay>div').attr("data-target","#detail");
@@ -319,7 +322,7 @@ $(function() {
     				var eventData = {attractionID:attractionID,dayNo:dayNo,period:period};
     				eventObject.push(eventData);
     			
-    				$.post('/CHEWME2/Calendar.do?mission=insertSCH',{"events":JSON.stringify(eventObject)},function(scheduleID){
+    				$.post('<%=request.getContextPath()%>/Calendar.do?mission=insertSCH',{"events":JSON.stringify(eventObject)},function(scheduleID){
         				console.log(scheduleID);
         				schID.push(scheduleID);
         				console.log(schID);
@@ -338,7 +341,7 @@ $(function() {
         	var eventData = {attractionID:attractionID,period:period};
         	eventObject.push(eventData);
         			
-    		$.post('/CHEWME2/Calendar.do?mission=updateSCH',{"events":JSON.stringify(eventObject)},function(scheduleID){
+    		$.post('<%=request.getContextPath()%>/Calendar.do?mission=updateSCH',{"events":JSON.stringify(eventObject)},function(scheduleID){
         			console.log(period);
         	});
 				
@@ -356,7 +359,7 @@ $(function() {
 			console.log(schID);
 			$('#calendar').fullCalendar('removeEvents',eventID);
 			alert("id=" + eventID);
-			$.post('/CHEWME2/Calendar.do?mission=deleteSCH',{"eventID":eventID});		
+			$.post('<%=request.getContextPath()%>/Calendar.do?mission=deleteSCH',{"eventID":eventID});		
 
 			
 		},
@@ -389,7 +392,7 @@ $(function() {
 		            	$('#calendar').fullCalendar('removeEvents');
 		            	for(var i=0;i<schID.length;i++){
 		    				console.log(schID[i]);				    				
-		            		$.post('/CHEWME2/Calendar.do?mission=deleteAll',{"eventID":schID[i]},function(scheduleID){
+		            		$.post('<%=request.getContextPath()%>/Calendar.do?mission=deleteAll',{"eventID":schID[i]},function(scheduleID){
 		    				schID.splice(i,1);
 		    				});
 		            	}
@@ -402,11 +405,11 @@ $(function() {
 			    			alert("請輸入行程名稱!!");
 			    		}else{
 			    			var actName = $('#actName').val();
-			    			$.post('/CHEWME2/Calendar.do?mission=insertACT',{actName:actName},function(actID){
+			    			$.post('<%=request.getContextPath()%>/Calendar.do?mission=insertACT',{actName:actName},function(actID){
 			    				activityID = actID
 			    				for(var i=0;i<schID.length;i++){
 			    					console.log(actID+";"+schID[i]);
-			    					$.post('/CHEWME2/Calendar.do?mission=updateSCH2',{"actID":actID,"schID":schID[i]},function(){
+			    					$.post('<%=request.getContextPath()%>/Calendar.do?mission=updateSCH2',{"actID":actID,"schID":schID[i]},function(){
 			    						console.log(schID+"歸入"+actID);
 			    					});
 			    						$('#activityID').attr("value",actID);

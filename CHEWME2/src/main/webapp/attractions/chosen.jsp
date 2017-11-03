@@ -13,16 +13,31 @@ pageEncoding="UTF-8"%>
   <script src="../js/bootstrap.min.js"></script>  
 </head>
 <body>
+<header><%@include file="../header.jsp"%></header>
  <div class="container">
 	<div class="row">		
     	<div id="custom-search-input">
         	<div class="input-group col-md-12">
-            	<input type="text" class="search-query form-control" placeholder="Search" id="tags"/>
-                	<span class="input-group-btn">
+        	<form method="get" action="SearchServlet">
+        	<table>
+        	<tr>
+        		<td>
+            		<input type="text" class="search-query form-control" placeholder="Search" id="tags" name="tags"/> 
+            	</td>
+            	<td>               	
+<!--                 	<span class="input-group-btn"> -->
                 		<button class="btn btn-info" type="submit" id="button1">
-                	<span class=" glyphicon glyphicon-search"></span>
+                			<span class=" glyphicon glyphicon-search"></span>
                 		</button>
-                	</span>
+<!--                 	</span>                	 -->
+                	<input type="hidden" name="action" value="search">
+            	</td>   
+            	<td>
+            		<a href="listAll.jsp" class="btn btn-primary">全部列表</a>
+            	</td> 	
+            </tr>    
+            </table>
+            </form>    	
            </div>
        </div>
 	</div>
@@ -31,24 +46,22 @@ pageEncoding="UTF-8"%>
   $( function() {    
 	  
     var datas = [];
+    // 呼叫servlet的getALL方法，回傳全部資料
 	$.getJSON("/CHEWME2/DataServlet", {}, function(data){
 		for(i = 0; i < data.length; i ++){			
-			datas.push(data[i].name);
+			datas.push(data[i].name);   // 取得全部資料的name屬性，放入datas陣列			
 		}		
+		console.log(datas);
+		console.log(data);
 	})    
-    console.log(datas);
-    $( "#tags" ).autocomplete({
+    
+    $("#tags").autocomplete({
       source: datas
     });
     
   	$("#button1").click(function(){
   		var i = $("#tags").val();
   		console.log(i);
-  		
-  		$.getJSON("/CHEWME2/SearchServlet?action=getonesearch", {"searchone":i}, function(data){
-  			console.log("123");
-  			console.log(data);
-  		})
   	})
   });
   </script>
