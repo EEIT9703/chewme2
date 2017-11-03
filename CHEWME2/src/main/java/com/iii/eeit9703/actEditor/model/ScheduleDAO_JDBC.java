@@ -23,6 +23,8 @@ public class ScheduleDAO_JDBC {
 	private static final String SELECTSCHEDULES= "SELECT TOP(1)scheduleID from schedules where attractionID=? and actID is null";
 	private static final String UPDATESCHEDULES= "UPDATE TOP(1)schedules set period=? WHERE attractionID=? and actID is null";
 	private static final String UPDATESCHEDULES2= "UPDATE schedules set actID=? WHERE scheduleID=? and actID is null";
+	private static final String DELETESCHEDULES= "UPDATE schedules set actID=0 WHERE attractionID=? and actID is null";
+	private static final String DELETEALL= "UPDATE schedules set actID=0 WHERE scheduleID=? and actID is null";
 		
 	Connection con = null;
 	PreparedStatement pstmt = null;
@@ -261,6 +263,91 @@ public class ScheduleDAO_JDBC {
 		}
 	}
 	
+	public void deleteSCH(Integer attrID) {
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(DELETESCHEDULES);
+			
+			pstmt.setInt(1, attrID);
+			pstmt.executeUpdate();
+			
+			System.out.println("attrID="+attrID);
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	public void deleteAll(Integer schID) {
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(DELETEALL);
+			
+			pstmt.setInt(1, schID);
+			pstmt.executeUpdate();
+			
+			System.out.println("schID="+schID);
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	
 	public static void main(String[] args) {
 		
 		ScheduleDAO_JDBC aDao = new ScheduleDAO_JDBC();
@@ -275,13 +362,17 @@ public class ScheduleDAO_JDBC {
 		}
 */		
 		//新增行程明細
-		testVO.setAttractionID(15);
+/*	testVO.setAttractionID(15);
 		testVO.setDayNo(1);
 		testVO.setPeriod("09:00");
 		
 		Integer scheduleID=aDao.insertSCH(testVO);
 		System.out.println(scheduleID);
+*/	
 		
+		//刪除單筆明細
+		aDao.deleteSCH(8);
+		aDao.deleteAll(18);
 
 	}
 

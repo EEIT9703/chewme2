@@ -80,6 +80,7 @@ input[type = "file"]{
 						<option>嘉義縣</option>
 						<option>台南市</option>
 						<option>高雄市</option>
+						<option>屏東縣</option>
 						<option>宜蘭縣</option>
 						<option>花蓮縣</option>
 						<option>台東縣</option>
@@ -121,7 +122,7 @@ input[type = "file"]{
             	<i class="fa fa-folder-open-o"></i> 上傳圖片
                 </label>  
 			</div>			
-			<div>
+			<div>				
 				<tr>
 					<td>
 						<div class="checkbox"></div>
@@ -129,20 +130,33 @@ input[type = "file"]{
 						type="hidden" name="action" value="insert">
 					</td>
 					<td><a href="listAll.jsp" class="btn btn-primary">返回列表</a></td>
-				</tr>
-			</div>
+				</tr>	
+			</div>				
+				<img id="img" src="" class="img-responsive" width="300" height="300">						
 		</form>
 	</div>
 	<script src="/CHEWME2/js/jquery-3.2.1.min.js"></script>	
 	<script>
-	$(function(){		
-// 		$("#name").blur(function(){
-// 			var a = jQuery("#name").val();
-// 			//alert(a);			
-// 			if(a == ""){
-// 				$("#errarea").text("名稱欄位請勿空白！");				
-// 			}			
-// 		})		
+	$(function(){
+		// 預覽圖片
+		$("#inputfile").change(function() {
+			
+			readImage(this);
+		});
+
+		function readImage(input) {
+			if (input.files && input.files[0]) {
+				var file = input.files[0];
+				var FR = new FileReader();
+				FR.onload = function(e) {
+					// e.target.result = base64 format picture
+					$('#img ').attr("src", e.target.result);        
+					var url = e.target.result;
+					
+				};
+				FR.readAsDataURL(input.files[0]);
+			}
+		}
 	})
 	</script>
 	<script src="../js/jquery.min.js"></script>

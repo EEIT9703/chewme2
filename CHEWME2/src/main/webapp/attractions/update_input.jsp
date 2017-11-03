@@ -54,6 +54,10 @@
 						<option>嘉義縣</option>
 						<option>台南市</option>
 						<option>高雄市</option>
+						<option>屏東縣</option>
+						<option>宜蘭縣</option>
+						<option>花蓮縣</option>
+						<option>台東縣</option>
 				</select>
 				</span> <span> <span style="margin-left: 10px;">類型</span> <select
 					name="type" class="selectpicker">
