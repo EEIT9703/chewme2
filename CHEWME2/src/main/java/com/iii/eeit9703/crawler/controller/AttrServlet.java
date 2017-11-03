@@ -64,6 +64,8 @@ public class AttrServlet extends HttpServlet {
 					System.out.println(filepart.getSize());
 					System.out.println(filepart.getContentType());
 					inputStream = filepart.getInputStream();
+				}else{
+					error.put("imageerror", "請上傳圖片");
 				}
 				
 				AttrVO attrVO = new AttrVO();

@@ -121,7 +121,8 @@ input[type = "file"]{
                 <input id="inputfile" name="photo" style="display:none;" type="file" value="upload_photo">
             	<i class="fa fa-folder-open-o"></i> 上傳圖片
                 </label>  
-			</div>			
+			</div>	
+			<div id="errarea"><small>${error.imageerror}</small></div>		
 			<div>				
 				<tr>
 					<td>
@@ -156,7 +157,7 @@ input[type = "file"]{
 				};
 				FR.readAsDataURL(input.files[0]);
 			}
-		}
+		}      // 預覽圖片結束
 	})
 	</script>
 	<script src="../js/jquery.min.js"></script>

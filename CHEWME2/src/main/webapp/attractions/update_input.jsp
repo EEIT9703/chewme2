@@ -100,12 +100,36 @@
 						<button type="submit" class="btn btn-default">送出</button>
 						<input type="hidden" name="attractionID" value="${attrVO.attractionID}"> 
 						<input type="hidden" name="action" value="update">
-					</td>					
-					
+					</td>						
 				</tr>
 			</div>
+				<img id="img" src="" class="img-responsive" width="300" height="300">
 		</form>
 	</div>
+	<script src="/CHEWME2/js/jquery-3.2.1.min.js"></script>
+	<script>
+	$(function(){
+		// 預覽圖片
+		$("#inputfile").change(function() {
+			
+			readImage(this);
+		});
+
+		function readImage(input) {
+			if (input.files && input.files[0]) {
+				var file = input.files[0];
+				var FR = new FileReader();
+				FR.onload = function(e) {
+					// e.target.result = base64 format picture
+					$('#img ').attr("src", e.target.result);        
+					var url = e.target.result;
+					
+				};
+				FR.readAsDataURL(input.files[0]);
+			}
+		}      // 預覽圖片結束
+	})
+	</script>
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
