@@ -30,12 +30,12 @@ function loadIssues() {
 	$(".well").css("height", "15px");
 }
 function initialForumPanel(){
-	var theIssues = $("#theIssuesDiv");
+	var theIssues = $("#theForumDiv");
 	theIssues.prepend(issueTemplate);
 	loadIssues();
 }
 function insertIssue(issueVO) {
-	var issuesDiv = $("#theIssuesDiv");
+	var issuesDiv = $("#theForumDiv");
 	issuesDiv.append(issueTemplate);
 	issuesDiv.find('div[class="panel panel-default"]:last').attr("id",
 			"issueId_" + issueVO.issueId).find(".panel-title").text(
@@ -87,13 +87,13 @@ function sendContent(button) {
 	});
 }
 function getTemplates() {
-	$.get("_issueTemplate.jsp", {}, function(data) {
+	$.get("/CHEWME2/com-resource/_issueTemplate.jsp", {}, function(data) {
 		console.log(issueTemplate = data);
 	})
-	$.get("_viewCommentTemplate.jsp", {}, function(data) {
+	$.get("/CHEWME2/com-resource/_viewCommentTemplate.jsp", {}, function(data) {
 		console.log(viewCommentTemplate = data);
 	})
-	$.get("_commentTemplate.jsp", {}, function(data) {
+	$.get("/CHEWME2/com-resource/_commentTemplate.jsp", {}, function(data) {
 		console.log(commentBoxTemplate = data);
 	})
 }
