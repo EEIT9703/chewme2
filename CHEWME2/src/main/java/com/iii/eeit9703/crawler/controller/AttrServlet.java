@@ -57,14 +57,15 @@ public class AttrServlet extends HttpServlet {
 				if (intro == null || intro.trim().length() == 0) {
 					error.put("introerror", "簡介欄位不得空白");
 				}
-				Part filepart = req.getPart("photo");
+				Part filepart = req.getPart("photo");				
 				
 				if (filepart != null) {
+					
 					System.out.println(filepart.getName());
 					System.out.println(filepart.getSize());
 					System.out.println(filepart.getContentType());
 					inputStream = filepart.getInputStream();
-				}else{
+				}else {
 					error.put("imageerror", "請上傳圖片");
 				}
 				
@@ -75,7 +76,7 @@ public class AttrServlet extends HttpServlet {
 				attrVO.setAddress(address);
 				attrVO.setTel(tel);
 				attrVO.setIntro(intro);
-				attrVO.setImage(inputStream);
+				attrVO.setImage(inputStream);				
 				req.setAttribute("attrVO", attrVO);
 				
 				if (!error.isEmpty()) {					
@@ -83,10 +84,11 @@ public class AttrServlet extends HttpServlet {
 					failure.forward(req, res);
 					return;
 				}
-
 				AttrService attr1 = new AttrService();
-				attrVO = attr1.addAttr(name, county, type, address, tel, intro, inputStream);
-
+				attrVO = attr1.addAttr(name, county, type, address, tel, intro, inputStream);	
+				
+//				session.setAttribute("attrVO", attrVO);
+				
 				RequestDispatcher view = req.getRequestDispatcher("showView.jsp");
 				view.forward(req, res);
 
