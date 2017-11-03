@@ -135,15 +135,11 @@ window.onload = function(){
 	        	onrendered: function(canvas) {
 	         		$("<img />", { src: canvas.toDataURL("image/png") }).appendTo($("#showSchedule"));
 	         	//document.body.appendChild(canvas); 
-	        	 pic = canvas.toDataURL("image/png");
+	        	 var pic = canvas.toDataURL("image/png");
+	        	 console.log(pic);
 	        	}
 	      	});
-			//存圖檔未完成
-	      	console.log(window.pic);
-			var link = document.createElement('a');
-			link.download = "test.png";
-			link.href = pic.replace("image/png", "image/octet-stream");;
-			link.click();
+
 			
 /*	      matches = pic.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/), imageBuffer = {};
 	      if (matches.length !== 3) {

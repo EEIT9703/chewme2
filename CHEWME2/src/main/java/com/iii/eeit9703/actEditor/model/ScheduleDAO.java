@@ -33,6 +33,8 @@ public class ScheduleDAO {
 	private static final String SELECTSCHEDULES= "SELECT TOP(1)scheduleID from schedules where attractionID=? and actID is null";
 	private static final String UPDATESCHEDULES= "UPDATE TOP(1)schedules set period=? WHERE attractionID=? and actID is null";
 	private static final String UPDATESCHEDULES2= "UPDATE schedules set actID=? WHERE scheduleID=? and actID is null";
+	private static final String DELETESCHEDULES= "UPDATE schedules set actID=0 WHERE attractionID=? and actID is null";
+	private static final String DELETEALL= "UPDATE schedules set actID=0 WHERE scheduleID=? and actID is null";
 		
 	Connection con = null;
 	PreparedStatement pstmt = null;
@@ -252,29 +254,79 @@ public class ScheduleDAO {
 			}
 		}
 	}
-	
-	public static void main(String[] args) {
-		
-		ScheduleDAO aDao = new ScheduleDAO();
-		ScheduleVO testVO = new ScheduleVO();
-		
-		//新增行程後查詢
-/*		List<ActivityVO> list = aDao.insertACT("花蓮一日遊");
-		for(ActivityVO act : list){
-			System.out.print(act.getActID()+",");
-			testVO.setActID(act.getActID());
-			System.out.println(act.getAct_name());
+	public void deleteSCH(Integer attrID) {
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(DELETESCHEDULES);
+			
+			pstmt.setInt(1, attrID);
+			pstmt.executeUpdate();
+			
+			System.out.println("attrID="+attrID);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
-*/		
-		//新增行程明細
-		testVO.setAttractionID(15);
-		testVO.setDayNo(1);
-		testVO.setPeriod("09:00");
-		
-		Integer scheduleID=aDao.insertSCH(testVO);
-		System.out.println(scheduleID);
-		
-
 	}
+	
+	public void deleteAll(Integer schID) {
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(DELETEALL);
+			
+			pstmt.setInt(1, schID);
+			pstmt.executeUpdate();
+			
+			System.out.println("schID="+schID);
 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 }
