@@ -14,8 +14,11 @@
         <property name="act_current" column="act_current" />
         <property name="BDate" column="BDate" />
         <property name="EDate" column="EDate" />
+        <property name="act_price" column="act_price"></property>
+        <property name="act_news" column="act_news"></property>
+        <property name="act_photo" column="act_photo"></property>
         <property name="activity_state" column="activity_state" /> 
-<!--        <property name="clubID" column="clubID" />      宏宇的部分 我沒做mapping -->
+<!--    <property name="clubID" column="clubID" />      宏宇的部分 我沒做mapping -->
 
 		<!-- 很多活動屬於一個會員 -->
   		<many-to-one name="memVO" class="com.iii.eeit9703.member.model.MemVO" lazy="false">
@@ -23,7 +26,7 @@
         </many-to-one>
 
 
-<!--         收藏表  一方的mapping -->
+       <!-- 收藏表  一方的mapping -->
        <set name="Collects" table="collect" lazy="false" cascade="all"  inverse="true" >			
 			<key>
 				<column name="actID" />

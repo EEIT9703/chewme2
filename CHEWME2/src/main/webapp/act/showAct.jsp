@@ -107,7 +107,8 @@
 
 	
 	<jsp:useBean id="actSvc" scope="page" class="com.iii.eeit9703.activity.model.ActService" />
-   <input type="hidden" value="${actVO.actID}">
+<input type="hidden" value="${actVO.actID}" >
+<input type="hidden" value="${activityVO.actID}" >
 	<div class="container">
 		<div class="jumbotron">
 			<div class="row clearfix">
@@ -128,13 +129,13 @@
                             </ol>
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img class="slide-image" src="data:image/png;base64,${actVO.act_photo}" id="" alt="">
+                                    <img class="slide-image" src="data:image/png;base64,${activityVO.act_photo}" id="" alt="">
                                 </div>
                                 <div class="item">
-                                    <img class="slide-image" src="data:image/png;base64,${actVO.act_photo}" alt="">
+                                    <img class="slide-image" src="data:image/png;base64,${activityVO.act_photo}" alt="">
                                 </div>
                                 <div class="item">
-                                    <img class="slide-image" src="data:image/png;base64,${actVO.act_photo}" alt="">
+                                    <img class="slide-image" src="data:image/png;base64,${activityVO.act_photo}" alt="">
                                 </div>
                             </div>
                             <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
@@ -150,13 +151,13 @@
                     <h2>行程介紹</h2>
                 </div>
                 <div class="item-desc">
-                    <p class="text-muted">${actVO.act_news}</p>
+                    <p class="text-muted">${activityVO.act_news}</p>
                 </div>
             </div>
             <div style="height:40px"></div>
             <form class="col-md-6" method="post" role="form" enctype="multipart/form-data">               
+               
                 <div class="date-time row">
-
                     <div class="form-group col-md-6">
                  <div class="form-group">
                     <label for="destination">成團人數:${actVO.act_groups}</label>
@@ -167,7 +168,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="destination">旅程時間:${actVO.BDate}-${activityVO.EDate}</label>
+                    <label for="destination">旅程時間:${actVO.BDate}-${actVO.EDate}</label>
                 </div>
                 
                 <div class="form-group">
@@ -175,7 +176,7 @@
                 </div>
                     </div>
                     </div>
-                <div class="btn-group btn-group-justified" >
+                <div class="btn-group btn-group-justified">
                     <a href="#" class="btn btn-default">參加行程</a>
                     <a href="#" class="btn btn-default"><i class="fa fa-heart-o" aria-hidden="true" style="color:red;"></i> 加入我的收藏</a>
                 </div>               
@@ -195,21 +196,7 @@
                     </div>
                 </div>
                 <!-- Tabs --->
-
-                <textarea id="summernote" name="act_news" >請輸入行程</textarea>
-                
-                
-                <div class="img"><img  id="img" src="" class="img-responsive"></div>
-						<div class="form-group">					    
-							<label class="btn btn-info" for="upload"> 
-							<input id="upload" name="upload" style="display: none;" type="file">
-							<i class="fa fa-folder-open-o"></i> 上傳圖片								
-							</label>
-						</div>
-                        <div class="form-group" style="float:right;"></div>
-						<button type="submit" class="btn btn-lg btn-primary" id="submit">送出</button>
-						<input type="hidden" value="${actVO.actID}" name="actID">
-						<input type="hidden" name="action" value="Final">          
+                                        
             </form>
         </div>
     </div>
