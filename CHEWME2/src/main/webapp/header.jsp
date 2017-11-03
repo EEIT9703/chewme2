@@ -77,7 +77,7 @@ body { padding-bottom: 100px; }
 				<li ><a class="dropdown-toggle" data-toggle="dropdown" href="#"><img src="<%=request.getContextPath()%>/image/travel.png" width=40px height=30px >揪旅行<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="<%=request.getContextPath() %>/actEditor/editorScuedule.jsp">創行程</a></li>
-      					<li><a href="<%=request.getContextPath() %>/act/createAct2.jsp">揪新團</a></li>
+      					<li><a href="<%=request.getContextPath() %>/act/createAct.jsp">揪新團</a></li>
 					</ul>
 				</li>
 				<li><a href="<%=request.getContextPath() %>/club/createClub.do"><img src="<%=request.getContextPath()%>/image/finclub.png" width=40px height=30px >創社團</a></li>
