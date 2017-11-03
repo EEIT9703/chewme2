@@ -54,6 +54,7 @@ span{color: #004B97;font-family: 'Arial','Microsoft JhengHei';font-size:25px;fon
 </div>
 <script>
 	var actID=${actID};
+	var name=null;
  	$('#vt1').verticalTimeline();
  	$('#vt2').verticalTimeline();
  	$('#vt3').verticalTimeline();
@@ -63,6 +64,7 @@ window.onload = function(){
 	$.get("/CHEWME2/Schedule.do?mission=getActName",{'actID':actID},function(actName){
 		console.log(actName);
 		$('#name').html(actName+"的行程明細");
+		name=actName;
 	});
 	
  	$.getJSON("/CHEWME2/Schedule.do?mission=getTrip",{'actID':actID},showTimeLine);
@@ -137,6 +139,10 @@ window.onload = function(){
 	         	//document.body.appendChild(canvas); 
 	        	 var pic = canvas.toDataURL("image/png");
 	        	 console.log(pic);
+	        	 $.get("/CHEWME2/Schedule.do?mission=savePic",{'actID':actID,'pic':pic},function(){
+	        			console.log(name);
+	        			alert(name+"儲存成功!!\n請前往「揪新團」進行揪團功能");
+	        		});
 	        	}
 	      	});
 

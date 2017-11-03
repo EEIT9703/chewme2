@@ -32,6 +32,7 @@ public class ActivityDAO {
 	
 	private static final String SelectAttraction = "select * from schedules S join attractions A on S.attractionID=A.attractionID where actID=? order by dayNo, period";
 	private static final String SelectActivity = "SELECT  act_name  FROM activity WHERE actID = ? ";
+	private static final String SavePicture = "UPDATE activity set sch_photo=? WHERE  actID = ?";
 		
 	Connection con = null;
 	PreparedStatement pstmt = null;
@@ -177,6 +178,37 @@ public class ActivityDAO {
 			}
 			return list;
 		}
+		
+		//由actID儲存行程表
+				public void savePicture(Integer actID,String pic){
+
+					try {
+						
+						con = ds.getConnection();
+						pstmt = con.prepareStatement(SavePicture);
+						
+						pstmt.setString(1, pic);
+						pstmt.setInt(2, actID);
+						pstmt.executeUpdate();
+						
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}finally{
+						if(rs != null){
+							try {rs.close();} 
+							catch (SQLException e) {e.printStackTrace();}
+						}
+						if(pstmt != null){
+							try {pstmt.close();} 
+							catch (SQLException e) {e.printStackTrace();}
+						}
+						if(con != null){
+							try {con.close();} 
+							catch (SQLException e) {e.printStackTrace();}
+						}
+					}
+				}
 	
 	
 	
