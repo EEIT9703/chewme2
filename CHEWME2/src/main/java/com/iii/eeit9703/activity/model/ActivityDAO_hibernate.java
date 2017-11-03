@@ -18,6 +18,12 @@ public class ActivityDAO_hibernate implements ActivityDAO_interface {
 	private static final String GET_ALL_STMT = "from ActivityVO order by actID";
 
 	@Override
+	public void finalAct(ActivityVO activityVO) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
 	public void update(ActivityVO activityVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {

@@ -84,14 +84,20 @@ ul.list___3xuJM {
 .sidebar___2Ft6w {
 	margin:20px 0px 0px 100px;
     width: 1150px;
+    max-height:650px;
     min-height:650px;
-    height: inherit;
+/*     height: inherit; */
     border-right: 1px solid #a4a3a4;
     -webkit-box-shadow: 2px 5px 10px #909090;
     -moz-box-shadow: 2px 5px 10px #909090;
     box-shadow: 2px 5px 10px #909090;
+    overflow-x: hide; 
+ 	overflow: auto; 
+ 		
   
 }
+
+
 
 .sidebar___2Ft5w ul.list___3xuJM li.item___2dDze {
     padding: 16px 0 16px 26px;
@@ -191,14 +197,14 @@ margin:0px 80px 30px 0px;
 				</div>
 			</div>
 		</div>
-		<div class="col-md-9 column">					
-				<div id="cc" class="sidebar___2Ft6w">
+						
+				<div id="cc" class="sidebar___2Ft6w col-md-8 column ">
 				
 				
 				
 				</div>		
   				
-		</div>
+		
 	
 </div>
 	
@@ -269,21 +275,21 @@ $(function(){
 		
 		
 		
-		$("#cc").wrecker({
-			  itemSelector : ".item",
-			  maxColumns : 4
-			});
-		$("#cc").wrecker({
-			  itemSelector : ".item",
-			  maxColumns : 4,
-			  responsiveColumns : [
-			    // windowMaxWidth : columns
-			    // windowMaxWidth order and values should match those in your responsive CSS
-			    {1024 : 3},
-			    {800  : 2},
-			    {640  : 1}
-			  ]
-			});
+// 		$("#cc").wrecker({
+// 			  itemSelector : ".item",
+// 			  maxColumns : 4
+// 			});
+// 		$("#cc").wrecker({
+// 			  itemSelector : ".item",
+// 			  maxColumns : 4,
+// 			  responsiveColumns : [
+// 			    // windowMaxWidth : columns
+// 			    // windowMaxWidth order and values should match those in your responsive CSS
+// 			    {1024 : 3},
+// 			    {800  : 2},
+// 			    {640  : 1}
+// 			  ]
+// 			});
 				
    })
 </script>

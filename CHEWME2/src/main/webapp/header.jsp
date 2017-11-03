@@ -77,7 +77,7 @@ body { padding-bottom: 100px; }
 				<li ><a class="dropdown-toggle" data-toggle="dropdown" href="#"><img src="<%=request.getContextPath()%>/image/travel.png" width=40px height=30px >揪旅行<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="<%=request.getContextPath() %>/actEditor/editorScuedule.jsp">創行程</a></li>
-      					<li><a href="<%=request.getContextPath() %>/act/createAct2.jsp">揪新團</a></li>
+      					<li><a href="<%=request.getContextPath() %>/act/createAct.jsp">揪新團</a></li>
 					</ul>
 				</li>
 				<li><a href="<%=request.getContextPath() %>/club/createClub.do"><img src="<%=request.getContextPath()%>/image/finclub.png" width=40px height=30px >創社團</a></li>
@@ -114,7 +114,7 @@ body { padding-bottom: 100px; }
 <!-- 							</div>		 -->
 					</div>
 					<li role="presentation" class="divider"></li>
-					<li role="presentation" class="goshop"><input type="button" value="前往結帳" class="btn btn-primary" style="text-align:center"></li>	
+					<li role="presentation" class="goshop"><a href="<%= request.getContextPath() %>/backage/collection.jsp"><input type="button" value="前往結帳" class="btn btn-primary" style="text-align:center"></a></li>	
 				
 						</ul>
 					</div>

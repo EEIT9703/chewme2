@@ -10,12 +10,14 @@ import org.hibernate.Transaction;
 import com.iii.eeit9703.hibernate.util.HibernateUtil;
 
 public class MemDAO_hibernate implements MemDAO_interface {
-	private static final String GET_ALL_STMT = "from MemVO order by memberId";
+	private static final String GET_ALL_STMT = "from MemVO order by memId";
 	@Override
 	public void insert(MemVO memVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
+			memVO.setMemStatus("正常");
+			memVO.setMemRole("一般會員");
 			session.saveOrUpdate(memVO);
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
@@ -38,10 +40,6 @@ public class MemDAO_hibernate implements MemDAO_interface {
 //		Set<CollectionVO> set = findByPrimaryKey(memId).getCollects();
 //		return set;
 //	}
-
-
-
-
 
 	@Override
 	public void update(MemVO memVO) {
@@ -88,12 +86,24 @@ public class MemDAO_hibernate implements MemDAO_interface {
 		}
 		return memVO;
 	}
-
-
+	public MemVO findByMemberId(String MemberId) {
+		MemVO memVO = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			memVO = (MemVO) session.get(MemVO.class, MemberId);
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return memVO;
+	}
+	
 	@Override
 	public MemVO findByGID(String googleId) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		Iterator result=null;
+
 		Transaction tx=null;
 		MemVO memVO=new MemVO();
 		try{
@@ -125,7 +135,6 @@ public class MemDAO_hibernate implements MemDAO_interface {
 		return memVO;
 	}
 
-	
 	@Override
 	public List<MemVO> getAll() {
 		List<MemVO> list = null;
@@ -141,8 +150,6 @@ public class MemDAO_hibernate implements MemDAO_interface {
 		}
 		return list;
 	}
-	
-	
 	public static void main(String[] args) {
 //	MemDAO_hibernate dao =new MemDAO_hibernate();
 //	Set<ReportVO> set=dao.getRepByMemNo(1);
@@ -183,10 +190,21 @@ public class MemDAO_hibernate implements MemDAO_interface {
 //		}
 //		System.out.println();
 //	}	
-	
+		MemDAO_hibernate dao=new MemDAO_hibernate();
+		List<MemVO> list1 = dao.getAll();
+		for (MemVO memVO : list1) {
+			System.out.print(memVO.getMemberId() + ",");
+			System.out.print(memVO.getMemMail() + ",");
+			System.out.print(memVO.getMemPhone());
+			System.out.print(memVO.getMemRole());
+			System.out.print(memVO.getMemStatus());
+		
+			System.out.println("\n-----------------");
 	
 	}
-	
+
+
+	}
 	
 
 }

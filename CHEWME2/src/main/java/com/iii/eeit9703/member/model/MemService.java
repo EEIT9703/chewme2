@@ -26,6 +26,8 @@ public class MemService {
 
 	}
 
+	
+	
 	public MemVO addMem(String memberId, String memName, String memNickN, String memPwd, java.sql.Date memBirthday,
 			String memMail, String memAddr, String memPhone, String memIntr, String memPhoto) {
 		MemVO memVO = new MemVO();
@@ -43,7 +45,7 @@ public class MemService {
 
 		return memVO;
 	}
-
+	
 	public void updateMem(MemVO memVO) {
 		dao.update(memVO);
 	}
@@ -55,6 +57,9 @@ public class MemService {
 	public MemVO getGID(String googleId) {
 
 		return dao.findByGID(googleId);
+	}
+	public MemVO getOneMem(String memberId){
+		return dao.findByMemberId(memberId);
 	}
 
 	public List<MemVO> getAll() {// 取出所有會員資料放入List裡
@@ -73,6 +78,17 @@ public class MemService {
 				String mvpwd = memVO.getMemPwd().trim();
 				if (mvpwd.equals(password.trim())) {// 從memVO的會員資料找出memPwd欄位跟password比對
 					return memVO;
+				}
+			}
+		}
+		return null;
+	}
+	public MemVO findMemIdorMail(String userId,String userMail){		
+		MemService memSvc=new MemService();
+		for(MemVO mv:memSvc.getAll()){
+			if(mv.getMemberId().trim().equals(userId.trim())){
+				if(mv.getMemberId().trim().equals(userId.trim())){
+					return mv;					
 				}
 			}
 		}
@@ -110,6 +126,10 @@ public class MemService {
 		dao.update(memVO);
 
 		return dao.findByPrimaryKey(memId);
+	}
+	
+	public static void main(String[] args) {
+		
 	}
 
 }
