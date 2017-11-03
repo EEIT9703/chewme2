@@ -284,7 +284,7 @@ $(function() {
     	editable: true,														//設定可否手動編輯事件
     	eventOverlap:true,												//設定事件可否重疊
     	eventBackgroundColor: "	#FFE153",			//設定日曆上所有事件的背景色
-    	eventBorderColor:"#00A600",						//設定日曆上所有事件的框線色
+    	//eventBorderColor:"#00A600",						//設定日曆上所有事件的框線色
     	eventTextColor:"#000000",								//設定日曆上所有事件的字體色
     	droppable: true,													//設定可否放置物件
     	//dropAccept:".item",											//設定允許放置的物件類型
@@ -349,10 +349,16 @@ $(function() {
 		header:{
 		    left:   'newDay,removeDay',
 		    center: '',
-		    right:  'check'
+		    right:  'reset,check'
 		},
 		eventClick: function(id){
-			alert("id=" + id.id);
+			var eventID=id.id
+			console.log(schID);
+			$('#calendar').fullCalendar('removeEvents',eventID);
+			alert("id=" + eventID);
+			$.post('/CHEWME2/Calendar.do?mission=deleteSCH',{"eventID":eventID});		
+
+			
 		},
 		customButtons:{
 			newDay: {
@@ -375,6 +381,18 @@ $(function() {
 			            T='DAY '+i;
 			            $('#calendar').fullCalendar('removeResource', { id:I, title:T});
 			           	i=i-1;           		
+		            }
+		        },
+		        reset: {
+		            text: '重新排程',
+		            click: function(){
+		            	$('#calendar').fullCalendar('removeEvents');
+		            	for(var i=0;i<schID.length;i++){
+		    				console.log(schID[i]);				    				
+		            		$.post('/CHEWME2/Calendar.do?mission=deleteAll',{"eventID":schID[i]},function(scheduleID){
+		    				schID.splice(i,1);
+		    				});
+		            	}
 		            }
 		        },
 		        check:{

@@ -101,11 +101,20 @@ public class ScheduleServlet extends HttpServlet {
 				JSONArray JSONtripList = new JSONArray(tripList);
 				System.out.println(JSONtripList);
 				out.print(JSONtripList.toString());
-
 				
 				}				
 						
+			if("savePic".equals(mission)){
+				actIDs = new String(request.getParameter("actID").trim().replaceAll("\"", ""));
+				Integer actID = Integer.parseInt(actIDs);
+				String schPhoto = request.getParameter("pic");
+				System.out.println("savePic："+actID);
 				
+				ActivityDAO_JDBC activitydao = new ActivityDAO_JDBC();
+				activitydao.savePicture(actID, schPhoto);
+				
+				System.out.println("Save Picture!!");
+				}	
 			
 
 

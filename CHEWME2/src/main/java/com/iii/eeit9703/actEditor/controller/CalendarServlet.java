@@ -124,6 +124,26 @@ public class CalendarServlet extends HttpServlet {
 
 			}
 			
+			if ("deleteSCH".equals(mission)) {
+
+				//String eventID = new String(request.getParameter("eventID").trim().replaceAll("\"", ""));
+				Integer attrID = Integer.parseInt(request.getParameter("eventID"));
+				System.out.println("delete："+ attrID);
+				ScheduleDAO_JDBC scheduledao = new ScheduleDAO_JDBC();
+				scheduledao.deleteSCH(attrID);
+
+			}
+			
+			if ("deleteAll".equals(mission)) {
+
+				String eventID = new String(request.getParameter("eventID").trim().replaceAll("\"", ""));
+				Integer schID = Integer.parseInt(eventID);
+				System.out.println("delete："+ schID);
+				ScheduleDAO_JDBC scheduledao = new ScheduleDAO_JDBC();
+				scheduledao.deleteAll(schID);
+
+			}
+			
 			if ("goPass".equals(mission)) {
 				String url = "/actEditor/schedule.jsp";
 				String actID = new String(request.getParameter("activityID").trim());
