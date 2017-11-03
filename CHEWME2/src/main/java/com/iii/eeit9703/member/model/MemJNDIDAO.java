@@ -337,6 +337,13 @@ public class MemJNDIDAO implements MemDAO_interface {
 		return list;
 	}
 
+
+	@Override
+	public MemVO findByMemberId(String MemberId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 //	@Override
 //	public Set<CollectionVO> getCollByMemNo(Integer memId) {
 //		// TODO Auto-generated method stub

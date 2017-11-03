@@ -70,6 +70,9 @@
 					</td>
 					<td colspan="2" align="center"><input type="button" value="註冊"
 						onclick="location.href='register.jsp'"></td>
+						<td colspan="2" align="center"><input type="button" value="忘記密碼"
+						onclick="location.href='forgotPwd.jsp'"></td>
+						
 				</tr>
 			</table>
 		</div>

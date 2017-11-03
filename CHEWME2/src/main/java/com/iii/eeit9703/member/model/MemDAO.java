@@ -21,6 +21,8 @@ public class MemDAO implements MemDAO_interface {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
+			memVO.setMemStatus("正常");
+			memVO.setMemRole("一般會員");
 			session.saveOrUpdate(memVO);
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
@@ -89,11 +91,24 @@ public class MemDAO implements MemDAO_interface {
 		}
 		return memVO;
 	}
+	public MemVO findByMemberId(String MemberId) {
+		MemVO memVO = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			memVO = (MemVO) session.get(MemVO.class, MemberId);
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return memVO;
+	}
 	
 	@Override
 	public MemVO findByGID(String googleId) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		Iterator result=null;
+
 		Transaction tx=null;
 		MemVO memVO=new MemVO();
 		try{
@@ -140,63 +155,4 @@ public class MemDAO implements MemDAO_interface {
 		}
 		return list;
 	}
-	
-	
-	public static void main(String[] args) {
-//		MemDAO dao=new MemDAO();
-//		dao.findByGID("102650579172462005148");
-//		System.out.println(dao.findByGID("102650579172462005148").getGoogleId());
-//		System.out.println(dao.findByGID("102650579172462005148").getMemName());
-//		System.out.println(dao.findByGID("102650579172462005148").getMemMail());
-//	MemDAO_hibernate dao =new MemDAO_hibernate();
-//	Set<ReportVO> set=dao.getRepByMemNo(1);
-//	   	for(ReportVO reportVO :set){
-//	   		System.out.println(reportVO.getReportContext());		
-//	   	}
-	
-//		MemDAO_hibernate dao =new MemDAO_hibernate();
-//		Set<CollectionVO> set=dao.getCollByMemNo(1);
-//		
-//		   	for(CollectionVO collectionVO :set){
-//		   		System.out.println(collectionVO.getMemVO().getMemMail());
-//		   		
-//   		
-//		   	}
-
-//	System.out.println(list2);
-//	String jsonString =JSONValue.toJSONString(list2);
-//	System.out.println(jsonString);
-//	List<MemVO> list2 = dao.getAll();
-//	for (MemVO memVO : list2) {
-//		System.out.print(memVO.getMemberId() + ",");
-//		System.out.print(memVO.getMemMail() + ",");
-//		System.out.print(memVO.getMemPhone());
-//		System.out.print(memVO.getMemRole());
-//		System.out.print(memVO.getMemStatus());
-//	
-//		System.out.println("\n-----------------");
-//		Set<ActivityVO> Activitys =memVO.getActivitys();
-//		
-//		for (ActivityVO activityVO : Activitys) {
-//			System.out.print(activityVO.getAct_name() + ",");
-//			System.out.print(activityVO.getAct_groups() + ",");
-//			System.out.print(activityVO.getAct_current());
-//		
-//		
-//			System.out.println();
-//		}
-//		System.out.println();
-//	}	
-	
-	
-	}
-
-
-
-
-
-
-	
-	
-
 }

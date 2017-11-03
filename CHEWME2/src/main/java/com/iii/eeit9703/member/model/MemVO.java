@@ -23,6 +23,7 @@ public class MemVO implements java.io.Serializable{
 	private String memStatus;
 	private String memRole;
 	private String googleId;
+	private String randomCode;
 	private Set<ActivityVO> Activitys = new HashSet<ActivityVO>();
 	private Set<CollectionVO> Collects = new HashSet<CollectionVO>();
 	private Set<ReportVO> Reports = new HashSet<ReportVO>();
@@ -139,5 +140,11 @@ public class MemVO implements java.io.Serializable{
 	}
 	public void setGoogleId(String googleId) {
 		this.googleId = googleId;
+	}
+	public String getRandomCode() {
+		return randomCode;
+	}
+	public void setRandomCode(String randomCode) {
+		this.randomCode = randomCode;
 	}	
 }

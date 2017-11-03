@@ -12,9 +12,10 @@ public interface MemDAO_interface {
 	public void update(MemVO memVO);
     public void delete(Integer memId);
     public MemVO findByPrimaryKey(Integer memId);
+    MemVO findByGID(String googleId);
+    MemVO findByMemberId(String MemberId);
     public List<MemVO> getAll();
 //	public void insertGoogle(MemVO memVO);
-	MemVO findByGID(String googleId);
 
     //public Set<CollectionVO> getCollByMemNo(Integer memId);
     //public Set<ReportVO> getRepByMemNo(Integer memId);
