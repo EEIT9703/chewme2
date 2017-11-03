@@ -125,6 +125,23 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 		
 					}
 				
+				 if("deleteCollection".equals(action)){
+					 
+					 	Integer ID = Integer.parseInt(request.getParameter("actID"));
+						MemVO memVO=(MemVO) session.getAttribute("LoginOK");
+						ActivityVO activityVO =new ActivityVO();
+						activityVO.setActID(ID);
+						CollectionVO collectionVO =new CollectionVO();
+						collectionVO.setMemVO(memVO);
+						collectionVO.setActivityVO(activityVO);
+						CollectionService ser =new CollectionService();
+						ser.delete(collectionVO);
+						
+//	            		   	JSONArray attrArrayList = new JSONArray(list);				
+//	        				out.print(attrArrayList.toString());
+						out.println();
+	               }
+				
 				
 				
 //			
