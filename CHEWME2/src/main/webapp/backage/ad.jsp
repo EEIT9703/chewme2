@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -13,7 +14,15 @@
   	<link href="<%=request.getContextPath()%>/css/morrisjs/morris.css" rel="stylesheet">
   	<link href="<%=request.getContextPath()%>/css/dist/css/sb-admin-2.css" rel="stylesheet">
     <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link href="<%=request.getContextPath()%>/css/uploadfile.css" rel="stylesheet">
+    
+  
 
+
+ 
+ <style>
+
+</style>
 </head>
 
 
@@ -58,9 +67,8 @@
             
             <div id="page-wrapper">
             <div class="row">
-                <div class="col-lg-12">
-                
-                    <h1 class="page-header">內容區標頭</h1>
+                <div class="col-lg-12" >            
+                    <h4 >內容區標頭</h4>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -69,16 +77,18 @@
                
             <!-- /.row -->
             <div class="row">
-					<div class="col-lg-8">
+					<div class="col-lg-7">
 						<div class="panel panel-default">
-							內容區
 							<div class="panel-heading">
 
-								<form id="fileUploadForm">
-									<input type="file" id="1" name="photo"> 
-                                      
-									<input type="submit" value="上傳" id="btnSubmit" />
-									<div id="result"></div>
+								<form id="fileUploadForm">						                                
+<!-- 									<button type="submit" class="btn btn-primary" id="btnSubmit">上傳</button>  -->
+						  
+<!-- 									<input type="file" id="1" name="photo" multiple="multiple">  -->
+
+
+
+
 								</form>
 							
 								<table id="productTable" class="table table-bordered">
@@ -87,8 +97,8 @@
 											<th>產品編號</th>
 											<th>產品名稱</th>
 											<th>產品名稱</th>
-											<th>修改</th>
 											<th>刪除</th>
+											<th>修改</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -116,12 +126,15 @@
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal"
 								aria-hidden="true">&times;</button>
-							<h4 class="modal-title" id="myModalLabel">歡迎來到揪ME</h4>
+							<h4 class="modal-title" id="myModalLabel">揪ME管理
+							</h4>
 						</div>
 						<div class="modal-body">
 						<div class="form-group">
-						<form id="fileUpDate">					
-					<input type="file" id="2" name="photo"> 
+						<form id="fileUpDate">	
+<!-- 						<input type="file" name="imageUpload" id="imageUpload" class="hide"/> -->
+<!-- 						<label for="imageUpload" class="btn btn-large">Select file</label>		 -->
+							<input type="file" id="2" name="photo"> 
 						</form>
 							<img alt=" " id="previewer" height="250px" width="250px">
 						</div>
@@ -144,12 +157,17 @@
 	
 
 					<!--                 右邊預留空間 -->
-                <div class="col-lg-4">
+                <div class="col-lg-5">
 
-                    <div class="panel panel-default">
-                      			 預留空間	
+<!--                     <div class="panel panel-default"> -->
+<!--                       			 預留空間	 -->
+                      			<div id="mulitplefileuploader" style="width:200px">選擇檔案</div>
                       			
-                    </div>
+
+								<div id="status"></div>
+
+								<div id="startbutton" class="ajax-file-upload-green">Upload</div>
+<!--                     </div> -->
                 
                     <div class="chat-panel panel panel-default">
                    			預留空間
@@ -160,52 +178,52 @@
     </div>
     </div>
 
-       <div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
-				aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true">&times;</button>
-							<h4 class="modal-title" id="myModalLabel">歡迎來到揪ME</h4>
-						</div>
-						<div class="modal-body">
-						<div class="form-group">
-							<input class="form-control" placeholder="E-mail" name="email"
-								type="email" autofocus>
-						</div>
-						<div class="form-group">
-							<input class="form-control" placeholder="Password"
-								name="password" type="password" value="">
-						</div>
-						<div class="checkbox">
-							<label> <input name="remember" type="checkbox"
-								value="Remember Me">Remember Me
-							</label>
-						</div>
+<!--        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" -->
+<!-- 				aria-labelledby="myModalLabel" aria-hidden="true"> -->
+<!-- 				<div class="modal-dialog"> -->
+<!-- 					<div class="modal-content"> -->
+<!-- 						<div class="modal-header"> -->
+<!-- 							<button type="button" class="close" data-dismiss="modal" -->
+<!-- 								aria-hidden="true">&times;</button> -->
+<!-- 							<h4 class="modal-title" id="myModalLabel">歡迎來到揪ME</h4> -->
+<!-- 						</div> -->
+<!-- 						<div class="modal-body"> -->
+<!-- 						<div class="form-group"> -->
+<!-- 							<input class="form-control" placeholder="E-mail" name="email" -->
+<!-- 								type="email" autofocus> -->
+<!-- 						</div> -->
+<!-- 						<div class="form-group"> -->
+<!-- 							<input class="form-control" placeholder="Password" -->
+<!-- 								name="password" type="password" value=""> -->
+<!-- 						</div> -->
+<!-- 						<div class="checkbox"> -->
+<!-- 							<label> <input name="remember" type="checkbox" -->
+<!-- 								value="Remember Me">Remember Me -->
+<!-- 							</label> -->
+<!-- 						</div> -->
 						
 						
-						<div><a href="#">忘記密碼?</a></div>
-					</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">離開</button>
-							<button type="button" class="btn btn-primary">登入</button>
-						</div>
-					</div>
-					<!-- /.modal-content -->
-				</div>
-				<!-- /.modal -->
-			</div>
+<!-- 						<div><a href="#">忘記密碼?</a></div> -->
+<!-- 					</div> -->
+<!-- 						<div class="modal-footer"> -->
+<!-- 							<button type="button" class="btn btn-default" -->
+<!-- 								data-dismiss="modal">離開</button> -->
+<!-- 							<button type="button" class="btn btn-primary">登入</button> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					/.modal-content -->
+<!-- 				</div> -->
+<!-- 				/.modal -->
+<!-- 			</div> -->
     
 
-
+	 <script src="<%=request.getContextPath()%>/js/jquery.uploadfile.js"></script>
  	 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 <%-- 	 <script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script> --%>
 
 
 	<script>
-	
+
 
 // 		$('#send').click(function(){
 // 			var data =$('form[name="myForm"]').serialize();			
@@ -213,8 +231,12 @@
 // 				$('#result').text("success");
 //  			});
 // 		});
+
+
+
 var i=1;
 $(document).ready(function () {
+	
 	search();
 // 	 $.getJSON('activity?action=getAll', {}, function (datas) {			          
 //           var docFrag = $(document.createDocumentFragment());
@@ -244,8 +266,8 @@ function search(){
          var cell1 = $('<td></td>').text(photos.photo_no);
          var cell2 = $('<td></td>').text(photos.name);
          var cell3 = $('<td></td>').html("<img src='data:image/png;base64,"+photos.photo+"'width=100px height=100px>");
-         var cell4 = $('<td></td>').html('<button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button> '); 
-         var cell5 = $('<td></td>').html('<button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button>');
+         var cell4 = $('<td></td>').html("<button class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-remove'></span> Del</button>"); 
+         var cell5 = $('<td></td>').html("<button class='btn btn-info btn-xs' href='#'><span class='glyphicon glyphicon-edit'></span> Edit</button>");
        // var cell5= $('<td></td>').html('<li class="dropdown"><a class="dropdown-toggle" data-toggle="modal" data-target="#myModal"><button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a></li>');
         var row = $('<tr></tr>').append([cell1, cell2,cell3,cell4,cell5]);
          opt.append(row);
@@ -255,6 +277,32 @@ function search(){
 	}
 	
 }
+
+		var extraObj = $("#mulitplefileuploader").uploadFile(
+		{
+	    url: "<%=request.getContextPath()%>/upload?action=insert",
+		method: "POST",
+		allowedTypes:"jpg,png,gif,doc,pdf,zip",
+		fileName: "myfile",
+		multiple: true,
+		dragdropWidth:410,
+	    autoSubmit:false,	    
+	    onSuccess: function () {
+
+    		search();
+
+        }
+	    
+		});
+		
+		$("#startbutton").click(function()
+		{
+			extraObj.startUpload();
+			
+		});
+
+
+
 
     $("#btnSubmit").click(function (event) {
         //stop submit the form, we will post it manually.

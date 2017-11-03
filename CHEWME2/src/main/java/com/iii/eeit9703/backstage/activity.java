@@ -169,6 +169,7 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 				//ActService ser= new ActService();
 				ActivityDAO_hibernate ser =new ActivityDAO_hibernate();
 				List<ActivityVO> attrList = (ArrayList<ActivityVO>)ser.getAll();
+				System.out.println(attrList.size());
 				List<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
 				HashMap<String,String> map = null;
 				for(ActivityVO act : attrList){

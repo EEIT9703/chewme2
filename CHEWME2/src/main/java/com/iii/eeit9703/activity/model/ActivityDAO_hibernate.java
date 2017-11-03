@@ -20,6 +20,12 @@ public class ActivityDAO_hibernate implements ActivityDAO_interface {
 	
 
 	@Override
+	public void finalAct(ActivityVO activityVO) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
 	public void update(ActivityVO activityVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
