@@ -18,12 +18,11 @@ pageEncoding="UTF-8"%>
  	overflow-x: hide; 
  	overflow: auto; 
  	max-height: 40vh; 
- 	width:300px 
+ 	width:298px 
  } 
  .cartrow { 
  	width: 100%; 
  	padding: 20px; 
- 	border-bottom: 1px solid #cccccc; 
  	margin: auto; 
  } 
   .close {  
