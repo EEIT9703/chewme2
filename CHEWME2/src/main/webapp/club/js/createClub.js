@@ -24,18 +24,21 @@ $(document).ready(
 			
 			$("#uploadImage").change(function() {				
 				readImage(this);
+				console.log("upload the image")
+				console.log($('#img')[0].clientWidth)
+				$('dialog-img').attr("height",$('#img ').attr("clientWidth"))
+				.attr("width",$('#img ').attr("clientWidth"))
 				$("#img-help-block").text("請截取圖片想要之部分");
 			});
 
-
-
+	
 			function readImage(input) {
 				if (input.files && input.files[0]) {
 					var file = input.files[0];
 					var FR = new FileReader();
 					FR.onload = function(e) {
 						// e.target.result = base64 format picture
-						$('#img ').attr("src", e.target.result);
+						$('#img').attr("src", e.target.result);
 						var url = e.target.result;
 						setImageURL(url);
 					};

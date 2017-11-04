@@ -1,4 +1,4 @@
-drop database CMDB
+
 CREATE DATABASE CMDB
 on 
 PRIMARY(NAME=CMData,
