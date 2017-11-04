@@ -10,85 +10,12 @@ pageEncoding="UTF-8"%>
 <title></title>
 <meta charset="utf-8" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
-<!-- <link rel="stylesheet" href="css/mybootstrap.css"> -->
+
+<script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/slideshow.js">	</script>
+
 <style>
-
-/*  shopping car start  */
- .cartrows { 
- 	overflow-x: hide; 
- 	overflow: auto; 
- 	max-height: 40vh; 
- 	width:298px 
- } 
- .cartrow { 
- 	width: 100%; 
- 	padding: 20px; 
- 	margin: auto; 
- } 
-  .close {  
-  	text-align:right;  
-  }
-  
-  .goshop{
-  	text-align:center;  
-  }
- 
- /* .courseTitle { 
- 	font-size: 20px; 
- 	color: #3e3d3e; 
- 	width: 70%; 
- 	white-space: nowrap; 
- 	text-overflow: ellipsis; 
- 	overflow: hidden; 
- 	float: right; 
- 	font-weight: bold; 
- } 
- .courseSubtitle { 
- 	font-size: 16px; 
- 	float: left; 
- } 
- .courseDelete { 
- 	float: right; 
- 	padding-right: 10px; 
- } 
-  .cartrow img {  
-  	width: 30%; 
-  	height: 70px; 
-  }  
-  
- 	.cartcount { 
- 	position: absolute; 
- 	right: 5px; 
- 	border: 1px solid #FFF; 
- 	background: #F68867;
- 	color: #FFF; 
- 	border-radius: 100px; 
- 	font-size: 12px; 
- 	font-weight: bold; 
- 	text-align: center; 
- 	z-index: 15; 
- 	width: 20px; 
- 	height: 20px; 
- } */
-
-/* shopping car end */
-
-.aaa {
-	position: absolute;
-	right: -10px;
-	border: 1px solid #fff;
-	background: #FF5511;
-	
-	color: #fff;
-	border-radius: 100px;
-	font-size: 12px;
-	font-weight: 800;
-	text-align: center;
-	z-index: 15;
-	width: 20px;
-	height: 15px;
-			
-}
 
 ul, li {
 	padding: 0;
@@ -237,91 +164,15 @@ ul, li {
 
 			</div>
 		</div>
-		<div id="3">
+		<div id="1"> 
 		<span><input type="button" class="inputCar" value="測試加入購物車"></span>
 		<span><input type="button" class="report" value="檢舉"></span>
 		</div>
-		<button class="test" value="aa"></button>
+	
 	</article>
-	<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/slideshow.js">	</script>
 
 
 
-<script>
-$(function(){
-	
-	loadActivity();
-
-	function loadActivity(){		
-		$.getJSON('<%=request.getContextPath()%>/activity?action=getMyCollection',{},function(array){
-	 		var fg = $(document.createDocumentFragment());
-	 		var opt = $(".cartrows");
-	 			opt.empty();
-			var count=0;
-	 		$.each(array,function(i,activity){
-	 			var div_out=$("<div></div>").addClass('cartrow');
-	 		
-	 			var cell1=$("<div></div>").css("float","left");
-	 			var img =$('<img>').attr({'src':'<%=request.getContextPath() %>/image/101.jpg','width':'50px','height':'50px'});
-	 			
-	 			
-	 			var span1=$('<span></span>').text(activity.act_name)
-	 			var button = $('<button id="opop"></button>').css('color','red').addClass('close glyphicon glyphicon-remove').attr({'type':'button','name':activity.actID});
-	 			var span2=$('<span></span>').append(button)			
-	 			var cell2=$("<div></div>").append([span1,span2])	
-	 			var cell3=$("<div></div>").text("$5888")
-	 			
-	 			cell1.append(img);
-	 			div_out.append([cell1,cell2,cell3]);
-	 			fg.append(div_out);
-	 			count++;
-	 		})
-	 		$('.aaa').text(count);
-	 		$('.cartrows').append(fg);
-	 		
-		})
-			
-			
-	}
-		
-
-	
-	$('.cartrows').on('click','button',function(){
-		var actID=$(this).attr('name');
-		
-		$.post('<%=request.getContextPath()%>/activity?action=deleteCollection',{"actID":actID},loadActivity);
-	
-	
-	})
-	
-
-	
-	$('.inputCar').click(function(){
-		 var id = $(this).parents('div').attr('id');
-		 $.getJSON('<%=request.getContextPath()%>/activity?action=inputCar',{'ID':id},result);
-		
-			
-	})	
-	function result(array){	
-		$.each(array,function(i,result){				
-		if(result.existColl=="已加入購物車"){
-				alert(result.existColl)		
-		}
-		else {		
-			alert(result.inputOK)
-			loadActivity();
-		}
-		})	
-		
-	}
-	
-	
-	
-})
-
-</script>
 </body>
 
 </html>

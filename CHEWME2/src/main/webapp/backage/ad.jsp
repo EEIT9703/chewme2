@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -7,19 +6,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
-	<link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
+    
+  	<script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
+     <script src="<%=request.getContextPath()%>/js/jquery.uploadfile.js"></script>
+ 	 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+ 	 
+ 	<link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
 	<link href="<%=request.getContextPath()%>/css/metisMenu/metisMenu.min.css" rel="stylesheet">
   	<link href="<%=request.getContextPath()%>/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   	<link href="<%=request.getContextPath()%>/css/morrisjs/morris.css" rel="stylesheet">
   	<link href="<%=request.getContextPath()%>/css/dist/css/sb-admin-2.css" rel="stylesheet">
-    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
     <link href="<%=request.getContextPath()%>/css/uploadfile.css" rel="stylesheet">
-    
-  
+	 
 
-
- 
  <style>
 
 </style>
@@ -116,9 +115,7 @@
 						</div>
 					</div>
 
-
-
-
+<!-- 原來的modal -->
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
@@ -131,11 +128,9 @@
 						</div>
 						<div class="modal-body">
 						<div class="form-group">
-						<form id="fileUpDate">	
-<!-- 						<input type="file" name="imageUpload" id="imageUpload" class="hide"/> -->
-<!-- 						<label for="imageUpload" class="btn btn-large">Select file</label>		 -->
-							<input type="file" id="2" name="photo"> 
-						</form>
+							<form id="fileUpDate">	
+								<input type="file" id="2" name="photo"> 
+							</form>
 							<img alt=" " id="previewer" height="250px" width="250px">
 						</div>
 						<div class="form-group">
@@ -146,15 +141,11 @@
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
 							<button type="button" class="btn btn-primary" id="confirm" >go</button>
-<!-- 							<button type="submit" class="btn btn-primary"  id="confirm">確認</button> -->
 						</div>
-					</div>
-					<!-- /.modal-content -->
+					</div>			
 				</div>
-				<!-- /.modal -->
 			</div>
 
-	
 
 					<!--                 右邊預留空間 -->
                 <div class="col-lg-5">
@@ -217,9 +208,7 @@
 <!-- 			</div> -->
     
 
-	 <script src="<%=request.getContextPath()%>/js/jquery.uploadfile.js"></script>
- 	 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-<%-- 	 <script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script> --%>
+	
 
 
 	<script>
@@ -233,10 +222,10 @@
 // 		});
 
 
-
+var id;
 var i=1;
 $(document).ready(function () {
-	
+
 	search();
 // 	 $.getJSON('activity?action=getAll', {}, function (datas) {			          
 //           var docFrag = $(document.createDocumentFragment());
@@ -253,9 +242,8 @@ $(document).ready(function () {
 
 //       })	
 
-  
-   	
 function search(){
+
 	$.getJSON('<%=request.getContextPath()%>/activity?action=getAllphoto',{},sendPhoto);
 
 	function sendPhoto(array){
@@ -266,11 +254,21 @@ function search(){
          var cell1 = $('<td></td>').text(photos.photo_no);
          var cell2 = $('<td></td>').text(photos.name);
          var cell3 = $('<td></td>').html("<img src='data:image/png;base64,"+photos.photo+"'width=100px height=100px>");
-         var cell4 = $('<td></td>').html("<button class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-remove'></span> Del</button>"); 
-         var cell5 = $('<td></td>').html("<button class='btn btn-info btn-xs' href='#'><span class='glyphicon glyphicon-edit'></span> Edit</button>");
-       // var cell5= $('<td></td>').html('<li class="dropdown"><a class="dropdown-toggle" data-toggle="modal" data-target="#myModal"><button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a></li>');
-        var row = $('<tr></tr>').append([cell1, cell2,cell3,cell4,cell5]);
-         opt.append(row);
+//        var cell4 = $('<td></td>').html("<button class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-remove'></span> Del</button>"); 
+//        var cell5 = $('<td></td>').html("<button class='btn btn-info btn-xs' href='#'><span class='glyphicon glyphicon-edit'></span> Edit</button>");
+//        var cell5= $('<td></td>').html('<li class="dropdown"><a class="dropdown-toggle" data-toggle="modal" data-target="#myModal"><button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a></li>');
+//        var row = $('<tr></tr>').append([cell1, cell2,cell3,cell4,cell5]);
+ 
+         var button1=$('<button></button>').addClass('btn btn-danger btn-xs').text('Del');
+         var button2=$('<button></button>').addClass('btn btn-info btn-xs').text('Edit').attr({"data-toggle":"modal","data-target":"#detail"});
+//       var sp1=  $('<span></span>').allClass('glyphicon glyphicon-remove')
+//       var sp2=  $('<span></span>').allClass('glyphicon glyphicon-edit')
+//       var cell4=button1.append(sp1)
+//       var cell5=button2.append(sp2)
+         var cell6 = $('<td></td>').append(button1); 
+         var cell7 = $('<td></td>').append(button2);    
+         var row = $('<tr></tr>').append([cell1, cell2,cell3,cell6,cell7]);
+			opt.append(row);
 		
 		})
 	
@@ -367,8 +365,8 @@ function search(){
     
     $('#productTable>tbody').on('click','td:nth-child(5) button:nth-child(1)',function(){
 
-     var id = $(this).parents('tr').find('td:nth-child(1)').text();
-    	$('#myModal').modal('show')
+     	id = $(this).parents('tr').find('td:nth-child(1)').text();
+     	$('#myModal').modal('show')
 		var filechooser = document.getElementById('2');
     	var previewer = document.getElementById('previewer');
   		filechooser.onchange = function() {

@@ -8,7 +8,68 @@ pageContext.setAttribute("list",list);
 int a=list.size();
 pageContext.setAttribute("all",a);
 %> --%>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
 <style>
+
+/*  shopping car start  */
+ .cartrows { 
+ 	overflow-x: hide; 
+ 	overflow: auto; 
+ 	max-height: 40vh; 
+ 	width:298px 
+ } 
+ .cartrow { 
+ 	width: 100%; 
+ 	padding: 20px; 
+ 	margin: auto; 
+ } 
+  .close {  
+  	text-align:right;  
+  }
+  
+  .goshop{
+  	text-align:center;  
+  }
+ 
+ /* .courseTitle { 
+ 	font-size: 20px; 
+ 	color: #3e3d3e; 
+ 	width: 70%; 
+ 	white-space: nowrap; 
+ 	text-overflow: ellipsis; 
+ 	overflow: hidden; 
+ 	float: right; 
+ 	font-weight: bold; 
+ } 
+ .courseSubtitle { 
+ 	font-size: 16px; 
+ 	float: left; 
+ } 
+ .courseDelete { 
+ 	float: right; 
+ 	padding-right: 10px; 
+ } 
+  .cartrow img {  
+  	width: 30%; 
+  	height: 70px; 
+  }  
+  
+ 	.cartcount { 
+ 	position: absolute; 
+ 	right: 5px; 
+ 	border: 1px solid #FFF; 
+ 	background: #F68867;
+ 	color: #FFF; 
+ 	border-radius: 100px; 
+ 	font-size: 12px; 
+ 	font-weight: bold; 
+ 	text-align: center; 
+ 	z-index: 15; 
+ 	width: 20px; 
+ 	height: 20px; 
+ } */
+
+/* shopping car end */
 .aaa {
 	position: absolute;
 	right: -10px;
@@ -50,6 +111,7 @@ pageContext.setAttribute("all",a);
 body { padding-bottom: 100px; }
 
 /* header不要加 50px 以上body裡面的內容為bootstrap網站裡面的解決方法*/
+
 </style>
 
 <nav class="navbar navbar-default navbar-static-top">
@@ -86,8 +148,8 @@ body { padding-bottom: 100px; }
 
 			<ul class="nav navbar-nav navbar-right">
 			
-			
-			
+		<c:choose>
+			<c:when test="${!empty LoginOK}">
 				<li class="nav-shopping-cart"><div class="dropdown"><img id="drop" data-toggle="dropdown" 
 				src="<%=request.getContextPath()%>/image/car.gif" width=30px
 					height=30px /><span class="aaa" data-reactid="65"></span>
@@ -95,32 +157,33 @@ body { padding-bottom: 100px; }
 							aria-labelledby="drop">
 <!-- 						<ul class="dropdown-menu" style="width: 465px;"> -->
 <!--  											<li class="dropdown-header"  -->
-<!--  												style="border-bottom: 1px solid #aaaaaa;"><h3>4444</h3></li>  -->
-							
+<!--  												style="border-bottom: 1px solid #aaaaaa;"><h3>4444</h3></li>  -->						
 					<div class="cartrows">
-
 <!-- 							<div class="cartrow"> -->
 <!-- 									<div style="float: left"> -->
 <!-- 										<img src="image/101.jpg" height=50px width=50px> -->
 <!-- 									</div> -->
-
 <!-- 									<div> -->
 <!-- 										<span>九份一ssssssssssss日遊</span>  -->
 <!-- 										<span><button type="button" class="close glyphicon glyphicon-remove"></button></span> -->
 <!-- 									</div> -->
-
-<!-- 									<div>$5880</div> -->
-									
+<!-- 									<div>$5880</div> -->								
 <!-- 							</div>		 -->
 					</div>
 					<li role="presentation" class="divider"></li>
-					<li role="presentation" class="goshop"><a href="<%= request.getContextPath() %>/backage/collection.jsp"><input type="button" value="前往結帳" class="btn btn-primary" style="text-align:center"></a></li>	
-				
+					<li role="presentation" class="goshop"><a href="<%= request.getContextPath() %>/backage/collection.jsp"><input type="button" value="前往結帳" class="btn btn-primary" style="text-align:center"></a></li>		
 						</ul>
-					</div>
-					
+					</div>				
 					</li>
+				</c:when>
+					<c:otherwise>
+				<li class="nav-shopping-cart"><div class="dropdown"><img id="drop" data-toggle="dropdown" 
+				src="<%=request.getContextPath()%>/image/car.gif" width=30px
+					height=30px />
+								</c:otherwise>
 					
+			</c:choose>
+			
 				<li><c:if test="${  !empty SysManager }">
 						<a class="nav-link"
 							href="<%=request.getContextPath()%>/backage/backage.jsp"><span
@@ -159,5 +222,79 @@ body { padding-bottom: 100px; }
 
 
 </nav>
+<%-- <script src="<%=request.getContextPath()%>/js/jquery-1.12.3.min.js"></script> --%>
 
+<script>
+$(function(){
+	
+	loadActivity();
+
+	function loadActivity(){		
+		$.getJSON('<%=request.getContextPath()%>/activity?action=getMyCollection',{},function(array){
+	 		var fg = $(document.createDocumentFragment());
+	 		var opt = $(".cartrows");
+	 			opt.empty();
+			var count=0;
+	 		$.each(array,function(i,activity){
+	 			var div_out=$("<div></div>").addClass('cartrow');
+	 		
+	 			var cell1=$("<div></div>").css("float","left");
+	 			var img =$('<img>').attr({'src':'<%=request.getContextPath() %>/image/101.jpg','width':'50px','height':'50px'});
+	 			
+	 			
+	 			var span1=$('<span></span>').text(activity.act_name)
+	 			var button = $('<button id="opop"></button>').css('color','red').addClass('close glyphicon glyphicon-remove').attr({'type':'button','name':activity.actID});
+	 			var span2=$('<span></span>').append(button)			
+	 			var cell2=$("<div></div>").append([span1,span2])	
+	 			var cell3=$("<div></div>").text("$5888")
+	 			
+	 			cell1.append(img);
+	 			div_out.append([cell1,cell2,cell3]);
+	 			fg.append(div_out);
+	 			count++;
+	 		})
+	 		$('.aaa').text(count);
+	 		$('.cartrows').append(fg);
+	 		
+		})
+			
+			
+	}
+		
+
+	
+	$('.cartrows').on('click','button',function(){
+		var actID=$(this).attr('name');
+	
+		$.post('<%=request.getContextPath()%>/activity?action=deleteCollection',{"actID":actID},loadActivity);
+	
+	
+	})
+	
+
+	
+	$('.inputCar').click(function(){
+		 var id = $(this).parents('div').attr('id');
+		 $.getJSON('<%=request.getContextPath()%>/activity?action=inputCar',{'ID':id},result);
+		
+			
+	})	
+	function result(array){	
+		$.each(array,function(i,result){				
+		if(result.existColl=="已加入購物車"){
+				alert(result.existColl)		
+		}
+		else {		
+			alert(result.inputOK)
+			loadActivity();
+		}
+		})	
+		
+	}
+	
+	
+	
+})
+
+</script>
 

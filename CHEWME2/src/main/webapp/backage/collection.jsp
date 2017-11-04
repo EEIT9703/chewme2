@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,16 +8,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
+	
+	<script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/jquery.wrecker.js"></script>
+	
+
  	<link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
 	<link href="<%=request.getContextPath()%>/css/metisMenu/metisMenu.min.css" rel="stylesheet">
   	<link href="<%=request.getContextPath()%>/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   	<link href="<%=request.getContextPath()%>/css/morrisjs/morris.css" rel="stylesheet">
   	<link href="<%=request.getContextPath()%>/css/dist/css/sb-admin-2.css" rel="stylesheet">
-  	
-  	
   	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/js/advanced.css"/>
+  	
+  
   	<style>
-  	body { font-family:'Roboto';}
+  	
+body { font-family:'Roboto';}
 h1 { color:#fff;}
   	
 ul, ol {
@@ -144,17 +152,25 @@ ul.list___3xuJM {
     
 }
 .inder_price{
-margin-left:120px;
-margin-right:10px
+margin-left:10px; 
 
 
+}
+
+.price_icon{
+margin-right:55px;
 }
 .allpay_button{
  margin:10px 0px 20px 0px; 
  
 
-
 }
+
+.buy{
+
+margin-right:5px;
+}
+
 .item{
 /* margin-left:0px; */
 /* margin-right:80px; */
@@ -169,7 +185,6 @@ margin:0px 80px 30px 0px;
 <body>
 	<header><%@ include file="../header.jsp"%></header>
 	<article>
- 
 	<div class="row">
 		<div class="col-md-2 column ">
 			<div class="sidebar___2Ft5w">
@@ -198,7 +213,7 @@ margin:0px 80px 30px 0px;
 			</div>
 		</div>
 						
-				<div id="cc" class="sidebar___2Ft6w col-md-8 column ">
+				<div id="cc" class="sidebar___2Ft6w col-md-8 column" style="min-height:650px; width: 1150px;">
 				
 				
 				
@@ -209,9 +224,7 @@ margin:0px 80px 30px 0px;
 </div>
 	
 </article>
-  	<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/jquery.wrecker.js"></script>	
+  
  <script>
  
 $(function(){
@@ -230,24 +243,30 @@ $(function(){
 	         
 	         
 	         var span =$('<span></span>')
-	         var select =$('<select id="selectID"></select');
+	         var select =$('<select></select').attr({"id":"selectID"});
 	      		for(var a=1;a<=8;a++){
 	      			var sel=$('<option></option>').text(a)
 	      			sel.attr("value",a)
 	      			select.append(sel)
 	      		}
-	      		span.append(select)
-	        	span.append("人")
-	         
-	         var cell3=$('<span class="inder_price"></span>').text("2580$");
-	         var input="<input type='button' class='delete' value='刪除'>" ;
-			 var cell4 = input;			
-         	 var row = $("<div class='item' id="+activity.actID+ "></div>").append([cell1, cell2,span,cell3,cell4]); 
-  	         opt.append(row);
+	      	span.append(select)
+// 	        	
+	      	 var span2 =$('<span></span>').text('人')
+	         var cell3=$('<span></span>').addClass('inder_price').text("2580");
+	      	 var cell4=$('<span></span>').addClass('price_icon').text('$');
+	      	 var button1=$('<button></button>').css('color','blue').addClass('buy').attr({'type':'button'}).text("購買");
+	         var cell5=$('<span></span>').append(button1)
+	       	 var button2=$('<button></button>').css('color','red').addClass('delete').attr({'type':'button'}).text("移除");
+	         var cell6=$('<span><span>').append(button2)
+         	 var row = $("<div></div>").addClass('item').attr({'id':activity.actID});	 
+	         row.append([cell1, cell2,span,span2,cell3,cell4,cell5,cell6]); 
+  	         opt.append(row); 
         		
 			})	
 			
 		}
+		
+		
 		
 		$('#collection').click(function (event){
 			$(this).attr("class","item___2dDze  selected___2Hy4k")
@@ -271,10 +290,12 @@ $(function(){
 			
 		})
 		
-		
-		
-		
-		
+		$('.item').on('click','button:last-child',function(){
+//  				var id = $(this).parents('div').attr('id');
+ 				alert("aa");
+			
+		})
+	
 // 		$("#cc").wrecker({
 // 			  itemSelector : ".item",
 // 			  maxColumns : 4

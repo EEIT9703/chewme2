@@ -7,12 +7,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+	
+	<script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/datatables.min.js" type="text/javascript"></script>
+	
 	<link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
 	<link href="<%=request.getContextPath()%>/css/metisMenu/metisMenu.min.css" rel="stylesheet">
   	<link href="<%=request.getContextPath()%>/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   	<link href="<%=request.getContextPath()%>/css/morrisjs/morris.css" rel="stylesheet">
   	<link href="<%=request.getContextPath()%>/css/dist/css/sb-admin-2.css" rel="stylesheet">
   	<link href="<%=request.getContextPath()%>/css/datatables.min.css" rel="stylesheet"  type="text/css">
+  	
+  	
 </head>
 
 
@@ -136,9 +144,7 @@
     </div>
     </div>
   
- 	<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/datatables.min.js" type="text/javascript"></script>
+ 	
   	<script>
   	$(function(){
   		$.getJSON('<%=request.getContextPath()%>/activity?action=getAllactivity',{},snedActivity);
