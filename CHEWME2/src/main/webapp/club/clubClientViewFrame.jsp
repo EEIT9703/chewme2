@@ -7,16 +7,42 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>歡迎蒞臨${clubVOForView.clubName}</title>
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath() %>/club/css/mystyle.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/bootstrap-adjust.css">
 
 </head>
 <body>
 
 	<header><%@ include file="../header.jsp"%></header>
+
 	<p hidden id="clubIdforView" value="">${clubVOForView.clubId}</p>
-	<p hidden id="reqContextPath" value=""><%=request.getContextPath() %></p>
-	
+	<p hidden id="reqContextPath" value=""><%=request.getContextPath()%></p>
+
+	<div id="dialog-form" title="Create new user">
+		<p class="validateTips">All form fields are required.</p>
+
+		<form>
+			<fieldset>
+				<label for="name">Name</label> <input type="text" name="name"
+					id="name" value="Jane Smith"
+					class="text ui-widget-content ui-corner-all"> <label
+					for="email">Email</label> <input type="text" name="email"
+					id="email" value="jane@smith.com"
+					class="text ui-widget-content ui-corner-all"> <label
+					for="password">Password</label> <input type="password"
+					name="password" id="password" value="xxxxxxx"
+					class="text ui-widget-content ui-corner-all">
+
+				<!-- Allow form submission with keyboard without duplicating the dialog button -->
+				<input type="submit" tabindex="-1"
+					style="position: absolute; top: -1000px">
+			</fieldset>
+		</form>
+	</div>
+
+
 	<div class="container">
 		<div id="carouselExampleControls" class="carousel slide"
 			data-ride="carousel">
@@ -24,11 +50,11 @@
 				<div class="carousel-item active">
 					<div class="row">
 						<div class="col-md-3"></div>
-						<div class="col-md-6" >
-<%-- 						<img class="d-block w-100" src="<%=request.getContextPath() %>/getImageInChewme.do?type=clubPic&id=${clubVOForView.clubId}"
+						<div class="col-md-6">
+							<%-- 						<img class="d-block w-100" src="<%=request.getContextPath() %>/getImageInChewme.do?type=clubPic&id=${clubVOForView.clubId}"
 								alt="First slide" style="margin:auto;"> --%>
-							<img class="d-block w-100" src="" id=""
-								alt="First slide" style="margin:auto;">
+							<img class="d-block w-100" src="" id="" alt="First slide"
+								style="margin: auto;">
 						</div>
 						<div class="col-md-3"></div>
 					</div>
@@ -94,6 +120,7 @@
 	<script src="../js/jquery-3.2.1.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 	<script src="js/clubClientViewFrameScript.js"></script>
 </body>
 </html>

@@ -49,7 +49,7 @@
 					<li class="list-group-item"
 						style="border: none; margin: 0px;">
 						<div class="row">
-							<div class="col-xs-1 col-sm-1 col-md-1 col-md-offset-11">
+							<div class="col-xs-3 col-sm-2 col-md-1 col-xs-offset-9 col-sm-offset-10 col-md-offset-11">
 								<button type="submit" class="btn btn-primary btn-xs"
 									name="comment" style="width: 80%">送出</button>
 							</div>
@@ -67,22 +67,22 @@
 				<ul class="list-group">
 					<li class="list-group-item">
 						<div class="row">
-							<div class="col-xs-1 col-sm-1 col-md-1">
+							<div class="col-xs-2 col-sm-1 col-md-1">
 								<img src="http://via.placeholder.com/300x300"
 									class="img-responsive"></img>
 							</div>
-							<div class="col-xs-10 col-sm-10 col-md-11">
+							<div class="col-xs-9 col-sm-10 col-md-11">
 								<div class="well">...</div>
 							</div>
 						</div>
 					</li>
 					<li class="list-group-item">
 						<div class="row">
-							<div class="col-xs-1 col-sm-1 col-md-1 col-md-offset-1">
+							<div class="col-xs-2 col-sm-1 col-md-1 col-md-offset-1">
 								<img src="http://via.placeholder.com/300x300"
 									class="img-responsive"></img>
 							</div>
-							<div class="col-xs-10 col-sm-10 col-md-10">
+							<div class="col-xs-9 col-sm-10 col-md-10">
 								<div class="well">...</div>
 							</div>
 						</div>
@@ -91,14 +91,14 @@
 
 					<li class="list-group-item">
 						<div class="row">
-							<div class="col-xs-3 col-sm-1 col-md-1 col-md-offset-1">
+							<div class="col-xs-2 col-sm-1 col-md-1 col-md-offset-1">
 								<img src="http://via.placeholder.com/300x300"
 									class="img-responsive"></img>
 							</div>
-							<div class="col-xs-8 col-sm-10 col-md-9">
+							<div class="col-xs-8 col-sm-9 col-md-9">
 								<textarea class="full" style="resize: none;"></textarea>
 							</div>
-							<div class="col-xs-3 col-sm-1 col-md-1">
+							<div class="col-xs-2 col-sm-2 col-md-1">
 								<button type="submit" class="btn btn-primary btn-xs"
 									name="comment" style="width: 80%">送出</button>
 								<div class="container"></div>
