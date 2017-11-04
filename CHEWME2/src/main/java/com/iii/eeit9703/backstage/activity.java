@@ -146,8 +146,10 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 				
 //			
                 if("getMyCollection".equals(action)){
-//                	
-                	MemberSession chd = new MemberSession(new Integer(1));
+               		MemVO memVO=(MemVO) session.getAttribute("LoginOK");
+    				Integer memID= memVO.getMemId();
+					
+    				MemberSession chd = new MemberSession(memID);
                 	List<CollectionVO> set=chd.getOwnColVoList();
 //            		MemDAO_hibernate dao =new MemDAO_hibernate();
 //            		Set<CollectionVO> set=dao.getCollByMemNo(1);

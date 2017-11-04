@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html
+>
 <html>
 <head>
 
@@ -214,7 +215,11 @@ margin:0px 80px 30px 0px;
 		</div>
 						
 				<div id="cc" class="sidebar___2Ft6w col-md-8 column" style="min-height:650px; width: 1150px;">
-				
+					<div id='items'>
+					
+					
+					
+					</div>
 				
 				
 				</div>		
@@ -233,7 +238,7 @@ $(function(){
 		function snedActivity(array){	
 			//var docFrag = $(document.createDocumentFragment()); 			
 			var status=["上架","下架","待審核"];
-			var opt = $('.sidebar___2Ft6w');
+			var opt = $('#items');
 			opt.empty();
 			var cell5=$('<div class="allpay_button"></div>').html("<input type='button' value='前往歐付寶付款'>")
 			opt.append(cell5);
@@ -258,8 +263,8 @@ $(function(){
 	         var cell5=$('<span></span>').append(button1)
 	       	 var button2=$('<button></button>').css('color','red').addClass('delete').attr({'type':'button'}).text("移除");
 	         var cell6=$('<span><span>').append(button2)
-         	 var row = $("<div></div>").addClass('item').attr({'id':activity.actID});	 
-	         row.append([cell1, cell2,span,span2,cell3,cell4,cell5,cell6]); 
+         	 var row = $("<div></div>").addClass('item').attr({'class':'item','id':activity.actID});	 
+	       	 row.append([cell1, cell2,span,span2,cell3,cell4,cell5,cell6]); 
   	         opt.append(row); 
         		
 			})	
@@ -289,13 +294,28 @@ $(function(){
 			$("#container").empty();
 			
 		})
-		
-		$('.item').on('click','button:last-child',function(){
-//  				var id = $(this).parents('div').attr('id');
- 				alert("aa");
+		//購賣被點
+		$('#items').on('click','div button:nth-child(1)',function(){
+  				var id = $(this).parents('div').attr('id');
+ 				alert(id);
 			
 		})
-	
+		//移除被點
+		$('#items').on('click','div button:nth-child(2)',function(){
+  				var id = $(this).parents('div').attr('id');
+ 				alert(id);
+			
+		})
+		
+
+		//select被點
+		  $('#items').on('change','div select',function(){
+			  var opt =$(this);	
+			alert(opt.val())
+			 // var price=$(this).parent().parent().find($('.inder_price')).text()
+			//	$(this).parent().parent().find('.inder_price').text(price*2)
+			
+		  })
 // 		$("#cc").wrecker({
 // 			  itemSelector : ".item",
 // 			  maxColumns : 4
