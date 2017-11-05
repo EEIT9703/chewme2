@@ -10,7 +10,7 @@ pageContext.setAttribute("all",a);
 %> --%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
 <!-- 置頂  -->
-<link href="../css/navbar-fixed-top.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/navbar-fixed-top.css" rel="stylesheet">
 
 <style>
 
