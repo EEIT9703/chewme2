@@ -2,15 +2,17 @@ package com.iii.eeit9703.member.model;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.iii.eeit9703.hibernate.util.HibernateUtil;
+import com.iii.eeit9703.order.OrderVO;
 
 public class MemDAO_hibernate implements MemDAO_interface {
-	private static final String GET_ALL_STMT = "from MemVO order by memId";
+	private static final String GET_ALL_STMT = "from MemVO";
 	@Override
 	public void insert(MemVO memVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -150,6 +152,17 @@ public class MemDAO_hibernate implements MemDAO_interface {
 		}
 		return list;
 	}
+	
+	
+	
+	@Override
+	public Set<OrderVO> findOrdersByMemId(Integer memId) {
+			
+		Set<OrderVO> list = findByPrimaryKey(memId).getOrders();
+		return list;
+	}
+
+
 	public static void main(String[] args) {
 //	MemDAO_hibernate dao =new MemDAO_hibernate();
 //	Set<ReportVO> set=dao.getRepByMemNo(1);
@@ -191,18 +204,25 @@ public class MemDAO_hibernate implements MemDAO_interface {
 //		System.out.println();
 //	}	
 		MemDAO_hibernate dao=new MemDAO_hibernate();
-		List<MemVO> list1 = dao.getAll();
-		for (MemVO memVO : list1) {
-			System.out.print(memVO.getMemberId() + ",");
-			System.out.print(memVO.getMemMail() + ",");
-			System.out.print(memVO.getMemPhone());
-			System.out.print(memVO.getMemRole());
-			System.out.print(memVO.getMemStatus());
+//		List<MemVO> list1 = dao.getAll();
+//		for (MemVO memVO : list1) {
+//			System.out.print(memVO.getMemberId() + ",");
+//			System.out.print(memVO.getMemMail() + ",");
+//			System.out.print(memVO.getMemPhone());
+//			System.out.print(memVO.getMemRole());
+//			System.out.print(memVO.getMemStatus());
+//		
+//			System.out.println("\n-----------------");
+//	
+//	}
+					
 		
-			System.out.println("\n-----------------");
-	
-	}
-
+		Set<OrderVO> list =dao.findOrdersByMemId(1);
+		for(OrderVO orderVO :list){
+			
+			System.out.print(orderVO.getOrderName());
+			
+		}
 
 	}
 	

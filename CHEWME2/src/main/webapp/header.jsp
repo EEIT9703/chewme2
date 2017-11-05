@@ -233,7 +233,7 @@ body { padding-bottom: 100px; }
 	loadActivity();
 
 	function loadActivity(){		
-		$.getJSON('<%=request.getContextPath()%>/activity?action=getMyCollection',{},function(array){
+		$.getJSON('<%=request.getContextPath()%>/ShoppingCar?action=getMyCars',{},function(array){
 	 		var fg = $(document.createDocumentFragment());
 	 		var opt = $(".cartrows");
 	 			opt.empty();
@@ -269,7 +269,7 @@ body { padding-bottom: 100px; }
 	$('.cartrows').on('click','button',function(){
 		var actID=$(this).attr('name');
 	
-		$.post('<%=request.getContextPath()%>/activity?action=deleteCollection',{"actID":actID},loadActivity);
+		$.post('<%=request.getContextPath()%>/ShoppingCar?action=deleteCar',{"actID":actID},loadActivity);
 	
 	
 	})
@@ -278,7 +278,7 @@ body { padding-bottom: 100px; }
 	
 	$('.inputCar').click(function(){
 		 var id = $(this).parents('div').attr('id');
-		 $.getJSON('<%=request.getContextPath()%>/activity?action=inputCar',{'ID':id},result);
+		 $.getJSON('<%=request.getContextPath()%>/ShoppingCar?action=inputCar',{'ID':id},result);
 		
 			
 	})	

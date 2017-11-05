@@ -15,7 +15,7 @@ import allPay.payment.integration.*;
 import allPay.payment.integration.domain.*;
 
 @WebServlet("/allpay")
-public class test extends HttpServlet {
+public class AllPay extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static AllInOne all;
 	public static AioCheckOutDevide obj ;
