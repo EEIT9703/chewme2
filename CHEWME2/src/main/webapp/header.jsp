@@ -225,7 +225,7 @@ body { padding-bottom: 100px; }
 <%-- <script src="<%=request.getContextPath()%>/js/jquery-1.12.3.min.js"></script> --%>
 
 <script>
-$(function(){
+<%-- $(function(){
 	
 	loadActivity();
 
@@ -295,6 +295,6 @@ $(function(){
 	
 	
 })
-
+ --%>
 </script>
 
