@@ -11,6 +11,7 @@ import java.sql.SQLException;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -71,6 +72,7 @@ public class GetImageServlet extends HttpServlet {
 				is = rs.getBinaryStream(1);
 				os = res.getOutputStream();
 				if (is == null) {
+					System.out.println("the is is error!");
 					is = getServletContext().getResourceAsStream(req.getContextPath()+"/image/NoImage.png");
 				}
 				int count = 0;
@@ -82,8 +84,9 @@ public class GetImageServlet extends HttpServlet {
 					
 				}
 			}
-		} catch (Exception e) {
+		} catch (NamingException | SQLException | IOException se) {
 			try {
+				System.out.println("get the exception!" + se.getClass());
 				stringResult = rs.getString(1);
 				PrintWriter out = res.getWriter();
 				out.write(stringResult);
@@ -106,3 +109,4 @@ public class GetImageServlet extends HttpServlet {
 		}
 	}
 }
+

@@ -4,6 +4,7 @@ var reqContextPath;
 $(document).ready(function() {
 	reqContextPath = $('#reqContextPath').text();
 	$("#tabs").tabs();
+	getTemplates();
 	createForum();
 	setClubImg();
 	console.log(reqContextPath);
