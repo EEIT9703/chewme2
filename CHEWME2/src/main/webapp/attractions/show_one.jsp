@@ -68,8 +68,7 @@
 }
 
 #text1 {
-	border: 2px solid yellow;
-	width: 650px;
+	width: 700px;
 	height: 500px;
 }
 
@@ -91,6 +90,10 @@ html {
  	margin: 0 20%; 
  	padding: 0px 
  }    
+ #button1{
+ 	margin:0px;
+ 	margin-left:570px;
+ }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -192,7 +195,7 @@ html {
 						alert("請勿空白");
 					} else {
 						// 按下送出留言，底下區塊新增一個div
-						$("#text1").append("<div style='width:550px;height:70px;border-radius:5px;border:2px solid #E8E8E8;background-color:#EDEDED;margin-left:100px;padding:10px;'><strong>" + val1	+ "</strong></div>");
+						$("#text1").append("<div style='border: 1px solid #E3E3E3; padding:5px;width:600px;margin-left:50px;'><table><tr><td><img src='img/portrait.png' width='40' height='40'></td><td><div style='width:550px;height:70px;border-radius:5px;border:2px solid #E8E8E8;background-color:#EDEDED;margin-left:4px;padding:10px;'><strong>" + val1	+ "</strong></div></td></tr></table></div>");
 					}	
 				
 				$("#memo").val("");
@@ -212,7 +215,7 @@ html {
 	  					//var i = data.length;
 	  					for(i = 0; i < data.length; i ++){     
 	  						var val2 = data[i].contents;      // 取得陣列內的contents值，放入div
-	  						$("#text1").append("<div style='width:670px;height:80px;border-radius:5px;border:1px solid blue;margin-left:8px;padding:10px;'><strong>" + val2	+ "</strong></div>");
+	  						$("#text1").append("<div style='border: 1px solid #E3E3E3; padding:5px;width:600px;margin-left:50px;'><table><tr><td><img src='img/portrait.png' width='40' height='40'></td><td><div style='width:550px;height:70px;border-radius:5px;border:2px solid #E8E8E8;background-color:#EDEDED;margin-left:4px;padding:10px;'><strong>" + val2 + "</strong></div></td></tr></table></div>");
 	  					}  									  				
 	  				})			 				
 				})					

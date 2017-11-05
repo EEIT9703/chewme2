@@ -13,8 +13,10 @@ pageEncoding="UTF-8"%>
   <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>  
 </head>
 <body>
-<header><%@include file="../header.jsp"%></header>
- <div class="container">
+<div>
+	<header><%@include file="../header.jsp"%></header>
+</div>
+ <div class="container" style="margin-top:50px;">
 	<div class="row">		
     	<div id="custom-search-input">
         	<div class="input-group col-md-12">
