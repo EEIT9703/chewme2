@@ -25,6 +25,7 @@ public class ActivityVO implements java.io.Serializable {
 	private String act_photo; //活動預覽圖
 	private String act_price; //活動價位
 	private String act_news;  //活動介紹
+	private String sch_photo; //行程圖
 	private Set<CollectionVO> Collects = new HashSet<CollectionVO>();
 	private Set<ReportVO> Reports = new HashSet<ReportVO>();
 	private MemVO memVO; //維浪如果jdbc 要輸入會員ID 需要 程式碼改成memVO.getMemId 
@@ -111,6 +112,12 @@ public class ActivityVO implements java.io.Serializable {
 	}
 	public void setAct_news(String act_news) {
 		this.act_news = act_news;
+	}
+	public String getSch_photo() {
+		return sch_photo;
+	}
+	public void setSch_photo(String sch_photo) {
+		this.sch_photo = sch_photo;
 	}
 	
 

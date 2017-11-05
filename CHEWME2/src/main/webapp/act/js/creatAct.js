@@ -117,6 +117,7 @@ $(document).ready(function() {
 			$('#act_price').val(data.act_price)
 			$('#activity_state').val(data.activity_state);
 
+
 		});
 	});
 
@@ -148,6 +149,7 @@ $(document).ready(function() {
 	});*/
 	
 });
+
 // 送出更新資料
 // $('#submit').click(function() {
 // var afrm = $('form[name="actForm"]');

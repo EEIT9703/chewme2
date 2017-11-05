@@ -65,7 +65,6 @@ public class ActivityDAO implements ActivityDAO_interface {
 			pstmt.setDate(4, activityVO.getEDate());     //結束日期
 			pstmt.setString(5, activityVO.getAct_price());    //活動價格
 			pstmt.setInt(6, activityVO.getActivity_state());  //活動上下架
-//			pstmt.setString(6, activityVO.getAct_photo());     //預覽圖片
 			pstmt.setInt(7, activityVO.getActID());      //活動編號
 
 			pstmt.executeUpdate();

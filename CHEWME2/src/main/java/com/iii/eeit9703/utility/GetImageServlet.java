@@ -39,6 +39,8 @@ public class GetImageServlet extends HttpServlet {
 			DataSource ds = (DataSource) context.lookup("java:comp/env/jdbc/TestDB");
 			conn = ds.getConnection();
 			PreparedStatement pstmt = null;
+			System.out.println("select the pic");
+			
 
 			if (type.equalsIgnoreCase("uploadimg")) {
 				pstmt = conn.prepareStatement("select image from attractions where name = ?");
@@ -48,7 +50,9 @@ public class GetImageServlet extends HttpServlet {
 				pstmt = conn.prepareStatement("select memPhoto from  where memId = ?");				
 			} else if (type.equalsIgnoreCase("clubPic")){
 				pstmt = conn.prepareStatement("select photo from club_photo where clubId = ?");								
-			} 
+			} else if(type.equalsIgnoreCase("sch_photo")){
+				pstmt = conn.prepareStatement("SELECT sch_photo FROM activity where actID = ?");
+			}
 		
 			pstmt.setString(1, id);
 			

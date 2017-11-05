@@ -106,7 +106,7 @@ public class ActivityServlet extends HttpServlet {
 			
 			try {
 				//1.接收請求 createAct.jsp							
-				System.out.println("12345");
+				System.out.println("下一步");
 				Integer actID = new Integer(req.getParameter("actID"));
 				
 				String act_name = req.getParameter("act_name");
@@ -151,7 +151,7 @@ public class ActivityServlet extends HttpServlet {
 				}
 				
 				Integer activity_state = new Integer(req.getParameter("activity_state"));
-				
+				String sch_photo = req.getParameter("sch_photo");
 
 				
 				
@@ -164,7 +164,7 @@ public class ActivityServlet extends HttpServlet {
 				activityVO.setAct_price(act_price);
 				activityVO.setActivity_state(activity_state);
 				activityVO.setActID(actID);
-//				activityVO.setAct_photo(base64);
+				activityVO.setSch_photo(sch_photo);
 				req.setAttribute("activityVO", activityVO); //含有輸入錯誤的activityVO 也存入req
 
 				if(!error.isEmpty()){
