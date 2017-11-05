@@ -40,12 +40,12 @@ public class DataServlet extends HttpServlet {
 		AttrDAO attrDAO = new AttrDAO();
 		
 		
-		List<AttrVO> list = attrDAO.getAll();
+		ArrayList<AttrVO> list = attrDAO.getAll();
 		
 		JSONArray artarry = new JSONArray(list);
 		 
 		out.print(artarry.toString());
-		System.out.println(artarry);
+		System.out.println(artarry.toString());
 		
 		
 	}

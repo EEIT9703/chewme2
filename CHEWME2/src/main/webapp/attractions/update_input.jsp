@@ -32,7 +32,7 @@
 <title>資料修改</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"></link>
-<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
 </head>
 <body>
 <header><%@include file="../header.jsp"%></header>
@@ -106,7 +106,7 @@
 				<img id="img" src="" class="img-responsive" width="300" height="300">
 		</form>
 	</div>
-	<script src="/CHEWME2/js/jquery-3.2.1.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
 	<script>
 	$(function(){
 		// 預覽圖片
@@ -130,8 +130,7 @@
 		}      // 預覽圖片結束
 	})
 	</script>
-	<script src="../js/jquery.min.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 	<script	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 </body>
 </html>

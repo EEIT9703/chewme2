@@ -13,7 +13,7 @@
 #tabs {
 	margin: auto;
 	width: 700px;
-	height: 1000px;
+	height: 1100px;
 }
 
 .st1 {
@@ -23,7 +23,8 @@
 }
 
 #tabs-1 {
-	height: 700px;
+	height: 900px;
+/* 	border:1px solid green; */
 }
 
 #tabs-2 {
@@ -58,9 +59,10 @@
 
 #memo {
 	resize: none;
-	border-radius: 3px 20px 20px 20px;
-	border: 2px solid blue;
+	background-color:#EDEDED;
+	border: 2px solid #E8E8E8;
 	width: 600px;
+	height:70px;
 	margin-top: 10px;
 	margin-left: 5px;
 }
@@ -75,8 +77,10 @@
 	margin-left: 600px;
 }    
 #map_canvas{
-	height:200px;
-	width:200px; 	
+	height:350px;
+	width:500px; 	
+	border-radius:5px;
+	margin:auto;
 }   
 html { 
  	height: 100% 
@@ -91,9 +95,8 @@ html {
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>商家列表</title>
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
 <!-- <script src="../js/bootstrap.min.js"></script> -->
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -120,8 +123,7 @@ html {
 				<li>類型：${attrVO.type}</li>
 			</div>
 			<ul>
-				<li><a href="#tabs-1">介紹</a></li>
-				<li><a href="#tabs-2">地圖</a></li>
+				<li><a href="#tabs-1">介紹</a></li>				
 				<li><a href="#tabs-3" id="message">留言板</a></li>
 			</ul>
 			<div id="tabs-1">
@@ -137,18 +139,13 @@ html {
 				</table>
 				<div id="map_canvas"></div>	
 			</div>
-			<div id="tabs-2">
-				
-			
-			</div>			
-			
-<!-- 			放地圖的區塊 -->
+					
 			<div id="tabs-3">			
-					<h4 style="margin: 10px 0px 10px 20px;">
+					<h4 style="margin: 0px 0px 10px 10px;">
 					<strong>我要留言：</strong>
 				</h4>
 				</hr>
-				<div style="border: 1px solid black; padding: 3px;">
+				<div style="border: 1px solid #E3E3E3; padding:3px;">
 					<table>
 						<tr>
 							<td><img src="img/portrait.png" width="40" height="40">
@@ -163,11 +160,11 @@ html {
 				<div id="text1"></div>	
 			</div>		
 				<div>
-			地址：<input id="address_val" name="address_val"
-				style="width: 400px;" type="text" value="${attrVO.address}">
+			<input id="address_val" name="address_val"
+				style="width: 400px;display:none;" type="text" value="${attrVO.address}" >
 			</div>
-			<div id="SearchLatLng">【您輸入的地址位置】</div>
-			<div id="NowLatLng">【移動標記點後的位置】</div>	
+			<div id="SearchLatLng" style="display:none;"></div>
+			<div id="NowLatLng" style="display:none;"></div>	
 			<div>
 				<tr>
 					<td>
@@ -190,17 +187,17 @@ html {
 					//console.log(id1.value);
 					
 				var val1 = $("#memo").val();                // 取得textarea內輸入的留言
-				var anum = document.getElementById("id1").innerHTML;    // 取得當前頁面的景點標號
+				var anum = document.getElementById("id1").innerHTML;    // 取得當前頁面的景點編號
 					if (val1 == "") {
 						alert("請勿空白");
 					} else {
 						// 按下送出留言，底下區塊新增一個div
-						$("#text1").append("<div style='width:670px;height:80px;border-radius:5px;border:1px solid blue;margin-left:8px;padding:10px;'><strong>" + val1	+ "</strong></div>");
+						$("#text1").append("<div style='width:550px;height:70px;border-radius:5px;border:2px solid #E8E8E8;background-color:#EDEDED;margin-left:100px;padding:10px;'><strong>" + val1	+ "</strong></div>");
 					}	
 				
 				$("#memo").val("");
 				//alert(mnum);
-				// 取得 1.使用者輸入的留言內容  2.當前頁面的景點編號   傳送到後端servlet寫進資料庫
+				// 取得 1.使用者輸入的留言內容(val1)  2.當前頁面的景點編號(anum)   傳送到後端servlet寫進資料庫
 				$.post("/CHEWME2/ArticleServlet?action=sendmessage",{"contents":val1, "attractionID":anum}, function(data){
 					
 					})			
@@ -218,79 +215,12 @@ html {
 	  						$("#text1").append("<div style='width:670px;height:80px;border-radius:5px;border:1px solid blue;margin-left:8px;padding:10px;'><strong>" + val2	+ "</strong></div>");
 	  					}  									  				
 	  				})			 				
-				})	
-				
-			})	
-				
-	// 地圖開始			
-		var map;
-		var marker;
-		
-		function initMap() {
-			console.log("1");
-			//初始化地圖時的定位經緯度設定
-			var latlng = new google.maps.LatLng(23.973875, 120.982024); //台灣緯度Latitude、經度Longitude：23.973875,120.982024
-			//初始化地圖options設定
-			var mapOptions = {
-				zoom : 14,
-				center : latlng,
-				mapTypeId : google.maps.MapTypeId.ROADMAP
-			};
-			//初始化地圖
-			map = new google.maps.Map(document.getElementById("map_canvas"),
-					mapOptions);
-			//加入標記點
-			marker = new google.maps.Marker({
-				draggable : true,
-				position : latlng,
-				title : "台灣 Taiwan",
-				map : map
-			});
-			//增加標記點的mouseup事件
-			google.maps.event.addListener(marker, 'mouseup',
-					function() {
-						LatLng = marker.getPosition();
-						$("#NowLatLng").html(
-								"【移動標記點後的位置】緯度：" + LatLng.lat() + "經度："
-										+ LatLng.lng());
-					});
-			GetAddressMarker();
-		}
-		
-
-		function GetAddressMarker() {    //重新定位地圖位置與標記點位置
-			
-			console.log("2");
-			address = $("#address_val").val();
-			console.log(address);
-			geocoder = new google.maps.Geocoder();
-			geocoder.geocode({
-				'address' : address
-			}, function(results, status) {
-				if (status == google.maps.GeocoderStatus.OK) {
-					console.log(results[0].geometry.location);
-					LatLng = results[0].geometry.location;
-					map.setCenter(LatLng); //將地圖中心定位到查詢結果
-
-					marker.setPosition(LatLng); //將標記點定位到查詢結果
-					marker.setTitle(address); //重新設定標記點的title
-					$("#SearchLatLng").html(
-							"【您輸入的地址位置】緯度：" + LatLng.lat() + "經度："
-									+ LatLng.lng());
-				}
-			});
-		}
-		
-		// 地圖結束
-		
-		
-		
-		
-		
-		
-					
-				
+				})					
+			})					
 	</script>	
+	
+	<!-- 	地圖 -->
+	<script src="js/map.js"></script>  
 	<script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfX3HNjv2RvHE8gBJg5WDetgOUzjwsEpk&callback=initMap"></script>
 	
