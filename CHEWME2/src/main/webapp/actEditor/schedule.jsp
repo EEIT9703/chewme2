@@ -35,13 +35,14 @@ span{color: #004B97;font-family: 'Arial','Microsoft JhengHei';font-size:25px;fon
 #addr{font-family: 'Arial','Microsoft JhengHei';font-size:20px;font-weight:bold;padding-left:10px;}
 #intro{font-family: 'Arial','Microsoft JhengHei';font-size:15px;padding-left:10px;}
 #photo{padding:10px;vertical-align : middle;}
+#save{margin-left:35px;height:40px;text-align: center;font-family: 'Arial','Microsoft JhengHei';font-weight:bold;}
 </style>
 <body>
 
 <header><%@include file="../header.jsp"%></header>
 <br>
 <br>
-<button id=save><i class="glyphicon glyphicon-picture"></i>儲存行程</button>
+<button id=save class="btn btn-info"><i class="glyphicon glyphicon-picture"></i>儲存行程</button>
 <div id=showSchedule></div>
 <div id=schedule>
 	<h1 id="name"></h1>
@@ -135,7 +136,7 @@ window.onload = function(){
 			
 			html2canvas($("#schedule"), {
 	        	onrendered: function(canvas) {
-	         	//	$("<img />", { src: canvas.toDataURL("image/png") }).appendTo($("#showSchedule"));
+	         	$("<img />", { src: canvas.toDataURL("image/png") }).appendTo($("#showSchedule"));
 	         	//document.body.appendChild(canvas); 
 	        	 var pic = canvas.toDataURL("image/png");
 	        	 console.log(pic);
