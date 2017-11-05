@@ -3,6 +3,7 @@ package com.iii.eeit9703.utility;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,14 +34,21 @@ public class GetImageServlet extends HttpServlet {
 		Connection conn = null;
 		OutputStream os = null;
 		InputStream is = null;
+		ResultSet rs = null;
+		String stringResult;
+		PreparedStatement pstmt = null;
 		try {
 
 			Context context = new InitialContext();
 			DataSource ds = (DataSource) context.lookup("java:comp/env/jdbc/TestDB");
 			conn = ds.getConnection();
+<<<<<<< HEAD
 			PreparedStatement pstmt = null;
 			System.out.println("select the pic");
 			
+=======
+			pstmt = null;
+>>>>>>> branch 'master' of https://github.com/EEIT9703/chewme2.git
 
 			if (type.equalsIgnoreCase("uploadimg")) {
 				pstmt = conn.prepareStatement("select image from attractions where name = ?");
@@ -50,21 +58,26 @@ public class GetImageServlet extends HttpServlet {
 				pstmt = conn.prepareStatement("select memPhoto from  where memId = ?");				
 			} else if (type.equalsIgnoreCase("clubPic")){
 				pstmt = conn.prepareStatement("select photo from club_photo where clubId = ?");								
+<<<<<<< HEAD
 			} else if(type.equalsIgnoreCase("sch_photo")){
 				pstmt = conn.prepareStatement("SELECT sch_photo FROM activity where actID = ?");
+=======
+			} else if(type.equalsIgnoreCase("actPic")){
+				pstmt = conn.prepareStatement("select photo from club_photo where clubId = ?");
+>>>>>>> branch 'master' of https://github.com/EEIT9703/chewme2.git
 			}
 		
 			pstmt.setString(1, id);
 			
 
-			ResultSet rs = pstmt.executeQuery();
-
+			rs = pstmt.executeQuery();
+			
 			if (rs.next()) {
 
 				is = rs.getBinaryStream(1);
 				os = res.getOutputStream();
 				if (is == null) {
-					is = getServletContext().getResourceAsStream(req.getContextPath()+"/image/ NoImage.png");
+					is = getServletContext().getResourceAsStream(req.getContextPath()+"/image/NoImage.png");
 				}
 				int count = 0;
 				byte[] bytes = new byte[8192];
@@ -76,7 +89,15 @@ public class GetImageServlet extends HttpServlet {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			try {
+				stringResult = rs.getString(1);
+				PrintWriter out = res.getWriter();
+				out.write(stringResult);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
 		} finally {
 			if (conn != null) {
 				try {
