@@ -12,6 +12,7 @@ import org.json.simple.JSONValue;
 import com.iii.eeit9703.activity.model.ActivityVO;
 import com.iii.eeit9703.collection.CollectionVO;
 import com.iii.eeit9703.hibernate.util.HibernateUtil;
+import com.iii.eeit9703.order.OrderVO;
 import com.iii.eeit9703.report.ReportVO;
 
 public class MemDAO implements MemDAO_interface {
@@ -45,7 +46,7 @@ public class MemDAO implements MemDAO_interface {
 //		Set<CollectionVO> set = findByPrimaryKey(memId).getCollects();
 //		return set;
 //	}
-
+	
 	@Override
 	public void update(MemVO memVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -155,4 +156,14 @@ public class MemDAO implements MemDAO_interface {
 		}
 		return list;
 	}
+
+
+	@Override
+	public Set<OrderVO> findOrdersByMemId(Integer memId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
 }

@@ -2,10 +2,13 @@ package com.iii.eeit9703.member.model;
 
 
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import com.iii.eeit9703.activity.model.ActivityVO;
 import com.iii.eeit9703.collection.CollectionVO;
+import com.iii.eeit9703.order.OrderVO;
 import com.iii.eeit9703.report.ReportVO;
 
 public class MemVO implements java.io.Serializable{
@@ -28,7 +31,8 @@ public class MemVO implements java.io.Serializable{
 	private Set<CollectionVO> Collects = new HashSet<CollectionVO>();
 	private Set<ReportVO> Reports = new HashSet<ReportVO>();
 	private Integer clubId;
-
+	//private List<OrderVO> Orders = new LinkedList<OrderVO>();
+	private Set<OrderVO> Orders = new HashSet<OrderVO>();
 	
 	public Integer getMemId() {
 		return memId;
@@ -146,5 +150,13 @@ public class MemVO implements java.io.Serializable{
 	}
 	public void setRandomCode(String randomCode) {
 		this.randomCode = randomCode;
-	}	
+	}
+	public Set<OrderVO> getOrders() {
+		return Orders;
+	}
+	public void setOrders(Set<OrderVO> orders) {
+		Orders = orders;
+	}
+	
+	
 }
