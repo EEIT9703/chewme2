@@ -103,7 +103,7 @@
 </style>
 
 <body>
-<%-- 	<header><%@ include file="../header.jsp"%></header> --%>
+<header><%@ include file="../header.jsp"%></header>
 
 	
 	<jsp:useBean id="actSvc" scope="page" class="com.iii.eeit9703.activity.model.ActService" />
@@ -117,35 +117,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <div style="height:40px"></div>
-                <div class="row carousel-holder">
-                    <div class="col-md-12">
-                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                            </ol>
-                            <div class="carousel-inner">
-                                <div class="item active">
-                                    <img class="slide-image" src="data:image/png;base64,${actVO.act_photo}" id="" alt="">
-                                </div>
-                                <div class="item">
-                                    <img class="slide-image" src="data:image/png;base64,${actVO.act_photo}" alt="">
-                                </div>
-                                <div class="item">
-                                    <img class="slide-image" src="data:image/png;base64,${actVO.act_photo}" alt="">
-                                </div>
-                            </div>
-                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left" style="color:red;"></span>
-                            </a>
-                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right" style="color:red;"></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+               
                 <div class="heading">
                     <h2>行程介紹</h2>
                 </div>
@@ -214,24 +186,7 @@
         </div>
     </div>
     <!-- /.container -->
-						
-						
-						
-						
-						
-						
-
-
-						<div>
-						
-	<%-- 			<jsp:include page="/CHEWME2/actEditor/schedule.jsp" /> --%>
- 	<%-- 						<%@ include file="../actEditor/schedule.jsp"%> --%>
-						</div>
-						
-						
-
-
-				</div>
+       </div>
 			</div>
 		</div>
 	</div>

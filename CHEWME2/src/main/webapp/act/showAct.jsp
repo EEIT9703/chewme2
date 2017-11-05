@@ -103,10 +103,10 @@
 </style>
 
 <body>
-<%-- 	<header><%@ include file="../header.jsp"%></header> --%>
+<header><%@ include file="../header.jsp"%></header>
 
 	
-	<jsp:useBean id="actSvc" scope="page" class="com.iii.eeit9703.activity.model.ActService" />
+<jsp:useBean id="actSvc" scope="page" class="com.iii.eeit9703.activity.model.ActService" />
 <input type="hidden" value="${actVO.actID}" >
 <input type="hidden" value="${activityVO.actID}" >
 	<div class="container">
@@ -155,7 +155,7 @@
                 </div>
             </div>
             <div style="height:40px"></div>
-            <form class="col-md-6" method="post" role="form" enctype="multipart/form-data">               
+            <form class="col-md-6"  role="form" >               
                
                 <div class="date-time row">
                     <div class="form-group col-md-6">
@@ -202,28 +202,14 @@
     </div>
     <!-- /.container -->
 						
-						
-						
-						
-						
-						
-
-
-						<div>
-						
-	<%-- 			<jsp:include page="/CHEWME2/actEditor/schedule.jsp" /> --%>
- 	<%-- 						<%@ include file="../actEditor/schedule.jsp"%> --%>
-						</div>
-						
-						
-
-
+					<div id="sch">
+					<img id="${activityVO.actID}"  src=""></div>
+					console.log(${activityVO.actID});
+					
 				</div>
 			</div>
 		</div>
 	</div>
-
-
 
 	<script>
 		
@@ -240,6 +226,11 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
 	
-	<script src="../act/js/creatAct2.js"></script>
+	<script src="../act/js/showAct.js"></script>
 </body>
+<script type="text/javascript">
+
+
+
+</script>
 </html>

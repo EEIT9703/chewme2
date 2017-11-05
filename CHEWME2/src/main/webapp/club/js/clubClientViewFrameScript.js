@@ -23,6 +23,7 @@ function setClubImg() {
 			// console.log(data);
 			console.log(this);
 			$(thsImg).attr("src", data);
+			
 		})
 	})
 }

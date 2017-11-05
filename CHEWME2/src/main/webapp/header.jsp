@@ -9,6 +9,9 @@ int a=list.size();
 pageContext.setAttribute("all",a);
 %> --%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
+<!-- 置頂  -->
+<link href="../css/navbar-fixed-top.css" rel="stylesheet">
+
 <style>
 
 /*  shopping car start  */
@@ -114,7 +117,7 @@ body { padding-bottom: 100px; }
 
 </style>
 
-<nav class="navbar navbar-default navbar-static-top">
+<nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid">
 		<div>
 			<div>
@@ -204,7 +207,7 @@ body { padding-bottom: 100px; }
 				<li><c:if test="${  empty LoginOK }">
 						<a class="nav-link"
 							href="<%=request.getContextPath()%>/member/register.jsp"><span
-							class="glyphicon glyphicon-log-in"></span>註冊 </a>
+							class="glyphicon glyphicon-user"></span>註冊 </a>
 					</c:if></li>
 				<li><c:if test="${ ! empty LoginOK }">
 						<a class="nav-link"
@@ -223,9 +226,9 @@ body { padding-bottom: 100px; }
 
 </nav>
 <%-- <script src="<%=request.getContextPath()%>/js/jquery-1.12.3.min.js"></script> --%>
-
+<%-- 
 <script>
-$(function(){
+<%-- $(function(){
 	
 	loadActivity();
 
@@ -295,6 +298,6 @@ $(function(){
 	
 	
 })
-
+ --%>
 </script>
-
+ --%>

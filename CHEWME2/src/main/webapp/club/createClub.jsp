@@ -75,7 +75,7 @@
 
 	</div>
 	<div id="dialog-img" title="Create new user" >
-		<p class="validateTips">All form fields are required.</p>
+		<p class="validateTips">請選擇圖片所要的範圍</p>
 
 		<!-- <form>
 			<fieldset>
@@ -108,6 +108,8 @@
 		src="<%=request.getContextPath()%>/js/jquery.imgareaselect.pack.js"></script>
 	<script type="text/javascript"
 		src="<%=request.getContextPath()%>/club/js/createClub.js"></script>
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/com-resource/js/imgSelAndUpload.js"></script>
 
 </body>
 </html>

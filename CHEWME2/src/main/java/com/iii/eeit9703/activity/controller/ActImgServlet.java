@@ -22,20 +22,17 @@ import javax.sql.DataSource;
 
 
 
-@WebServlet("/ActivityAct.do")
+@WebServlet("/act/schServlet")
 public class ActImgServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
   
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String actID = req.getParameter("actID");
+		String id = req.getParameter("id");
 		String type = req.getParameter("type");
-		Connection conn = null;
-		
-		InputStream inputStream = null;
-		ByteArrayInputStream bis = null;
-		ByteArrayOutputStream bos = null;
+		System.out.println("Start to get the image where  type is "+type+" id is "+id+"! " );
+		Connection conn = null;		
 		
 		try {
 			
@@ -44,18 +41,14 @@ public class ActImgServlet extends HttpServlet {
 			conn = ds.getConnection();
 			PreparedStatement pstmt = null ;
 			
-			if(type.equalsIgnoreCase("actImg")){
-				pstmt = conn.prepareStatement("SELECT act_photo FROM activity where actID = ?");
-				pstmt.setString(1, actID);
-			}
-			
-			ResultSet rs = pstmt.executeQuery();
-			
-			if(rs.next()){
+			if(type.equalsIgnoreCase("sch_photo")){
+				pstmt = conn.prepareStatement("SELECT sch_photo FROM activity where actID = ?");
 				
-				bis = (ByteArrayInputStream) rs.getArray(1);
-
+							
 			}
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+
 			
 		
 		} catch (Exception e) {

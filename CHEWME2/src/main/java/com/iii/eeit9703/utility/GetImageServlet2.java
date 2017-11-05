@@ -19,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 // 從資料庫取圖放入JSP
-@WebServlet("/getImageInChewme.do")
-public class GetImageServlet extends HttpServlet {
+@WebServlet("/getImageInChewme2.do")
+public class GetImageServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -42,7 +42,13 @@ public class GetImageServlet extends HttpServlet {
 			Context context = new InitialContext();
 			DataSource ds = (DataSource) context.lookup("java:comp/env/jdbc/TestDB");
 			conn = ds.getConnection();
+<<<<<<< HEAD
+			PreparedStatement pstmt = null;
+			System.out.println("select the pic");
+			
+=======
 			pstmt = null;
+>>>>>>> branch 'master' of https://github.com/EEIT9703/chewme2.git
 
 			if (type.equalsIgnoreCase("uploadimg")) {
 				pstmt = conn.prepareStatement("select image from attractions where name = ?");
@@ -52,14 +58,14 @@ public class GetImageServlet extends HttpServlet {
 				pstmt = conn.prepareStatement("select memPhoto from  where memId = ?");				
 			} else if (type.equalsIgnoreCase("clubPic")){
 				pstmt = conn.prepareStatement("select photo from club_photo where clubId = ?");								
-			} else if(type.equalsIgnoreCase("actPic")){
-				pstmt = conn.prepareStatement("select photo from club_photo where clubId = ?");
+<<<<<<< HEAD
 			} else if(type.equalsIgnoreCase("sch_photo")){
 				pstmt = conn.prepareStatement("SELECT sch_photo FROM activity where actID = ?");
+=======
+			} else if(type.equalsIgnoreCase("actPic")){
+				pstmt = conn.prepareStatement("select photo from club_photo where clubId = ?");
+>>>>>>> branch 'master' of https://github.com/EEIT9703/chewme2.git
 			}
-//			} else if(type.equalsIgnoreCase("actPic")){
-//				pstmt = conn.prepareStatement("select photo from club_photo where clubId = ?");
-//			}
 		
 			pstmt.setString(1, id);
 			

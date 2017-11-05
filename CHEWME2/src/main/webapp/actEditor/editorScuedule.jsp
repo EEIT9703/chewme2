@@ -34,9 +34,9 @@
 
 
 <style type="text/css">
-b{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
+b{font-family: 'Arial','Microsoft JhengHei';font-size:20px;}
 p{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
-select{width:150px;height:40px;font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
+select{width:150px;height:40px;font-family: 'Arial','Microsoft JhengHei';font-size:20px;}
 option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 .item{font-family: 'Arial','Microsoft JhengHei';font-size:20px;font-weight:bold;line-height:300%;padding-left:60px;height:60px;background-repeat:no-repeat;}
 .detailItem{font-family: 'Arial','Microsoft JhengHei';font-size:17px;padding-left:10px;width:80px;}
@@ -46,7 +46,7 @@ option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 #calendar{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 
 </style>
-<meta http-equiv="Content-Type" content="text/html; charset=BIG5">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>編輯行程</title>
 
 </head>
@@ -58,12 +58,13 @@ option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 <header><%@include file="../header.jsp"%></header>
 <br>
 <br>
-<div class="container-fluid">
+<div class="container-fluid" style="width:110%;margin:0px 30px">
 	<div class="row">
 		<!-- calendar顯示div處 -->
-		<div id='calendar' class='col-xs-7 col-sm-8 col-lg-7' style="padding:10;"></div>
+		<div id='calendar' class='col-xs-6 col-sm-7 col-lg-6' style="padding:10px;"></div>
 		<!-- 選擇器區塊 -->
-		<div class="col-xs-5 col-sm-4 col-lg-5" style="padding:10;">
+		<div class="col-xs-6 col-sm-5 col-lg-6" style="padding-left:25px;">
+		
 			<br>
 			<b>行程名稱：</b> <input id="actName"><br><br>
 			<b>(1) 選擇縣市：</b>
@@ -76,7 +77,7 @@ option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 			<b>(2) 選擇區域：</b>
 			<select id="county" name="county"><option>請選擇縣市</option></select>
 			<br><br><br>
-			<div id="tabs" style="width:350px">
+			<div id="tabs" style="width:450px">
 			  <ul>
 		    	<li><a href="#attr">景　點</a></li>
 				<li><a href="#rest">餐　聽</a></li>
@@ -180,11 +181,9 @@ window.onload = function(){
 //				console.log(array.length);
 				var dataName = dataArray[k].name;
 				var dataID = dataArray[k].attractionID;
-				var dataTel=dataArray[k].tel;
-				var dataAdd=dataArray[k].address;
-				var dataIntro=dataArray[k].intro;
-				var name = $("<p></p>").text(dataName);
-				item = $("<div class='item'></div>").append(name);
+				var dataImg=$("<b class=dataImg></b>").html("<img src='data:image/png;base64,"+dataArray[k].img64+"'height=45px width=60px>");				
+				var name = $("<b style='padding-left:10px;font-size:20px;'></b>").text(dataName);
+				item = $("<div class='item'></div>").append([dataImg,name]);
 				item.attr("id",dataID);
 				
 				if(type[0].match(dataArray[k].type)){
@@ -213,8 +212,7 @@ window.onload = function(){
 					$('#rest>div').draggable();
 					$('#rest>div').attr("data-toggle","modal");
 					$('#rest>div').attr("data-target","#detail");
-					$('#rest>div').click(function(){
-					
+					$('#rest>div').click(function(){					
 						showDetail($(this).attr("id"));
 					})
 					$('#rest>div').draggable({
@@ -431,6 +429,7 @@ $(function() {
 	
 	
 	//設定日期最多3日，最少1日
+	$('#calendar button').eq(1).attr('disabled',"true");
 	$('#calendar button').eq(0).click(function(){
 		if(i>=3){
 			$('#calendar button').eq(0).attr('disabled',"true");
