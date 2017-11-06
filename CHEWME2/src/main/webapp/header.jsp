@@ -152,7 +152,7 @@ body { padding-bottom: 100px; }
 					</ul>
 				</li>				
 				
-				<li><a href="<%=request.getContextPath() %>/index.jsp"><img src="<%=request.getContextPath()%>/image/findattraction.png" width=40px height=30px >找景點</a></li>
+				<li><a href="<%=request.getContextPath() %>/attractions/listAll.jsp"><img src="<%=request.getContextPath()%>/image/findattraction.png" width=40px height=30px >找景點</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
