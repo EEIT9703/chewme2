@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -20,13 +21,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.iii.eeit9703.actEditor.model.AttrDAO_JDBC;
+import com.iii.eeit9703.actEditor.model.AttrVO;
 import com.iii.eeit9703.activity.model.ActService;
 import com.iii.eeit9703.activity.model.ActivityVO;
 import com.iii.eeit9703.member.model.MemberSession;
 
-@WebServlet("/act/actServlet2")
+@WebServlet("/act/actServlet")
 @MultipartConfig(
 location="",
 maxRequestSize=1024*1024*1024,
@@ -60,6 +64,25 @@ public class ActivityServlet extends HttpServlet {
 		System.out.println(action);
 		
 		HttpSession session = req.getSession(false);
+
+		//貼入在你的sevlet 然後 ctrl+shift+o 匯入必要的class
+		//可以跳過建業的member認證, 並匯入memberSession和memVO
+
+
+		if(session == null||session.getAttribute("LoginOK") == null||session.getAttribute("LoginOK_MS") == null){
+			System.out.println("LoginOK" + session.getAttribute("LoginOK")==null );
+			System.out.println("LoginOK_MS" + session.getAttribute("LoginOK_MS")==null );
+			
+			session.setAttribute("requestURI", req.getRequestURI());
+			session.setAttribute("memberId", "1");
+			session.setAttribute("action", req.getParameter("action"));
+			resp.sendRedirect("/CHEWME2/member/memberLogin.do");
+			System.out.println("change to ok!");		
+			return;			
+		}
+		if( req.getParameter("action") == null){
+			action = (String)session.getAttribute("action");
+		}
 		if(session == null){
 			resp.sendRedirect(req.getContextPath()+"/member/login.jsp");
 		}
@@ -302,6 +325,25 @@ public class ActivityServlet extends HttpServlet {
 			}
 			
 		}
+		
+		if("Search".equals(action)){
+			String act_name = req.getParameter("search");
+			System.out.println(act_name);
+			
+			
+			ActService actSvc = new ActService();
+			ArrayList<ActivityVO> activityVO = actSvc.Search(act_name);
+
+			JSONArray actJSON = new JSONArray(activityVO);
+
+			out.print(actJSON.toString());
+			
+			System.out.println(actJSON);
+						
+			
+			}
+		
+		
 			
 			
 			

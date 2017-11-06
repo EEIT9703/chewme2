@@ -28,7 +28,7 @@ import com.iii.eeit9703.member.model.MemVO;
 import com.iii.eeit9703.member.model.MemberSession;
 import com.iii.eeit9703.utility.AutoLogin;
 
-@WebServlet("/act/actServlet")
+@WebServlet("/act/actServlet2")
 @MultipartConfig(
 location="",
 maxRequestSize=1024*1024*1024,
