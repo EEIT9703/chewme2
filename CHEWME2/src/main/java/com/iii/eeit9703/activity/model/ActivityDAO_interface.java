@@ -16,6 +16,8 @@ public interface ActivityDAO_interface {
 	public ActivityVO findByPrimaryKey(Integer actID);
 	//查詢
 	public List<ActivityVO>getAll();
+	//搜尋
+	public ArrayList<ActivityVO> Search(String act_name);
 	
 
 	

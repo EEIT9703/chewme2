@@ -19,6 +19,7 @@
 	src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 <script
 	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
 <title>Insert title here</title>
 </head>
 <style>
@@ -139,9 +140,17 @@
 		<h2>Stylish Search Box</h2>
            <div id="custom-search-input">
                             <div class="input-group col-md-12">
+<<<<<<< HEAD
                                 <input type="text" class="  search-query form-control" placeholder="Search" />
+=======
+                                <input type="text" class="  search-query form-control" placeholder="Search" id="text" name="text"/>
+>>>>>>> branch 'master' of https://github.com/EEIT9703/chewme2.git
                                 <span class="input-group-btn">
-                                    <button class="btn btn-danger" type="button">
+<<<<<<< HEAD
+                                    <button class="btn btn-danger" type="button" name="search" id="search">
+=======
+                                    <button class="btn btn-danger" type="button" id="search" name="search">
+>>>>>>> branch 'master' of https://github.com/EEIT9703/chewme2.git
                                         <span class=" glyphicon glyphicon-search"></span>
                                     </button>
                                 </span>
@@ -211,5 +220,9 @@
 <script type="text/javascript">
 	
 </script>
-<script src="../js/jquery.twzipcode.min.js"></script>
+<<<<<<< HEAD
+=======
+<script src="../act/js/search.js"></script>
+<!-- <script src="../js/jquery.twzipcode.min.js"></script> -->
+>>>>>>> branch 'master' of https://github.com/EEIT9703/chewme2.git
 </html>
