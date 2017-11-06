@@ -19,6 +19,7 @@
 	src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 <script
 	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
 <title>Insert title here</title>
 </head>
 <style>
@@ -139,9 +140,9 @@
 		<h2>Stylish Search Box</h2>
            <div id="custom-search-input">
                             <div class="input-group col-md-12">
-                                <input type="text" class="  search-query form-control" placeholder="Search" name="search" id="search"/>
+                                <input type="text" class="  search-query form-control" placeholder="Search" />
                                 <span class="input-group-btn">
-                                    <button class="btn btn-danger" type="button">
+                                    <button class="btn btn-danger" type="button" name="search" id="search">
                                         <span class=" glyphicon glyphicon-search"></span>
                                     </button>
                                 </span>
@@ -211,5 +212,4 @@
 <script type="text/javascript">
 	
 </script>
-<script src="../js/jquery.twzipcode.min.js"></script>
 </html>
