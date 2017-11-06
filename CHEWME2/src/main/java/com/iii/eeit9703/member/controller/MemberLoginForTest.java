@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import com.iii.eeit9703.member.model.MemService;
 import com.iii.eeit9703.member.model.MemVO;
+import com.iii.eeit9703.member.model.MemberSession;
 
 @WebServlet("/member/memberLogin.do")
 public class MemberLoginForTest extends HttpServlet {
@@ -22,8 +23,10 @@ public class MemberLoginForTest extends HttpServlet {
 		Integer memId = Integer.parseInt((String)session.getAttribute("memberId"));
 		MemService ms = new MemService();
 		MemVO memVO = ms.getOneMem(memId);
+		MemberSession memSession = new MemberSession(memVO);
 		System.out.println("MemVO "+ memVO.getMemId() +" has logined");
 		session.setAttribute("LoginOK", memVO);
+		session.setAttribute("LoginOK_MS", memSession);
 		System.out.println(session.getAttribute("requestURI"));
 		res.sendRedirect((String)session.getAttribute("requestURI"));
 		session.removeAttribute("requestURI");

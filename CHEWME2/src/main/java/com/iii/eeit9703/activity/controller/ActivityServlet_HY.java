@@ -70,9 +70,13 @@ public class ActivityServlet_HY extends HttpServlet {
 			
 			session.setAttribute("requestURI", req.getRequestURI());
 			session.setAttribute("memberId", "1");
+			session.setAttribute("action", req.getParameter("action"));
 			resp.sendRedirect("/CHEWME2/member/memberLogin.do");
 			System.out.println("change to ok!");		
 			return;			
+		}
+		if( req.getParameter("action") == null){
+			action = (String)session.getAttribute("action");
 		}
 		
 		
