@@ -203,7 +203,7 @@
     <!-- /.container -->
 						
 					<div id="sch">
-					<img id="${activityVO.actID}"  src=""></div>
+					<img id="${activityVO.actID}"  src="" class="img-responsive"></div>
 					console.log(${activityVO.actID});
 					
 				</div>
