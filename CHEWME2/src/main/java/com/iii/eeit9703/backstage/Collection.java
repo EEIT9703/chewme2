@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -60,7 +61,7 @@ public class Collection extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request,response);
 	}
-private void processRequest(HttpServletRequest request, HttpServletResponse response) {
+	private void processRequest(HttpServletRequest request, HttpServletResponse response) {
 		
 		try {
 			String action = request.getParameter("action");
@@ -87,9 +88,35 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 //					
 //		
 //					}
+			 if("getMyCollectionsById".equals(action)){
+				 System.out.println("bbbb");
+				 	Integer ID = Integer.parseInt(request.getParameter("actID"));
+					MemVO memVO=(MemVO) session.getAttribute("LoginOK");
+					
+					ActService Actser=new ActService();
+					ActivityVO activityVO=Actser.getOneAct(ID);
+					List list=new LinkedList();
+					HashMap map	= new HashMap();		
+					map.put("actID", activityVO.getActID().toString());
+					map.put("act_name",activityVO.getAct_name());
+					map.put("act_groups",activityVO.getAct_groups().toString());
+					map.put("act_current",activityVO.getAct_current().toString());
+					map.put("BDate",activityVO.getBDate().toString());
+					map.put("EDate", activityVO.getEDate().toString());
+					map.put("activity_state",activityVO.getActivity_state().toString());
+					map.put("act_price",activityVO.getAct_price());
+					//list.add(map);
+					
+					HashMap map2= new HashMap();							
+					map2.put("activityVO", map);
+					
+					String jsonString = JSONValue.toJSONString(map2);  
+					out.println(jsonString);
+            }
+			
 				
 				 if("deleteCollection".equals(action)){
-					 
+					 System.out.println("del");
 					 	Integer ID = Integer.parseInt(request.getParameter("actID"));
 						MemVO memVO=(MemVO) session.getAttribute("LoginOK");
 						ActivityVO activityVO =new ActivityVO();
@@ -124,7 +151,8 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
         					map.put("act_current",collectionVO.getActivityVO().getAct_current().toString());
         					map.put("BDate",collectionVO.getActivityVO().getBDate().toString());
         					map.put("EDate", collectionVO.getActivityVO().getEDate().toString());
-        					map.put("activity_state",collectionVO.getActivityVO().getActivity_state().toString());		
+        					map.put("activity_state",collectionVO.getActivityVO().getActivity_state().toString());
+        					map.put("act_price",collectionVO.getActivityVO().getAct_price());
         					list.add(map);
             		   	}
             		   	JSONArray attrArrayList = new JSONArray(list);				

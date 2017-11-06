@@ -347,10 +347,13 @@ public class MemJNDIDAO implements MemDAO_interface {
 
 
 	@Override
-	public List<OrderVO> findOrdersByMemId(Integer memId) {
+	public Set<OrderVO> findOrdersByMemId(Integer memId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+
 	
 	
 

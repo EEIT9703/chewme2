@@ -1,6 +1,7 @@
 package com.iii.eeit9703.order;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import com.iii.eeit9703.member.model.MemVO;
 
@@ -10,11 +11,18 @@ public class OrderVO {
 	private String orderName;
 	private Integer orderPeople;
 	private Integer orderPrice;
-	private Date orderTime;
+	private Timestamp orderTime;
 	private Integer orderStatus;
+	private Integer actID;
 	private MemVO memVO;
 	
 	
+	public Integer getActID() {
+		return actID;
+	}
+	public void setActID(Integer actID) {
+		this.actID = actID;
+	}
 	public MemVO getMemVO() {
 		return memVO;
 	}
@@ -51,10 +59,10 @@ public class OrderVO {
 	public void setOrderPrice(Integer orderPrice) {
 		this.orderPrice = orderPrice;
 	}
-	public Date getOrderTime() {
+	public Timestamp getOrderTime() {
 		return orderTime;
 	}
-	public void setOrderTime(Date orderTime) {
+	public void setOrderTime(Timestamp orderTime) {
 		this.orderTime = orderTime;
 	}
 	public Integer getOrderStatus() {
