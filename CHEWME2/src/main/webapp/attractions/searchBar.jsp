@@ -7,6 +7,15 @@
 	.items{
 		border:1px sold red;
 	}
+	.span1{
+	border:1px solid red;
+	width:180px;
+	height:150px;
+	margin-right:50px;
+	}
+	.text1{
+	margin:50px;
+	}
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
