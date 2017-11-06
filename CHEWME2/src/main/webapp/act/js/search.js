@@ -13,8 +13,7 @@ $(document).ready(function() {
 			$.get("searchR.jsp", {}, function(data) {
 				console.log("in the get function");
 				template = data;
-				console.log(data);
-				console.log(template);
+				console.log(data);				
 				$('#div1').prepend(template);
 			})
 		}
@@ -23,11 +22,12 @@ $(document).ready(function() {
 		}, function(data) {
 			console.log(data);
 			$.each(data, function(i, data) {
-				var cell1 = $('#act_name').text(data.act_name);
-				var cell2 = $('#act_groups').text(data.act_groups);
+				getTemp();
+				var cell1 = $('#act_name').val(data.act_name);
+				var cell2 = $('#act_groups').val(data.act_groups);
 				var cell3 = $('#act_photo').html(data.act_photo);
 				var row = $('#div1').append([ cell1, cell2 ,cell3 ]);
-				$('#div1').append(row);
+				$('#div1').prepend(row);
 
 			})
 

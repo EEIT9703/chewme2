@@ -68,31 +68,31 @@ public class ActivityServlet extends HttpServlet {
 		//貼入在你的sevlet 然後 ctrl+shift+o 匯入必要的class
 		//可以跳過建業的member認證, 並匯入memberSession和memVO
 
-
-		if(session == null||session.getAttribute("LoginOK") == null||session.getAttribute("LoginOK_MS") == null){
-			System.out.println("LoginOK" + session.getAttribute("LoginOK")==null );
-			System.out.println("LoginOK_MS" + session.getAttribute("LoginOK_MS")==null );
-			
-			session.setAttribute("requestURI", req.getRequestURI());
-			session.setAttribute("memberId", "1");
-			session.setAttribute("action", req.getParameter("action"));
-			resp.sendRedirect("/CHEWME2/member/memberLogin.do");
-			System.out.println("change to ok!");		
-			return;			
-		}
-		if( req.getParameter("action") == null){
-			action = (String)session.getAttribute("action");
-		}
-		if(session == null){
-			resp.sendRedirect(req.getContextPath()+"/member/login.jsp");
-		}
-		if(session.getAttribute("LoginOK") == null){
-			resp.sendRedirect(req.getContextPath()+"/member/login.jsp");
-		}
-		if(session.getAttribute("LoginOK_MS") == null){
-			resp.sendRedirect(req.getContextPath()+"/member/login.jsp");
-		}
-		
+//
+//		if(session == null||session.getAttribute("LoginOK") == null||session.getAttribute("LoginOK_MS") == null){
+//			System.out.println("LoginOK" + session.getAttribute("LoginOK")==null );
+//			System.out.println("LoginOK_MS" + session.getAttribute("LoginOK_MS")==null );
+//			
+//			session.setAttribute("requestURI", req.getRequestURI());
+//			session.setAttribute("memberId", "1");
+//			session.setAttribute("action", req.getParameter("action"));
+//			resp.sendRedirect("/CHEWME2/member/memberLogin.do");
+//			System.out.println("change to ok!");		
+//			return;			
+//		}
+//		if( req.getParameter("action") == null){
+//			action = (String)session.getAttribute("action");
+//		}
+//		if(session == null){
+//			resp.sendRedirect(req.getContextPath()+"/member/login.jsp");
+//		}
+//		if(session.getAttribute("LoginOK") == null){
+//			resp.sendRedirect(req.getContextPath()+"/member/login.jsp");
+//		}
+//		if(session.getAttribute("LoginOK_MS") == null){
+//			resp.sendRedirect(req.getContextPath()+"/member/login.jsp");
+//		}
+//		
 		MemberSession ms = (MemberSession)session.getAttribute("LoginOK_MS");
 
 		//取得資料庫 行程進行編輯
@@ -100,12 +100,12 @@ public class ActivityServlet extends HttpServlet {
 		if(action.matches("createAct")){
 			Integer memId = ms.getMemId();
 			
-			List<ActivityVO> avo= ms.getOwnActivityList();
-			if(avo == null){
-				System.out.println("the aov is null");
-			}else{				
-				System.out.println(avo.get(0).getActID());
-			}
+//			List<ActivityVO> avo= ms.getOwnActivityList();
+//			if(avo == null){
+//				System.out.println("the aov is null");
+//			}else{				
+//				System.out.println(avo.get(0).getActID());
+//			}
 			System.out.println("ActivityList size"+ms.getMemId());
 			//actList = ms.getOwnActivityList();
 			//session.setAttribute("ownAct", actList);
