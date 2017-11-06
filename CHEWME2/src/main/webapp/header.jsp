@@ -147,6 +147,7 @@ body { padding-bottom: 100px; }
 				</li>
 				<li><a href="<%=request.getContextPath() %>/club/createClub.do"><img src="<%=request.getContextPath()%>/image/finclub.png" width=40px height=30px >創社團</a></li>
 				<li><a href="<%=request.getContextPath() %>/club/findClub.do"><img src="<%=request.getContextPath()%>/image/createclub.png" width=40px height=30px >找社團</a></li>
+				<li><a href="<%=request.getContextPath() %>/attractions/listAll.jsp"><img src="<%=request.getContextPath()%>/image/findvist.jpg" width=20px height=30px >找景點</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">

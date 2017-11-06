@@ -31,7 +31,7 @@ public class SearchServlet extends HttpServlet {
 			try {
 				String name = request.getParameter("tags");
 				if (name == null || name.trim().length() == 0) {
-					RequestDispatcher failure1 = request.getRequestDispatcher("chosen.jsp");
+					RequestDispatcher failure1 = request.getRequestDispatcher("listAll.jsp");
 					failure1.forward(request, response);
 					return;					
 //					error.put("nameerror", "請輸入關鍵字");
@@ -51,7 +51,7 @@ public class SearchServlet extends HttpServlet {
 				}
 
 				if (!error.isEmpty()) {
-					RequestDispatcher failure = request.getRequestDispatcher("chosen.jsp");
+					RequestDispatcher failure = request.getRequestDispatcher("listAll.jsp");
 					failure.forward(request, response);
 					return;
 				}
