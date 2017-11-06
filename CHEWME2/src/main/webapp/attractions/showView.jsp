@@ -136,7 +136,7 @@ html {
 							<h3>簡介：</h3>
 							<div style="width: 200px;">${attrVO.intro}</div>
 						</td>
-						<td style="padding: 20px;"><span><img id="img2"	src="<%=request.getContextPath()%>/getImage.do?id2=${attrVO.attractionID}&type=upimg">
+						<td style="padding: 20px;"><span><img id="img2"	src="<%=request.getContextPath()%>/getImage.do?id2=${attrVO.name}&type=upimg">
 						</span></td>
 					</tr>
 				</table>

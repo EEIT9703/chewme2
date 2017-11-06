@@ -4,7 +4,7 @@ pageEncoding="UTF-8"%>
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
   <title>search</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
@@ -13,10 +13,8 @@ pageEncoding="UTF-8"%>
   <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>  
 </head>
 <body>
-<div>
-	<header><%@include file="../header.jsp"%></header>
-</div>
- <div class="container" style="margin-top:50px;">
+<%-- <header><%@include file="../header.jsp"%></header> --%>
+ <div class="container">
 	<div class="row">		
     	<div id="custom-search-input">
         	<div class="input-group col-md-12">
@@ -34,9 +32,7 @@ pageEncoding="UTF-8"%>
 <!--                 	</span>                	 -->
                 	<input type="hidden" name="action" value="search">
             	</td>   
-            	<td>
-            		<a href="listAll.jsp" class="btn btn-primary">全部列表</a>
-            	</td> 	
+            	 	
             </tr>    
             </table>
             </form>
@@ -46,7 +42,7 @@ pageEncoding="UTF-8"%>
 	</div>
 </div>
  <script>
-  $( function() {    
+  $(function() {    
 	  
     var datas = [];
     // 呼叫servlet的getALL方法，回傳全部資料

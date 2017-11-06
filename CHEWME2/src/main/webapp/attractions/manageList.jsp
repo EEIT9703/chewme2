@@ -53,62 +53,51 @@ text-align: center;
 </head>
 <body>
 <header><%@include file="../header.jsp"%></header>
-<div class="container">
-	<div class="row">		
-    	<div id="custom-search-input">
-        	<div class="input-group col-md-12">
-        	<form method="get" action="SearchServlet">
-        	<table>
-        	<tr>
-        		<td>
-            		<input type="text" class="search-query form-control" placeholder="搜尋" id="tags" name="tags" autofocus/> 
-            	</td>
-            	<td>               	
-<!--                 	<span class="input-group-btn"> -->
-                		<button class="btn btn-info" type="submit" id="button1">
-                			<span class=" glyphicon glyphicon-search"></span>
-                		</button>
-<!--                 	</span>                	 -->
-                	<input type="hidden" name="action" value="search">
-            	</td>   
-            	 	
-            </tr>    
-            </table>
-            </form>
-            <div style="margin-left:10px;color:red;" id="errorarea">${error.searcherror}</div>    	
-           </div>
-       </div>
-	</div>
-</div>
+
+
 	<div id="listtable">
 		<table class="table table-bordered" id="table1">	
 			<thead>		
 				<tr>
-					<th id="th1" style="display:none;">編號</th>
+					<th id="th1">編號</th>
 					<th id="th1">名稱</th>
 					<th id="th1">縣市</th>
 					<th id="th1">類型</th>
 					<th id="th1">地址</th>
 					<th id="th1">聯絡電話</th>					
-					<th colspan="2" style="text-align: center;">詳細內容</th>					
+					<th colspan="2" style="text-align: center;">管理</th>					
 				</tr>			
 			</thead>	
 			<tbody>
 				<c:forEach var="attrVo" items="${list1}">
 					<tr>
-						<td style="display:none;">${attrVo.attractionID}</td>
+						<td>${attrVo.attractionID}</td>
 						<td>${attrVo.name}</td>
 						<td>${attrVo.county}</td>
 						<td>${attrVo.type}</td>
 						<td>${attrVo.address}</td>
 						<td>${attrVo.tel}</td>
+						
+
+						<td>
+							<form method="post" action="Attraction.do">
+								<button type="submit" class="btn btn-danger">
+									<span class="glyphicon glyphicon-remove"></span>
+								</button>								
+								<input type="hidden" name="attractionID"
+									value="${attrVo.attractionID}"> <input type="hidden"
+									name="action" value="delete">
+							</form>
+						</td>
 						<td>	
 							<form method="post" action="Attraction.do">
 								<button class="btn btn-success">
 									<span class="glyphicon glyphicon-info-sign"></span>
 								</button>
 								<input type="hidden" name="attractionID" value="${attrVo.attractionID}"> 
-								<input type="hidden" name="action" value="one_info">								
+								<input type="hidden" name="action" value="one_info">
+							
+								
 							</form>
 						</td>											
 					</tr>					
@@ -124,25 +113,6 @@ text-align: center;
 	<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 	<script>
 		$(function() {
-			var datas = [];
-		    // 呼叫servlet的getALL方法，回傳全部資料
-			$.getJSON("/CHEWME2/DataServlet", {}, function(data){
-				for(i = 0; i < data.length; i ++){			
-					datas.push(data[i].name);   // 取得全部資料的name屬性，放入datas陣列			
-				}		
-				console.log(datas);
-				console.log(data);
-			})    
-		    
-		    $("#tags").autocomplete({
-		      source: datas
-		    });
-		    
-		  	$("#button1").click(function(){
-		  		var i = $("#tags").val();
-		  		console.log(i);  		
-		  	})
-			
 			$(".btn.btn-danger").click(function(){
 				alert("是否刪除?");
 			});

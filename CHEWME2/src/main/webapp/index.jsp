@@ -122,7 +122,6 @@ ul, li {
 					<li class="nav-item"><a class="nav-link" id="profile-tab"
 						data-toggle="tab" href="#profile" role="tab"
 						aria-controls="profile">有趣經驗</a></li>
-					<li class="nav-item"><a  href="/CHEWME2/attractions/chosen.jsp" >旅遊景點</a></li>
 					<li class="nav-item"><a class="nav-link" id="profile-tab"
 						data-toggle="tab" href="#profile" role="tab"
 						aria-controls="profile">關於我們</a></li>
