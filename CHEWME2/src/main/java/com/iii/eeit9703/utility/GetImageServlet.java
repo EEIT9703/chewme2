@@ -31,6 +31,7 @@ public class GetImageServlet extends HttpServlet {
 		
 		String id = req.getParameter("id");
 		String type = req.getParameter("type");
+		String queryMethod = req.getParameter("queryMethod");
 		System.out.println("Start to get the image where  type is "+type+" id is "+id+"! " );
 		Connection conn = null;
 		OutputStream os = null;
@@ -67,6 +68,7 @@ public class GetImageServlet extends HttpServlet {
 
 			rs = pstmt.executeQuery();
 			
+		if(queryMethod == null){	
 			if (rs.next()) {
 
 				is = rs.getBinaryStream(1);
@@ -84,17 +86,17 @@ public class GetImageServlet extends HttpServlet {
 					
 				}
 			}
-		} catch (NamingException | SQLException | IOException se) {
-			try {
-				System.out.println("get the exception!" + se.getClass());
-				stringResult = rs.getString(1);
-				PrintWriter out = res.getWriter();
-				out.write(stringResult);
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+		}else if(queryMethod.matches("charQuery")){
+				//System.out.println("get the exception!" + se.getClass());
+				if(rs.next()){					
+					stringResult = rs.getString(1);
+					PrintWriter out = res.getWriter();
+					out.write(stringResult);
+				}
 			}
-			
+		} catch (NamingException | SQLException | IOException se) {
+			se.printStackTrace();
+						
 		} finally {
 			if (conn != null) {
 				try {

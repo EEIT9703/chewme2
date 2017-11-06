@@ -31,7 +31,7 @@ public class SearchServlet extends HttpServlet {
 			try {
 				String name = request.getParameter("tags");
 				if (name == null || name.trim().length() == 0) {
-					RequestDispatcher failure1 = request.getRequestDispatcher("chosen.jsp");
+					RequestDispatcher failure1 = request.getRequestDispatcher("listAll.jsp");
 					failure1.forward(request, response);
 					return;					
 //					error.put("nameerror", "請輸入關鍵字");
@@ -44,14 +44,14 @@ public class SearchServlet extends HttpServlet {
 					error.put("searcherror", "查無資料，請重新輸入!");
 				} else {
 					request.setAttribute("attrVO", attrVO);
-					RequestDispatcher view = request.getRequestDispatcher("searchOne.jsp");
+					RequestDispatcher view = request.getRequestDispatcher("show_one.jsp");
 					view.forward(request, response);
 					String testname = attrVO.getName();
 					System.out.println(testname);
 				}
 
 				if (!error.isEmpty()) {
-					RequestDispatcher failure = request.getRequestDispatcher("chosen.jsp");
+					RequestDispatcher failure = request.getRequestDispatcher("listAll.jsp");
 					failure.forward(request, response);
 					return;
 				}

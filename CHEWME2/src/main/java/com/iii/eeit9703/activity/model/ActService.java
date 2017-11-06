@@ -2,6 +2,7 @@ package com.iii.eeit9703.activity.model;
 
 import java.io.InputStream;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ActService {
@@ -33,6 +34,10 @@ public class ActService {
 	//查詢全部
 	public List<ActivityVO> getAll(){
 		return dao.getAll();
+	}
+	
+	public ArrayList<ActivityVO> Search(String act_name){
+		return dao.Search(act_name);
 	}
 
 }
