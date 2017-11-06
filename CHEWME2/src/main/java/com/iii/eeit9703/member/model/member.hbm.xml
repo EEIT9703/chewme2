@@ -20,15 +20,15 @@
 <!--       	<property name="memPhoto" column="memPhoto" />  沒有圖片先不mapping -->
         <property name="memStatus" column="memStatus" />
         <property name="memRole" column="memRole" />
-<!--         <property name="googleId" column="googleId" /> -->
+        <property name="googleId" column="googleId" />
         
 <!--         一個會員可以有很多活動 -->
-        <set name="Activitys" table="activity" lazy="false" cascade="all"  inverse="true"  order-by="actID asc">			
-			<key>
-				<column name="memId" />
-			</key>
-			<one-to-many class="com.iii.eeit9703.activity.model.ActivityVO" />
-		</set>
+<!--         <set name="Activitys" table="activity" lazy="false" cascade="all"  inverse="true"  order-by="actID asc">			 -->
+<!-- 			<key> -->
+<!-- 				<column name="memId" /> -->
+<!-- 			</key> -->
+<!-- 			<one-to-many class="com.iii.eeit9703.activity.model.ActivityVO" /> -->
+<!-- 		</set> -->
 		
 <!--         一個會員可以有很多訂單 -->		
 		<set name="Orders" table="allpay" lazy="false" cascade="all"  inverse="true"  order-by="orderId asc">			

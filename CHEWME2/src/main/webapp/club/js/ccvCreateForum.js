@@ -93,7 +93,7 @@ function sendIssue(button) {
 		$.post("clubClientView.do?action=insertIssue", {
 			"content" : content,
 			"title":title,
-			"clubId": clubId
+			"clubId": $("#clubIdforView").text()
 		}, function(id) {
 			console.log("ajax回收資料完成");
 			console.log(id=id.trim())
@@ -138,7 +138,8 @@ function sendContent(button) {
 function getTemplates() {
 	$.get(reqContextPath + "/com-resource/_issueTemplate.jsp", {}, function(
 			data) {
-		console.log(issueTemplate = data);
+		issueTemplate = data;
+		console.log(issueTemplate);
 	})
 	$.get(reqContextPath + "/com-resource/_viewCommentTemplate.jsp", {},
 			function(data) {

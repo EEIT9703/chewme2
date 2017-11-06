@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +22,8 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONValue;
 
+import com.iii.eeit9703.activity.model.ActService2;
+import com.iii.eeit9703.activity.model.ActivityVO;
 import com.iii.eeit9703.club.model.ClubService;
 import com.iii.eeit9703.club.model.ClubVO;
 import com.iii.eeit9703.club.model.CommentService;
@@ -100,6 +103,22 @@ public class ClubClientViewServlet extends HttpServlet {
 		 * if(memSession!=null){ memSession.getMemId(); }
 		 */
 		/* 服務從findClub導過來的service,顯示club的Service */
+		if (action.matches("showAct")){
+			PrintWriter out = response.getWriter();
+			
+			System.out.println("In ClubClientVIEW, start the show Activity");
+			System.out.println(request.getParameter("clubId"));
+			
+		}
+		if (action.matches("createClubAct") ){
+			String clubId = request.getParameter("clubId");
+			request.setAttribute("createAct_clubId", clubId);
+			System.out.println("the club id is" + clubId);
+			RequestDispatcher dispatcher = request.getRequestDispatcher(request.getContextPath()+"/act/createAct.jsp");
+			dispatcher.forward(request, response);
+					
+		}
+		
 		if (action.matches("chooseClub")) {
 			System.out.println("In ClubClientVIEW, start the choose club");
 			System.out.println(request.getParameter("clubId"));
@@ -110,6 +129,12 @@ public class ClubClientViewServlet extends HttpServlet {
 			} else {
 				search_club = (Integer) request.getAttribute("clubId");
 			}
+			
+			//ActService2!!!
+			ActService2 as = new ActService2();
+			Integer clubId = Integer.parseInt(request.getParameter("clubId"));
+			List<ActivityVO> activityList = as.getListByClubId(clubId);
+			session.setAttribute("clubActList",activityList);
 
 			ClubVO clubVO = cs.getOneClub(search_club);
 			session.setAttribute("clubVOForView", clubVO);

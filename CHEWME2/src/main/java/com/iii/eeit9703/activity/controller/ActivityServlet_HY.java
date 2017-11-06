@@ -24,9 +24,11 @@ import org.json.JSONObject;
 
 import com.iii.eeit9703.activity.model.ActService;
 import com.iii.eeit9703.activity.model.ActivityVO;
+import com.iii.eeit9703.member.model.MemVO;
 import com.iii.eeit9703.member.model.MemberSession;
+import com.iii.eeit9703.utility.AutoLogin;
 
-@WebServlet("/act/actServlet2")
+@WebServlet("/act/actServlet")
 @MultipartConfig(
 location="",
 maxRequestSize=1024*1024*1024,
@@ -34,7 +36,7 @@ fileSizeThreshold=1024*1024*1024,
 maxFileSize=1024*1024*1024
 )
 
-public class ActivityServlet extends HttpServlet {
+public class ActivityServlet_HY extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
 	@Override
@@ -58,16 +60,37 @@ public class ActivityServlet extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		List<Integer> actList; 
 		System.out.println(action);
-		
 		HttpSession session = req.getSession(false);
+		//session = req.getSession(true);
+		//AutoLogin.memberLogin(req, resp, session, 1);
+		
+		if(session == null||session.getAttribute("LoginOK") == null||session.getAttribute("LoginOK_MS") == null){
+			System.out.println("LoginOK" + session.getAttribute("LoginOK")==null );
+			System.out.println("LoginOK_MS" + session.getAttribute("LoginOK_MS")==null );
+			
+			session.setAttribute("requestURI", req.getRequestURI());
+			session.setAttribute("memberId", "1");
+			resp.sendRedirect("/CHEWME2/member/memberLogin.do");
+			System.out.println("change to ok!");		
+			return;			
+		}
+		
+		
 		if(session == null){
 			resp.sendRedirect(req.getContextPath()+"/member/login.jsp");
+			return;
 		}
 		if(session.getAttribute("LoginOK") == null){
 			resp.sendRedirect(req.getContextPath()+"/member/login.jsp");
+			return;
+		}else{
+			System.out.println("LoginOK : "+ session.getAttribute("LoginOK"));
 		}
 		if(session.getAttribute("LoginOK_MS") == null){
 			resp.sendRedirect(req.getContextPath()+"/member/login.jsp");
+			return;
+		}else{			
+			System.out.println("LoginOK_MS : "+session.getAttribute("LoginOK_MS"));
 		}
 		
 		MemberSession ms = (MemberSession)session.getAttribute("LoginOK_MS");

@@ -12,7 +12,7 @@ import com.iii.eeit9703.collection.CollectionVO;
 import com.iii.eeit9703.member.model.MemVO;
 import com.iii.eeit9703.report.ReportVO;
 
-public class ActivityVO implements java.io.Serializable {
+public class ActivityVO2 implements java.io.Serializable {
 	
 	//活動表
 	private Integer actID;       //行程編號(完成編輯)

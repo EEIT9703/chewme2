@@ -48,10 +48,10 @@
 
 			</table>
 		</div>
-		<small><font color='red'>${ErrorMsgKey.RecaptchaisEmpty}</font></small>
+	<%-- 	<small><font color='red'>${ErrorMsgKey.RecaptchaisEmpty}</font></small>
 		<div class="g-recaptcha"
 			data-sitekey="6LfFkTYUAAAAAMK1w_K82sMGOy-BWkq-YBYMn5-J"></div>
-		<div>
+		<div> --%>
 			<table>
 				<tr>
 					<td width="180" align="right"><input type="checkbox"
