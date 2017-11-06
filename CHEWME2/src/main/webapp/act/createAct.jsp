@@ -42,16 +42,16 @@
 				<div class="col-md-12 column">
 
 					<h1>Activity1</h1>
-					<p>${LoginOK_MS.ownActivityList}</p>
-					<c:if test="${ Login_MS }">
+					<p hidden>${LoginOK_MS.ownActivityList}</p>
+					<c:if test="${ !empty createAct_clubId }">
 
-						<p>社團活動:${createAct_clubId}</p>
+						<p >社團活動:${createAct_clubId}</p>
 					</c:if>
 
 
 
 					<form role="form" enctype="multipart/form-data"
-						class="form-horizontal" method="post" action="actServlet"
+						class="form-horizontal" method="post" action="<%=request.getContextPath() %>/act/actServlet"
 						name="actForm">
 						<div class="from-group">
 							<label for="actID">選擇活動</label> <select class="form-control"
