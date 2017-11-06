@@ -153,29 +153,7 @@
 	<jsp:useBean id="actSvc" scope="page"
 		class="com.iii.eeit9703.activity.model.ActService" />
 
-	<div class="container">
-		<div class="row clearfix">
-			<div class="col-md-12 column">
-				<div class="row">
-					<c:forEach var="activityVO" items="${actSvc.all}">
-						<div class="col-md-4">
-							<div class="thumbnail">
-								<img alt="300x200"
-									src="data:image/png;base64,${activityVO.act_photo}" />
-								<div class="caption">
-									<p>${activityVO.act_name}</p>
-									<p>
-										<a class="btn btn-primary" href="#">${activityVO.act_name}</a>
-										<a class="btn btn-primary" href="#">成團人數:${activityVO.act_groups}</a>
-									</p>
-								</div>
-							</div>
-						</div>
-					</c:forEach>					
-				</div>
-			</div>
-		</div>
-	</div>
+
 
 	<div class="container">
 		<div class="row clearfix">
@@ -211,5 +189,5 @@
 <script type="text/javascript">
 	
 </script>
-<script src="../js/jquery.twzipcode.min.js"></script>
+
 </html>
