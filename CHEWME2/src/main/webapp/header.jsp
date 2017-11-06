@@ -232,15 +232,15 @@ body { padding-bottom: 100px; }
 
 </nav>
 <%-- <script src="<%=request.getContextPath()%>/js/jquery-1.12.3.min.js"></script> --%>
-<%-- 
+
 <script>
-<%-- $(function(){
+ $(function(){
 	
 	loadActivity();
 
 	function loadActivity(){		
 		$.getJSON('<%=request.getContextPath()%>/ShoppingCar?action=getMyCars',{},function(array){
-	 		var fg = $(document.createDocumentFragment());
+        var fg = $(document.createDocumentFragment());
 	 		var opt = $(".cartrows");
 	 			opt.empty();
 			var count=0;
@@ -248,7 +248,7 @@ body { padding-bottom: 100px; }
 	 			var div_out=$("<div></div>").addClass('cartrow');
 	 		
 	 			var cell1=$("<div></div>").css("float","left");
-	 			var img =$('<img>').attr({'src':'<%=request.getContextPath() %>/image/101.jpg','width':'50px','height':'50px'});
+	 			var img =$('<img>').attr({'src':'<%=request.getContextPath() %>/image/55.jpg','width':'50px','height':'50px'});
 	 			
 	 			
 	 			var span1=$('<span></span>').text(activity.act_name)
@@ -304,5 +304,5 @@ body { padding-bottom: 100px; }
 	
 	
 })
- --%>
+
 </script>
