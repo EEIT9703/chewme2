@@ -105,7 +105,7 @@ public class AttrServlet extends HttpServlet {
 				AttrService attrsvc = new AttrService();
 				attrsvc.deleteAttr(attractionID);
 
-				RequestDispatcher view = req.getRequestDispatcher("listAll.jsp");
+				RequestDispatcher view = req.getRequestDispatcher("manageList.jsp");
 				view.forward(req, res);
 			} catch (Exception e) {
 				e.printStackTrace();

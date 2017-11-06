@@ -25,6 +25,7 @@ import javax.servlet.http.Part;
 import org.json.*;
 import org.json.simple.JSONValue;
 
+import com.google.gson.JsonArray;
 import com.iii.eeit9703.activity.model.ActService;
 import com.iii.eeit9703.activity.model.ActivityDAO;
 import com.iii.eeit9703.activity.model.ActivityVO;
@@ -285,13 +286,14 @@ public class ActivityServlet extends HttpServlet {
 			
 			try {
 				ActService actSvc = new ActService();
+				
 				ArrayList<ActivityVO> activityVO = actSvc.Search(act_name);
 				
-				JSONObject actJSON = new JSONObject(activityVO);
+				JSONArray actJSON = new JSONArray(activityVO);
 
 				out.print(actJSON.toString());
 				
-				System.out.println(actJSON);
+				System.out.println(actJSON.toString());
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
