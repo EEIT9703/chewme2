@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -25,6 +26,8 @@ public class ActivityDAO implements ActivityDAO_interface {
 			e.printStackTrace();
 		}
 	}
+		
+
 	
 
 		//活動上架
@@ -42,6 +45,9 @@ public class ActivityDAO implements ActivityDAO_interface {
 		//上傳預覽圖及行程特色
 		private static final String Final_ACT =
 				"UPDATE activity set act_photo=?,act_news=? where actID=?";
+		//搜尋
+		private static final String Search_ACT =
+				"SELECT * FROM activity WHERE act_name like ?";
 
 	
 	
@@ -261,6 +267,66 @@ public class ActivityDAO implements ActivityDAO_interface {
 		return list;
 	}
 	
+	//查詢關鍵
+	public ArrayList<ActivityVO> Search(String act_name) {
+		
+		ArrayList<ActivityVO> list = new ArrayList<ActivityVO>();
+		ActivityVO activityVO = null;
+		
+
+		
+		     Connection con =null;
+		     PreparedStatement pstmt =null;
+		     ResultSet rs =null;		   
+				
+			try {
+				con = ds.getConnection();
+				pstmt = con.prepareStatement(Search_ACT);			
+				pstmt.setString(1, "%"+act_name+"%");
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()){
+					
+					activityVO = new ActivityVO();
+					activityVO.setActID(rs.getInt("actID"));
+					activityVO.setAct_name(rs.getString("act_name"));                //活動名稱
+					activityVO.setAct_groups(rs.getString("act_groups"));           //成團人數
+					activityVO.setAct_current(rs.getString("act_current"));        //當前人數
+					
+					list.add(activityVO);
+				}
+				
+			} catch (SQLException se) {
+				throw new RuntimeException("A database error occured. "
+						+ se.getMessage());
+				// Clean up JDBC resources
+			} finally {
+				if (rs != null) {
+					try {
+						rs.close();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+				if (con != null) {
+					try {
+						con.close();
+					} catch (Exception e) {
+						e.printStackTrace(System.err);
+					}
+				}
+			}
+			return list;
+		}
+		
+	
 
 	
     //活動特色和行程預覽行程
@@ -299,7 +365,12 @@ public class ActivityDAO implements ActivityDAO_interface {
 			}
 		}
 		
+		
+		
+		
 	}
+	
+	
 
 	public static void main(String[] args) {
 
@@ -345,7 +416,13 @@ public class ActivityDAO implements ActivityDAO_interface {
 	
 
 
+	
+	}
+
+
+	
 
 
 
-}
+
+

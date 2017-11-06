@@ -277,6 +277,28 @@ public class ActivityServlet extends HttpServlet {
 			}
 			
 		}
+		
+		if("Search".equals(action)){
+			
+			String act_name = req.getParameter("search");
+			System.out.println(act_name);
+			
+			try {
+				ActService actSvc = new ActService();
+				ArrayList<ActivityVO> activityVO = actSvc.Search(act_name);
+				
+				JSONObject actJSON = new JSONObject(activityVO);
+
+				out.print(actJSON.toString());
+				
+				System.out.println(actJSON);
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
 			
 			
 			
