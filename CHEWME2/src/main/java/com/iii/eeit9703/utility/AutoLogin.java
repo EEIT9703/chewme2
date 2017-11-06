@@ -10,7 +10,7 @@ import com.iii.eeit9703.member.model.MemVO;
 
 public class AutoLogin {
 	
-	public static MemVO memberLogin(
+	public static void memberLogin(
 			HttpServletRequest request, 
 			HttpServletResponse response,
 			HttpSession session, Integer memId) throws IOException{
@@ -19,7 +19,7 @@ public class AutoLogin {
 		session.setAttribute("memberId", memId.toString());
 		response.sendRedirect("/CHEWME2/member/memberLogin.do");
 		System.out.println("change to ok!");		
-		return memVO;
+		return;
 	}
 	
 	public static void main(String[] args) {

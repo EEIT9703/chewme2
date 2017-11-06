@@ -33,7 +33,7 @@
                     <ul class="nav" id="side-menu">
                        
                         <li>
-                            <a href="<%=request.getContextPath()%>/index.jsp"><i class="fa fa-dashboard fa-fw"></i> 首頁</a>
+                            <a href="<%=request.getContextPath()%>/backage/backage_index.jsp"><i class="fa fa-dashboard fa-fw"></i>後台首頁</a>
                         </li>
                         <li>
                             <a href="<%=request.getContextPath()%>/backage/ad.jsp"><i class="fa fa-bar-chart-o fa-fw"></i>廣告輪播</a>

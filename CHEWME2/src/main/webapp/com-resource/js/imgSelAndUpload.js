@@ -51,7 +51,7 @@ function imgAreaSelectAndReadEventListener(imgAreaS) {
 			// ctx.clearRect(0, 0, mycanvas.width,
 			// mycanvas.height);
 			// setWidthHeight(width, height)
-			setWidthHeight(800, 400)
+			setWidthHeight(600, 300)
 			canvasDrawImage(img, selection.x1, selection.y1, width, height);
 			dataURL = mycanvas[0].toDataURL('image/jpeg');
 			// console.log(dataURL);

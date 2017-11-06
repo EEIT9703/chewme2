@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.iii.eeit9703.order.OrderVO" table="allpay" >
+        
+       <id name="orderId" column="orderId">
+            <generator class="identity"/>
+        </id>
+          
+        <property name="orderNumber" column="orderNumber" />
+        <property name="orderName" column="orderName" />
+        <property name="orderPeople" column="orderPeople" />
+        <property name="orderPrice" column="orderPrice" />
+        <property name="orderTime" column="orderTime" />
+        <property name="orderStatus" column="orderStatus" />
+        <property name="actID" column="actID" />
+        
+        
+<!--       		很多訂單屬於一個會員 -->
+    	<many-to-one name="memVO" class="com.iii.eeit9703.member.model.MemVO" lazy="false">
+           <column name="memId" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

@@ -68,12 +68,12 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 //			 System.out.println(strDate);
 			
 		//	SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			Date date=new Date(System.currentTimeMillis());
+			//Date date=new Date(System.currentTimeMillis());
 		
 			//java.util.Date date = new java.util.Date(Long.MAX_VALUE);
 
 			
-			//Timestamp date=new Timestamp(System.currentTimeMillis());
+			Timestamp date=new Timestamp(System.currentTimeMillis());
 			System.out.println(date);
 			
 			ReportVO reportVO=new ReportVO();

@@ -8,6 +8,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import com.iii.eeit9703.collection.CollectionVO;
+import com.iii.eeit9703.order.OrderVO;
 import com.iii.eeit9703.report.ReportVO;
 
 public class MemJNDIDAO implements MemDAO_interface {
@@ -343,6 +344,18 @@ public class MemJNDIDAO implements MemDAO_interface {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	@Override
+	public Set<OrderVO> findOrdersByMemId(Integer memId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	
+	
 
 //	@Override
 //	public Set<CollectionVO> getCollByMemNo(Integer memId) {

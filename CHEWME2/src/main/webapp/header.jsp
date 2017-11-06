@@ -10,7 +10,7 @@ pageContext.setAttribute("all",a);
 %> --%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
 <!-- 置頂  -->
-<link href="../css/navbar-fixed-top.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/navbar-fixed-top.css" rel="stylesheet">
 
 <style>
 
@@ -142,11 +142,17 @@ body { padding-bottom: 100px; }
 				<li ><a class="dropdown-toggle" data-toggle="dropdown" href="#"><img src="<%=request.getContextPath()%>/image/travel.png" width=40px height=30px >揪旅行<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="<%=request.getContextPath() %>/actEditor/editorScuedule.jsp">創行程</a></li>
-      					<li><a href="<%=request.getContextPath() %>/act/createAct.jsp">揪新團</a></li>
+      					<li><a href="<%=request.getContextPath() %>/act/actServlet?action=createAct">揪新團</a></li>
 					</ul>
 				</li>
-				<li><a href="<%=request.getContextPath() %>/club/createClub.do"><img src="<%=request.getContextPath()%>/image/finclub.png" width=40px height=30px >創社團</a></li>
-				<li><a href="<%=request.getContextPath() %>/club/findClub.do"><img src="<%=request.getContextPath()%>/image/createclub.png" width=40px height=30px >找社團</a></li>
+				<li ><a class="dropdown-toggle" data-toggle="dropdown" href="#"><img src="<%=request.getContextPath()%>/image/finclub.png" width=40px height=30px >社團<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="<%=request.getContextPath() %>/club/createClub.do">創社團</a></li>
+      					<li><a href="<%=request.getContextPath() %>/club/findClub.do">揪社團</a></li>
+					</ul>
+				</li>				
+				
+				<li><a href="<%=request.getContextPath() %>/attractions/listAll.jsp"><img src="<%=request.getContextPath()%>/image/findattraction.png" width=40px height=30px >找景點</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
@@ -226,15 +232,15 @@ body { padding-bottom: 100px; }
 
 </nav>
 <%-- <script src="<%=request.getContextPath()%>/js/jquery-1.12.3.min.js"></script> --%>
-<%-- 
+
 <script>
-<%-- $(function(){
+ $(function(){
 	
 	loadActivity();
 
 	function loadActivity(){		
-		$.getJSON('<%=request.getContextPath()%>/activity?action=getMyCollection',{},function(array){
-	 		var fg = $(document.createDocumentFragment());
+		$.getJSON('<%=request.getContextPath()%>/ShoppingCar?action=getMyCars',{},function(array){
+        var fg = $(document.createDocumentFragment());
 	 		var opt = $(".cartrows");
 	 			opt.empty();
 			var count=0;
@@ -242,7 +248,7 @@ body { padding-bottom: 100px; }
 	 			var div_out=$("<div></div>").addClass('cartrow');
 	 		
 	 			var cell1=$("<div></div>").css("float","left");
-	 			var img =$('<img>').attr({'src':'<%=request.getContextPath() %>/image/101.jpg','width':'50px','height':'50px'});
+	 			var img =$('<img>').attr({'src':'<%=request.getContextPath() %>/image/55.jpg','width':'50px','height':'50px'});
 	 			
 	 			
 	 			var span1=$('<span></span>').text(activity.act_name)
@@ -269,7 +275,7 @@ body { padding-bottom: 100px; }
 	$('.cartrows').on('click','button',function(){
 		var actID=$(this).attr('name');
 	
-		$.post('<%=request.getContextPath()%>/activity?action=deleteCollection',{"actID":actID},loadActivity);
+		$.post('<%=request.getContextPath()%>/ShoppingCar?action=deleteCar',{"actID":actID},loadActivity);
 	
 	
 	})
@@ -278,7 +284,7 @@ body { padding-bottom: 100px; }
 	
 	$('.inputCar').click(function(){
 		 var id = $(this).parents('div').attr('id');
-		 $.getJSON('<%=request.getContextPath()%>/activity?action=inputCar',{'ID':id},result);
+		 $.getJSON('<%=request.getContextPath()%>/ShoppingCar?action=inputCar',{'ID':id},result);
 		
 			
 	})	
@@ -298,6 +304,5 @@ body { padding-bottom: 100px; }
 	
 	
 })
- --%>
+
 </script>
- --%>

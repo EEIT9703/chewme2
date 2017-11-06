@@ -7,17 +7,17 @@ var issueTemplate;
 var commentBoxTemplate;
 var viewCommentTemplate;
 var newIssueTemplate;
-
+var issuesDiv;
 
 function createForum(){
-	getTemplates();
-	$("#forum-tab").on("click", initialForumPanel)
+
+	console.log("append the new Issue Template")
+	$("#forum-tab").one("click", initialForumPanel)
+
 }
 
 
 function initialForumPanel() {
-	var issuesDiv = $("#theForumDiv");
-	issuesDiv.prepend(newIssueTemplate);
 	issuesDiv.find('div[class="panel panel-default"]:first').attr("id",
 			"newIssueDiv");
 	$('#newIssueDiv').find("button").on("click", function() {
@@ -79,6 +79,7 @@ function insertCommentBox() {
 
 }
 function sendIssue(button) {
+	console.log("send the issue");
 	var content;
 	var id;
 	var sender;
@@ -88,17 +89,11 @@ function sendIssue(button) {
 /*	console.log(id = $(button).closest("div[class='panel panel-default']")
 			.attr("id").substr(8));*/
 	
-	console.log(sender = $(button).closest('li[class="list-group-item"]'));
-	console.log(content = $(button).closest("ul").find("textarea").val());
-	console.log(title = $('#newIssueDiv').find("input").val());
-	console.log(clubId = $("#clubIdforView").text());
-	console.log(content);
-	console.log(title);
-	//if ((content != "") && (title!="")) {
+	if ((content != "") && (title!="")) {
 		$.post("clubClientView.do?action=insertIssue", {
 			"content" : content,
 			"title":title,
-			"clubId": clubId
+			"clubId": $("#clubIdforView").text()
 		}, function(id) {
 			console.log("ajax回收資料完成");
 			console.log(id=id.trim())
@@ -113,10 +108,11 @@ function sendIssue(button) {
 			console.log("the id is "+id);
 			insertCommentBox();
 		});
-	//}
+	}
 }
 
 function sendContent(button) {
+	console.log("send the content");
 	var content;
 	var id;
 	var sender;
@@ -142,7 +138,8 @@ function sendContent(button) {
 function getTemplates() {
 	$.get(reqContextPath + "/com-resource/_issueTemplate.jsp", {}, function(
 			data) {
-		console.log(issueTemplate = data);
+		issueTemplate = data;
+		console.log(issueTemplate);
 	})
 	$.get(reqContextPath + "/com-resource/_viewCommentTemplate.jsp", {},
 			function(data) {
@@ -155,5 +152,7 @@ function getTemplates() {
 	$.get(reqContextPath + "/com-resource/_newIssueTemplate.jsp", {}, function(
 			data) {
 		console.log(newIssueTemplate = data);
+		issuesDiv = $("#theForumDiv");
+		issuesDiv.prepend(newIssueTemplate);
 	})
 }

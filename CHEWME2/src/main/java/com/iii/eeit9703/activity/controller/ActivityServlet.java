@@ -4,8 +4,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -22,14 +20,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-import org.json.*;
-import org.json.simple.JSONValue;
+import org.json.JSONObject;
 
 import com.iii.eeit9703.activity.model.ActService;
-import com.iii.eeit9703.activity.model.ActivityDAO;
 import com.iii.eeit9703.activity.model.ActivityVO;
+import com.iii.eeit9703.member.model.MemberSession;
 
-@WebServlet("/act/actServlet")
+@WebServlet("/act/actServlet2")
 @MultipartConfig(
 location="",
 maxRequestSize=1024*1024*1024,
@@ -59,12 +56,40 @@ public class ActivityServlet extends HttpServlet {
 		
 		String action = req.getParameter("action");
 		PrintWriter out = resp.getWriter();
-
+		List<Integer> actList; 
 		System.out.println(action);
 		
-		HttpSession session = req.getSession();
+		HttpSession session = req.getSession(false);
+		if(session == null){
+			resp.sendRedirect(req.getContextPath()+"/member/login.jsp");
+		}
+		if(session.getAttribute("LoginOK") == null){
+			resp.sendRedirect(req.getContextPath()+"/member/login.jsp");
+		}
+		if(session.getAttribute("LoginOK_MS") == null){
+			resp.sendRedirect(req.getContextPath()+"/member/login.jsp");
+		}
 		
+		MemberSession ms = (MemberSession)session.getAttribute("LoginOK_MS");
+
 		//取得資料庫 行程進行編輯
+		
+		if(action.matches("createAct")){
+			Integer memId = ms.getMemId();
+			
+			List<ActivityVO> avo= ms.getOwnActivityList();
+			if(avo == null){
+				System.out.println("the aov is null");
+			}else{				
+				System.out.println(avo.get(0).getActID());
+			}
+			System.out.println("ActivityList size"+ms.getMemId());
+			//actList = ms.getOwnActivityList();
+			//session.setAttribute("ownAct", actList);
+			//session.setAttribute("MemberSession",ms);
+			resp.sendRedirect(req.getContextPath()+"/act/createAct.jsp");
+			
+		}
 		if("getOne_For_Update".equals(action)){
 			
 			List<String>errorMsgs = new LinkedList<String>();

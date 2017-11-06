@@ -122,7 +122,6 @@ ul, li {
 					<li class="nav-item"><a class="nav-link" id="profile-tab"
 						data-toggle="tab" href="#profile" role="tab"
 						aria-controls="profile">有趣經驗</a></li>
-					<li class="nav-item"><a  href="/CHEWME2/attractions/chosen.jsp" >旅遊景點</a></li>
 					<li class="nav-item"><a class="nav-link" id="profile-tab"
 						data-toggle="tab" href="#profile" role="tab"
 						aria-controls="profile">關於我們</a></li>
@@ -160,14 +159,54 @@ ul, li {
 						</div>
 					</c:forEach>
 				</div>
+				
+				
 				<%-- </c:forEach>	 --%>
 
 			</div>
 		</div>
-		<div id="2"> 
+		<div id="2">  
 		<span><input type="button" class="inputCar" value="測試加入購物車"></span>
 		<span><input type="button" class="report" value="檢舉"></span>
 		</div>
+		
+		<ul class="dropdown-menu mega-dropdown-menu row">
+            <li class="col-sm-3">
+              <ul>
+                <li class="dropdown-header">New in Stores</li>
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="item active left">
+                      <a href="#"><img src="image/101.jpg" class="img-responsive" alt="product 1"></a>
+                      <h4><small>Summer dress floral prints</small></h4>
+                      <button class="btn btn-primary" type="button">49,99 €</button>
+                      <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Wishlist</button>
+                    </div>
+                    <!-- End Item -->
+                    <div class="item next left">
+                      <a href="#"><img src="image/101.jpg" class="img-responsive" alt="product 2"></a>
+                      <h4><small>Gold sandals with shiny touch</small></h4>
+                      <button class="btn btn-primary" type="button">9,99 €</button>
+                      <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Wishlist</button>
+                    </div>
+                    <!-- End Item -->
+                    <div class="item">
+                      <a href="#"><img src="image/101.jpg" class="img-responsive" alt="product 3"></a>
+                      <h4><small>Denin jacket stamped</small></h4>
+                      <button class="btn btn-primary" type="button">49,99 €</button>
+                      <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Wishlist</button>
+                    </div>
+                    <!-- End Item -->
+                  </div>
+                  <!-- End Carousel Inner -->
+                </div>
+                <!-- /.carousel -->
+                <li class="divider"></li>
+                <li><a href="#">View all Collection <span class="glyphicon glyphicon-chevron-right pull-right"></span></a></li>
+              </ul>
+            </li>
+            
+          </ul>
 	
 	</article>
 

@@ -3,16 +3,19 @@ $(document).ready(function() {
 	function setAllImg() {
 		var thsImg;
 		var idString;
+		thsImg = $('#sch img');
 		idString = $('#sch img').attr("id");
 
 		console.log(idString);
 		$.get('/CHEWME2/getImageInChewme.do', {
 			"type" : "sch_photo",
-			"id" : idString
+			"id" : idString,
+			"queryMethod":"charQuery"
 		}, function(data) {
 			console.log(data);
-			//console.log(this);
-			$(thsImg).attr("src", data);
+			console.log(thsImg);
+			thsImg.attr("src", data);
+			
 		})
 
 	}

@@ -1,20 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>search</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="../css/bootstrap.min.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="../js/bootstrap.min.js"></script>  
-</head>
-<body>
-<header><%@include file="../header.jsp"%></header>
- <div class="container">
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+
+<!--   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
+  
+<!--   <title>search</title> -->
+<!--   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+<%--   <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css"> --%>
+<!--   <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+<!--   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+<%--   <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>   --%>
+<div class="container">
 	<div class="row">		
     	<div id="custom-search-input">
         	<div class="input-group col-md-12">
@@ -22,7 +16,7 @@ pageEncoding="UTF-8"%>
         	<table>
         	<tr>
         		<td>
-            		<input type="text" class="search-query form-control" placeholder="Search" id="tags" name="tags"/> 
+            		<input type="text" class="search-query form-control" placeholder="搜尋" id="tags" name="tags" autofocus/> 
             	</td>
             	<td>               	
 <!--                 	<span class="input-group-btn"> -->
@@ -32,18 +26,17 @@ pageEncoding="UTF-8"%>
 <!--                 	</span>                	 -->
                 	<input type="hidden" name="action" value="search">
             	</td>   
-            	<td>
-            		<a href="listAll.jsp" class="btn btn-primary">全部列表</a>
-            	</td> 	
+            	 	
             </tr>    
             </table>
-            </form>    	
+            </form>
+            <div style="margin-left:10px;color:red;" id="errorarea">${error.searcherror}</div>    	
            </div>
        </div>
 	</div>
 </div>
  <script>
-  $( function() {    
+  $(function() {    
 	  
     var datas = [];
     // 呼叫servlet的getALL方法，回傳全部資料
@@ -61,9 +54,7 @@ pageEncoding="UTF-8"%>
     
   	$("#button1").click(function(){
   		var i = $("#tags").val();
-  		console.log(i);
+  		console.log(i);  		
   	})
   });
   </script>
-</body>
-</html>

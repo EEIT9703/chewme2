@@ -179,6 +179,7 @@
                 <div class="btn-group btn-group-justified">
                     <a href="#" class="btn btn-default">參加行程</a>
                     <a href="#" class="btn btn-default"><i class="fa fa-heart-o" aria-hidden="true" style="color:red;"></i> 加入我的收藏</a>
+                    <a href="#" class="btn btn-default">檢舉行程</a>
                 </div>               
 
                 <div class="card" style="margin-top:20px;">
@@ -203,7 +204,7 @@
     <!-- /.container -->
 						
 					<div id="sch">
-					<img id="${activityVO.actID}"  src=""></div>
+					<img id="${activityVO.actID}"  src="" class="img-responsive"></div>
 					console.log(${activityVO.actID});
 					
 				</div>

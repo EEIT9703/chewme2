@@ -11,6 +11,7 @@
 
 	
 	<script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/blockUI.js"></script>
 	<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/jquery.wrecker.js"></script>
 	
@@ -190,7 +191,7 @@ margin:0px 80px 30px 0px;
 		<div class="col-md-2 column ">
 			<div class="sidebar___2Ft5w">
 				<div class="myPhoto___3FFnp">
-			   	<div style="background-image:url('<%=request.getContextPath()%>/image/101.jpg')" class="img-circle user-photo___7yyZ6"></div>	
+			   	<div style="background-image:url('<%=request.getContextPath()%>/image/338196.jpg')" class="img-circle user-photo___7yyZ6"></div>	
 				<p class="shortText___3j1uo" title="黃彥坤">黃彥坤</p>
 				</div>
 				<div>
@@ -216,9 +217,7 @@ margin:0px 80px 30px 0px;
 						
 				<div id="cc" class="sidebar___2Ft6w col-md-8 column" style="min-height:650px; width: 1150px;">
 					<div id='items'>
-					
-					
-					
+			
 					</div>
 				
 				
@@ -233,15 +232,18 @@ margin:0px 80px 30px 0px;
  <script>
  
 $(function(){
-		$.getJSON('<%=request.getContextPath()%>/activity?action=getMyCollection',{},snedActivity);
-		
-		function snedActivity(array){	
-			//var docFrag = $(document.createDocumentFragment()); 			
+	
+	loadcollection();
+	function loadcollection(){
+		$.getJSON('<%=request.getContextPath()%>/Collection?action=getMyCollections',{},function(array){
+			
+			var fg = $(document.createDocumentFragment()); 			
 			var status=["上架","下架","待審核"];
 			var opt = $('#items');
 			opt.empty();
-			var cell5=$('<div class="allpay_button"></div>').html("<input type='button' value='前往歐付寶付款'>")
-			opt.append(cell5);
+// 			var cell5=$('<div class="allpay_button"></div>').html("<input type='button' value='前往歐付寶付款'>")
+// 			opt.append(cell5);
+			var count=0;
 			$.each(array,function(i,activity){			
 	         var cell1 = $('<img>').attr("src","<%=request.getContextPath()%>/image/101.jpg")	       
 	       	 var cell2 = $('<p></p>').text(activity.act_name);
@@ -255,65 +257,94 @@ $(function(){
 	      			select.append(sel)
 	      		}
 	      	span.append(select)
-// 	        	
-	      	 var span2 =$('<span></span>').text('人')
-	         var cell3=$('<span></span>').addClass('inder_price').text("2580");
+ 	       
+  
+ 	         var span2 =$('<span></span>').text('人')
+	         var cell3=$('<span></span>').addClass('inder_price').text(activity.act_price);
 	      	 var cell4=$('<span></span>').addClass('price_icon').text('$');
-	      	 var button1=$('<button></button>').css('color','blue').addClass('buy').attr({'type':'button'}).text("購買");
+	      	 
+	      	 var button1=$('<button></button>').css('color','blue').addClass('buy').attr({'type':'submit'}).text("購買");
 	         var cell5=$('<span></span>').append(button1)
 	       	 var button2=$('<button></button>').css('color','red').addClass('delete').attr({'type':'button'}).text("移除");
 	         var cell6=$('<span><span>').append(button2)
          	 var row = $("<div></div>").addClass('item').attr({'class':'item','id':activity.actID});	 
-	       	 row.append([cell1, cell2,span,span2,cell3,cell4,cell5,cell6]); 
-  	         opt.append(row); 
-        		
-			})	
-			
-		}
+	       	 row.append([cell1, cell2,span,span2,cell3,cell4,cell5,cell6]);
+	       	fg.append(row);
+  	       
+	       	count++;
+			})
+			$('.aaa').text(count);
+			  opt.append(fg); 
+		});
 		
-		
-		
+	}
+
 		$('#collection').click(function (event){
 			$(this).attr("class","item___2dDze  selected___2Hy4k")
 			$('#Order').attr("class","item___2dDze")
 			$('#list').attr("class","item___2dDze")
-			$.getJSON('<%=request.getContextPath()%>/activity?action=getMyCollection',{},snedActivity);
+			$.post('<%=request.getContextPath()%>/Collection?action=getMyCollection',{},function(){
+				loadcollection();
+				
+			});
 		})
 		
 		$('#Order').click(function (event){
 			$(this).attr("class","item___2dDze  selected___2Hy4k")
 			$('#collection').attr("class","item___2dDze")
 			$('#list').attr("class","item___2dDze")
-			$("#container").empty();
+			$("#items").empty();
 			
 		})
 		$('#list').click(function (event){
 			$(this).attr("class","item___2dDze  selected___2Hy4k")
 			$('#Order').attr("class","item___2dDze")
 			$('#collection').attr("class","item___2dDze")
-			$("#container").empty();
+			$("#items").empty();
 			
 		})
 		//購賣被點
 		$('#items').on('click','div button:nth-child(1)',function(){
-  				var id = $(this).parents('div').attr('id');
- 				alert(id);
+  				var actID = $(this).parents('div').attr('id');
+  				var opt=$('div select').val();
+  				var price = $(this).parent().parent().find('.inder_price').text();
+
+				$.post('<%=request.getContextPath()%>/allpay',{'action':'goOrder','actID':actID,'opt':opt,'price':price},function(){
+					
+					$.blockUI({ message: '<h1><img src="busy.gif" /> Just a moment...</h1>' });
+					setTimeout(function(){
+						window.location.href="<%=request.getContextPath()%>/backage/allpay_list.jsp";	
+					}, 5000);
+	
+				});
+			
+  				
 			
 		})
 		//移除被點
 		$('#items').on('click','div button:nth-child(2)',function(){
-  				var id = $(this).parents('div').attr('id');
- 				alert(id);
+  				var actID = $(this).parents('div').attr('id');
+  				$.post('<%=request.getContextPath()%>/Collection',{'action':'deleteCollection','actID':actID},function(data){
+  					
+  					loadcollection();
+  					
+  				});
 			
 		})
 		
 
 		//select被點
 		  $('#items').on('change','div select',function(){
-			  var opt =$(this);	
-			alert(opt.val())
-			 // var price=$(this).parent().parent().find($('.inder_price')).text()
-			//	$(this).parent().parent().find('.inder_price').text(price*2)
+			  var opt =$(this);
+			  var actID = $(this).parents('div').attr('id');
+			  var price;
+			  $.getJSON('<%=request.getContextPath()%>/Collection?action=getMyCollectionsById',{'actID':actID},function(data){				  			  			
+				price=data.activityVO.act_price;					
+		
+				opt.parent().parent().find('.inder_price').text(price*(opt.val()));	
+			  })			
+
+
 			
 		  })
 // 		$("#cc").wrecker({

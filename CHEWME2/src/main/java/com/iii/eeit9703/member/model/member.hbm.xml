@@ -20,31 +20,47 @@
 <!--       	<property name="memPhoto" column="memPhoto" />  沒有圖片先不mapping -->
         <property name="memStatus" column="memStatus" />
         <property name="memRole" column="memRole" />
-<!--         <property name="googleId" column="googleId" /> -->
+        <property name="googleId" column="googleId" />
         
 <!--         一個會員可以有很多活動 -->
-        <set name="Activitys" table="activity" lazy="false" cascade="all"  inverse="true"  order-by="actID asc">			
+<!--         <set name="Activitys" table="activity" lazy="false" cascade="all"  inverse="true"  order-by="actID asc">			 -->
+<!-- 			<key> -->
+<!-- 				<column name="memId" /> -->
+<!-- 			</key> -->
+<!-- 			<one-to-many class="com.iii.eeit9703.activity.model.ActivityVO" /> -->
+<!-- 		</set> -->
+		
+<!--         一個會員可以有很多訂單 
+
+		<set name="Orders" table="allpay" lazy="false" cascade="all"  inverse="true"  order-by="orderId asc">			
 			<key>
 				<column name="memId" />
 			</key>
-			<one-to-many class="com.iii.eeit9703.activity.model.ActivityVO" />
+			<one-to-many class="com.iii.eeit9703.order.OrderVO" />
 		</set>
+		
+-->		
+		
 
-<!--         收藏表  一方的mapping -->
+<!--         收藏表  一方的mapping 
+
        <set name="Collects" table="collect" lazy="false" cascade="all"  inverse="true" >			
 			<key>
 				<column name="memId" />
 			</key>
 			<one-to-many class="com.iii.eeit9703.collection.CollectionVO" />
 		</set>
+-->
 		
-<!--         檢舉表  一方的mapping -->		
+<!--         檢舉表  一方的mapping 
+
 		<set name="Reports" table="report" lazy="false" cascade="all"  inverse="true" >			
 			<key>
 				<column name="memId" />
 			</key>
 			<one-to-many class="com.iii.eeit9703.report.ReportVO" />
 		</set>
+-->		
 		
         
     </class>

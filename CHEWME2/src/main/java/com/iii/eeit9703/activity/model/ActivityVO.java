@@ -21,6 +21,13 @@ public class ActivityVO implements java.io.Serializable {
 	private String act_current;//當前人數
 	private Date BDate;        //開始日期
 	private Date EDate;       //結束日期
+	private int clubId;
+	public int getClubId() {
+		return clubId;
+	}
+	public void setClubId(int clubId) {
+		this.clubId = clubId;
+	}
 	private Integer activity_state; //活動型態  0 = 建構中, 1 = 上架  ,  2 = 被檢舉  , 3 = 下架 
 	private String act_photo; //活動預覽圖
 	private String act_price; //活動價位

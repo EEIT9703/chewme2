@@ -14,7 +14,7 @@ import com.iii.eeit9703.report.ReportVO;
 
 public class CollectionDAO_hibernate implements Collection_interface {
 	private static final String GET_ALL_STMT = "from CollectionVO ";
-	private static final String GET_BYid_STMT = "from CollectionVO where memId=?";
+	private static final String GET_BYid_STMT = "from CollectionVO where memId=? and status=?";
 	
 	@Override
 	public void insert(CollectionVO collectionVO) {
@@ -106,6 +106,7 @@ public class CollectionDAO_hibernate implements Collection_interface {
 			session.beginTransaction();
 			Query query = session.createQuery(GET_BYid_STMT);
 			query.setParameter(0, memId);
+			query.setParameter(1, 0);
 			list = query.list();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {

@@ -1,6 +1,7 @@
 package com.iii.eeit9703.crawler.model;
 
 import java.util.*;
+import java.util.concurrent.ExecutionException;
 import java.io.InputStream;
 import java.sql.*;
 
@@ -25,6 +26,7 @@ public class AttrDAO implements AttrDAO_interface {
 	private static final String INSERT = "insert into Attractions (name, county, type, address, tel, intro, image) values (?,?,?,?,?,?,?)";
 	private static final String UPDATE = "update Attractions set name=?, county=?, type=?, address=?, tel=?, intro=?, image=? where attractionID=?";
 	private static final String DELETE = "delete from Attractions where attractionID=?";
+	private static final String Search = "select * from attractions where name like ?";
 
 	//�s�W
 	@Override
@@ -207,5 +209,34 @@ public class AttrDAO implements AttrDAO_interface {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	// 搜尋景點
+	public ArrayList<AttrVO> search(String name){
+		ArrayList<AttrVO> list = new ArrayList<AttrVO>();
+		AttrVO attrVO = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		name = "%" + name + "%";
+		try{
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(Search);			
+			pstmt.setString(1, name);
+			rs = pstmt.executeQuery();
+				
+			while(rs.next()){
+				attrVO = new AttrVO();
+				attrVO.setAttractionID(rs.getInt("attractionID"));
+				attrVO.setName(rs.getString("name"));
+				list.add(attrVO);
+			}
+			rs.close();
+			pstmt.close();
+			con.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return list;		
 	}
 }

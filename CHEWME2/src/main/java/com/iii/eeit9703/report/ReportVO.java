@@ -10,7 +10,7 @@ import com.iii.eeit9703.member.model.MemVO;
 public class ReportVO implements java.io.Serializable {
 	private ActivityVO activityVO;
 	private MemVO memVO;
-	private Date reportTime;
+	private Timestamp reportTime;
 	private String reportContext;
 	public ActivityVO getActivityVO() {
 		return activityVO;
@@ -24,10 +24,10 @@ public class ReportVO implements java.io.Serializable {
 	public void setMemVO(MemVO memVO) {
 		this.memVO = memVO;
 	}
-	public Date getReportTime() {
+	public Timestamp getReportTime() {
 		return reportTime;
 	}
-	public void setReportTime(Date reportTime) {
+	public void setReportTime(Timestamp reportTime) {
 		this.reportTime = reportTime;
 	}
 	public String getReportContext() {

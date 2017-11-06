@@ -20,31 +20,47 @@
 	<p hidden id="clubIdforView" value="">${clubVOForView.clubId}</p>
 	<p hidden id="reqContextPath" value=""><%=request.getContextPath()%></p>
 	<div class="container">
-		<div id="carouselExampleControls" class="carousel slide"
-			data-ride="carousel">
-			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<div class="row">
-						<div class="col-md-3"></div>
-						<div class="col-md-6">
-							<%-- 						<img class="d-block w-100" src="<%=request.getContextPath() %>/getImageInChewme.do?type=clubPic&id=${clubVOForView.clubId}"
-								alt="First slide" style="margin:auto;"> --%>
-							<img class="d-block w-100" src="" id="" alt="First slide"
-								style="margin: auto;">
+		<div class="row">
+			<div class="col-md-2">
+				
+				
+			</div>
+
+			<div class="col-md-8">
+				<div id="carouselExampleControls" class="carousel slide"
+					data-ride="carousel">
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<div class="row">
+								<%-- 						<img class="d-block w-100" src="<%=request.getContextPath() %>/getImageInChewme.do?type=clubPic&id=${clubVOForView.clubId}" alt="First slide" style="margin:auto;"> --%>
+
+								<div id="theClubPic" class="container">
+									<img class="d-block w-100 img-responsive" src=""
+										id="img_${clubVOForView.clubId}" alt="First slide">
+								</div>
+							</div>
 						</div>
-						<div class="col-md-3"></div>
+						<a class="carousel-control-prev" href="#carouselExampleControls"
+							role="button" data-slide="prev"> <span
+							class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+							class="sr-only">Previous</span>
+						</a> <a class="carousel-control-next" href="#carouselExampleControls"
+							role="button" data-slide="next"> <span
+							class="carousel-control-next-icon" aria-hidden="true"></span> <span
+							class="sr-only">Next</span>
+						</a>
 					</div>
 				</div>
 			</div>
-			<a class="carousel-control-prev" href="#carouselExampleControls"
-				role="button" data-slide="prev"> <span
-				class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-				class="sr-only">Previous</span>
-			</a> <a class="carousel-control-next" href="#carouselExampleControls"
-				role="button" data-slide="next"> <span
-				class="carousel-control-next-icon" aria-hidden="true"></span> <span
-				class="sr-only">Next</span>
-			</a>
+			<div cass="col-md-2">
+				 <a class="btn btn-sm btn-primary"  role="button">
+					管理畫面
+				</a>
+				 <a class="btn btn-sm btn-primary" href="<%=request.getContextPath()%>/club/clubClientView.do?action=createClubAct&clubId=${clubVOForView.clubId}" role="button">
+					創社團活動
+				</a>
+				 
+			</div>
 		</div>
 		<div class="row" id="tabs">
 			<div class="col"></div>
@@ -53,19 +69,19 @@
 					<li class="nav-item"><a class="nav-link active"
 						id="new-travel-tab" data-toggle="tab" href="#newActList-page"
 						role="tab" aria-controls="home" aria-expanded="true">推薦行程</a></li>
-					<li class="nav-item"><a class="nav-link active"
+					<li class="nav-item"><a class="nav-link "
 						id="pass-travel-tab" data-toggle="tab" href="#oldActList-page"
 						role="tab" aria-controls="profile">過去行程</a></li>
-					<li class="nav-item"><a class="nav-link active" id="forum-tab"
+					<li class="nav-item"><a class="nav-link " id="forum-tab"
 						data-toggle="tab" href="#forum-page" role="tab"
 						aria-controls="profile">討論區</a></li>
-					<li class="nav-item"><a class="nav-link active"
+					<li class="nav-item"><a class="nav-link "
 						id="myclub-tab" data-toggle="tab" href="#profile" role="tab"
 						aria-controls="profile">關於我們</a></li>
 					<li class="nav-item"><a class="nav-link" id="profile-tab"
-						data-toggle="tab" href="#profile" role="tab"
-						aria-controls="profile"></a></li>
-					<li class="nav-item dropdown"><a
+						data-toggle="tab" href="#addNewAct-page" role="tab"
+						aria-controls="profile">新增行程</a></li>
+					<!-- <li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
 						role="button" aria-haspopup="true" aria-expanded="false">
 							Dropdown </a>
@@ -74,7 +90,7 @@
 								role="tab" data-toggle="tab" aria-controls="dropdown1">@fat</a>
 							<a class="dropdown-item" id="dropdown2-tab" href="#dropdown2"
 								role="tab" data-toggle="tab" aria-controls="dropdown2">@mdo</a>
-						</div></li>
+						</div></li> -->
 				</ul>
 			</div>
 			<div class="col"></div>
@@ -86,6 +102,9 @@
 			</div>
 			<div id="oldActList-page">
 				<%@ include file="ccvOldActList.jsp"%>
+			</div>
+			<div id="addNewAct-page">
+				<iframe src="../act/createAct2.jsp"></iframe>
 			</div>
 		</div>
 
