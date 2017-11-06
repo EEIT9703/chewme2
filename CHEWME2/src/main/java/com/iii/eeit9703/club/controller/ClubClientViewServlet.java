@@ -92,6 +92,26 @@ public class ClubClientViewServlet extends HttpServlet {
 		String action = request.getParameter("action");
 		System.out.println("The action is " + action);
 		HttpSession session = request.getSession(false);
+		
+
+		//貼入在你的sevlet 然後 ctrl+shift+o 匯入必要的class
+		//可以跳過建業的member認證, 並匯入memberSession和memVO
+
+
+		if(session == null||session.getAttribute("LoginOK") == null||session.getAttribute("LoginOK_MS") == null){
+			System.out.println("LoginOK" + session.getAttribute("LoginOK")==null );
+			System.out.println("LoginOK_MS" + session.getAttribute("LoginOK_MS")==null );
+			
+			session.setAttribute("requestURI", request.getRequestURI());
+			session.setAttribute("memberId", "1");
+			session.setAttribute("action", request.getParameter("action"));
+			response.sendRedirect("/CHEWME2/member/memberLogin.do");
+			System.out.println("change to ok!");		
+			return;			
+		}
+		if( request.getParameter("action") == null){
+			action = (String)session.getAttribute("action");
+		}
 		/*
 		 * MemberSession memSession =
 		 * (MemberSession)session.getAttribute("LoginOK");
@@ -114,11 +134,12 @@ public class ClubClientViewServlet extends HttpServlet {
 			String clubId = request.getParameter("clubId");
 			request.setAttribute("createAct_clubId", clubId);
 			System.out.println("the club id is" + clubId);
-			RequestDispatcher dispatcher = request.getRequestDispatcher(request.getContextPath()+"/act/createAct.jsp");
+			System.out.println(request.getContextPath()+"/act/createAct.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/act/createAct.jsp");
 			dispatcher.forward(request, response);
-					
+			return;
 		}
-		
+
 		if (action.matches("chooseClub")) {
 			System.out.println("In ClubClientVIEW, start the choose club");
 			System.out.println(request.getParameter("clubId"));
@@ -206,6 +227,7 @@ public class ClubClientViewServlet extends HttpServlet {
 			out.println(jsonString);
 			return;
 		}
+		
 		if (action.matches("insertComment")) {
 			PrintWriter out = response.getWriter();
 			System.out.println("request.content is " + request.getParameter("content"));
