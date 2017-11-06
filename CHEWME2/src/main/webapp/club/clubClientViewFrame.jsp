@@ -22,7 +22,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-2">
-				<button class="btn btn-sm btn-pimary" >管理畫面</button>
+				
+				
 			</div>
 
 			<div class="col-md-8">
@@ -50,7 +51,15 @@
 						</a>
 					</div>
 				</div>
-				<div class="col-md-8"></div>
+			</div>
+			<div cass="col-md-2">
+				 <a class="btn btn-sm btn-primary"  role="button">
+					管理畫面
+				</a>
+				 <a class="btn btn-sm btn-primary" href="<%=request.getContextPath()%>/club/clubClientView.do?action=createClubAct&clubId=${clubVOForView.clubId}" role="button">
+					創社團活動
+				</a>
+				 
 			</div>
 		</div>
 		<div class="row" id="tabs">

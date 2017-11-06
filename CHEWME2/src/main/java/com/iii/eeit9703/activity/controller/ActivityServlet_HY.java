@@ -24,9 +24,11 @@ import org.json.JSONObject;
 
 import com.iii.eeit9703.activity.model.ActService;
 import com.iii.eeit9703.activity.model.ActivityVO;
+import com.iii.eeit9703.member.model.MemVO;
 import com.iii.eeit9703.member.model.MemberSession;
+import com.iii.eeit9703.utility.AutoLogin;
 
-@WebServlet("/act/actServlet2")
+@WebServlet("/act/actServlet")
 @MultipartConfig(
 location="",
 maxRequestSize=1024*1024*1024,
@@ -34,7 +36,7 @@ fileSizeThreshold=1024*1024*1024,
 maxFileSize=1024*1024*1024
 )
 
-public class ActivityServlet extends HttpServlet {
+public class ActivityServlet_HY extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
 	@Override
@@ -58,16 +60,41 @@ public class ActivityServlet extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		List<Integer> actList; 
 		System.out.println(action);
-		
 		HttpSession session = req.getSession(false);
+		//session = req.getSession(true);
+		//AutoLogin.memberLogin(req, resp, session, 1);
+		
+		if(session == null||session.getAttribute("LoginOK") == null||session.getAttribute("LoginOK_MS") == null){
+			System.out.println("LoginOK" + session.getAttribute("LoginOK")==null );
+			System.out.println("LoginOK_MS" + session.getAttribute("LoginOK_MS")==null );
+			
+			session.setAttribute("requestURI", req.getRequestURI());
+			session.setAttribute("memberId", "1");
+			session.setAttribute("action", req.getParameter("action"));
+			resp.sendRedirect("/CHEWME2/member/memberLogin.do");
+			System.out.println("change to ok!");		
+			return;			
+		}
+		if( req.getParameter("action") == null){
+			action = (String)session.getAttribute("action");
+		}
+		
+		
 		if(session == null){
 			resp.sendRedirect(req.getContextPath()+"/member/login.jsp");
+			return;
 		}
 		if(session.getAttribute("LoginOK") == null){
 			resp.sendRedirect(req.getContextPath()+"/member/login.jsp");
+			return;
+		}else{
+			System.out.println("LoginOK : "+ session.getAttribute("LoginOK"));
 		}
 		if(session.getAttribute("LoginOK_MS") == null){
 			resp.sendRedirect(req.getContextPath()+"/member/login.jsp");
+			return;
+		}else{			
+			System.out.println("LoginOK_MS : "+session.getAttribute("LoginOK_MS"));
 		}
 		
 		MemberSession ms = (MemberSession)session.getAttribute("LoginOK_MS");
@@ -89,6 +116,12 @@ public class ActivityServlet extends HttpServlet {
 			//session.setAttribute("MemberSession",ms);
 			resp.sendRedirect(req.getContextPath()+"/act/createAct.jsp");
 			
+		}
+		if(action.matches("createClubAct")){
+			Integer clubId = Integer.parseInt(req.getParameter("clubId"));
+			req.setAttribute("createAct_clubId", clubId);
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/act/createAct.jsp");
+			dispatcher.forward(req, resp);
 		}
 		if("getOne_For_Update".equals(action)){
 			
@@ -113,7 +146,7 @@ public class ActivityServlet extends HttpServlet {
 				//處理錯誤
 			} catch (NumberFormatException e) {
 				errorMsgs.add("無法取得要修改的資料"+e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("createAct.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/act/createAct.jsp");
 				failureView.forward(req, resp);
 				e.printStackTrace();
 			}
@@ -178,7 +211,7 @@ public class ActivityServlet extends HttpServlet {
 				Integer activity_state = new Integer(req.getParameter("activity_state"));
 				String sch_photo = req.getParameter("sch_photo");
 
-				
+				Integer clubId = Integer.parseInt(req.getParameter("clubId"));
 				
 				ActivityVO activityVO = new ActivityVO();
 					
@@ -190,11 +223,14 @@ public class ActivityServlet extends HttpServlet {
 				activityVO.setActivity_state(activity_state);
 				activityVO.setActID(actID);
 				activityVO.setSch_photo(sch_photo);
+				if(req.getParameter("clubId")!=null){
+					activityVO.setClubId(clubId);
+				}
 				req.setAttribute("activityVO", activityVO); //含有輸入錯誤的activityVO 也存入req
 
 				if(!error.isEmpty()){
-					
-					RequestDispatcher failureView =req.getRequestDispatcher("createAct.jsp");
+					System.out.println("error occur and the error="+error);
+					RequestDispatcher failureView =req.getRequestDispatcher("/act/createAct.jsp");
 					failureView.forward(req, resp);
 					
 					System.out.println("errorisEmpty");
@@ -210,13 +246,13 @@ public class ActivityServlet extends HttpServlet {
 				session.setAttribute("actVO", activityVO);
 	
 				
-				RequestDispatcher view = req.getRequestDispatcher("createAct2.jsp");
+				RequestDispatcher view = req.getRequestDispatcher("/act/createAct2.jsp");
 				view.forward(req,resp);
 				
 			} catch (Exception e) {
 
 				error.put("修改資料失敗",e.getMessage());
-				RequestDispatcher failureView =req.getRequestDispatcher("createAct.jsp");
+				RequestDispatcher failureView =req.getRequestDispatcher("/act/createAct.jsp");
 				failureView.forward(req, resp);
 				e.printStackTrace();
 		}
@@ -292,7 +328,7 @@ public class ActivityServlet extends HttpServlet {
 				session.setAttribute("activityVO", activityVO);
 
 				
-				RequestDispatcher view = req.getRequestDispatcher("showAct.jsp");
+				RequestDispatcher view = req.getRequestDispatcher("/act/showAct.jsp");
 				view.forward(req,resp);
 				
 				

@@ -15,6 +15,7 @@
         <property name="orderPrice" column="orderPrice" />
         <property name="orderTime" column="orderTime" />
         <property name="orderStatus" column="orderStatus" />
+        <property name="actID" column="actID" />
         
         
 <!--       		很多訂單屬於一個會員 -->
