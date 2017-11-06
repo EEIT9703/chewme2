@@ -116,7 +116,7 @@ html {
 	<header><%@include file="../header.jsp"%></header>
 	
 		<div id="tabs">
-		<div id="id1">ID : ${attrVO.attractionID}</div>
+		<div id="id1" style="display:none">ID : ${attrVO.attractionID}</div>
 			<div style="margin-left: 20px; border-bottom: 4px double green; width: 650px;">
 				<h2 id="name1">${attrVO.name}</h2>
 			</div>
@@ -127,7 +127,7 @@ html {
 			</div>
 			<ul>
 				<li><a href="#tabs-1">介紹</a></li>				
-				<li><a href="#tabs-3" id="message">留言板</a></li>
+				<li><a href="#tabs-3" id="message" style="display:none">留言板</a></li>
 			</ul>
 			<div id="tabs-1">
 				<table>
@@ -136,7 +136,7 @@ html {
 							<h3>簡介：</h3>
 							<div style="width: 200px;">${attrVO.intro}</div>
 						</td>
-						<td style="padding: 20px;"><span><img id="img2"	src="<%=request.getContextPath()%>/getImage.do?id2=${attrVO.name}&type=upimg">
+						<td style="padding: 20px;"><span><img id="img2"	src="<%=request.getContextPath()%>/getImage.do?id=${attrVO.name}&type=uploadimg">
 						</span></td>
 					</tr>
 				</table>

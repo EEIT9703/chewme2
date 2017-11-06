@@ -140,9 +140,17 @@
 		<h2>Stylish Search Box</h2>
            <div id="custom-search-input">
                             <div class="input-group col-md-12">
+<<<<<<< HEAD
                                 <input type="text" class="  search-query form-control" placeholder="Search" />
+=======
+                                <input type="text" class="  search-query form-control" placeholder="Search" id="text" name="text"/>
+>>>>>>> branch 'master' of https://github.com/EEIT9703/chewme2.git
                                 <span class="input-group-btn">
+<<<<<<< HEAD
                                     <button class="btn btn-danger" type="button" name="search" id="search">
+=======
+                                    <button class="btn btn-danger" type="button" id="search" name="search">
+>>>>>>> branch 'master' of https://github.com/EEIT9703/chewme2.git
                                         <span class=" glyphicon glyphicon-search"></span>
                                     </button>
                                 </span>
@@ -212,4 +220,9 @@
 <script type="text/javascript">
 	
 </script>
+<<<<<<< HEAD
+=======
+<script src="../act/js/search.js"></script>
+<!-- <script src="../js/jquery.twzipcode.min.js"></script> -->
+>>>>>>> branch 'master' of https://github.com/EEIT9703/chewme2.git
 </html>

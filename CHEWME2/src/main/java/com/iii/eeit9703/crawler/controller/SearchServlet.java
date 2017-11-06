@@ -44,7 +44,7 @@ public class SearchServlet extends HttpServlet {
 					error.put("searcherror", "查無資料，請重新輸入!");
 				} else {
 					request.setAttribute("attrVO", attrVO);
-					RequestDispatcher view = request.getRequestDispatcher("searchOne.jsp");
+					RequestDispatcher view = request.getRequestDispatcher("show_one.jsp");
 					view.forward(request, response);
 					String testname = attrVO.getName();
 					System.out.println(testname);

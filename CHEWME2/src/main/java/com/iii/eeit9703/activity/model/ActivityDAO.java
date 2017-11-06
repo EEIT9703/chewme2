@@ -278,11 +278,11 @@ public class ActivityDAO implements ActivityDAO_interface {
 		     Connection con =null;
 		     PreparedStatement pstmt =null;
 		     ResultSet rs =null;		   
-				
+		     act_name = "%"+act_name+"%";
 			try {
 				con = ds.getConnection();
 				pstmt = con.prepareStatement(Search_ACT);			
-				pstmt.setString(1, "%"+act_name+"%");
+				pstmt.setString(1, act_name);
 				rs = pstmt.executeQuery();
 				
 				while(rs.next()){
