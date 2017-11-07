@@ -165,7 +165,7 @@ ul, li {
 
 			</div>
 		</div>
-		<div id="2">  
+		<div id="1">  
 		<span><input type="button" class="inputCar" value="測試加入購物車"></span>
 		<span><input type="button" class="report" value="檢舉"></span>
 		</div>
