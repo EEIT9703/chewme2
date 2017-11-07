@@ -163,6 +163,16 @@ public class MemDAO implements MemDAO_interface {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
+	
+	@Override
+	public Set<ActivityVO> findActivitysByMemId(Integer memId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 	public static void main(String[] args){
 		MemDAO md= new MemDAO();
 		md.findByPrimaryKey(1);

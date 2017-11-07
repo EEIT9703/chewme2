@@ -32,6 +32,7 @@ import com.iii.eeit9703.collection.CollectionVO;
 import com.iii.eeit9703.member.model.MemDAO_hibernate;
 import com.iii.eeit9703.member.model.MemVO;
 import com.iii.eeit9703.member.model.MemberSession;
+import com.iii.eeit9703.order.OrderVO;
 import com.iii.eeit9703.report.ReportDAO_hibernate;
 import com.iii.eeit9703.report.ReportVO;
 
@@ -88,6 +89,60 @@ public class Collection extends HttpServlet {
 //					
 //		
 //					}
+			if("getMyOwnOrderCollection".equals(action)){
+				MemVO memVO=(MemVO) session.getAttribute("LoginOK");				
+				MemDAO_hibernate dao=new MemDAO_hibernate();
+				Set<OrderVO> list1 =dao.findOrdersByMemId(memVO.getMemId());
+				
+				List<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
+				HashMap<String,String> map = null;
+        		   	for(OrderVO orderVO :list1){
+        		   		map = new HashMap<String,String>();						
+    					map.put("orderNumber",orderVO.getOrderNumber() );
+    					map.put("orderName",orderVO.getOrderName());
+    					map.put("orderPeople",orderVO.getOrderPeople().toString());
+    					map.put("orderPrice",orderVO.getOrderPrice().toString());
+    					map.put("orderTime",orderVO.getOrderTime().toString());
+    					map.put("orderStatus",orderVO.getOrderStatus().toString());
+    				
+    					list.add(map);
+        		   	}
+        		   	JSONArray attrArrayList = new JSONArray(list);				
+    				out.print(attrArrayList.toString());
+				
+				
+				
+			}
+			
+			
+			if("getMyOwnActivityCollection".equals(action)){
+				MemVO memVO=(MemVO) session.getAttribute("LoginOK");				
+				MemDAO_hibernate dao=new MemDAO_hibernate();
+				Set<ActivityVO> list1 =dao.findActivitysByMemId(memVO.getMemId());
+				
+				List<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
+				HashMap<String,String> map = null;
+        		   	for(ActivityVO activityVO :list1){
+        		   		map = new HashMap<String,String>();						
+    					map.put("actID", activityVO.getActID().toString());
+    					map.put("act_name",activityVO.getAct_name());
+    					map.put("act_groups",activityVO.getAct_groups());
+    					map.put("act_current",activityVO.getAct_current());
+    					map.put("BDate",activityVO.getBDate().toString());
+    					map.put("EDate",activityVO.getEDate().toString() );
+    					map.put("activity_state",activityVO.getActivity_state().toString());
+    					map.put("act_price",activityVO.getAct_price());
+    					list.add(map);
+        		   	}
+        		   	JSONArray attrArrayList = new JSONArray(list);				
+    				out.print(attrArrayList.toString());
+				
+				
+				
+			}
+			
+			
+			
 			 if("getMyCollectionsById".equals(action)){
 				 System.out.println("bbbb");
 				 	Integer ID = Integer.parseInt(request.getParameter("actID"));
