@@ -35,7 +35,7 @@ public class MemberSession {
 		colService = new CollectionService();
 	}
 	
-	public MemberSession(MemVO memVO){
+	MemberSession(MemVO memVO){
 		this();		
 		setMemId(memVO.getMemId());
 		setMemVO(memVO);
