@@ -118,7 +118,7 @@ public class AttrServlet extends HttpServlet {
 				AttrService attrupd = new AttrService();
 				AttrVO attrVO = attrupd.getOneAttr(attractionID);
 				// System.out.println(attrVO);
-
+				
 				req.setAttribute("attrVO", attrVO);
 				RequestDispatcher view = req.getRequestDispatcher("show_one.jsp");
 				view.forward(req, res);
@@ -130,8 +130,11 @@ public class AttrServlet extends HttpServlet {
 		if ("update_one".equals(action)) {
 			try {
 				Integer attractionID = new Integer(req.getParameter("attractionID"));
+				System.out.println(attractionID);
 				AttrService attrsvc = new AttrService();
 				AttrVO attrVO = attrsvc.getOneAttr(attractionID);
+				
+				System.out.println(attrVO.getImage());
 
 				req.setAttribute("attrVO", attrVO);
 				RequestDispatcher view = req.getRequestDispatcher("update_input.jsp");
@@ -147,7 +150,12 @@ public class AttrServlet extends HttpServlet {
 
 			try {
 				InputStream inputStream = null;
-
+				
+				AttrService attrsvc = new AttrService();
+				AttrVO attrVO1 = attrsvc.getOneAttr(attractionID);
+				
+				System.out.println(attrVO1.getImage());				
+				
 				String name = req.getParameter("name");
 				String county = req.getParameter("county");
 				String type = req.getParameter("type");
@@ -155,12 +163,17 @@ public class AttrServlet extends HttpServlet {
 				String tel = req.getParameter("tel");
 				String intro = req.getParameter("intro");
 
-				Part filepart = req.getPart("photo");
-				if (filepart != null) {
+				Part filepart = req.getPart("photo");	
+				
+				
+				if(filepart != null){
 					System.out.println(filepart.getName());
 					System.out.println(filepart.getSize());
-					System.out.println(filepart.getContentType());
+					System.out.println(filepart.getContentType());					
 					inputStream = filepart.getInputStream();
+				}
+				if(inputStream == null){
+					System.out.println("空");
 				}
 
 				AttrVO attrVO = new AttrVO();

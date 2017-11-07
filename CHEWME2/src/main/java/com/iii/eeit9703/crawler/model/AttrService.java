@@ -31,8 +31,6 @@ public class AttrService {
 
 	public void deleteAttr(Integer attractionID) {
 		dao.delete(attractionID);
-		;
-
 	}
 
 	public ArrayList<AttrVO> getAll() {

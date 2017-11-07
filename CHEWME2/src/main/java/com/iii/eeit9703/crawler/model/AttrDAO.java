@@ -165,7 +165,7 @@ public class AttrDAO implements AttrDAO_interface {
 				attrvo.setAddress(rs.getString("address"));
 				attrvo.setTel(rs.getString("tel"));
 				attrvo.setIntro(rs.getString("intro"));
-
+				attrvo.setImage(rs.getBinaryStream("image"));
 			}
 			rs.close();
 			pstmt.close();
