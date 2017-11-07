@@ -162,7 +162,7 @@
 						<div class="col-md-4">
 							<div class="thumbnail">
 								<img alt="" src="data:image/png;base64,${activityVO.act_photo}" id=""/>
-								<div class="caption">
+								<div class="caption" >
 									<p>${activityVO.act_name}</p>
 									<p>
 										<a class="btn btn-primary" href="#" id="act_name">${activityVO.act_name}</a>
