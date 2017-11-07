@@ -26,7 +26,7 @@ import com.iii.eeit9703.activity.model.ActService;
 import com.iii.eeit9703.activity.model.ActivityVO;
 import com.iii.eeit9703.member.model.MemberSession;
 
-@WebServlet("/act/actServlet")
+@WebServlet("/act/actServlet2")
 @MultipartConfig(
 location="",
 maxRequestSize=1024*1024*1024,
