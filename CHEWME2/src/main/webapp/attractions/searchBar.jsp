@@ -4,18 +4,38 @@
 <html>
 <head>
 <style>
-	.items{
-		border:1px sold red;
+#all{
+	margin:0;
+	margin:auto;
+}
+.items{
+		border-radius:5px;
+		background-color:#ade5a4;
 	}
-	.span1{
+.span1{
 	border:1px solid red;
 	width:180px;
 	height:150px;
 	margin-right:50px;
 	}
-	.text1{
+.text1{
 	margin:50px;
 	}
+.col-sm-6.col-md-4{	
+	margin:10px;
+	width:300px;
+	}
+.items{
+	margin:20px;
+	width:500px;
+}
+.buy{
+	margin-left:15px;
+	border-radius:5px;
+}
+.text2{
+	color:green;
+}
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -29,7 +49,7 @@
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 </head>
 <body>
-	<div>
+	<div id="all">
 	<table>
         	<tr>
         		<td>

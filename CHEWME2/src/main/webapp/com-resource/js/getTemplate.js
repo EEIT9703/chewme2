@@ -18,7 +18,14 @@ $(document).ready(function() {
 		template3 = data3;
 		startToBuildTemplate();
 	})
+	 $.get("_issueTemplate.jsp", {},function(){
+		 startToBuildTemplate();
+	 })
+	
 })
+
+
+
 
 function startToBuildTemplate() {
 	console.log("start to build tmeplate");
