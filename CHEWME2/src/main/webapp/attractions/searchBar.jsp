@@ -36,6 +36,12 @@
 .text2{
 	color:green;
 }
+body { background-color:#ddd; }
+.blog-row {margin-top:50px; }
+.margin_bottom30 { margin-bottom:30px; }
+.margin_left10 {margin-left:10px; }
+.blog-content {padding:10px; }
+.bg-white {background-color:#fff;}
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -47,6 +53,7 @@
 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+<script src="https://use.fontawesome.com/1dec14be15.js"></script>
 </head>
 <body>
 	<div id="all">
@@ -69,8 +76,10 @@
             	</td>   
             	 	
             </tr>    
-            </table>               	
-				<div id="div1"></div>           
+            </table>  
+            <div class="container">             	
+				<div class="row" id="div1"></div>    
+			</div>       
 	</div>
 </body>
 <script src="js/template.js"></script>

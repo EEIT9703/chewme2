@@ -93,7 +93,7 @@ text-align: center;
 		<a href="insertAttr.jsp" class="btn btn-primary">我要新增</a>
 	</div>	
 	
-	<script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/jquery-1.12.3.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/jquery-ui.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 	<script>
