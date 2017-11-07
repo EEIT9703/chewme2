@@ -55,7 +55,7 @@ public class MemberSession {
 		ownColVoList = colService.getColVOListByMemId(memId);//測試
 	}
 	
-	
+	 
 	public List<Integer> getJoinedClubList() {
 		return joinedClubList;
 	}
