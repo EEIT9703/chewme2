@@ -57,7 +57,7 @@ public class CalendarServlet extends HttpServlet {
 			String countryID = null;
 			Integer countyID = null;
 			String actName = null;
-//			Integer memId = memVO.getMemId();
+			Integer memId = memVO.getMemId();
 					
 			response.setCharacterEncoding("UTF-8");
 			PrintWriter out = response.getWriter();
@@ -67,8 +67,8 @@ public class CalendarServlet extends HttpServlet {
 				actName = request.getParameter("actName");
 				System.out.println(actName);
 				ScheduleDAO scheduledao = new ScheduleDAO();
-//				Integer actID = scheduledao.insertACT(actName,memId);
-				Integer actID = scheduledao.insertACT(actName,2);
+				Integer actID = scheduledao.insertACT(actName,memId);
+//				Integer actID = scheduledao.insertACT(actName,2);
 				System.out.println(actID);
 				
 				out.println(actID);
