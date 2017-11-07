@@ -47,6 +47,10 @@
                         </li> 
                          <li>
                             <a href="<%=request.getContextPath()%>/backage/backage_member.jsp"><i class="fa fa-edit fa-fw"></i>會員管理</a>
+                        </li>
+                        
+                        <li>
+                            <a href="<%=request.getContextPath()%>/backage/backage_attraction.jsp"><i class="fa fa-edit fa-fw"></i>景點管理</a>
                         </li>                         
                         <li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
