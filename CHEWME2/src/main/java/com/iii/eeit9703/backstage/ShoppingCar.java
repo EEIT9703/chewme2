@@ -91,7 +91,7 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 						JSONArray attrArrayList = new JSONArray(errorMsgMap);				
 						out.print(attrArrayList.toString());
 						return;       				
-					}				
+					}			 
 				}			
 					CollectionService ser= new CollectionService();						
 					ActivityVO actVO=new ActivityVO();
