@@ -17,7 +17,8 @@ public class MemberSession {
 	private List<Integer> joinedClubList;
 	private List<Integer> joinedActList;
 	private List<Integer> ownClubList;
-	private List<ActivityVO> ownActivityList;
+	private List<Integer> ownActivityList;
+	private List<ActivityVO> ownActivityVOList;
 	//private List<Integer> ownColList;
 	private List<CollectionVO> ownColVoList;//collection改用拿VO
 	ClubService cbService;
@@ -30,7 +31,7 @@ public class MemberSession {
 		joinedClubList = new LinkedList<Integer>();
 		joinedActList = new LinkedList<Integer>();
 		ownClubList = new LinkedList<Integer>();
-		ownActivityList = new LinkedList<ActivityVO>();
+		ownActivityList = new LinkedList<Integer>();
 		cbService = new ClubService();
 		marService = new MemActRelationService();
 		cmrService = new ClubMemRelationService();
@@ -54,11 +55,10 @@ public class MemberSession {
 //		joinedActList = marService.getRelationByMemId(memId);
 //		joinedClubList = cmrService.getRelationByMemId(memId);
 //		ownColList =  colService.getColIdListByMemId(memId);
-		this.ownActivityList = getOwnActivityList();
-		this.ownColVoList = colService.getColVOListByMemId(memId);//測試
+		ownColVoList = colService.getColVOListByMemId(memId);//測試
 	}
 	
-	
+	 
 	public List<Integer> getJoinedClubList() {
 		return joinedClubList;
 	}
@@ -71,14 +71,12 @@ public class MemberSession {
 	public void setOwnClubList(List<Integer> ownClubList) {
 		this.ownClubList = ownClubList;
 	}
-	public List<ActivityVO> getOwnActivityList(){
-		ActService2 as = new ActService2();
-		return as.getListVOBymemId(this.getMemId());
+	public List<Integer> getOwnActivityList() {
+		return ownActivityList;
 	}
 		
-	public void setOwnActivityList(List<ActivityVO> ownActivityList) {
-				
-		
+	public void setOwnActivityList(List<Integer> ownActivityList) {
+		this.ownActivityList = ownActivityList;
 	}
 	
 	
@@ -125,7 +123,15 @@ public class MemberSession {
 	public void setJoinedActList(List<Integer> joinedActList) {
 		this.joinedActList = joinedActList;
 	}
-	
+	//先不要用此方法 下面兩個方法可能會砍掉byHungYu
+	public void setOwnActivityVOList() {
+		ActService2 as = new ActService2();
+		this.ownActivityVOList = as.getListVOBymemId(this.getMemId());
+	}
+	public List<ActivityVO> getOwnActivityVOList(){
+		ActService2 as = new ActService2();
+		return as.getListVOBymemId(this.getMemId());
+	}
 	
 	
 	

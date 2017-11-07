@@ -81,6 +81,7 @@ public class ActivityServlet extends HttpServlet {
 			if(avo == null){
 				System.out.println("the aov is null");
 			}else{				
+				
 				System.out.println(avo.get(0).getActID());
 			}
 			System.out.println("ActivityList size"+ms.getMemId());

@@ -36,7 +36,7 @@ fileSizeThreshold=1024*1024*1024,
 maxFileSize=1024*1024*1024
 )
 
-public class ActivityServlet_HY extends HttpServlet {
+public class ActivityServletForClub extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
 	@Override
@@ -104,7 +104,7 @@ public class ActivityServlet_HY extends HttpServlet {
 		if(action.matches("createAct")){
 			Integer memId = ms.getMemId();
 			
-			List<ActivityVO> avo= ms.getOwnActivityList();
+			List<ActivityVO> avo= ms.getOwnActivityVOList();
 			if(avo == null){
 				System.out.println("the aov is null");
 			}else{				

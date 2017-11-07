@@ -29,21 +29,23 @@
 <style>
 h1{text-align: center;font-family: 'Arial','Microsoft JhengHei';}
 h2{text-align: center;font-family: 'Arial','Microsoft JhengHei';}
-span{color: #004B97;font-family: 'Arial','Microsoft JhengHei';font-size:25px;font-weight:bold;p}
-#name{font-family: 'Arial','Microsoft JhengHei';font-size:25px;font-weight:bold;padding-left:10px;}
-#tel{color: #9F5000;font-family: 'Arial','Microsoft JhengHei';font-size:20px;font-weight:bold;padding-left:10px;}
-#addr{font-family: 'Arial','Microsoft JhengHei';font-size:20px;font-weight:bold;padding-left:10px;}
-#intro{font-family: 'Arial','Microsoft JhengHei';font-size:15px;padding-left:10px;}
+span{color: #004B97;font-family: 'Arial','Microsoft JhengHei';font-size:27px;font-weight:bold;}
+#name{color:	#003D79;font-family: 'Arial','Microsoft JhengHei';font-size:32px;font-weight:bold;padding-left:10px;}
+#tel{color: #9F5000;font-family: 'Arial','Microsoft JhengHei';font-size:27px;font-weight:bold;padding-left:10px;}
+#addr{font-family: 'Arial','Microsoft JhengHei';font-size:27px;font-weight:bold;padding-left:10px;}
+#intro{font-family: 'Arial','Microsoft JhengHei';font-size:22px;padding-left:10px;}
 #photo{padding:10px;vertical-align : middle;}
-#save{margin-left:35px;height:40px;text-align: center;font-family: 'Arial','Microsoft JhengHei';font-weight:bold;}
+#downLoad,#save{width:150px;height:40px;text-align: center;font-family: 'Arial','Microsoft JhengHei';font-weight:bold;font-size:22px;}
 </style>
 <body>
 
 <header><%@include file="../header.jsp"%></header>
 <br>
 <br>
-<button id=save class="btn btn-info"><i class="glyphicon glyphicon-picture"></i>儲存行程</button>
-<div id=showSchedule></div>
+<button id=save class="btn btn-info" style="margin-left:35px;"><i class="glyphicon glyphicon-picture"></i> 儲存行程</button>
+<button id=downLoad class="btn btn-warning" style="margin-left:5px;"><i class="glyphicon glyphicon-download-alt"></i><a id=auto style="display:none;" ></a> 下載行程</button>
+
+<div id=showSchedule><img id='photo' /></div>
 <div id=schedule>
 	<h1 id="name"></h1>
 	<h2 id="day1"></h2>
@@ -55,7 +57,7 @@ span{color: #004B97;font-family: 'Arial','Microsoft JhengHei';font-size:25px;fon
 </div>
 <script>
 	var actID=${actID};
-	var name=null;
+	var ACTname=null;
  	$('#vt1').verticalTimeline();
  	$('#vt2').verticalTimeline();
  	$('#vt3').verticalTimeline();
@@ -65,7 +67,8 @@ window.onload = function(){
 	$.get("<%=request.getContextPath()%>/Schedule.do?mission=getActName",{'actID':actID},function(actName){
 		console.log(actName);
 		$('#name').html(actName+"的行程明細");
-		name=actName;
+		ACTname=actName;
+		console.log(ACTname);
 	});
 	
  	$.getJSON("<%=request.getContextPath()%>/Schedule.do?mission=getTrip",{'actID':actID},showTimeLine);
@@ -128,26 +131,52 @@ window.onload = function(){
 			}
 		}
 
-		}
+	}
 	
 		$('#save').click(function() {
 			
-			//var pic="";
-			
 			html2canvas($("#schedule"), {
 	        	onrendered: function(canvas) {
-	         	$("<img />", { src: canvas.toDataURL("image/png") }).appendTo($("#showSchedule"));
+ 	         	//$("#photo").attr("src",canvas.toDataURL("image/png"));
 	         	//document.body.appendChild(canvas); 
 	        	 var pic = canvas.toDataURL("image/png");
 	        	 console.log(pic);
 	        	 $.get("<%=request.getContextPath()%>/Schedule.do?mission=savePic",{'actID':actID,'pic':pic},function(){
 	        			console.log(name);
-	        			alert(name+"儲存成功!!\n請前往「揪新團」進行揪團功能");
+	        			alert(name+"儲存成功!!\n請前往「揪新團」進行揪團功能\n欲將行程設為社團行程請前往社團頁面");
 	        		});
 	        	}
 	      	});
-
 	    });
+		
+	        var cunt = 0;
+		$('#downLoad').click(function() {
+			html2canvas($("#schedule"), {
+	        	onrendered: function(canvas) {
+	        	
+	        		 $("#auto").attr('href', canvas.toDataURL("image/png"));
+	                 $("#auto").attr('download',ACTname);
+	                    lnk = document.getElementById("auto");
+	                    if(cunt==0){
+	                    	lnk.click();
+	                    	cunt++;
+	                    }
+
+	        	}
+	      	});
+	    });
+		
+		
+		
+		//var canvas = document.getElementById('photo');
+		//var context = canvas.getContext('2d');
+		//context.fillStyle = 'rgb(200, 0, 0)';
+		//context.fillRect (10, 10, 55, 50);
+		//context.fillStyle = 'rgba(0, 0, 200, 0.5)';
+		//context.fillRect (30, 30, 55, 50);
+		
+		//var image = document.getElementById('photo')
+		//#('#downLoad>a').eq(0).attr('onclick',"this.href="+pic);	
 	}
 </script>
 </body>

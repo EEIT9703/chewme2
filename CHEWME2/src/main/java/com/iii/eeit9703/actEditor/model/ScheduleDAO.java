@@ -41,7 +41,7 @@ public class ScheduleDAO {
 	ResultSet rs = null;
 	
 	
-	public Integer insertACT(String actName){
+	public Integer insertACT(String actName, Integer memId){
 		ArrayList<ActivityVO> list = new ArrayList<ActivityVO>();
 		int actID = 0;
 
@@ -51,7 +51,7 @@ public class ScheduleDAO {
 			pstmt = con.prepareStatement(NEWACTIVITY);
 			
 			pstmt.setString(1, actName);
-			pstmt.setInt(2, 3);
+			pstmt.setInt(2, memId);
 			pstmt.executeUpdate();
 			
 			actID = selectACT(actName);
