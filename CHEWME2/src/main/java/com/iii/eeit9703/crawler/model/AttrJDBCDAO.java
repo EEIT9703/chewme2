@@ -157,6 +157,7 @@ public class AttrJDBCDAO implements AttrDAO_interface {
 				attrvo.setAddress(rs.getString("address"));
 				attrvo.setTel(rs.getString("tel"));
 			    attrvo.setIntro(rs.getString("intro"));
+			    attrvo.setImage(rs.getBinaryStream("image"));
 
 				System.out.print(rs.getInt("attractionID") + ",");
 				System.out.print(rs.getString("name") + ",");
@@ -227,11 +228,11 @@ public class AttrJDBCDAO implements AttrDAO_interface {
 
 		AttrJDBCDAO dao = new AttrJDBCDAO();
 		 //AttrVO attrvo1 = new AttrVO();
-		 dao.getAll();
+		 //dao.getAll();
 		 //dao.insert(attrvo1);
 		// dao.update(attrvo1);
 		// dao.delete(3);
-		//dao.findByPK(3);
+		dao.findByPK(10);
 	}
 
 }
