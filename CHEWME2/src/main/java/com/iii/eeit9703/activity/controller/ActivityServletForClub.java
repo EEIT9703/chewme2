@@ -211,7 +211,6 @@ public class ActivityServletForClub extends HttpServlet {
 				Integer activity_state = new Integer(req.getParameter("activity_state"));
 				String sch_photo = req.getParameter("sch_photo");
 
-				Integer clubId = Integer.parseInt(req.getParameter("clubId"));
 				
 				ActivityVO activityVO = new ActivityVO();
 					
@@ -224,6 +223,7 @@ public class ActivityServletForClub extends HttpServlet {
 				activityVO.setActID(actID);
 				activityVO.setSch_photo(sch_photo);
 				if(req.getParameter("clubId")!=null){
+					Integer clubId = Integer.parseInt(req.getParameter("clubId"));
 					activityVO.setClubId(clubId);
 				}
 				req.setAttribute("activityVO", activityVO); //含有輸入錯誤的activityVO 也存入req

@@ -1,5 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%-- <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%> --%>
+<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> --%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.iii.eeit9703.crawler.model.*"%>
 <%
@@ -80,7 +80,7 @@ text-align: center;
 						
 
 						<td>
-							<form method="post" action="Attraction.do">
+							<form method="post" action="<%=request.getContextPath()%>/attractions/Attraction.do">
 								<button type="submit" class="btn btn-danger">
 									<span class="glyphicon glyphicon-remove"></span>
 								</button>								
@@ -90,7 +90,7 @@ text-align: center;
 							</form>
 						</td>
 						<td>	
-							<form method="post" action="Attraction.do">
+							<form method="post" action="<%=request.getContextPath()%>/attractions/Attraction.do">
 								<button class="btn btn-success">
 									<span class="glyphicon glyphicon-info-sign"></span>
 								</button>
