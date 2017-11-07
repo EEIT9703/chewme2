@@ -100,7 +100,7 @@ public class AttrDAO {
 					attrVO.setTel(rs.getString("tel"));
 					attrVO.setIntro(rs.getString("intro"));
 					attrVO.setImage(rs.getBinaryStream("image"));
-					System.out.println(attrVO.getImage());
+					//System.out.println(attrVO.getImage());
 					InputStream is 	 =attrVO.getImage();
 					
 					//InputStream is = null;
@@ -207,9 +207,58 @@ public class AttrDAO {
 				attrVO.setAddress(rs.getString("address"));
 				attrVO.setTel(rs.getString("tel"));
 				attrVO.setIntro(rs.getString("intro"));
-				//attrVO.setImage(rs.getString("image"));				
+				attrVO.setImage(rs.getBinaryStream("image"));
+				//System.out.println(attrVO.getImage());
+				InputStream is 	 =attrVO.getImage();
 				
-				list.add(attrVO);
+				//InputStream is = null;
+				ByteArrayOutputStream bos = null;
+				try {
+
+					int len;
+					int size = 1024;
+					byte[] buf;
+
+					if (is instanceof ByteArrayInputStream) {
+						
+						//檔案大小若是60個byte 準備的byte陣列就設為60 剛好把檔案塞進去
+						size = is.available();
+						buf = new byte[size];
+						//將檔案讀入buf
+						is.read(buf, 0, size);
+/*							//將buf轉為base64
+						String strbase64 = Base64.getEncoder().encodeToString(buf);
+						//將strbase64放入attrVO
+						attrVO.setImg64(strbase64);
+						
+						list.add(attrVO);
+*/						} else {
+						bos = new ByteArrayOutputStream();
+						//一次讀size個byte
+						buf = new byte[size];
+						while ((len = is.read(buf, 0, size)) != -1)
+							//透過while迴圈一次寫size個byte到bos裡
+							bos.write(buf, 0, len);
+						//用toByteArray()方法把完整檔案轉成byte陣列存入buf
+						buf = bos.toByteArray();
+						//將buf轉為base64
+						String strbase64 = Base64.getEncoder().encodeToString(buf);
+//					System.out.println(strbase64);
+						attrVO.setImg64(strbase64);
+						
+						list.add(attrVO);
+					}	
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} finally {
+					try {
+						is.close();							
+						// is.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
 			}
 			
 		} catch (SQLException e) {
