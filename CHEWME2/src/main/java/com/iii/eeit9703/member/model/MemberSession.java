@@ -3,6 +3,8 @@ package com.iii.eeit9703.member.model;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.iii.eeit9703.activity.model.ActService2;
+import com.iii.eeit9703.activity.model.ActivityVO;
 import com.iii.eeit9703.bridge.model.ClubMemRelationService;
 import com.iii.eeit9703.bridge.model.MemActRelationService;
 import com.iii.eeit9703.club.model.ClubService;
@@ -16,6 +18,7 @@ public class MemberSession {
 	private List<Integer> joinedActList;
 	private List<Integer> ownClubList;
 	private List<Integer> ownActivityList;
+	private List<ActivityVO> ownActivityVOList;
 	//private List<Integer> ownColList;
 	private List<CollectionVO> ownColVoList;//collection改用拿VO
 	ClubService cbService;
@@ -120,7 +123,15 @@ public class MemberSession {
 	public void setJoinedActList(List<Integer> joinedActList) {
 		this.joinedActList = joinedActList;
 	}
-	
+	//先不要用此方法 下面兩個方法可能會砍掉byHungYu
+	public void setOwnActivityVOList() {
+		ActService2 as = new ActService2();
+		this.ownActivityVOList = as.getListVOBymemId(this.getMemId());
+	}
+	public List<ActivityVO> getOwnActivityVOList(){
+		ActService2 as = new ActService2();
+		return as.getListVOBymemId(this.getMemId());
+	}
 	
 	
 	

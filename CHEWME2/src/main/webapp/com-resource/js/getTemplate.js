@@ -18,11 +18,14 @@ $(document).ready(function() {
 		template3 = data3;
 		startToBuildTemplate();
 	})
+
 	//呼叫一個版型的方法
 	$.get("testFile.jsp", {},function(data1){
 		console.log(data1)
 	})
+
 })
+
 
 function startToBuildTemplate() {
 	console.log("start to build tmeplate");

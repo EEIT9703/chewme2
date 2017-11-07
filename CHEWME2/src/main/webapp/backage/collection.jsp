@@ -350,7 +350,8 @@ $(function(){
 		         tbody.append(row);
 			})
 			table.append([thead,tbody])
-			opt.append(table)
+			opt.append(table
+					)
 		});
 	
 		}

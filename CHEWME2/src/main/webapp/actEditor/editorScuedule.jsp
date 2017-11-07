@@ -35,6 +35,7 @@
 
 <style type="text/css">
 b{font-family: 'Arial','Microsoft JhengHei';font-size:20px;}
+li>a{font-family: 'Arial','Microsoft JhengHei';font-size:20px;}
 p{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 select{width:150px;height:40px;font-family: 'Arial','Microsoft JhengHei';font-size:20px;}
 option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
@@ -58,12 +59,13 @@ option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 <header><%@include file="../header.jsp"%></header>
 <br>
 <br>
-<div class="container-fluid" style="width:110%;margin:0px 30px">
+<div class="container-fluid" style="width:100%;margin:0px 30px">
 	<div class="row">
 		<!-- calendar顯示div處 -->
-		<div id='calendar' class='col-xs-6 col-sm-7 col-lg-6' style="padding:10px;"></div>
+		<div id='calendar' class='col-xs-6 col-sm-7 col-lg-6' style="padding:0px 10px;"></div>
+		<div class='col-xs-1 col-sm-0 col-lg-1'></div>
 		<!-- 選擇器區塊 -->
-		<div class="col-xs-6 col-sm-5 col-lg-6" style="padding-left:25px;">
+		<div class="col-xs-5 col-sm-5 col-lg-5" style="padding-left:5px;">
 		
 			<br>
 			<b>行程名稱：</b> <input id="actName"><br><br>
@@ -77,7 +79,7 @@ option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 			<b>(2) 選擇區域：</b>
 			<select id="county" name="county"><option>請選擇縣市</option></select>
 			<br><br><br>
-			<div id="tabs" style="width:450px">
+			<div id="tabs" style="width:550px">
 			  <ul>
 		    	<li><a href="#attr">景　點</a></li>
 				<li><a href="#rest">餐　聽</a></li>
@@ -285,7 +287,7 @@ $(function() {
     	editable: true,														//設定可否手動編輯事件
     	eventOverlap:true,												//設定事件可否重疊
     	eventBackgroundColor: "	#FFE153",			//設定日曆上所有事件的背景色
-    	//eventBorderColor:"#00A600",						//設定日曆上所有事件的框線色
+    	eventBorderColor:"	#FFE153",						//設定日曆上所有事件的框線色
     	eventTextColor:"#000000",								//設定日曆上所有事件的字體色
     	droppable: true,													//設定可否放置物件
     	//dropAccept:".item",											//設定允許放置的物件類型
@@ -389,10 +391,10 @@ $(function() {
 		            click: function(){
 		            	$('#calendar').fullCalendar('removeEvents');
 		            	for(var i=0;i<schID.length;i++){
-		    				console.log(schID[i]);				    				
 		            		$.post('<%=request.getContextPath()%>/Calendar.do?mission=deleteAll',{"eventID":schID[i]},function(scheduleID){
 		    				schID.splice(i,1);
 		    				});
+		    				console.log("已刪除此項行程");				    				
 		            	}
 		            }
 		        },
