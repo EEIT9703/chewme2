@@ -4,18 +4,44 @@
 <html>
 <head>
 <style>
-	.items{
-		border:1px sold red;
+#all{
+	margin:0;
+	margin:auto;
+}
+.items{
+		border-radius:5px;
+		background-color:#ade5a4;
 	}
-	.span1{
+.span1{
 	border:1px solid red;
 	width:180px;
 	height:150px;
 	margin-right:50px;
 	}
-	.text1{
+.text1{
 	margin:50px;
 	}
+.col-sm-6.col-md-4{	
+	margin:10px;
+	width:300px;
+	}
+.items{
+	margin:20px;
+	width:500px;
+}
+.buy{
+	margin-left:15px;
+	border-radius:5px;
+}
+.text2{
+	color:green;
+}
+body { background-color:#ddd; }
+.blog-row {margin-top:50px; }
+.margin_bottom30 { margin-bottom:30px; }
+.margin_left10 {margin-left:10px; }
+.blog-content {padding:10px; }
+.bg-white {background-color:#fff;}
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -27,9 +53,10 @@
 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+<script src="https://use.fontawesome.com/1dec14be15.js"></script>
 </head>
 <body>
-	<div>
+	<div id="all">
 	<table>
         	<tr>
         		<td>
@@ -49,8 +76,10 @@
             	</td>   
             	 	
             </tr>    
-            </table>               	
-				<div id="div1"></div>           
+            </table>  
+            <div class="container">             	
+				<div class="row" id="div1"></div>    
+			</div>       
 	</div>
 </body>
 <script src="js/template.js"></script>

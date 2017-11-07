@@ -43,6 +43,7 @@ import com.iii.eeit9703.report.ReportVO;
 
 import allPay.payment.integration.AllInOne;
 import allPay.payment.integration.domain.AioCheckOutDevide;
+import allPay.payment.integration.domain.AioCheckOutOneTime;
 
 
 /**
@@ -53,7 +54,7 @@ public class AllPay extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	public static AllInOne all;
-	public static AioCheckOutDevide obj ;
+	public static AioCheckOutOneTime obj ;
    
 
 	/**
@@ -118,16 +119,16 @@ public class AllPay extends HttpServlet {
 	           	 ActivityVO activityVO_result=new ActivityVO();
 	           	 activityVO_result.setMemVO(memVO);
 	           	 activityVO_result.setActID(actID);	      	 
-//	           	 activityVO_result.setAct_name(activityVO.getAct_name());
-//	           	 activityVO_result.setAct_groups(activityVO.getAct_groups());
+	           	 activityVO_result.setAct_name(activityVO.getAct_name());
+	           	 activityVO_result.setAct_groups(activityVO.getAct_groups());
 	           	 activityVO_result.setAct_current(current.toString());
-//	           	 activityVO_result.setBDate(activityVO.getBDate());
-//	           	 activityVO_result.setEDate(activityVO.getEDate());
-//	           	 activityVO_result.setActivity_state(activityVO.getActivity_state());
-//	        	 activityVO_result.setAct_photo(activityVO.getAct_photo());
-//	           	 activityVO_result.setAct_price(activityVO.getAct_price());
-//	           	 activityVO_result.setAct_news(activityVO.getAct_news());
-//	           	 activityVO_result.setSch_photo(activityVO.getSch_photo());
+	           	 activityVO_result.setBDate(activityVO.getBDate());
+	           	 activityVO_result.setEDate(activityVO.getEDate());
+	           	 activityVO_result.setActivity_state(activityVO.getActivity_state());
+	        	 activityVO_result.setAct_photo(activityVO.getAct_photo());
+	           	 activityVO_result.setAct_price(activityVO.getAct_price());
+	           	 activityVO_result.setAct_news(activityVO.getAct_news());
+	           	 activityVO_result.setSch_photo(activityVO.getSch_photo());
 	          	
 	           	actDAO.update(activityVO_result);
 	           	 
@@ -140,7 +141,9 @@ public class AllPay extends HttpServlet {
 	        			ser.delete(collectionVO);	 	        	  	
     
 	         //寫一個訂單VO放入訂單
-			obj= new AioCheckOutDevide();					
+	        			
+			//obj= new AioCheckOutDevide();
+	        obj= new AioCheckOutOneTime();	
 			all = new AllInOne("");
 			
 			obj.setMerchantTradeNo(strDateNo);//訂單編號
@@ -148,13 +151,14 @@ public class AllPay extends HttpServlet {
 			obj.setTotalAmount(price.toString());//金額
 			obj.setTradeDesc("test Description");
 			obj.setItemName(activityVO.getAct_name()+"__"+people+"人");
-			obj.setReturnURL("https://developers.allpay.com.tw/AioMock/MerchantReturnUrl");//成功回到哪裡
+			obj.setReturnURL("https://tw.yahoo.com");
+			obj.setClientBackURL("http://www.google.com");//成功回到哪裡
 			obj.setNeedExtraPaidInfo("N");
 			obj.setHoldTradeAMT("0");
 			obj.setUseRedeem("N");
 		
 			//obj.setCreditInstallment("3");
-			obj.setInstallmentAmount(price.toString());
+			//obj.setInstallmentAmount(price.toString());
 			String form = all.aioCheckOut(obj, null);						
 			session.setAttribute("form",form);
 	
