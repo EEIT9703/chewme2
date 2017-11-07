@@ -148,7 +148,7 @@ public class AllPay extends HttpServlet {
 			obj.setTotalAmount(price.toString());//金額
 			obj.setTradeDesc("test Description");
 			obj.setItemName(activityVO.getAct_name()+"__"+people+"人");
-			obj.setReturnURL("https://developers.allpay.com.tw/AioMock/MerchantReturnUrl");//成功回到哪裡
+			obj.setReturnURL("https://tw.yahoo.com");//成功回到哪裡
 			obj.setNeedExtraPaidInfo("N");
 			obj.setHoldTradeAMT("0");
 			obj.setUseRedeem("N");

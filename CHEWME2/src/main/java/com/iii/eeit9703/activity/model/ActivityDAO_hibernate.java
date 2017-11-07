@@ -1,6 +1,7 @@
 package com.iii.eeit9703.activity.model;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -18,6 +19,12 @@ public class ActivityDAO_hibernate implements ActivityDAO_interface {
 	private static final String GET_ALL_STMT = "from ActivityVO order by actID";
 
 	
+
+	@Override
+	public ArrayList<ActivityVO> Search(String act_name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public void update(ActivityVO activityVO) {

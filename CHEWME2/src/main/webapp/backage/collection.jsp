@@ -217,14 +217,11 @@ margin:0px 80px 30px 0px;
 						
 				<div id="cc" class="sidebar___2Ft6w col-md-8 column" style="min-height:650px; width: 1150px;">
 					<div id='items'>
-			
+					
 					</div>
-				
-				
+
 				</div>		
-  				
-		
-	
+ 
 </div>
 	
 </article>
@@ -278,29 +275,118 @@ $(function(){
 		});
 		
 	}
+	
+	
+	function loadOwnActivity(){
+		
+			$.getJSON('<%=request.getContextPath()%>/Collection?action=getMyOwnActivityCollection',{},function(array){
+			
+			var fg = $(document.createDocumentFragment()); 			
+			var status=["上架","下架","待審核"];
+			var opt = $('#items');
+
+			opt.empty();
+
+// 			var cell5=$('<div class="allpay_button"></div>').html("<input type='button' value='前往歐付寶付款'>")
+// 			opt.append(cell5);
+			var count=0;
+			$.each(array,function(i,activity){			
+	         var cell1 = $('<img>').attr("src","<%=request.getContextPath()%>/image/101.jpg")	       
+	       	 var cell2 = $('<p></p>').text(activity.act_name);
+	         
+	         
+	         var span =$('<span></span>').css("color","blue").text("出團時間:");
+             var span1=$('<span style="margin-right:30px"></span>').text(activity.BDate)
+             
+             var span2=$('<span></span>').css("color","red").text("目前人數:");
+	         var span3=$('<span></span>').text(activity.act_current);
+  	         //var span2 =$('<span></span>').text('人')
+	         //var cell3=$('<span></span>').addClass('inder_price').text(activity.act_price);
+	      	 //var cell4=$('<span></span>').addClass('price_icon').text('$');
+	      	 
+	      	// var button1=$('<button></button>').css('color','blue').addClass('buy').attr({'type':'submit'}).text("購買");
+	        // var cell5=$('<span></span>').text("目前人數:"+activity.act_current)
+	       	// var button2=$('<button></button>').css('color','red').addClass('delete').attr({'type':'button'}).text("移除");
+	        // var cell6=$('<span><span>').append(button2)
+         	 var row = $("<div></div>").addClass('item').attr({'class':'item','id':activity.actID});	 
+	       	 row.append([cell1, cell2,span,span1,span2,span3]);
+	       	fg.append(row);
+  	       
+	       	count++;
+			})
+			$('.aaa').text(count);
+			  opt.append(fg); 
+		});		
+	}
+	
+	
+	function loadOrder(){
+		$.getJSON('<%=request.getContextPath()%>/Collection?action=getMyOwnOrderCollection',{},function(array){
+			
+			var fg = $(document.createDocumentFragment()); 			
+			var status=["上架","下架","待審核"];
+			var opt = $('#items');
+			opt.empty();
+			var table =$('<table></table').attr('id','order').addClass('table table-hover')
+			
+			var tbody =$('<tbody></tbody>')
+			var th1=$('<th></th>').text("訂單編號")
+			var th2=$('<th></th>').text("訂單名稱")
+			var th3=$('<th></th>').text("人數")
+			var th4=$('<th></th>').text("價格")
+			var th5=$('<th></th>').text("訂單時間")
+			var th6=$('<th></th>').text("訂單狀態")
+			var tr_for_th=$('<tr></tr>').append([th1,th2,th3,th4,th5,th6])
+			var thead =$('<thead></thead').append(tr_for_th) //first
+			$.each(array,function(i,order){
+				
+				 var cell1 = $('<td></td>').text(order.orderNumber); 	 
+	  	       	 var cell2 = $('<td></td>').text(order.orderName);
+		         var cell3 = $('<td></td>').text(order.orderPeople);
+		         var cell4 = $('<td></td>').text(order.orderPrice);  
+		         var cell5 = $('<td></td>').text(order.orderTime);  
+		         var cell6 = $('<td></td>').text(order.orderStatus); 
+		         var row = $('<tr></tr>').append([cell1, cell2,cell3,cell4,cell5,cell6]); 
+		         tbody.append(row);
+			})
+			table.append([thead,tbody])
+			opt.append(table)
+		});
+	
+		}
+
+
+	
+	
+	
 
 		$('#collection').click(function (event){
 			$(this).attr("class","item___2dDze  selected___2Hy4k")
 			$('#Order').attr("class","item___2dDze")
 			$('#list').attr("class","item___2dDze")
-			$.post('<%=request.getContextPath()%>/Collection?action=getMyCollection',{},function(){
+			//$("#items").empty();
+			
 				loadcollection();
 				
-			});
+			
 		})
 		
 		$('#Order').click(function (event){
 			$(this).attr("class","item___2dDze  selected___2Hy4k")
 			$('#collection').attr("class","item___2dDze")
 			$('#list').attr("class","item___2dDze")
-			$("#items").empty();
+			//$("#items").empty();			
+				loadOwnActivity();
+
 			
 		})
 		$('#list').click(function (event){
 			$(this).attr("class","item___2dDze  selected___2Hy4k")
 			$('#Order').attr("class","item___2dDze")
 			$('#collection').attr("class","item___2dDze")
-			$("#items").empty();
+			//$("#items").empty();
+				loadOrder();
+	
 			
 		})
 		//購賣被點
