@@ -11,12 +11,16 @@ $(document).ready(function() {
 	var fun1 = $.get("testFile.jsp", {})
 	var fun2 = $.get("_commentTemplate.jsp", {})
 	var fun3 = $.get("_issueTemplate.jsp", {})
-
+	//呼叫兩個以上版型的方法
 	$.when(fun1,fun2,fun3).then( function(data1,data2,data3) {
 		template1 = data1;
 		template2 = data2;
 		template3 = data3;
 		startToBuildTemplate();
+	})
+	//呼叫一個版型的方法
+	$.get("testFile.jsp", {},function(data1){
+		console.log(data1)
 	})
 })
 
