@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import com.iii.eeit9703.crawler.model.AttrDAO;
 import com.iii.eeit9703.crawler.model.AttrService;
 import com.iii.eeit9703.crawler.model.AttrVO;
 
@@ -134,7 +135,7 @@ public class AttrServlet extends HttpServlet {
 				AttrService attrsvc = new AttrService();
 				AttrVO attrVO = attrsvc.getOneAttr(attractionID);
 				
-				System.out.println(attrVO.getImage());
+				System.out.println(attrVO.getAttractionID() + "testID");
 
 				req.setAttribute("attrVO", attrVO);
 				RequestDispatcher view = req.getRequestDispatcher("update_input.jsp");
@@ -154,7 +155,7 @@ public class AttrServlet extends HttpServlet {
 				AttrService attrsvc = new AttrService();
 				AttrVO attrVO1 = attrsvc.getOneAttr(attractionID);
 				
-				System.out.println(attrVO1.getImage());				
+//				System.out.println(attrVO1.getImage());				
 				
 				String name = req.getParameter("name");
 				String county = req.getParameter("county");
@@ -166,33 +167,54 @@ public class AttrServlet extends HttpServlet {
 				Part filepart = req.getPart("photo");	
 				
 				
-				if(filepart != null){
-					System.out.println(filepart.getName());
-					System.out.println(filepart.getSize());
-					System.out.println(filepart.getContentType());					
+//				if(filepart != null){
+//					System.out.println(filepart.getName());
+//					System.out.println(filepart.getSize());
+//					System.out.println(filepart.getContentType());					
 					inputStream = filepart.getInputStream();
-				}
-				if(inputStream == null){
-					System.out.println("空");
-				}
+//				}
+					byte[] bb  = new byte[inputStream.available()];
+					System.out.println(bb.length);
 
-				AttrVO attrVO = new AttrVO();
-				attrVO.setAttractionID(attractionID);
-				attrVO.setName(name);
-				attrVO.setCounty(county);
-				attrVO.setType(type);
-				attrVO.setAddress(address);
-				attrVO.setTel(tel);
-				attrVO.setIntro(intro);
-				attrVO.setImage(inputStream);
+					if(bb.length == 0){
+						AttrVO attrVO = new AttrVO();
+						attrVO.setAttractionID(attractionID);
+						attrVO.setName(name);
+						attrVO.setCounty(county);
+						attrVO.setType(type);
+						attrVO.setAddress(address);
+						attrVO.setTel(tel);
+						attrVO.setIntro(intro);
+						
+						req.setAttribute("attrVO", attrVO);
 
-				req.setAttribute("attrVO", attrVO);
+						AttrService attr2 = new AttrService();
+						attrVO = attr2.upnoimage(attractionID, name, county, type, address, tel, intro);
+						
+						
+						RequestDispatcher successView = req.getRequestDispatcher("show_one.jsp");
+						successView.forward(req, res);
+					}else{
+						AttrVO attrVO = new AttrVO();
+						attrVO.setAttractionID(attractionID);
+						attrVO.setName(name);
+						attrVO.setCounty(county);
+						attrVO.setType(type);
+						attrVO.setAddress(address);
+						attrVO.setTel(tel);
+						attrVO.setIntro(intro);
+						attrVO.setImage(inputStream);
 
-				AttrService attr1 = new AttrService();
-				attrVO = attr1.updateattr(attractionID, name, county, type, address, tel, intro, inputStream);
+						req.setAttribute("attrVO", attrVO);
 
-				RequestDispatcher successView = req.getRequestDispatcher("show_one.jsp");
-				successView.forward(req, res);
+						AttrService attr1 = new AttrService();
+						attrVO = attr1.updateattr(attractionID, name, county, type, address, tel, intro, inputStream);
+						
+						
+						RequestDispatcher successView = req.getRequestDispatcher("show_one.jsp");
+						successView.forward(req, res);
+					}
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

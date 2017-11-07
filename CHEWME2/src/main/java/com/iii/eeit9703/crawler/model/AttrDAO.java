@@ -25,6 +25,7 @@ public class AttrDAO implements AttrDAO_interface {
 	private static final String GET_ONE = "select attractionID, name, county, type, address, tel, intro from Attractions where attractionID=?";
 	private static final String INSERT = "insert into Attractions (name, county, type, address, tel, intro, image) values (?,?,?,?,?,?,?)";
 	private static final String UPDATE = "update Attractions set name=?, county=?, type=?, address=?, tel=?, intro=?, image=? where attractionID=?";
+	private static final String UPDATEnoImage = "update Attractions set name=?, county=?, type=?, address=?, tel=?, intro=? where attractionID=?";
 	private static final String DELETE = "delete from Attractions where attractionID=?";
 	private static final String Search = "select * from attractions where name like ?";
 
@@ -84,7 +85,44 @@ public class AttrDAO implements AttrDAO_interface {
 			pstmt.setString(5, attrVO.getTel());
 			pstmt.setString(6, attrVO.getIntro());
 			pstmt.setBinaryStream(7, fis);
-			pstmt.setInt(8, attrVO.getAttractionID());
+			pstmt.setInt(8, attrVO.getAttractionID());			
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	@Override
+	public void updateNoImage(AttrVO attrVO) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATEnoImage);
+
+			pstmt.setString(1, attrVO.getName());
+			pstmt.setString(2, attrVO.getCounty());
+			pstmt.setString(3, attrVO.getType());
+			pstmt.setString(4, attrVO.getAddress());
+			pstmt.setString(5, attrVO.getTel());
+			pstmt.setString(6, attrVO.getIntro());			
+			pstmt.setInt(7, attrVO.getAttractionID());			
 			pstmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -165,7 +203,7 @@ public class AttrDAO implements AttrDAO_interface {
 				attrvo.setAddress(rs.getString("address"));
 				attrvo.setTel(rs.getString("tel"));
 				attrvo.setIntro(rs.getString("intro"));
-				attrvo.setImage(rs.getBinaryStream("image"));
+				
 			}
 			rs.close();
 			pstmt.close();

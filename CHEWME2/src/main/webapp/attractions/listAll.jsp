@@ -40,6 +40,10 @@ text-align: center;
 	position: relative;
 	display: inline-block;
 }
+.btn.btn-primary{
+	float:right;
+	margin-right:60px;
+}
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,7 +57,10 @@ text-align: center;
 </head>
 <body>
 <header><%@include file="../header.jsp"%></header>
-<div><%@include file="chosen.jsp"%></div>
+<div>	
+	<%@include file="chosen.jsp"%>
+	<a href="insertAttr.jsp" class="btn btn-primary">我要新增</a>
+</div>
 	<div id="listtable">
 		<table class="table table-bordered" id="table1">	
 			<thead>		
@@ -90,7 +97,7 @@ text-align: center;
 			</tbody>		
 		</table>
 		
-		<a href="insertAttr.jsp" class="btn btn-primary">我要新增</a>
+		
 	</div>	
 	
 	<script src="<%=request.getContextPath()%>/js/jquery-1.12.3.min.js"></script>

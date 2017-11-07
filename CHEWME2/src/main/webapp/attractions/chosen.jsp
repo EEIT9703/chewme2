@@ -8,8 +8,8 @@
 <!--   <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
 <!--   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 <%--   <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>   --%>
-<div class="container">
-	<div class="row">		
+<!-- <div class="container"> -->
+<!-- 	<div class="row">		 -->
     	<div id="custom-search-input">
         	<div class="input-group col-md-12">
         	<form method="get" action="SearchServlet">
@@ -33,8 +33,8 @@
             <div style="margin-left:10px;color:red;" id="errorarea">${error.searcherror}</div>    	
            </div>
        </div>
-	</div>
-</div>
+<!-- 	</div> -->
+<!-- </div> -->
  <script>
   $(function() {    
 	  
