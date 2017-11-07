@@ -35,7 +35,7 @@
 
 <style type="text/css">
 b{font-family: 'Arial','Microsoft JhengHei';font-size:20px;}
-li>a{font-family: 'Arial','Microsoft JhengHei';font-size:20px;}
+#attr,#rest,#stay{font-family: 'Arial','Microsoft JhengHei';font-size:20px;}
 p{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 select{width:150px;height:40px;font-family: 'Arial','Microsoft JhengHei';font-size:20px;}
 option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
