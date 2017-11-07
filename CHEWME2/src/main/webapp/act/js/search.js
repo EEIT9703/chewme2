@@ -1,33 +1,32 @@
+var template;
+
 $(document).ready(function() {
 
-	
 
 	$('#search').click(function() {
 		var search = $("#text").val();
-		//console.log(search);
-		// var div1 = document.querySelector('#div1');
 		$('#div1').empty();
-		
+		console.log(search);
 		
 		function getTemp() {
-			$.get("searchR.jsp", {}, function(data) {
-				console.log("in the get function");
-				template = data;
-				//console.log(data);				
-				
+			$.get("searchR.jsp", {}, function(data) {			
+				template = data;												
 			})
 		}
-		$.getJSON('/CHEWME2/act/ActivitySearch?action=Search', {'search' : search}, function(data) {
+		
+		$.when(getTemp());
+		
+		$.getJSON('/CHEWME2/act/ActivitySearch?action=Search', {'search' : search},	function(data) {
+			var temp;
 			console.log(data);
-			$.each(data, function(i, data) {
-				
-				getTemp();
+			$.each(data, function(i, datas) {
+				console.log(datas.act_photo);
 				$('#div1').append(template);
-				var cell1 = $('#act_name').text(data.act_name);
-				var cell2 = $('#act_groups').text(data.act_groups);
-				var cell3 = $('#act_photo').html(data.act_photo);
-				var row = $('#div1').append([ cell1, cell2 ,cell3 ]);
-				$('#div1').prepend(row);
+				$(".img-responsive:last").attr("id","act_photo"+i);
+				console.log($("#act_photo"+i));
+				$("#act_photo"+i).attr("src",'data:image/png;base64,'+datas.act_photo);
+				$(".act_name:last").attr("id","act_name"+i);
+				$("#act_name"+i).text(datas.act_name);
 				
 			})
 

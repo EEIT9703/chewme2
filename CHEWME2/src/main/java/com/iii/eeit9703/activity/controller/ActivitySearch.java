@@ -51,7 +51,7 @@ public class ActivitySearch extends HttpServlet {
 		
 		
 		if("Search".equals(action)){
-			String act_name = req.getParameter("Search");
+			String act_name = req.getParameter("search");
 			
 			System.out.println(act_name);
 			
