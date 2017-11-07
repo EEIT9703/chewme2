@@ -3,8 +3,6 @@ package com.iii.eeit9703.member.model;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.iii.eeit9703.activity.model.ActService2;
-import com.iii.eeit9703.activity.model.ActivityVO;
 import com.iii.eeit9703.bridge.model.ClubMemRelationService;
 import com.iii.eeit9703.bridge.model.MemActRelationService;
 import com.iii.eeit9703.club.model.ClubService;
@@ -17,7 +15,7 @@ public class MemberSession {
 	private List<Integer> joinedClubList;
 	private List<Integer> joinedActList;
 	private List<Integer> ownClubList;
-	private List<ActivityVO> ownActivityList;
+	private List<Integer> ownActivityList;
 	//private List<Integer> ownColList;
 	private List<CollectionVO> ownColVoList;//collection改用拿VO
 	ClubService cbService;
@@ -30,7 +28,7 @@ public class MemberSession {
 		joinedClubList = new LinkedList<Integer>();
 		joinedActList = new LinkedList<Integer>();
 		ownClubList = new LinkedList<Integer>();
-		ownActivityList = new LinkedList<ActivityVO>();
+		ownActivityList = new LinkedList<Integer>();
 		cbService = new ClubService();
 		marService = new MemActRelationService();
 		cmrService = new ClubMemRelationService();
@@ -54,11 +52,10 @@ public class MemberSession {
 //		joinedActList = marService.getRelationByMemId(memId);
 //		joinedClubList = cmrService.getRelationByMemId(memId);
 //		ownColList =  colService.getColIdListByMemId(memId);
-		this.ownActivityList = getOwnActivityList();
-		this.ownColVoList = colService.getColVOListByMemId(memId);//測試
+		ownColVoList = colService.getColVOListByMemId(memId);//測試
 	}
 	
-	
+	 
 	public List<Integer> getJoinedClubList() {
 		return joinedClubList;
 	}
@@ -71,14 +68,12 @@ public class MemberSession {
 	public void setOwnClubList(List<Integer> ownClubList) {
 		this.ownClubList = ownClubList;
 	}
-	public List<ActivityVO> getOwnActivityList(){
-		ActService2 as = new ActService2();
-		return as.getListVOBymemId(this.getMemId());
+	public List<Integer> getOwnActivityList() {
+		return ownActivityList;
 	}
 		
-	public void setOwnActivityList(List<ActivityVO> ownActivityList) {
-				
-		
+	public void setOwnActivityList(List<Integer> ownActivityList) {
+		this.ownActivityList = ownActivityList;
 	}
 	
 	

@@ -6,6 +6,7 @@ pageEncoding="UTF-8"%>
 <html>
 
 <head>
+aa
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
 <meta charset="utf-8" />
@@ -165,7 +166,7 @@ ul, li {
 
 			</div>
 		</div>
-		<div id="2">  
+		<div id="1">  
 		<span><input type="button" class="inputCar" value="測試加入購物車"></span>
 		<span><input type="button" class="report" value="檢舉"></span>
 		</div>

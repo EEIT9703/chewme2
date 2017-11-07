@@ -140,17 +140,10 @@
 		<h2>Stylish Search Box</h2>
            <div id="custom-search-input">
                             <div class="input-group col-md-12">
-<<<<<<< HEAD
-                                <input type="text" class="  search-query form-control" placeholder="Search" />
-=======
+
                                 <input type="text" class="  search-query form-control" placeholder="Search" id="text" name="text"/>
->>>>>>> branch 'master' of https://github.com/EEIT9703/chewme2.git
                                 <span class="input-group-btn">
-<<<<<<< HEAD
-                                    <button class="btn btn-danger" type="button" name="search" id="search">
-=======
                                     <button class="btn btn-danger" type="button" id="search" name="search">
->>>>>>> branch 'master' of https://github.com/EEIT9703/chewme2.git
                                         <span class=" glyphicon glyphicon-search"></span>
                                     </button>
                                 </span>
@@ -159,23 +152,21 @@
 	</div>
 </div>
 
-	<jsp:useBean id="actSvc" scope="page"
-		class="com.iii.eeit9703.activity.model.ActService" />
+	<jsp:useBean id="actSvc" scope="page" class="com.iii.eeit9703.activity.model.ActService" />
 
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
-				<div class="row">
+				<div class="row" id="div1">
 					<c:forEach var="activityVO" items="${actSvc.all}">
 						<div class="col-md-4">
 							<div class="thumbnail">
-								<img alt="300x200"
-									src="data:image/png;base64,${activityVO.act_photo}" />
-								<div class="caption">
+								<img alt="" src="data:image/png;base64,${activityVO.act_photo}" id=""/>
+								<div class="caption" >
 									<p>${activityVO.act_name}</p>
 									<p>
-										<a class="btn btn-primary" href="#">${activityVO.act_name}</a>
-										<a class="btn btn-primary" href="#">成團人數:${activityVO.act_groups}</a>
+										<a class="btn btn-primary" href="#" id="act_name">${activityVO.act_name}</a>
+										<a class="btn btn-primary" href="#" id="act_groups">成團人數:${activityVO.act_groups}</a>
 									</p>
 								</div>
 							</div>
@@ -186,43 +177,10 @@
 		</div>
 	</div>
 
-	<div class="container">
-		<div class="row clearfix">
-			<div class="col-md-12 column">
-				<div class="row">										
-						<c:forEach var="activityVO" items="${actSvc.all}">
-						<div class="col-md-4">
-							<div class="thumbnail">
-								<div class="product-item">
-									<div class="pi-img-wrapper">									
-										<img src="data:image/png;base64,${activityVO.act_photo}"
-											class="img-responsive" alt="Berry Lace Dress">
-										<div>
-											<a href="#" class="btn">View</a>
-										</div>
-									</div>
-									<h3>
-										<a href="shop-item.html">Berry Lace Dress</a>
-									</h3>
-									<div class="pi-price">$29.00</div>
-									<a href="javascript:;" class="btn add2cart">Add to cart</a>
-									<div class="sticker sticker-new"></div>																
-								</div>
-							</div>
-						</div>
-                    </c:forEach>	
-				</div>
-			</div>
-		</div>
-	</div>
-
-</body>
-<script type="text/javascript">
 	
-</script>
-<<<<<<< HEAD
-=======
+</body>
+
+
 <script src="../act/js/search.js"></script>
-<!-- <script src="../js/jquery.twzipcode.min.js"></script> -->
->>>>>>> branch 'master' of https://github.com/EEIT9703/chewme2.git
+
 </html>
