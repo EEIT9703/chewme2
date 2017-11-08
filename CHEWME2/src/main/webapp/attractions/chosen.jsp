@@ -13,7 +13,7 @@
 <!--     	<div id="custom-search-input"> -->
         	<div class="input-group col-md-12">
         	<form method="get" action="SearchServlet">
-        	<table style="margin-left:160px;">
+        	<table style="margin-left:450px;">
         	<tr>
         		<td>
             		<input type="text" class="search-query form-control" placeholder="搜尋" id="tags" name="tags" autofocus/> 
@@ -26,7 +26,7 @@
 <!--                 	</span>                	 -->
                 	<input type="hidden" name="action" value="search">
             	</td>   
-            	<td><a href="insertAttr.jsp" class="btn btn-primary" style="margin-left:800px;">我要新增</a></td> 	
+            	<td><a href="insertAttr.jsp" class="btn btn-warning" style="margin-left:680px;">我要新增</a></td> 	
             </tr>    
             </table>
             </form>

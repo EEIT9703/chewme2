@@ -115,50 +115,50 @@ ul, li {
 				
 
 
-				<ul class="nav nav-tabs" id="myTab" role="tablist">
-					<li class="nav-item"><a class="nav-link active" id="home-tab"
-						data-toggle="tab" href="#home" role="tab" aria-controls="home"
-						aria-expanded="true">Home</a></li>
-					<li class="nav-item"><a class="nav-link" id="profile-tab"
-						data-toggle="tab" href="#profile" role="tab"
-						aria-controls="profile">有趣經驗</a></li>
-					<li class="nav-item"><a class="nav-link" id="profile-tab"
-						data-toggle="tab" href="#profile" role="tab"
-						aria-controls="profile">關於我們</a></li>
-					<li class="nav-item"><a class="nav-link" id="profile-tab"
-						data-toggle="tab" href="#profile" role="tab"
-						aria-controls="profile"></a></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
-						role="button" aria-haspopup="true" aria-expanded="false">
-							Dropdown </a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" id="dropdown1-tab" href="#dropdown1"
-								role="tab" data-toggle="tab" aria-controls="dropdown1">@fat</a>
-							<a class="dropdown-item" id="dropdown2-tab" href="#dropdown2"
-								role="tab" data-toggle="tab" aria-controls="dropdown2">@mdo</a>
-						</div></li>
+<!-- 				<ul class="nav nav-tabs" id="myTab" role="tablist"> -->
+<!-- 					<li class="nav-item"><a class="nav-link active" id="home-tab" -->
+<!-- 						data-toggle="tab" href="#home" role="tab" aria-controls="home" -->
+<!-- 						aria-expanded="true">Home</a></li> -->
+<!-- 					<li class="nav-item"><a class="nav-link" id="profile-tab" -->
+<!-- 						data-toggle="tab" href="#profile" role="tab" -->
+<!-- 						aria-controls="profile">有趣經驗</a></li> -->
+<!-- 					<li class="nav-item"><a class="nav-link" id="profile-tab" -->
+<!-- 						data-toggle="tab" href="#profile" role="tab" -->
+<!-- 						aria-controls="profile">關於我們</a></li> -->
+<!-- 					<li class="nav-item"><a class="nav-link" id="profile-tab" -->
+<!-- 						data-toggle="tab" href="#profile" role="tab" -->
+<!-- 						aria-controls="profile"></a></li> -->
+<!-- 					<li class="nav-item dropdown"><a -->
+<!-- 						class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" -->
+<!-- 						role="button" aria-haspopup="true" aria-expanded="false"> -->
+<!-- 							Dropdown </a> -->
+<!-- 						<div class="dropdown-menu"> -->
+<!-- 							<a class="dropdown-item" id="dropdown1-tab" href="#dropdown1" -->
+<!-- 								role="tab" data-toggle="tab" aria-controls="dropdown1">@fat</a> -->
+<!-- 							<a class="dropdown-item" id="dropdown2-tab" href="#dropdown2" -->
+<!-- 								role="tab" data-toggle="tab" aria-controls="dropdown2">@mdo</a> -->
+<!-- 						</div></li> -->
 					
-				</ul>
+<!-- 				</ul> -->
 
 				<%-- 	<c:forEach var="activity" items=""> --%>
 				<div><%@ include file="act/search.jsp"%></div>
 				<div class="row">
-					<c:forEach var="x" varStatus="statusX" begin="1" end="3" step="1">
-						<div class="col-sm-6 col-md-4">
-							<div class="thumbnail">
-								<img src="..." alt="...">
-								<div class="caption">
-									<h3>Thumbnail label</h3>
-									<p>...</p>
-									<p>
-										<a href="#" class="btn btn-primary" role="button">Button</a> <a
-											href="#" class="btn btn-default" role="button">Button</a>
-									</p>
-								</div>
-							</div>
-						</div>
-					</c:forEach>
+<%-- 					<c:forEach var="x" varStatus="statusX" begin="1" end="3" step="1"> --%>
+<!-- 						<div class="col-sm-6 col-md-4"> -->
+<!-- 							<div class="thumbnail"> -->
+<!-- 								<img src="..." alt="..."> -->
+<!-- 								<div class="caption"> -->
+<!-- 									<h3>Thumbnail label</h3> -->
+<!-- 									<p>...</p> -->
+<!-- 									<p> -->
+<!-- 										<a href="#" class="btn btn-primary" role="button">Button</a> <a -->
+<!-- 											href="#" class="btn btn-default" role="button">Button</a> -->
+<!-- 									</p> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<%-- 					</c:forEach> --%>
 				</div>
 				
 				
