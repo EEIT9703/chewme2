@@ -4,6 +4,7 @@
 
 <div class="col-md-4  margin_bottom30">
            <div class="thumbnail">
+           <input type="hidden" class="id">          
 			<a href="javascript::;">
 				<img id="act_photo" class="img-responsive center-block" src="" height="250">
 				</a>

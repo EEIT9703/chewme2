@@ -56,7 +56,7 @@
 								size="1" name="actID" id="actID">
 								<option value="0">----請選擇活動----</option>
 								<c:forEach var="activityVO"
-									items="${LoginOK_MS.ownActivityList}">
+									items="${LoginOK_MS.ownActivityVOList}">
 									<option value="${activityVO.actID}">${activityVO.act_name}</option>
 								</c:forEach>
 							</select>

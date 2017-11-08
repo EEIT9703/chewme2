@@ -55,7 +55,7 @@ body { background-color:#ddd; }
 
 </style>
 <body>
-	<header><%@ include file="../header.jsp"%></header>
+
 	
 	
 	<div class="container">
@@ -102,11 +102,8 @@ body { background-color:#ddd; }
 
 				<span class="pull-right">
 				<a href="#" class="btn btn-info btn-sm">
-              <span class="glyphicon glyphicon-shopping-cart"></span> 加入購物
-              </a>
-              <a href="#" class="btn btn-info btn-sm">
-              <span class="glyphicon glyphicon-heart-empty"></span> 加入收藏
-              </a>             
+              <span class="glyphicon glyphicon-shopping-cart" id="add_cart"></span> 加入購物
+              </a>                   
               </span>
 
 				</div>
