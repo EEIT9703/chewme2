@@ -28,7 +28,7 @@ $(document).ready(function() {
 			image.src = url;
 		}
         
-        $('#submit').on('click',function(){
+/*        $('#submit').click(function(){
         	swal({
         	      title: 'Are you sure?',
         	      text: 'You will not be able to recover this imaginary file!',
@@ -42,6 +42,6 @@ $(document).ready(function() {
         	        swal('Deleted!', 'Your file has been deleted!', 'success');
         	      }
         	    });
-        	  });
+        	  });*/
 
     });
