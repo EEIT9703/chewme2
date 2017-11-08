@@ -9,6 +9,7 @@ public interface Photo_interface {
      public void update(PhotoVO photoVO);
      public void delete(Integer photo_no);
      public PhotoVO findByPrimaryKey(Integer photo_no);
+     public List<PhotoVO> getAllByState();
      public List<PhotoVO> getAll();
      //查詢某部門的員工(一對多)(回傳 Set)
      public Set<PhotoVO> getMemberByDeptno(Integer photo_no);

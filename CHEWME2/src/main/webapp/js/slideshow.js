@@ -7,7 +7,7 @@ $(function() {
 			search();
 
 			function search() {
-				$.getJSON('activity?action=getAllphoto', {}, sendCounty);
+				$.getJSON('activity?action=getAllphotoByStatus', {}, sendCounty);
 
 				function sendCounty(array) {
 					//var docFrag = $(document.createDocumentFragment());

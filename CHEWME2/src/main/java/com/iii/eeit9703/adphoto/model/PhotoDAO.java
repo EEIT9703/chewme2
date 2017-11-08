@@ -12,7 +12,8 @@ import com.iii.eeit9703.member.model.MemDAO_hibernate;
 import com.iii.eeit9703.member.model.MemVO;
 
 public class PhotoDAO implements Photo_interface {
-	private static final String GET_ALL_STMT = "from PhotoVO order by photo_no";
+	private static final String GET_ALL_BY_status_STMT = "from PhotoVO where status=?";
+	private static final String GET_ALL_STMT = "from PhotoVO";
 	@Override
 	public void insert(PhotoVO photoVO) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -71,12 +72,30 @@ public class PhotoDAO implements Photo_interface {
 	}
 
 	@Override
+	public List<PhotoVO> getAllByState() {
+		List<PhotoVO> list = null;
+		Integer a=0;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery(GET_ALL_BY_status_STMT);
+			query.setParameter(0, a);		
+			list = query.list();
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
+		return list;
+	}
+	
+	@Override
 	public List<PhotoVO> getAll() {
 		List<PhotoVO> list = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			Query query = session.createQuery(GET_ALL_STMT);
+			Query query = session.createQuery(GET_ALL_STMT);	
 			list = query.list();
 			session.getTransaction().commit();
 		} catch (RuntimeException ex) {
@@ -95,11 +114,11 @@ public class PhotoDAO implements Photo_interface {
 		
 		
 		PhotoDAO a=new PhotoDAO();
-		List<PhotoVO> vo=a.getAll();
-		for(PhotoVO photo : vo){
+		List<PhotoVO> vo=a.getAllByState();
+	
 			
-			System.out.println(photo.getPhoto_no());
-		}
+			System.out.println(vo.size());
+		
 		
 		}
 

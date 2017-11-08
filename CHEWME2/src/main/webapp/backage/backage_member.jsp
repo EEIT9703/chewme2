@@ -169,6 +169,33 @@
   		}
   		
   		
+  		
+ 			$('#member>tbody').on('change','td:nth-child(10) select',function(){
+ 				 var id = $(this).parents('tr').find('td:nth-child(1)').text();
+ 				 var opt =$(this).attr("selected","selected");
+ 				 $.post('<%=request.getContextPath()%>/activity',{'id':id,'action':'upDateMemberStatus','opt':opt.val()},function(){
+ 					
+ 					 alert("更新成功")
+ 					 
+ 					 
+ 				 })
+			
+		 })
+		 
+		 
+  			$('#member>tbody').on('change','td:nth-child(9) select',function(){
+  				 var id = $(this).parents('tr').find('td:nth-child(1)').text();
+ 				 var opt =$(this).attr("selected","selected");
+ 				 $.post('<%=request.getContextPath()%>/activity',{'id':id,'action':'upDateMemberRole','opt':opt.val()},function(){
+  					
+ 					 alert("更新成功")
+ 					 
+ 					 
+ 				 })
+			
+		 })
+  		
+  		
  				
 	   })
 	   

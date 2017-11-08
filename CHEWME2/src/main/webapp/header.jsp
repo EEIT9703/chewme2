@@ -193,9 +193,9 @@ body { padding-bottom: 100px; }
 					
 			</c:choose>
 			
-				<li><c:if test="${  !empty SysManager }">
+				<li><c:if test="${  !empty SysManager && ! empty LoginOK }">
 						<a class="nav-link"
-							href="<%=request.getContextPath()%>/backage/backage.jsp"><span
+							href="<%=request.getContextPath()%>/backage/backage_index.jsp"><span
 							class="glyphicon glyphicon-log-in"></span>維護 </a>
 					</c:if></li>
 				<li><c:if test="${  empty LoginOK }">

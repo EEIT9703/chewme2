@@ -11,7 +11,7 @@
         
         <property name="name" column="name" />
         <property name="photo" column="photo" />
-      
+       <property name="status" column="status" />
        
         
     </class>
