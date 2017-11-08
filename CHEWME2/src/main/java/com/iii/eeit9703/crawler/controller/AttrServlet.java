@@ -127,6 +127,21 @@ public class AttrServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		// 從管理列表點選查看景點管理頁面(可編輯)
+		if("one_info_edit".equals(action)){
+			try {
+				Integer attractionID = new Integer(req.getParameter("attractionID"));
+				AttrService attrupd = new AttrService();
+				AttrVO attrVO = attrupd.getOneAttr(attractionID);
+				// System.out.println(attrVO);
+				
+				req.setAttribute("attrVO", attrVO);
+				RequestDispatcher view = req.getRequestDispatcher("showOneManage.jsp");
+				view.forward(req, res);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		// 進入資料修改頁面，準備修改
 		if ("update_one".equals(action)) {
 			try {

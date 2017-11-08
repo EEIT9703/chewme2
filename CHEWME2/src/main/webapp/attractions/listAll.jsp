@@ -40,26 +40,23 @@ text-align: center;
 	position: relative;
 	display: inline-block;
 }
-.btn.btn-primary{
-	float:right;
-	margin-right:60px;
-}
+
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>列表</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+<%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css"> --%>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
 <header><%@include file="../header.jsp"%></header>
 <div>	
 	<%@include file="chosen.jsp"%>
-	<a href="insertAttr.jsp" class="btn btn-primary">我要新增</a>
+<!-- 	<a href="insertAttr.jsp" class="btn btn-primary">我要新增</a> -->
 </div>
 	<div id="listtable">
 		<table class="table table-bordered" id="table1">	
