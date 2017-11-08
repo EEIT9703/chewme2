@@ -40,7 +40,7 @@
 				<div class="col-md-12 column">
 
 					<h1>Activity1</h1>
-					<p hidden>${LoginOK_MS.ownActivityList}</p>
+					<p hidden>${LoginOK_MS.ownActivityVOList}</p>
 					<c:if test="${ !empty createAct_clubId }">
 
 						<p >社團活動:${createAct_clubId}</p>

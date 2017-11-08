@@ -39,7 +39,7 @@ b{font-family: 'Arial','Microsoft JhengHei';font-size:20px;}
 p{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 select{width:150px;height:40px;font-family: 'Arial','Microsoft JhengHei';font-size:20px;}
 option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
-.item{font-family: 'Arial','Microsoft JhengHei';font-size:20px;font-weight:bold;line-height:300%;padding-left:60px;height:60px;background-repeat:no-repeat;}
+.item{font-family: 'Arial','Microsoft JhengHei';font-size:20px;font-weight:bold;line-height:300%;padding-left:10px;height:60px;background-repeat:no-repeat;}
 .detailItem{font-family: 'Arial','Microsoft JhengHei';font-size:17px;padding-left:10px;width:80px;}
 #detailName,#detailTel,#detailAdd,#detailType{font-family: 'Arial','Microsoft JhengHei';font-size:17px;padding:10px;}
 #detailIntro{font-family: 'Arial','Microsoft JhengHei';font-size:17px;padding:10px;}
@@ -191,7 +191,7 @@ window.onload = function(){
 				if(type[0].match(dataArray[k].type)){
 					attr.append(item);
 					console.log(array[k].name);
-					$('#attr>div').css("background-image","url('../image/trip.png')");
+					$('#attr>div').css("background-image","url('../image/trip1.png')");
 					$('#attr>div').css("color","#007500");
 					$('#attr>div').draggable();
 					$('#attr>div').attr("data-toggle","modal");
@@ -209,7 +209,7 @@ window.onload = function(){
 				}
 				else if(type[1].match(dataArray[k].type)){
 					rest.append(item);
-					$('#rest>div').css("background-image","url('../image/rest.png')");
+					$('#rest>div').css("background-image","url('../image/rest1.png')");
 					$('#rest>div').css("color","#0000C6");
 					$('#rest>div').draggable();
 					$('#rest>div').attr("data-toggle","modal");
@@ -226,7 +226,7 @@ window.onload = function(){
 				}
 				else if(type[2].match(dataArray[k].type)){
 					stay.append(item);
-					$('#stay>div').css("background-image","url('../image/stay.png')");
+					$('#stay>div').css("background-image","url('../image/stay1.png')");
 					$('#stay>div').css("color","#EAC100");
 					$('#stay>div').draggable();
 					$('#stay>div').attr("data-toggle","modal");

@@ -6,7 +6,7 @@
            <div class="thumbnail">
            <input type="hidden" class="id">          
 			<a href="javascript::;">
-				<img id="act_photo" class="img-responsive center-block" src="" height="250">
+				<img id="act_photo" class="img-responsive center-block" height="250">
 				</a>
 				<div class="blog-content bg-white">
 				<h3 id="act_name" class="act_name"></h3>
