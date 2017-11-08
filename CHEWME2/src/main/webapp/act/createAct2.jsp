@@ -10,12 +10,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 
-
+<link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
+<!-- Summernote  -->
+<link href="<%=request.getContextPath()%>/css/summernote.css" rel="stylesheet">
 <!-- Font Awesome  -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"></link>
+<link href="<%=request.getContextPath()%>/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<!-- SweetAlert  -->
+<script src="<%=request.getContextPath()%>/js/sweetalert2.min.js"></script>
+<link href="<%=request.getContextPath()%>/css/sweetalert2.min.css" rel="stylesheet" type="text/css">
+
+
 
 </head>
 
@@ -191,23 +198,10 @@
 		</div>
 	</div>
 
-
-
-	<script>
-		
-	</script>
-
 	
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
-
 	
-	<!-- SweetAlert  -->
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
-
-	
-	<script src="../act/js/creatAct2.js"></script>
+    <script src="<%=request.getContextPath()%>/js/summernote.js"></script>	
+	<script src="<%=request.getContextPath()%>/act/js/creatAct2.js"></script>
 </body>
 </html>
