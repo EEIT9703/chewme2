@@ -45,10 +45,14 @@ text-align: center;
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>列表</title>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script src="<%=request.getContextPath()%>/js/jquery-1.12.3.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery-ui.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+<%-- <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script> --%>
 <%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css"> --%>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
@@ -97,9 +101,7 @@ text-align: center;
 		
 	</div>	
 	
-	<script src="<%=request.getContextPath()%>/js/jquery-1.12.3.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/jquery-ui.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+
 	<script>
 		$(function() {							
 			$("#table1>tbody>tr:nth-child(even)").css("background-color","#f1f7fe");			
