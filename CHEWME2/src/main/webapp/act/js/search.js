@@ -7,9 +7,10 @@ $(document).ready(function() {
 			template = data;				
 		
 		})
-		$("h3").click(function(){
-				var act = $(".id").text();
+		$().click(function(){
+				var act = $(this).text();
 				console.log(act);
+				window.location = "/CHEWME2/act/showAct.jsp";
 			})
 	}	
 	$.when(getTemp());
@@ -34,7 +35,7 @@ $(document).ready(function() {
 				$("#act_photo").attr({"src":'data:image/png;base64,'+datas.act_photo,'id':'act_photo'+i});
 				$(".act_name:last").attr("id","act_name"+i);
 				$("#act_name"+i).text(datas.act_name);
-				$(".id:last").attr("name", datas.actID);
+				$(".id:last").attr("id", datas.actID);
 				})
 
 			})
