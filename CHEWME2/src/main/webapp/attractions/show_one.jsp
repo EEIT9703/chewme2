@@ -116,7 +116,7 @@ html {
 	<header><%@include file="../header.jsp"%></header>
 	<form method="post" action="Attraction.do">
 		<div id="tabs">
-		<div id="id1" style="display:none;">${attrVO.attractionID}</div>
+		<div id="id1">${attrVO.attractionID}</div>
 			<div style="margin-left: 20px; border-bottom: 4px double green; width: 650px;">
 				<h2 id="name1">${attrVO.name}</h2>
 			</div>
@@ -177,7 +177,7 @@ html {
 						value="${attrVO.attractionID}"> <input type="hidden"
 						name="action" value="update_one">
 					</td>
-					<td><a href="listAll.jsp" class="btn btn-primary">返回列表</a></td>
+					<td><a href="listAll.jsp" class="btn btn-primary" style="color:white;">返回列表</a></td>
 				</tr>
 			</div>
 		</div>

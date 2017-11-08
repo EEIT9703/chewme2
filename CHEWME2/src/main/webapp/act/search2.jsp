@@ -184,6 +184,25 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	<div class="col-md-4  margin_bottom30">
+			<a href="javascript::;">
+				<img class="img-responsive center-block" src="http://i50.tinypic.com/2nbf0ht.jpg" height="250">
+				</a>
+				<div class="blog-content bg-white">
+				<h3>旅遊名稱</h3>
+				<p>Category : <a href="javascript::;">Nature</a></p>
+				<p>旅遊介紹<a href="javascript::;"  class="heading_color">  Continue Reading</a></p>
+				<hr>
+				<p><span>Share : 
+				<a href="javascript::;"><i class="fa fa-facebook margin_left10" aria-hidden="true"></i></a>
+				<a href="javascript::;"><i class="fa fa-twitter margin_left10" aria-hidden="true"></i></a>
+				<a href="javascript::;"><i class="fa fa-google-plus margin_left10" aria-hidden="true"></i></a>
+				 </span> 
+				<span class="pull-right">By : <strong>Blogger</strong></span> </p>
+				</div>
+			</div>
 
 </body>
 <script type="text/javascript">

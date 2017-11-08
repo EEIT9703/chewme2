@@ -33,5 +33,4 @@
     <servlet-name>FindClubServlet</servlet-name>
     <url-pattern>/club/findClub1.do</url-pattern>
   </servlet-mapping>
-
 </web-app>
