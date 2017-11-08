@@ -9,18 +9,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<!-- Font Awesome  -->
+<link href="<%=request.getContextPath()%>/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
+
 
 <script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 
-<link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
+
 <!-- Summernote  -->
-<link href="<%=request.getContextPath()%>/css/summernote.css" rel="stylesheet">
-<!-- Font Awesome  -->
-<link href="<%=request.getContextPath()%>/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="<%=request.getContextPath()%>/js/summernote.js"></script>	
+<%-- <link href="<%=request.getContextPath()%>/css/summernote.css" rel="stylesheet" type="text/css"> --%>
+
+
 <!-- SweetAlert  -->
-<script src="<%=request.getContextPath()%>/js/sweetalert2.min.js"></script>
 <link href="<%=request.getContextPath()%>/css/sweetalert2.min.css" rel="stylesheet" type="text/css">
+<script src="<%=request.getContextPath()%>/js/sweetalert2.min.js"></script>
+
 
 
 
@@ -201,7 +208,7 @@
 	
 	
 	
-    <script src="<%=request.getContextPath()%>/js/summernote.js"></script>	
+
 	<script src="<%=request.getContextPath()%>/act/js/creatAct2.js"></script>
 </body>
 </html>

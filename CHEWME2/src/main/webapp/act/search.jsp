@@ -50,7 +50,6 @@ body { background-color:#ddd; }
 	
 	<div class="container">
 	<div class="row">
-		<h2>Stylish Search Box</h2>
            <table>
         	<tr>
         		<td>
@@ -60,7 +59,7 @@ body { background-color:#ddd; }
         			</select>
         		</td>
         		<td>
-            		<input type="text" class="search-query form-control" placeholder="搜尋" id="text" name="tags" autofocus/> 
+            		<input type="text" class="search-query form-control" placeholder="搜尋" id="text" name="tags" autofocus style="width:800px;"/> 
             	</td>
             	<td>               
                 		<button class="btn btn-info" type="submit" id="search">
@@ -86,11 +85,13 @@ body { background-color:#ddd; }
           <c:forEach var="activityVO" items="${actSvc.all}">
            <div class="col-md-4  margin_bottom30">
            <div class="thumbnail">
-			<a href="javascript::;">
+           
+			<a href="<%=request.getContextPath()%>/act/showAct.jsp">			
 				<img class="img-responsive center-block" src="data:image/png;base64,${activityVO.act_photo}" height="250">
-				</a>
+				</a>	
+							
 				<div class="blog-content bg-white">
-				<h3>${activityVO.act_name}</h3>
+				<h3 id="act_name" class="act_name1">${activityVO.act_name}</h3>
 				<p>Category : <a href="javascript::;">Nature</a></p>
 				<p>旅遊介紹<a href="javascript::;"  class="heading_color">  Continue Reading</a></p>
 				<hr>
@@ -101,9 +102,7 @@ body { background-color:#ddd; }
 				 </span> 
 
 				<span class="pull-right">
-				<a href="#" class="btn btn-info btn-sm">
-              <span class="glyphicon glyphicon-shopping-cart"></span> 加入購物
-              </a>
+				
               <a href="#" class="btn btn-info btn-sm">
               <span class="glyphicon glyphicon-heart-empty"></span> 加入收藏
               </a>             
