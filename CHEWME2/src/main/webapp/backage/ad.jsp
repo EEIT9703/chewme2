@@ -17,7 +17,6 @@
   	<link href="<%=request.getContextPath()%>/css/morrisjs/morris.css" rel="stylesheet">
   	<link href="<%=request.getContextPath()%>/css/dist/css/sb-admin-2.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/css/uploadfile.css" rel="stylesheet">
-	 
 
  <style>
 
@@ -80,7 +79,8 @@
                
             <!-- /.row -->
             <div class="row">
-					<div class="col-lg-7">
+					<div class="col-lg-7
+					">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 
@@ -97,11 +97,12 @@
 								<table id="productTable" class="table table-bordered">
 									<thead>
 										<tr>
-											<th>產品編號</th>
-											<th>產品名稱</th>
-											<th>產品名稱</th>
-											<th>刪除</th>
-											<th>修改</th>
+											<th width=50px>編號</th>
+											<th width=100px>產品名稱</th>
+											<th width=100px>產品名稱</th>
+											<th width=50px>刪除</th>
+											<th width=50px>修改</th>
+											<th width=30px>狀態</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -152,11 +153,12 @@
 
 
 					<!--                 右邊預留空間 -->
-                <div class="col-lg-5">
+                <div class="col-lg-4
+                ">
 
 <!--                     <div class="panel panel-default"> -->
 <!--                       			 預留空間	 -->
-                      			<div id="mulitplefileuploader" style="width:200px">選擇檔案</div>
+                      			<div id="mulitplefileuploader" style="width:10px">選擇檔案</div>
                       			
 
 								<div id="status"></div>
@@ -252,12 +254,13 @@ function search(){
 
 	function sendPhoto(array){
 		//var docFrag = $(document.createDocumentFragment());
+		var status=["顯示","隱藏"];
 		var opt = $('#productTable>tbody');
 			opt.empty();
 		$.each(array,function(i,photos){
          var cell1 = $('<td></td>').text(photos.photo_no);
          var cell2 = $('<td></td>').text(photos.name);
-         var cell3 = $('<td></td>').html("<img src='data:image/png;base64,"+photos.photo+"'width=100px height=100px>");
+         var cell3 = $('<td></td>').html("<img src='data:image/png;base64,"+photos.photo+"'width=100px height=70px>");
 //        var cell4 = $('<td></td>').html("<button class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-remove'></span> Del</button>"); 
 //        var cell5 = $('<td></td>').html("<button class='btn btn-info btn-xs' href='#'><span class='glyphicon glyphicon-edit'></span> Edit</button>");
 //        var cell5= $('<td></td>').html('<li class="dropdown"><a class="dropdown-toggle" data-toggle="modal" data-target="#myModal"><button class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a></li>');
@@ -270,8 +273,23 @@ function search(){
 //       var cell4=button1.append(sp1)
 //       var cell5=button2.append(sp2)
          var cell6 = $('<td></td>').append(button1); 
-         var cell7 = $('<td></td>').append(button2);    
-         var row = $('<tr></tr>').append([cell1, cell2,cell3,cell6,cell7]);
+         var cell7 = $('<td></td>').append(button2);
+         
+         var select =$('<select class="selectID"></select');        
+	      $.each(status,function(i){
+	    	  var sel=$('<option></option>').text(status[i])
+	    	  		sel.attr("value",i)
+	    	  		if(photos.status==i){
+	    	  			sel.attr("selected","selected")	
+	    	  		}
+	        		select.append(sel)
+	        })
+	     	  var cell8 = $('<td></td>').html(select)
+         
+         
+         
+         
+         var row = $('<tr></tr>').append([cell1, cell2,cell3,cell6,cell7,cell8]);
 			opt.append(row);
 		
 		})
@@ -303,7 +321,18 @@ function search(){
 			
 		});
 
-
+		 $('#productTable>tbody').on('change','select',function(){
+			 
+			 var id = $(this).parents('tr').find('td:nth-child(1)').text();
+			 var opt =$(this).attr("selected","selected");
+			 $.post('<%=request.getContextPath()%>/activity',{'id':id,'action':'updateAdStates','opt':opt.val()},function(){
+				
+				 alert("更新成功")
+				 
+				 
+			 })
+			
+		 })
 
 
     $("#btnSubmit").click(function (event) {

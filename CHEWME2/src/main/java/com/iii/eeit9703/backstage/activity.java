@@ -170,8 +170,38 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
         				out.print(attrArrayList.toString());
                }
 //			
-	
-			if("getAllphoto".equals(action)){
+                    
+                if("getAllphotoByStatus".equals(action)){
+    				
+    				PhotoDAO dao = new PhotoDAO();
+    				ArrayList<PhotoVO> attrList = (ArrayList<PhotoVO>) dao.getAllByState();
+    				System.out.println(attrList.size()+"FFFFFFFFFFFFFFFFFFFS");
+    				for(PhotoVO  aa :attrList){
+    				System.out.println(aa.getPhoto());
+    					
+    				}
+    				JSONArray attrArrayList = new JSONArray(attrList);
+    		
+    				out.print(attrArrayList.toString());
+    				}
+                
+                	if("updateAdStates".equals(action)){
+                	Integer ID = Integer.parseInt(request.getParameter("id"));
+                	Integer opt = Integer.parseInt(request.getParameter("opt"));
+                	PhotoDAO Dao=new PhotoDAO();
+                	PhotoVO oldVO=Dao.findByPrimaryKey(ID);
+                	
+    				PhotoVO photoVO=new PhotoVO();
+    				photoVO.setPhoto_no(ID);
+    				photoVO.setPhoto(oldVO.getPhoto());
+    				photoVO.setName(oldVO.getName());
+    				photoVO.setStatus(opt);	
+    				Dao.update(photoVO);
+    			
+    				}
+                
+                
+                if("getAllphoto".equals(action)){
 				
 				PhotoDAO dao = new PhotoDAO();
 				ArrayList<PhotoVO> attrList = (ArrayList<PhotoVO>) dao.getAll();
@@ -234,6 +264,48 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 					JSONArray attrArrayList = new JSONArray(list);				
 					out.print(attrArrayList.toString());
 					}
+				
+				
+				if("upDateMemberStatus".equals(action)){
+					Integer ID = Integer.parseInt(request.getParameter("id"));
+					String opt = request.getParameter("opt");
+					MemDAO_hibernate hib= new MemDAO_hibernate();
+					MemVO oldVO=hib.findByPrimaryKey(ID);
+					
+					MemVO memVO=new MemVO();
+					
+					memVO.setMemId(ID);
+					memVO.setMemberId(oldVO.getMemberId());
+					memVO.setMemName(oldVO.getMemName());
+					memVO.setMemNickN(oldVO.getMemNickN());
+					memVO.setMemPwd(oldVO.getMemPwd());
+					memVO.setMemBirthday(oldVO.getMemBirthday());
+					memVO.setMemMail(oldVO.getMemMail());
+					memVO.setMemAddr(oldVO.getMemAddr());
+					memVO.setMemPhone(oldVO.getMemPhone());
+					memVO.setMemIntr(oldVO.getMemIntr());
+					memVO.setMemPhoto(oldVO.getMemPhoto());
+					memVO.setMemStatus(opt);
+					memVO.setMemRole(oldVO.getMemRole());
+					memVO.setGoogleId(oldVO.getGoogleId());
+					memVO.setRandomCode(oldVO.getRandomCode());
+					hib.update(memVO);
+					
+					
+					}
+				
+				
+				if("upDateMemberRole".equals(action)){
+					MemDAO_hibernate hib= new MemDAO_hibernate();
+						
+								
+					
+					
+					}
+				
+				
+				
+				
 				if("getAllReport".equals(action)){
 					System.out.println("getAllReport");
 					ReportDAO_hibernate dao= new ReportDAO_hibernate();				

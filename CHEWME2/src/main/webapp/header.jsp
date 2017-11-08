@@ -1,4 +1,4 @@
-﻿<%-- <%@ page import="java.util.*"%>
+﻿﻿<%-- <%@ page import="java.util.*"%>
 <%@ page import="com.iii.eeit9703.member.model.*"%>
 <%@ page import="com.iii.eeit9703.collection.*"%>
 <%
@@ -128,8 +128,8 @@ body {
 					src="<%=request.getContextPath()%>/image/letter-c.png" width="30"
 					height="30" alt=""></a>
 			</div>
-			<div class="navbar-header">
-				<a class="navbar-brand " href="#">CHEWME</a>
+			<div class="navbar-header" >
+				<p class="navbar-brand " style="font-family: 'Arial';font-size:30px;margin-top:7px;font-weight:bold;">CHEWME</p>
 				<button type="button" class="navbar-toggle collapsed"
 					data-toggle="collapse" data-target="#navbar-right"
 					aria-expanded="false" aria-controls="navbar">
@@ -142,11 +142,11 @@ body {
 		<div id="navbar-right" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav" style="margin-left: 50px">
 				<li><a href="<%=request.getContextPath()%>/index.jsp"><img
-						src="<%=request.getContextPath()%>/image/gohome.png" width=40px
-						height=30px>Home</a></li>
+						src="<%=request.getContextPath()%>/image/home.png" width=40px
+						height=40px>　Home</a></li>
 				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#"><img
-						src="<%=request.getContextPath()%>/image/travel.png" width=40px
-						height=30px>揪旅行<span class="caret"></span></a>
+						src="<%=request.getContextPath()%>/image/calendar.png" width=40px
+						height=40px>　揪旅行<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a
 							href="<%=request.getContextPath()%>/actEditor/editorScuedule.jsp">創行程</a></li>
@@ -154,8 +154,8 @@ body {
 							href="<%=request.getContextPath()%>/act/actServlet?action=createAct">揪新團</a></li>
 					</ul></li>
 				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#"><img
-						src="<%=request.getContextPath()%>/image/finclub.png" width=40px
-						height=30px>社團<span class="caret"></span></a>
+						src="<%=request.getContextPath()%>/image/users.png" width=40px
+						height=40px>　找社團<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a
 							href="<%=request.getContextPath()%>/club/createClub.do">創社團</a></li>
@@ -164,8 +164,8 @@ body {
 
 				<li><a
 					href="<%=request.getContextPath()%>/attractions/listAll.jsp"><img
-						src="<%=request.getContextPath()%>/image/findattraction.png"
-						width=40px height=30px>找景點</a></li>
+						src="<%=request.getContextPath()%>/image/maps.png"
+						width=40px height=40px>　查景點</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
@@ -174,8 +174,8 @@ body {
 					<c:when test="${!empty LoginOK}">
 						<li class="nav-shopping-cart"><div class="dropdown">
 								<img id="drop" data-toggle="dropdown"
-									src="<%=request.getContextPath()%>/image/car.gif" width=30px
-									height=30px /><span class="aaa" data-reactid="65"></span>
+									src="<%=request.getContextPath()%>/image/material.png" width=40px
+									height=40px /><span class="aaa" data-reactid="65"></span>
 								<ul style="width: 300px;"
 									class="dropdown-menu pull-right  role="
 									menu"
@@ -206,8 +206,8 @@ body {
 					<c:otherwise>
 						<li class="nav-shopping-cart"><div class="dropdown">
 								<img id="drop" data-toggle="dropdown"
-									src="<%=request.getContextPath()%>/image/car.gif" width=30px
-									height=30px />
+									src="<%=request.getContextPath()%>/image/material.png" width=40px
+									height=40px />
 					</c:otherwise>
 
 				</c:choose>

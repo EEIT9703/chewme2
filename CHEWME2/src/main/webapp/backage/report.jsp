@@ -6,8 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-	<script src="<%=request.getContextPath()%>/js/moment.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>	
+<script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>	
+	<script src="<%=request.getContextPath()%>/js/moment.min.js"></script>	
+	
+	<script src="<%=request.getContextPath()%>/js/fullcalendar.min.js"></script>
 	<link href="<%=request.getContextPath()%>/css/full/fullcalendar.print.min.css" rel="stylesheet" media='print'>
 	<link href="<%=request.getContextPath()%>/css/full/fullcalendar.min.css" rel="stylesheet">
 	<link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
@@ -16,8 +18,14 @@
   	<link href="<%=request.getContextPath()%>/css/morrisjs/morris.css" rel="stylesheet">
   	<link href="<%=request.getContextPath()%>/css/dist/css/sb-admin-2.css" rel="stylesheet">
 
-    <script src="<%=request.getContextPath()%>/js/fullcalendar.min.js"></script>	
+  	
     <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+    
+    
+ <style>
+ 
+ 
+ </style>  
 </head>
 
 <body>
@@ -116,6 +124,11 @@
 				</div>
 				<!-- /.modal -->
 			</div>
+			
+			
+
+			
+			
                   <input type="button" id="go" value="檢舉">
                 
                 
@@ -125,33 +138,68 @@
 
                     <div class="panel panel-default">
                       			 
-                      			 <table id="productTable" class="table table-bordered">
-									<thead>
-										<tr>
-											<th>檢舉人</th>																			
-										</tr>
-										    <td id="reporter"></td>		
-									</thead>
-									<tbody>
-									<tr>
-											<th>檢舉時間</th>																		
-									</tr>
-									        <td id="reportime"></td>		
-									<tr>
-											<th>檢舉內容</th>														
-									</tr>
-											<td id="reportcontext"></td>	
-									<tr>
-											<th>被檢舉對象</th>														
-									</tr>
-											<td id="act_name"></td>	
-									<tr></tr>			
-											<td id ="reported"><input type="button" value="前往確認"></td>					
-									</tbody>
-									<tfoot>
+<!--                       			 <table id="productTable" class="table table-bordered"> -->
+<!-- 									<thead> -->
+<!-- 										<tr> -->
+<!-- 											<th>檢舉人</th>																			 -->
+<!-- 										</tr> -->
+<!-- 										    <td id="reporter"></td>		 -->
+<!-- 									</thead> -->
+<!-- 									<tbody> -->
+<!-- 									<tr> -->
+<!-- 											<th>檢舉時間</th>																		 -->
+<!-- 									</tr> -->
+<!-- 									        <td id="reportime"></td>		 -->
+<!-- 									<tr> -->
+<!-- 											<th>檢舉內容</th>														 -->
+<!-- 									</tr> -->
+<!-- 											<td id="reportcontext"></td>	 -->
+<!-- 									<tr> -->
+<!-- 											<th>被檢舉對象</th>														 -->
+<!-- 									</tr> -->
+<!-- 											<td id="act_name"></td>	 -->
+<!-- 									<tr></tr>			 -->
+<!-- 											<td id ="reported"><input type="button" value="前往確認"></td>					 -->
+<!-- 									</tbody> -->
+<!-- 									<tfoot> -->
 
-									</tfoot>
-								</table>
+<!-- 									</tfoot> -->
+<!-- 								</table> -->
+
+							<div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        檢舉詳細內容</h3>
+                </div>
+                <div class="panel-body" >        
+                    <table class="table" id="table1">
+                    	 <tr class="active">
+                            <th>被檢舉對象</th>
+                        </tr>
+                         <td id="act_name" style="color:#DDDDDD"><h1><span class="subscript">活動名稱</span></h1> </td>
+                             
+                        <tr class="active">
+                             <th>檢舉人</th>
+                        </tr>
+                         <td id="reporter" style="color:#DDDDDD">檢舉人姓名</td>
+                   
+                        <tr class="active">
+                           	<th>時間</th>
+                        </tr>
+                         <td id="reportime" style="color:#DDDDDD">檢舉時間</td>
+                  
+                        <tr class="active">
+                            <th>檢舉內容</th>
+                        </tr>
+                        	 <td id="reportcontext" height=200px style="color:#DDDDDD">詳細內容</td>
+                      
+                    </table>
+                </div>
+                <div class="panel-footer">
+                	<a href="http://www.jquery2dotnet.com" class="btn btn-success" role="button">前往確認</a>
+                </div>
+            </div>	
+
 						
                     </div>
                 
@@ -191,25 +239,47 @@
 							
 							defaultDate : '2017-10-10',
 							navLinks : true, // can click day/week names to navigate views
-							editable : false,
+							editable : true,
 							eventLimit : true, // allow "more" link when too many events
+							droppable: true,
 							events:cell,
 							//slotLabelFormat:"YYYY-MM-DD",				
-							timeFormat: "YYYY-MM-DD",
-							droppable: false,
+							timeFormat: "YYYY-MM-DD",				
+							dragRevertDuration: 0,
 							eventClick: function(id){
-								
-								$("#reporter").text(id.title)
-								$("#reportime").text(id.start)					
-								$("#reportcontext").text(id.eventSources[0])
-								$("#act_name").text(id.eventSources[1])
-							
+								$("#myModal").modal('show')
+														
+							},					
+							eventDragStop: function( event, jsEvent, ui, view ) {
+								  if(isEventOverDiv(jsEvent.clientX, jsEvent.clientY)) {
+									 $("#reporter").text(event.title).css("color","	#000000")
+		  							$("#reportime").text(event.start).css("color","	#000000")					
+		  							$("#reportcontext").text(event.eventSources[0]).css("color","	#000000")
+		  							$("#act_name span").text(event.eventSources[1]).css("color","	#000000")		  
+								  }
 							},
-						   
+		   
 						});
 
 					});
 					}
+			   
+					var isEventOverDiv = function(x, y) {
+		            var external_events = $( '#table1' );
+		            var offset = external_events.offset();
+		            offset.right = external_events.width() + offset.left;
+		            offset.bottom = external_events.height() + offset.top;
+		            // Compare
+		            if (x >= offset.left
+		                && y >= offset.top
+		                && x <= offset.right
+		                && y <= offset .bottom) { return true; }
+		            return false;
+
+		        }	
+						
+					
+						   
 			   
 			   $('#go').on('click',function(){
 					//正是時候 會click 得到他檢舉的那筆資料的id
@@ -227,6 +297,9 @@
 			
 			
 	})
+	
+	
+	
 	</script>
 
 
