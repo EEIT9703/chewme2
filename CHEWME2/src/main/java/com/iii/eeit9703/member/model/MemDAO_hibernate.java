@@ -8,7 +8,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.iii.eeit9703.activity.model.ActivityVO;
 import com.iii.eeit9703.hibernate.util.HibernateUtil;
 import com.iii.eeit9703.order.OrderVO;
 
@@ -162,16 +161,6 @@ public class MemDAO_hibernate implements MemDAO_interface {
 		Set<OrderVO> list = findByPrimaryKey(memId).getOrders();
 		return list;
 	}
-	
-	
-
-
-	@Override
-	public Set<ActivityVO> findActivitysByMemId(Integer memId) {
-		Set<ActivityVO> ActivityVOs=findByPrimaryKey(memId).getActivitys();
-		
-		return ActivityVOs;
-	}
 
 
 	public static void main(String[] args) {
@@ -215,15 +204,7 @@ public class MemDAO_hibernate implements MemDAO_interface {
 //		System.out.println();
 //	}	
 		MemDAO_hibernate dao=new MemDAO_hibernate();
-//		Set<ActivityVO> list1 =dao.findActivitysByMemId(1);
-//		for(ActivityVO list :list1){
-//			
-//			System.out.println(list.getAct_name());
-//			
-//		}
-//		
-		
-				//		List<MemVO> list1 = dao.getAll();
+//		List<MemVO> list1 = dao.getAll();
 //		for (MemVO memVO : list1) {
 //			System.out.print(memVO.getMemberId() + ",");
 //			System.out.print(memVO.getMemMail() + ",");
@@ -243,6 +224,13 @@ public class MemDAO_hibernate implements MemDAO_interface {
 			
 		}
 
+	}
+
+
+	@Override
+	public void updatePwd(String memberId, String memPwd) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

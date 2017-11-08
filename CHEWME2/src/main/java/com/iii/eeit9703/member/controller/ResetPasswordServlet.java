@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.iii.eeit9703.member.model.GenerateLinkUtils;
 import com.iii.eeit9703.member.model.MemService;
 import com.iii.eeit9703.member.model.MemVO;  
   
@@ -23,20 +24,20 @@ public class ResetPasswordServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;  
          
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {  
-        String userName = request.getParameter("userName");  
+    	String userName = request.getParameter("userName");  
         String newPassword = request.getParameter("newPassword");  
         String newPassword2 = request.getParameter("newPassword2");  
-        Map<String,String> errors = new HashMap<String, String>();  
+        Map<String,String> errors = new HashMap<String, String>();
         if (newPassword == null || "".equals(newPassword)) {  
-            errors.put("newPassword", "新密码不能为空！");  
+            errors.put("newPassword", "新密碼不能為空");  
         }  
           
         if (newPassword2 == null || "".equals(newPassword2)) {  
-            errors.put("newPassword2", "确认新密码不能为空！");  
+            errors.put("newPassword2", "請確認新密碼");  
         }  
           
         if (!newPassword.equals(newPassword2)) {  
-            errors.put("passwordError", "两次输入的密码不一致！");  
+            errors.put("passwordError", "密碼不一致");  
         }  
           
         if (!errors.isEmpty()) {  
@@ -44,13 +45,12 @@ public class ResetPasswordServlet extends HttpServlet {
             request.getRequestDispatcher("/member/resetpwd.jsp?userName=" + userName).forward(request, response);  
             return;  
         }  
-          
+           
         MemService msvc=new MemService();
-        MemVO mv = msvc.getOneMem(userName);  
-        mv.setMemPwd(newPassword); 
+        msvc.updatePwd(userName,newPassword);
         
           
-        request.getRequestDispatcher("/member/resetpwd.jsp").forward(request, response);  
+        request.getRequestDispatcher("/member/login.jsp").forward(request, response);  
           
     }  
   

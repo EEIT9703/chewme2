@@ -31,8 +31,6 @@ public class AttrService {
 
 	public void deleteAttr(Integer attractionID) {
 		dao.delete(attractionID);
-		;
-
 	}
 
 	public ArrayList<AttrVO> getAll() {
@@ -43,8 +41,8 @@ public class AttrService {
 		return dao.findByPK(attractionID);
 	}
 
-	public AttrVO updateattr(Integer attractionID, String name, String county, String type, String address, String tel, String intro,
-			InputStream image) {
+	public AttrVO updateattr(Integer attractionID, String name, String county, String type, String address, String tel, String intro, InputStream image) 
+		{
 		AttrVO attrVO = new AttrVO();
 		
 		attrVO.setAttractionID(attractionID);
@@ -60,4 +58,21 @@ public class AttrService {
 		return dao.findByPK(attractionID);
 		
 	}
+	public AttrVO upnoimage(Integer attractionID, String name, String county, String type, String address, String tel, String intro) 
+	{
+	AttrVO attrVO = new AttrVO();
+	
+	attrVO.setAttractionID(attractionID);
+	attrVO.setName(name);
+	attrVO.setCounty(county);
+	attrVO.setType(type);
+	attrVO.setAddress(address);
+	attrVO.setTel(tel);
+	attrVO.setIntro(intro);
+	
+	dao.updateNoImage(attrVO);
+	
+	return dao.findByPK(attractionID);
+	
+}
 }

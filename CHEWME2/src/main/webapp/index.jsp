@@ -142,6 +142,7 @@ ul, li {
 				</ul>
 
 				<%-- 	<c:forEach var="activity" items=""> --%>
+				<div><%@ include file="act/search.jsp"%></div>
 				<div class="row">
 					<c:forEach var="x" varStatus="statusX" begin="1" end="3" step="1">
 						<div class="col-sm-6 col-md-4">

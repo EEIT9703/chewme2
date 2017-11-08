@@ -8,74 +8,65 @@
 <title>Login</title>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/bootstrap.min.css">
-<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/member.css">
 <script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
 </head>
 <body>
 	<header><%@ include file="/header.jsp"%></header>
-<!-- 	<form action="google.do" id="google" method="post"> -->
-<!-- 		<div class="g-signin2" data-onsuccess="onSignIn" id="myP"  -->
-<!-- 			onclick="document.getElementById('google').submit();"></div> -->
-<!-- 		<input type="hidden" name="gId" id="gId"> <input type="hidden" -->
-<!-- 			name="gName" id="gName"> <input type="hidden" name="gMail" -->
-<!-- 			id="gMail"> -->
-<!-- 	</form> -->
- <div>
-			<a href="https://accounts.google.com/o/oauth2/auth?
-					scope=https://www.googleapis.com/auth/userinfo.profile+https://www.googleapis.com/auth/userinfo.email&
-					redirect_uri=http://localhost:8080/CHEWME2/googlelogin.do&
-					response_type=code&
-					state=/profile&
-					client_id=237459292600-4nc82k5o9iq1caepr82fsukrcpsflah0.apps.googleusercontent.com">
-				<img src="<%=request.getContextPath()%>/image/google_sign_in.png" 
-					style="width: 350px; height: 100px;padding-top: 50px;padding-left: 20px;"/>
-			</a>
-	<form action="login.do" method="post" name="loginForm">
-		<div>
-			<table>
-				<tr>
-					<td>帳號:</td>
-					<td><input type="text" name="userId" id="userId"
-						value="${sessionScope.user}">&nbsp;<small><font
-							color='red'>${ErrorMsgKey.AccountisEmpty}</font></small></td>
-				</tr>
-				<tr>
-					<td>密碼:</td>
-					<td><input type="password" name="pswd"
-						value="${sessionScope.password}">&nbsp;<small><font
-							color='red'>${ErrorMsgKey.PasswordisEmpty}</font></small></td>
-				</tr>
+	<div class="container">
+		<div class="row">
+			<div class="main">
+				<h3>
+					LoginMe,or <a href="<%=request.getContextPath()%>/member/register.jsp">RegisterMe</a>
+				</h3>
+				<div class="row">
+					<div class="col-xs-6 col-sm-6 col-md-6">
+						<a
+							href="https://accounts.google.com/o/oauth2/auth?scope=https://www.googleapis.com/auth/userinfo.profile+https://www.googleapis.com/auth/userinfo.email&redirect_uri=http://localhost:8080/CHEWME2/googlelogin.do&response_type=code&state=/profile&client_id=237459292600-4nc82k5o9iq1caepr82fsukrcpsflah0.apps.googleusercontent.com">
+							<img src="<%=request.getContextPath()%>/image/google_sign_in.png"
+							style="width: 350px; height: 70px;" />
+						</a>
+					</div>
+				</div>
+				<div class="login-or">
+					<hr class="hr-or">
+					<span class="span-or">or</span>
+				</div>
 
-			</table>
-		</div>
-	<%-- 	<small><font color='red'>${ErrorMsgKey.RecaptchaisEmpty}</font></small>
-		<div class="g-recaptcha"
-			data-sitekey="6LfFkTYUAAAAAMK1w_K82sMGOy-BWkq-YBYMn5-J"></div>
-		<div> --%>
-			<table>
-				<tr>
-					<td width="180" align="right"><input type="checkbox"
-						name="rememberMe"
-						<c:if test='${sessionScope.rememberMe==true}'>checked='checked'</c:if>
-						value="true"></td>
-					<td width="180" colspan='2' align="left"><small>記住密碼</small></td>
+				<form role="form" action="login.do" method="post" name="loginForm">
+					<div class="form-group">
+						<label>帳號:</label> <input type="text" class="form-control"
+							id="userId" name="userId" value="${sessionScope.user}"><small><Font
+							color='red' size="-3">&nbsp;${ErrorMsgKey.AccountisEmpty}</Font></small>
+					</div>
+					<div class="form-group">
+						<a class="pull-right"
+							href="<%=request.getContextPath()%>/member/forgotPwd.jsp">忘記密碼?</a>
+						<label>密碼:</label> <input type="password" class="form-control"
+							id="password" name="pswd" value="${sessionScope.password}"><small><Font
+							color='red' size="-3">&nbsp;${ErrorMsgKey.PasswordisEmpty}</Font></small>
+					</div>
 
-				</tr>
-				<tr height='10'>
-					<td align="CENTER" colspan='2'>&nbsp;<Font color='red'
-						size="-1">${ErrorMsgKey.LoginError}&nbsp;</Font></td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center"><input type="submit" value="登入">
-					</td>
-					<td colspan="2" align="center"><input type="button" value="註冊"
-						onclick="location.href='register.jsp'"></td>
-						<td colspan="2" align="center"><input type="button" value="忘記密碼"
-						onclick="location.href='forgotPwd.jsp'"></td>
-						
-				</tr>
-			</table>
+					<div class="g-recaptcha"
+						data-sitekey="6LfFkTYUAAAAAMK1w_K82sMGOy-BWkq-YBYMn5-J"></div>
+					<small><Font color='red' size="-3">&nbsp;${ErrorMsgKey.RecaptchaisEmpty}</Font></small>
+					<div class="checkbox pull-right">
+						<label> <input type="checkbox" name="rememberMe"
+							class="recaptcha"
+							<c:if test='${sessionScope.rememberMe==true}'>checked='checked'</c:if>
+							value="true"> 記住密碼
+						</label>
+					</div>
+
+					<div align="center">
+						<button type="submit" class="btn btn btn-primary">登入</button>
+					</div>
+				</form>
+
+			</div>
 		</div>
-	</form>
+	</div>
 </body>
 </html>

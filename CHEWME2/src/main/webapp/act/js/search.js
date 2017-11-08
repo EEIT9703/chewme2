@@ -1,35 +1,66 @@
+var template;
+
 $(document).ready(function() {
 
+	function getTemp() {
+		$.get("/CHEWME2/act/searchR.jsp", {}, function(data) {			
+			template = data;												
+		})
+	}
 	
+	$.when(getTemp());
 
 	$('#search').click(function() {
-		var search = $("#text").val();
-		//console.log(search);
-		// var div1 = document.querySelector('#div1');
 		$('#div1').empty();
-		
-		
-		function getTemp() {
-			$.get("searchR.jsp", {}, function(data) {
-				console.log("in the get function");
-				template = data;
-				//console.log(data);				
-				
-			})
-		}
-		$.getJSON('/CHEWME2/act/actServlet?action=Search', {'search' : search}, function(data) {
-			console.log(data);
-			$.each(data, function(i, data) {
-				//getTemp();
-				var cell1 = $('#act_name').text(data.act_name);
-				var cell2 = $('#act_groups').text(data.act_groups);
-				var cell3 = $('#act_photo').html(data.act_photo);
-				var row = $('#div1').append([ cell1, cell2 ,cell3 ]);
-				template.prepend(row);
-				
-			})
+		var select1 = $("#select1").val();
+		console.log(select1);
+		if(select1 == "行程"){
+			var search = $("#text").val();
+			
+			console.log(search);
+			
+			
+			
+			
+			
+			$.getJSON('/CHEWME2/act/ActivitySearch?action=Search', {'search' : search},	function(data) {
+				var temp;
+				console.log(data);
+				$.each(data, function(i, datas) {
+					//console.log(datas.act_photo);
+					$('#div1').append(template);
+					$(".img-responsive:last").attr("id","act_photo"+i);
+					console.log($("#act_photo"+i));
+					
+					$("#act_photo").attr({"src":'data:image/png;base64,'+datas.act_photo,'id':'act_photo'+i});
+					$(".act_name:last").attr("id","act_name"+i);
+					$("#act_name"+i).text(datas.act_name);
+					
+				})
 
+			})
+		}else if(select1 == "景點"){
+			
+			var name = $("#text").val();
+			
+			$.getJSON("/CHEWME2/attractions/SearchServlet?action=search1", {"searchbar": name}, function(array){				
+			
+			$.each(array, function(j, data){
+				//console.log(data.name);
+				
+				$('#div1').append(template);
+//				$(".target:last").attr("id","content_"+i);
+				$(".act_name:last").attr("id","act_name"+j);
+				$("#act_name"+j).text(data.name);
+				
+			})
+			
+			
 		})
+		}
+		
+		
+		
 
 	})
 
