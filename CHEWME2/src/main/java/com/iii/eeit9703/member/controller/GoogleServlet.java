@@ -109,8 +109,6 @@ public class GoogleServlet extends HttpServlet {
 			JSONObject jo=new JSONObject(sb.toString());
 			MemService msvc=new MemService();
 			String id=jo.getString("id");
-			mv=msvc.getGID(id);
-
 			if(mv.getGoogleId()!=null){
 				mv.setMemName(jo.getString("name"));
 				mv.setMemMail(jo.getString("email"));
@@ -118,9 +116,7 @@ public class GoogleServlet extends HttpServlet {
 				session.setAttribute("LoginOK", mv);
 				
 				session.setAttribute("picUri", jo.getString("picture"));
-				RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
-				rd.forward(req, res);
-				return;
+				res.sendRedirect("index.jsp");
 			}else{
 				mv=new MemVO();
 				mv.setMemberId(jo.getString("email"));				
@@ -131,7 +127,6 @@ public class GoogleServlet extends HttpServlet {
 				mv=msvc.insertGoogle(jo.getString("email"),jo.getString("name"),jo.getString("given_name"), jo.getString("email"), jo.getString("id"));
 				session.setAttribute("LoginOK", mv);
 				res.sendRedirect("index.jsp");
-				return;
 			}
 		}catch (JSONException je) {
 			je.printStackTrace();

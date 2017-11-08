@@ -72,18 +72,18 @@ input[type = "file"]{
 			
 			<div style="margin:10px;">
 				<span> <span>所在地區</span> <select name="county"	class="selectpicker">
-						<option>台北市</option>
+						<option>臺北市</option>
 						<option>新北市</option>
 						<option>桃園縣</option>
 						<option>新竹市</option>
-						<option>台中市</option>
+						<option>臺中市</option>
 						<option>嘉義縣</option>
-						<option>台南市</option>
+						<option>臺南市</option>
 						<option>高雄市</option>
 						<option>屏東縣</option>
 						<option>宜蘭縣</option>
 						<option>花蓮縣</option>
-						<option>台東縣</option>
+						<option>臺東縣</option>
 				</select>
 				</span> <span> <span style="margin-left: 10px;">類型</span> <select
 					name="type" class="selectpicker">

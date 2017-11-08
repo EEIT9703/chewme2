@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
 
 		String userId = req.getParameter("userId");
 		String password = req.getParameter("pswd");
-		//String gRecaptchaResponse = req.getParameter("g-recaptcha-response");
+		String gRecaptchaResponse = req.getParameter("g-recaptcha-response");
 		String rm = req.getParameter("rememberMe");
 		String requestURI = (String) session.getAttribute("requestURI");
 
@@ -43,11 +43,11 @@ public class LoginServlet extends HttpServlet {
 		if (password == null || password.trim().length() == 0) {
 			errorMsgMap.put("PasswordisEmpty", "密碼欄位必須輸入");// 如果密碼空白就放錯誤訊息到errorMsgMap裡
 		}
-//		if (gRecaptchaResponse == null || gRecaptchaResponse.trim().length() == 0) {
-//			errorMsgMap.put("RecaptchaisEmpty", "請進行驗證");
-//		}
-//		boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
-		// Remember ME記住密碼cookie
+		if (gRecaptchaResponse == null || gRecaptchaResponse.trim().length() == 0) {
+			errorMsgMap.put("RecaptchaisEmpty", "請進行驗證");
+		}
+		boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
+		 //Remember ME記住密碼cookie
 		Cookie cookieUser = null;
 		Cookie cookiePassword = null;
 		Cookie cookieRememberMe = null;
@@ -114,7 +114,7 @@ public class LoginServlet extends HttpServlet {
 
 		// 5.依照 Business Logic 運算結果來挑選適當的畫面
 		// 如果 errorMsgMap 是空的，表示沒有任何錯誤，交棒給下一棒
-		if (errorMsgMap.isEmpty()){// && verify) {
+		if (errorMsgMap.isEmpty()&& verify) {
 			// 此時不要用下面兩個敘述，因為網址列的URL不會改變
 			// reqDispatcher rd = req.getreqDispatcher("...");
 			// rd.forward(req, res);

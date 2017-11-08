@@ -95,8 +95,7 @@ text-align: center;
 									<span class="glyphicon glyphicon-info-sign"></span>
 								</button>
 								<input type="hidden" name="attractionID" value="${attrVo.attractionID}"> 
-								<input type="hidden" name="action" value="one_info">
-							
+								<input type="hidden" name="action" value="one_info_edit">							
 								
 							</form>
 						</td>											
@@ -105,7 +104,7 @@ text-align: center;
 			</tbody>		
 		</table>
 		
-		<a href="insertAttr.jsp" class="btn btn-primary">我要新增</a>
+<!-- 		<a href="insertAttr.jsp" class="btn btn-primary">我要新增</a> -->
 	</div>	
 	
 	<script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>

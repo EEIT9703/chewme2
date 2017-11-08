@@ -10,22 +10,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<link rel="styLesheet" href="../css/bootstrap.min.css">
+<link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
+<!-- Summernote  -->
+<link href="<%=request.getContextPath()%>/css/summernote.css" rel="stylesheet">
+<!-- Font Awesome  -->
+<link href="<%=request.getContextPath()%>/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-<!-- <script src="js/bootstrap.min.js"></script> -->
-<link rel="stylesheet"
-	href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 
-<!-- 置頂  -->
-<!-- <link href="../css/navbar-fixed-top.css" rel="stylesheet">-->
 
 <!-- jQuery UI Datepicker -->
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-<!-- Font Awesome  -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"></link>
 
 
 </head>
@@ -42,7 +40,7 @@
 				<div class="col-md-12 column">
 
 					<h1>Activity1</h1>
-					<p hidden>${LoginOK_MS.ownActivityList}</p>
+					<p hidden>${LoginOK_MS.ownActivityVOList}</p>
 					<c:if test="${ !empty createAct_clubId }">
 
 						<p >社團活動:${createAct_clubId}</p>
@@ -58,7 +56,7 @@
 								size="1" name="actID" id="actID">
 								<option value="0">----請選擇活動----</option>
 								<c:forEach var="activityVO"
-									items="${LoginOK_MS.ownActivityList}">
+									items="${LoginOK_MS.ownActivityVOList}">
 									<option value="${activityVO.actID}">${activityVO.act_name}</option>
 								</c:forEach>
 							</select>
@@ -119,16 +117,13 @@
 		
 	</script>
 
-	<script
-		src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script
-		src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
 	<!-- SweetAlert  -->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-	<script src="../act/js/creatAct.js"></script>
+	<script src="<%=request.getContextPath()%>/act/js/creatAct.js"></script>
 </body>
 </html>

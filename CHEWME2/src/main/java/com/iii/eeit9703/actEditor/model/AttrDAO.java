@@ -146,7 +146,6 @@ public class AttrDAO {
 					} finally {
 						try {
 							is.close();							
-							// is.close();
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
@@ -254,7 +253,6 @@ public class AttrDAO {
 				} finally {
 					try {
 						is.close();							
-						// is.close();
 					} catch (IOException e) {
 						e.printStackTrace();
 					}

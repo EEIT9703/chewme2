@@ -39,7 +39,6 @@ public class MemberEditorServlet extends HttpServlet {
 			} catch (Exception e) {
 				// errorMsgs.add(e.getMessage());
 				errorMsgs.put("errorIDDup", e.getMessage());
-				System.out.println("4");
 				RequestDispatcher failureView = req.getRequestDispatcher("/member/memEditor.jsp");
 				failureView.forward(req, res);
 			}
@@ -125,7 +124,6 @@ public class MemberEditorServlet extends HttpServlet {
 					// errorMsgs.add("請放入圖片");
 					errorMsgs.put("PicEmpty", "請放入圖片");
 				}
-				System.out.println(base64);
 				
 				MemVO memVO = new MemVO();
 				memVO.setMemId(memId);
@@ -145,28 +143,24 @@ public class MemberEditorServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("memVO", memVO);
 					System.out.println("2" + errorMsgs);
-					RequestDispatcher failureView = req.getRequestDispatcher("/member/memEditor.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/member/memeditor.jsp");
 					failureView.forward(req, res);
 					return;
 				}
 
 				System.out.println(memberId);
 				System.out.println(memId);
-				System.out.println("111");
 				memSvc.updateMem(memId, memberId, memName, memNickN, memPwd, memBirthday, memMail, memAddr,
 						memPhone, memIntr, base64);
-				System.out.println("222");
-
 				String url = "/index.jsp";// 成功後轉交的連結
 				RequestDispatcher successView = req.getRequestDispatcher(url);
-				System.out.println("3");
 				successView.forward(req, res);
 
 			} catch (Exception e) {
 				// errorMsgs.add(e.getMessage());
 				errorMsgs.put("errorIDDup", e.getMessage());
 				System.out.println("4" + errorMsgs);
-				RequestDispatcher failureView = req.getRequestDispatcher("/member/memEditor.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/member/memeditor.jsp");
 				failureView.forward(req, res);
 			}
 

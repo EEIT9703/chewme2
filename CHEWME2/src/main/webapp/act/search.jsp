@@ -1,27 +1,17 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="java.util.*"%>
 <%@ page import="com.iii.eeit9703.activity.model.*"%>
 
-<!DOCTYPE html>
-<html lang="zh-tw">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 
-<link rel="styLesheet" href="../css/bootstrap.min.css">
 
 <!-- <script src="js/bootstrap.min.js"></script> -->
-<link rel="stylesheet"
-	href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-<script
-	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 	
 <title>Insert title here</title>
-</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 <style>
 
 body { background-color:#ddd; }
@@ -54,23 +44,32 @@ body { background-color:#ddd; }
 
 
 </style>
-<body>
-	<header><%@ include file="../header.jsp"%></header>
+
+<%-- 	<header><%@ include file="../header.jsp"%></header> --%>
 	
 	
 	<div class="container">
 	<div class="row">
-		<h2>Stylish Search Box</h2>
-           <div id="custom-search-input">
-                            <div class="input-group col-md-12">
-                                <input type="text" class="search-query form-control" placeholder="Search" id="text"/>
-                                <span class="input-group-btn">
-                                    <button class="btn btn-danger" type="button" id="search">
-                                        <span class=" glyphicon glyphicon-search"></span>
-                                    </button>
-                                </span>
-                            </div>
-                        </div>
+           <table>
+        	<tr>
+        		<td>
+        			<select name="county" class="selectpicker" style="width:20px;" id="select1">
+        				<option>景點</option>
+						<option>行程</option>
+        			</select>
+        		</td>
+        		<td>
+            		<input type="text" class="search-query form-control" placeholder="搜尋" id="text" name="tags" autofocus style="width:800px;"/> 
+            	</td>
+            	<td>               
+                		<button class="btn btn-info" type="submit" id="search">
+                			<span class=" glyphicon glyphicon-search"></span>
+                		</button>
+                	<input type="hidden" name="action" value="search">
+            	</td>   
+            	 	
+            </tr>    
+            </table>  
 	</div>
 </div>
 	
@@ -86,11 +85,13 @@ body { background-color:#ddd; }
           <c:forEach var="activityVO" items="${actSvc.all}">
            <div class="col-md-4  margin_bottom30">
            <div class="thumbnail">
-			<a href="javascript::;">
+           
+			<a href="<%=request.getContextPath()%>/act/showAct.jsp">			
 				<img class="img-responsive center-block" src="data:image/png;base64,${activityVO.act_photo}" height="250">
-				</a>
+				</a>	
+							
 				<div class="blog-content bg-white">
-				<h3>${activityVO.act_name}</h3>
+				<h3 id="act_name" class="act_name1">${activityVO.act_name}</h3>
 				<p>Category : <a href="javascript::;">Nature</a></p>
 				<p>旅遊介紹<a href="javascript::;"  class="heading_color">  Continue Reading</a></p>
 				<hr>
@@ -101,9 +102,7 @@ body { background-color:#ddd; }
 				 </span> 
 
 				<span class="pull-right">
-				<a href="#" class="btn btn-info btn-sm">
-              <span class="glyphicon glyphicon-shopping-cart"></span> 加入購物
-              </a>
+				
               <a href="#" class="btn btn-info btn-sm">
               <span class="glyphicon glyphicon-heart-empty"></span> 加入收藏
               </a>             
@@ -116,10 +115,9 @@ body { background-color:#ddd; }
 			</div>
 			</div>
 	
-</body>
 
 
-<script src="../act/js/search.js"></script>
+
+<script src="<%=request.getContextPath()%>/act/js/search.js"></script>
 <script src="https://use.fontawesome.com/1dec14be15.js"></script>
 
-</html>

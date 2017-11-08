@@ -82,5 +82,6 @@ body { background-color:#ddd; }
 			</div>       
 	</div>
 </body>
-<script src="js/template.js"></script>
+<!-- <script src="js/template.js"></script> -->
+<script src="<%=request.getContextPath()%>/act/js/search.js"></script>
 </html>

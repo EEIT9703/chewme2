@@ -15,113 +15,133 @@
 	href="../css/igs/imgareaselect-default.css" />
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery.min.js"></script>
-
+<style type="text/css">
+</style>
 </head>
 <body>
 	<header>
 		<%@ include file="/header.jsp"%>
 	</header>
 
-	<form method="post" action="memEditor.do" name="memform"
-		enctype="multipart/form-data">
-		<input type="hidden" name="memId" value="${LoginOK.memId}"> <input
-			type="hidden" name="memberId" value="${LoginOK.memberId}">
-		<table>
-			<tr>
-				<td>帳號:</td>
-				<td><input type="text" name="memName"
-					value="${LoginOK.memberId}" readonly="readonly"></td>
-			</tr>
-			<tr>
-				<td>真實姓名:</td>
-				<td><input type="text" name="memName"
-					value="${LoginOK.memName}"></td>
-				<td><font size="-1" color="#FF0000">${MsgMap.NameEmpty}${MsgMap.NameFormatError}</font></td>
-			</tr>
-			<tr>
-				<td>暱稱:</td>
-				<td><input type="text" name="memNickN"
-					value="${LoginOK.memNickN}"></td>
-				<td><font size="-1" color="#FF0000">${MsgMap.NickNEmpty}</font></td>
-			</tr>
-			<tr>
-				<td>密碼:</td>
-				<td><input type="password" name="memPwd"
-					value="${LoginOK.memPwd}"></td>
-				<td><font size="-1" color="#FF0000">${MsgMap.PswdEmpty}</font></td>
-			</tr>
+	<div class="container">
+		<div class="row">
+			<div class="main">
+				<div class="panel-heading">
+					<div class="panel-title text-center">
+						<h1 class="title">ChewMe</h1>
+						<hr />
+					</div>
+				</div>
+				<form method="post" action="memEditor.do" name="memform"
+					enctype="multipart/form-data">
+					<div>
+						<input type="hidden" name="memId" value="${LoginOK.memId}">
+						<input type="hidden" name="memberId" value="${LoginOK.memberId}">
+					</div>
+					<div class="form-group">
+						<label>帳號:</label> <input type="text" class="form-control"
+							name="memberId" value="${LoginOK.memberId}" readonly="readonly">
+					</div>
 
-			<tr>
-				<td>輸入生日:</td>
-				<td><input type="date" name="memBirthday"
-					value="${LoginOK.memBirthday}"></td>
-				<td><font size="-1" color="#FF0000">${MsgMap.BirthdayEmpty}</font></td>
-			</tr>
+					<div class="form-group">
+						<label>真實姓名:</label> <input type="text" class="form-control"
+							name="memName" value="${LoginOK.memName}"><small><font
+							size="-1" color="#FF0000">${MsgMap.NameEmpty}${MsgMap.NameFormatError}</font></small>
+					</div>
 
-			<tr>
-				<td>輸入信箱:</td>
-				<td><input type="text" name="memMail"
-					value="${LoginOK.memMail}"></td>
-				<td><font size="-1" color="#FF0000">${MsgMap.MailEmpty}${MsgMap.MailFormatError}</font></td>
-			</tr>
+					<div class="form-group">
+						<label>暱稱:</label> <input type="text" class="form-control"
+							name="memNickN" value="${LoginOK.memNickN}"><small><Font
+							color='red' size="-3">&nbsp;${MsgMap.NickNEmpty}</Font></small>
+					</div>
 
-			<tr>
-				<td>輸入地址:</td>
-				<td><input type="text" name="memAddr"
-					value="${LoginOK.memAddr}"></td>
-				<td><font size="-1" color="#FF0000">${MsgMap.AddrEmpty}</font></td>
-			</tr>
+					<div class="form-group">
+						<label>密碼:</label> <input type="password" class="form-control"
+							name="memPwd" value="${LoginOK.memPwd}"><small><Font
+							color='red' size="-3">&nbsp;${MsgMap.PswdEmpty}</Font></small>
+					</div>
 
-			<tr>
-				<td>輸入電話:</td>
-				<td><input type="text" name="memPhone"
-					value="${LoginOK.memPhone}"></td>
-				<td><font size="-1" color="#FF0000">${MsgMap.PhonerEmpty}</font></td>
-			</tr>
-			<tr>
-				<td>大頭貼:</td>
-				<td><input type="file" name="memPhoto"
-					value="${LoginOK.memPhoto}"></td>
-				<td><img src="data:image/png;base64,'${loginOK.memPhoto}+'"
-					width=100px height=100px></td>
-				<td><font size="-1" color="#FF0000">${MsgMap.PicEmpty}</font></td>
-			</tr>
-			<tr>
-				<td>輸入自我介紹:</td>
-				<td><textarea name="memIntr" cols="40" rows="5">${LoginOK.memIntr}</textarea></td>
-				<td><font size="-1" color="#FF0000">${MsgMap.IntrEmpty}</font></td>
-			</tr>
-			<tr>
-				<td><input type="hidden" name="action" value="update">
-					<input type="submit" value="送出"></td>
-				<td><input type="reset" value="清除"></td>
-			</tr>
+					<div class="form-group">
+						<label>生日:</label> <input type="date" class="form-control"
+							name="memBirthday" value="${LoginOK.memBirthday}"><small><Font
+							color='red' size="-3">&nbsp;${MsgMap.BirthdayEmpty}</Font></small>
+					</div>
 
-		</table>
-		<div class="form-group">
-			<label for="exampleInputFile">照片</label> <input accept="image/*"
-				type="file" id="uploadImage" name="uploadImage">
-			<p class="help-block">請輸入你的社團首頁圖片</p>
-			<!-- 				<img id="img" src="" class="img-responsive" > -->
-			<img id="img" src="">
+					<div class="form-group">
+						<label>信箱:</label> <input type="text" class="form-control"
+							name="memMail" value="${LoginOK.memMail}"><small><Font
+							color='red' size="-3">&nbsp;${MsgMap.MailEmpty}${MsgMap.MailFormatError}</Font></small>
+					</div>
+
+					<div class="form-group">
+						<label>地址:</label> <input type="text" class="form-control"
+							name="memAddr" value="${LoginOK.memAddr}"><small><Font
+							color='red' size="-3">&nbsp;${MsgMap.AddrEmpty}</Font></small>
+					</div>
+
+					<div class="form-group">
+						<label>電話:</label> <input type="text" class="form-control"
+							name="memPhone" value="${LoginOK.memPhone}"><small><Font
+							color='red' size="-3">&nbsp;${MsgMap.PhonerEmpty}</Font></small>
+					</div>
+
+					<div class="form-group">
+						<label>自我介紹:</label>
+						<textarea class="form-control" name="memIntr"
+							style="resize: none;">${LoginOK.memIntr}</textarea>
+						<small><Font color='red' size="-3">&nbsp;${MsgMap.IntrEmpty}</Font></small>
+					</div>
+					<div class="form-group">
+						<label class="btn btn-info" for="inputfile"> <input
+							id="inputfile" name="memPhoto" style="display: none;" type="file"
+							value="upload_photo"> <i class="fa fa-folder-open-o"></i>
+							上傳圖片
+						</label>
+					</div>
+					<div align="center">
+						<input type="hidden" name="action" value="update">
+						<button type="submit" class="btn btn btn-primary">送出</button>
+						<button type="reset" class="btn btn btn-primary">重填</button>
+					</div>
+				</form>
+			</div>
+			<img id="img" src="" class="img-responsive" width="300" height="300">
 		</div>
-		<canvas id="myCanvas" style="border: 1px solid #000000;"></canvas>
-	</form>
-
-	<%-- 	<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script> --%>
-	<%-- 	<script src="<%=request.getContextPath()%>/js/jquery-ui.min.js"></script> --%>
-	<%-- 	<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script> --%>
+	</div>
 	<script type="text/javascript"
 		src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+	<script src="js/dialog.js"></script>
 	<script type="text/javascript"
 		src="<%=request.getContextPath()%>/js/jquery.imgareaselect.pack.js"></script>
 	<script type="text/javascript"
-		src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-	<script type="text/javascript"
 		src="<%=request.getContextPath()%>/club/js/createClub.js"></script>
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/com-resource/js/imgSelAndUpload.js"></script>
+	<script>
+		$(function() {
+			// 預覽圖片
+			$("#inputfile").change(function() {
 
+				readImage(this);
+			});
 
+			function readImage(input) {
+				if (input.files && input.files[0]) {
+					var file = input.files[0];
+					var FR = new FileReader();
+					FR.onload = function(e) {
+						// e.target.result = base64 format picture
+						$('#img ').attr("src", e.target.result);
+						var url = e.target.result;
 
-
+					};
+					FR.readAsDataURL(input.files[0]);
+				}
+			} // 預覽圖片結束
+		})
+	</script>
 </body>
 </html>

@@ -1,6 +1,5 @@
-
-
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 	   		
 			<div class="col-md-4 column margin_bottom30">
 			
@@ -12,7 +11,7 @@
 				<div class="blog-content bg-white">				
 				<h4 id="content_" class="target"></h4>
 				<p>Category : <a href="javascript::;">Nature</a></p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec mauris sit amet mi posuere imperdiet. Sed congue velit placerat sapien gravida sagittis. Phasellus in convallis urna, sit amet sollicitudin augue. Nullam vel est a neque lobortis iaculis....<a href="javascript::;"  class="heading_color">  Continue Reading</a></p>
+				<p>景點介紹：<a href="javascript::;"  class="heading_color">  Continue Reading</a></p>
 				<hr>
 				<p><span>Share : 
 				<a href="javascript::;"><i class="fa fa-facebook margin_left10" aria-hidden="true"></i></a>

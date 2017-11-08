@@ -14,31 +14,19 @@ public class GenerateLinkUtils {
       
     private static final String CHECK_CODE = "checkCode";  
       
-    /** 
-     * 生成重设密码的链接 
-     */  
     public static String generateResetPwdLink(MemVO memberId) {  
         return "http://localhost:8080/CHEWME2/member/resetpwd.jsp?userName="   
                 + memberId.getMemberId() + "&" + CHECK_CODE + "=" + generateCheckcode(memberId);  
     }  
       
-    /** 
-     * 生成验证帐户的MD5校验码 
-     * @param user  要激活的帐户 
-     * @return 将用户名和密码组合后，通过md5加密后的16进制格式的字符串 
-     */  
-    public static String generateCheckcode(MemVO memberId) {  
+
+    public static String generateCheckcode(MemVO memberId) { 
         String userName = memberId.getMemberId();  
         String randomCode = memberId.getRandomCode();  
         return md5(userName + ":" + randomCode);  
     }  
       
-    /** 
-     * 验证校验码是否和注册时发送的验证码一致 
-     * @param user 要激活的帐户 
-     * @param checkcode 注册时发送的校验码 
-     * @return 如果一致返回true，否则返回false 
-     */  
+
     public static boolean verifyCheckcode(MemVO memberId,ServletRequest request) {  
         String checkCode = request.getParameter(CHECK_CODE);  
         return generateCheckcode(memberId).equals(checkCode);  

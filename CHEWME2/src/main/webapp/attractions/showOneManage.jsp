@@ -170,14 +170,14 @@ html {
 			<div id="NowLatLng" style="display:none;"></div>	
 			<div>
 				<tr>
-<!-- 					<td> -->
-<!-- 						<div class="checkbox"></div> -->
-<!-- 						<button type="submit" class="btn btn-default">編輯</button> <input -->
-<!-- 						type="hidden" name="attractionID" id="id1" -->
-<%-- 						value="${attrVO.attractionID}"> <input type="hidden" --%>
-<!-- 						name="action" value="update_one"> -->
-<!-- 					</td> -->
-					<td><a href="listAll.jsp" class="btn btn-primary" style="color:white;">返回列表</a></td>
+					<td>
+						<div class="checkbox"></div>
+						<button type="submit" class="btn btn-default">編輯</button> <input
+						type="hidden" name="attractionID" id="id1"
+						value="${attrVO.attractionID}"> <input type="hidden"
+						name="action" value="update_one">
+					</td>
+					<td><a href="manageList.jsp" class="btn btn-primary" style="color:white;">返回列表</a></td>
 				</tr>
 			</div>
 		</div>
