@@ -7,7 +7,6 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import com.iii.eeit9703.activity.model.ActivityVO;
 import com.iii.eeit9703.collection.CollectionVO;
 import com.iii.eeit9703.order.OrderVO;
 import com.iii.eeit9703.report.ReportVO;
@@ -355,9 +354,9 @@ public class MemJNDIDAO implements MemDAO_interface {
 
 
 	@Override
-	public Set<ActivityVO> findActivitysByMemId(Integer memId) {
+	public void updatePwd(String memberId, String memPwd) {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 

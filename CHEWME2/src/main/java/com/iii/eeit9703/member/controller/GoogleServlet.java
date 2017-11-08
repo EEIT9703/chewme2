@@ -110,7 +110,7 @@ public class GoogleServlet extends HttpServlet {
 			MemService msvc=new MemService();
 			String id=jo.getString("id");
 			mv=msvc.getGID(id);
-
+			System.out.println("++++++++"+mv.getMemId());
 			if(mv.getGoogleId()!=null){
 				mv.setMemName(jo.getString("name"));
 				mv.setMemMail(jo.getString("email"));

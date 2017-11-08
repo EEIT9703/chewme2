@@ -97,7 +97,6 @@ public class RegisterServlet extends HttpServlet {
 					// errorMsgs.add("自我介紹必須輸入");
 					errorMsgs.put("IntrEmpty", "自我介紹必須輸入;");
 				}
-
 				InputStream is = null;
 				ByteArrayOutputStream bos = null;
 				Part memPhoto = req.getPart("memPhoto");
@@ -147,7 +146,6 @@ public class RegisterServlet extends HttpServlet {
 
 				String url = "/member/login.jsp";// 成功後轉交的連結
 				RequestDispatcher successView = req.getRequestDispatcher(url);
-				System.out.println("3");
 				successView.forward(req, res);
 
 			} catch (Exception e) {

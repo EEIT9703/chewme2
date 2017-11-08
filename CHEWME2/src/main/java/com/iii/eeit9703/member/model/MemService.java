@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
 
-import javax.xml.bind.DatatypeConverter;
 
 public class MemService {
 	private MemDAO_interface dao;
@@ -127,9 +126,8 @@ public class MemService {
 
 		return dao.findByPrimaryKey(memId);
 	}
-	
-	public static void main(String[] args) {
-		
+	public void updatePwd(String memberId,String memPwd) {
+		dao.updatePwd(memberId, memPwd);
 	}
 
 }
