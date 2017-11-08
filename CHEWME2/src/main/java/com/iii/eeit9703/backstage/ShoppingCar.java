@@ -147,28 +147,34 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 				
 //			
                 if("getMyCars".equals(action)){
-               		MemVO memVO=(MemVO) session.getAttribute("LoginOK");
-    				Integer memID= memVO.getMemId();
-					
-    				MemberSession chd = new MemberSession(memID);
-                	List<CollectionVO> set=chd.getOwnColVoList();
+                	if( session.getAttribute("LoginOK")!=null){
+                		
+                		MemVO memVO=(MemVO) session.getAttribute("LoginOK");
+                		Integer memID= memVO.getMemId();
+                		
+                		MemberSession chd = new MemberSession(memID);
+                		List<CollectionVO> set=chd.getOwnColVoList();
 //            		MemDAO_hibernate dao =new MemDAO_hibernate();
 //            		Set<CollectionVO> set=dao.getCollByMemNo(1);
-            		List<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
-    				HashMap<String,String> map = null;
-            		   	for(CollectionVO collectionVO :set){
-            		   		map = new HashMap<String,String>();						
-        					map.put("actID", collectionVO.getActivityVO().getActID().toString());
-        					map.put("act_name",collectionVO.getActivityVO().getAct_name());
-        					map.put("act_groups",collectionVO.getActivityVO().getAct_groups().toString());
-        					map.put("act_current",collectionVO.getActivityVO().getAct_current().toString());
-        					map.put("BDate",collectionVO.getActivityVO().getBDate().toString());
-        					map.put("EDate", collectionVO.getActivityVO().getEDate().toString());
-        					map.put("activity_state",collectionVO.getActivityVO().getActivity_state().toString());		
-        					list.add(map);
-            		   	}
-            		   	JSONArray attrArrayList = new JSONArray(list);				
-        				out.print(attrArrayList.toString());
+                		List<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
+                		HashMap<String,String> map = null;
+                		for(CollectionVO collectionVO :set){
+                			map = new HashMap<String,String>();						
+                			map.put("actID", collectionVO.getActivityVO().getActID().toString());
+                			map.put("act_name",collectionVO.getActivityVO().getAct_name());
+                			map.put("act_groups",collectionVO.getActivityVO().getAct_groups().toString());
+                			map.put("act_current",collectionVO.getActivityVO().getAct_current().toString());
+                			map.put("BDate",collectionVO.getActivityVO().getBDate().toString());
+                			map.put("EDate", collectionVO.getActivityVO().getEDate().toString());
+                			map.put("activity_state",collectionVO.getActivityVO().getActivity_state().toString());		
+                			list.add(map);
+                		}
+                		JSONArray attrArrayList = new JSONArray(list);				
+                		out.print(attrArrayList.toString());
+                		return;
+                	}
+                	out.println();
+                	return;
                }
 
 				
