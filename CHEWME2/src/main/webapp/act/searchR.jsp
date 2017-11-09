@@ -8,7 +8,7 @@ pageEncoding="UTF-8"%>
 			<a href="<%=request.getContextPath()%>/act/showAct.jsp">			
 				<img id="act_photo" class="img-responsive center-block" height="250">
 				</a>
-           <input type="hidden" class="id">          
+           			<input type="hidden" class="id">          
 				<div class="blog-content bg-white" id="blog">
 				<h3 id="act_name" class="act_name"></h3>
 				<p>Category : <a href="javascript::;" id="a1">Nature</a></p>
