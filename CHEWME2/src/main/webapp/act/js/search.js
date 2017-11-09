@@ -5,13 +5,9 @@ $(document).ready(function() {
 	function getTemp() {
 		$.get("/CHEWME2/act/searchR.jsp", {}, function(data) {		
 			template = data;				
-<<<<<<< HEAD
+
 		})		
-=======
-		
-		})
-		
->>>>>>> branch 'master' of https://github.com/EEIT9703/chewme2.git
+
 	}	
 	
 	$("h3").click(function(){
@@ -46,8 +42,7 @@ $(document).ready(function() {
 				$("#act_name"+i).text(datas.act_name);
 				$(".id:last").attr("id", datas.actID);
 				})
-				
-			
+							
 
 			})
 			
