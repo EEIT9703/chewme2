@@ -58,6 +58,7 @@ text-align: center;
 </head>
 <body>
 <header><%@include file="../header.jsp"%></header>
+<br>
 <div>	
 	<%@include file="chosen.jsp"%>
 <!-- 	<a href="insertAttr.jsp" class="btn btn-primary">我要新增</a> -->

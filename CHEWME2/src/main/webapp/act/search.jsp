@@ -85,7 +85,7 @@ body { background-color:#ddd; }
           <c:forEach var="activityVO" items="${actSvc.all}">
            <div class="col-md-4  margin_bottom30">
            <div class="thumbnail">
-           
+           <input type="hidden" class="id" id="${activityVO.actID}"> 
 			<a href="<%=request.getContextPath()%>/act/showAct.jsp">			
 				<img class="img-responsive center-block" src="data:image/png;base64,${activityVO.act_photo}" height="250">
 				</a>	

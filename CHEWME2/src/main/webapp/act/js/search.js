@@ -7,11 +7,15 @@ $(document).ready(function() {
 			template = data;				
 		
 		})
-		$("h3").click(function(){
-				var act = $(".id").text();
-				console.log(act);
-			})
+		
 	}	
+	
+	$("h3").click(function(){
+		var act = $(this).text();
+		console.log(act);
+		window.location = "/CHEWME2/act/showAct.jsp?actID=?";
+	})
+	
 	$.when(getTemp());
 	$('#search').click(function() {
 		$('#div1').empty();
@@ -35,8 +39,12 @@ $(document).ready(function() {
 				$("#act_name"+i).text(datas.act_name);
 				$(".id:last").attr("id", datas.actID);
 				})
+				
+			
 
 			})
+			
+			
 		}else if(select1 == "景點"){			
 			var name = $("#text").val();			
 			$.getJSON("/CHEWME2/attractions/SearchServlet?action=search1", {"searchbar": name}, function(array){				
@@ -54,4 +62,5 @@ $(document).ready(function() {
 		}
 		
 	})
+	
 })
