@@ -272,10 +272,11 @@ body {
 	 			opt.empty();
 			var count=0;
 	 		$.each(array,function(i,activity){
+	 			var img ="data:image/png;base64,"+activity.act_photo;
 	 			var div_out=$("<div></div>").addClass('cartrow');
 	 		
 	 			var cell1=$("<div></div>").css("float","left");
-	 			var img =$('<img>').attr({'src':'<%=request.getContextPath()%>/image/55.jpg','width':'50px','height':'50px'});
+	 			var img =$('<img width=50px height=50px >').attr('src',img);
 	 			
 	 			
 	 			var span1=$('<span></span>').text(activity.act_name)

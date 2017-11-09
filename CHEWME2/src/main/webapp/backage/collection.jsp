@@ -178,6 +178,11 @@ margin-right:5px;
 /* margin-right:80px; */
 margin:0px 80px 30px 0px;
 }
+
+.item img{
+width:250px;
+height:100px;
+}
 </style>
 
 
@@ -241,8 +246,10 @@ $(function(){
 // 			var cell5=$('<div class="allpay_button"></div>').html("<input type='button' value='前往歐付寶付款'>")
 // 			opt.append(cell5);
 			var count=0;
-			$.each(array,function(i,activity){			
-	         var cell1 = $('<img>').attr("src","<%=request.getContextPath()%>/image/101.jpg")	       
+			$.each(array,function(i,activity){
+			var img ="data:image/png;base64,"+activity.act_photo;
+			
+	         var cell1 = $('<img>').attr({"src":img})	       
 	       	 var cell2 = $('<p></p>').text(activity.act_name);
 	         
 	         
@@ -268,9 +275,9 @@ $(function(){
 	       	 row.append([cell1, cell2,span,span2,cell3,cell4,cell5,cell6]);
 	       	fg.append(row);
   	       
-	      // 	count++;
+	       	count++;
 			})
-			//$('.aaa').text(count);
+			$('.aaa').text(count);
 			  opt.append(fg); 
 		});
 		
@@ -290,8 +297,9 @@ $(function(){
 // 			var cell5=$('<div class="allpay_button"></div>').html("<input type='button' value='前往歐付寶付款'>")
 // 			opt.append(cell5);
 			var count=0;
-			$.each(array,function(i,activity){			
-	         var cell1 = $('<img>').attr("src","<%=request.getContextPath()%>/image/101.jpg")	       
+			$.each(array,function(i,activity){
+				var img ="data:image/png;base64,"+activity.act_photo;
+	         var cell1 = $('<img>').attr({"src":img})	       
 	       	 var cell2 = $('<p></p>').text(activity.act_name);
 	         
 	         

@@ -132,6 +132,7 @@ public class Collection extends HttpServlet {
     					map.put("EDate",activityVO.getEDate().toString() );
     					map.put("activity_state",activityVO.getActivity_state().toString());
     					map.put("act_price",activityVO.getAct_price());
+    					map.put("act_photo",activityVO.getAct_photo());
     					list.add(map);
         		   	}
         		   	JSONArray attrArrayList = new JSONArray(list);				
@@ -160,6 +161,7 @@ public class Collection extends HttpServlet {
 					map.put("EDate", activityVO.getEDate().toString());
 					map.put("activity_state",activityVO.getActivity_state().toString());
 					map.put("act_price",activityVO.getAct_price());
+					map.put("act_photo",activityVO.getAct_photo());
 					//list.add(map);
 					
 					HashMap map2= new HashMap();							
@@ -208,6 +210,7 @@ public class Collection extends HttpServlet {
         					map.put("EDate", collectionVO.getActivityVO().getEDate().toString());
         					map.put("activity_state",collectionVO.getActivityVO().getActivity_state().toString());
         					map.put("act_price",collectionVO.getActivityVO().getAct_price());
+        					map.put("act_photo",collectionVO.getActivityVO().getAct_photo());
         					list.add(map);
             		   	}
             		   	JSONArray attrArrayList = new JSONArray(list);				

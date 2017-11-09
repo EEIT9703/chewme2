@@ -4,9 +4,6 @@ pageEncoding="UTF-8"%>
 
 <div class="col-md-4  margin_bottom30">
            <div class="thumbnail">
-
-                  
-
 			<a href="<%=request.getContextPath()%>/act/show.jsp">			
 				<img class="img-responsive center-block" src="data:image/png;base64,${activityVO.act_photo}" height="250">
 			</a>

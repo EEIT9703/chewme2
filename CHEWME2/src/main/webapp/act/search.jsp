@@ -95,9 +95,7 @@ body { background-color:#ddd; }
 <!-- 				</a>	 -->
 
 <%--            <input type="hidden" class="id" id="${activityVO.actID}">  --%>
-					
-
-          
+ 
 			<a href="<%=request.getContextPath()%>/act/show.jsp">	
 				<img class="img-responsive center-block" src="data:image/png;base64,${activityVO.act_photo}" height="250">
 			</a>	
