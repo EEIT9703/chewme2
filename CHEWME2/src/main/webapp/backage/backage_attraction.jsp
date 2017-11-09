@@ -160,7 +160,7 @@
   		        		
   	  			})
   	  					
-  					var opt = {
+  					var opt = { 
   								"oLanguage" : {
   									"sProcessing" : "處理中...",
   									"sLengthMenu" : "顯示 _MENU_ 項結果",
@@ -178,8 +178,9 @@
   									}
   								}
   							};
-  							$("#activity").dataTable(opt);
-  							 $("#attraction>tbody>tr:nth-child(even)").css("background-color","#f1f7fe");
+  	  		 $("#attraction>tbody>tr:nth-child(even)").css("background-color","#f1f7fe");
+  							$("#attraction").dataTable(opt);
+  							
 		
   			});
   			//var docFrag = $(document.createDocumentFragment()); 			

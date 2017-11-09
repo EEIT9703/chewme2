@@ -4,16 +4,12 @@ $(document).ready(function() {
 
 	function getTemp() {
 		$.get("/CHEWME2/act/searchR.jsp", {}, function(data) {		
-<<<<<<< HEAD
-			template = data;				
 
-		})		
-=======
 			template = data;				
 		
 		})
 		
->>>>>>> branch 'master' of https://github.com/EEIT9703/chewme2.git
+
 
 	}	
 	
