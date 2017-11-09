@@ -13,9 +13,9 @@
 	href="<%=request.getContextPath()%>/css/bootstrap-adjust.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"></link>
-<%--圖形區域選擇器 加上canvas所需要的程式碼--%>
 <link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"><%--圖形區域選擇器 加上canvas所需要的程式碼--%>
+
 <link rel="stylesheet" type="text/css" href="css/dialog.css" />
 <link rel="stylesheet" type="text/css"
 	href="../css/igs/imgareaselect-default.css" />
@@ -31,6 +31,10 @@
 .btn{
 width:70%;
 }
+table {
+    border-collapse: collapse;
+}
+
 </style>
 </head>
 <body>
@@ -41,7 +45,7 @@ width:70%;
 	<p hidden id="reqContextPath" value=""><%=request.getContextPath()%></p>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-4">
 				<table class="table table-hover">
 					<thead>
 						<tr>
@@ -49,7 +53,7 @@ width:70%;
 							<td>內容</td>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="clubInfo">
 
 						<tr>
 							<td>社團編號:</td>
@@ -57,36 +61,43 @@ width:70%;
 						</tr>
 						<tr>
 							<td>社團名稱:</td>
-							<td>${clubVOForView.clubName}</td>
+							<td class="manage_input" id="club_name">${clubVOForView.clubName}</td>
+							<td class="manage"><div><button type="button" class="manage-btn btn btn-default btn-sm" disabled> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> </button></div></td>
 						</tr>
 						<tr>
 							<td>社團管理者:</td>
 							<td>${clubVOForView.managerId}</td>
+							<td><div><button type="button" class="manage-btn btn btn-default btn-sm" disabled> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> </button></div></td>
 						</tr>
 						<tr>
 							<td>地點:</td>
-							<td>${clubVOForView.locationId}</td>
+							<td class="manage_input" id="club_loc">${clubVOForView.locationId}</td>
+							<td class="manage"><div><button type="button" class="manage-btn btn btn-default btn-sm"  disabled> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> </button></div></td>
 						</tr>
 						<tr>
 							<td>地址:</td>
-							<td>${clubVOForView.addr}</td>
+							<td class="manage_input"  id="club_addr">${clubVOForView.addr}</td>
+							<td class="manage"><div><button type="button" class=" manage-btn btn btn-default btn-sm"  disabled> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> </button></div></td>
 						</tr>
 						<tr>
 							<td>參考網址:</td>
-							<td>${clubVOForView.refURL}</td>
+							<td class="manage_input" id="club_refurl">${clubVOForView.refURL}</td>
+							<td class="manage" ><div><button type="button" class="manage-btn btn btn-default btn-sm"  disabled> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> </button></div></td>
 						</tr>
 						<tr>
 							<td>總拜訪人數:</td>
 							<td>${clubVOForView.vistors}</td>
+							<td><div><button type="button" class="manage-btn btn btn-default btn-sm" disabled> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> </button></div></td>
 						</tr>
 						<tr>
 							<td>本月拜訪人數:</td>
 							<td>${clubVOForView.vistorsInMonth}</td>
+							<td ><div><button type="button" class="manage-btn btn btn-default btn-sm" disabled> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> </button></div></td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
-			<div class="col-md-7">
+			<div class="col-md-6">
 				<div id="carouselExampleControls" class="carousel slide"
 					data-ride="carousel">
 					<div class="carousel-inner">
@@ -112,21 +123,29 @@ width:70%;
 			</div>
 			<div class="col-md-2">
 				<div>
-					<a class="btn btn-sm btn-primary" role="button"> 管理畫面 </a>
+					<a id="manageCCV" class="btn btn-sm btn-primary" role="button" style="width:100%"> 管理畫面 </a>
 				</div>
 				<div>
-					<a class="btn btn-sm btn-primary"
+					<a id="clientCCV"class="btn btn-sm btn-primary" role="button" style="width:100%" > 使用者畫面</a>
+				</div>
+				<div>
+					<a class="btn btn-sm btn-primary" style="width:100%"
 						href="<%=request.getContextPath()%>/club/clubClientView.do?action=createClubAct&clubId=${clubVOForView.clubId}"
 						role="button"> 創社團活動 </a>
 				</div>
 				<div>
-					<label class="btn btn-sm btn-primary" for="uploadImage"> <input
+					<label class="btn btn-sm btn-primary" style="width:100%"  for="uploadImage"> <input
 						id="uploadImage" name="photo" style="display: none;" type="file"
 						value="upload_photo"> <i class="fa fa-folder-open-o"></i>
 						換照片
 					</label>
 				</div>
-
+				<div>
+					<a class="btn btn-sm btn-danger" style="width:100%" role="button"> 刪除社團 </a>
+				</div>
+				<div>
+					<a id="reNew" class="btn btn-sm btn-primary" role="button" style="width:100%"> 更新</a>
+				</div>
 
 			</div>
 		</div>

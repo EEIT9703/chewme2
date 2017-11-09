@@ -128,6 +128,19 @@ public class ClubClientViewServlet extends HttpServlet {
 		 * if(memSession!=null){ memSession.getMemId(); }
 		 */
 		/* 服務從findClub導過來的service,顯示club的Service */
+		if (action.matches("updateClubInfo")){
+			System.out.println("In ClubClientVIEW, start the update club info");
+			String col = request.getParameter("col");
+			ClubService cs = new ClubService();
+			ClubVO clubVO= cs.getOneClub(Integer.parseInt(request.getParameter("clubId")));
+			clubVO.setClubName(request.getParameter("clubName"));
+			clubVO.setRefURL(request.getParameter("refUrl"));
+			clubVO.setAddr(request.getParameter("addr"));
+			clubVO.setLocationId(Integer.parseInt(request.getParameter("cityId")));
+			cs.update(clubVO);
+			return;
+
+		}
 		if (action.matches("showAct")) {
 			PrintWriter out = response.getWriter();
 
@@ -181,9 +194,9 @@ public class ClubClientViewServlet extends HttpServlet {
 			}
 			ClubVO clubVO = cs.getOneClub(search_club);
 			session.setAttribute("clubVOForView", clubVO);
-			if(clubVO.getClubName()!=null){
-				System.out.println(clubVO.getClubName());				
-			}
+//			if(clubVO.getClubName()!=null){
+//				System.out.println(clubVO.getClubName());				
+//			}
 			System.out.println("Redirect to the clubClientViewFrame.jsp");
 			response.sendRedirect("clubClientViewFrame.jsp");
 			return;
