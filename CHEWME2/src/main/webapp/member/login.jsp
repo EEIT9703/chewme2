@@ -63,6 +63,7 @@
 					<div align="center">
 						<button type="submit" class="btn btn btn-primary">登入</button>
 					</div>
+					<div><small><Font color='red' size="-3">&nbsp;${ErrorMsgKey.LoginError}</Font></small></div>
 				</form>
 
 			</div>

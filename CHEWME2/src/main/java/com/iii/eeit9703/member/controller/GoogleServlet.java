@@ -109,14 +109,16 @@ public class GoogleServlet extends HttpServlet {
 			JSONObject jo=new JSONObject(sb.toString());
 			MemService msvc=new MemService();
 			String id=jo.getString("id");
+			mv=msvc.getGID(id);
 			if(mv.getGoogleId()!=null){
 				mv.setMemName(jo.getString("name"));
 				mv.setMemMail(jo.getString("email"));
 				mv.setGoogleId(jo.getString("id"));
 				session.setAttribute("LoginOK", mv);
-				
 				session.setAttribute("picUri", jo.getString("picture"));
+				
 				res.sendRedirect("index.jsp");
+				
 			}else{
 				mv=new MemVO();
 				mv.setMemberId(jo.getString("email"));				
