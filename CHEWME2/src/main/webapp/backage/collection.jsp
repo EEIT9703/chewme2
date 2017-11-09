@@ -268,9 +268,9 @@ $(function(){
 	       	 row.append([cell1, cell2,span,span2,cell3,cell4,cell5,cell6]);
 	       	fg.append(row);
   	       
-	       	count++;
+	      // 	count++;
 			})
-			$('.aaa').text(count);
+			//$('.aaa').text(count);
 			  opt.append(fg); 
 		});
 		
@@ -312,9 +312,9 @@ $(function(){
 	       	 row.append([cell1, cell2,span,span1,span2,span3]);
 	       	fg.append(row);
   	       
-	       	count++;
+	     //  	count++;
 			})
-			$('.aaa').text(count);
+			//$('.aaa').text(count);
 			  opt.append(fg); 
 		});		
 	}
@@ -350,8 +350,7 @@ $(function(){
 		         tbody.append(row);
 			})
 			table.append([thead,tbody])
-			opt.append(table
-					)
+			opt.append(table)
 		});
 	
 		}

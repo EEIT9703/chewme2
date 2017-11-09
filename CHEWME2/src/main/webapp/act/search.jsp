@@ -84,14 +84,17 @@ body { background-color:#ddd; }
 	<div class="row" id="div1">
           <c:forEach var="activityVO" items="${actSvc.all}">
            <div class="col-md-4  margin_bottom30">
+           <div class=title>
+			<input type="hidden" id="${activityVO.actID}">  
+			</div>
            <div class="thumbnail">
 
            
 <%-- 			<a href="<%=request.getContextPath()%>/act/showAct.jsp">			 --%>
 <!-- 				</a>	 -->
 
-           <input type="hidden" class="id" id="${activityVO.actID}"> 
-			<a href="<%=request.getContextPath()%>/act/showAct.jsp">			
+<%--            <input type="hidden" class="id" id="${activityVO.actID}">  --%>
+			<a href="<%=request.getContextPath()%>/act/show.jsp">			
 
 				<img class="img-responsive center-block" src="data:image/png;base64,${activityVO.act_photo}" height="250">
 			</a>	
@@ -109,9 +112,9 @@ body { background-color:#ddd; }
 
 				<span class="pull-right">
 				
-              <a href="#" class="btn btn-info btn-sm">
-              <span class="glyphicon glyphicon-heart-empty"></span> 加入收藏
-              </a>             
+              <button class="btn btn-info btn-sm">
+              <span class="glyphicon glyphicon-heart-empty inputCar"></span> 加入收藏
+              </button>             
               </span>
 
 				</div>
@@ -122,7 +125,12 @@ body { background-color:#ddd; }
 			</div>
 	
 
+<script>
 
+
+
+
+</script>
 
 <script src="<%=request.getContextPath()%>/act/js/search.js"></script>
 <script src="https://use.fontawesome.com/1dec14be15.js"></script>

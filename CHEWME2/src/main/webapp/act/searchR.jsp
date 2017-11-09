@@ -24,9 +24,9 @@ pageEncoding="UTF-8"%>
 				 
                 <span class="pull-right">
 				
-              <a href="#" class="btn btn-info btn-sm">
+               <button class="btn btn-info btn-sm">
               <span class="glyphicon glyphicon-heart-empty"></span> 加入收藏
-              </a>             
+              </button>             
               </span>
               	</div>
 			</div>

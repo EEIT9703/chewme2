@@ -79,9 +79,9 @@ public class ActivitySearch extends HttpServlet {
 				
                 session.setAttribute("activityVO", activityVO);
 				
-				RequestDispatcher view = req.getRequestDispatcher("/act/showAct.jsp");
+				RequestDispatcher view = req.getRequestDispatcher("/act/show.jsp");
 				view.forward(req,resp);
-				
+			
 				
 			} catch (NumberFormatException e) {
 				// TODO Auto-generated catch block
