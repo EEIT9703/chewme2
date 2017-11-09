@@ -124,9 +124,9 @@ body {
 	<div class="container-fluid">
 		<div>
 			<div>
-				<a class="navbar-brand " href="#"><img
-					src="<%=request.getContextPath()%>/image/letter-c.png" width="30"
-					height="30" alt=""></a>
+				<p class="navbar-brand " href="#"><img
+					src="<%=request.getContextPath()%>/image/letter-c.png" width="40"
+					height="40" alt=""></p>
 			</div>
 			<div class="navbar-header" >
 				<p class="navbar-brand " style="font-family: 'Arial';font-size:30px;margin-top:7px;font-weight:bold;">CHEWME</p>
@@ -168,7 +168,7 @@ body {
 						width=40px height=40px>　查景點</a></li>
 			</ul>
 
-			<ul class="nav navbar-nav navbar-right">
+			<ul class="nav navbar-nav navbar-right"  style="margin-top:10px;">
 
 				<c:choose>
 					<c:when test="${!empty LoginOK}">
@@ -248,9 +248,10 @@ body {
 								style="border-radius: 50%" width=50px height=50px>
 						</c:when>
 						<c:otherwise>
-							<img src='${picUri}' style="border-radius: 50%" width=50px height=50px>
+							<img src='${picUri}' style="border-radius: 50%" width=50px height=50px >
 						</c:otherwise>
 					</c:choose></li>
+					<li style="width:50px"></li>
 			</ul>
 		</div>
 	</div>
