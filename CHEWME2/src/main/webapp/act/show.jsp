@@ -3,7 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.iii.eeit9703.activity.model.*"%>
+<%
 
+%>
 <!DOCTYPE html>
 <html lang="zh-tw">
 <head>

@@ -75,7 +75,7 @@ $(document).ready(function() {
 		var act1 = $(this).parent("a").next("input").val()
 		console.log(act1);		
 		$.get("/CHEWME2/act/ActivitySearch?action=searchone", {"name": act1}, function(){
-			
+			windows.loc
 		})
 	})
 	
