@@ -28,6 +28,8 @@ import com.iii.eeit9703.adphoto.model.PhotoDAO;
 import com.iii.eeit9703.adphoto.model.PhotoVO;
 import com.iii.eeit9703.collection.CollectionService;
 import com.iii.eeit9703.collection.CollectionVO;
+import com.iii.eeit9703.crawler.model.AttrService;
+import com.iii.eeit9703.crawler.model.AttrVO;
 import com.iii.eeit9703.member.model.MemDAO_hibernate;
 import com.iii.eeit9703.member.model.MemVO;
 import com.iii.eeit9703.member.model.MemberSession;
@@ -213,6 +215,32 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 		
 				out.print(attrArrayList.toString());
 				}
+                
+      
+                if("getAllattraction".equals(action)){
+                	AttrService attr = new AttrService();
+                	ArrayList<AttrVO> lis = attr.getAll();
+                	System.out.println(lis.size());
+    				JSONArray attrArrayList = new JSONArray(lis);				
+    				out.print(attrArrayList.toString());
+    									
+//    				String jsonString =JSONValue.toJSONString(attrList);
+//    				System.out.println(jsonString);
+//    				out.print(jsonString);
+    				}
+                if("deleteAttr".equals(action)){
+                	Integer ID = Integer.parseInt(request.getParameter("id"));
+                	AttrService attr = new AttrService();
+                	attr.deleteAttr(ID);
+                		
+//                	ArrayList<AttrVO> lis = attr.getAll();
+//                	System.out.println(lis.size());
+//    				JSONArray attrArrayList = new JSONArray(lis);				
+//    				out.print(attrArrayList.toString());
+
+    				}
+                
+                
 			
 				if("getAllactivity".equals(action)){
 				//ActService ser= new ActService();
@@ -268,7 +296,7 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 				
 				if("upDateMemberStatus".equals(action)){
 					Integer ID = Integer.parseInt(request.getParameter("id"));
-					String opt = request.getParameter("opt");
+					String status = request.getParameter("opt");
 					MemDAO_hibernate hib= new MemDAO_hibernate();
 					MemVO oldVO=hib.findByPrimaryKey(ID);
 					
@@ -285,7 +313,7 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 					memVO.setMemPhone(oldVO.getMemPhone());
 					memVO.setMemIntr(oldVO.getMemIntr());
 					memVO.setMemPhoto(oldVO.getMemPhoto());
-					memVO.setMemStatus(opt);
+					memVO.setMemStatus(status);
 					memVO.setMemRole(oldVO.getMemRole());
 					memVO.setGoogleId(oldVO.getGoogleId());
 					memVO.setRandomCode(oldVO.getRandomCode());
@@ -298,7 +326,29 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 				if("upDateMemberRole".equals(action)){
 					MemDAO_hibernate hib= new MemDAO_hibernate();
 						
-								
+					Integer ID = Integer.parseInt(request.getParameter("id"));
+					String Role = request.getParameter("opt");
+					MemDAO_hibernate hibRole= new MemDAO_hibernate();
+					MemVO oldVO=hib.findByPrimaryKey(ID);
+					
+					MemVO memVO=new MemVO();
+					
+					memVO.setMemId(ID);
+					memVO.setMemberId(oldVO.getMemberId());
+					memVO.setMemName(oldVO.getMemName());
+					memVO.setMemNickN(oldVO.getMemNickN());
+					memVO.setMemPwd(oldVO.getMemPwd());
+					memVO.setMemBirthday(oldVO.getMemBirthday());
+					memVO.setMemMail(oldVO.getMemMail());
+					memVO.setMemAddr(oldVO.getMemAddr());
+					memVO.setMemPhone(oldVO.getMemPhone());
+					memVO.setMemIntr(oldVO.getMemIntr());
+					memVO.setMemPhoto(oldVO.getMemPhoto());
+					memVO.setMemStatus(oldVO.getMemStatus());
+					memVO.setMemRole(Role);
+					memVO.setGoogleId(oldVO.getGoogleId());
+					memVO.setRandomCode(oldVO.getRandomCode());
+					hib.update(memVO);		
 					
 					
 					}

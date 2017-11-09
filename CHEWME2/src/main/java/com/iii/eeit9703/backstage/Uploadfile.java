@@ -57,12 +57,14 @@ public class Uploadfile extends HttpServlet {
 					photoVO.setPhoto_no(id);
 					photoVO.setName(part.getSubmittedFileName());
 					photoVO.setPhoto(base64);
+			
 					dao.insert(photoVO);
 					}
 				
 					if("insert".equals(action)){	
 						photoVO.setName(part.getSubmittedFileName());
 						photoVO.setPhoto(base64);
+						photoVO.setStatus(0);
 						dao.insert(photoVO);									
 					}
 

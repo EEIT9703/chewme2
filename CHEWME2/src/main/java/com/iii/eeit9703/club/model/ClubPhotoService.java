@@ -10,12 +10,13 @@ public class ClubPhotoService {
 		clubphotoDAO =new  ClubPhotoJDBCDAO();
 	}
 	
-	public List<ClubPhotoVO> getPhotoByClubId(Integer clubId){
-		
+	public List<ClubPhotoVO> getPhotoByClubId(Integer clubId){	
 		return clubphotoDAO.getClubPhotoByClubId(clubId);
-	}
-	
+	}	
 	public void insertPhoto(ClubPhotoVO photoVO){
 		clubphotoDAO.insert(photoVO);
+	}
+	public void updatePhoto(ClubPhotoVO photoVO){
+		clubphotoDAO.updateByClubId(photoVO);
 	}
 }

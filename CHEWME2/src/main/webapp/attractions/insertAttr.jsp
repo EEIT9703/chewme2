@@ -152,8 +152,7 @@ input[type = "file"]{
 				FR.onload = function(e) {
 					// e.target.result = base64 format picture
 					$('#img ').attr("src", e.target.result);        
-					var url = e.target.result;
-					
+					var url = e.target.result;					
 				};
 				FR.readAsDataURL(input.files[0]);
 			}

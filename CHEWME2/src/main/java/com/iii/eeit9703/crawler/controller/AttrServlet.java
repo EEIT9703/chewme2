@@ -207,7 +207,7 @@ public class AttrServlet extends HttpServlet {
 						attrVO = attr2.upnoimage(attractionID, name, county, type, address, tel, intro);
 						
 						
-						RequestDispatcher successView = req.getRequestDispatcher("show_one.jsp");
+						RequestDispatcher successView = req.getRequestDispatcher("showOneManage.jsp");
 						successView.forward(req, res);
 					}else{
 						AttrVO attrVO = new AttrVO();
@@ -226,7 +226,7 @@ public class AttrServlet extends HttpServlet {
 						attrVO = attr1.updateattr(attractionID, name, county, type, address, tel, intro, inputStream);
 						
 						
-						RequestDispatcher successView = req.getRequestDispatcher("show_one.jsp");
+						RequestDispatcher successView = req.getRequestDispatcher("showOneManage.jsp");
 						successView.forward(req, res);
 					}
 				

@@ -84,14 +84,28 @@ body { background-color:#ddd; }
 	<div class="row" id="div1">
           <c:forEach var="activityVO" items="${actSvc.all}">
            <div class="col-md-4  margin_bottom30">
+           <div class=title>
+			<input type="hidden" id="${activityVO.actID}">  
+			</div>
            <div class="thumbnail">
-           <input type="hidden" class="id"> 
+
+
+           
+<%-- 			<a href="<%=request.getContextPath()%>/act/showAct.jsp">			 --%>
+<!-- 				</a>	 -->
+
+<%--            <input type="hidden" class="id" id="${activityVO.actID}">  --%>
+					
+
+           <input type="hidden" class="id" id="${activityVO.actID}"> 
 			<a href="<%=request.getContextPath()%>/act/showAct.jsp">			
+
+
 				<img class="img-responsive center-block" src="data:image/png;base64,${activityVO.act_photo}" height="250">
-				</a>	
-							
+			</a>	
+				<input type="hidden" class="id" value="${activityVO.actID}"> 				
 				<div class="blog-content bg-white">
-				<h3 id="act_name" class="act_name1">${activityVO.act_name}</h3>
+				<h3 id="act_name" class="act_name">${activityVO.act_name}</h3>
 				<p>Category : <a href="javascript::;">Nature</a></p>
 				<p>旅遊介紹<a href="javascript::;"  class="heading_color">  Continue Reading</a></p>
 				<hr>
@@ -103,9 +117,9 @@ body { background-color:#ddd; }
 
 				<span class="pull-right">
 				
-              <a href="#" class="btn btn-info btn-sm">
-              <span class="glyphicon glyphicon-heart-empty"></span> 加入收藏
-              </a>             
+              <button class="btn btn-info btn-sm">
+              <span class="glyphicon glyphicon-heart-empty inputCar"></span> 加入收藏
+              </button>             
               </span>
 
 				</div>
@@ -116,7 +130,12 @@ body { background-color:#ddd; }
 			</div>
 	
 
+<script>
 
+
+
+
+</script>
 
 <script src="<%=request.getContextPath()%>/act/js/search.js"></script>
 <script src="https://use.fontawesome.com/1dec14be15.js"></script>

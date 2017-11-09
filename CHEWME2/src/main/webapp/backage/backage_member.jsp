@@ -168,32 +168,35 @@
   			 $('#member').DataTable();
   		}
   		
-  		
+		 
+			$('#member>tbody').on('change','td:nth-child(9) select',function(){
+				 var id = $(this).parents('tr').find('td:nth-child(1)').text();
+				 //var opt =$(this).attr("selected","selected");
+				  var opt =$('#select1>:selected');
+				 $.post('<%=request.getContextPath()%>/activity',{'id':id,'action':'upDateMemberStatus','opt':opt.text()},function(){
+					
+					 alert("更新status成功")
+					 
+					 
+				 })
+		
+	 })
+
   		
  			$('#member>tbody').on('change','td:nth-child(10) select',function(){
  				 var id = $(this).parents('tr').find('td:nth-child(1)').text();
- 				 var opt =$(this).attr("selected","selected");
- 				 $.post('<%=request.getContextPath()%>/activity',{'id':id,'action':'upDateMemberStatus','opt':opt.val()},function(){
+ 				// var opt =$(this).attr("selected","selected");
+ 				 var opt =$('#select2>:selected');				
+ 				 $.post('<%=request.getContextPath()%>/activity',{'id':id,'action':'upDateMemberRole','opt':opt.text()},function(){
  					
- 					 alert("更新成功")
+ 					 alert("更新Role成功")
  					 
  					 
  				 })
 			
 		 })
-		 
-		 
-  			$('#member>tbody').on('change','td:nth-child(9) select',function(){
-  				 var id = $(this).parents('tr').find('td:nth-child(1)').text();
- 				 var opt =$(this).attr("selected","selected");
- 				 $.post('<%=request.getContextPath()%>/activity',{'id':id,'action':'upDateMemberRole','opt':opt.val()},function(){
-  					
- 					 alert("更新成功")
- 					 
- 					 
- 				 })
-			
-		 })
+
+
   		
   		
  				
