@@ -35,6 +35,7 @@ import com.iii.eeit9703.club.model.CommentService;
 import com.iii.eeit9703.club.model.CommentVO;
 import com.iii.eeit9703.club.model.IssueService;
 import com.iii.eeit9703.club.model.IssueVO;
+import com.iii.eeit9703.member.model.MemberSession;
 import com.iii.eeit9703.utility.DateUtil;
 
 @WebServlet("/club/clubClientView.do")
@@ -103,20 +104,20 @@ public class ClubClientViewServlet extends HttpServlet {
 		// 貼入在你的sevlet 然後 ctrl+shift+o 匯入必要的class
 		// 可以跳過建業的member認證, 並匯入memberSession和memVO
 
-		if (session == null || session.getAttribute("LoginOK") == null || session.getAttribute("LoginOK_MS") == null) {
-			System.out.println("LoginOK" + session.getAttribute("LoginOK") == null);
-			System.out.println("LoginOK_MS" + session.getAttribute("LoginOK_MS") == null);
-
-			session.setAttribute("requestURI", request.getRequestURI());
-			session.setAttribute("memberId", "1");
-			session.setAttribute("action", request.getParameter("action"));
-			response.sendRedirect("/CHEWME2/member/memberLogin.do");
-			System.out.println("change to ok!");
-			return;
-		}
-		if (request.getParameter("action") == null) {
-			action = (String) session.getAttribute("action");
-		}
+//		if (session == null || session.getAttribute("LoginOK") == null || session.getAttribute("LoginOK_MS") == null) {
+//			System.out.println("LoginOK" + session.getAttribute("LoginOK") == null);
+//			System.out.println("LoginOK_MS" + session.getAttribute("LoginOK_MS") == null);
+//
+//			session.setAttribute("requestURI", request.getRequestURI());
+//			session.setAttribute("memberId", "1");
+//			session.setAttribute("action", request.getParameter("action"));
+//			response.sendRedirect("/CHEWME2/member/memberLogin.do");
+//			System.out.println("change to ok!");
+//			return;
+//		}
+//		if (request.getParameter("action") == null) {
+//			action = (String) session.getAttribute("action");
+//		}
 		/*
 		 * MemberSession memSession =
 		 * (MemberSession)session.getAttribute("LoginOK");
@@ -179,13 +180,29 @@ public class ClubClientViewServlet extends HttpServlet {
 					session.setAttribute("clubActList", activityList);
 				}
 			}
+						
 			ClubVO clubVO = cs.getOneClub(search_club);
 			session.setAttribute("clubVOForView", clubVO);
-			if(clubVO.getClubName()!=null){
-				System.out.println(clubVO.getClubName());				
+			System.out.println("Login_MS"+session.getAttribute("Login_MS"));
+			
+			if(session.getAttribute("Login_MS")!=null){
+				MemberSession ms = (MemberSession)session.getAttribute("Login_MS");
+				if(ms.getOwnClubList().contains(search_club)){
+					request.setAttribute("identity","clubManager");
+				}else if(ms.getJoinedClubList().contains(search_club)){
+					request.setAttribute("identity", "clubMember");
+				}else if(session.getAttribute("LoginOK")!=null){
+					request.setAttribute("identity", "notClubMember");				
+				}
+				request.setAttribute("identity", "guest");				
 			}
-			System.out.println("Redirect to the clubClientViewFrame.jsp");
-			response.sendRedirect("clubClientViewFrame.jsp");
+			//if(clubVO.getClubName()!=null){
+				//System.out.println(clubVO.getClubName());				
+			//}
+			RequestDispatcher dispatcher = request.getRequestDispatcher("clubClientViewFrame.jsp");
+			//System.out.println("Redirect to the clubClientViewFrame.jsp");
+			//response.sendRedirect("clubClientViewFrame.jsp");
+			dispatcher.forward(request, response);
 			return;
 		}
 		/* 服務從點選導過來的,顯示club的Service */

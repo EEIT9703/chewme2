@@ -24,12 +24,17 @@
 <script src="../js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <style>
-.carousel-inner{
-  width:100%;
-  max-height: 350px; <!-- !important -->
+.carousel-inner {
+	width: 100%;
+	max-height: 350px;
+	<!--
+	!
+	important
+	-->
 }
-.btn{
-width:70%;
+
+.btn {
+	width: 70%;
 }
 </style>
 </head>
@@ -93,8 +98,8 @@ width:70%;
 						<div id="theClubPic" class="item active">
 							<%-- 						<img class="d-block w-100" src="<%=request.getContextPath() %>/getImageInChewme.do?type=clubPic&id=${clubVOForView.clubId}" alt="First slide" style="margin:auto;"> --%>
 
-								<img class=" center-block" src=""
-									id="img_${clubVOForView.clubId}" alt="First slide">
+							<img class=" center-block" src=""
+								id="img_${clubVOForView.clubId}" alt="First slide">
 
 						</div>
 						<a class="carousel-control-prev" href="#carouselExampleControls"
@@ -111,9 +116,15 @@ width:70%;
 
 			</div>
 			<div class="col-md-2">
-				<div>
-					<a class="btn btn-sm btn-primary" role="button"> 管理畫面 </a>
-				</div>
+				<c:if test="${identity}=='notClubMember'">
+					<div>
+						<a class="btn btn-sm btn-primary" role="button"> 加入社團</a>
+					</div>
+				</c:if>
+				<c:if test="${identity}=='clubManager'">
+					<div>
+						<a class="btn btn-sm btn-primary" role="button"> 管理畫面 </a>
+					</div>
 				<div>
 					<a class="btn btn-sm btn-primary"
 						href="<%=request.getContextPath()%>/club/clubClientView.do?action=createClubAct&clubId=${clubVOForView.clubId}"
@@ -126,7 +137,7 @@ width:70%;
 						換照片
 					</label>
 				</div>
-
+			</c:if>
 
 			</div>
 		</div>
