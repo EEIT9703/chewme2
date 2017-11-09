@@ -198,15 +198,15 @@ margin:0px 80px 30px 0px;
 					<ul class="list___3xuJM">
 						<li class="item___2dDze  selected___2Hy4k" id="collection">
 						
-						<span><img src="<%=request.getContextPath()%>/image/car.gif" width=10px height=10px></span>
+						<span><img src="<%=request.getContextPath()%>/image/shopping-cart.png" width=35px height=35px></span>
 						<span class="types___3m74H">購物清單</span>
 						</li>
 						<li class="item___2dDze" id="Order">
-						<span><img src="<%=request.getContextPath()%>/image/car.gif" width=10px height=10px></span>
+						<span><img src="<%=request.getContextPath()%>/image/calendar_s.png" width=30px height=30px></span>
 						<span class="types___3m74H">我的活動</span>
 						</li>
 						<li class="item___2dDze" id="list">
-						<span><img src="<%=request.getContextPath()%>/image/car.gif" width=10px height=10px></span>
+						<span><img src="<%=request.getContextPath()%>/image/file.png" width=30px height=30px></span>
 						<span class="types___3m74H">我的訂單</span> 
 						</li>
 						

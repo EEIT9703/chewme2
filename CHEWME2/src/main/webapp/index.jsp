@@ -178,21 +178,21 @@ ul, li {
                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
                   <div class="carousel-inner">
                     <div class="item active left">
-                      <a href="#"><img src="image/101.jpg" class="img-responsive" alt="product 1"></a>
+                      <a href="#"><img src="image/indexAD/101.jpg" class="img-responsive" alt="product 1"></a>
                       <h4><small>Summer dress floral prints</small></h4>
                       <button class="btn btn-primary" type="button">49,99 €</button>
                       <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Wishlist</button>
                     </div>
                     <!-- End Item -->
                     <div class="item next left">
-                      <a href="#"><img src="image/101.jpg" class="img-responsive" alt="product 2"></a>
+                      <a href="#"><img src="image/indexAD/101.jpg" class="img-responsive" alt="product 2"></a>
                       <h4><small>Gold sandals with shiny touch</small></h4>
                       <button class="btn btn-primary" type="button">9,99 €</button>
                       <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Wishlist</button>
                     </div>
                     <!-- End Item -->
                     <div class="item">
-                      <a href="#"><img src="image/101.jpg" class="img-responsive" alt="product 3"></a>
+                      <a href="#"><img src="image/indexAD/101.jpg" class="img-responsive" alt="product 3"></a>
                       <h4><small>Denin jacket stamped</small></h4>
                       <button class="btn btn-primary" type="button">49,99 €</button>
                       <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Wishlist</button>
