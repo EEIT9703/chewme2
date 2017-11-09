@@ -1,11 +1,11 @@
 package com.iii.eeit9703.member.controller;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Date;
-import java.util.*;
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.iii.eeit9703.member.model.MemService;
@@ -30,6 +31,7 @@ public class MemberEditorServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
+		HttpSession session = req.getSession();
 
 		if ("getonemem".equals(action)) {
 			Map<String, String> errorMsgs = new HashMap<String, String>();
@@ -152,6 +154,8 @@ public class MemberEditorServlet extends HttpServlet {
 				System.out.println(memId);
 				memSvc.updateMem(memId, memberId, memName, memNickN, memPwd, memBirthday, memMail, memAddr,
 						memPhone, memIntr, base64);
+				session.removeAttribute("LoginOK");
+				session.setAttribute("LoginOK", memVO);
 				String url = "/index.jsp";// 成功後轉交的連結
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
