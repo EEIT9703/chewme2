@@ -36,8 +36,7 @@ function readImage(input) {
 	}
 }
 function imgAreaSelectAndReadEventListener(imgAreaS) {
-	imgAreaS.imgAreaSelect({
-		aspectRatio : '400:200',
+	imgAreaS.imgAreaSelect({	
 		handles : true,
 		x1 : 0,
 		y1 : 0,
@@ -51,7 +50,7 @@ function imgAreaSelectAndReadEventListener(imgAreaS) {
 			// ctx.clearRect(0, 0, mycanvas.width,
 			// mycanvas.height);
 			// setWidthHeight(width, height)
-			setWidthHeight(600, 300)
+			setWidthHeight(width, height);
 			canvasDrawImage(img, selection.x1, selection.y1, width, height);
 			dataURL = mycanvas[0].toDataURL('image/jpeg');
 			// console.log(dataURL);
@@ -65,7 +64,7 @@ function setWidthHeight(width, height) {
 }
 function canvasDrawImage(img, x, y, w, h) {
 
-	ctx.drawImage(img, x, y, w, h, 0, 0, 800, 400);
+	ctx.drawImage(img, x, y, w, h, 0, 0, w, h);
 
 }
 function setImageURL(url) {
@@ -82,6 +81,7 @@ function inputChangeEventListener(input) {
 		$("#img-help-block").text("請截取圖片想要之部分");
 	});
 }
+
 // var data=mycanvas[0].toDataURL();
 
 // dataURL 的格式为

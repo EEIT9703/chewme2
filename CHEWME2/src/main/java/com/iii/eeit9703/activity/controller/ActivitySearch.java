@@ -4,12 +4,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
 
@@ -48,22 +50,51 @@ public class ActivitySearch extends HttpServlet {
 		
 		String action = req.getParameter("action");
 		PrintWriter out = resp.getWriter();
-		
+		HttpSession session = req.getSession(false);
 		
 		if("Search".equals(action)){
 			String act_name = req.getParameter("search");
 			
-			System.out.println(act_name);
+			//System.out.println(act_name);
 			
 			ActService actSvc = new ActService();
 			ArrayList<ActivityVO> activityVO = actSvc.Search(act_name);
 			
 			JSONArray actJSON = new JSONArray(activityVO);
 			out.print(actJSON.toString());
-			System.out.println(actJSON);
+			//System.out.println(actJSON);
 		
 			
 			}
+
+		if("searchone".equals(action)){
+			String name1 = req.getParameter("name");
+			System.out.println(name1);
+			
+		}
+
+		
+		if("show".equals(action)){
+			try {
+				Integer actID = new Integer(req.getParameter("actID"));
+				
+				ActService actSvc = new ActService();
+				ActivityVO activityVO = actSvc.getOneAct(actID);
+				
+                session.setAttribute("activityVO", activityVO);
+				
+				RequestDispatcher view = req.getRequestDispatcher("/act/showAct.jsp");
+				view.forward(req,resp);
+				
+				
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+
 	}
 	
 	

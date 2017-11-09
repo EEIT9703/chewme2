@@ -1,29 +1,46 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<div class="panel panel-default">
-		<!-- Default panel contents -->
-		<div class="panel-heading">推薦行程</div>
-		<div class="panel-body" style="padding: 0;">
-			<p>...</p>
+<div class="panel panel-default">
+	<!-- Default panel contents -->
+	<div class="panel-heading">推薦行程</div>
+	<div class="panel-body" style="padding: 0;">
+		<p>...</p>
 
-			<div class="container">
-				<form id="findClubForm" action="clubClientView.do?action=chooseClub"
-					method="POST">
-					<ul class="list-group">
-						<c:forEach var="club" items="${club_list}">
-							<div class="row">
-								<div class="col-sm-12 col-md-12">${club.clubName}</div>
-								<div class="col-sm-6 col-md-2">
-									<img id="img_${club.clubId}" src="132" class="img-responsive">
-								</div>
-								<div class="col-sm-6 col-md-8">${club.brief}</div>
-								<div class="col-sm-6 col-md-2">
-									<button type="submit" class="btn btn-primary btn-sm"
-										name="clubId" value="${club.clubId}">點入觀看</button>
-								</div>
-							</div>
+		<div class="container">
+			<form id="findClubForm" action="clubClientView.do?action=chooseClub"
+				method="POST">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th scope="row">1</th>
+							<td>活動名稱</td>
+							<td>Otto</td>
+							<td>預計參加人數</td>
+							<td>目前參加人數</td>
+							<td>出發日期</td>
+							<td>活動截止日期</td>
+							<td>活動價格</td>
+							<td>活動簡介</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="actVO" items="${clubActList}">
+							<tr>
+								<td>${actVO.act_name}</td>
+								<td>Otto</td>
+								<td>${actVO.act_groups}</td>
+								<td>${actVO.act_current}</td>
+								<td>${actVO.BDate}</td>
+								<td>${actVO.EDate}</td>
+								<td>${actVO.act_price}</td>
+								<td>${actVO.act_news}</td>
+								<td><button type="submit" class="btn btn-primary btn-sm"
+										name="clubId" value="${actVO.clubId}">點入觀看</button></td>
+							</tr>
 						</c:forEach>
-					</ul>
-				</form>
-			</div>
+					</tbody>
+				</table>
+			</form>
 		</div>
+	</div>

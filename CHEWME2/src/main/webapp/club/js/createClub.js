@@ -16,7 +16,7 @@ $(document).ready(function() {
 
 	// 此方法為設定我們設定我們image內部值
 
-	// 創造一個圖形區域選擇器
+	// 創造一個圖形區域
 	imgAreaInit($('#img'));
 	// 設定一個input eventlistener;
 	inputChangeEventListener($("#uploadImage"));					

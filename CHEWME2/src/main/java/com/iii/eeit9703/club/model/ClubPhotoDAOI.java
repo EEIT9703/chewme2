@@ -11,6 +11,6 @@ public interface ClubPhotoDAOI {
      public void delete(Integer photoId);
      public ClubPhotoVO findByPrimaryKey(Integer photoId);
      public List<ClubPhotoVO> getClubPhotoByClubId(Integer clubId);
-     
+     public void updateByClubId(ClubPhotoVO photoVO);
      //查詢某部門的員工(一對多)(回傳 Set)
 }

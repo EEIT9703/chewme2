@@ -34,7 +34,7 @@
 
 
 <style type="text/css">
-b{font-family: 'Arial','Microsoft JhengHei';font-size:20px;}
+b{font-family: 'Arial','Microsoft JhengHei';font-size:20px;margin-top:10px;}
 #attr,#rest,#stay{font-family: 'Arial','Microsoft JhengHei';font-size:20px;}
 p{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 select{width:150px;height:40px;font-family: 'Arial','Microsoft JhengHei';font-size:20px;}
@@ -68,15 +68,15 @@ option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 		<div class="col-xs-5 col-sm-5 col-lg-5" style="padding-left:5px;">
 		
 			<br>
-			<b>行程名稱：</b> <input id="actName"><br><br>
-			<b>(1) 選擇縣市：</b>
+			<img src="../image/mapping.png" height="40px"><b style="color:#005AB5">行程名稱：</b> <input id="actName"><br><br>
+			<img src="../image/pattern (1).png" height="40px"><b style="color:#005AB5">選擇縣市：</b>
 			<select id="country" name="country">
 				<c:forEach var="countryVO" items="${dao.country}">
 					<option value="${countryVO.countryID}">${countryVO.countryName}
 				</c:forEach>
 			</select>
 			<br><br>
-			<b>(2) 選擇區域：</b>
+			<img src="../image/pattern (1).png" height="40px"><b style="color:#005AB5">選擇區域：</b>
 			<select id="county" name="county"><option>請選擇縣市</option></select>
 			<br><br><br>
 			<div id="tabs" style="width:550px">

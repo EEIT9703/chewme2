@@ -25,7 +25,7 @@
 	<div class="container" style="width: 50%">
 
 		<form id="createClubForm" 　name="createClub"
-			action="createClub.do?action=create_club" method="POST"
+			action="createClub.do?action=create_club&createNewClub=yes" method="POST"
 			enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="exampleInputEmail1">社團名稱</label> <input type="text"
@@ -76,23 +76,6 @@
 	</div>
 	<div id="dialog-img" title="Create new user" >
 		<p class="validateTips">請選擇圖片所要的範圍</p>
-
-		<!-- <form>
-			<fieldset>
-				<label for="name">Name</label> <input type="text" name="name"
-					id="name" value="Jane Smith"
-					class="text ui-widget-content ui-corner-all"> <label
-					for="email">Email</label> <input type="text" name="email"
-					id="email" value="jane@smith.com"
-					class="text ui-widget-content ui-corner-all"> <label
-					for="password">Password</label> <input type="password"
-					name="password" id="password" value="xxxxxxx"
-					class="text ui-widget-content ui-corner-all">
-
-				<input type="submit" tabindex="-1"
-					style="position: absolute; top: -1000px">
-			</fieldset>
-		</form> -->
 		<!-- Allow form submission with keyboard without duplicating the dialog button -->
 		<img id="img" src="">
 		<button id="confirmImg">confirm</button>
