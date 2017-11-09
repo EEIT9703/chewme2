@@ -89,10 +89,18 @@ body { background-color:#ddd; }
 			</div>
            <div class="thumbnail">
 
-           <input type="hidden" class="id" id="${activityVO.actID}"> 
-			<a href="<%=request.getContextPath()%>/act/showAct.jsp"></a>			
 
+           
+<%-- 			<a href="<%=request.getContextPath()%>/act/showAct.jsp">			 --%>
+<!-- 				</a>	 -->
+
+<%--            <input type="hidden" class="id" id="${activityVO.actID}">  --%>
+					
+
+          
+			<a href="<%=request.getContextPath()%>/act/show.jsp">	
 				<img class="img-responsive center-block" src="data:image/png;base64,${activityVO.act_photo}" height="250">
+			</a>	
 				<input type="hidden" class="id" value="${activityVO.actID}"> 				
 				<div class="blog-content bg-white">
 				<h3 id="act_name" class="act_name">${activityVO.act_name}</h3>

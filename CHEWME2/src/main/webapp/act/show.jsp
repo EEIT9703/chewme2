@@ -106,8 +106,6 @@
 <header><%@ include file="../header.jsp"%></header>
 
 	
-<jsp:useBean id="actSvc" scope="page" class="com.iii.eeit9703.activity.model.ActService" />
-<input type="hidden" value="${actVO.actID}" >
 <input type="hidden" value="${activityVO.actID}" >
 	<div class="container">
 		<div class="jumbotron">
@@ -168,7 +166,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="destination">旅程時間:${activityVO.BDate}-${actVO.EDate}</label>
+                    <label for="destination">旅程時間:${activityVO.BDate}-${activityVO.EDate}</label>
                 </div>
                 
                 <div class="form-group">
@@ -204,7 +202,7 @@
     <!-- /.container -->
 						
 					<div id="sch">
-					<img id="${activityVO.actID}"  src='data:image/png;base64,'+${activityVO.sch_photo} class="img-responsive"></div>
+					<img id="${activityVO.actID}"  src="${activityVO.sch_photo}" class="img-responsive"></div>
 
 					
 				</div>
