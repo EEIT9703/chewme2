@@ -177,7 +177,7 @@ html {
 						value="${attrVO.attractionID}"> <input type="hidden"
 						name="action" value="update_one">
 					</td>
-					<td><a href="manageList.jsp" class="btn btn-primary" style="color:white;">返回列表</a></td>
+					<td><a href="<%=request.getContextPath()%>/backage/backage_attraction.jsp" class="btn btn-primary" style="color:white;">返回列表</a></td>
 				</tr>
 			</div>
 		</div>

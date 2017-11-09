@@ -50,10 +50,6 @@ text-align: center;
 <script src="<%=request.getContextPath()%>/js/jquery-ui.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
-<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
-<%-- <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script> --%>
-<%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css"> --%>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
@@ -97,12 +93,8 @@ text-align: center;
 					</tr>					
 				</c:forEach>	
 			</tbody>		
-		</table>
-		
-		
+		</table>		
 	</div>	
-	
-
 	<script>
 		$(function() {							
 			$("#table1>tbody>tr:nth-child(even)").css("background-color","#f1f7fe");			

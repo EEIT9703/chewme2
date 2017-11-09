@@ -3,17 +3,14 @@ var template;
 $(document).ready(function() {
 
 	function getTemp() {
-		$.get("/CHEWME2/act/searchR.jsp", {}, function(data) {			
+		$.get("/CHEWME2/act/searchR.jsp", {}, function(data) {		
 			template = data;				
-		
-		})
-		$().click(function(){
-				var act = $(this).text();
-				console.log(act);
-				window.location = "/CHEWME2/act/showAct.jsp";
-			})
+		})		
 	}	
 	$.when(getTemp());
+	
+		
+
 	$('#search').click(function() {
 		$('#div1').empty();
 		var select1 = $("#select1").val();
@@ -55,5 +52,14 @@ $(document).ready(function() {
 			})
 		}
 		
+	})
+	$("img").click(function(){
+		
+		var act = $(this).text();
+		var act1 = $(this).next("input").val()
+		console.log(act1);		
+		$.get("/CHEWME2/act/ActivitySearch?action=searchone", {"name": act1}, function(){
+			
+		})
 	})
 })

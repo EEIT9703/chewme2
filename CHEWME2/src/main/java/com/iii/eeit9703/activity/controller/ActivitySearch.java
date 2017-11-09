@@ -53,17 +53,22 @@ public class ActivitySearch extends HttpServlet {
 		if("Search".equals(action)){
 			String act_name = req.getParameter("search");
 			
-			System.out.println(act_name);
+			//System.out.println(act_name);
 			
 			ActService actSvc = new ActService();
 			ArrayList<ActivityVO> activityVO = actSvc.Search(act_name);
 			
 			JSONArray actJSON = new JSONArray(activityVO);
 			out.print(actJSON.toString());
-			System.out.println(actJSON);
+			//System.out.println(actJSON);
 		
 			
 			}
+		if("searchone".equals(action)){
+			String name1 = req.getParameter("name");
+			System.out.println(name1);
+			
+		}
 	}
 	
 	
