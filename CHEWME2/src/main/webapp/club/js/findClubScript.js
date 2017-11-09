@@ -11,17 +11,18 @@ $(document).ready(function() {
 	// }
 	setAllImg();
 	function setAllImg(){
-		var thsImg;
 		$.each($("form img"), function() {
-			console.log(this.id.substring(4));
-			thsImg = this;
+			//console.log(this.id.substring(4));
+			//thsImg = this;
+			var picId = this.id.substring(4);
+			console.log('picId'+picId);
 			$.get('/CHEWME2/getImageInChewme.do', {
 				"type" : "clubPic",
-				"id" : this.id.substring(4)
+				"id" : picId,
 			}, function(data) {
 				//console.log(data);
 				console.log(this);
-				$(thsImg).attr("src",data);
+				$('#img_'+picId).attr("src",data);
 			})
 		})	
 	}
