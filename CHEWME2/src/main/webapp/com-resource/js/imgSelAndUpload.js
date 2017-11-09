@@ -81,6 +81,7 @@ function inputChangeEventListener(input) {
 		$("#img-help-block").text("請截取圖片想要之部分");
 	});
 }
+
 // var data=mycanvas[0].toDataURL();
 
 // dataURL 的格式为
