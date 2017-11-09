@@ -13,10 +13,6 @@ import com.iii.eeit9703.member.model.MemService;
 import com.iii.eeit9703.member.model.MemVO;  
   
 
-  
-/** 
- * 发送重设密码申请的链接 
- */  
 @WebServlet("/member/forgetPwd.do")
 public class ForgotPasswordServlet extends HttpServlet {  
       
@@ -29,16 +25,16 @@ public class ForgotPasswordServlet extends HttpServlet {
         MemVO mv = msvc.findMemIdorMail(userId,userMail);  
         if (mv == null) {  
         	req.setAttribute("errorMsg","您信箱不存在！");  
-        	req.getRequestDispatcher("/member/forgotPwd.jsp").forward(req, res);  
+        	req.getRequestDispatcher("/member/login.jsp").forward(req, res);  
             return;  
         }  
           
-        // 发送重新设置密码的链接  
+        //發送重設密碼連結
         EmailUtils.sendResetPasswordEmail(mv);  
           
-        req.setAttribute("sendMailMsg", "您的申请已提交成功，请查看您的"+mv.getMemMail()+"邮箱。");  
+        req.setAttribute("sendMailMsg", "您的申請已提交成功，請查看您的"+mv.getMemMail()+"信箱。");  
           
-        req.getRequestDispatcher("/member/resetpwd.jsp").forward(req, res);  
+        req.getRequestDispatcher("/member/login.jsp").forward(req, res);  
     }  
   
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {  

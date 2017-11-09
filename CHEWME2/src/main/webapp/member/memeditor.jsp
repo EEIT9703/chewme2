@@ -94,7 +94,7 @@
 					<div class="form-group">
 						<label class="btn btn-info" for="inputfile"> <input
 							id="inputfile" name="memPhoto" style="display: none;" type="file"
-							value="upload_photo"> <i class="fa fa-folder-open-o"></i>
+							value="${LoginOK.memPhoto}"> <i class="fa fa-folder-open-o"></i>
 							上傳圖片
 						</label>
 					</div>
