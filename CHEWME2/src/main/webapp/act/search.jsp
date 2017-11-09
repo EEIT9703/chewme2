@@ -88,15 +88,21 @@ body { background-color:#ddd; }
 			<input type="hidden" id="${activityVO.actID}">  
 			</div>
            <div class="thumbnail">
-<<<<<<< HEAD
+
+
            
 <%-- 			<a href="<%=request.getContextPath()%>/act/showAct.jsp">			 --%>
 <!-- 				</a>	 -->
-=======
+
+<%--            <input type="hidden" class="id" id="${activityVO.actID}">  --%>
+					
+
            <input type="hidden" class="id" id="${activityVO.actID}"> 
 			<a href="<%=request.getContextPath()%>/act/showAct.jsp">			
->>>>>>> branch 'master' of https://github.com/EEIT9703/chewme2.git
+
+
 				<img class="img-responsive center-block" src="data:image/png;base64,${activityVO.act_photo}" height="250">
+			</a>	
 				<input type="hidden" class="id" value="${activityVO.actID}"> 				
 				<div class="blog-content bg-white">
 				<h3 id="act_name" class="act_name">${activityVO.act_name}</h3>

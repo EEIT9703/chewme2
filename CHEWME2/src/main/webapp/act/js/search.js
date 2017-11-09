@@ -4,8 +4,11 @@ $(document).ready(function() {
 
 	function getTemp() {
 		$.get("/CHEWME2/act/searchR.jsp", {}, function(data) {		
+
+
+
 			template = data;				
-		
+
 		})
 		
 
@@ -46,8 +49,7 @@ $(document).ready(function() {
 				$("#act_name"+i).text(datas.act_name);
 				$(".id:last").attr("id", datas.actID);
 				})
-				
-			
+							
 
 			})
 			
@@ -73,7 +75,7 @@ $(document).ready(function() {
 	$("img").click(function(){
 		
 		var act = $(this).text();
-		var act1 = $(this).next("input").val()
+		var act1 = $(this).parent("a").next("input").val()
 		console.log(act1);		
 		$.get("/CHEWME2/act/ActivitySearch?action=searchone", {"name": act1}, function(){
 			

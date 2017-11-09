@@ -67,25 +67,21 @@ public class ActivitySearch extends HttpServlet {
 			
 			}
 
-		if("searchone".equals(action)){
-			String name1 = req.getParameter("name");
-			System.out.println(name1);
-			
-		}
+	
 
 		
-		if("show".equals(action)){
+		if("searchone".equals(action)){
 			try {
-				Integer actID = new Integer(req.getParameter("actID"));
+				Integer actID = new Integer(req.getParameter("name"));
 				
 				ActService actSvc = new ActService();
 				ActivityVO activityVO = actSvc.getOneAct(actID);
 				
                 session.setAttribute("activityVO", activityVO);
 				
-				RequestDispatcher view = req.getRequestDispatcher("/act/showAct.jsp");
+				RequestDispatcher view = req.getRequestDispatcher("/act/show.jsp");
 				view.forward(req,resp);
-				
+			
 				
 			} catch (NumberFormatException e) {
 				// TODO Auto-generated catch block
