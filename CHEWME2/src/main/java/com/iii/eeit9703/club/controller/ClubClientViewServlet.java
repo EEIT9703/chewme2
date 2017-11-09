@@ -40,6 +40,8 @@ import com.iii.eeit9703.utility.DateUtil;
 @WebServlet("/club/clubClientView.do")
 public class ClubClientViewServlet extends HttpServlet {
 
+	
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
