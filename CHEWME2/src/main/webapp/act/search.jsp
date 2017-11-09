@@ -84,6 +84,9 @@ body { background-color:#ddd; }
 	<div class="row" id="div1">
           <c:forEach var="activityVO" items="${actSvc.all}">
            <div class="col-md-4  margin_bottom30">
+           <div class=title>
+			<input type="hidden" id="${activityVO.actID}">  
+			</div>
            <div class="thumbnail">
            
 			<a href="<%=request.getContextPath()%>/act/showAct.jsp">			
@@ -103,9 +106,9 @@ body { background-color:#ddd; }
 
 				<span class="pull-right">
 				
-              <a href="#" class="btn btn-info btn-sm">
-              <span class="glyphicon glyphicon-heart-empty"></span> 加入收藏
-              </a>             
+              <button class="btn btn-info btn-sm">
+              <span class="glyphicon glyphicon-heart-empty inputCar"></span> 加入收藏
+              </button>             
               </span>
 
 				</div>
@@ -116,7 +119,12 @@ body { background-color:#ddd; }
 			</div>
 	
 
+<script>
 
+
+
+
+</script>
 
 <script src="<%=request.getContextPath()%>/act/js/search.js"></script>
 <script src="https://use.fontawesome.com/1dec14be15.js"></script>

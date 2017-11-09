@@ -3,9 +3,7 @@ pageEncoding="UTF-8"%>
 
 
 <div class="col-md-4  margin_bottom30">
-           <div class="thumbnail">
-           <input type="hidden" class="id">          
-           <input type="hidden" class="id">
+           <div class="thumbnail">    
 			<a href="<%=request.getContextPath()%>/act/showAct.jsp">			
 				<img id="act_photo" class="img-responsive center-block" height="250">
 				</a>
@@ -22,9 +20,9 @@ pageEncoding="UTF-8"%>
 				 
                 <span class="pull-right">
 				
-              <a href="#" class="btn btn-info btn-sm">
+               <button class="btn btn-info btn-sm">
               <span class="glyphicon glyphicon-heart-empty"></span> 加入收藏
-              </a>             
+              </button>             
               </span>
               	</div>
 			</div>

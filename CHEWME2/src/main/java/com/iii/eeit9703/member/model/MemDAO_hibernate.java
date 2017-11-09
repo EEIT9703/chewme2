@@ -8,6 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.iii.eeit9703.activity.model.ActivityVO;
 import com.iii.eeit9703.hibernate.util.HibernateUtil;
 import com.iii.eeit9703.order.OrderVO;
 
@@ -159,6 +160,13 @@ public class MemDAO_hibernate implements MemDAO_interface {
 	public Set<OrderVO> findOrdersByMemId(Integer memId) {
 			
 		Set<OrderVO> list = findByPrimaryKey(memId).getOrders();
+		return list;
+	}
+
+
+	@Override
+	public Set<ActivityVO> findActivitysByMemId(Integer memId) {
+		Set<ActivityVO> list = findByPrimaryKey(memId).getActivitys();
 		return list;
 	}
 
