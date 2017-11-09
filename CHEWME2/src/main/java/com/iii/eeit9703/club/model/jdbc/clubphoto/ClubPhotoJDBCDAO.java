@@ -56,6 +56,7 @@ public class ClubPhotoJDBCDAO implements ClubPhotoDAOI {
 	private static final String GET_PHOTOLIST_BY_CLUBID = "select photo from club_photo where clubId=?";
 	private static final String INSERT = "insert into club_photo (clubId, name, photo) values (?,?,?)";
 	private static final String UPDATE = "update club_photo set clubId=?, name=?, photo=? where photoID=?";
+	private static final String UPDATE_BY_CLUBID = "update club_photo set name=?, photo=? where clubID=?";
 	private static final String DELETE = "delete from club_photo where clubId=?";
 
 	// �s�W
@@ -108,6 +109,40 @@ public class ClubPhotoJDBCDAO implements ClubPhotoDAOI {
 			pstmt.setInt(2, clubPicVO.getClubId());
 			pstmt.setString(3, clubPicVO.getName());
 			pstmt.setBinaryStream(4, is);
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	@Override
+	public void updateByClubId(ClubPhotoVO clubPicVO) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE_BY_CLUBID);
+
+			//pstmt.setInt(1, clubPicVO.getPhotoId());
+			pstmt.setString(1, clubPicVO.getName());
+			pstmt.setBinaryStream(2, clubPicVO.getPhoto());
+			pstmt.setInt(3, clubPicVO.getClubId());
 			pstmt.executeUpdate();
 
 		} catch (SQLException e) {
