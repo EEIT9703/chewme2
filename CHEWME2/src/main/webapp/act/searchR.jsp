@@ -5,7 +5,6 @@ pageEncoding="UTF-8"%>
 <div class="col-md-4  margin_bottom30">
            <div class="thumbnail">
            <input type="hidden" class="id">          
-           <input type="hidden" class="id">
 			<a href="<%=request.getContextPath()%>/act/showAct.jsp">			
 				<img id="act_photo" class="img-responsive center-block" height="250">
 				</a>

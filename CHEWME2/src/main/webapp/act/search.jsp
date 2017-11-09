@@ -91,7 +91,7 @@ body { background-color:#ddd; }
 				</a>	
 							
 				<div class="blog-content bg-white">
-				<h3 id="act_name" class="act_name1">${activityVO.act_name}</h3>
+				<h3 id="act_name" class="act_name">${activityVO.act_name}</h3>
 				<p>Category : <a href="javascript::;">Nature</a></p>
 				<p>旅遊介紹<a href="javascript::;"  class="heading_color">  Continue Reading</a></p>
 				<hr>
