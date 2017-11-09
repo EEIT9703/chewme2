@@ -308,10 +308,10 @@ body {
 	
 
 	
-	$('.inputCar').click(function(){
-		 var id = $(this).parents('div').attr('id'); 
-		 $.getJSON('<%=request.getContextPath()%>/ShoppingCar?action=inputCar',{'ID' : id}, result);
-						})
+	$('#div1').on('click','button',function(){
+		var id = $(this).parent().parent().parent().parent().parent().find('input').attr('id')
+		$.getJSON('<%=request.getContextPath()%>/ShoppingCar?action=inputCar',{'ID' : id}, result);
+	})
 		function result(array) {
 			$.each(array, function(i, result) {
 				if (result.existColl == "已加入購物車") {
@@ -323,6 +323,8 @@ body {
 			})
 
 		}
+
+
 
 	})
 </script>

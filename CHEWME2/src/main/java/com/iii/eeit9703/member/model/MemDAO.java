@@ -180,6 +180,14 @@ public class MemDAO implements MemDAO_interface {
 		}
 		return list;
 	}
+	
+	
+
+	@Override
+	public Set<ActivityVO> findActivitysByMemId(Integer memId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public Set<OrderVO> findOrdersByMemId(Integer memId) {
@@ -213,7 +221,7 @@ public class MemDAO implements MemDAO_interface {
 		List<ClubMemRelationVO> list=md.fomc(1);
 		for(ClubMemRelationVO cmr:list){
 			System.out.print(cmr.getClubId() + ",");
-			System.out.print(cmr.getClubName() + ",");
+	
 			
 		}
 		
