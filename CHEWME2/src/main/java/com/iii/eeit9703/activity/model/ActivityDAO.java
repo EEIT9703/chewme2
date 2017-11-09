@@ -41,7 +41,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 			      "SELECT actID,act_name,act_groups,act_current,BDate,EDate,activity_state,act_photo,act_price FROM activity";
 		//查詢單筆
 		private static final String GET_ONE_ACT =
-			      "SELECT actID,act_name,act_groups,act_current,BDate,EDate,activity_state,act_photo,act_price FROM activity where actID = ?";
+			      "SELECT actID,act_name,act_groups,act_current,BDate,EDate,activity_state,act_photo,act_price,act_news,sch_photo FROM activity where actID = ?";
 		//上傳預覽圖及行程特色
 		private static final String Final_ACT =
 				"UPDATE activity set act_photo=?,act_news=? where actID=?";
@@ -168,6 +168,9 @@ public class ActivityDAO implements ActivityDAO_interface {
 				activityVO.setAct_price(rs.getString("act_price"));         //活動價格
 				activityVO.setActivity_state(rs.getInt("activity_state")); //活動型態
 				activityVO.setAct_photo(rs.getString("act_photo"));
+				activityVO.setAct_price(rs.getString("act_price"));
+				activityVO.setAct_news(rs.getString("act_news"));
+				activityVO.setSch_photo(rs.getString("sch_photo"));
 				
 				
 			}
