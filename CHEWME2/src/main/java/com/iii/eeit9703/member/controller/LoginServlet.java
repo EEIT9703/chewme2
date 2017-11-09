@@ -26,7 +26,6 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		HttpSession session = req.getSession();
-
 		Map<String, String> errorMsgMap = new HashMap<String, String>();// 準備存放錯誤訊息的Map物件
 
 		req.setAttribute("ErrorMsgKey", errorMsgMap);// 將errorMsgMap放入requset物件內,識別字串為ErrorMsgKey
@@ -51,7 +50,7 @@ public class LoginServlet extends HttpServlet {
 		Cookie cookieUser = null;
 		Cookie cookiePassword = null;
 		Cookie cookieRememberMe = null;
-
+		
 		if (rm != null) { // rm存放瀏覽器送來之RememberMe的選項
 			cookieUser = new Cookie("user", userId);
 			cookieUser.setMaxAge(30 * 60 * 60);
@@ -89,6 +88,7 @@ public class LoginServlet extends HttpServlet {
 		if (!errorMsgMap.isEmpty()){// && !verify) {
 			RequestDispatcher rd = req.getRequestDispatcher("/member/login.jsp");
 			rd.forward(req, res);
+			
 			return;
 		}
 		// 4. 進行 Business Logic 運算
@@ -96,10 +96,9 @@ public class LoginServlet extends HttpServlet {
 		MemService memSvc;
 		memSvc = new MemService();
 		// 呼叫 ms物件的 checkIDPassword()，要記得傳入userid與password兩個參數
-
 		MemVO mv = memSvc.checkIDPassword(userId, password);
-		MemberSession ms = new MemberSession(mv);
-		if (mv != null) {
+		if (mv != null ) {
+			MemberSession ms = new MemberSession(mv);
 			// OK, 將mv物件放入Session範圍內，識別字串為"LoginOK"
 			session.setAttribute("LoginOK", mv);
 			session.setAttribute("LoginOK_MS",ms);
