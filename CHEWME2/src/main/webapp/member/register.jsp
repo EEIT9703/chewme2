@@ -34,7 +34,7 @@
 
 
 					<div class="form-group">
-						<label>真實姓名:</label> <input type="text" class="form-control"
+						<label>帳號:</label> <input type="text" class="form-control"
 							name="memberId" value="${param.memberId}"><small><font
 							size="-1" color="#FF0000">${MsgMap.IDEmpty}${MsgMap.errorIDDup}</font></small>
 					</div>
