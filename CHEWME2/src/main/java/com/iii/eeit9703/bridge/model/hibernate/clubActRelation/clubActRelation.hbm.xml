@@ -10,8 +10,7 @@
             <key-property name="memId" column="memId" type="Integer"></key-property>
         </composite-id>
                 
-        <property name="clubId" column="clubId" />
-        <property name="memId" column="memId" />
+
         
     </class>
 </hibernate-mapping>

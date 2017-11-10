@@ -18,6 +18,10 @@
 		<property name="vistorsInMonth" column="vistorsInMonth" />
 		<property name="addr" column="addr" />
 		<!-- <property name="clubPic" column="clubPic" /> -->		
+ 		<set name="clubMemRelation" table="club_member_list" lazy="false" cascade="all" inverse="true">
+			<key><column name="clubId"/></key>
+			<one-to-many class="com.iii.eeit9703.bridge.model.ClubMemRelationVO"/>
+		</set>  
 	</class>
 </hibernate-mapping>
 

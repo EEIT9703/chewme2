@@ -1,11 +1,9 @@
 package com.iii.eeit9703.club.model.hibernate.clubphoto;
 
 import java.io.InputStream;
-import java.sql.Blob;
 import java.util.List;
 import java.util.Set;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.iii.eeit9703.club.model.ClubPhotoDAOI;
@@ -13,6 +11,18 @@ import com.iii.eeit9703.club.model.ClubPhotoVO;
 import com.iii.eeit9703.hibernate.util.HibernateUtil;
 
 public class ClubPhotoHibernateDAO implements ClubPhotoDAOI {
+	@Override
+	public void updateByClubId(ClubPhotoVO photoVO) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(ClubPhotoVO photoVO, InputStream is) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private static final String GET_ALL_STMT = "from ClubPhotoVO order by photoId";
 
 	@Override

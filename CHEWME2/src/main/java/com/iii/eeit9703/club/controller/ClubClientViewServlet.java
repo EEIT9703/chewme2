@@ -205,8 +205,12 @@ public class ClubClientViewServlet extends HttpServlet {
 		if (action.matches("loadIssues")) {
 			System.out.println("In ClubClientVIEW, get in to load issues.");
 			/* 準備get方法內傳回參數的基本物件(DAO及writer) */
-
-			Integer clubId = Integer.parseInt(request.getParameter("clubId"));
+			Integer clubId;
+			if(request.getParameter("clubId")!=null){				
+				clubId = Integer.parseInt(request.getParameter("clubId"));
+			}else {
+				clubId = new Integer(1);
+			}
 			PrintWriter out = response.getWriter();
 			IssueService is = new IssueService();
 			List<IssueVO> issueVO_list = is.getIssueListByClubId(clubId);
@@ -283,6 +287,7 @@ public class ClubClientViewServlet extends HttpServlet {
 		if (action.matches("insertIssue")) {
 			PrintWriter out = response.getWriter();
 			System.out.println("request.content is " + request.getParameter("content"));
+			System.out.println("request.title is " + request.getParameter("title"));
 			System.out.println("the issue id is " + request.getParameter("issueId"));
 			IssueService is = new IssueService();
 			IssueVO isvo = new IssueVO();

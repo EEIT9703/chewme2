@@ -4,12 +4,12 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.iii.eeit9703.bridge.model.hibernate.clubMemRelation.ClubMemRelatoimHibernateDAO;
+import com.iii.eeit9703.bridge.model.hibernate.clubMemRelation.ClubMemRelatoinHibernateDAO;
 
 public class ClubMemRelationService {
 	ClubMemRelationDAOI cmlDAO; 
 	public ClubMemRelationService(){
-		cmlDAO=new  ClubMemRelatoimHibernateDAO();
+		cmlDAO=new  ClubMemRelatoinHibernateDAO();
 	}
 	public List<ClubMemRelationVO> getAll(){
 		return cmlDAO.getAll();

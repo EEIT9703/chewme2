@@ -141,10 +141,13 @@ table {
 					</label>
 				</div>
 				<div>
-					<a class="btn btn-sm btn-danger" style="width:100%" role="button"> 刪除社團 </a>
+					<a id="reNew" class="btn btn-sm btn-primary" role="button" style="width:100%"> 更新</a>
 				</div>
 				<div>
-					<a id="reNew" class="btn btn-sm btn-primary" role="button" style="width:100%"> 更新</a>
+					<a class="btn btn-sm btn-danger" style="width:100%" role="button"> 加入社團社團 </a>
+				</div>
+				<div>
+					<a class="btn btn-sm btn-danger" style="width:100%" role="button"> 刪除社團 </a>
 				</div>
 
 			</div>
@@ -166,8 +169,8 @@ table {
 						data-toggle="tab" href="#profile" role="tab"
 						aria-controls="profile">關於我們</a></li>
 					<li class="nav-item"><a class="nav-link" id="profile-tab"
-						data-toggle="tab" href="#addNewAct-page" role="tab"
-						aria-controls="profile">新增行程</a></li>
+						data-toggle="tab" href="#club-member-info" role="tab"
+						aria-controls="profile">社員資訊</a></li>
 					<!-- <li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
 						role="button" aria-haspopup="true" aria-expanded="false">
@@ -190,8 +193,11 @@ table {
 			<div id="oldActList-page">
 				<%@ include file="ccvOldActList.jsp"%>
 			</div>
-			<div id="addNewAct-page">
-				<iframe src="../act/createAct2.jsp"></iframe>
+			<div id="my-info">
+				<iframe src="../club/info.jsp"></iframe>
+			</div>
+			<div id="member-info">
+				<iframe src="../club/club-member-info.jsp"></iframe>
 			</div>
 		</div>
 		<div id="canvasDiv" hidden>
