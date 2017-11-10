@@ -126,12 +126,7 @@ body { background-color:#ddd; }
 			</div>
 	
 
-<script>
 
-
-
-
-</script>
 
 <script src="<%=request.getContextPath()%>/act/js/search.js"></script>
 <script src="https://use.fontawesome.com/1dec14be15.js"></script>

@@ -3,6 +3,7 @@ var template_attr;
 
 $(document).ready(function() {
 
+
 	function getTemp() {
 		$.get("/CHEWME2/act/searchR.jsp", {}, function(data) {	
 			template = data;	
