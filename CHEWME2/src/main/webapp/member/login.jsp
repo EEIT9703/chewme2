@@ -31,7 +31,7 @@
 				<div class="row">
 					<div class="col-xs-6 col-sm-6 col-md-6">
 						<a
-							href="https://accounts.google.com/o/oauth2/auth?scope=https://www.googleapis.com/auth/userinfo.profile+https://www.googleapis.com/auth/userinfo.email&redirect_uri=http://localhost:8080/CHEWME2/googlelogin.do&response_type=code&state=/profile&client_id=237459292600-4nc82k5o9iq1caepr82fsukrcpsflah0.apps.googleusercontent.com">
+							href="https://accounts.google.com/o/oauth2/auth?scope=https://www.googleapis.com/auth/userinfo.profile+https://www.googleapis.com/auth/userinfo.email&redirect_uri=http://localhost:8081/CHEWME2/googlelogin.do&response_type=code&state=/profile&client_id=237459292600-4nc82k5o9iq1caepr82fsukrcpsflah0.apps.googleusercontent.com">
 							<img src="<%=request.getContextPath()%>/image/google_sign_in.png"
 							style="width: 350px; height: 70px;" />
 						</a>

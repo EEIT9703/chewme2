@@ -5,7 +5,7 @@ pageEncoding="UTF-8"%>
 <div class="col-md-4  margin_bottom30">
            <div class="thumbnail">
 			<a class="url" href="<%=request.getContextPath()%>/act/show.jsp">			
-				<img class="center-block img-responsive" src="" height="250">
+				<img class="center-block img-responsive" src="" height="150">
 			</a>
            		<input type="hidden" class="id">  
 				<div class="blog-content bg-white">
@@ -28,6 +28,7 @@ pageEncoding="UTF-8"%>
               	</div>
 			</div>
 		</div>
+	
 
 
 

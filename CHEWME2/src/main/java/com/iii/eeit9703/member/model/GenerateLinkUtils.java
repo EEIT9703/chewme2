@@ -15,7 +15,7 @@ public class GenerateLinkUtils {
     private static final String CHECK_CODE = "checkCode";  
       
     public static String generateResetPwdLink(MemVO memberId) {  
-        return "http://localhost:8080/CHEWME2/member/resetpwd.jsp?userName="   
+        return "http://localhost:8081/CHEWME2/member/resetpwd.jsp?userName="   
                 + memberId.getMemberId() + "&" + CHECK_CODE + "=" + generateCheckcode(memberId);  
     }  
       
