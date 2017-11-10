@@ -19,6 +19,8 @@
 <script
 	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+<script type="text/javascript">
+</script>
 <body>
 	<header><%@ include file="/header.jsp"%></header>
 	<div class="container">
@@ -31,7 +33,7 @@
 				<div class="row">
 					<div class="col-xs-6 col-sm-6 col-md-6">
 						<a
-							href="https://accounts.google.com/o/oauth2/auth?scope=https://www.googleapis.com/auth/userinfo.profile+https://www.googleapis.com/auth/userinfo.email&redirect_uri=http://localhost:8080/CHEWME2/googlelogin.do&response_type=code&state=/profile&client_id=237459292600-4nc82k5o9iq1caepr82fsukrcpsflah0.apps.googleusercontent.com">
+							href="https://accounts.google.com/o/oauth2/auth?scope=https://www.googleapis.com/auth/userinfo.profile+https://www.googleapis.com/auth/userinfo.email&redirect_uri=http://localhost:8081/CHEWME2/googlelogin.do&response_type=code&state=/profile&client_id=237459292600-4nc82k5o9iq1caepr82fsukrcpsflah0.apps.googleusercontent.com">
 							<img src="<%=request.getContextPath()%>/image/google_sign_in.png"
 							style="width: 350px; height: 70px;" />
 						</a>
@@ -49,9 +51,10 @@
 							color='red' size="-3">&nbsp;${ErrorMsgKey.AccountisEmpty}</Font></small>
 					</div>
 					<div class="form-group">
-						<a class="pull-right" data-toggle="modal" data-target="#gridSystemModal">忘記密碼?</a>
-						<label>密碼:</label> <input type="password" class="form-control"
-							id="password" name="pswd" value="${sessionScope.password}"><small><Font
+						<a class="pull-right" data-toggle="modal"
+							data-target="#gridSystemModal">忘記密碼?</a> <label>密碼:</label> <input
+							type="password" class="form-control" id="password" name="pswd"
+							value="${sessionScope.password}"><small><Font
 							color='red' size="-3">&nbsp;${ErrorMsgKey.PasswordisEmpty}</Font></small>
 					</div>
 
@@ -74,29 +77,6 @@
 					</div>
 				</form>
 
-
-
-
-
-				<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-					aria-labelledby="myModalLabel" aria-hidden="true" align="center">
-					<div class="modal-dialog" align="center">
-						<div class="modal-content">
-							<form action="forgetPwd.do" method="post">
-								<span style="color: red">${requestScope.sendMailMsg}</span> <br>&nbsp;您的帳號：<input
-									type="text" name="userId" /><br> <br> &nbsp;您的信箱：<input
-									type="text" name="userMail" /><br>
-								<span style="color: red">${requestScope.errorMsg}</span><br />
-								<div align="center">
-									<input type="submit" value="提交" />
-								</div>
-							</form>
-						</div>
-						<!-- /.modal-content -->
-					</div>
-					<!-- /.modal -->
-				</div>
-
 				<div id="gridSystemModal" class="modal fade" tabindex="-1"
 					role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
 					<div class="modal-dialog" role="document">
@@ -110,17 +90,12 @@
 							</div>
 							<form action="forgetPwd.do" method="post">
 								<div class="modal-body">
-									<div class="row">
-									<div align="center">
-									<span style="color: red">${requestScope.sendMailMsg}</span>
-									</div>
+									<div class="row">	
 										<div class="col-md-3 col-md-offset-3">
-											 <br>&nbsp;您的帳號：<input
-												type="text" name="userId" /><br> 
-											<br> &nbsp;您的信箱：<input
-												type="text" name="userMail" /><br> 
+											<br>&nbsp;您的帳號：<input type="text" name="userId" /><br>
+											<br> &nbsp;您的信箱：<input type="text" name="userMail" /><br>
 										</div>
-										<span style="color: red">${requestScope.errorMsg}</span><br />
+										<br />
 									</div>
 
 								</div>
@@ -135,5 +110,6 @@
 				</div>
 			</div>
 		</div>
+	</div>
 </body>
 </html>
