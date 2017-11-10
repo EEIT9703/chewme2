@@ -18,8 +18,8 @@ public class EmailUtils {
       
 	 static String host = "smtp.gmail.com";
 	  static int port = 587;
-	  final static String username = "eeit9703@gmail.com";
-	  final static String password = "eeit97032017";
+	  final static String username = "slj68001@gmail.com";
+	  final static String password = "slj00168";
     /** 
      * 发送重设密码链接的邮件 
      */  

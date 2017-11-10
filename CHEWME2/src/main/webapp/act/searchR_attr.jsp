@@ -4,7 +4,7 @@ pageEncoding="UTF-8"%>
 
 <div class="col-md-4  margin_bottom30">
            <div class="thumbnail">
-			<a href="<%=request.getContextPath()%>/attractions/show_attr.jsp">			
+			<a class="url_attr" href="<%=request.getContextPath()%>/attractions/show_attr.jsp">			
 				<img class="img-responsive center-block" src="<%=request.getContextPath()%>/image/attr.jpg" height="250">
 			</a>
            		<input type="hidden" class="id">    
@@ -17,7 +17,7 @@ pageEncoding="UTF-8"%>
 				<a href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent('http://www.web.com.tw/activity/index.html'))));"><i class="fa fa-facebook margin_left10" aria-hidden="true"></i></a>
 				<a href="javascript"><i class="fa fa-twitter margin_left10" aria-hidden="true"></i></a>
 				<a href="javascript"><i class="fa fa-google-plus margin_left10" aria-hidden="true"></i></a>
-				 </span> </p>
+				 </span>
 				 
                 <span class="pull-right">
 				   

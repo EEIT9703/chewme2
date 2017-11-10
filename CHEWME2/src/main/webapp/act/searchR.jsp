@@ -17,7 +17,7 @@ pageEncoding="UTF-8"%>
 				<a href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent('http://www.web.com.tw/activity/index.html'))));"><i class="fa fa-facebook margin_left10" aria-hidden="true"></i></a>
 				<a href="javascript"><i class="fa fa-twitter margin_left10" aria-hidden="true"></i></a>
 				<a href="javascript"><i class="fa fa-google-plus margin_left10" aria-hidden="true"></i></a>
-				 </span> </p>
+				 </span>
 				 
                 <span class="pull-right">
 				
