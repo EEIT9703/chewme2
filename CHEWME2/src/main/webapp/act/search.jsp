@@ -10,8 +10,8 @@ pageEncoding="UTF-8"%>
 
 	
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
-<script	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+<link href="<%=request.getContextPath()%>/css/bootstrap-select.min.css" rel="stylesheet">
+<script	src="<%=request.getContextPath()%>/js/bootstrap-select.min.js"></script>
 <style>
 
 body { background-color:#ddd; }
@@ -134,5 +134,5 @@ body { background-color:#ddd; }
 </script>
 
 <script src="<%=request.getContextPath()%>/act/js/search.js"></script>
-<script src="https://use.fontawesome.com/1dec14be15.js"></script>
+<script src="<%=request.getContextPath()%>/js/FontAwesomeCdnConfig.js"></script>
 
