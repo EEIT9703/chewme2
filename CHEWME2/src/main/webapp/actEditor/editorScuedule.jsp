@@ -356,9 +356,9 @@ $(function() {
 		},
 		eventClick: function(id){
 			var eventID=id.id
-			//console.log(schID);
+			console.log(schID);
 			$('#calendar').fullCalendar('removeEvents',eventID);
-			alert("id=" + eventID);
+			//alert("id=" + eventID);
 			$.post('<%=request.getContextPath()%>/Calendar.do?mission=deleteSCH',{"eventID":eventID});		
 
 			
