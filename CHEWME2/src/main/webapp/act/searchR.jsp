@@ -4,8 +4,8 @@ pageEncoding="UTF-8"%>
 
 <div class="col-md-4  margin_bottom30">
            <div class="thumbnail">
-			<a href="<%=request.getContextPath()%>/act/show.jsp">			
-				<img class="img-responsive center-block" src="data:image/png;base64,${activityVO.act_photo}" height="250">
+			<a class="url" href="<%=request.getContextPath()%>/act/show.jsp">			
+				<img class="center-block img-responsive" src="" height="250">
 			</a>
            		<input type="hidden" class="id">  
 				<div class="blog-content bg-white">

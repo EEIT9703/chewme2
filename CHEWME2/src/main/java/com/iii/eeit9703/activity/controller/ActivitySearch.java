@@ -72,14 +72,13 @@ public class ActivitySearch extends HttpServlet {
 		
 		if("searchone".equals(action)){
 			try {
-				session.removeAttribute("activityVO");
+				//session.removeAttribute("activityVO");
 				Integer actID = new Integer(req.getParameter("name"));
 				System.out.println(actID);
 				ActService actSvc = new ActService();
 				ActivityVO activityVO = actSvc.getOneAct(actID);
 				System.out.println(activityVO.getAct_name());
-                session.setAttribute("activityVO", activityVO);
-				
+                req.setAttribute("activityVO", activityVO);
 				RequestDispatcher view = req.getRequestDispatcher("/act/show.jsp");
 				view.forward(req,resp);
 			
