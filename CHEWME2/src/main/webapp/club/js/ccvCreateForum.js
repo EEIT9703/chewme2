@@ -85,15 +85,15 @@ function sendIssue(button) {
 	var sender;
 	console.log(sender = $(button).closest('li[class="list-group-item"]'));
 	console.log(content = $(button).closest("ul").find("textarea").val());
+	console.log(title = $(button).closest(".panel").find(".panel-heading").find("input").val());
 	/*console.log(proposerId);*/
-/*	console.log(id = $(button).closest("div[class='panel panel-default']")
-			.attr("id").substr(8));*/
+	console.log(id =$("#clubIdforView").text());
 	
 	if ((content != "") && (title!="")) {
 		$.post("clubClientView.do?action=insertIssue", {
 			"content" : content,
 			"title":title,
-			"clubId": $("#clubIdforView").text()
+			"clubId": $("#clubIdforView").text(),
 		}, function(id) {
 			console.log("ajax回收資料完成");
 			console.log(id=id.trim())

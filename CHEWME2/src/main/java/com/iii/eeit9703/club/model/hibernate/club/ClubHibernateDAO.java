@@ -14,6 +14,25 @@ public class ClubHibernateDAO implements ClubDAOI{
 	private static final String GET_ALL_STMT="from ClubVO order by clubId";
 	private static final String GET_ONE_STMT_SQL="from ClubVO where clubId = ?";
 	private static final String GET_Clubs_by_ManagerId_STMT_SQL="from ClubVO where managerId = ?";
+	private static final String UPDATE_VISITOR="update ClubVO set vistors=vistor+1 where clubId=?";
+	private static final String GET_CLUB_MEMBERS = "select memId from ClubMemRelationVO cmr inner join cmr.clubVO";
+	
+	public List<Integer> getClubMembers() {
+		List<Integer> list=null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try{
+			session.beginTransaction();
+			Query query = session.createQuery(GET_CLUB_MEMBERS);
+			list = query.list();
+			session.getTransaction().commit();
+				
+		}catch(RuntimeException ex){
+			session.getTransaction().rollback();
+			throw ex;			
+		}
+		return list;
+	}
+	
 	@Override
 	public List<ClubVO> getAll() {
 		List<ClubVO> list=null;
@@ -93,6 +112,8 @@ public class ClubHibernateDAO implements ClubDAOI{
 			throw ex;			
 		}
 	}
+	
+	
 
 	@Override
 	public void delete(Integer clubId) {
@@ -111,6 +132,11 @@ public class ClubHibernateDAO implements ClubDAOI{
 
 	public static void main(String[] args) {
 		ClubHibernateDAO chd = new ClubHibernateDAO();
+		List<Integer> listm = chd.getClubMembers();
+		for(Integer i : listm){
+			System.out.print(i + ",");
+		}
+		
 		List<ClubVO> list = chd.getAll();
 		for (ClubVO aClub : list) {
 			System.out.print(aClub.getClubId() + ",");

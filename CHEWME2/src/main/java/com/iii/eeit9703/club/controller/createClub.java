@@ -87,6 +87,8 @@ public class createClub extends HttpServlet {
 			clubVO.setLocationId(Integer.parseInt("0"));
 			clubVO.setBrief(request.getParameter("brief"));
 			clubVO.setRefURL(request.getParameter("url"));
+			clubVO.setVistors(1);
+			clubVO.setVistorsInMonth(1);
 			clubVO.setAddr(request.getParameter("address"));
 			//clubVO.setClubPic("");
 			ClubService cs = new ClubService();
@@ -94,7 +96,8 @@ public class createClub extends HttpServlet {
 			ClubPhotoService cps = new ClubPhotoService();
 			clubPhotoVO.setClubId(clubId);
 			clubPhotoVO.setName(request.getParameter("clubName"));
-			clubPhotoVO.setPhoto(request.getPart("uploadImage").getInputStream());			
+			clubPhotoVO.setPhoto(request.getPart("uploadImage").getInputStream());
+			
 			cps.insertPhoto(clubPhotoVO);
 			
 			session.setAttribute("club", clubVO);			
