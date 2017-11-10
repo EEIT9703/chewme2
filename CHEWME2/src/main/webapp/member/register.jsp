@@ -11,8 +11,7 @@
 
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/bootstrap.min.css">
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery.min.js"></script>
+
 
 </head>
 <body>
@@ -23,9 +22,10 @@
 		<div class="row main">
 			<div class="panel-heading">
 				<div class="panel-title text-center">
-						<h3>
-					<a href="<%=request.getContextPath()%>/member/login.jsp">LoginMe</a>,or RegisterMe
-				</h3>
+					<h3>
+						<a href="<%=request.getContextPath()%>/member/login.jsp">LoginMe</a>,or
+						RegisterMe
+					</h3>
 				</div>
 			</div>
 			<div class="main-login main-center">
@@ -36,21 +36,21 @@
 					<div class="form-group">
 						<label>帳號:</label> <input type="text" class="form-control"
 							name="memberId" value="${param.memberId}"><small><font
-							size="-1" color="#FF0000">${MsgMap.IDEmpty}${MsgMap.errorIDDup}</font></small>
+							size="-1" color="#FF0000">${MsgMap.IDEmpty}${MsgMap.IDExistError}</font></small>
 					</div>
 					<div class="form-group">
 						<label>真實姓名:</label> <input type="text" class="form-control"
 							name="memName" value="${param.memName}"><small><font
 							size="-1" color="#FF0000">${MsgMap.NameEmpty}${MsgMap.NameFormatError}</font></small>
 					</div>
-					
+
 					<div class="form-group">
 						<label>暱稱:</label> <input type="text" class="form-control"
 							name="memNickN" value="${param.memNickN}"><small><Font
 							color='red' size="-3">&nbsp;${MsgMap.NickNEmpty}</Font></small>
 					</div>
-					
-										<div class="form-group">
+
+					<div class="form-group">
 						<label>密碼:</label> <input type="password" class="form-control"
 							name="memPwd" value="${param.memPwd}"><small><Font
 							color='red' size="-3">&nbsp;${MsgMap.PswdEmpty}</Font></small>
@@ -108,11 +108,8 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript"
 		src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-	<script src="js/dialog.js"></script>
 	<script type="text/javascript"
 		src="<%=request.getContextPath()%>/js/jquery.imgareaselect.pack.js"></script>
-	<script type="text/javascript"
-		src="<%=request.getContextPath()%>/club/js/createClub.js"></script>
 	<script type="text/javascript"
 		src="<%=request.getContextPath()%>/com-resource/js/imgSelAndUpload.js"></script>
 	<script>

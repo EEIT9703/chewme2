@@ -11,7 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.iii.eeit9703.activity.model.ActivityDAO_hibernate;
 import com.iii.eeit9703.activity.model.ActivityVO;
 import com.iii.eeit9703.member.model.MemVO;
 import com.iii.eeit9703.report.ReportDAO_hibernate;
@@ -44,22 +46,25 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 		
 		try {
 			String text = request.getParameter("text");
-			String id = request.getParameter("id");
-			
+			Integer id = Integer.parseInt(request.getParameter("id"));
 			request.setCharacterEncoding("UTF-8");		
 			response.setCharacterEncoding("UTF-8");
 			PrintWriter out = response.getWriter();
 			
-			ActivityVO activityVO= new ActivityVO();
-			MemVO memVO=new MemVO();
+			HttpSession session =request.getSession();
+		 	MemVO memVO=(MemVO) session.getAttribute("LoginOK");
+			ActivityDAO_hibernate actDAO=new ActivityDAO_hibernate();
+			ActivityVO activityVO=actDAO.findByPrimaryKey(id);
 			
-			Integer a=3;
-			Integer b=3;
-			activityVO.setActID(a);
-			memVO.setMemId(b);
-			
-			System.out.println(text);
-			System.out.println(id);
+			//MemVO memVO=new MemVO();
+//			
+//			Integer a=3;
+//			Integer b=3;
+//			activityVO.setActID(a);
+//			memVO.setMemId(b);
+//			
+//			System.out.println(text);
+//			System.out.println(id);
 
 			 	 
 //			 SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
