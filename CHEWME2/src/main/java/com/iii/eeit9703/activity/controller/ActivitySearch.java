@@ -90,6 +90,25 @@ public class ActivitySearch extends HttpServlet {
 			}
 			
 		}
+		if("searchattr".equals(action)){
+			try {
+//				session.removeAttribute("attrVO");
+				Integer attrID = new Integer(req.getParameter("attrname"));
+				System.out.println(attrID);
+//				ActService actSvc = new ActService();
+//				ActivityVO activityVO = actSvc.getOneAct(actID);
+//				System.out.println(activityVO.getAct_name());
+//                session.setAttribute("activityVO", activityVO);
+//				
+//				RequestDispatcher view = req.getRequestDispatcher("/act/show.jsp");
+//				view.forward(req,resp);
+			
+				
+			} catch (NumberFormatException e) {
+				
+				e.printStackTrace();
+			}
+		}
 		
 
 	}
