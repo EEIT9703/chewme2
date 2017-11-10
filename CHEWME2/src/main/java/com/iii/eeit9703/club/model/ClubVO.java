@@ -11,6 +11,17 @@ public class ClubVO implements java.io.Serializable{
 	private Integer vistorsInMonth;
 	private String addr;
 	private String clubPic;
+	public ClubVO(){
+		clubName = null;
+		managerId = null;
+		locationId = null;
+		brief = null;
+		refURL = null;
+		vistors = null;
+		vistorsInMonth = null;
+		addr = null;
+		clubPic = null;
+	}
 	public String getAddr() {
 		return addr;
 	}
