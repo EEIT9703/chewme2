@@ -73,7 +73,7 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 				Integer ID = Integer.parseInt(request.getParameter("ID"));
 				MemVO memVO=(MemVO) session.getAttribute("LoginOK");
 				Integer memID= memVO.getMemId();
-						
+				System.out.println(memID+"ididididididididdi");		
 				MemberSession chd = new MemberSession(memID);
 				List<CollectionVO> collList=chd.getOwnColVoList();
 				System.out.println(collList.size());

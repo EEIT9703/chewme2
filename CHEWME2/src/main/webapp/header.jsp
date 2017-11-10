@@ -312,6 +312,9 @@ body {
 	
 	$('#div1').on('click','button',function(){
 		var id = $(this).parent().parent().parent().parent().parent().find('input').attr('id')
+		
+		alert(id)
+		
 		$.getJSON('<%=request.getContextPath()%>/ShoppingCar?action=inputCar',{'ID' : id}, result);
 	})
 		function result(array) {
