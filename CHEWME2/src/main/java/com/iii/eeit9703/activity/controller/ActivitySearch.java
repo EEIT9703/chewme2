@@ -18,6 +18,8 @@ import org.json.JSONArray;
 
 import com.iii.eeit9703.activity.model.ActService;
 import com.iii.eeit9703.activity.model.ActivityVO;
+import com.iii.eeit9703.crawler.model.AttrService;
+import com.iii.eeit9703.crawler.model.AttrVO;
 
 
 @WebServlet("/act/ActivitySearch")
@@ -72,14 +74,13 @@ public class ActivitySearch extends HttpServlet {
 		
 		if("searchone".equals(action)){
 			try {
-				session.removeAttribute("activityVO");
+				//session.removeAttribute("activityVO");
 				Integer actID = new Integer(req.getParameter("name"));
 				System.out.println(actID);
 				ActService actSvc = new ActService();
 				ActivityVO activityVO = actSvc.getOneAct(actID);
 				System.out.println(activityVO.getAct_name());
-                session.setAttribute("activityVO", activityVO);
-				
+                req.setAttribute("activityVO", activityVO);
 				RequestDispatcher view = req.getRequestDispatcher("/act/show.jsp");
 				view.forward(req,resp);
 			
@@ -89,6 +90,27 @@ public class ActivitySearch extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+		}
+		if("searchattr".equals(action)){
+			try {
+//				session.removeAttribute("attrVO");
+				Integer attrID = new Integer(req.getParameter("name"));
+				System.out.println(attrID);
+				
+				AttrService attrupd = new AttrService();
+				AttrVO attrVO = attrupd.getOneAttr(attrID);
+				
+				System.out.println(attrVO.getName());
+				req.setAttribute("attrVO", attrVO);
+				
+				RequestDispatcher view = req.getRequestDispatcher("/attractions/show_one.jsp");
+				view.forward(req,resp);
+			
+				
+			} catch (NumberFormatException e) {
+				
+				e.printStackTrace();
+			}
 		}
 		
 

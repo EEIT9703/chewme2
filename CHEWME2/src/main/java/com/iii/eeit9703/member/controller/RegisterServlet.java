@@ -3,6 +3,7 @@ package com.iii.eeit9703.member.controller;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +15,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.iii.eeit9703.member.model.MemService;
@@ -30,8 +30,10 @@ public class RegisterServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
-		String action = req.getParameter("action");
-
+		//res.setCharacterEncoding("UTF-8");
+		res.setContentType("text/html;charset=UTF-8");
+		String action = req.getParameter("action");	
+		
 		if ("insert".equals(action)) {
 			// List<String> errorMsgs = new LinkedList<String>();
 			Map<String, String> errorMsgs = new HashMap<String, String>();
@@ -143,11 +145,11 @@ public class RegisterServlet extends HttpServlet {
 
 				memVO = memSvc.addMem(memberId, memName, memNickN, memPwd, memBirthday, memMail, memAddr, memPhone,
 						memIntr, base64);
-
-				String url = "/member/login.jsp";// 成功後轉交的連結
-				RequestDispatcher successView = req.getRequestDispatcher(url);
-				successView.forward(req, res);
-
+//				String url = "/member/login.jsp";// 成功後轉交的連結 
+//				RequestDispatcher successView = req.getRequestDispatcher(url);
+//				successView.forward(req, res);
+				PrintWriter rw = res.getWriter();
+				rw.write("<script>alert('註冊成功'); location.href='login.jsp';</script>");
 			} catch (Exception e) {
 				// errorMsgs.add(e.getMessage());
 				errorMsgs.put("errorIDDup", e.getMessage());

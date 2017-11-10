@@ -216,6 +216,7 @@
 			</div>
 		</div>
 	</div>
+
 	
 	
 	    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
@@ -377,8 +378,4 @@ $(function(){
 	
 	})
 </script>
-<script>
-
-</script>
-
 </html>

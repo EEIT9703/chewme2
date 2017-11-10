@@ -14,6 +14,7 @@ public class ClubHibernateDAO implements ClubDAOI{
 	private static final String GET_ALL_STMT="from ClubVO order by clubId";
 	private static final String GET_ONE_STMT_SQL="from ClubVO where clubId = ?";
 	private static final String GET_Clubs_by_ManagerId_STMT_SQL="from ClubVO where managerId = ?";
+	private static final String UPDATE_VISITOR="update ClubVO set vistors=vistor+1 where clubId=?";
 	@Override
 	public List<ClubVO> getAll() {
 		List<ClubVO> list=null;
@@ -93,6 +94,8 @@ public class ClubHibernateDAO implements ClubDAOI{
 			throw ex;			
 		}
 	}
+	
+	
 
 	@Override
 	public void delete(Integer clubId) {

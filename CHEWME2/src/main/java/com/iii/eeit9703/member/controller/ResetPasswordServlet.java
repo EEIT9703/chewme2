@@ -2,6 +2,7 @@ package com.iii.eeit9703.member.controller;
  
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,12 +25,15 @@ public class ResetPasswordServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;  
          
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {  
+    	request.setCharacterEncoding("UTF-8");
+    	response.setContentType("text/html;charset=UTF-8");
     	String userName = request.getParameter("userName");  
         String newPassword = request.getParameter("newPassword");  
         String newPassword2 = request.getParameter("newPassword2");  
+        PrintWriter rw = response.getWriter();
         Map<String,String> errors = new HashMap<String, String>();
         if (newPassword == null || "".equals(newPassword)) {  
-            errors.put("newPassword", "新密碼不能為空");  
+            errors.put("newPassword", "新密碼不能為空;");  
         }  
           
         if (newPassword2 == null || "".equals(newPassword2)) {  
@@ -37,12 +41,12 @@ public class ResetPasswordServlet extends HttpServlet {
         }  
           
         if (!newPassword.equals(newPassword2)) {  
-            errors.put("passwordError", "密碼不一致");  
+            errors.put("passwordError", "密碼不一致;");  
         }  
           
         if (!errors.isEmpty()) {  
-            request.setAttribute("errors", errors);  
-            request.getRequestDispatcher("/member/resetpwd.jsp?userName=" + userName).forward(request, response);  
+            request.setAttribute("errors", errors); 
+            rw.write("<script>alert('"+errors+"'); window.history.back();</script>");
             return;  
         }  
            
@@ -50,7 +54,7 @@ public class ResetPasswordServlet extends HttpServlet {
         msvc.updatePwd(userName,newPassword);
         
           
-        request.getRequestDispatcher("/member/login.jsp").forward(request, response);  
+		rw.write("<script>alert('重設密碼成功'); location.href='login.jsp';</script>");
           
     }  
   

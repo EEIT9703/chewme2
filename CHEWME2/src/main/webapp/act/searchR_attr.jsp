@@ -4,10 +4,10 @@ pageEncoding="UTF-8"%>
 
 <div class="col-md-4  margin_bottom30">
            <div class="thumbnail">
-			<a class="url" href="<%=request.getContextPath()%>/act/show.jsp">			
-				<img class="center-block img-responsive" src="" height="250">
+			<a class="url_attr" href="<%=request.getContextPath()%>/attractions/show_attr.jsp">			
+				<img class="img-responsive center-block" src="<%=request.getContextPath()%>/image/attr.jpg" height="250">
 			</a>
-           		<input type="hidden" class="id">  
+           		<input type="hidden" class="id">    
 				<div class="blog-content bg-white">
 				<h3 id="act_name" class="act_name"></h3>
 				<p>Category : <a href="javascript::;" id="a1">Nature</a></p>
@@ -20,10 +20,11 @@ pageEncoding="UTF-8"%>
 				 </span>
 				 
                 <span class="pull-right">
-				
-               <button class="btn btn-info btn-sm">
-              <span class="glyphicon glyphicon-heart-empty"></span> 加入收藏
-              </button>             
+				   
+              <button class="btn btn-info btn-sm">
+              <span class="glyphicon glyphicon-heart-empty"></span> 前往查看
+              </button>
+                       
               </span>
               	</div>
 			</div>

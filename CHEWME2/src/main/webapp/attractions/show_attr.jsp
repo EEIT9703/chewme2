@@ -3,7 +3,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.iii.eeit9703.crawler.model.*"%>
 <%
-	AttrVO attrVO = (AttrVO) request.getAttribute("attrVO");
+// 	AttrVO attrVO = (AttrVO) request.getAttribute("attrVO");
 %>
 <!DOCTYPE html>
 <html>
@@ -147,7 +147,7 @@ html {
 				<div style="border: 1px solid #E3E3E3; padding:3px;">
 					<table>
 						<tr>
-							<td><img src="/CHEWME2/attractions/img/portrait.png" width="40" height="40">
+							<td><img src="img/portrait.png" width="40" height="40">
 							</td>
 							<td><textarea id="memo" placeholder="請輸入內容..."></textarea></td>
 						</tr>
@@ -219,7 +219,7 @@ html {
 	</script>	
 	
 	<!-- 	地圖 -->
-	<script src="/CHEWME2/attractions/js/map.js"></script>  
+	<script src="js/map.js"></script>  
 	<script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfX3HNjv2RvHE8gBJg5WDetgOUzjwsEpk&callback=initMap"></script>
 	
