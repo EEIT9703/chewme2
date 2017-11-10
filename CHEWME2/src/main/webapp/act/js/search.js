@@ -52,7 +52,7 @@ $(document).ready(function() {
 				//console.log(data.name);
 				
 				$('#div1').append(template_attr);
-				$(".url_attr:last").attr({"href":'/CHEWME2/act/ActivitySearch?action=searchattr&name='+ data.attractionID})
+				$(".btn.btn-info.btn-sm:last").attr({"href":'/CHEWME2/act/ActivitySearch?action=searchattr&name='+ data.attractionID})
 				$(".act_name:last").attr("id","act_name"+j);
 				$("#act_name"+j).text(data.name);	
 				$(".id:last").attr({"id": data.attractionID, "value": data.attractionID});
@@ -60,15 +60,4 @@ $(document).ready(function() {
 			})
 		}		
 	})
-	var select2 = $("#select1").val();
-	//console.log(select2);	
-//		$("img").click(function(){
-//			console.log($(this))
-//			var act = $(this).text();
-//			var act1 = $(this).parent("a").next("input").val()
-//			console.log(act1);		
-//			$.get("/CHEWME2/act/ActivitySearch?action=searchone", {"name": act1}, function(){	
-//				
-//			})			
-//		})
 })

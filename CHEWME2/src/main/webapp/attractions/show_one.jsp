@@ -147,7 +147,7 @@ html {
 				<div style="border: 1px solid #E3E3E3; padding:3px;">
 					<table>
 						<tr>
-							<td><img src="/CHEWME2/attractions/img/portrait.png" width="40" height="40">
+							<td><img src="<%=request.getContextPath()%>/attractions/img/portrait.png" width="40" height="40">
 							</td>
 							<td><textarea id="memo" placeholder="請輸入內容..."></textarea></td>
 						</tr>
@@ -173,7 +173,7 @@ html {
 <%-- 						value="${attrVO.attractionID}"> <input type="hidden" --%>
 <!-- 						name="action" value="update_one"> -->
 <!-- 					</td> -->
-					<td><a href="listAll.jsp" class="btn btn-primary" style="color:white;">返回列表</a></td>
+					<td><a href="/CHEWME2/attractions/listAll.jsp" class="btn btn-primary" style="color:white;">返回列表</a></td>
 				</tr>
 			</div>
 		</div>
@@ -191,7 +191,7 @@ html {
 						alert("請勿空白");
 					} else {
 						// 按下送出留言，底下區塊新增一個div
-						$("#text1").append("<div style='border: 1px solid #E3E3E3; padding:5px;width:600px;margin-left:50px;'><table><tr><td><img src='img/portrait.png' width='40' height='40'></td><td><div style='width:550px;height:70px;border-radius:5px;border:2px solid #E8E8E8;background-color:#EDEDED;margin-left:4px;padding:10px;'><strong>" + val1	+ "</strong></div></td></tr></table></div>");
+						$("#text1").append("<div style='border: 1px solid #E3E3E3; padding:5px;width:600px;margin-left:50px;'><table><tr><td><img src='/CHEWME2/attractions/img/portrait.png' width='40' height='40'></td><td><div style='width:550px;height:70px;border-radius:5px;border:2px solid #E8E8E8;background-color:#EDEDED;margin-left:4px;padding:10px;'><strong>" + val1	+ "</strong></div></td></tr></table></div>");
 					}	
 				
 				$("#memo").val("");
@@ -211,7 +211,7 @@ html {
 	  					//var i = data.length;
 	  					for(i = 0; i < data.length; i ++){     
 	  						var val2 = data[i].contents;      // 取得陣列內的contents值，放入div
-	  						$("#text1").append("<div style='border: 1px solid #E3E3E3; padding:5px;width:600px;margin-left:50px;'><table><tr><td><img src='img/portrait.png' width='40' height='40'></td><td><div style='width:550px;height:70px;border-radius:5px;border:2px solid #E8E8E8;background-color:#EDEDED;margin-left:4px;padding:10px;'><strong>" + val2 + "</strong></div></td></tr></table></div>");
+	  						$("#text1").append("<div style='border: 1px solid #E3E3E3; padding:5px;width:600px;margin-left:50px;'><table><tr><td><img src='/CHEWME2/attractions/img/portrait.png' width='40' height='40'></td><td><div style='width:550px;height:70px;border-radius:5px;border:2px solid #E8E8E8;background-color:#EDEDED;margin-left:4px;padding:10px;'><strong>" + val2 + "</strong></div></td></tr></table></div>");
 	  					}  									  				
 	  				})			 				
 				})					
@@ -219,7 +219,7 @@ html {
 	</script>	
 	
 	<!-- 	地圖 -->
-	<script src="/CHEWME2/attractions/js/map.js"></script>  
+	<script src="<%=request.getContextPath()%>/attractions/js/map.js"></script>  
 	<script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfX3HNjv2RvHE8gBJg5WDetgOUzjwsEpk&callback=initMap"></script>
 	

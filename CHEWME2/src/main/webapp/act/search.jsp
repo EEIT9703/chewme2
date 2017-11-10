@@ -54,8 +54,8 @@ body { background-color:#ddd; }
         	<tr>
         		<td>
         			<select name="county" class="selectpicker" style="width:20px;" id="select1">
-        				<option>行程</option>
-						<option>景點</option>
+        				<option>景點</option>
+						<option>行程</option>
         			</select>
         		</td>
         		<td>
