@@ -37,7 +37,7 @@ public class GoogleServlet extends HttpServlet {
 		// Google取得acces_token的url
 		String g_client_id = "237459292600-4nc82k5o9iq1caepr82fsukrcpsflah0.apps.googleusercontent.com";
 		String g_client_secret = "Bd50eylAoc3bDAJEwRMM6jBS";
-		String g_redirect_uri = "http://localhost:8080/CHEWME2/googlelogin.do";// 交回來處理的servlet
+		String g_redirect_uri = "http://localhost:8081/CHEWME2/googlelogin.do";// 交回來處理的servlet
 		URL oauthToken = new URL("https://accounts.google.com/o/oauth2/token");
 		HttpURLConnection conOauthToken = (HttpURLConnection) oauthToken.openConnection();
 
