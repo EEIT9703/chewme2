@@ -10,6 +10,23 @@ $(document).ready(function() {
 	createForum();
 	setClubImg();
 	changePicSet();
+	joinClubEventListner();
+	changeManagerEventListener();
+
+})
+
+function joinClubEventListner() {
+	$('#joinClub').on("click", function() {
+		$.post('clubClientView.do', {
+			action : "joinClub",
+			clubId : $('#clubIdforView').text(),
+		}, function(data) {
+			window.alert("加入社團成功")
+		})
+	});
+}
+
+function changeManagerEventListener() {
 	$("#clientCCV").parent().hide();
 	$('#clubInfo button').parent().hide();
 	$('#confirmImg').on("click", function() {
@@ -30,7 +47,6 @@ $(document).ready(function() {
 			console.log("ok");
 		})
 	})
-
 	$('#manageCCV').on("click", function() {
 		manageCCV();
 	})
@@ -46,7 +62,7 @@ $(document).ready(function() {
 
 		})
 	})
-})
+}
 
 function setClubImg() {
 	var thsImg;

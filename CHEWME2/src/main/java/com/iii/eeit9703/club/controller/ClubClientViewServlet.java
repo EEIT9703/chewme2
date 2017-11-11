@@ -103,20 +103,20 @@ public class ClubClientViewServlet extends HttpServlet {
 		// 貼入在你的sevlet 然後 ctrl+shift+o 匯入必要的class
 		// 可以跳過建業的member認證, 並匯入memberSession和memVO
 
-		if (session == null || session.getAttribute("LoginOK") == null || session.getAttribute("LoginOK_MS") == null) {
-			System.out.println("LoginOK" + session.getAttribute("LoginOK") == null);
-			System.out.println("LoginOK_MS" + session.getAttribute("LoginOK_MS") == null);
-
-			session.setAttribute("requestURI", request.getRequestURI());
-			session.setAttribute("memberId", "1");
-			session.setAttribute("action", request.getParameter("action"));
-			response.sendRedirect("/CHEWME2/member/memberLogin.do");
-			System.out.println("change to ok!");
-			return;
-		}
-		if (request.getParameter("action") == null) {
-			action = (String) session.getAttribute("action");
-		}
+//		if (session == null || session.getAttribute("LoginOK") == null || session.getAttribute("LoginOK_MS") == null) {
+//			System.out.println("LoginOK" + session.getAttribute("LoginOK") == null);
+//			System.out.println("LoginOK_MS" + session.getAttribute("LoginOK_MS") == null);
+//
+//			session.setAttribute("requestURI", request.getRequestURI());
+//			session.setAttribute("memberId", "1");
+//			session.setAttribute("action", request.getParameter("action"));
+//			response.sendRedirect("/CHEWME2/member/memberLogin.do");
+//			System.out.println("change to ok!");
+//			return;
+//		}
+//		if (request.getParameter("action") == null) {
+//			action = (String) session.getAttribute("action");
+//		}
 		/*
 		 * MemberSession memSession =
 		 * (MemberSession)session.getAttribute("LoginOK");

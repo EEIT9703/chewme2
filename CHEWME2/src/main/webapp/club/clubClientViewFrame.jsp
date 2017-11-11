@@ -144,7 +144,7 @@ table {
 					<a id="reNew" class="btn btn-sm btn-primary" role="button" style="width:100%"> 更新</a>
 				</div>
 				<div>
-					<a class="btn btn-sm btn-danger" style="width:100%" role="button"> 加入社團社團 </a>
+					<a id="joinClub" class="btn btn-sm btn-primry" style="width:100%" role="button"> 加入社團</a>
 				</div>
 				<div>
 					<a class="btn btn-sm btn-danger" style="width:100%" role="button"> 刪除社團 </a>
@@ -166,21 +166,11 @@ table {
 						data-toggle="tab" href="#forum-page" role="tab"
 						aria-controls="profile">討論區</a></li>
 					<li class="nav-item"><a class="nav-link " id="myclub-tab"
-						data-toggle="tab" href="#profile" role="tab"
+						data-toggle="tab" href="#my-info" role="tab"
 						aria-controls="profile">關於我們</a></li>
-					<li class="nav-item"><a class="nav-link" id="profile-tab"
-						data-toggle="tab" href="#club-member-info" role="tab"
+					<li class="nav-item"><a class="nav-link" 
+						data-toggle="tab" href="#member-info" role="tab"
 						aria-controls="profile">社員資訊</a></li>
-					<!-- <li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
-						role="button" aria-haspopup="true" aria-expanded="false">
-							Dropdown </a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" id="dropdown1-tab" href="#dropdown1"
-								role="tab" data-toggle="tab" aria-controls="dropdown1">@fat</a>
-							<a class="dropdown-item" id="dropdown2-tab" href="#dropdown2"
-								role="tab" data-toggle="tab" aria-controls="dropdown2">@mdo</a>
-						</div></li> -->
 				</ul>
 			</div>
 			<div class="col"></div>
@@ -194,10 +184,11 @@ table {
 				<%@ include file="ccvOldActList.jsp"%>
 			</div>
 			<div id="my-info">
-				<iframe src="../club/info.jsp"></iframe>
+			
+<!-- 				<iframe src="../club/info.jsp"></iframe> -->
 			</div>
 			<div id="member-info">
-				<iframe src="../club/club-member-info.jsp"></iframe>
+				<%@ include file="clubMemberInfo.jsp"%>
 			</div>
 		</div>
 		<div id="canvasDiv" hidden>
