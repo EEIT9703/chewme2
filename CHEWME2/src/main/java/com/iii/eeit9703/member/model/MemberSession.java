@@ -51,12 +51,9 @@ public class MemberSession {
 	
 	private void init(Integer memId){		
 		setAuthorizedclubList();
-		
-		
-		
-		ownClubList =  cbService.getClubIdListByManagerId(memId);
-		joinedActList = marService.getRelationByMemId(memId);
-		joinedClubList = cmrService.getRelationByMemId(memId);
+//		ownClubList =  cbService.getClubIdListByManagerId(memId);
+//		joinedActList = marService.getRelationByMemId(memId);
+//		joinedClubList = cmrService.getRelationByMemId(memId);
 //		ownColList =  colService.getColIdListByMemId(memId);
 		ownColVoList = colService.getColVOListByMemId(memId);//測試
 	}
@@ -68,6 +65,10 @@ public class MemberSession {
 	public void setJoinedClubList(List<Integer> joinedClubList) {
 		this.joinedClubList = joinedClubList;
 	}
+	public void appendJoinedClubList(Integer clubId){
+		this.joinedClubList.add(clubId);
+	}
+	
 	public List<Integer> getOwnClubList() {
 		return ownClubList;
 	}
