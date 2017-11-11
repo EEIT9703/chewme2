@@ -17,11 +17,14 @@ $(document).ready(function() {
 
 function joinClubEventListner() {
 	$('#joinClub').on("click", function() {
-		$.post('clubClientView.do', {
+		$.post(reqContextPath + '/club/clubClientView.do', {
 			action : "joinClub",
 			clubId : $('#clubIdforView').text(),
 		}, function(data) {
-			window.alert("加入社團成功")
+			window.alert("加入社團成功");
+			$('#joinClub').hide();
+			$('#joinClub').prop('disabled','disabled');
+			
 		})
 	});
 }

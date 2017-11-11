@@ -110,7 +110,7 @@ public class ClubMemRelatoinHibernateDAO implements ClubMemRelationDAOI{
 		for (ClubMemRelationVO aClub : list) {
 			System.out.print(aClub.getClubId() + ",");
 			System.out.print(aClub.getMemId() + ",");
-			System.out.println(aClub.getDate() + ",");
+			//System.out.println(aClub.getDate() + ",");
 		}
 		
 	}

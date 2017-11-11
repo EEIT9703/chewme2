@@ -27,6 +27,8 @@ import org.json.simple.JSONValue;
 
 import com.iii.eeit9703.activity.model.ActService2;
 import com.iii.eeit9703.activity.model.ActivityVO;
+import com.iii.eeit9703.bridge.model.ClubMemRelationService;
+import com.iii.eeit9703.bridge.model.ClubMemRelationVO;
 import com.iii.eeit9703.club.model.ClubPhotoService;
 import com.iii.eeit9703.club.model.ClubPhotoVO;
 import com.iii.eeit9703.club.model.ClubService;
@@ -35,6 +37,7 @@ import com.iii.eeit9703.club.model.CommentService;
 import com.iii.eeit9703.club.model.CommentVO;
 import com.iii.eeit9703.club.model.IssueService;
 import com.iii.eeit9703.club.model.IssueVO;
+import com.iii.eeit9703.member.model.MemberSession;
 import com.iii.eeit9703.utility.DateUtil;
 
 @WebServlet("/club/clubClientView.do")
@@ -128,6 +131,21 @@ public class ClubClientViewServlet extends HttpServlet {
 		 * if(memSession!=null){ memSession.getMemId(); }
 		 */
 		/* 服務從findClub導過來的service,顯示club的Service */
+		if (action.matches("joinClub")){
+			MemberSession ms = (MemberSession)session.getAttribute("LoginOK_MS");
+			Integer clubId = Integer.parseInt(request.getParameter("clubId"));
+			Integer memId = ms.getMemId();
+			System.out.println("clubId is "+clubId);
+			System.out.println("memId is "+memId);
+			ClubMemRelationVO cmrVO = new ClubMemRelationVO();
+			cmrVO.setClubId(clubId);
+			cmrVO.setMemId(memId);	
+			cmrVO.setDate(new java.sql.Date(0));
+			ClubMemRelationService cmrs = new ClubMemRelationService();
+			cmrs.insertClubMemRelation(cmrVO);			
+			ms.appendJoinedClubList(clubId);
+			return;
+		}
 		if (action.matches("updateClubInfo")){
 			System.out.println("In ClubClientVIEW, start the update club info");
 			String col = request.getParameter("col");

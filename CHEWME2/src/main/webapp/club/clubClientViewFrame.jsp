@@ -144,7 +144,7 @@ table {
 					<a id="reNew" class="btn btn-sm btn-primary" role="button" style="width:100%"> 更新</a>
 				</div>
 				<div>
-					<a id="joinClub" class="btn btn-sm btn-primry" style="width:100%" role="button"> 加入社團</a>
+					<button id="joinClub" class="btn btn-sm btn-primary"  style="width:100%"> 加入社團</button>
 				</div>
 				<div>
 					<a class="btn btn-sm btn-danger" style="width:100%" role="button"> 刪除社團 </a>

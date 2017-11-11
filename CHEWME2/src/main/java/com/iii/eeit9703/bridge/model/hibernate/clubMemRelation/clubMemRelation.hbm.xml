@@ -13,14 +13,14 @@
         </composite-id>
                 
         
-         <property name="date" column="joinTime" />
-		<many-to-one name="clubVO" class="com.iii.eeit9703.club.model.ClubVO" lazy="false">
+          <property name="date" column="joinTime" />
+<!-- 		<many-to-one name="clubVO" class="com.iii.eeit9703.club.model.ClubVO" lazy="false">
 			<column name="clubId"/>
 		</many-to-one>
 		<many-to-one name="memVO" class="com.iii.eeit9703.member.model.MemVO" lazy="false">
 			<column name="memId"/>
 		</many-to-one>        
-	
+	 -->
     </class>
 </hibernate-mapping>
 
