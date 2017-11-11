@@ -17,7 +17,7 @@
   	<link href="<%=request.getContextPath()%>/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   	<link href="<%=request.getContextPath()%>/css/morrisjs/morris.css" rel="stylesheet">
   	<link href="<%=request.getContextPath()%>/css/dist/css/sb-admin-2.css" rel="stylesheet">
-
+	<script src="<%=request.getContextPath()%>/js/headShop.js">	</script>
   	
     <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
     
@@ -90,82 +90,13 @@
                         </div>          
                     </div>              
                 </div>
-                
-                
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-				aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true">&times;</button>
-							<h4 class="modal-title" id="myModalLabel">歡迎來到揪ME</h4>
-						</div>
-						<div class="modal-body">
-						<div class="form-group">
-<!-- 						<form id="fileUpDate">					 -->
-								<input type="text" id="text" name="text">
-								 
-<!-- 						</form> -->
-							
-						</div>
-						<div class="form-group">
-													
-						</div>
-	
-					</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-							<button type="button" class="btn btn-primary" id="confirm" >go</button>
-<!-- 							<button type="submit" class="btn btn-primary"  id="confirm">確認</button> -->
-						</div>
-					</div>
-					<!-- /.modal-content -->
-				</div>
-				<!-- /.modal -->
-			</div>
-			
-			
 
-			
-			
-                  <input type="button" id="go" value="檢舉">
-                
-                
                 
 <!--                 右邊預留空間 -->
                 <div class="col-lg-4">
 
-                    <div class="panel panel-default">
-                      			 
-<!--                       			 <table id="productTable" class="table table-bordered"> -->
-<!-- 									<thead> -->
-<!-- 										<tr> -->
-<!-- 											<th>檢舉人</th>																			 -->
-<!-- 										</tr> -->
-<!-- 										    <td id="reporter"></td>		 -->
-<!-- 									</thead> -->
-<!-- 									<tbody> -->
-<!-- 									<tr> -->
-<!-- 											<th>檢舉時間</th>																		 -->
-<!-- 									</tr> -->
-<!-- 									        <td id="reportime"></td>		 -->
-<!-- 									<tr> -->
-<!-- 											<th>檢舉內容</th>														 -->
-<!-- 									</tr> -->
-<!-- 											<td id="reportcontext"></td>	 -->
-<!-- 									<tr> -->
-<!-- 											<th>被檢舉對象</th>														 -->
-<!-- 									</tr> -->
-<!-- 											<td id="act_name"></td>	 -->
-<!-- 									<tr></tr>			 -->
-<!-- 											<td id ="reported"><input type="button" value="前往確認"></td>					 -->
-<!-- 									</tbody> -->
-<!-- 									<tfoot> -->
-
-<!-- 									</tfoot> -->
-<!-- 								</table> -->
-
+<!--                     <div class="panel panel-default"> -->
+                  
 							<div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">
@@ -201,11 +132,11 @@
             </div>	
 
 						
-                    </div>
+<!--                     </div> -->
                 
-                    <div class="chat-panel panel panel-default">
-                   			預留空間
-                    </div>               
+<!--                     <div class="chat-panel panel panel-default"> -->
+<!--                    			預留空間 -->
+<!--                     </div>                -->
                 </div>            
             </div>      
         </div>     

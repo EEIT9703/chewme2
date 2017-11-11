@@ -4,8 +4,8 @@ pageEncoding="UTF-8"%>
 
 <div class="col-md-4  margin_bottom30">
            <div class="thumbnail">
-			<a href="<%=request.getContextPath()%>/act/show.jsp">			
-				<img class="img-responsive center-block" src="data:image/png;base64,${activityVO.act_photo}" height="250">
+			<a class="url" href="<%=request.getContextPath()%>/act/show.jsp">			
+				<img class="center-block img-responsive" src="" height="150">
 			</a>
            		<input type="hidden" class="id">  
 				<div class="blog-content bg-white">
@@ -17,7 +17,7 @@ pageEncoding="UTF-8"%>
 				<a href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent('http://www.web.com.tw/activity/index.html'))));"><i class="fa fa-facebook margin_left10" aria-hidden="true"></i></a>
 				<a href="javascript"><i class="fa fa-twitter margin_left10" aria-hidden="true"></i></a>
 				<a href="javascript"><i class="fa fa-google-plus margin_left10" aria-hidden="true"></i></a>
-				 </span> </p>
+				 </span>
 				 
                 <span class="pull-right">
 				
@@ -28,6 +28,7 @@ pageEncoding="UTF-8"%>
               	</div>
 			</div>
 		</div>
+	
 
 
 

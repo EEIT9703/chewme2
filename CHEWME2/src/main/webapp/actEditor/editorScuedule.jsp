@@ -358,7 +358,7 @@ $(function() {
 			var eventID=id.id
 			console.log(schID);
 			$('#calendar').fullCalendar('removeEvents',eventID);
-			alert("id=" + eventID);
+			//alert("id=" + eventID);
 			$.post('<%=request.getContextPath()%>/Calendar.do?mission=deleteSCH',{"eventID":eventID});		
 
 			
@@ -399,7 +399,7 @@ $(function() {
 		            }
 		        },
 		        check:{
-			    	text:'儲存行程',
+			    	text:'預覽行程',
 			    	click:function(){
 			    		if($('#actName').val()==""){
 			    			alert("請輸入行程名稱!!");

@@ -42,19 +42,25 @@ public class ScheduleDAO {
 	
 	
 	public Integer insertACT(String actName, Integer memId){
+	
+		System.out.println("insertACT1");
 		ArrayList<ActivityVO> list = new ArrayList<ActivityVO>();
 		int actID = 0;
-
 		try {
 
+			System.out.println("insertACT2");
 			con = ds.getConnection();
+			con.setAutoCommit(false);
+			System.out.println("insertACT3");
 			pstmt = con.prepareStatement(NEWACTIVITY);
 			
+			System.out.println("insertACT4");
 			pstmt.setString(1, actName);
 			pstmt.setInt(2, memId);
 			pstmt.executeUpdate();
-			
+			con.commit();
 			actID = selectACT(actName);
+			System.out.println("insertACT5");
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -78,19 +84,27 @@ public class ScheduleDAO {
 	}
 	
 	public Integer selectACT(String actName){
-		
+		System.out.println("selectACT1");		
 		ArrayList<ActivityVO> activitylist = new ArrayList<ActivityVO>();
 		ActivityVO activityVO=null;
 		int actID = 0;
 
 		try {
 			
+			System.out.println("selectACT2");		
 			con = ds.getConnection();
+			con.setAutoCommit(false);
+			System.out.println("selectACT3");		
 			pstmt = con.prepareStatement(SELECTACTIVITY);
+			System.out.println("selectACT4");		
 			
 			pstmt.setString(1, actName);
+			System.out.println("selectACT5");		
 			rs = pstmt.executeQuery();
+			con.commit();
+			System.out.println("selectACT6");		
 			rs.next();
+			System.out.println("selectACT7");		
 			actID = rs.getInt("actID");
 
 			
@@ -115,24 +129,29 @@ public class ScheduleDAO {
 	}
 	
 	public Integer insertSCH(ScheduleVO SCHlist){
-		
+		//System.out.println("insertSCH");	
 		ArrayList<ScheduleVO> schedulelist = new ArrayList<ScheduleVO>();
 		Integer scheduleID = null;
 
 		try {
 
+			System.out.println("insertSCH2");	
+			
+			
 			con = ds.getConnection();
+			System.out.println(con);
+			
+			con.setAutoCommit(false);
 			pstmt = con.prepareStatement(NEWSCHEDULES);
-			//NEWSCHEDULES= "INSERT INTO schedules(attractionID,dayNo,period)VALUES(?,?,?)"
+			System.out.println("insertSCH4");	
 			pstmt.setInt(1, SCHlist.getAttractionID());
 			pstmt.setInt(2, SCHlist.getDayNo());
 			pstmt.setString(3, SCHlist.getPeriod());
 			pstmt.executeUpdate();
-			
+			con.commit();
 			scheduleID = selectSCH(SCHlist.getAttractionID());
 						
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			if(rs != null){
@@ -144,7 +163,10 @@ public class ScheduleDAO {
 				catch (SQLException e) {e.printStackTrace();}
 			}
 			if(con != null){
-				try {con.close();} 
+				try {
+					con.close();
+					System.out.println("conn close!");
+				} 
 				catch (SQLException e) {e.printStackTrace();}
 			}
 		}
@@ -152,17 +174,24 @@ public class ScheduleDAO {
 	}
 	
 	public Integer selectSCH(Integer attractionID){
-		
+		//System.out.println("selectSCH1");	
 		Integer scheduleID = null;
 		
 		try {
+			//System.out.println("selectSCH2");	
 
 			con = ds.getConnection();
+			con.setAutoCommit(false);
+			//System.out.println("selectSCH3");	
 			pstmt = con.prepareStatement(SELECTSCHEDULES);
+			//System.out.println("selectSCH4");	
 			
 			pstmt.setInt(1, attractionID);
 			rs = pstmt.executeQuery();
+			con.commit();
+			//System.out.println("selectSCH5");	
 			rs.next();
+			//System.out.println("selectSCH6");	
 			scheduleID = rs.getInt("scheduleID");
 			
 			
@@ -190,11 +219,14 @@ public class ScheduleDAO {
 		try {
 
 			con = ds.getConnection();
+			
+			con.setAutoCommit(false);
 			pstmt = con.prepareStatement(UPDATESCHEDULES);
 			
 			pstmt.setString(1, chVO.getPeriod());
 			pstmt.setInt(2, chVO.getAttractionID());
 			pstmt.executeUpdate();		
+			con.commit();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -217,15 +249,20 @@ public class ScheduleDAO {
 
 	public void updateSCH2(String actID,Integer schID) {
 		try {
-
+			System.out.println("uptdateSCH1");	
 			con = ds.getConnection();
+			con.setAutoCommit(false);
+			System.out.println("uptdateSCH2");	
 			pstmt = con.prepareStatement(UPDATESCHEDULES2);
+			System.out.println("uptdateSCH3");	
 			
 			Integer Nact = Integer.parseInt(actID);
 
 			pstmt.setInt(1, Nact);
 			pstmt.setInt(2, schID);
 			pstmt.executeUpdate();
+			con.commit();
+			System.out.println("uptdate5");	
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -257,10 +294,12 @@ public class ScheduleDAO {
 	public void deleteSCH(Integer attrID) {
 		try {
 			con = ds.getConnection();
+
 			pstmt = con.prepareStatement(DELETESCHEDULES);
 			
 			pstmt.setInt(1, attrID);
 			pstmt.executeUpdate();
+			con.commit();
 			
 			System.out.println("attrID="+attrID);
 
@@ -296,9 +335,10 @@ public class ScheduleDAO {
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETEALL);
-			
+
 			pstmt.setInt(1, schID);
 			pstmt.executeUpdate();
+			con.commit();
 			
 			System.out.println("schID="+schID);
 
@@ -329,4 +369,8 @@ public class ScheduleDAO {
 			}
 		}
 	}
+	public static void main(String[] args){
+
+	}
+	
 }
