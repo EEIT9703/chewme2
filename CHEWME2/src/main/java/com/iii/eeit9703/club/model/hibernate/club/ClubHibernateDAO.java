@@ -19,6 +19,7 @@ public class ClubHibernateDAO implements ClubDAOI{
 	private static final String UPDATE_VISITOR="update ClubVO set vistors=vistor+1 where clubId=?";
 	private static final String GET_CLUB_MEMBERS = "select * from members mv inner join club_member_list cmr on cmr.memId = mv.memId where cmr.clubId = ?";
 	
+	@Override
 	public List<MemVO> getClubMembers() {
 		List<MemVO> list=null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();

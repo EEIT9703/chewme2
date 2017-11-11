@@ -52,7 +52,9 @@
 		<mapping resource="com/iii/eeit9703/crawler/model/article.hbm.xml"/>
 		<mapping resource="com/iii/eeit9703/crawler/model/search.hbm.xml"/>
 		<mapping resource="com/iii/eeit9703/bridge/model/hibernate/clubMemRelation/clubMemRelation.hbm.xml" />
-	<!--<mapping resource="com/iii/eeit9703/club/model/hibernate/clubActList/clubActList.hbm.xml" />
+		<mapping resource="com/iii/eeit9703/bridge/model/hibernate/memActRelation/memActRelation.hbm.xml" />
+	<!--
+		<mapping resource="com/iii/eeit9703/bridge/model/hibernate/clubActRelation/clubActRelation.hbm.xml" />
 		
  -->
 

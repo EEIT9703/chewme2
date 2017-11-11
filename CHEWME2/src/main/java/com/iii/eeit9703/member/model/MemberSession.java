@@ -1,5 +1,6 @@
 package com.iii.eeit9703.member.model;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class MemberSession {
 	private List<Integer> ownClubList;
 	private List<Integer> ownActivityList;
 	private List<ActivityVO> ownActivityVOList;
+	private List<Integer> frinedList;
 	//private List<Integer> ownColList;
 	private List<CollectionVO> ownColVoList;//collection改用拿VO
 	ClubService cbService;
@@ -51,11 +53,18 @@ public class MemberSession {
 	
 	private void init(Integer memId){		
 		setAuthorizedclubList();
-//		ownClubList =  cbService.getClubIdListByManagerId(memId);
-//		joinedActList = marService.getRelationByMemId(memId);
-//		joinedClubList = cmrService.getRelationByMemId(memId);
+	
+		ownClubList =  cbService.getClubIdListByManagerId(memId);
+		joinedActList = marService.getRelationByMemId(memId);
+		joinedClubList = cmrService.getRelationByMemId(memId);
 //		ownColList =  colService.getColIdListByMemId(memId);
 		ownColVoList = colService.getColVOListByMemId(memId);//測試
+		//ownClubList = (ownClubList == null)?new ArrayList<Integer>():ownClubList;
+		//joinedActList = (joinedActList == null)?new ArrayList<Integer>():joinedActList;
+		//joinedClubList = (joinedClubList == null)?new ArrayList<Integer>():joinedClubList;
+		
+			
+		
 	}
 	
 	 
