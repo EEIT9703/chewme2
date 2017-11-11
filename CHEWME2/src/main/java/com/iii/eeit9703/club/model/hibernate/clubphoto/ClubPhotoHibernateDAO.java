@@ -17,11 +17,7 @@ public class ClubPhotoHibernateDAO implements ClubPhotoDAOI {
 		
 	}
 
-	@Override
-	public void update(ClubPhotoVO photoVO, InputStream is) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	private static final String GET_ALL_STMT = "from ClubPhotoVO order by photoId";
 

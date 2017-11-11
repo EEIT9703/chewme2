@@ -30,7 +30,13 @@ public class MemVO implements java.io.Serializable{
 	private Set<ActivityVO> Activitys = new HashSet<ActivityVO>();
 	private Set<CollectionVO> Collects = new HashSet<CollectionVO>();
 	private Set<ReportVO> Reports = new HashSet<ReportVO>();
-	private Integer clubId;
+	private Set<Integer> clubIds;
+	public Set<Integer> getClubIds() {
+		return clubIds;
+	}
+	public void setClubIds(Set<Integer> clubIds) {
+		this.clubIds = clubIds;
+	}
 	//private List<OrderVO> Orders = new LinkedList<OrderVO>();
 	private Set<OrderVO> Orders = new HashSet<OrderVO>();
 	
@@ -132,12 +138,6 @@ public class MemVO implements java.io.Serializable{
 	}
 	public void setReports(Set<ReportVO> reports) {
 		Reports = reports;
-	}
-	public Integer getClubId() {
-		return clubId;
-	}
-	public void setClubId(Integer clubId) {
-		this.clubId = clubId;
 	}
 	public String getGoogleId() {
 		return googleId;

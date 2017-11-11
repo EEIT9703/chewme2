@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% int x=5; %>
 <% x=3; %>
-<%! static int x=7; %>
+<% int x=5; %>
+<%! int x=7; %>
 x = <%=x%>,<%=this.x %>
 
 

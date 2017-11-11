@@ -65,6 +65,10 @@ public class MemberSession {
 	public void setJoinedClubList(List<Integer> joinedClubList) {
 		this.joinedClubList = joinedClubList;
 	}
+	public void appendJoinedClubList(Integer clubId){
+		this.joinedClubList.add(clubId);
+	}
+	
 	public List<Integer> getOwnClubList() {
 		return ownClubList;
 	}
