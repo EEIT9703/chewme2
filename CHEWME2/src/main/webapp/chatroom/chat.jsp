@@ -12,7 +12,7 @@ pageEncoding="UTF-8"%>
   <script src="../js/bootstrap.min.js"></script>
 <script>
         var ws; //一个ws对象就是一个通信管道！！，只要不关浏览器，不关闭服务器就一直开着
-        var target="wss://192.168.1.215:8443/Core/WsPushServer?username=max32002";
+        var target="ws://localhost:8080/CHEWME2/WsPushServer?username=max32002";
         $().ready(function connect() {
 
                  //页面加载判断是否已经开启了target这个通道，如果没有开启，就开启
