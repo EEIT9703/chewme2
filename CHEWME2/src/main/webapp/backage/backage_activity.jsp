@@ -68,10 +68,10 @@
             
             <div id="page-wrapper">
             <div class="row">
-                <div class="col-lg-12">
+<!--                 <div class="col-lg-12"> -->
                 
-                    <h4 >內容區標頭</h4>
-                </div>
+<!--                     <h4 >內容區標頭</h4> -->
+<!--                 </div> -->
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
@@ -204,6 +204,22 @@
 						$("#activity").dataTable(opt);
 
 					}
+  		
+  		$('#activity>tbody').on('change','td:nth-child(7) select',function(){
+			 var id = $(this).parents('tr').find('td:nth-child(1)').text();
+			 //var opt =$(this).attr("selected","selected");
+			  var opt =$(this).attr("selected","selected");
+			 $.post('<%=request.getContextPath()%>/activity',{'id':id,'action':'upDateActivityStatus','opt':opt.val()},function(){
+				
+				 alert("更新status成功")
+				 
+				 
+			 })
+			
+
+	
+})
+  		
 
 				})
 			</script>
