@@ -5,13 +5,16 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.iii.eeit9703.club.model.hibernate.club.ClubHibernateDAO;
+import com.iii.eeit9703.member.model.MemVO;
 
 public class ClubService {
 	ClubDAOI clubDAO; 
 	public ClubService(){
 		clubDAO =new  ClubHibernateDAO();
 	}
-		
+	public List<MemVO> getClubMembers(){
+		return clubDAO.getClubMembers();
+	}
 	public List<ClubVO> getAll(){
 		return clubDAO.getAll();
 	}
