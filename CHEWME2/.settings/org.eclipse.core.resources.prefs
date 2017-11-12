@@ -1,10 +1,10 @@
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
+encoding//src/main/java/allPay/payment/integration/domain/com-resource/_commentTemplate.jsp=UTF-8
+encoding//src/main/java/allPay/payment/integration/domain/com-resource/testFile.jsp=UTF-8
 encoding//src/main/resources=UTF-8
 encoding//src/main/webapp/actEditor/schedule3-byhungyu.jsp=UTF-8
 encoding//src/main/webapp/club/ccvForum.jsp=UTF-8
-encoding//src/main/webapp/com-resource/_commentTemplate.jsp=UTF-8
-encoding//src/main/webapp/com-resource/testFile.jsp=UTF-8
 encoding//src/main/webapp/header.jsp=UTF-8
 encoding//src/test/java=UTF-8
 encoding//src/test/resources=UTF-8

@@ -32,6 +32,7 @@ public class WebSocketEndpointTest {
     @OnOpen
     public void onOpen(Session session) {
         //紀錄連接到sessions中
+
         System.out.println("Client connected");        
         if (sessions == null) {
             sessions = new ArrayList<Session>();
