@@ -104,8 +104,6 @@ html {
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-<!-- <script src="../js/jquery-1.12.3.min.js" type="text/javascript"></script> -->
 <script>
 	$(function() {
 		$("#tabs").tabs();
@@ -221,6 +219,5 @@ html {
 	<script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfX3HNjv2RvHE8gBJg5WDetgOUzjwsEpk&callback=initMap"></script>
 	
-<!-- 	<script src="../attractions/js/map.js"></script> -->
 </body>
 </html>

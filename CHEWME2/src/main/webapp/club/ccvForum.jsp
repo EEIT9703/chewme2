@@ -1,4 +1,5 @@
-﻿
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <div class="row" id="catagory_selector">
 	<div class="col"></div>
 	<div class="col-md-3">

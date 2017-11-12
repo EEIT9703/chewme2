@@ -3,15 +3,14 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.iii.eeit9703.club.model.ClubActRelationVO" table="club_act_list" >
+    <class name="com.iii.eeit9703.bridge.model.ClubActRelationVO" table="club_act_list" >
         <composite-id>
             <!-- key-property标签表示哪一些属性对应复合主键 -->
-            <key-property name="clubId" column="clubId" type="Integer"></key-property>
-            <key-property name="memId" column="memId" type="Integer"></key-property>
+            <key-property name="clubId" column="clubId"> </key-property>
+            <key-property name="actId" column="actId"></key-property>
         </composite-id>
                 
-        <property name="clubId" column="clubId" />
-        <property name="memId" column="memId" />
+
         
     </class>
 </hibernate-mapping>

@@ -31,6 +31,13 @@
 		</set>
 
 
+<!--         一個會員可以有很多社團 -->
+        <set name="clubIds" table="club_member_list" lazy="false" cascade="all"  inverse="true"  order-by="clubId asc">			
+			<key>
+				<column name="memId" />
+			</key>
+			<one-to-many class="com.iii.eeit9703.bridge.model.ClubMemRelationVO" />
+		</set>
 
 		
 <!--         一個會員可以有很多訂單 -->	

@@ -51,7 +51,6 @@ input[type = "file"]{
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"></link>
-<!-- <script src="../js/jquery.file-preview.js"></script> -->
 
 </head>
 <body>
@@ -127,16 +126,16 @@ input[type = "file"]{
 				<tr>
 					<td>
 						<div class="checkbox"></div>
-						<button type="submit" class="btn btn-default">送出</button> <input
-						type="hidden" name="action" value="insert">
+						<button type="submit" class="btn btn-default">送出</button>
+						<input type="hidden" name="action" value="insert"> 
 					</td>
 					<td><a href="listAll.jsp" class="btn btn-primary">返回列表</a></td>
 				</tr>	
 			</div>				
-				<img id="img" src="" class="img-responsive" width="300" height="300">						
-		</form>
+				<img id="img" src="" class="img-responsive" width="300" height="300">	
+	</form>
 	</div>		
-	<script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/jquery-1.12.3.min.js"></script>
 	<script>
 	$(function(){
 		// 預覽圖片
