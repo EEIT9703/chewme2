@@ -95,7 +95,8 @@ body { background-color:#ddd; }
 				<img class="img-responsive center-block" src="data:image/png;base64,${activityVO.act_photo}" height="250">
 			</a>	
 				<div class="blog-content bg-white">
-				<h3 id="act_name" class="act_name">${activityVO.act_name}</h3>
+				<img src="<%=request.getContextPath()%>/image/chewme-logo.png" width="50" height="50" style="float:left">
+				<h3 id="act_name" class="act_name" style="">${activityVO.act_name}</h3>
 				
 				<a class="btn-sm btn btn-info ">
                 <i class="fa fa-usd" aria-hidden="true"></i> 價格:${activityVO.act_price} 元

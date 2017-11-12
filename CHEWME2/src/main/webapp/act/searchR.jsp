@@ -9,6 +9,7 @@ pageEncoding="UTF-8"%>
 			</a>
            		<input type="hidden" class="id">  
 				<div class="blog-content bg-white">
+				<img src="<%=request.getContextPath()%>/image/chewme-logo.png" width="50" height="50" style="float:left">				
 				<h3 id="" class="act_name"></h3>
 				
 				<a class="btn-sm btn btn-info ">

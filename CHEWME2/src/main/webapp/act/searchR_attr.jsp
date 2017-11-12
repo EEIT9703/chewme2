@@ -10,13 +10,13 @@ pageEncoding="UTF-8"%>
            		<input type="hidden" class="id">    
 				<div class="blog-content bg-white">
 				<h3 id="act_name" class="act_name"></h3>
+				<div class="intro1"></div>
 				
 				<a class="btn btn-info btn-sm" href="<%=request.getContextPath()%>/attractions/show_attr.jsp">
               	<span class="glyphicon glyphicon-heart-empty"></span> 查看
              	</a>  
              	
 <!-- 				<p>Category : <a href="javascript::;" id="a1">Nature</a></p> -->
-				<p>旅遊介紹<a href="javascript::;"  class="heading_color"> Continue Reading</a></p>
 				<hr>
 				<p><span>Share : 
 				<a href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent('http://www.web.com.tw/activity/index.html'))));"><i class="fa fa-facebook margin_left10" aria-hidden="true"></i></a>

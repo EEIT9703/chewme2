@@ -154,6 +154,7 @@ body{
                     <h2>行程介紹</h2>
                 </div>
                 <div class="item-desc">
+         <img src="<%=request.getContextPath()%>/image/chewme-logobig.png" width="500" height="200" alt="" style="padding-bottom: 20px;">              
                     <p class="text-muted">${actVO.act_news}</p>
                 </div>
             </div>
