@@ -57,12 +57,16 @@ $(document).ready(function() {
 			
 			$.each(array, function(j, data){
 				//console.log(data.name);
+				//console.log(data.intro.substring(0, 10) + "....");
 				
 				$('#div1').append(template_attr);
 				$(".btn.btn-info.btn-sm:last").attr({"href":'/CHEWME2/act/ActivitySearch?action=searchattr&name='+ data.attractionID})
 				$(".act_name:last").attr("id","act_name"+j);
 				$("#act_name"+j).text(data.name);	
 				$(".id:last").attr({"id": data.attractionID, "value": data.attractionID});
+				$(".intro1:last").attr("id", "intro1"+j);
+				$("#intro1"+j).text(data.intro.substring(0, 150) + ".....");
+				$("#intro1"+j).append("<a>(繼續閱讀)</a>");
 				})			
 			})
 		}		
