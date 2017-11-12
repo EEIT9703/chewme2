@@ -10,11 +10,11 @@ pageEncoding="UTF-8"%>
 <title></title>
 <meta charset="utf-8" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
-
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/BootSideMenu.css">
 <script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/slideshow.js">	</script>
-
+<script src="<%=request.getContextPath()%>/js/BootSideMenu.js"></script>
 <style>
 
 ul, li {
@@ -95,6 +95,8 @@ ul, li {
 
 <body>
 	<header><%@ include file="header.jsp"%></header>
+
+	
 	<article>
 		<div class="jumbotron">
 			<div class="container">
@@ -208,11 +210,99 @@ ul, li {
 <!--             </li> -->
             
 <!--           </ul> -->
+
+<div id="test" style="padding:0px">
+  <div class="user">
+      <img src="image/55.jpg" alt="Esempio" class="img-thumbnail" width=50px><br>
+      <a href="http://www.lombardoandrea.com" target="_blank" class="navbar-link">Andrea Lombardo</a>
+  </div>
+
+  <div class="list-group">
+
+      <a href="#item-1" class="list-group-item" data-toggle="collapse">Item 1</a>
+
+      <div class="list-group collapse" id="item-1">
+          <a href="#" class="list-group-item">Item 1 di 1</a>
+          <a href="#" class="list-group-item">Item 2 di 1</a>
+          <a href="#item-1-1" class="list-group-item" data-toggle="collapse">Item 3 di 1</a>
+
+          <div class="list-group collapse" id="item-1-1">
+              <a href="#" class="list-group-item">Item 1 di 1.3</a>
+              <a href="#" class="list-group-item">Item 2 di 1.3</a>
+              <a href="#" class="list-group-item">Item 3 di 1.3</a>
+          </div>
+
+      </div>
+
+      <a href="#item-2" class="list-group-item" data-toggle="collapse">Item 2</a>
+
+      <div class="list-group collapse" id="item-2">
+          <a href="#" class="list-group-item">Item 1 di 2</a>
+          <a href="#" class="list-group-item">Item 2 di 2</a>
+          <a href="#" class="list-group-item">Item 3 di 2</a>
+      </div>
+
+      <a href="#item-3" class="list-group-item" data-toggle="collapse">Item 3</a>
+
+      <div class="list-group collapse" id="item-3">
+          <a href="#" class="list-group-item">Item 1 di 3</a>
+          <a href="#" class="list-group-item">Item 2 di 3</a>
+          <a href="#item-3-1" class="list-group-item" data-toggle="collapse">Item 3 di 3</a>
+
+          <div class="list-group collapse" id="item-3-1">
+              <a href="#" class="list-group-item">Item 1 di 3.3</a>
+              <a href="#" class="list-group-item">Item 2 di 3.3</a>
+              <a href="#" class="list-group-item">Item 3 di 3.3</a>
+          </div>
+
+      </div>
+
+      <a href="#item-4" class="list-group-item" data-toggle="collapse">Item 4</a>
+
+      <div class="list-group collapse" id="item-4">
+          <a href="#" class="list-group-item">Item 1 di 4</a>
+          <a href="#" class="list-group-item">Item 2 di 4</a>
+          <a href="#" class="list-group-item">Item 3 di 4</a>
+      </div>
+
+  </div>
+
+</div>
+
 	
 	</article>
+<script>
+$(function(){
+
+	$('#test').BootSideMenu({
+
+		  // 'left' or 'right'
+		  side: "left",
+
+		  // animation speed
+		  duration: 500,
+
+		  // restore last menu status on page refresh
+		  remember: true,
+
+		  // auto close
+		  autoClose: false,
+
+		  // push the whole page
+		  pushBody: true,
+
+		  // close on click
+		  closeOnClick: true,
+
+		  // width
+		  width: "20%"
+		  
+		});
 
 
 
+})
+</script>
 </body>
 
 </html>
