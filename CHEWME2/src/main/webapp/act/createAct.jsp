@@ -113,12 +113,9 @@ button {
 
 
 
-					<form role="form" enctype="multipart/form-data"
-						class="form-horizontal" method="post" action="<%=request.getContextPath() %>/act/actServlet"
-						name="actForm">
+					<form role="form" enctype="multipart/form-data" class="form-horizontal" method="post" action="<%=request.getContextPath() %>/act/actServlet" name="actForm">
 						<div class="from-group">
-							<label for="actID">選擇活動</label> <select class="form-control"
-								size="1" name="actID" id="actID">
+							<label for="actID">選擇活動</label> <select class="form-control" size="1" name="actID" id="actID">
 								<option value="0">----請選擇活動----</option>
 								<c:forEach var="activityVO"
 									items="${LoginOK_MS.ownActivityVOList}">
@@ -205,7 +202,7 @@ button {
 
 						<div class="form-group"></div>
 						<button type="submit" class="btn btn-lg btn-primary login-button" id="submit">Next</button>
-						<input type="hidden" name="action" value="Next">
+						<input type="hidden" name="action" value="Next" style="text-align:center ">
 					</form>
 				</div>
 			</div>
