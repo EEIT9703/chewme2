@@ -17,6 +17,7 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import com.iii.eeit9703.GetHttpSessionConfigurator;
 import com.iii.eeit9703.member.model.MemVO;
 
 @ServerEndpoint(value = "/chatroom1",configurator=GetHttpSessionConfigurator.class)
