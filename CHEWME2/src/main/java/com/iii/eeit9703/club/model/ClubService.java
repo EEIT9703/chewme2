@@ -12,8 +12,8 @@ public class ClubService {
 	public ClubService(){
 		clubDAO =new  ClubHibernateDAO();
 	}
-	public List<MemVO> getClubMembers(){
-		return clubDAO.getClubMembers();
+	public List<MemVO> getClubMembers(Integer clubId){
+		return clubDAO.getClubMembers(clubId);
 	}
 	public List<ClubVO> getAll(){
 		return clubDAO.getAll();
