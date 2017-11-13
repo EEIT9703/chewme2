@@ -2,7 +2,9 @@ package com.iii.eeit9703.member.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -100,8 +102,10 @@ public class LoginServlet extends HttpServlet {
 		if (mv != null ) {
 			MemberSession ms = new MemberSession(mv);
 			// OK, 將mv物件放入Session範圍內，識別字串為"LoginOK"
+			Set record =new LinkedHashSet();
 			session.setAttribute("LoginOK", mv);
 			session.setAttribute("LoginOK_MS",ms);
+			session.setAttribute("record", record);
 			System.out.println(mv.getMemRole());
 			if (mv.getMemRole().trim().equals("系統管理員")) {
 				session.setAttribute("SysManager", mv);

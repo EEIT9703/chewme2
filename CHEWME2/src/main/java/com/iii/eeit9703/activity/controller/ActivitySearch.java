@@ -3,6 +3,8 @@ package com.iii.eeit9703.activity.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -52,8 +54,8 @@ public class ActivitySearch extends HttpServlet {
 		
 		String action = req.getParameter("action");
 		PrintWriter out = resp.getWriter();
-		HttpSession session = req.getSession(false);
-		
+		//HttpSession session = req.getSession(false);
+		HttpSession session = req.getSession();
 		if("Search".equals(action)){
 			String act_name = req.getParameter("search");
 			
@@ -74,12 +76,20 @@ public class ActivitySearch extends HttpServlet {
 		
 		if("searchone".equals(action)){
 			try {
-				//session.removeAttribute("activityVO");
 				Integer actID = new Integer(req.getParameter("name"));
+			
+				//session.removeAttribute("activityVO");				
+				
 				System.out.println(actID);
 				ActService actSvc = new ActService();
 				ActivityVO activityVO = actSvc.getOneAct(actID);
 				System.out.println(activityVO.getAct_name());
+				
+				Set record =(Set) session.getAttribute("record");				
+				record.add(actID);
+				System.out.println(record.size()+"qeqeqeeqeqeqeqe");
+				session.setAttribute("record", record);
+				
                 req.setAttribute("activityVO", activityVO);
 				RequestDispatcher view = req.getRequestDispatcher("/act/show.jsp");
 				view.forward(req,resp);

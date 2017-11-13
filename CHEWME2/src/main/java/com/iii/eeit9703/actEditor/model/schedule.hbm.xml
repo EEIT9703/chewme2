@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.iii.eeit9703.actEditor.model.ScheduleVO" table="schedules" >
+        
+        <id name="scheduleID" column="scheduleID">
+            <generator class="identity"/>
+        </id>
+           
+        <property name="actID" column="actID" />
+        <property name="attractionID" column="attractionID" />
+        <property name="dayNo" column="dayNo" />
+        <property name="period" column="period" />
+        <property name="remark" column="remark" />
+ 
+        
+    </class>
+</hibernate-mapping>
