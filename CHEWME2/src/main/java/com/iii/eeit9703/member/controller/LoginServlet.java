@@ -102,7 +102,7 @@ public class LoginServlet extends HttpServlet {
 		if (mv != null ) {
 			MemberSession ms = new MemberSession(mv);
 			// OK, 將mv物件放入Session範圍內，識別字串為"LoginOK"
-			Set record =new LinkedHashSet();
+			Set<Integer> record =new LinkedHashSet<Integer>();
 			session.setAttribute("LoginOK", mv);
 			session.setAttribute("LoginOK_MS",ms);
 			session.setAttribute("record", record);
