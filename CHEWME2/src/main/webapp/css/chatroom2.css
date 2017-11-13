@@ -1,5 +1,7 @@
     body{
-
+    height:400px;
+    position: fixed;
+    bottom: 0;
 }
 .col-md-2, .col-md-10{
     padding:0;
@@ -61,7 +63,10 @@
     overflow: hidden;
     display: flex;
 }
-
+img {
+    display: block;
+    width: 100%;
+}
 .avatar {
     position: relative;
 }

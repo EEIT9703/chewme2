@@ -19,10 +19,10 @@
 
 <link rel="stylesheet" type="text/css" href="css/dialog.css" />
 <link rel="stylesheet" type="text/css"
-	href="../css/igs/imgareaselect-default.css" />
+	href="<%=request.getContextPath() %>/css/igs/imgareaselect-default.css" />
 
-<script src="../js/jquery-3.2.1.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>
+<script src="<%=request.getContextPath() %>/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <style>
 .carousel-inner {

@@ -4,6 +4,9 @@ package com.iii.eeit9703.chatroom;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.websocket.EncodeException;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
@@ -11,11 +14,11 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
  
-@ServerEndpoint("/chatroom")
-public class WebSocketEndpointTest {
+@ServerEndpoint("/chatroom2")
+public class ChatWebSocket {
     //用來存放WebSocket已連接的Socket
     static ArrayList<Session> sessions;
- 
+    static Map memSessionMap;
     @OnMessage
     public void onMessage(String message, Session session) throws IOException,
             InterruptedException, EncodeException {
@@ -36,7 +39,9 @@ public class WebSocketEndpointTest {
         System.out.println("Client connected");        
         if (sessions == null) {
             sessions = new ArrayList<Session>();
+            memSessionMap = new HashMap();
         }
+        memSessionMap.put(key, value)
         sessions.add(session);
         System.out.println("Current sessions size: " + sessions.size());
     }
