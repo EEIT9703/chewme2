@@ -148,7 +148,7 @@ html {
 				<div style="border: 1px solid #E3E3E3; padding:3px;">
 					<table>
 						<tr>
-							<td><img src='data:image/png;base64,${LoginOK.memPhoto}' width=40px height=40px>
+							<td><img src='data:image/png;base64,${LoginOK.memPhoto}' width=50px height=50px style="border-radius:50%;">
 							</td>
 							<td><textarea id="memo" placeholder="請輸入內容..."></textarea></td>
 						</tr>
@@ -204,6 +204,8 @@ html {
 					else {
 						// 按下送出留言，底下區塊新增一個div
 						$("#text1").append(temp1);
+						$(".mysrc_:last").attr("id", "article_photo11" + j);
+						$("#article_photo11" + j).attr({"src": 'data:image/png;base64,' + memphoto});
 						$(".text_01:last").attr("id", "mytext"+j);
 						$("#mytext"+j).text(val1);					
 					}
@@ -227,6 +229,8 @@ html {
 							//console.log(datas.contents);
 							//console.log(datas.memPhoto + "測試");
 							$("#text1").append(temp1);
+							$(".mysrc_:last").attr("id", "article_photo" + i);
+ 							$("#article_photo" + i).attr({"src": 'data:image/png;base64,' + datas.memPhoto});
 							$(".text_01:last").attr("id", "mytext_01"+i);
 							$("#mytext_01"+i).text(datas.contents);	
 						})
