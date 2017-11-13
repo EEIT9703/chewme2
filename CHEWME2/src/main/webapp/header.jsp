@@ -1,4 +1,4 @@
-﻿﻿﻿
+﻿﻿﻿﻿
 <%-- <%@ page import="java.util.*"%>
 <%@ page import="com.iii.eeit9703.member.model.*"%>
 <%@ page import="com.iii.eeit9703.collection.*"%>
@@ -224,13 +224,13 @@ body {
 				<li><c:if test="${  empty LoginOK }">
 						<a class="nav-link" href="#" data-toggle="modal"
 							data-target="#myModal"><span>
-							<img src="<%=request.getContextPath()%>/image/login.png" width=30px height=30px></span>登入/註冊 </a>
+							<img src="<%=request.getContextPath()%>/image/login_1.png" width=30px height=30px></span>登入/註冊 </a>
 					</c:if></li>
 
 				<li><c:if test="${ ! empty LoginOK }">
 						<a class="nav-link"
 							href="<%=request.getContextPath()%>/member/logout.jsp"><span>
-							<img src="<%=request.getContextPath()%>/image/login_out.png" width=30px height=30px></span>登出 </a>
+							<img src="<%=request.getContextPath()%>/image/login_out_1.png" width=30px height=30px></span>登出 </a>
 					</c:if></li>
 	
 				<li><c:if test="${ ! empty LoginOK }">
@@ -326,7 +326,7 @@ body {
 				</button>
 				<h4 class="modal-title" id="gridModalLabel">忘記密碼?</h4>
 			</div>
-			<form action="forgetPwd.do" method="post">
+			<form action="<%=request.getContextPath()%>/member/forgetPwd.do" method="post">
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-md-3 col-md-offset-3">
