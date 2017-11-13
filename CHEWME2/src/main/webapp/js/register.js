@@ -56,7 +56,7 @@ function chkbd() {
 }
 function chkmail() {
 	var mail = document.getElementById("memMail").value;
-	var mailreg = /^([\\w]+)(([-\\.][\\w]+)?)*@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([\\w-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$/
+	var mailreg = /^([\w]+)(.[\w]+)*@([\w]+)(.[\w]{2,3}){1,2}$/;
 	if (mail == "") {
 		document.getElementById("mail").innerHTML = "<img src='../image/error.png' />信箱不可空白"
 	} else if (mail.length > 0) {
