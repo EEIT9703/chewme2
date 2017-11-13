@@ -8,21 +8,19 @@ pageEncoding="UTF-8"%>
 <%-- 				<img class="img-responsive center-block" src="<%=request.getContextPath()%>/image/attr.jpg" style="height:150px;"> --%>
 <!-- 			</a> -->
            		<input type="hidden" class="id">    
-				<div class="blog-content bg-white">
+				<div class="blog-content bg-white" style="background-color:#d9ddde;height:200px;">
 				<h3 id="act_name" class="act_name"></h3>
 				<div class="intro1"></div>
 				
 				<a class="btn btn-info btn-sm" href="<%=request.getContextPath()%>/attractions/show_attr.jsp">
               	<span class="glyphicon glyphicon-log-in"></span> 查看
              	</a>  
-             	
-<!-- 				<p>Category : <a href="javascript::;" id="a1">Nature</a></p> -->
-				<hr>
-				<p><span>Share : 
+         
+				<div>Share : 
 				<a href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent('http://www.web.com.tw/activity/index.html'))));"><i class="fa fa-facebook margin_left10" aria-hidden="true"></i></a>
 				<a href="javascript"><i class="fa fa-twitter margin_left10" aria-hidden="true"></i></a>
 				<a href="javascript"><i class="fa fa-google-plus margin_left10" aria-hidden="true"></i></a>
-				 </span>
+				</div>
 				 
                 <span class="pull-right">	
               </span>
