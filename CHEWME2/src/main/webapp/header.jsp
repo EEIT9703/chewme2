@@ -15,6 +15,7 @@ pageContext.setAttribute("all",a);
 <!-- 置頂  -->
 <link href="<%=request.getContextPath()%>/css/navbar-fixed-top.css"
 	rel="stylesheet">
+<!-- 會員 -->>	
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/member.css">
 
@@ -398,7 +399,7 @@ body {
 									class="img-responsive" width="300" height="300">
 								<div class="form-group">
 									<label class="btn btn-info" for="inputfile"> <input
-										id="inputfile" name="memPhoto" style="display: none;"
+										id="memPhoto" name="memPhoto" style="display: none;"
 										type="file" value="${param.memPhoto}"> <i
 										class="fa fa-folder-open-o"></i> 上傳圖片
 									</label>
@@ -553,7 +554,7 @@ body {
 	})
 	$(function() {
 			// 預覽圖片
-			$("#inputfile").change(function() {
+			$("#memPhoto").change(function() {
 
 				readImage(this);
 			});
