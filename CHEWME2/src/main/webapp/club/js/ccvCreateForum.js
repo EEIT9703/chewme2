@@ -53,9 +53,9 @@ function loadIssues() {
 		$.each($("#theForumDiv img"), function() {
 			//console.log(this.id.substring(4));
 			//thsImg = this;
-			console.log(this);
+			//console.log(this);
 			var memId = this.id.substring(6);
-			console.log('memId'+memId);
+			//console.log('memId'+memId);
 			
 			$.get('/CHEWME2/getImageInChewme.do', {
 				"type" : "memPic",
@@ -63,10 +63,8 @@ function loadIssues() {
 				queryMethod : "charQuery",
 			}, function(data) {
 				//console.log(data);
-				console.log(this);
-				console.log(data);
-				console.log($('#memId_'+memId));
-				$('#memId_'+memId).attr("src",data);
+				var image_base64 = "data:image/png;base64,"+data
+				$('#memId_'+memId).attr("src",image_base64);
 			})
 		})	
 	}
