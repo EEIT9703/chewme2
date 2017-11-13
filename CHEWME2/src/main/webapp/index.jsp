@@ -214,7 +214,7 @@ ul, li {
 <div id="test" style="padding:0px">
   <div class="user">
       <img src="image/55.jpg" alt="Esempio" class="img-thumbnail" width=50px><br>
-      <a href="http://www.lombardoandrea.com" target="_blank" class="navbar-link">Andrea Lombardo</a>
+      <a href="<%=request.getContextPath()%>/act/ActivitySearch?action=searchone&name=30" target="_blank" class="navbar-link">Andrea Lombardo</a>
   </div>
 
   <div class="list-group">
@@ -283,10 +283,10 @@ $(function(){
 		  duration: 500,
 
 		  // restore last menu status on page refresh
-		  remember: true,
+		  remember: false,
 
 		  // auto close
-		  autoClose: false,
+		  autoClose: true,
 
 		  // push the whole page
 		  pushBody: true,
