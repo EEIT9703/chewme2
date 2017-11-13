@@ -127,12 +127,12 @@ body {
 	<div class="container-fluid">
 		<div>
 			<div>
-				<p class="navbar-brand " href="#">
-					<img src="<%=request.getContextPath()%>/image/chewme-logobig.png"
-						width="330" height="50" alt="" style="padding-bottom: 10px;">
+				<p class="navbar-left" href="<%=request.getContextPath()%>/index.jsp">
+					<img src="<%=request.getContextPath()%>/image/chewme-logo-3-2.png"
+						width="" height="" alt="" style="max-width:250px;">
 				</p>
 			</div>
-			<!-- <div class="navbar-header" >
+<!-- 			 <div class="navbar-header" >
 				<p class="navbar-brand " style="font-family: 'Arial';font-size:30px;margin-top:7px;font-weight:bold;">CHEWME</p>
 				<button type="button" class="navbar-toggle collapsed"
 					data-toggle="collapse" data-target="#navbar-right"

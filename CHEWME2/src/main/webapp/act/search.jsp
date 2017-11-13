@@ -97,7 +97,7 @@ body { background-color:#ddd; }
 				<img class="img-responsive center-block" src="data:image/png;base64,${activityVO.act_photo}" height="250">
 			</a>	
 				<div class="blog-content bg-white">
-				<img src="<%=request.getContextPath()%>/image/chewme-logo.png" width="50" height="50" style="float:left">
+				<img src="<%=request.getContextPath()%>/image/chewme-logo-3-1.png" width="50" height="50" style="float:left;vertical-align:middle;">
 				<h2 id="act_name" class="act_name" style="">${activityVO.act_name}</h2>
 				
 				<a class="btn-sm btn btn-info ">
