@@ -20,7 +20,7 @@ public interface MemDAO_interface {
     public List<MemVO> getAll();
 //	public void insertGoogle(MemVO memVO);
 
-    //public Set<CollectionVO> getCollByMemNo(Integer memId);
+    public Set<CollectionVO> getCollByMemNo(Integer memId);
     //public Set<ReportVO> getRepByMemNo(Integer memId);
     public Set<OrderVO> findOrdersByMemId(Integer memId);  
     public Set<ActivityVO> findActivitysByMemId(Integer memId);

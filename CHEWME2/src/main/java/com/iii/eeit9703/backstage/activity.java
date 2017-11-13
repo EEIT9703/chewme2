@@ -89,8 +89,10 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 				MemVO memVO=(MemVO) session.getAttribute("LoginOK");
 				Integer memID= memVO.getMemId();
 						
-				MemberSession chd = new MemberSession(memID);
-				List<CollectionVO> collList=chd.getOwnColVoList();
+//				MemberSession chd = new MemberSession(memID);
+//				List<CollectionVO> collList=chd.getOwnColVoList();
+				MemDAO_hibernate dao =new MemDAO_hibernate();
+        		Set<CollectionVO> collList=dao.getCollByMemNo(memID);
 				System.out.println(collList.size());
 				List<HashMap<String,String>> errorMsgMap = new ArrayList<HashMap<String,String>>();
 				HashMap<String,String> map = null;
@@ -164,10 +166,10 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
                		MemVO memVO=(MemVO) session.getAttribute("LoginOK");
     				Integer memID= memVO.getMemId();
 					
-    				MemberSession chd = new MemberSession(memID);
-                	List<CollectionVO> set=chd.getOwnColVoList();
-//            		MemDAO_hibernate dao =new MemDAO_hibernate();
-//            		Set<CollectionVO> set=dao.getCollByMemNo(1);
+//    				MemberSession chd = new MemberSession(memID);
+//                	List<CollectionVO> set=chd.getOwnColVoList();
+            		MemDAO_hibernate dao =new MemDAO_hibernate();
+            		Set<CollectionVO> set=dao.getCollByMemNo(memID);
             		List<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
     				HashMap<String,String> map = null;
             		   	for(CollectionVO collectionVO :set){

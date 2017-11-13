@@ -82,7 +82,7 @@ option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 			<div id="tabs" style="width:550px">
 			  <ul>
 		    	<li><a href="#attr">景　點</a></li>
-				<li><a href="#rest">餐　聽</a></li>
+				<li><a href="#rest">餐　廳</a></li>
  	 			<li><a href="#stay">住　宿</a></li>
 			  </ul>
 			  <div id="attr"></div>

@@ -1,4 +1,4 @@
-﻿﻿
+﻿﻿﻿
 <%-- <%@ page import="java.util.*"%>
 <%@ page import="com.iii.eeit9703.member.model.*"%>
 <%@ page import="com.iii.eeit9703.collection.*"%>
@@ -9,15 +9,13 @@ pageContext.setAttribute("list",list);
 int a=list.size();
 pageContext.setAttribute("all",a);
 %> --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/bootstrap.min.css">
 <!-- 置頂  -->
-<link href="<%=request.getContextPath()%>/css/navbar-fixed-top.css"
-	rel="stylesheet">
-<!-- 會員 -->>	
+
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/member.css">
+	href="<%=request.getContextPath()%>/css/loginNregister.css">
 
 <style>
 
@@ -220,42 +218,44 @@ body {
 
 				<li><c:if test="${  !empty SysManager }">
 						<a class="nav-link"
-							href="<%=request.getContextPath()%>/backage/backage_index.jsp"><span
-							class="glyphicon glyphicon-log-in"></span>維護 </a>
+							href="<%=request.getContextPath()%>/backage/backage_index.jsp"><span>
+							<img src="<%=request.getContextPath()%>/image/settings.png" width=30px height=30px></span>維護 </a>
 					</c:if></li>
 				<li><c:if test="${  empty LoginOK }">
 						<a class="nav-link" href="#" data-toggle="modal"
-							data-target="#loginModal"><span
-							class="glyphicon glyphicon-log-in"></span>登入 </a>
+							data-target="#myModal"><span>
+							<img src="<%=request.getContextPath()%>/image/login.png" width=30px height=30px></span>登入/註冊 </a>
 					</c:if></li>
 
 				<li><c:if test="${ ! empty LoginOK }">
 						<a class="nav-link"
-							href="<%=request.getContextPath()%>/member/logout.jsp"><span
-							class="glyphicon glyphicon-log-in"></span>登出 </a>
+							href="<%=request.getContextPath()%>/member/logout.jsp"><span>
+							<img src="<%=request.getContextPath()%>/image/login_out.png" width=30px height=30px></span>登出 </a>
 					</c:if></li>
-
-				<li><c:if test="${  empty LoginOK }">
-						<a class="nav-link" href="#" data-toggle="modal"
-							data-target="#registerModal"><span
-							class="glyphicon glyphicon-log-in"></span>註冊 </a>
-					</c:if></li>
+	
 				<li><c:if test="${ ! empty LoginOK }">
-						<a class="nav-link"
+						<a class="nav-link" style="padding:19px 0px 0px 0px;margin-right:10px"
 							href="<%=request.getContextPath()%>/member/mempage.jsp" a>${LoginOK.memName }</a>
 					</c:if></li>
-				<li><c:choose>
-						<c:when test="${  empty LoginOK.memPhoto && empty picUri}">
-							<img src='<%=request.getContextPath()%>/image/nophoto.png'
-								style="border-radius: 50%" width=50px height=50px>
+				<c:choose>
+						<c:when test="${  empty LoginOK}">
+						<li style="padding:18px 0px 0px 0px;margin-left:20px">
+								訪客,你好
 						</c:when>
-						<c:when test="${ ! empty LoginOK.memPhoto }">
+						<c:when test="${ ! empty LoginOK && empty LoginOK.memPhoto}">
+						<li >
+							<img src='<%=request.getContextPath()%>/image/nophoto.png'
+									style="border-radius: 50%" width=50px height=50px>
+						</c:when>
+						
+						<c:when test="${ ! empty LoginOK && ! empty LoginOK.memPhoto}">
+						<li>
 							<img src='data:image/png;base64,${LoginOK.memPhoto}'
 								style="border-radius: 50%" width=50px height=50px>
 						</c:when>
+						
 						<c:otherwise>
-							<img src='${picUri}' style="border-radius: 50%" width=50px
-								height=50px>
+							<img src='${picUri}' style="border-radius: 50%" width=50px height=50px >
 						</c:otherwise>
 					</c:choose></li>
 				<li style="width: 50px"></li>
@@ -266,219 +266,89 @@ body {
 
 </nav>
 
-
-
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"
-					aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">登入</h4>
+				<h2 style="color: #00BBFF">CHEWME</h2>
 			</div>
 			<div class="modal-body">
-
-
-				<div class="main">
-					<h3>
-						LoginMe,or <a class="nav-link" href="#" data-toggle="modal"
-							data-target="#registerModal">RegisterMe</a>
-					</h3>
+				<div class="container" align="center">
 					<div class="row">
 						<div class="col-xs-6 col-sm-6 col-md-6">
-							<a
-								href="https://accounts.google.com/o/oauth2/auth?scope=https://www.googleapis.com/auth/userinfo.profile+https://www.googleapis.com/auth/userinfo.email&redirect_uri=http://localhost:8081/CHEWME2/googlelogin.do&response_type=code&state=/profile&client_id=237459292600-4nc82k5o9iq1caepr82fsukrcpsflah0.apps.googleusercontent.com">
-								<img
-								src="<%=request.getContextPath()%>/image/google_sign_in.png"
-								style="width: 350px; height: 70px;" />
-							</a>
-						</div>
-					</div>
-					<div class="login-or">
-						<hr class="hr-or">
-						<span class="span-or">or</span>
-					</div>
-
-					<form role="form"
-						action="<%=request.getContextPath()%>/member/login.do"
-						method="post" name="loginForm">
-						<div class="form-group">
-							<label>帳號:</label> <input type="text" class="form-control"
-								id="userId" name="userId" value="${sessionScope.user}">
-						</div>
-						<div class="form-group">
-							<a class="pull-right" data-toggle="modal"
-								data-target="#gridSystemModal">忘記密碼?</a> <label>密碼:</label> <input
-								type="password" class="form-control" id="password" name="pswd"
-								value="${sessionScope.password}">
-						</div>
-
-<!-- 						<div class="g-recaptcha" -->
-<!-- 							data-sitekey="6LfFkTYUAAAAAMK1w_K82sMGOy-BWkq-YBYMn5-J"></div> -->
-						<div class="checkbox pull-right">
-							<label> <input type="checkbox" name="rememberMe"
-								class="recaptcha"
-								<c:if test='${sessionScope.rememberMe==true}'>checked='checked'</c:if>
-								value="true"> 記住密碼
-							</label>
-						</div>
-
-						<div align="center">
-							<button type="submit" class="btn btn btn-primary">登入</button>
-						</div>
-						<div>
-							<small><Font color='red' size="-3">&nbsp;${ErrorMsgKey.LoginError}</Font></small>
-						</div>
-					</form>
-
-					<div id="gridSystemModal" class="modal fade" tabindex="-1"
-						role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal"
-										aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-									<h4 class="modal-title" id="gridModalLabel">忘記密碼?</h4>
-								</div>
-								<form action="forgetPwd.do" method="post">
-									<div class="modal-body">
-										<div class="row">
-											<div class="col-md-3 col-md-offset-3">
-												<br>&nbsp;您的帳號：<input type="text" name="userId" /><br>
-												<br> &nbsp;您的信箱：<input type="text" name="userMail" /><br>
-											</div>
-											<br />
+							<div class="panel panel-login">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-xs-6">
+											<a href="#" class="active" id="login-form-link">登入</a>
 										</div>
-
+										<div class="col-xs-6">
+											<a href="#" id="register-form-link">註冊</a>
+										</div>
 									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default"
-											data-dismiss="modal">Close</button>
-										<button type="submit" class="btn btn-primary">提交</button>
+									<hr>
+								</div>
+								<div class="panel-body">
+									<div class="row">
+										<div class="col-lg-12">
+											<form id="login-form"
+												action="<%=request.getContextPath()%>/member/login.do"
+												method="post" role="form" style="display: block;">
+												<%@ include file="/member/login.jsp"%>
+											</form>
+											<form id="register-form"
+												action="<%=request.getContextPath()%>/member/register.do"
+												method="post" role="form" style="display: none;">
+												<%@ include file="/member/register.jsp"%>
+											</form>
+										</div>
 									</div>
-								</form>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<!-- /.modal-content -->
 	</div>
+	<!-- /.modal -->
 </div>
-
-<div class="modal fade" id="registerModal" tabindex="-1" role="dialog"
-	aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
+<div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog"
+	aria-labelledby="gridModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal"
-					aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">登入</h4>
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="gridModalLabel">忘記密碼?</h4>
 			</div>
-			<div class="modal-body">
-
-
-				<div class="main">
-					<div class="row main">
-						<div class="panel-heading">
-							<div class="panel-title text-center">
-								<h3>
-									<a class="nav-link" href="#" data-toggle="modal"
-										data-target="#loginModal">LoginMe</a>,or RegisterMe
-								</h3>
-							</div>
+			<form action="forgetPwd.do" method="post">
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-3 col-md-offset-3">
+							<br>&nbsp;您的帳號：<input type="text" name="userId" /><br>
+							<br> &nbsp;您的信箱：<input type="text" name="userMail" /><br>
 						</div>
-						<div class="main-login main-center">
-							<form class="form-horizontal" method="post" action="register.do"
-								name="memform" id="memform" enctype="multipart/form-data">
-								<img id="img_header"
-									src="<%=request.getContextPath()%>/image/nophoto.png"
-									class="img-responsive" width="300" height="300">
-								<div class="form-group">
-									<label class="btn btn-info" for="inputfile"> <input
-										id="memPhoto" name="memPhoto" style="display: none;"
-										type="file" value="${param.memPhoto}"> <i
-										class="fa fa-folder-open-o"></i> 上傳圖片
-									</label>
-								</div>
-								<div class="form-group">
-									<label>帳號:</label> <input type="text" class="form-control"
-										id="memberId" name="memberId" value="${param.memberId}"><span
-										id="idsp" style="color: red;"></span>
-								</div>
-								<div class="form-group">
-									<label>真實姓名:</label> <input type="text" class="form-control"
-										id="memName" name="memName" value="${param.memName}"><span
-										id="name" style="color: red;"></span>
-								</div>
-
-								<div class="form-group">
-									<label>暱稱:</label> <input type="text" class="form-control"
-										id="memNickN" name="memNickN" value="${param.memNickN}"><span
-										id="nickn" style="color: red;"></span>
-								</div>
-
-								<div class="form-group">
-									<label>密碼:</label> <input type="password" class="form-control"
-										id="memPwd" name="memPwd" value="${param.memPwd}"><span
-										id="pwd" style="color: red;"></span>
-								</div>
-
-								<div class="form-group">
-									<label>生日:</label> <input type="date" class="form-control"
-										id="memBirthday" name="memBirthday"
-										value="${param.memBirthday}"><span id="bd"
-										style="color: red;"></span>
-								</div>
-
-								<div class="form-group">
-									<label>信箱:</label> <input type="text" class="form-control"
-										id="memMail" name="memMail" value="${param.memMail}"><span
-										id="mail" style="color: red;"></span>
-								</div>
-
-								<div class="form-group">
-									<label>地址:</label> <input type="text" class="form-control"
-										id="memAddr" name="memAddr" value="${param.memAddr}"><span
-										id="addr" style="color: red;"></span>
-								</div>
-
-								<div class="form-group">
-									<label>電話:</label> <input type="text" class="form-control"
-										id="memPhone" name="memPhone" value="${param.memPhone}"><span
-										id="phone" style="color: red;"></span>
-								</div>
-
-								<div class="form-group">
-									<label>自我介紹:</label>
-									<textarea class="form-control" name="memIntr" id="memIntr"
-										style="resize: none;">${param.memIntr}</textarea>
-									<span id="intr" style="color: red;"></span>
-								</div>
-
-								<div align="center">
-									<input type="hidden" name="action" value="insert">
-									<button type="submit" class="btn btn btn-primary">送出</button>
-									<button type="reset" class="btn btn btn-primary">重填</button>
-								</div>
-							</form>
-						</div>
+						<br />
 					</div>
+
 				</div>
-			</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">提交</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
 
-
-
-
-
 <%-- <script src="<%=request.getContextPath()%>/js/jquery-1.12.3.min.js"></script> --%>
-
+<script src="<%=request.getContextPath()%>/js/register.js"></script>
+<script src="<%=request.getContextPath()%>/js/loginNregister.js"></script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <script>
  $(function(){
@@ -503,7 +373,7 @@ body {
 	 			var button = $('<button id="opop"></button>').css('color','red').addClass('close glyphicon glyphicon-remove').attr({'type':'button','name':activity.actID});
 	 			var span2=$('<span></span>').append(button)			
 	 			var cell2=$("<div></div>").append([span1,span2])	
-	 			var cell3=$("<div></div>").text("$5888")
+	 			var cell3=$("<div></div>").text(activity.act_price)
 	 			
 	 			cell1.append(img);
 	 			div_out.append([cell1,cell2,cell3]);

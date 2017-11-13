@@ -31,38 +31,38 @@
   		<div id="wrapper">
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
+                     <ul class="nav" id="side-menu" style="background-color:#D9FFFF">
                        
                         <li>
-                            <a href="<%=request.getContextPath()%>/backage/backage_index.jsp"><i class="fa fa-dashboard fa-fw"></i> 後台首頁</a>
+                            <a href="<%=request.getContextPath()%>/backage/backage_index.jsp"><img src="<%=request.getContextPath()%>/image/house.png" width=32px height=32px>後台首頁</a>
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()%>/backage/ad.jsp"><i class="fa fa-bar-chart-o fa-fw"></i>廣告輪播</a>
+                            <a href="<%=request.getContextPath()%>/backage/ad.jsp"><img src="<%=request.getContextPath()%>/image/billboard.png" width=30px height=30px>廣告輪播</a>
                             
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()%>/backage/report.jsp"><i class="fa fa-table fa-fw"></i>檢舉名單</a>
+                            <a href="<%=request.getContextPath()%>/backage/report.jsp"><img src="<%=request.getContextPath()%>/image/analytics.png" width=30px height=30px>檢舉名單</a>
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()%>/backage/backage_activity.jsp"><i class="fa fa-edit fa-fw"></i>活動管理</a>
+                            <a href="<%=request.getContextPath()%>/backage/backage_activity.jsp"><img src="<%=request.getContextPath()%>/image/actvity.png" width=30px height=30px>活動管理</a>
                         </li> 
                          <li>
-                            <a href="<%=request.getContextPath()%>/backage/backage_member.jsp"><i class="fa fa-edit fa-fw"></i>會員管理</a>
-                        </li>
+                            <a href="<%=request.getContextPath()%>/backage/backage_member.jsp"><img src="<%=request.getContextPath()%>/image/team.png" width=30px height=30px>會員管理</a>
+                        </li> 
                          <li>
-                            <a href="<%=request.getContextPath()%>/backage/backage_attraction.jsp"><i class="fa fa-edit fa-fw"></i>景點管理</a>
-                        </li>                           
-                        <li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">Blank Page</a>
-                                </li>
-                                <li>
-                                    <a href="#">Login Page</a>
-                                </li>
-                            </ul>                       
-                        </li>
+                            <a href="<%=request.getContextPath()%>/backage/backage_attraction.jsp"><img src="<%=request.getContextPath()%>/image/map.png" width=30px height=30px>景點管理</a>
+                        </li>                          
+<!--                         <li> -->
+<!--                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a> -->
+<!--                             <ul class="nav nav-second-level"> -->
+<!--                                 <li> -->
+<!--                                     <a href="#">Blank Page</a> -->
+<!--                                 </li> -->
+<!--                                 <li> -->
+<!--                                     <a href="#">Login Page</a> -->
+<!--                                 </li> -->
+<!--                             </ul>                        -->
+<!--                         </li> -->
                     </ul>
                 </div>           
             </div> 

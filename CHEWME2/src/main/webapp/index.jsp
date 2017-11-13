@@ -1,7 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 ﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.iii.eeit9703.activity.model.*"%>
+<%
+ActService ser=new ActService();
+if(session.getAttribute("record")!=null){
+Set<Integer> a=(Set<Integer>)session.getAttribute("record");
+ArrayList<ActivityVO> lis = new ArrayList();
 
+Iterator<Integer> iterator=a.iterator();
+while(iterator.hasNext()){
+	ActivityVO activityVO=ser.getOneAct(iterator.next());
+	lis.add(activityVO);
+}
+pageContext.setAttribute("list1", lis);
+}
+%> 
 <!DOCTYPE html>
 <html>
 
@@ -11,11 +26,13 @@ pageEncoding="UTF-8"%>
 <meta charset="utf-8" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/BootSideMenu.css">
+
 <script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/slideshow.js">	</script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/BootSideMenu.js"></script>
+
 
 <style>
 
@@ -109,7 +126,7 @@ ul, li {
 		<!-- 	側邊廣告 -->
 	<div id="abgne_float_ad" >
 		<a href="http://cheng-sing.com/travel/2017/10/19/">
-			<img src="image/barAD.gif" title="按我免費取票" />
+			<img src="image/barAD.gif" title="按我免費取票" width="125px"/>
 		</a>
 	</div>
 	
@@ -125,8 +142,10 @@ ul, li {
 					</div>
 					<div class="abgne-control">
 						<ul class="arrows" style="list-style-type: none">
-							<li style="list-style-type: none" class="prev">&lt;</li>
-							<li style="list-style-type: none" class="next">&gt;</li>
+<!-- 							<li style="list-style-type: none" class="prev">&lt;</li> -->
+<!-- 							<li style="list-style-type: none" class="next">&gt;</li> -->
+							<li style="list-style-type: none" class="prev" width=20px height=20px><img src=image/left.png width=14px height=14px></li>
+							<li style="list-style-type: none" class="next"><img src=image/right.png width=14px height=14px></li>
 						</ul>
 					</div>
 				</div>
@@ -228,60 +247,63 @@ ul, li {
 <!--           </ul> -->
 
 <div id="test" style="padding:0px">
+<div><h1>瀏覽過的行程</h1></div>
+<hr color="black" size="20" width="100%"  align="left">
+<c:forEach var="ActivityVO" items="${list1}">
   <div class="user">
-      <img src="image/55.jpg" alt="Esempio" class="img-thumbnail" width=50px><br>
-      <a href="http://www.lombardoandrea.com" target="_blank" class="navbar-link">Andrea Lombardo</a>
+      <img src="data:image/png;base64,${ActivityVO.act_photo} alt="Esempio" class="img-thumbnail" width=200px height=150px><br>
+      <a href="<%=request.getContextPath()%>/act/ActivitySearch?action=searchone&name=${ActivityVO.actID}"  target="_blank" class="navbar-link">${ActivityVO.act_name}</a>
   </div>
+</c:forEach>
+<!--   <div class="list-group"> -->
 
-  <div class="list-group">
+<!--       <a href="#item-1" class="list-group-item" data-toggle="collapse">Item 1</a> -->
 
-      <a href="#item-1" class="list-group-item" data-toggle="collapse">Item 1</a>
+<!--       <div class="list-group collapse" id="item-1"> -->
+<!--           <a href="#" class="list-group-item">Item 1 di 1</a> -->
+<!--           <a href="#" class="list-group-item">Item 2 di 1</a> -->
+<!--           <a href="#item-1-1" class="list-group-item" data-toggle="collapse">Item 3 di 1</a> -->
 
-      <div class="list-group collapse" id="item-1">
-          <a href="#" class="list-group-item">Item 1 di 1</a>
-          <a href="#" class="list-group-item">Item 2 di 1</a>
-          <a href="#item-1-1" class="list-group-item" data-toggle="collapse">Item 3 di 1</a>
+<!--           <div class="list-group collapse" id="item-1-1"> -->
+<!--               <a href="#" class="list-group-item">Item 1 di 1.3</a> -->
+<!--               <a href="#" class="list-group-item">Item 2 di 1.3</a> -->
+<!--               <a href="#" class="list-group-item">Item 3 di 1.3</a> -->
+<!--           </div> -->
 
-          <div class="list-group collapse" id="item-1-1">
-              <a href="#" class="list-group-item">Item 1 di 1.3</a>
-              <a href="#" class="list-group-item">Item 2 di 1.3</a>
-              <a href="#" class="list-group-item">Item 3 di 1.3</a>
-          </div>
+<!--       </div> -->
 
-      </div>
+<!--       <a href="#item-2" class="list-group-item" data-toggle="collapse">Item 2</a> -->
 
-      <a href="#item-2" class="list-group-item" data-toggle="collapse">Item 2</a>
+<!--       <div class="list-group collapse" id="item-2"> -->
+<!--           <a href="#" class="list-group-item">Item 1 di 2</a> -->
+<!--           <a href="#" class="list-group-item">Item 2 di 2</a> -->
+<!--           <a href="#" class="list-group-item">Item 3 di 2</a> -->
+<!--       </div> -->
 
-      <div class="list-group collapse" id="item-2">
-          <a href="#" class="list-group-item">Item 1 di 2</a>
-          <a href="#" class="list-group-item">Item 2 di 2</a>
-          <a href="#" class="list-group-item">Item 3 di 2</a>
-      </div>
+<!--       <a href="#item-3" class="list-group-item" data-toggle="collapse">Item 3</a> -->
 
-      <a href="#item-3" class="list-group-item" data-toggle="collapse">Item 3</a>
+<!--       <div class="list-group collapse" id="item-3"> -->
+<!--           <a href="#" class="list-group-item">Item 1 di 3</a> -->
+<!--           <a href="#" class="list-group-item">Item 2 di 3</a> -->
+<!--           <a href="#item-3-1" class="list-group-item" data-toggle="collapse">Item 3 di 3</a> -->
 
-      <div class="list-group collapse" id="item-3">
-          <a href="#" class="list-group-item">Item 1 di 3</a>
-          <a href="#" class="list-group-item">Item 2 di 3</a>
-          <a href="#item-3-1" class="list-group-item" data-toggle="collapse">Item 3 di 3</a>
+<!--           <div class="list-group collapse" id="item-3-1"> -->
+<!--               <a href="#" class="list-group-item">Item 1 di 3.3</a> -->
+<!--               <a href="#" class="list-group-item">Item 2 di 3.3</a> -->
+<!--               <a href="#" class="list-group-item">Item 3 di 3.3</a> -->
+<!--           </div> -->
 
-          <div class="list-group collapse" id="item-3-1">
-              <a href="#" class="list-group-item">Item 1 di 3.3</a>
-              <a href="#" class="list-group-item">Item 2 di 3.3</a>
-              <a href="#" class="list-group-item">Item 3 di 3.3</a>
-          </div>
+<!--       </div> -->
 
-      </div>
+<!--       <a href="#item-4" class="list-group-item" data-toggle="collapse">Item 4</a> -->
 
-      <a href="#item-4" class="list-group-item" data-toggle="collapse">Item 4</a>
+<!--       <div class="list-group collapse" id="item-4"> -->
+<!--           <a href="#" class="list-group-item">Item 1 di 4</a> -->
+<!--           <a href="#" class="list-group-item">Item 2 di 4</a> -->
+<!--           <a href="#" class="list-group-item">Item 3 di 4</a> -->
+<!--       </div> -->
 
-      <div class="list-group collapse" id="item-4">
-          <a href="#" class="list-group-item">Item 1 di 4</a>
-          <a href="#" class="list-group-item">Item 2 di 4</a>
-          <a href="#" class="list-group-item">Item 3 di 4</a>
-      </div>
-
-  </div>
+<!--   </div> -->
 
 </div>
 
@@ -328,10 +350,10 @@ $(function(){
 		  duration: 500,
 
 		  // restore last menu status on page refresh
-		  remember: true,
+		  remember: false,
 
 		  // auto close
-		  autoClose: false,
+		  autoClose: true,
 
 		  // push the whole page
 		  pushBody: true,
@@ -340,7 +362,7 @@ $(function(){
 		  closeOnClick: true,
 
 		  // width
-		  width: "20%"
+		  width: "15%"
 		  
 		});
 
