@@ -1,4 +1,4 @@
-﻿﻿﻿
+﻿﻿
 <%-- <%@ page import="java.util.*"%>
 <%@ page import="com.iii.eeit9703.member.model.*"%>
 <%@ page import="com.iii.eeit9703.collection.*"%>
@@ -13,7 +13,10 @@ pageContext.setAttribute("all",a);
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/bootstrap.min.css">
 <!-- 置頂  -->
-
+<link href="<%=request.getContextPath()%>/css/navbar-fixed-top.css"
+	rel="stylesheet">
+<!-- 會員 -->
+>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/loginNregister.css">
 
@@ -218,44 +221,37 @@ body {
 
 				<li><c:if test="${  !empty SysManager }">
 						<a class="nav-link"
-							href="<%=request.getContextPath()%>/backage/backage_index.jsp"><span>
-							<img src="<%=request.getContextPath()%>/image/settings.png" width=30px height=30px></span>維護 </a>
+							href="<%=request.getContextPath()%>/backage/backage_index.jsp"><span
+							class="glyphicon glyphicon-log-in"></span>維護 </a>
 					</c:if></li>
 				<li><c:if test="${  empty LoginOK }">
 						<a class="nav-link" href="#" data-toggle="modal"
-							data-target="#myModal"><span>
-							<img src="<%=request.getContextPath()%>/image/login.png" width=30px height=30px></span>登入/註冊 </a>
+							data-target="#myModal"><span
+							class="glyphicon glyphicon-log-in"></span>登入/註冊 </a>
 					</c:if></li>
 
 				<li><c:if test="${ ! empty LoginOK }">
 						<a class="nav-link"
-							href="<%=request.getContextPath()%>/member/logout.jsp"><span>
-							<img src="<%=request.getContextPath()%>/image/login_out.png" width=30px height=30px></span>登出 </a>
+							href="<%=request.getContextPath()%>/member/logout.jsp"><span
+							class="glyphicon glyphicon-log-in"></span>登出 </a>
 					</c:if></li>
 	
 				<li><c:if test="${ ! empty LoginOK }">
-						<a class="nav-link" style="padding:19px 0px 0px 0px;margin-right:10px"
+						<a class="nav-link"
 							href="<%=request.getContextPath()%>/member/mempage.jsp" a>${LoginOK.memName }</a>
 					</c:if></li>
-				<c:choose>
-						<c:when test="${  empty LoginOK}">
-						<li style="padding:18px 0px 0px 0px;margin-left:20px">
-								訪客,你好
-						</c:when>
-						<c:when test="${ ! empty LoginOK && empty LoginOK.memPhoto}">
-						<li >
+				<li><c:choose>
+						<c:when test="${  empty LoginOK.memPhoto && empty picUri}">
 							<img src='<%=request.getContextPath()%>/image/nophoto.png'
-									style="border-radius: 50%" width=50px height=50px>
+								style="border-radius: 50%" width=50px height=50px>
 						</c:when>
-						
-						<c:when test="${ ! empty LoginOK && ! empty LoginOK.memPhoto}">
-						<li>
+						<c:when test="${ ! empty LoginOK.memPhoto }">
 							<img src='data:image/png;base64,${LoginOK.memPhoto}'
 								style="border-radius: 50%" width=50px height=50px>
 						</c:when>
-						
 						<c:otherwise>
-							<img src='${picUri}' style="border-radius: 50%" width=50px height=50px >
+							<img src='${picUri}' style="border-radius: 50%" width=50px
+								height=50px>
 						</c:otherwise>
 					</c:choose></li>
 				<li style="width: 50px"></li>
@@ -265,7 +261,7 @@ body {
 
 
 </nav>
-
+<!-- 登入與註冊的模態框 -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -311,10 +307,9 @@ body {
 				</div>
 			</div>
 		</div>
-		<!-- /.modal-content -->
 	</div>
-	<!-- /.modal -->
 </div>
+<!-- 忘記密碼模態框 -->
 <div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog"
 	aria-labelledby="gridModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
@@ -326,7 +321,7 @@ body {
 				</button>
 				<h4 class="modal-title" id="gridModalLabel">忘記密碼?</h4>
 			</div>
-			<form action="forgetPwd.do" method="post">
+			<form action="<%=request.getContextPath()%>/member/forgetPwd.do" method="post">
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-md-3 col-md-offset-3">
@@ -373,7 +368,7 @@ body {
 	 			var button = $('<button id="opop"></button>').css('color','red').addClass('close glyphicon glyphicon-remove').attr({'type':'button','name':activity.actID});
 	 			var span2=$('<span></span>').append(button)			
 	 			var cell2=$("<div></div>").append([span1,span2])	
-	 			var cell3=$("<div></div>").text(activity.act_price)
+	 			var cell3=$("<div></div>").text("$5888")
 	 			
 	 			cell1.append(img);
 	 			div_out.append([cell1,cell2,cell3]);
