@@ -16,12 +16,12 @@
     });
     imgOnload($('#img'));
     $('#confirmImg').on("click",function(){
-    	$('#img123').imgAreaSelect({remove:true});
+    	$('#img').imgAreaSelect({remove:true});
     	dialog.dialog("close");
-    	imgAreaInit($('#img123'));
+    	imgAreaInit($('#img'));
     	inputChangeEventListener($("#uploadImage"));
-    	imgAreaSelectAndReadEventListener($('#img123'));
-    	imgOnload($('#img123'));
+    	imgAreaSelectAndReadEventListener($('#img'));
+    	imgOnload($('#img'));
     })
     
   });

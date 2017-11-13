@@ -394,7 +394,7 @@ body {
 						<div class="main-login main-center">
 							<form class="form-horizontal" method="post" action="register.do"
 								name="memform" id="memform" enctype="multipart/form-data">
-								<img id="img"
+								<img id="img_header"
 									src="<%=request.getContextPath()%>/image/nophoto.png"
 									class="img-responsive" width="300" height="300">
 								<div class="form-group">
@@ -556,16 +556,16 @@ body {
 			// 預覽圖片
 			$("#memPhoto").change(function() {
 
-				readImage(this);
+				readImage_header(this);
 			});
 
-			function readImage(input) {
+			function readImage_header(input) {
 				if (input.files && input.files[0]) {
 					var file = input.files[0];
 					var FR = new FileReader();
 					FR.onload = function(e) {
 						// e.target.result = base64 format picture
-						$('#img ').attr("src", e.target.result);
+						$('#img_header ').attr("src", e.target.result);
 						var url = e.target.result;
 
 					};

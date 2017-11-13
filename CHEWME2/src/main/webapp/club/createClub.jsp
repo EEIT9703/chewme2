@@ -15,18 +15,6 @@
 <link rel="stylesheet" type="text/css"
 	href="../css/igs/imgareaselect-default.css" />
 <%-- <script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery.min.js"></script> --%>
-	<script type="text/javascript"
-		src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script type="text/javascript"
-		src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-	<script src="js/dialog.js"></script>
-	<script type="text/javascript"
-		src="<%=request.getContextPath()%>/js/jquery.imgareaselect.pack.js"></script>
-	<script type="text/javascript"
-		src="<%=request.getContextPath()%>/club/js/createClub.js"></script>
-	<script type="text/javascript"
-		src="<%=request.getContextPath()%>/com-resource/js/imgSelAndUpload.js"></script>
 
 </head>
 <body>
@@ -89,10 +77,22 @@
 	<div id="dialog-img" title="Create new user" >
 		<p class="validateTips">請選擇圖片所要的範圍</p>
 		<!-- Allow form submission with keyboard without duplicating the dialog button -->
-		<img id="img123" src="">
+		<img id="img" src="">
 		<button id="confirmImg">confirm</button>
 	</div>	
 
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+	<script src="js/dialog.js"></script>
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/js/jquery.imgareaselect.pack.js"></script>
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/club/js/createClub.js"></script>
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/com-resource/js/imgSelAndUpload.js"></script>
 
 </body>
 </html>
