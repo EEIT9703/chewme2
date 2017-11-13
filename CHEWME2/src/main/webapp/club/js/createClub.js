@@ -17,11 +17,11 @@ $(document).ready(function() {
 	// 此方法為設定我們設定我們image內部值
 
 	// 創造一個圖形區域
-	imgAreaInit($('#img'));
+	imgAreaInit($('#img123'));
 	// 設定一個input eventlistener;
 	inputChangeEventListener($("#uploadImage"));					
 	// img select後把圖片讀到canvas
-	imgAreaSelectAndReadEventListener($('#img'));
+	imgAreaSelectAndReadEventListener($('#img123'));
 
 	$("#submit")
 			.on("click",function() {

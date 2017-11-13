@@ -89,7 +89,7 @@
 	<div id="dialog-img" title="Create new user" >
 		<p class="validateTips">請選擇圖片所要的範圍</p>
 		<!-- Allow form submission with keyboard without duplicating the dialog button -->
-		<img id="img" src="">
+		<img id="img123" src="">
 		<button id="confirmImg">confirm</button>
 	</div>	
 
