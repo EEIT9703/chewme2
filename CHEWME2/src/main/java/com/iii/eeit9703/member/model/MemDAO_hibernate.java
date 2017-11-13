@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.iii.eeit9703.activity.model.ActivityVO;
+import com.iii.eeit9703.collection.CollectionVO;
 import com.iii.eeit9703.hibernate.util.HibernateUtil;
 import com.iii.eeit9703.order.OrderVO;
 
@@ -38,11 +39,11 @@ public class MemDAO_hibernate implements MemDAO_interface {
 //	}
 //
 //
-//	@Override
-//	public Set<CollectionVO> getCollByMemNo(Integer memId) {
-//		Set<CollectionVO> set = findByPrimaryKey(memId).getCollects();
-//		return set;
-//	}
+	@Override
+	public Set<CollectionVO> getCollByMemNo(Integer memId) {
+		Set<CollectionVO> set = findByPrimaryKey(memId).getCollects();
+		return set;
+	}
 
 	@Override
 	public void update(MemVO memVO) {

@@ -26,11 +26,13 @@ pageContext.setAttribute("list1", lis);
 <meta charset="utf-8" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/BootSideMenu.css">
+
 <script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/slideshow.js">	</script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/BootSideMenu.js"></script>
+
 
 <style>
 
@@ -245,7 +247,8 @@ ul, li {
 <!--           </ul> -->
 
 <div id="test" style="padding:0px">
-<div><h1>瀏覽紀錄</h1></div>
+<div><h1>瀏覽過的行程</h1></div>
+<hr color="black" size="20" width="100%"  align="left">
 <c:forEach var="ActivityVO" items="${list1}">
   <div class="user">
       <img src="data:image/png;base64,${ActivityVO.act_photo} alt="Esempio" class="img-thumbnail" width=200px height=150px><br>

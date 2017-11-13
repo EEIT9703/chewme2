@@ -271,9 +271,9 @@ $(function(){
 	         var cell3=$('<span></span>').addClass('inder_price').text(activity.act_price);
 	      	 var cell4=$('<span></span>').addClass('price_icon').text('$');
 	      	 
-	      	 var button1=$('<button></button>').css('color','blue').addClass('buy').attr({'type':'submit'}).text("購買");
+	      	 var button1=$('<button></button>').css({'color':'write','width':'45px','height':'30px','padding':'0px 0px 1px 0px'}).addClass('buy btn btn-primary').attr({'type':'submit'}).text("購買");
 	         var cell5=$('<span></span>').append(button1)
-	       	 var button2=$('<button></button>').css('color','red').addClass('delete').attr({'type':'button'}).text("移除");
+	       	 var button2=$('<button></button>').css({'color':'write','width':'45px','height':'30px','padding':'0px 0px 1px 0px'}).addClass('delete btn btn-danger').attr({'type':'button'}).text("移除");
 	         var cell6=$('<span><span>').append(button2)
          	 var row = $("<div></div>").addClass('item').attr({'class':'item','id':activity.actID});	 
 	       	 row.append([cell1, cell2,span,span2,cell3,cell4,cell5,cell6]);

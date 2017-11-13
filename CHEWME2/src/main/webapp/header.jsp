@@ -26,7 +26,7 @@ pageContext.setAttribute("all",a);
 
 .cartrow {
 	width: 100%;
-	padding: 20px;
+	padding: 10px;
 	margin: auto;
 }
 
@@ -213,39 +213,47 @@ body {
 
 				<li><c:if test="${  !empty SysManager }">
 						<a class="nav-link"
-							href="<%=request.getContextPath()%>/backage/backage_index.jsp"><span
-							class="glyphicon glyphicon-log-in"></span>維護 </a>
+							href="<%=request.getContextPath()%>/backage/backage_index.jsp"><span>
+							<img src="<%=request.getContextPath()%>/image/settings.png" width=30px height=30px></span>維護 </a>
 					</c:if></li>
 				<li><c:if test="${  empty LoginOK }">
 						<a class="nav-link"
-							href="<%=request.getContextPath()%>/member/login.jsp"><span
-							class="glyphicon glyphicon-log-in"></span>登入 </a>
+							href="<%=request.getContextPath()%>/member/login.jsp"><span>
+							<img src="<%=request.getContextPath()%>/image/login.png" width=30px height=30px></span>登入 </a>
 					</c:if></li>
 
 				<li><c:if test="${ ! empty LoginOK }">
 						<a class="nav-link"
-							href="<%=request.getContextPath()%>/member/logout.jsp"><span
-							class="glyphicon glyphicon-log-in"></span>登出 </a>
+							href="<%=request.getContextPath()%>/member/logout.jsp"><span>
+							<img src="<%=request.getContextPath()%>/image/login_out.png" width=30px height=30px></span>登出 </a>
 					</c:if></li>
 
 				<li><c:if test="${  empty LoginOK }">
-						<a class="nav-link"
-							href="<%=request.getContextPath()%>/member/register.jsp"><span
-							class="glyphicon glyphicon-user"></span>註冊 </a>
+						<a class="nav-link" style="padding:12px 0px 10px 0px"
+							href="<%=request.getContextPath()%>/member/register.jsp"><span>
+							<img src="<%=request.getContextPath()%>/image/user1.png" width=35px height=35px></span>註冊 </a>
 					</c:if></li>
 				<li><c:if test="${ ! empty LoginOK }">
-						<a class="nav-link"
+						<a class="nav-link" style="padding:19px 0px 0px 0px;margin-right:10px"
 							href="<%=request.getContextPath()%>/member/mempage.jsp" a>${LoginOK.memName }</a>
 					</c:if></li>
-				<li><c:choose>
-						<c:when test="${  empty LoginOK.memPhoto && empty picUri}">
-								<img src='<%=request.getContextPath()%>/image/nophoto.png'
+					<c:choose>
+						<c:when test="${  empty LoginOK}">
+						<li style="padding:18px 0px 0px 0px;margin-left:20px">
+								訪客,你好
+						</c:when>
+						<c:when test="${ ! empty LoginOK && empty LoginOK.memPhoto}">
+						<li>
+							<img src='<%=request.getContextPath()%>/image/nophoto.png'
 									style="border-radius: 50%" width=50px height=50px>
 						</c:when>
-						<c:when test="${ ! empty LoginOK.memPhoto }">
+						
+						<c:when test="${ ! empty LoginOK && ! empty LoginOK.memPhoto}">
+						<li>
 							<img src='data:image/png;base64,${LoginOK.memPhoto}'
 								style="border-radius: 50%" width=50px height=50px>
 						</c:when>
+						
 						<c:otherwise>
 							<img src='${picUri}' style="border-radius: 50%" width=50px height=50px >
 						</c:otherwise>
