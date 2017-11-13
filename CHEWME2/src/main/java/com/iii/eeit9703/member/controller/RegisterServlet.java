@@ -32,6 +32,7 @@ public class RegisterServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		//res.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html;charset=UTF-8");
+		PrintWriter rw = res.getWriter();
 		String action = req.getParameter("action");	
 		
 		if ("insert".equals(action)) {
@@ -114,10 +115,10 @@ public class RegisterServlet extends HttpServlet {
 					bos.write(buf, 0, len);
 				buf = bos.toByteArray();
 				String base64 = Base64.getEncoder().encodeToString(buf);
-				if (base64 == null||base64.trim().length()==0) {
-					// errorMsgs.add("請放入圖片");
-					errorMsgs.put("PicEmpty", "請放入圖片");
-				}
+//				if (base64 == null||base64.trim().length()==0) {
+//					// errorMsgs.add("請放入圖片");
+//					errorMsgs.put("PicEmpty", "請放入圖片");
+//				}
 				System.out.println(base64);
 				MemVO memVO = new MemVO();
 				memVO.setMemberId(memberId);
@@ -138,9 +139,8 @@ public class RegisterServlet extends HttpServlet {
 				}
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("memVO", memVO);
-					RequestDispatcher failureView = req.getRequestDispatcher("/member/register.jsp");
-					failureView.forward(req, res);
-					return;
+					rw.write("<script>alert('註冊失敗,請確認您的資料！'); history.go(-1);</script>");  
+		            return; 
 				}
 
 				memVO = memSvc.addMem(memberId, memName, memNickN, memPwd, memBirthday, memMail, memAddr, memPhone,
@@ -148,13 +148,13 @@ public class RegisterServlet extends HttpServlet {
 //				String url = "/member/login.jsp";// 成功後轉交的連結 
 //				RequestDispatcher successView = req.getRequestDispatcher(url);
 //				successView.forward(req, res);
-				PrintWriter rw = res.getWriter();
-				rw.write("<script>alert('註冊成功'); location.href='login.jsp';</script>");
+				
+				rw.write("<script>alert('註冊成功'); history.go(-1);</script>");
 			} catch (Exception e) {
 				// errorMsgs.add(e.getMessage());
 				errorMsgs.put("errorIDDup", e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/member/register.jsp");
-				failureView.forward(req, res);
+				rw.write("<script>alert('註冊失敗,請確認您的資料！'); history.go(-1);</script>");  
+	            return; 
 			}
 
 		}
