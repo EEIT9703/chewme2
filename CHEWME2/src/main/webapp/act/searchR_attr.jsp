@@ -13,7 +13,7 @@ pageEncoding="UTF-8"%>
 				<div class="intro1"></div>
 				
 				<a class="btn btn-info btn-sm" href="<%=request.getContextPath()%>/attractions/show_attr.jsp">
-              	<span class="glyphicon glyphicon-heart-empty"></span> 查看
+              	<span class="glyphicon glyphicon-log-in"></span> 查看
              	</a>  
              	
 <!-- 				<p>Category : <a href="javascript::;" id="a1">Nature</a></p> -->

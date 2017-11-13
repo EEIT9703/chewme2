@@ -156,7 +156,8 @@ html {
 				</div>
 				<div>
 					<button type="button" class="btn btn-info" id="button1">送出留言</button>
-				</div>				
+				</div>	
+				<div id="photo1" style="display:none;">${LoginOK.memPhoto}</div>			
 				<div id="text1"></div>	
 			</div>		
 				<div>
@@ -196,6 +197,7 @@ html {
 					//console.log(id1.value);				
 				var val1 = $("#memo").val();                // 取得textarea內輸入的留言
 				var anum = document.getElementById("id1").innerHTML;    // 取得當前頁面的景點編號
+				var memphoto = $("#photo1").text();
 					if (val1 == "") {
 						alert("請勿空白");
 					} 
@@ -207,7 +209,7 @@ html {
 					}
 				//alert(mnum);
 				// 取得 1.使用者輸入的留言內容(val1)  2.當前頁面的景點編號(anum)   傳送到後端servlet寫進資料庫
-				$.post("/CHEWME2/ArticleServlet?action=sendmessage",{"contents":val1, "attractionID":anum}, function(data){
+				$.post("/CHEWME2/ArticleServlet?action=sendmessage",{"contents":val1, "attractionID":anum, "memPhoto1":memphoto}, function(data){
 					
 					})			
 					j++;
@@ -215,13 +217,15 @@ html {
 				});
 				
 				// 點擊留言版的標籤發生事件
-				$("#message").one('click', function(){				
+				$("#message").one('click', function(){	
+					//console.log($("#photo1").text());
 					// 取得當前景點ID
 					var num = document.getElementById("id1").innerHTML;
 					//console.log(num);
 	  				$.getJSON("/CHEWME2/ArticleServlet?action=getmessage",{'message':num},function(data){ 	
 						$.each(data, function(i, datas){
-							console.log(datas.contents);
+							//console.log(datas.contents);
+							//console.log(datas.memPhoto + "測試");
 							$("#text1").append(temp1);
 							$(".text_01:last").attr("id", "mytext_01"+i);
 							$("#mytext_01"+i).text(datas.contents);	
