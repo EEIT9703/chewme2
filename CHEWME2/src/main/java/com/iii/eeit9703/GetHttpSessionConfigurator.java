@@ -1,4 +1,4 @@
-package com.iii.eeit9703.chatroom;
+package com.iii.eeit9703;
 
 import javax.servlet.http.HttpSession;
 import javax.websocket.HandshakeResponse;

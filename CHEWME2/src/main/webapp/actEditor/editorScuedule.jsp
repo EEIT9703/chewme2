@@ -113,7 +113,7 @@ option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 </div>		
 
 <!-- 轉換頁面框 -->
-<FORM METHOD="post" ACTION="Calendar.do" name="form1">
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Calendar.do" name="form1">
 <div class="modal fade" id="pass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
