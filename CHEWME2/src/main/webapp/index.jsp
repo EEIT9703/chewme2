@@ -124,8 +124,10 @@ ul, li {
 					</div>
 					<div class="abgne-control">
 						<ul class="arrows" style="list-style-type: none">
-							<li style="list-style-type: none" class="prev">&lt;</li>
-							<li style="list-style-type: none" class="next">&gt;</li>
+<!-- 							<li style="list-style-type: none" class="prev">&lt;</li> -->
+<!-- 							<li style="list-style-type: none" class="next">&gt;</li> -->
+							<li style="list-style-type: none" class="prev" width=20px height=20px><img src=image/left.png width=14px height=14px></li>
+							<li style="list-style-type: none" class="next"><img src=image/right.png width=14px height=14px></li>
 						</ul>
 					</div>
 				</div>

@@ -211,7 +211,7 @@
 	
 	
 	    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-				aria-labelledby="myModalLabel" aria-hidden="true">
+				aria-labelledby="myModalLabel" aria-hidden="true" >
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -223,7 +223,7 @@
 						<div class="form-group">
 <!-- 						<form id="fileUpDate">					 -->
 <!-- 								<input type="text" id="text" name="text" width=2px height=400px> -->
-								 <textarea class="text" cols="70" rows="5" style="resize: none">
+								 <textarea class="text" cols="75" rows="5" style="resize: none">
 　						
 								</textarea>
 <!-- 						</form> -->					
@@ -233,7 +233,7 @@
 					</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-							<button type="button" class="btn btn-primary" id="confirm" >go</button>
+							<button type="button" class="btn btn-primary" id="confirm" >發送</button>
 <!-- 							<button type="submit" class="btn btn-primary"  id="confirm">確認</button> -->
 						</div>
 					</div>

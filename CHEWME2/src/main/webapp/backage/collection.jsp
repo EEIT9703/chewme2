@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html
->
+<%
+
+
+
+%>
+<!DOCTYPE html>
 <html>
 <head>
 
@@ -181,7 +185,7 @@ margin:0px 80px 30px 0px;
 
 .item img{
 width:250px;
-height:100px;
+height:150px;
 }
 </style>
 
@@ -196,8 +200,8 @@ height:100px;
 		<div class="col-md-2 column ">
 			<div class="sidebar___2Ft5w">
 				<div class="myPhoto___3FFnp">
-			   	<div style="background-image:url('<%=request.getContextPath()%>/image/338196.jpg')" class="img-circle user-photo___7yyZ6"></div>	
-				<p class="shortText___3j1uo" title="黃彥坤">黃彥坤</p>
+			   	<div style="background-image:url('data:image/png;base64,${LoginOK.memPhoto}')" class="img-circle user-photo___7yyZ6"></div>	
+				<p class="shortText___3j1uo" style="margin-top:7px">${LoginOK.memName}</p>
 				</div>
 				<div>
 					<ul class="list___3xuJM">
