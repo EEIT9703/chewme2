@@ -37,6 +37,7 @@ import com.iii.eeit9703.club.model.CommentService;
 import com.iii.eeit9703.club.model.CommentVO;
 import com.iii.eeit9703.club.model.IssueService;
 import com.iii.eeit9703.club.model.IssueVO;
+import com.iii.eeit9703.member.model.MemVO;
 import com.iii.eeit9703.member.model.MemberSession;
 import com.iii.eeit9703.utility.DateUtil;
 
@@ -325,13 +326,14 @@ public class ClubClientViewServlet extends HttpServlet {
 				System.out.println("the issue id is " + request.getParameter("issueId"));
 				CommentService cs = new CommentService();
 				CommentVO cmvo = new CommentVO();
-
-				cmvo.setCommenterId(1);
+				MemVO memVO = (MemVO)request.getSession().getAttribute("LoginOK");
+				Integer commenterId = memVO.getMemId();
+				cmvo.setCommenterId(commenterId);
 				cmvo.setIssueId(Integer.parseInt(request.getParameter("issueId")));
 				cmvo.setContent(request.getParameter("content"));
 				cmvo.setCommentDate(DateUtil.getCurrentTimeStamp());
 				cs.insertComment(cmvo);
-				out.println("comments回傳了喔");
+				out.println("comments回傳了喔,"+memVO.getMemId());
 				return;
 			}
 			if (action.matches("insertIssue")) {
@@ -341,13 +343,16 @@ public class ClubClientViewServlet extends HttpServlet {
 				System.out.println("the issue id is " + request.getParameter("issueId"));
 				IssueService is = new IssueService();
 				IssueVO isvo = new IssueVO();
-
+				MemVO memVO = (MemVO)request.getSession().getAttribute("LoginOK");
+				System.out.println(memVO.getMemId());
+				Integer proposerId = memVO.getMemId();
+				
 				isvo.setClubId(Integer.parseInt(request.getParameter("clubId")));
 				isvo.setIssueContent(request.getParameter("content"));
 				isvo.setIssuepic(null);
 				isvo.setIssueTitle(request.getParameter("title"));
-				isvo.setProposerId(1);
-				out.println(is.insertIssue(isvo));
+				isvo.setProposerId(proposerId);
+				out.println(is.insertIssue(isvo)+","+memVO.getMemId());
 				return;
 
 			}

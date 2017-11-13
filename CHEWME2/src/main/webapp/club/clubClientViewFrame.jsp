@@ -46,7 +46,7 @@ table {
 <body>
 
 	<header><%@ include file="../header.jsp"%></header>
-
+	<p hidden id="userId_session" value="">${LoginOK.memId}</p>
 	<p hidden id="clubIdforView" value="">${clubVOForView.clubId}</p>
 	<p hidden id="reqContextPath" value=""><%=request.getContextPath()%></p>
 	<div class="container">

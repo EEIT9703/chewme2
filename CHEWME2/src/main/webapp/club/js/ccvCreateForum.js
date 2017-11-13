@@ -37,42 +37,79 @@ function loadIssues() {
 		$.each(issues, function(i, issueVO) {
 			// console.log(issueVO);
 			insertIssue(issueVO);
+			var memId = $('#userId').text();
 			insertCommentBox();
+			setAllImg();
 		})
 	});
 	$("#forum-tab").off("click", loadIssues);
 	$(".well").css("height", "15px");
+
+	
+	function setAllImg(){
+		console.log("setImg");
+		console.log($("#theForumDiv img"));
+		
+		$.each($("#theForumDiv img"), function() {
+			//console.log(this.id.substring(4));
+			//thsImg = this;
+			console.log(this);
+			var memId = this.id.substring(6);
+			console.log('memId'+memId);
+			
+			$.get('/CHEWME2/getImageInChewme.do', {
+				"type" : "memPic",
+				"id" : memId,
+				queryMethod : "charQuery",
+			}, function(data) {
+				//console.log(data);
+				console.log(this);
+				console.log(data);
+				console.log($('#memId_'+memId));
+				$('#memId_'+memId).attr("src",data);
+			})
+		})	
+	}
 }
 function insertIssue(issueVO) {
-	__insertIssue(issueVO.issueId, issueVO.issueTitle, issueVO.issueContent);
+	console.log(issueVO);
+	__insertIssue(issueVO.issueId, issueVO.issueTitle, issueVO.issueContent,issueVO.proposerId);
 	thsIssue = $("#issueId_" + issueVO.issueId);
 	$.each(issueVO.comments, function(i, commentVO) {
+		console.log(commentVO);
 		var content = commentVO.getContent;
-		insertViewComment(content);
+		insertViewComment(content,commentVO.getCommenterId);
 	})
 }
-function __insertIssue(id,title,content) {
+function __insertIssue(id,title,content,proposerId) {
 	var issuesDiv = $("#theForumDiv");
 	$('#newIssueDiv').after(issueTemplate);
 	issuesDiv.find('div[class="panel panel-default"]:eq(1)').attr("id",
 			"issueId_" + id).find(".panel-title").text(
 					title).closest("#issueId_" + id).find(
 			".well").text(content);
+	issuesDiv.find('div[class="panel panel-default"]:eq(1)').find('img:first').attr("id","memId_"+proposerId)
 
 	console.log(thsIssue);
 }
-function insertViewComment(content) {
+function insertViewComment(content,commenterId) {
 	console.log("build the viewCommentTemplate");
 	thsIssue.find("ul").append(viewCommentTemplate);
 	thsIssue.find("li:last")
 	// .attr("id","issueId_"+commentVO.getIssueId+"commentId"+commentVO.getCommentId)
 	.find(".well").text(content).attr("min-heigth", "20px");
+	thsIssue.find("li:last").find('img').attr("id","memId_"+commenterId);
 }
 function insertCommentBox() {
 	console.log("build the commentBoxTemplate");
+	var userId = $('#userId_session').text();
+	console.log($('#userId_session'));
+	console.log("the userId is "+userId);
+	
 	thsIssue.find("ul").append(commentBoxTemplate);
 	thsIssue.find("li:last").attr("id", "sendId" + thsIssue.issueId).find(
 			"textarea").attr("name", "content");
+	thsIssue.find("li:last").find('img').attr("id","memId_"+userId);
 	thsIssue.find("button").on("click", function() {
 		sendContent(this);
 	})
