@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <form id="login-form"
 	action="<%=request.getContextPath()%>/member/login.do" method="post"
 	role="form" style="display: block;">
@@ -21,12 +23,12 @@ nt_id=237459292600-4nc82k5o9iq1caepr82fsukrcpsflah0.apps.googleusercontent.com">
 	<div class="form-group">
 		<input type="text" id="userId" name="userId"
 			value="${sessionScope.user}" tabindex="1" class="form-control"
-			placeholder="帳號">
+			placeholder="å¸³è">
 	</div>
 	<div class="form-group">
 		<input type="password" id="password" name="pswd"
 			value="${sessionScope.password}" tabindex="2" class="form-control"
-			placeholder="密碼">
+			placeholder="å¯ç¢¼">
 	</div>
 	<div class="g-recaptcha"
 		data-sitekey="6LfFkTYUAAAAAMK1w_K82sMGOy-BWkq-YBYMn5-J"></div>
@@ -34,14 +36,14 @@ nt_id=237459292600-4nc82k5o9iq1caepr82fsukrcpsflah0.apps.googleusercontent.com">
 		<label> <input type="checkbox" tabindex="3" name="rememberMe"
 			class="recaptcha"
 			<c:if test='${sessionScope.rememberMe==true}'>checked='checked'</c:if>
-			value="true"> 記住密碼
+			value="true"> è¨ä½å¯ç¢¼
 		</label>
 	</div>
 	<div class="form-group">
 		<div class="row">
 			<div class="col-sm-6 col-sm-offset-3">
 				<button type="submit" name="login-submit" id="login-submit"
-					tabindex="4" class="form-control btn btn-login">登入</button>
+					tabindex="4" class="form-control btn btn-login">ç»å¥</button>
 			</div>
 		</div>
 	</div>
