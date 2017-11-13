@@ -45,7 +45,7 @@ function imgAreaSelectAndReadEventListener(imgAreaS) {
 		y2 : 0,
 		onSelectEnd : function(img, selection) {
 			console.log("in imgAreaSelectAndReadEventListener");
-			image = $("#img")[0];
+			image = $("#img123")[0];
 			var height = selection.y2 - selection.y1;
 			var width = selection.x2 - selection.x1;
 			// ctx.clearRect(0, 0, mycanvas.width,
@@ -79,7 +79,7 @@ function inputChangeEventListener(input) {
 		console.log("upload the image")
 		console.log($('#img123')[0].clientWidth)
 		$('dialog-img').attr("height", $('#img ').attr("clientWidth")).attr(
-				"width", $('#img ').attr("clientWidth"))
+				"width", $('#img123 ').attr("clientWidth"))
 		$("#img-help-block").text("請截取圖片想要之部分");
 	});
 }
