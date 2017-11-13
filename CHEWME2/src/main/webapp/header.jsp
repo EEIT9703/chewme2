@@ -1,4 +1,4 @@
-﻿﻿﻿
+﻿﻿﻿﻿
 <%-- <%@ page import="java.util.*"%>
 <%@ page import="com.iii.eeit9703.member.model.*"%>
 <%@ page import="com.iii.eeit9703.collection.*"%>
@@ -326,7 +326,7 @@ body {
 				</button>
 				<h4 class="modal-title" id="gridModalLabel">忘記密碼?</h4>
 			</div>
-			<form action="forgetPwd.do" method="post">
+			<form action="<%=request.getContextPath()%>/member/forgetPwd.do" method="post">
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-md-3 col-md-offset-3">

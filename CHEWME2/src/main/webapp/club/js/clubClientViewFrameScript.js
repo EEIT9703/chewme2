@@ -13,6 +13,7 @@ $(document).ready(function() {
 	joinClubEventListner();
 	changeManagerEventListener();
 
+
 })
 
 function joinClubEventListner() {
