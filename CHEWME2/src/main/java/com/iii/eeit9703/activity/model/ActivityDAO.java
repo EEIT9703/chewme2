@@ -297,6 +297,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 					activityVO.setAct_current(rs.getString("act_current"));        //當前人數
 					activityVO.setAct_photo(rs.getString("act_photo"));
 					activityVO.setAct_price(rs.getString("act_price"));
+					activityVO.setActivity_state(rs.getInt("activity_state"));
 					
 					list.add(activityVO);
 				}
