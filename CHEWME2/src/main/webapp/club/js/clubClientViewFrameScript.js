@@ -33,30 +33,6 @@ function changeManagerEventListener() {
 	$("#clientCCV").parent().hide();
 	$('#clubInfo button').parent().hide();
 	$('#confirmImg').on("click", function() {
-		console.log(image);
-		$("#carouselExampleControls img:first").attr("src", dataURL);
-		console.log($('#clubIdforView').text());
-		$.each($('.manage_input'), function(i, target) {
-			var temp = $(target).find('input').val();
-			$(target).text(temp);
-		})
-		$.post(reqContextPath + '/club/clubClientView.do', {
-			club : $('#clubIdforView').text(),
-			name : $('#club_name').text(),
-			addr : $('#club_addr').text(),
-			cityId : $('#club_loc').text(),
-			refUrl : $('#club_refurl').text(),
-		}, function(data) {
-			console.log("ok");
-		})
-	})
-	$('#manageCCV').on("click", function() {
-		manageCCV();
-	})
-	$('#clientCCV').on("click", function() {
-		clientCCV();
-	})
-	$('#reNew').on("click", function() {
 		$.post(reqContextPath + '/club/clubClientView.do', {
 			action : "updatePic",
 			photo : dataURL,
@@ -65,7 +41,35 @@ function changeManagerEventListener() {
 
 		})
 	})
+	$('#manageCCV').on("click", function() {
+		manageCCV();
+	})
+	$('#clientCCV').on("click", function() {
+		clientCCV();
+	})
+
+	$('#reNew').on("click", function() {
+		console.log(image);
+		$("#carouselExampleControls img:first").attr("src", dataURL);
+		console.log($('#clubIdforView').text());
+		$.each($('.manage_input'), function(i, target) {
+			var temp = $(target).find('input').val();
+			$(target).text(temp);
+		})
+		$.post(reqContextPath + '/club/clubClientView.do', {
+			
+			action : "updateClubInfo",
+			clubId : $('#clubIdforView').text(),
+			clubName : $('#club_name').text(),
+			addr : $('#club_addr').text(),
+			cityId : $('#club_loc').text(),
+			refUrl : $('#club_refurl').text(),
+		}, function(data) {
+			console.log("ok");
+		})
+	})
 }
+
 
 function setClubImg() {
 	var thsImg;

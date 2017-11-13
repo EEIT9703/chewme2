@@ -20,13 +20,13 @@ public class ClubHibernateDAO implements ClubDAOI{
 	private static final String GET_CLUB_MEMBERS = "select * from members mv inner join club_member_list cmr on cmr.memId = mv.memId where cmr.clubId = ?";
 	
 	@Override
-	public List<MemVO> getClubMembers() {
+	public List<MemVO> getClubMembers(Integer clubId) {
 		List<MemVO> list=null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try{
 			session.beginTransaction();
 			SQLQuery query = session.createSQLQuery(GET_CLUB_MEMBERS);
-			query.setParameter(0, 1);
+			query.setParameter(0, clubId);
 			query.addEntity(com.iii.eeit9703.member.model.MemVO.class);
 			list = query.list();
 			session.getTransaction().commit();
@@ -137,7 +137,7 @@ public class ClubHibernateDAO implements ClubDAOI{
 
 	public static void main(String[] args) {
 		ClubHibernateDAO chd = new ClubHibernateDAO();
-		List<MemVO> list = chd.getClubMembers();
+		List<MemVO> list = chd.getClubMembers(1);
 		for (MemVO memVO : list) {
 		System.out.print(memVO.getMemMail()+",");
 		System.out.print(memVO.getMemName()+"");

@@ -41,7 +41,9 @@ body { background-color:#ddd; }
     height: 40px;
     border: 1px solid #000;
   }
-
+#searchtable{
+	margin:auto;
+}
 
 </style>
 
@@ -50,7 +52,7 @@ body { background-color:#ddd; }
 	
 	<div class="container">
 	<div class="row">
-           <table>
+           <table id="searchtable">
         	<tr>
         		<td>
         			<select name="county" class="selectpicker" style="width:20px;" id="select1">

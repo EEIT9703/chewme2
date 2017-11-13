@@ -101,6 +101,7 @@
 								</tr>
 							</table>
 							<input type="hidden" name="memId" value="${LoginOK.memId }">
+							<input type="hidden" name="action" value="update">
 							<button
 								onclick="location.href='<%=request.getContextPath()%>/member/memeditor.jsp'">修改</button>
 						</form>

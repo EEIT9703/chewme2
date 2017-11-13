@@ -126,7 +126,7 @@ ul, li {
 		<!-- 	側邊廣告 -->
 	<div id="abgne_float_ad" >
 		<a href="http://cheng-sing.com/travel/2017/10/19/">
-			<img src="image/barAD.gif" title="按我免費取票" />
+			<img src="image/barAD.gif" title="按我免費取票" width="125px"/>
 		</a>
 	</div>
 	

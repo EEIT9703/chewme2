@@ -21,7 +21,7 @@ public class ArticleDAO implements ArticleDAO_interface {
 			e.printStackTrace();
 		}
 	}
-	private static final String get_one = "select articleID, memId, a.attractionID, "
+	private static final String get_one = "select articleID, memPhoto, memId, a.attractionID, "
 			+ "contents from attractions a join ArticleShare b "
 			+ "on a.attractionID = b.attractionID where b.attractionID = ?";
 
@@ -62,7 +62,8 @@ public class ArticleDAO implements ArticleDAO_interface {
 				articleVO.setArticleID(rs.getInt("articleID"));
 				articleVO.setMemId(rs.getInt("memId"));
 				articleVO.setAttractionID(rs.getInt("attractionID"));
-				articleVO.setContents(rs.getString("contents"));	
+				articleVO.setContents(rs.getString("contents"));
+				articleVO.setMemPhoto(rs.getString("memPhoto"));
 				list.add(articleVO);
 			}
 			rs.close();
