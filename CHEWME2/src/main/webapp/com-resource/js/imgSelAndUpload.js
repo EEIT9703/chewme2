@@ -22,14 +22,13 @@ function imgAreaInit(targetImage) {
 	ias.update();
 }
 // 讀取input的Image到img canvas
-function readImage_club(input) {
+function readImage(input) {
 	if (input.files && input.files[0]) {
-		console.log("in the readImage_club");
 		var file = input.files[0];
 		var FR = new FileReader();
 		FR.onload = function(e) {
 			// e.target.result = base64 format picture
-			$('#img123').attr("src", e.target.result);
+			$('#img').attr("src", e.target.result);
 			var url = e.target.result;
 			setImageURL(url);
 		};
@@ -45,7 +44,7 @@ function imgAreaSelectAndReadEventListener(imgAreaS) {
 		y2 : 0,
 		onSelectEnd : function(img, selection) {
 			console.log("in imgAreaSelectAndReadEventListener");
-			image = $("#img123")[0];
+			image = $("#img")[0];
 			var height = selection.y2 - selection.y1;
 			var width = selection.x2 - selection.x1;
 			// ctx.clearRect(0, 0, mycanvas.width,
@@ -74,12 +73,11 @@ function setImageURL(url) {
 
 function inputChangeEventListener(input) {
 	input.change(function() {
-		console.log(this);
-		readImage_club(this);
+		readImage(this);
 		console.log("upload the image")
-		console.log($('#img123')[0].clientWidth)
+		console.log($('#img')[0].clientWidth)
 		$('dialog-img').attr("height", $('#img ').attr("clientWidth")).attr(
-				"width", $('#img123 ').attr("clientWidth"))
+				"width", $('#img ').attr("clientWidth"))
 		$("#img-help-block").text("請截取圖片想要之部分");
 	});
 }
