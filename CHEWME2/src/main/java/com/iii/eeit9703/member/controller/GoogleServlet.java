@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -35,6 +36,9 @@ public class GoogleServlet extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		// Google取得acces_token的url
+		req.setCharacterEncoding("UTF-8");
+		res.setContentType("text/html;charset=UTF-8");
+		PrintWriter rw = res.getWriter();
 		String g_client_id = "237459292600-4nc82k5o9iq1caepr82fsukrcpsflah0.apps.googleusercontent.com";
 		String g_client_secret = "Bd50eylAoc3bDAJEwRMM6jBS";
 		String g_redirect_uri = "http://localhost:8081/CHEWME2/googlelogin.do";// 交回來處理的servlet
@@ -117,7 +121,8 @@ public class GoogleServlet extends HttpServlet {
 				session.setAttribute("LoginOK", mv);
 				session.setAttribute("picUri", jo.getString("picture"));
 				
-				res.sendRedirect("index.jsp");
+				rw.write("<script>alert('登入成功！'); location.href='index.jsp';</script>");   
+	            return; 
 				
 			}else{
 				mv=new MemVO();
@@ -128,7 +133,8 @@ public class GoogleServlet extends HttpServlet {
 				mv.setGoogleId(jo.getString("id"));
 				mv=msvc.insertGoogle(jo.getString("email"),jo.getString("name"),jo.getString("given_name"), jo.getString("email"), jo.getString("id"));
 				session.setAttribute("LoginOK", mv);
-				res.sendRedirect("index.jsp");
+				rw.write("<script>alert('登入成功！'); location.href='index.jsp';</script>");   
+	            return; 
 			}
 		}catch (JSONException je) {
 			je.printStackTrace();
