@@ -32,7 +32,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 
 		//活動上架
 		private static final String UPDATE_ACT =
-				"UPDATE activity set act_name=?, act_groups=?, BDate=?, EDate=?, act_price=?,activity_state=? where actID = ?";
+				"UPDATE activity set act_name=?, act_groups=?, BDate=?, EDate=?, act_price=?,activity_state=?,clubId=? where actID = ?";
 		//刪除活動
 		private static final String DELETE_ACT =
 				"DELETE FROM activity where actID = ?";
@@ -71,8 +71,8 @@ public class ActivityDAO implements ActivityDAO_interface {
 			pstmt.setDate(4, activityVO.getEDate());     //結束日期
 			pstmt.setString(5, activityVO.getAct_price());    //活動價格
 			pstmt.setInt(6, activityVO.getActivity_state());  //活動上下架
-			pstmt.setInt(7, activityVO.getActID());      //活動編號
-
+			pstmt.setInt(7, activityVO.getClubId());     //社團編號
+			pstmt.setInt(8, activityVO.getActID());      //活動編號
 			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {

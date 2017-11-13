@@ -199,10 +199,10 @@ button {
 								<option value="3">下架</option>
 							</select>
 						</div>
-
+						<input hidden name="clubId" value="${createAct_clubId}"/>
 						<div class="form-group"></div>
 						<button type="submit" class="btn btn-lg btn-primary login-button" id="submit">Next</button>
-						<input type="hidden" name="action" value="Next" style="text-align:center ">
+						<input type="hidden" name="action" value="Next" style="text-align:center "/>
 					</form>
 				</div>
 			</div>
