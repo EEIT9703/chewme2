@@ -78,7 +78,7 @@ function inputChangeEventListener(input) {
 		readImage_club(this);
 		console.log("upload the image")
 		console.log($('#img123')[0].clientWidth)
-		$('dialog-img').attr("height", $('#img ').attr("clientWidth")).attr(
+		$('dialog-img').attr("height", $('#img123 ').attr("clientWidth")).attr(
 				"width", $('#img123 ').attr("clientWidth"))
 		$("#img-help-block").text("請截取圖片想要之部分");
 	});
