@@ -296,10 +296,10 @@ body {
 												action="<%=request.getContextPath()%>/member/login.do"
 												method="post" role="form" style="display: block;">
 												<%@ include file="/member/login.jsp"%>
-											</form>
-											<form id="register-form"
-												action="<%=request.getContextPath()%>/member/register.do"
-												method="post" role="form" style="display: none;">
+											</form>									
+											<form ENCTYPE="multipart/form-data" id="register-form"
+											action="<%=request.getContextPath()%>/member/register.do"
+											method="post" role="form" style="display: none;">
 												<%@ include file="/member/register.jsp"%>
 											</form>
 										</div>
