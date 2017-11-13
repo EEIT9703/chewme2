@@ -223,7 +223,7 @@ body {
 					</c:if></li>
 				<li><c:if test="${  empty LoginOK }">
 						<a class="nav-link" href="#" data-toggle="modal"
-							data-target="#myModal"><span>
+							data-target="#loginNregisterModal"><span>
 							<img src="<%=request.getContextPath()%>/image/login_1.png" width=30px height=30px></span>登入/註冊 </a>
 					</c:if></li>
 
@@ -266,7 +266,7 @@ body {
 
 </nav>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+<div class="modal fade" id="loginNregisterModal" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">

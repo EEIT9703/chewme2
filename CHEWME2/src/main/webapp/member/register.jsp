@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+
 <img id="img_header"
 	src="<%=request.getContextPath()%>/image/nophoto.png"
 	class="img-responsive" width="150" height="150">
