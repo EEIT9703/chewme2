@@ -29,7 +29,9 @@ pageContext.setAttribute("list1", lis);
 <script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/slideshow.js">	</script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/BootSideMenu.js"></script>
+
 <style>
 
 ul, li {
@@ -104,13 +106,27 @@ ul, li {
 	color: #000;
 }
 
+#abgne_float_ad {
+	display: none;
+	position: absolute;
+}
+#abgne_float_ad img {
+	border: none;
+}
+
 </style>
 
 </head>
 
 <body>
 	<header><%@ include file="header.jsp"%></header>
-
+	
+		<!-- 	側邊廣告 -->
+	<div id="abgne_float_ad" >
+		<a href="http://cheng-sing.com/travel/2017/10/19/">
+			<img src="image/barAD.gif" title="按我免費取票" />
+		</a>
+	</div>
 	
 	<article>
 		<div class="jumbotron">
@@ -290,7 +306,36 @@ ul, li {
 
 	
 	</article>
+	
+
 <script>
+$(window).load(function(){
+	var $win = $(window),
+		$ad = $('#abgne_float_ad').css('opacity', 0).show(),	// 讓廣告區塊變透明且顯示出來
+		_width = $ad.width(),
+		_height = $ad.height(),
+		_diffY = 1250, _diffX = 20,	// 距離右及下方邊距
+		_moveSpeed = 800;	// 移動的速度
+ 
+	// 先把 #abgne_float_ad 移動到定點
+	$ad.css({
+		top: $(document).height()-_diffY,
+		left: $win.width() - _width - _diffX,
+		opacity: 1
+	});
+ 
+	// 幫網頁加上 scroll 及 resize 事件
+	$win.bind('scroll resize', function(){
+		var $this = $(this);
+ 
+		// 控制 #abgne_float_ad 的移動
+		$ad.stop().animate({
+			top: $this.scrollTop() + $this.height() - _height - _diffY,
+			left: $this.scrollLeft() + $this.width() - _width - _diffX
+		}, _moveSpeed);
+	}).scroll();	// 觸發一次 scroll()
+});
+
 $(function(){
 
 	$('#test').BootSideMenu({
