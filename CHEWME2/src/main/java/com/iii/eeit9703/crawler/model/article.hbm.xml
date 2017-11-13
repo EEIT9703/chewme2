@@ -10,5 +10,6 @@
 		<property name="memId" column="memId" />
 		<property name="attractionID" column="attractionID" />
 		<property name="contents" column="contents" />
+		<property name="memPhoto" column="memPhoto" />
 	</class>
 </hibernate-mapping>

@@ -125,7 +125,7 @@ body {
 		<div>
 			<div>
 				<p class="navbar-brand " href="#">
-				<img src="<%=request.getContextPath()%>/image/chewme-logobig.png" width="330" height="50" alt="" style="padding-bottom: 10px;"></p>
+				<img src="<%=request.getContextPath()%>/image/chewme-logobig.png" height="65" alt="" style="padding-bottom: 10px;"></p>
 			</div>
 			<!-- <div class="navbar-header" >
 				<p class="navbar-brand " style="font-family: 'Arial';font-size:30px;margin-top:7px;font-weight:bold;">CHEWME</p>
