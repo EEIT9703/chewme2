@@ -8,12 +8,12 @@ var commentBoxTemplate;
 var viewCommentTemplate;
 var newIssueTemplate;
 var issuesDiv;
-
+var userId;
 function createForum(){
 
 	console.log("append the new Issue Template")
 	$("#forum-tab").one("click", initialForumPanel)
-
+	userId = $('#userId_session').text();
 }
 
 
@@ -49,26 +49,27 @@ function loadIssues() {
 	function setAllImg(){
 		console.log("setImg");
 		console.log($("#theForumDiv img"));
-		
-		$.each($("#theForumDiv img"), function() {
-			//console.log(this.id.substring(4));
-			//thsImg = this;
-			//console.log(this);
-			var memId = this.id.substring(6);
-			//console.log('memId'+memId);
-			
-			$.get('/CHEWME2/getImageInChewme.do', {
-				"type" : "memPic",
-				"id" : memId,
-				queryMethod : "charQuery",
-			}, function(data) {
-				//console.log(data);
-				var image_base64 = "data:image/png;base64,"+data
-				$('#memId_'+memId).attr("src",image_base64);
-			})
+		var i;
+		$.each($("#theForumDiv img"), function(i,target) {
+			getMemberPicture(target);
 		})	
 	}
 }
+function getMemberPicture(target){
+	var memId = target.id.substring(6);
+	//console.log('memId'+memId);
+	$.get('/CHEWME2/getImageInChewme.do', {
+		"type" : "memPic",
+		"id" : memId,
+		queryMethod : "charQuery",
+	}, function(data) {
+		//console.log(data);
+		var image_base64 = "data:image/png;base64,"+data
+		$(target).attr("src",image_base64);
+	})
+}
+
+
 function insertIssue(issueVO) {
 	console.log(issueVO);
 	__insertIssue(issueVO.issueId, issueVO.issueTitle, issueVO.issueContent,issueVO.proposerId);
@@ -103,7 +104,7 @@ function insertCommentBox() {
 	var userId = $('#userId_session').text();
 	console.log($('#userId_session'));
 	console.log("the userId is "+userId);
-	
+	console.log(thsIssue)
 	thsIssue.find("ul").append(commentBoxTemplate);
 	thsIssue.find("li:last").attr("id", "sendId" + thsIssue.issueId).find(
 			"textarea").attr("name", "content");
@@ -129,19 +130,26 @@ function sendIssue(button) {
 			"content" : content,
 			"title":title,
 			"clubId": $("#clubIdforView").text(),
-		}, function(id) {
+		}, function(data) {
 			console.log("ajax回收資料完成");
-			console.log(id=id.trim())
+			console.log(data=data.trim())
+			id = data[0];
+			
 			$('#newIssueDiv').find("input").val("");
 			$('#newIssueDiv').find("textarea").val("")			
-			
-			__insertIssue(id,title,content);
+			console.log("The userID !!!!!!"+userId);
+			__insertIssue(id,title,content,userId);
 			thsIssue = $("#issueId_" + id);
+			
 			console.log(thsIssue);
 			console.log($("#issueId_1"));
 			console.log($("#issueId_"+id));
 			console.log("the id is "+id);
 			insertCommentBox();
+			$.each(thsIssue.find("img"), function(i,target) {
+				console.log(target);
+				getMemberPicture(target);
+			})	
 		});
 	}
 }
@@ -155,6 +163,7 @@ function sendContent(button) {
 	console.log(content = $(button).closest("ul").find("textarea").val());
 	console.log(id = $(button).closest("div[class='panel panel-default']")
 			.attr("id").substr(8));
+	console.log(id);
 	if (content != "") {
 		$.post("clubClientView.do?action=insertComment", {
 			"content" : content,
@@ -165,8 +174,12 @@ function sendContent(button) {
 			console.log(id)
 			thsIssue = $("#issueId_" + id);
 			sender.remove();
-			insertViewComment(content);
+			insertViewComment(content,userId);
+			console.log(thsIssue.find('img:last'));
+			getMemberPicture(thsIssue.find('img:last')[0]);
 			insertCommentBox();
+			getMemberPicture(thsIssue.find('img:last')[0]);
+			
 		});
 	}
 }
