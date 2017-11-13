@@ -28,7 +28,7 @@ public class ForgotPasswordServlet extends HttpServlet {
         MemService msvc=new MemService();
         MemVO mv = msvc.findMemIdorMail(userId,userMail);  
         if (mv == null) {  
-        	rw.write("<script>alert('您信箱不存在！'); location.href='login.jsp';</script>");   
+        	rw.write("<script>alert('您的帳號或信箱不存在！'); location.href='login.jsp';</script>");   
             return;  
         }  
           

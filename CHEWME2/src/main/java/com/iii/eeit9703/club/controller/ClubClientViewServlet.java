@@ -27,6 +27,8 @@ import org.json.simple.JSONValue;
 
 import com.iii.eeit9703.activity.model.ActService2;
 import com.iii.eeit9703.activity.model.ActivityVO;
+import com.iii.eeit9703.bridge.model.ClubMemRelationService;
+import com.iii.eeit9703.bridge.model.ClubMemRelationVO;
 import com.iii.eeit9703.club.model.ClubPhotoService;
 import com.iii.eeit9703.club.model.ClubPhotoVO;
 import com.iii.eeit9703.club.model.ClubService;
@@ -35,6 +37,7 @@ import com.iii.eeit9703.club.model.CommentService;
 import com.iii.eeit9703.club.model.CommentVO;
 import com.iii.eeit9703.club.model.IssueService;
 import com.iii.eeit9703.club.model.IssueVO;
+import com.iii.eeit9703.member.model.MemberSession;
 import com.iii.eeit9703.utility.DateUtil;
 
 @WebServlet("/club/clubClientView.do")
@@ -99,24 +102,29 @@ public class ClubClientViewServlet extends HttpServlet {
 		String action = request.getParameter("action");
 		System.out.println("The action is " + action);
 		HttpSession session = request.getSession(false);
+		MemberSession ms=null;
+		if(session.getAttribute("LoginOK_MS") != null){			
+			ms = (MemberSession)session.getAttribute("LoginOK_MS");
+
+		}
 
 		// 貼入在你的sevlet 然後 ctrl+shift+o 匯入必要的class
 		// 可以跳過建業的member認證, 並匯入memberSession和memVO
 
-		if (session == null || session.getAttribute("LoginOK") == null || session.getAttribute("LoginOK_MS") == null) {
-			System.out.println("LoginOK" + session.getAttribute("LoginOK") == null);
-			System.out.println("LoginOK_MS" + session.getAttribute("LoginOK_MS") == null);
-
-			session.setAttribute("requestURI", request.getRequestURI());
-			session.setAttribute("memberId", "1");
-			session.setAttribute("action", request.getParameter("action"));
-			response.sendRedirect("/CHEWME2/member/memberLogin.do");
-			System.out.println("change to ok!");
-			return;
-		}
-		if (request.getParameter("action") == null) {
-			action = (String) session.getAttribute("action");
-		}
+//		if (session == null || session.getAttribute("LoginOK") == null || session.getAttribute("LoginOK_MS") == null) {
+//			System.out.println("LoginOK" + session.getAttribute("LoginOK") == null);
+//			System.out.println("LoginOK_MS" + session.getAttribute("LoginOK_MS") == null);
+//
+//			session.setAttribute("requestURI", request.getRequestURI());
+//			session.setAttribute("memberId", "1");
+//			session.setAttribute("action", request.getParameter("action"));
+//			response.sendRedirect("/CHEWME2/member/memberLogin.do");
+//			System.out.println("change to ok!");
+//			return;
+//		}
+//		if (request.getParameter("action") == null) {
+//			action = (String) session.getAttribute("action");
+//		}
 		/*
 		 * MemberSession memSession =
 		 * (MemberSession)session.getAttribute("LoginOK");
@@ -128,6 +136,20 @@ public class ClubClientViewServlet extends HttpServlet {
 		 * if(memSession!=null){ memSession.getMemId(); }
 		 */
 		/* 服務從findClub導過來的service,顯示club的Service */
+		if (action.matches("joinClub")){
+			Integer clubId = Integer.parseInt(request.getParameter("clubId"));
+			Integer memId = ms.getMemId();
+			System.out.println("clubId is "+clubId);
+			System.out.println("memId is "+memId);
+			ClubMemRelationVO cmrVO = new ClubMemRelationVO();
+			cmrVO.setClubId(clubId);
+			cmrVO.setMemId(memId);	
+			cmrVO.setDate(new java.sql.Date(0));
+			ClubMemRelationService cmrs = new ClubMemRelationService();
+			cmrs.insertClubMemRelation(cmrVO);			
+			ms.appendJoinedClubList(clubId);
+			return;
+		}
 		if (action.matches("updateClubInfo")){
 			System.out.println("In ClubClientVIEW, start the update club info");
 			String col = request.getParameter("col");
@@ -177,23 +199,39 @@ public class ClubClientViewServlet extends HttpServlet {
 			System.out.println("In ClubClientVIEW, start the choose club");
 			System.out.println(request.getParameter("clubId"));
 			ClubService cs = new ClubService();
-			Integer search_club;
+			Integer search_clubId;
 			if (request.getParameter("clubId") != null) {
-				search_club = Integer.parseInt(request.getParameter("clubId"));
+				search_clubId = Integer.parseInt(request.getParameter("clubId"));
 			} else {
-				search_club = (Integer) request.getAttribute("clubId");
+				search_clubId = (Integer) request.getAttribute("clubId");
 			}
 
 			// ActService2!!!
-			if (request.getParameter("createNewClub") != null) {
-				if (request.getParameter("createNewClub").matches("yes")) {
-					ActService2 as = new ActService2();
-					List<ActivityVO> activityList = as.getListByClubId(search_club);
-					session.setAttribute("clubActList", activityList);
-				}
-			}
-			ClubVO clubVO = cs.getOneClub(search_club);
+//			if (request.getParameter("createNewClub") != null) {
+//				if (request.getParameter("createNewClub").matches("yes")) {
+//				}
+//			}
+			System.out.println("clubID "+search_clubId);
+			ClubVO clubVO = cs.getOneClub(search_clubId);
 			session.setAttribute("clubVOForView", clubVO);
+			ActService2 as = new ActService2();
+			List<ActivityVO> activityList = as.getListByClubId(search_clubId);			
+			session.setAttribute("clubActList", activityList);
+			session.setAttribute("MemVOList", cs.getClubMembers());
+			String identity = "";
+			if(session.getAttribute("LoginOK_MS") != null){				
+				if(ms.getOwnClubList().contains(search_clubId)){
+					identity = "club_manager";
+				}else if(ms.getJoinedClubList().contains(search_clubId)){
+					identity = "club_member";
+				}else{
+					identity = "normal_member";				
+				}
+			}else{
+				identity = "web_client";				
+			}
+			System.out.println(identity);
+			session.setAttribute("identity", identity);
 //			if(clubVO.getClubName()!=null){
 //				System.out.println(clubVO.getClubName());				
 //			}
@@ -205,8 +243,18 @@ public class ClubClientViewServlet extends HttpServlet {
 		if (action.matches("loadIssues")) {
 			System.out.println("In ClubClientVIEW, get in to load issues.");
 			/* 準備get方法內傳回參數的基本物件(DAO及writer) */
-
-			Integer clubId = Integer.parseInt(request.getParameter("clubId"));
+			Integer clubId;
+			if(request.getParameter("clubId")!=null){
+				if(request.getParameter("clubId").matches("")){
+					System.out.println("Redirect to the findClub.jsp");
+					response.sendRedirect("findClub.jsp");
+					return;
+				}else{
+					clubId = Integer.parseInt(request.getParameter("clubId"));
+				}
+			}else {
+				clubId = new Integer(1);
+			}
 			PrintWriter out = response.getWriter();
 			IssueService is = new IssueService();
 			List<IssueVO> issueVO_list = is.getIssueListByClubId(clubId);
@@ -283,6 +331,7 @@ public class ClubClientViewServlet extends HttpServlet {
 		if (action.matches("insertIssue")) {
 			PrintWriter out = response.getWriter();
 			System.out.println("request.content is " + request.getParameter("content"));
+			System.out.println("request.title is " + request.getParameter("title"));
 			System.out.println("the issue id is " + request.getParameter("issueId"));
 			IssueService is = new IssueService();
 			IssueVO isvo = new IssueVO();

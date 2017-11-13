@@ -3,9 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.iii.eeit9703.activity.model.*"%>
-<%
 
-%>
 <!DOCTYPE html>
 <html lang="zh-tw">
 <head>
@@ -160,52 +158,45 @@
                <div class="col-md-6">     
                 <div class="date-time row">
                     <div class="form-group col-md-6">
-                 <div class="form-group">
-                    <label for="destination">成團人數:${activityVO.act_groups}</label>
-                </div>
-              
-                <div class="form-group">
-                    <label for="destination">參與人數:${activityVO.act_current}</label>
-                </div>
                 
-                <div class="form-group">
-                    <label for="destination">旅程時間:${activityVO.BDate}-${activityVO.EDate}</label>
-                </div>
-                
-                <div class="form-group">
-                    <label for="destination">價格:${activityVO.act_price}</label>
-                </div>
                     </div>
                     </div>
-                <div class="show_icon">
+<!--                 <div class="show_icon btn-group btn-group-justified">
                 		<span><button class="btn btn-default show_act">參加行程</button></span>
                    		<span><button class="btn btn-default show_col">加入我的收藏</button></span>
                     	<span><button class="btn btn-default show_rep">檢舉行程</button></span>
                 
-<!--                     <a href="#" class="btn btn-default">參加行程</a> -->
-<!--                     <a href="#" class="btn btn-default"><i class="fa fa-heart-o" aria-hidden="true" style="color:red;"></i> 加入我的收藏</a> -->
-<!--                     <a href="#" class="btn btn-default show_report">檢舉行程</a> -->
+                    <a href="#" class="btn btn-default">參加行程</a>
+                    <a href="#" class="btn btn-default"><i class="fa fa-heart-o" aria-hidden="true" style="color:red;"></i> 加入我的收藏</a>
+                    <a href="#" class="btn btn-default show_report">檢舉行程</a>
+                </div>  -->
+                
+                <div class="show_icon btn-group btn-group-justified">
+                		<a class="btn btn-default show_act" href="/CHEWME2/backage/collection.jsp">參加行程</a>
+                   		<a class="btn btn-default show_col"><i class="fa fa-heart-o" aria-hidden="true" style="color:red;"></i> 加入我的收藏</a>
+                    	<a class="btn btn-default show_rep">檢舉行程</a>
+                
                 </div>               
 
-                <div class="card" style="margin-top:20px;">
+               <div class="card" style="margin-top:20px;">
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">景點</a></li>
-                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">餐廳</a></li>
-                        <li role="presentation"><a href="#S" aria-controls="S" role="tab" data-toggle="tab">住宿</a></li>                 
+                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">目前人數</a></li>
+                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">旅程時間</a></li>
+                        <li role="presentation"><a href="#S" aria-controls="S" role="tab" data-toggle="tab">價格</a></li>                 
                     </ul>
 
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="home">景點</div>
-                        <div role="tabpanel" class="tab-pane" id="profile">住宿</div>
-                        <div role="tabpanel" class="tab-pane" id="S">餐廳</div>       
+                        <div role="tabpanel" class="tab-pane active" id="home">成團人數:${activityVO.act_groups}人<br>參與人數:${activityVO.act_current}人</div>
+                        <div role="tabpanel" class="tab-pane" id="profile">出發日期:${activityVO.BDate}<br>回程日期:${activityVO.EDate}</div>
+                        <div role="tabpanel" class="tab-pane" id="S">一人費用:${activityVO.act_price}元</div>       
                     </div>
                 </div>
                
                  </div>                      
 <!--             </form> -->
         </div>
-    </div>
+    </div><br>
     <!-- /.container -->
 						
 					<div id="sch">
@@ -334,13 +325,15 @@ $(function(){
 	
 	
 	
-	$('.show_icon').on('click','span:nth-child(1) button:nth-child(1)',function(){	
+	$('.show_act').on('click',function(){	
+		var id =$(this).parents().find('.hiddd').val()
+		$.getJSON('<%=request.getContextPath()%>/ShoppingCar?action=inputCar',{'ID' : id}, result);
 		alert('aa')
 
 	})
 	
 // 	按收藏
-	$('.show_icon').on('click','span:nth-child(2) button:nth-child(1)',function(){	
+	$('.show_col').on('click',function(){	
 		var id =$(this).parents().find('.hiddd').val()
 		$.getJSON('<%=request.getContextPath()%>/ShoppingCar?action=inputCar',{'ID' : id}, result);
 	})
@@ -359,7 +352,7 @@ $(function(){
 	
 	
 // 案檢舉
-	$('.show_icon').on('click','span:nth-child(3) button:nth-child(1)',function(){
+	$('.show_rep').on('click',function(){
 		var id =$(this).parents().find('.hiddd').val()
 		$('#myModal').modal('show')
 		

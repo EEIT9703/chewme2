@@ -64,20 +64,20 @@ public class ActivityServletForClub extends HttpServlet {
 		//session = req.getSession(true);
 		//AutoLogin.memberLogin(req, resp, session, 1);
 		
-		if(session == null||session.getAttribute("LoginOK") == null||session.getAttribute("LoginOK_MS") == null){
-			System.out.println("LoginOK" + session.getAttribute("LoginOK")==null );
-			System.out.println("LoginOK_MS" + session.getAttribute("LoginOK_MS")==null );
-			
-			session.setAttribute("requestURI", req.getRequestURI());
-			session.setAttribute("memberId", "1");
-			session.setAttribute("action", req.getParameter("action"));
-			resp.sendRedirect("/CHEWME2/member/memberLogin.do");
-			System.out.println("change to ok!");		
-			return;			
-		}
-		if( req.getParameter("action") == null){
-			action = (String)session.getAttribute("action");
-		}
+//		if(session == null||session.getAttribute("LoginOK") == null||session.getAttribute("LoginOK_MS") == null){
+//			System.out.println("LoginOK" + session.getAttribute("LoginOK")==null );
+//			System.out.println("LoginOK_MS" + session.getAttribute("LoginOK_MS")==null );
+//			
+//			session.setAttribute("requestURI", req.getRequestURI());
+//			session.setAttribute("memberId", "1");
+//			session.setAttribute("action", req.getParameter("action"));
+//			resp.sendRedirect("/CHEWME2/member/memberLogin.do");
+//			System.out.println("change to ok!");		
+//			return;			
+//		}
+//		if( req.getParameter("action") == null){
+//			action = (String)session.getAttribute("action");
+//		}
 		
 		
 		if(session == null){
@@ -103,18 +103,18 @@ public class ActivityServletForClub extends HttpServlet {
 		
 		if(action.matches("createAct")){
 			Integer memId = ms.getMemId();
-			
-			List<ActivityVO> avo= ms.getOwnActivityVOList();
-			if(avo == null){
-				System.out.println("the aov is null");
+			String url = "";
+			if(ms.getOwnActivityVOList()==null){
+				url = req.getContextPath()+"/actEditor/editorScuedule.jsp";
 			}else{				
-				System.out.println(avo.get(0).getActID());
+				List<ActivityVO> avo= ms.getOwnActivityVOList();				
+				System.out.println("ActivityList size"+ms.getMemId());
+				url = req.getContextPath()+"/act/createAct.jsp";
 			}
-			System.out.println("ActivityList size"+ms.getMemId());
 			//actList = ms.getOwnActivityList();
 			//session.setAttribute("ownAct", actList);
 			//session.setAttribute("MemberSession",ms);
-			resp.sendRedirect(req.getContextPath()+"/act/createAct.jsp");
+			resp.sendRedirect(url);
 			
 		}
 		if(action.matches("createClubAct")){

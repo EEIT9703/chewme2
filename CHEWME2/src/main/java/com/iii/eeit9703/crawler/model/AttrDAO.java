@@ -267,6 +267,7 @@ public class AttrDAO implements AttrDAO_interface {
 				attrVO = new AttrVO();
 				attrVO.setAttractionID(rs.getInt("attractionID"));
 				attrVO.setName(rs.getString("name"));
+				attrVO.setIntro(rs.getString("intro"));
 				list.add(attrVO);
 			}
 			rs.close();

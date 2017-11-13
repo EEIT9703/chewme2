@@ -7,5 +7,5 @@ import java.util.List;
 public interface Order_interface {
 	public void insert(OrderVO orderVO);
 	public List<OrderVO> getAll();
-	
+	public OrderVO findByPrimaryKey(Integer orderId);
 }

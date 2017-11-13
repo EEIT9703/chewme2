@@ -14,27 +14,33 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"></link>
 <link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"><%--圖形區域選擇器 加上canvas所需要的程式碼--%>
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<%--圖形區域選擇器 加上canvas所需要的程式碼--%>
 
 <link rel="stylesheet" type="text/css" href="css/dialog.css" />
 <link rel="stylesheet" type="text/css"
-	href="../css/igs/imgareaselect-default.css" />
+	href="<%=request.getContextPath() %>/css/igs/imgareaselect-default.css" />
 
-<script src="../js/jquery-3.2.1.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath() %>/js/jquery-3.2.1.min.js"></script>
+<script src="<%=request.getContextPath() %>/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <style>
-.carousel-inner{
-  width:100%;
-  max-height: 350px; <!-- !important -->
-}
-.btn{
-width:70%;
-}
-table {
-    border-collapse: collapse;
+.carousel-inner {
+	width: 100%;
+	max-height: 350px;
+	<!--
+	!
+	important
+	-->
 }
 
+.btn {
+	width: 70%;
+}
+
+table {
+	border-collapse: collapse;
+}
 </style>
 </head>
 <body>
@@ -62,37 +68,74 @@ table {
 						<tr>
 							<td>社團名稱:</td>
 							<td class="manage_input" id="club_name">${clubVOForView.clubName}</td>
-							<td class="manage"><div><button type="button" class="manage-btn btn btn-default btn-sm" disabled> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> </button></div></td>
+							<td class="manage"><div>
+									<button type="button" class="manage-btn btn btn-default btn-sm"
+										disabled>
+										<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+									</button>
+								</div></td>
 						</tr>
 						<tr>
 							<td>社團管理者:</td>
 							<td>${clubVOForView.managerId}</td>
-							<td><div><button type="button" class="manage-btn btn btn-default btn-sm" disabled> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> </button></div></td>
+							<td><div>
+									<button type="button" class="manage-btn btn btn-default btn-sm"
+										disabled>
+										<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+									</button>
+								</div></td>
 						</tr>
 						<tr>
 							<td>地點:</td>
 							<td class="manage_input" id="club_loc">${clubVOForView.locationId}</td>
-							<td class="manage"><div><button type="button" class="manage-btn btn btn-default btn-sm"  disabled> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> </button></div></td>
+							<td class="manage"><div>
+									<button type="button" class="manage-btn btn btn-default btn-sm"
+										disabled>
+										<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+									</button>
+								</div></td>
 						</tr>
 						<tr>
 							<td>地址:</td>
-							<td class="manage_input"  id="club_addr">${clubVOForView.addr}</td>
-							<td class="manage"><div><button type="button" class=" manage-btn btn btn-default btn-sm"  disabled> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> </button></div></td>
+							<td class="manage_input" id="club_addr">${clubVOForView.addr}</td>
+							<td class="manage"><div>
+									<button type="button"
+										class=" manage-btn btn btn-default btn-sm" disabled>
+										<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+									</button>
+								</div></td>
 						</tr>
 						<tr>
 							<td>參考網址:</td>
 							<td class="manage_input" id="club_refurl">${clubVOForView.refURL}</td>
-							<td class="manage" ><div><button type="button" class="manage-btn btn btn-default btn-sm"  disabled> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> </button></div></td>
+							<td class="manage"><div>
+									<button type="button" class="manage-btn btn btn-default btn-sm"
+										disabled>
+										<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+									</button>
+								</div></td>
 						</tr>
-						<tr>
-							<td>總拜訪人數:</td>
-							<td>${clubVOForView.vistors}</td>
-							<td><div><button type="button" class="manage-btn btn btn-default btn-sm" disabled> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> </button></div></td>
-						</tr>
+						<c:if test="${identity=='manager'}">
+							<tr>
+								<td>總拜訪人數:</td>
+								<td>${clubVOForView.vistors}</td>
+								<td><div>
+										<button type="button"
+											class="manage-btn btn btn-default btn-sm" disabled>
+											<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+										</button>
+									</div></td>
+							</tr>
+						</c:if>
 						<tr>
 							<td>本月拜訪人數:</td>
 							<td>${clubVOForView.vistorsInMonth}</td>
-							<td ><div><button type="button" class="manage-btn btn btn-default btn-sm" disabled> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> </button></div></td>
+							<td><div>
+									<button type="button" class="manage-btn btn btn-default btn-sm"
+										disabled>
+										<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+									</button>
+								</div></td>
 						</tr>
 					</tbody>
 				</table>
@@ -104,8 +147,8 @@ table {
 						<div id="theClubPic" class="item active">
 							<%-- 						<img class="d-block w-100" src="<%=request.getContextPath() %>/getImageInChewme.do?type=clubPic&id=${clubVOForView.clubId}" alt="First slide" style="margin:auto;"> --%>
 
-								<img class=" center-block" src=""
-									id="img_${clubVOForView.clubId}" alt="First slide">
+							<img class=" center-block" src=""
+								id="img_${clubVOForView.clubId}" alt="First slide">
 
 						</div>
 						<a class="carousel-control-prev" href="#carouselExampleControls"
@@ -122,30 +165,60 @@ table {
 
 			</div>
 			<div class="col-md-2">
-				<div>
-					<a id="manageCCV" class="btn btn-sm btn-primary" role="button" style="width:100%"> 管理畫面 </a>
-				</div>
-				<div>
-					<a id="clientCCV"class="btn btn-sm btn-primary" role="button" style="width:100%" > 使用者畫面</a>
-				</div>
-				<div>
-					<a class="btn btn-sm btn-primary" style="width:100%"
-						href="<%=request.getContextPath()%>/club/clubClientView.do?action=createClubAct&clubId=${clubVOForView.clubId}"
-						role="button"> 創社團活動 </a>
-				</div>
-				<div>
-					<label class="btn btn-sm btn-primary" style="width:100%"  for="uploadImage"> <input
-						id="uploadImage" name="photo" style="display: none;" type="file"
-						value="upload_photo"> <i class="fa fa-folder-open-o"></i>
-						換照片
-					</label>
-				</div>
-				<div>
-					<a class="btn btn-sm btn-danger" style="width:100%" role="button"> 刪除社團 </a>
-				</div>
-				<div>
-					<a id="reNew" class="btn btn-sm btn-primary" role="button" style="width:100%"> 更新</a>
-				</div>
+				<c:if test="${identity == 'club_manager'}">
+					<p>社團管理員:${LoginOK.memName}您好</p>
+				</c:if>
+				<c:if test="${identity == 'club_member'}">
+					<p>社團成員:${LoginOK.memName}您好</p>
+				</c:if>
+				<c:if test="${identity == 'normal_member'}">
+					<p>會員:${LoginOK.memName}您好 加入社團嗎?</p>
+				</c:if>
+				<c:if test="${identity == 'web_client'}">
+					<p>訪客:您好</p>
+				</c:if>
+				<c:if test="${identity == 'club_manager'}">
+					<div>
+						<a id="manageCCV" class="btn btn-sm btn-primary" role="button"
+							style="width: 100%"> 進入管理畫面 </a>
+					</div>
+					<div>
+						<a id="clientCCV" class="btn btn-sm btn-primary" role="button"
+							style="width: 100%"> 進入使用者畫面</a>
+					</div>
+					<div>
+						<a class="btn btn-sm btn-primary" style="width: 100%"
+							href="<%=request.getContextPath()%>/club/clubClientView.do?action=createClubAct&clubId=${clubVOForView.clubId}"
+							role="button"> 創社團活動 </a>
+					</div>
+					<div>
+						<label class="btn btn-sm btn-primary" style="width: 100%"
+							for="uploadImage"> <input id="uploadImage" name="photo"
+							style="display: none;" type="file" value="upload_photo">
+							<i class="fa fa-folder-open-o"></i> 換照片
+						</label>
+					</div>
+					<div>
+						<a id="reNew" class="btn btn-sm btn-primary" role="button"
+							style="width: 100%"> 更新</a>
+					</div>
+					<div>
+						<a class="btn btn-sm btn-danger" style="width: 100%" role="button">
+							凍結社團 </a>
+					</div>
+				</c:if>
+				<c:if test="${identity == 'club_member'}">
+					<div>
+						<button id="joinClub" class="btn btn-sm btn-primary"
+							style="width: 100%">加入社團</button>
+					</div>
+				</c:if>
+				<c:if test="${identity == 'normal_member'}">
+					<div>
+						<button id="joinClub" class="btn btn-sm btn-danger"
+							style="width: 100%">退出社團</button>
+					</div>
+				</c:if>
 
 			</div>
 		</div>
@@ -163,21 +236,10 @@ table {
 						data-toggle="tab" href="#forum-page" role="tab"
 						aria-controls="profile">討論區</a></li>
 					<li class="nav-item"><a class="nav-link " id="myclub-tab"
-						data-toggle="tab" href="#profile" role="tab"
+						data-toggle="tab" href="#my-info" role="tab"
 						aria-controls="profile">關於我們</a></li>
-					<li class="nav-item"><a class="nav-link" id="profile-tab"
-						data-toggle="tab" href="#addNewAct-page" role="tab"
-						aria-controls="profile">新增行程</a></li>
-					<!-- <li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
-						role="button" aria-haspopup="true" aria-expanded="false">
-							Dropdown </a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" id="dropdown1-tab" href="#dropdown1"
-								role="tab" data-toggle="tab" aria-controls="dropdown1">@fat</a>
-							<a class="dropdown-item" id="dropdown2-tab" href="#dropdown2"
-								role="tab" data-toggle="tab" aria-controls="dropdown2">@mdo</a>
-						</div></li> -->
+					<li class="nav-item"><a class="nav-link" data-toggle="tab"
+						href="#member-info" role="tab" aria-controls="profile">社員資訊</a></li>
 				</ul>
 			</div>
 			<div class="col"></div>
@@ -190,8 +252,12 @@ table {
 			<div id="oldActList-page">
 				<%@ include file="ccvOldActList.jsp"%>
 			</div>
-			<div id="addNewAct-page">
-				<iframe src="../act/createAct2.jsp"></iframe>
+			<div id="my-info">
+
+				<!-- 				<iframe src="../club/info.jsp"></iframe> -->
+			</div>
+			<div id="member-info">
+				<%@ include file="ccvClubMemberInfo.jsp"%>
 			</div>
 		</div>
 		<div id="canvasDiv" hidden>

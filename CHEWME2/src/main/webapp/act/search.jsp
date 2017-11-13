@@ -10,8 +10,8 @@ pageEncoding="UTF-8"%>
 
 	
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
-<script	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+<link href="<%=request.getContextPath()%>/css/bootstrap-select.min.css" rel="stylesheet">
+<script	src="<%=request.getContextPath()%>/js/bootstrap-select.min.js"></script>
 <style>
 
 body { background-color:#ddd; }
@@ -72,7 +72,7 @@ body { background-color:#ddd; }
             </table>  
 	</div>
 </div>
-	
+
 
 
 
@@ -89,34 +89,33 @@ body { background-color:#ddd; }
 			</div>
            <div class="thumbnail">
 
-
-           
-<%-- 			<a href="<%=request.getContextPath()%>/act/showAct.jsp">			 --%>
-<!-- 				</a>	 -->
-
-<%--            <input type="hidden" class="id" id="${activityVO.actID}">  --%>
+        
  
 			<a href="<%=request.getContextPath()%>/act/ActivitySearch?action=searchone&name=${activityVO.actID}">	
 				<img class="img-responsive center-block" src="data:image/png;base64,${activityVO.act_photo}" height="250">
 			</a>	
-<%-- 				<input type="hidden" class="id" value="${activityVO.actID}"> 				 --%>
 				<div class="blog-content bg-white">
-				<h3 id="act_name" class="act_name">${activityVO.act_name}</h3>
-				<p>Category : <a href="javascript::;">Nature</a></p>
-				<p>旅遊介紹<a href="javascript::;"  class="heading_color">  Continue Reading</a></p>
+				<img src="<%=request.getContextPath()%>/image/chewme-logo.png" width="50" height="50" style="float:left">
+				<h3 id="act_name" class="act_name" style="">${activityVO.act_name}</h3>
+				
+				<a class="btn-sm btn btn-info ">
+                <i class="fa fa-usd" aria-hidden="true"></i> 價格:${activityVO.act_price} 元
+                </a>
+				<a class="btn-sm btn btn-info ">
+                <span class="glyphicon glyphicon-user"></span> 目前人數:${activityVO.act_current} 人
+                </a> 
 				<hr>
 				<p><span>Share : 
-				<a href="javascript::;"><i class="fa fa-facebook margin_left10" aria-hidden="true"></i></a>
+				<a href="href="javascript:void(0);" onclick="window.open('http://www.facebook.com/sharer/sharer.php?u='+fbhtml_url);return false;"><i class="fa fa-facebook margin_left10" aria-hidden="true"></i></a>
 				<a href="javascript::;"><i class="fa fa-twitter margin_left10" aria-hidden="true"></i></a>
 				<a href="javascript::;"><i class="fa fa-google-plus margin_left10" aria-hidden="true"></i></a>
 				 </span> 
 
-				<span class="pull-right">
-				
-              <button class="btn btn-info btn-sm">
-              <span class="glyphicon glyphicon-heart-empty inputCar"></span> 加入收藏
-              </button>             
-              </span>
+			   <span class="pull-right">			
+               <button class="btn btn-info btn-sm">
+               <span class="glyphicon glyphicon-heart-empty inputCar"></span> 加入收藏
+               </button>             
+               </span>
 
 				</div>
 				</div>
@@ -129,5 +128,5 @@ body { background-color:#ddd; }
 
 
 <script src="<%=request.getContextPath()%>/act/js/search.js"></script>
-<script src="https://use.fontawesome.com/1dec14be15.js"></script>
+<script src="<%=request.getContextPath()%>/js/FontAwesomeCdnConfig.js"></script>
 

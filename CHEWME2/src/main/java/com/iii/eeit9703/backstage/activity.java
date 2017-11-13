@@ -3,12 +3,18 @@ package com.iii.eeit9703.backstage;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
+import java.util.Map.Entry;
 
 import javax.json.*;
 import javax.servlet.ServletException;
@@ -21,6 +27,8 @@ import javax.servlet.http.HttpSession;
 import org.json.JSONArray;
 import org.json.simple.JSONValue;
 
+import com.iii.eeit9703.actEditor.model.ScheduleDAO_Hibernate;
+import com.iii.eeit9703.actEditor.model.ScheduleVO;
 import com.iii.eeit9703.activity.model.ActService;
 import com.iii.eeit9703.activity.model.ActivityDAO_hibernate;
 import com.iii.eeit9703.activity.model.ActivityVO;
@@ -30,11 +38,16 @@ import com.iii.eeit9703.collection.CollectionService;
 import com.iii.eeit9703.collection.CollectionVO;
 import com.iii.eeit9703.crawler.model.AttrService;
 import com.iii.eeit9703.crawler.model.AttrVO;
+import com.iii.eeit9703.crawler.model.SearchHibernateDAO;
 import com.iii.eeit9703.member.model.MemDAO_hibernate;
 import com.iii.eeit9703.member.model.MemVO;
 import com.iii.eeit9703.member.model.MemberSession;
+import com.iii.eeit9703.order.OrderDAO_hibernate;
+import com.iii.eeit9703.order.OrderVO;
 import com.iii.eeit9703.report.ReportDAO_hibernate;
 import com.iii.eeit9703.report.ReportVO;
+
+import net.minidev.json.JSONObject;
 
 
 
@@ -330,7 +343,7 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 						
 					Integer ID = Integer.parseInt(request.getParameter("id"));
 					String Role = request.getParameter("opt");
-					MemDAO_hibernate hibRole= new MemDAO_hibernate();
+					//MemDAO_hibernate hibRole= new MemDAO_hibernate();
 					MemVO oldVO=hib.findByPrimaryKey(ID);
 					
 					MemVO memVO=new MemVO();
@@ -354,6 +367,21 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 					
 					
 					}
+				if("upDateActivityStatus".equals(action)){
+					ActivityDAO_hibernate hib= new ActivityDAO_hibernate();
+						
+					Integer ID = Integer.parseInt(request.getParameter("id"));
+					Integer status = Integer.parseInt(request.getParameter("opt"));
+					System.out.println(ID+"----"+status);
+					ActivityVO oldActVO=hib.findByPrimaryKey(ID);
+	
+					oldActVO.setActID(ID);
+					oldActVO.setActivity_state(status);
+					hib.update(oldActVO);
+					
+					}
+				
+				
 				
 				
 				
@@ -371,11 +399,14 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 					
 					List<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
 					HashMap<String,String> map = null;
+					SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 					for(ReportVO vo : attrList){
-						map = new HashMap<String,String>();						
-						map.put("reportTime", vo.getReportTime().toString());
+						map = new HashMap<String,String>();	
+						//vo.getReportTime().toString()
+						map.put("reportTime", sdFormat.format(vo.getReportTime()));
 						map.put("reportContext", vo.getReportContext());
 						map.put("act_name", vo.getActivityVO().getAct_name());
+						map.put("actID", vo.getActivityVO().getActID().toString());
 						map.put("memName", vo.getMemVO().getMemName());
 							
 						list.add(map);
@@ -388,7 +419,116 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 //					out.print(jsonString);
 
 					}
+				if("getOrderCharts".equals(action)){
+					
+					SearchHibernateDAO daoAttr = new SearchHibernateDAO();		
+					ScheduleDAO_Hibernate daoSch =new ScheduleDAO_Hibernate();
+					List<ScheduleVO> listsSch =daoSch.getAll();	
+					int[] sche =new int[listsSch.size()];
+					int i=0;
+				
+					for(ScheduleVO scheduleVO:listsSch){		
+							sche[i]=scheduleVO.getAttractionID();				
+							i++;					
+					}
+				
+					Map<Integer,Integer> map_fav = new TreeMap<Integer,Integer>();
+					
+					for(int x = 0; x < sche.length; x++) { 
+						if(map_fav.containsKey(sche[x])) { 
+							Integer count = (Integer) map_fav.get(sche[x]); 
+							count++; 
+							map_fav.put(sche[x], count);
+							} 
+						
+						else { 
+							map_fav.put(sche[x], 1);
+								} 
+						
+					}		
+					List<Entry<Integer,Integer>> list =new ArrayList<Entry<Integer,Integer>>(map_fav.entrySet());
+					Collections.sort(list, new Comparator<Map.Entry<Integer, Integer>>() {
+						  public int compare(Map.Entry<Integer, Integer> o1,
+						      Map.Entry<Integer, Integer> o2) {
+						    return (o2.getValue() - o1.getValue());
+						  }
+						});	
+										
+					//Map<String,Integer> map1 = new TreeMap<String,Integer>();
+					List attr_name=new ArrayList();
+					List attr_number=new ArrayList();
+						int count=0;
+						String[] attr =new String[count+5];
+						int[] attr_total =new int[count+5];
+						for (Map.Entry<Integer, Integer> entry : list) {
+						if(count<5){
+						AttrVO attrVO=daoAttr.findByPKInt(entry.getKey());
+						attr[count]=attrVO.getName();
+						attr_total[count]=entry.getValue();		
+						// map1.put(attrVO.getName(), entry.getValue());
+						// sec.add(map1);
+						 }
+						 count++;
+					   }
+				 			
+						for(int j=0;j<attr.length;j++){
+							attr_name.add(attr[j]);
+							attr_number.add(attr_total[j]);			
+						}
+		
+					OrderDAO_hibernate DAO = new OrderDAO_hibernate();
+					List<OrderVO> orders = DAO.getAll();
+					// OrderVO orderVO=DAO.findByPrimaryKey(43);
 
+					Calendar cal = Calendar.getInstance();
+					// cal.setTime(orderVO.getOrderTime());
+					int month = 0;
+					// System.out.println(month);
+
+					int[] array_money = new int[12];
+					int[] array_poeple = new int[12];
+					for (int z = 0; z < array_money.length; z++) {
+						for (OrderVO orderVO : orders) {
+							cal.setTime(orderVO.getOrderTime());
+							month = cal.get(Calendar.MONTH);
+							if (month == z) {
+								array_money[z] = array_money[z] + orderVO.getOrderPrice();
+								array_poeple[z] =array_poeple[z]+orderVO.getOrderPeople();
+							}
+						}
+					}
+					List<HashMap<String,String>> list_final =new ArrayList<HashMap<String,String>>();
+					List list_money =new ArrayList();
+					List list_people =new ArrayList();
+					for (int j = 0; j < array_money.length; j++) {
+					
+						list_money.add(array_money[j]);
+						list_people.add(array_poeple[j]);
+					}
+					
+					
+					
+					HashMap<String,Object> map =new HashMap<String,Object>();					
+					map.put("money", list_money);
+					map.put("people", list_people);
+					map.put("categories", attr_name);
+					map.put("number", attr_number);
+					//list_final.add(map);
+					
+					 JSONObject jsonObjectJacky = new JSONObject(map);
+					 out.print(jsonObjectJacky);
+					 
+//					
+//					out.print(attrArrayList);
+//					JSONArray attrArrayList = new JSONArray(list_final);		
+//					out.print(attrArrayList);
+//					
+					}
+				
+				
+				
+				
+				
 				
 			
 				if("delete".equals(action)){

@@ -72,10 +72,10 @@
             
             <div id="page-wrapper">
             <div class="row">
-                <div class="col-lg-12">
+<!--                 <div class="col-lg-12"> -->
                 
-                    <h4 >內容區標頭</h4>
-                </div>
+<!--                     <h4 >內容區標頭</h4> -->
+<!--                 </div> -->
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
@@ -85,7 +85,7 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="panel panel-default">
-                        內容區         <div class="panel-heading"> 
+                       <div class="panel-heading">  
                          <div id='calendar'></div>
                         </div>          
                     </div>              
@@ -127,7 +127,7 @@
                     </table>
                 </div>
                 <div class="panel-footer">
-                	<a href="http://www.jquery2dotnet.com" class="btn btn-success" role="button">前往確認</a>
+                	<a id="reportConnect" href="" class="btn btn-success" role="button">前往確認</a>
                 </div>
             </div>	
 
@@ -153,8 +153,9 @@
 			$.getJSON('<%=request.getContextPath()%>/activity?action=getAllReport',{},function(data){
 				$.each(data, function(i,report) {
 					var name =report.memName;
-					cell.push({ title:name, start: report.reportTime,  eventSources: [report.reportContext,report.act_name,report,report.memName] });	
+					cell.push({ title:name, start: report.reportTime,  eventSources: [report.reportContext,report.act_name,report.actID,report.memName] });	
 				});
+				console.log(cell)
 				loadReport(cell);			
 			});
 
@@ -184,9 +185,12 @@
 							eventDragStop: function( event, jsEvent, ui, view ) {
 								  if(isEventOverDiv(jsEvent.clientX, jsEvent.clientY)) {
 									 $("#reporter").text(event.title).css("color","	#000000")
-		  							$("#reportime").text(event.start).css("color","	#000000")					
+		  							$("#reportime").text(event.start.format('YYYY-MM-DD hh:mm:ss')).css("color","	#000000")					
 		  							$("#reportcontext").text(event.eventSources[0]).css("color","	#000000")
-		  							$("#act_name span").text(event.eventSources[1]).css("color","	#000000")		  
+		  							$("#act_name span").text(event.eventSources[1]).css("color","	#000000")
+		  							//alert(event.eventSources[2])
+		  							var url="<%=request.getContextPath()%>/act/ActivitySearch?action=searchone&name="+event.eventSources[2];
+		  							$("#reportConnect").attr('href',url)
 								  }
 							},
 		   

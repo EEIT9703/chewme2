@@ -34,17 +34,36 @@
 </head>
 
 <style>
+body{
+    height: 100%;
+ 	background-repeat: no-repeat;
+ 	background:url(https://i.ytimg.com/vi/4kfXjatgeEU/maxresdefault.jpg);
+ 	font-family: 'Oxygen', sans-serif;
+	background-size: cover;
+}
+.jumbotron{
+ 	margin-top: 30px;
+ 	margin: 0 auto;
+ 	max-width: 700px;
+    padding: 10px 40px;
+	background:#009edf;
+	color: #FFF;
+    text-shadow: none;
+	-webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+    -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+}
 .img {
   position: relative;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 250px;
   background-color: #353535;
 
-  padding: 0;
-  margin: 10px;
+  padding: auto;
+  margin: auto;
   border-radius: 3px;
 }
 
@@ -130,35 +149,21 @@
 						<!-- 預覽內容 -->
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
-               
+            <div class="col-md-12">             
                 <div class="heading">
                     <h2>行程介紹</h2>
                 </div>
                 <div class="item-desc">
+         <img src="<%=request.getContextPath()%>/image/chewme-logobig.png" width="500" height="200" alt="" style="padding-bottom: 20px;">              
                     <p class="text-muted">${actVO.act_news}</p>
                 </div>
             </div>
             <div style="height:40px"></div>
-            <form class="col-md-6" method="post" role="form" enctype="multipart/form-data">               
+            <form class="col-md-12" method="post" role="form" enctype="multipart/form-data">               
                 <div class="date-time row">
 
-                    <div class="form-group col-md-6">
-                 <div class="form-group">
-                    <label for="destination">成團人數:${actVO.act_groups}</label>
-                </div>
-              
-                <div class="form-group">
-                    <label for="destination">參與人數:${actVO.act_current}</label>
-                </div>
-                
-                <div class="form-group">
-                    <label for="destination">旅程時間:${actVO.BDate}-${activityVO.EDate}</label>
-                </div>
-                
-                <div class="form-group">
-                    <label for="destination">價格:${actVO.act_price}</label>
-                </div>
+                    <div class="form-group col-md-12">
+                 
                     </div>
                     </div>
                 <div class="btn-group btn-group-justified" >
@@ -168,30 +173,30 @@
 
                 <div class="card" style="margin-top:20px;">
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">景點</a></li>
-                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">餐廳</a></li>
-                        <li role="presentation"><a href="#S" aria-controls="S" role="tab" data-toggle="tab">住宿</a></li>                 
+                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">目前人數</a></li>
+                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">旅程時間</a></li>
+                        <li role="presentation"><a href="#S" aria-controls="S" role="tab" data-toggle="tab">價格</a></li>                 
                     </ul>
 
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="home">景點</div>
-                        <div role="tabpanel" class="tab-pane" id="profile">住宿</div>
-                        <div role="tabpanel" class="tab-pane" id="S">餐廳</div>       
+                        <div role="tabpanel" class="tab-pane active" id="home">成團人數:${actVO.act_groups}人<br>目前參與人數:${actVO.act_current}</div>
+                        <div role="tabpanel" class="tab-pane" id="profile">出發日期:${actVO.BDate}<br>回程日期:${activityVO.EDate}</div>
+                        <div role="tabpanel" class="tab-pane" id="S">一人費用:${actVO.act_price}元</div>       
                     </div>
                 </div>
                 <!-- Tabs --->
 
-                <textarea id="summernote" name="act_news" >請輸入行程</textarea>
+                <textarea id="summernote" name="act_news" >請輸入行程介紹</textarea>
                 
-                
-                <div class="img"><img  id="img" src="" class="img-responsive"></div>
-						<div class="form-group">					    
+                <div class="form-group">					    
 							<label class="btn btn-info" for="upload"> 
 							<input id="upload" name="upload" style="display: none;" type="file">
 							<i class="fa fa-folder-open-o"></i> 上傳圖片								
 							</label>
 						</div>
+                        <a class="img"><img  id="img" src="" class="img-responsive"></a><span></span>
+						
                         <div class="form-group" style="float:right;"></div>
 						<button type="submit" class="btn btn-lg btn-primary" id="submit">送出</button>
 						<input type="hidden" value="${actVO.actID}" name="actID">

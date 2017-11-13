@@ -296,6 +296,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 					activityVO.setAct_groups(rs.getString("act_groups"));           //成團人數
 					activityVO.setAct_current(rs.getString("act_current"));        //當前人數
 					activityVO.setAct_photo(rs.getString("act_photo"));
+					activityVO.setAct_price(rs.getString("act_price"));
 					
 					list.add(activityVO);
 				}
@@ -395,6 +396,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 		System.out.print(actVO3.getEDate() + ",");
 		System.out.print(actVO3.getActivity_state() + ",");
 		System.out.println(actVO3.getAct_photo()+ ",");
+		System.out.println(actVO3.getAct_price()+ ",");
 
 		System.out.println("---------------------");
 		

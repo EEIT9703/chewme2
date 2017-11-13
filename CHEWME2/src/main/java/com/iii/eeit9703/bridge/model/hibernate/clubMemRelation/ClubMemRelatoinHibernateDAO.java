@@ -9,7 +9,7 @@ import com.iii.eeit9703.bridge.model.ClubMemRelationDAOI;
 import com.iii.eeit9703.bridge.model.ClubMemRelationVO;
 import com.iii.eeit9703.hibernate.util.HibernateUtil;
 
-public class ClubMemRelatoimHibernateDAO implements ClubMemRelationDAOI{
+public class ClubMemRelatoinHibernateDAO implements ClubMemRelationDAOI{
 
 	private static final String GET_ALL_STMT="from ClubMemRelationVO";
 	private static final String GET_CLUB_BY_MEM_STMT="from ClubMemRelationVO where memId = ? ";
@@ -104,13 +104,13 @@ public class ClubMemRelatoimHibernateDAO implements ClubMemRelationDAOI{
 		
 	}
 	public static void main(String[] args) {
-		ClubMemRelatoimHibernateDAO cmlhd = new ClubMemRelatoimHibernateDAO();
+		ClubMemRelatoinHibernateDAO cmlhd = new ClubMemRelatoinHibernateDAO();
 		List<ClubMemRelationVO> list = cmlhd.getListClubByMemId(2);
 //		List<ClubMemListVO> list = cmlhd.getAll();
 		for (ClubMemRelationVO aClub : list) {
 			System.out.print(aClub.getClubId() + ",");
 			System.out.print(aClub.getMemId() + ",");
-			System.out.println(aClub.getDate() + ",");
+			//System.out.println(aClub.getDate() + ",");
 		}
 		
 	}

@@ -1,5 +1,10 @@
 package com.iii.eeit9703.club.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import com.iii.eeit9703.bridge.model.ClubMemRelationVO;
+
 public class ClubVO implements java.io.Serializable{
 	private Integer clubId;
 	private String clubName;
@@ -11,6 +16,13 @@ public class ClubVO implements java.io.Serializable{
 	private Integer vistorsInMonth;
 	private String addr;
 	private String clubPic;
+	private Set<ClubMemRelationVO> clubMemRelation = new HashSet<ClubMemRelationVO>();
+	public Set<ClubMemRelationVO> getClubMemRelation() {
+		return clubMemRelation;
+	}
+	public void setClubMemRelation(Set<ClubMemRelationVO> clubMemRelation) {
+		this.clubMemRelation = clubMemRelation;
+	}
 	public ClubVO(){
 		clubName = null;
 		managerId = null;
@@ -82,5 +94,6 @@ public class ClubVO implements java.io.Serializable{
 	public void setVistorsInMonth(Integer vistorsInMonth) {
 		this.vistorsInMonth = vistorsInMonth;
 	}
+	
 
 }

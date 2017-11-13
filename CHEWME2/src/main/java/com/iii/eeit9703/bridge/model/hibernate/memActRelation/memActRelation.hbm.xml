@@ -12,8 +12,7 @@
             <key-property name="memId" column="memID" ></key-property>           
         </composite-id>
                 
-        <property name="actId" column="actId" />
-        <property name="memId" column="memId" />
+
         
          <property name="date" column="joinTime" />
         

@@ -40,6 +40,13 @@ $(document).ready(function() {
 				$("#act_photo"+i).attr({"src":'data:image/png;base64,'+datas.act_photo});
 				$(".act_name:last").attr("id","act_name"+i);
 				$("#act_name"+i).text(datas.act_name);
+				
+				$(".act_price:last").attr("id","act_price"+i);				
+				$("#act_price"+i).after(" 價格:"+datas.act_price+" 元");		
+				
+				$(".act_current:last").attr("id","act_current"+i);
+				$("#act_current"+i).after(" 目前人數:"+datas.act_current+" 人");
+				
 				$(".id:last").attr({"id": datas.actID, "value": datas.actID});
 				})
 			})
@@ -51,25 +58,18 @@ $(document).ready(function() {
 			
 			$.each(array, function(j, data){
 				//console.log(data.name);
+				//console.log(data.intro.substring(0, 10) + "....");
 				
 				$('#div1').append(template_attr);
-				$(".url_attr:last").attr({"href":'/CHEWME2/act/ActivitySearch?action=searchattr&name='+ data.attractionID})
+				$(".btn.btn-info.btn-sm:last").attr({"href":'/CHEWME2/act/ActivitySearch?action=searchattr&name='+ data.attractionID})
 				$(".act_name:last").attr("id","act_name"+j);
 				$("#act_name"+j).text(data.name);	
 				$(".id:last").attr({"id": data.attractionID, "value": data.attractionID});
+				$(".intro1:last").attr("id", "intro1"+j);
+				$("#intro1"+j).text(data.intro.substring(0, 150) + ".....");
+				$("#intro1"+j).append("<a>(繼續閱讀)</a>");
 				})			
 			})
 		}		
 	})
-	var select2 = $("#select1").val();
-	//console.log(select2);	
-//		$("img").click(function(){
-//			console.log($(this))
-//			var act = $(this).text();
-//			var act1 = $(this).parent("a").next("input").val()
-//			console.log(act1);		
-//			$.get("/CHEWME2/act/ActivitySearch?action=searchone", {"name": act1}, function(){	
-//				
-//			})			
-//		})
 })

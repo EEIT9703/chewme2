@@ -8,8 +8,8 @@ pageContext.setAttribute("list",list);
 int a=list.size();
 pageContext.setAttribute("all",a);
 %> --%>
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
 <!-- 置頂  -->
 <link href="<%=request.getContextPath()%>/css/navbar-fixed-top.css"
 	rel="stylesheet">
@@ -124,11 +124,10 @@ body {
 	<div class="container-fluid">
 		<div>
 			<div>
-				<p class="navbar-brand " href="#"><img
-					src="<%=request.getContextPath()%>/image/letter-c.png" width="40"
-					height="40" alt=""></p>
+				<p class="navbar-brand " href="#">
+				<img src="<%=request.getContextPath()%>/image/chewme-logobig.png" width="330" height="50" alt="" style="padding-bottom: 10px;"></p>
 			</div>
-			<div class="navbar-header" >
+			<!-- <div class="navbar-header" >
 				<p class="navbar-brand " style="font-family: 'Arial';font-size:30px;margin-top:7px;font-weight:bold;">CHEWME</p>
 				<button type="button" class="navbar-toggle collapsed"
 					data-toggle="collapse" data-target="#navbar-right"
@@ -137,7 +136,7 @@ body {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-			</div>
+			</div> -->
 		</div>
 		<div id="navbar-right" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav" style="margin-left: 50px">

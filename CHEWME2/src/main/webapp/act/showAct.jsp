@@ -159,21 +159,7 @@
                
                 <div class="date-time row">
                     <div class="form-group col-md-6">
-                 <div class="form-group">
-                    <label for="destination">成團人數:${actVO.act_groups}</label>
-                </div>
-              
-                <div class="form-group">
-                    <label for="destination">參與人數:${actVO.act_current}</label>
-                </div>
-                
-                <div class="form-group">
-                    <label for="destination">旅程時間:${actVO.BDate}-${actVO.EDate}</label>
-                </div>
-                
-                <div class="form-group">
-                    <label for="destination">價格:${actVO.act_price}</label>
-                </div>
+                 
                     </div>
                     </div>
                 <div class="btn-group btn-group-justified">
@@ -184,16 +170,16 @@
 
                 <div class="card" style="margin-top:20px;">
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">景點</a></li>
-                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">餐廳</a></li>
-                        <li role="presentation"><a href="#S" aria-controls="S" role="tab" data-toggle="tab">住宿</a></li>                 
+                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">目前人數</a></li>
+                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">旅程時間</a></li>
+                        <li role="presentation"><a href="#S" aria-controls="S" role="tab" data-toggle="tab">價格</a></li>                 
                     </ul>
 
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="home">景點</div>
-                        <div role="tabpanel" class="tab-pane" id="profile">住宿</div>
-                        <div role="tabpanel" class="tab-pane" id="S">餐廳</div>       
+                        <div role="tabpanel" class="tab-pane active" id="home">成團人數:${actVO.act_groups}人<br>參與人數:${actVO.act_current}</div>
+                        <div role="tabpanel" class="tab-pane" id="profile">出發日期:${actVO.BDate}<br>回程日期:${activityVO.EDate}</div>
+                        <div role="tabpanel" class="tab-pane" id="S">一人費用:${actVO.act_price}元</div>       
                     </div>
                 </div>
                 <!-- Tabs --->
@@ -205,7 +191,7 @@
 						
 					<div id="sch">
 					<img id="${activityVO.actID}"  src="" class="img-responsive"></div>
-					console.log(${activityVO.actID});
+
 					
 				</div>
 			</div>
