@@ -1,6 +1,7 @@
 package com.iii.eeit9703.member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
@@ -27,6 +28,8 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
+		res.setContentType("text/html;charset=UTF-8");
+		PrintWriter rw = res.getWriter();
 		HttpSession session = req.getSession();
 		Map<String, String> errorMsgMap = new HashMap<String, String>();// 準備存放錯誤訊息的Map物件
 
@@ -88,10 +91,8 @@ public class LoginServlet extends HttpServlet {
 		// ********************************************
 		// 如果 errorMsgMap 不是空的，表示有錯誤，交棒給login.jsp
 		if (!errorMsgMap.isEmpty()){// && !verify) {
-			RequestDispatcher rd = req.getRequestDispatcher("/member/login.jsp");
-			rd.forward(req, res);
-			
-			return;
+			rw.write("<script>alert('您的帳號或密碼錯誤！'); history.go(-1);</script>");   
+            return;  
 		}
 		// 4. 進行 Business Logic 運算
 		// 將LoginServiceDB類別new為物件，存放物件參考的變數為 lsdb
@@ -131,9 +132,8 @@ public class LoginServlet extends HttpServlet {
 			}
 		} else {
 			// 如果errorMsgMap不是空的，表示有錯誤，交棒給login.jsp
-			RequestDispatcher rd = req.getRequestDispatcher("/member/login.jsp");
-			rd.forward(req, res);
-			return;
+			rw.write("<script>alert('您的帳號或密碼錯誤！'); history.go(-1);</script>");   
+            return; 
 		}
 
 	}

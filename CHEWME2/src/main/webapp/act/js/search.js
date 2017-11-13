@@ -22,32 +22,36 @@ $(document).ready(function() {
 		$('#div1').empty();
 		var select1 = $("#select1").val();
 		//console.log(select1);
-		if(select1 == "行程"){
-			
+		if(select1 == "行程"){			
 			var search = $("#text").val();			
 			//console.log(search);		
 			
 	$.getJSON('/CHEWME2/act/ActivitySearch?action=Search', {'search' : search},	function(data) {
 		var temp;
+		
 		console.log(data);
 			$.each(data, function(i, datas) {
 				//console.log(datas.act_photo);
+				var state = datas.activity_state;
+				console.log(state);
+				if(state == 1){
+					$('#div1').append(template);
+					$(".center-block:last").attr("id","act_photo"+i);
+					$(".url:last").attr({"href":'/CHEWME2/act/ActivitySearch?action=searchone&name='+datas.actID});
+					//console.log($("#act_photo"+i));				
+					$("#act_photo"+i).attr({"src":'data:image/png;base64,'+datas.act_photo});
+					$(".act_name:last").attr("id","act_name"+i);
+					$("#act_name"+i).text(datas.act_name);
+					
+					$(".act_price:last").attr("id","act_price"+i);				
+					$("#act_price"+i).after(" 價格:"+datas.act_price+" 元");		
+					
+					$(".act_current:last").attr("id","act_current"+i);
+					$("#act_current"+i).after(" 目前人數:"+datas.act_current+" 人");
+					
+					$(".id:last").attr({"id": datas.actID, "value": datas.actID});
+				}
 				
-				$('#div1').append(template);
-				$(".center-block:last").attr("id","act_photo"+i);
-				$(".url:last").attr({"href":'/CHEWME2/act/ActivitySearch?action=searchone&name='+datas.actID});
-				//console.log($("#act_photo"+i));				
-				$("#act_photo"+i).attr({"src":'data:image/png;base64,'+datas.act_photo});
-				$(".act_name:last").attr("id","act_name"+i);
-				$("#act_name"+i).text(datas.act_name);
-				
-				$(".act_price:last").attr("id","act_price"+i);				
-				$("#act_price"+i).after(" 價格:"+datas.act_price+" 元");		
-				
-				$(".act_current:last").attr("id","act_current"+i);
-				$("#act_current"+i).after(" 目前人數:"+datas.act_current+" 人");
-				
-				$(".id:last").attr({"id": datas.actID, "value": datas.actID});
 				})
 			})
 			
