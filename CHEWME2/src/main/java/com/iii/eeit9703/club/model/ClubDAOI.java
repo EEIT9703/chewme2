@@ -7,7 +7,7 @@ import com.iii.eeit9703.member.model.MemVO;
 public interface ClubDAOI {
 	public List<ClubVO> getAll();
 	public List<ClubVO> getClubListByManagerId(Integer managerId);
-	public List<MemVO> getClubMembers();
+	public List<MemVO> getClubMembers(Integer clubId);
 	public ClubVO getOne(Integer clubId);
 	public Integer insert(ClubVO clubVO);
 	public void update(ClubVO clubVO);

@@ -37,7 +37,15 @@ public class ClubPhotoHibernateDAO implements ClubPhotoDAOI {
 
 	@Override
 	public void update(ClubPhotoVO photoVO, InputStream is) {
-		// TODO Auto-generated method stub
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.beginTransaction();		
+			session.saveOrUpdate(photoVO);
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		}
 		
 	}
 

@@ -62,11 +62,10 @@ public class MemberSession {
 		//ownClubList = (ownClubList == null)?new ArrayList<Integer>():ownClubList;
 		//joinedActList = (joinedActList == null)?new ArrayList<Integer>():joinedActList;
 		//joinedClubList = (joinedClubList == null)?new ArrayList<Integer>():joinedClubList;
-		
-			
-		
 	}
-	
+	public void addOwnClubList(Integer clubId){
+		ownClubList.add(clubId);
+	}
 	 
 	public List<Integer> getJoinedClubList() {
 		return joinedClubList;
