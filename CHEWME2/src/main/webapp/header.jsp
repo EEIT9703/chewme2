@@ -235,7 +235,7 @@ body {
 	
 				<li><c:if test="${ ! empty LoginOK }">
 						<a class="nav-link" style="padding:19px 0px 0px 0px;margin-right:10px"
-							href="<%=request.getContextPath()%>/member/mempage.jsp" a>${LoginOK.memName }</a>
+							href="<%=request.getContextPath()%>/member/mempage.jsp" a>${LoginOK.memNickN}</a>
 					</c:if></li>
 				<c:choose>
 						<c:when test="${  empty LoginOK}">
