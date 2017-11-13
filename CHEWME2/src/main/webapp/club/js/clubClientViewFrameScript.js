@@ -95,9 +95,9 @@ function changePicSet() {
 	// 生成一個image空間來儲存我們要的空間
 	image = new Image();
 	// 創造一個圖形區域選擇器
-	imgAreaInit($('#img'));
+	imgAreaInit($('#img123'));
 	inputChangeEventListener($("#uploadImage"));
-	imgAreaSelectAndReadEventListener($('#img'));
+	imgAreaSelectAndReadEventListener($('#img123'));
 }
 
 function clientCCV() {
