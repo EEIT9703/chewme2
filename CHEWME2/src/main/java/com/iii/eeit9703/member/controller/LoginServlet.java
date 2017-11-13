@@ -46,9 +46,9 @@ public class LoginServlet extends HttpServlet {
 		if (password == null || password.trim().length() == 0) {
 			errorMsgMap.put("PasswordisEmpty", "密碼欄位必須輸入");// 如果密碼空白就放錯誤訊息到errorMsgMap裡
 		}
-		if (gRecaptchaResponse == null || gRecaptchaResponse.trim().length() == 0) {
-			errorMsgMap.put("RecaptchaisEmpty", "請進行驗證");
-		}
+//		if (gRecaptchaResponse == null || gRecaptchaResponse.trim().length() == 0) {
+//			errorMsgMap.put("RecaptchaisEmpty", "請進行驗證");
+//		}
 //		boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
 		 //Remember ME記住密碼cookie
 		Cookie cookieUser = null;
