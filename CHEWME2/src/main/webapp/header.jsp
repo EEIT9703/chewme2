@@ -314,8 +314,8 @@ body {
 								value="${sessionScope.password}">
 						</div>
 
-						<div class="g-recaptcha"
-							data-sitekey="6LfFkTYUAAAAAMK1w_K82sMGOy-BWkq-YBYMn5-J"></div>
+<!-- 						<div class="g-recaptcha" -->
+<!-- 							data-sitekey="6LfFkTYUAAAAAMK1w_K82sMGOy-BWkq-YBYMn5-J"></div> -->
 						<div class="checkbox pull-right">
 							<label> <input type="checkbox" name="rememberMe"
 								class="recaptcha"
