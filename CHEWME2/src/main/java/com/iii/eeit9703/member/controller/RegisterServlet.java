@@ -154,6 +154,7 @@ public class RegisterServlet extends HttpServlet {
 				// errorMsgs.add(e.getMessage());
 				errorMsgs.put("errorIDDup", e.getMessage());
 				rw.write("<script>alert('註冊失敗,請確認您的資料！'); history.go(-1);</script>");  
+				System.out.println(111);
 	            return; 
 			}
 
