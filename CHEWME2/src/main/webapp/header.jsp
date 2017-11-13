@@ -224,13 +224,13 @@ body {
 				<li><c:if test="${  empty LoginOK }">
 						<a class="nav-link" href="#" data-toggle="modal"
 							data-target="#myModal"><span>
-							<img src="<%=request.getContextPath()%>/image/login.png" width=30px height=30px></span>登入/註冊 </a>
+							<img src="<%=request.getContextPath()%>/image/login_1.png" width=30px height=30px></span>登入/註冊 </a>
 					</c:if></li>
 
 				<li><c:if test="${ ! empty LoginOK }">
 						<a class="nav-link"
 							href="<%=request.getContextPath()%>/member/logout.jsp"><span>
-							<img src="<%=request.getContextPath()%>/image/login_out.png" width=30px height=30px></span>登出 </a>
+							<img src="<%=request.getContextPath()%>/image/login_out_1.png" width=30px height=30px></span>登出 </a>
 					</c:if></li>
 	
 				<li><c:if test="${ ! empty LoginOK }">
