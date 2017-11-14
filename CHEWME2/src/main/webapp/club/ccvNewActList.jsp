@@ -35,8 +35,7 @@
 								<td>${actVO.EDate}</td>
 								<td>${actVO.act_price}</td>
 								<td>${actVO.act_news}</td>
-								<td><button type="submit" class="btn btn-primary btn-sm"
-										name="clubId" value="${actVO.clubId}">點入觀看</button></td>
+								<td><a type="submit" class="btn btn-primary btn-sm"	name="clubId" value="${actVO.clubId}" role="button">點入觀看</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
