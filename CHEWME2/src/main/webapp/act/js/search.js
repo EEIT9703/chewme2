@@ -81,7 +81,12 @@ $(document).ready(function() {
 				$("#intro1"+j).append("<a>(繼續閱讀)</a>");
 				})			
 			})
+			$.each($('.attractionTemplate'),function(i,attrmplate ){
+			if(i%3==0){
+				attrmplate.after('<div class="clearfix visible-md visible-sm"></div>');
+			}
 			
+		})
 		}		
 	})
 })

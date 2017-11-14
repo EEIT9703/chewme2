@@ -2,7 +2,7 @@
 pageEncoding="UTF-8"%> 
 
 
-<div class="col-md-4  margin_bottom30">
+<div class="col-md-4  margin_bottom30 attractionTemplate">
            <div class="thumbnail">
 <%-- 			<a class="url_attr" href="<%=request.getContextPath()%>/attractions/show_attr.jsp">			 --%>
 <%-- 				<img class="img-responsive center-block" src="<%=request.getContextPath()%>/image/attr.jpg" style="height:150px;"> --%>
