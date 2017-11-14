@@ -10,6 +10,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.sql.Timestamp;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,6 +26,7 @@ import org.codehaus.jettison.json.JSONObject;
 
 import com.iii.eeit9703.member.model.MemService;
 import com.iii.eeit9703.member.model.MemVO;
+import com.iii.eeit9703.member.model.MemberSession;
 
 @WebServlet("/googlelogin.do")
 public class GoogleServlet extends HttpServlet {
@@ -118,7 +121,11 @@ public class GoogleServlet extends HttpServlet {
 				mv.setMemName(jo.getString("name"));
 				mv.setMemMail(jo.getString("email"));
 				mv.setGoogleId(jo.getString("id"));
+				MemberSession ms = new MemberSession(mv);		
+				Set<Integer> record =new LinkedHashSet<Integer>();
 				session.setAttribute("LoginOK", mv);
+				session.setAttribute("LoginOK_MS",ms);
+				session.setAttribute("record", record);
 				session.setAttribute("picUri", jo.getString("picture"));
 				
 				rw.write("<script>alert('登入成功！'); location.href='index.jsp';</script>");   
@@ -132,7 +139,12 @@ public class GoogleServlet extends HttpServlet {
 				mv.setMemMail(jo.getString("email"));
 				mv.setGoogleId(jo.getString("id"));
 				mv=msvc.insertGoogle(jo.getString("email"),jo.getString("name"),jo.getString("given_name"), jo.getString("email"), jo.getString("id"));
+				MemberSession ms = new MemberSession(mv);		
+				Set<Integer> record =new LinkedHashSet<Integer>();
+
 				session.setAttribute("LoginOK", mv);
+				session.setAttribute("LoginOK_MS",ms);
+				session.setAttribute("record", record);
 				rw.write("<script>alert('登入成功！'); location.href='index.jsp';</script>");   
 	            return; 
 			}
