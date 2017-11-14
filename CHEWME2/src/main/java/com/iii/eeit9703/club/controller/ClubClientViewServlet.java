@@ -163,6 +163,7 @@ public class ClubClientViewServlet extends HttpServlet {
 				clubVO.setRefURL(request.getParameter("refUrl"));
 				clubVO.setAddr(request.getParameter("addr"));
 				clubVO.setLocationId(Integer.parseInt(request.getParameter("cityId")));
+				clubVO.setBrief(request.getParameter("brief"));
 				cs.update(clubVO);
 				return;
 
