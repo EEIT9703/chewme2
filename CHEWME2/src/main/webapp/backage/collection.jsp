@@ -180,7 +180,7 @@ margin-right:5px;
 .item{
 /* margin-left:0px; */
 /* margin-right:80px; */
-margin:0px 80px 30px 0px;
+/* margin:0px 80px 30px 0px; */
 }
 
 .item img{
@@ -270,7 +270,7 @@ $(function(){
  	       
   
  	         var span2 =$('<span></span>').text('人')
-	         var cell3=$('<span></span>').addClass('inder_price').text(activity.act_price);
+	         var cell3=$('<span></span>').addClass('inder_price').text(activity.act_price)
 	      	 var cell4=$('<span></span>').addClass('price_icon').text('$');
 	      	 
 	      	 var button1=$('<button></button>').css({'color':'write','width':'45px','height':'30px','padding':'0px 0px 1px 0px'}).addClass('buy btn btn-primary').attr({'type':'submit'}).text("購買");
@@ -411,10 +411,10 @@ $(function(){
 
 				$.post('<%=request.getContextPath()%>/allpay',{'action':'goOrder','actID':actID,'opt':opt,'price':price},function(){
 					
-					$.blockUI({ message: '<h1><img src="busy.gif" /> Just a moment...</h1>' });
+					$.blockUI({ message: '<h1><img src="busy.gif" /> 處理中...</h1>' });
 					setTimeout(function(){
 						window.location.href="<%=request.getContextPath()%>/backage/allpay_list.jsp";	
-					}, 5000);
+					}, 3000);
 	
 				});
 			
@@ -449,11 +449,12 @@ $(function(){
 		  })
 // 		$("#cc").wrecker({
 // 			  itemSelector : ".item",
-// 			  maxColumns : 4
+// 			  maxColumns : 3,
+			 
 // 			});
 // 		$("#cc").wrecker({
 // 			  itemSelector : ".item",
-// 			  maxColumns : 4,
+// 			  maxColumns : 3,
 // 			  responsiveColumns : [
 // 			    // windowMaxWidth : columns
 // 			    // windowMaxWidth order and values should match those in your responsive CSS

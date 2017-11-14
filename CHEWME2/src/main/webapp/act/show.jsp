@@ -219,12 +219,14 @@
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal"
 								aria-hidden="true">&times;</button>
-							<h4 class="modal-title" id="myModalLabel">我要檢舉</h4>
+							<h4 class="modal-title" id="myModalLabel">我要檢舉此行程</h4>
 						</div>
 						<div class="modal-body">
 						<div class="form-group">
+
 								 <textarea class="text" cols="75" rows="5" style="resize: none">　						
 								</textarea>				
+
 						</div>
 						<div class="form-group">													
 						</div>
