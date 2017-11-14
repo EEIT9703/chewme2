@@ -8,6 +8,7 @@ $(document).ready(function() {
 		$.get("/CHEWME2/act/searchR.jsp", {}, function(data) {	
 			template = data;	
 		})
+
 	}	
 	function getTemp_attr() {
 		$.get("/CHEWME2/act/searchR_attr.jsp", {}, function(data) {	
@@ -54,7 +55,12 @@ $(document).ready(function() {
 				
 				})
 			})
+			$.each($('.activityTemplate'),function(i,atemplate ){
+			if(i%3==0){
+				atemplate.after('<div class="clearfix visible-md visible-sm"></div>');
+			}
 			
+		})
 			
 		}else if(select1 == "景點"){			
 			var name = $("#text").val();			
@@ -74,6 +80,7 @@ $(document).ready(function() {
 				$("#intro1"+j).append("<a>(繼續閱讀)</a>");
 				})			
 			})
+			
 		}		
 	})
 })
