@@ -53,9 +53,9 @@ public class LoginServlet extends HttpServlet {
 		 //Remember ME記住密碼cookie
 		Cookie cookieUser = null;
 		Cookie cookiePassword = null;
-		Cookie cookieRememberMe = null;
-		
+		Cookie cookieRememberMe = null;		
 		if (rm != null) { // rm存放瀏覽器送來之RememberMe的選項
+			System.out.println("789");
 			cookieUser = new Cookie("user", userId);
 			cookieUser.setMaxAge(30 * 60 * 60);
 			cookieUser.setPath(req.getContextPath());
@@ -70,6 +70,7 @@ public class LoginServlet extends HttpServlet {
 			cookieRememberMe.setMaxAge(30 * 60 * 60);
 			cookieRememberMe.setPath(req.getContextPath());
 		} else {
+			System.out.println("963");
 			cookieUser = new Cookie("user", userId);
 			cookieUser.setMaxAge(0); // MaxAge==0 表示要請瀏覽器刪除此Cookie
 			cookieUser.setPath(req.getContextPath());
@@ -90,7 +91,7 @@ public class LoginServlet extends HttpServlet {
 		// ********************************************
 		// 如果 errorMsgMap 不是空的，表示有錯誤，交棒給login.jsp
 		if (!errorMsgMap.isEmpty()){// && !verify) {
-			rw.write("<script>alert('您的帳號或密碼錯誤！'); history.go(-1);</script>");   
+			rw.write("<script>alert('您的帳號不存在或密碼錯誤！'); history.go(-1);</script>");   
             return;  
 		}
 		// 4. 進行 Business Logic 運算
@@ -131,7 +132,7 @@ public class LoginServlet extends HttpServlet {
 			}
 		} else {
 			// 如果errorMsgMap不是空的，表示有錯誤，交棒給login.jsp
-			rw.write("<script>alert('您的帳號或密碼錯誤！'); history.go(-1);</script>");   
+			rw.write("<script>alert('您的帳號不存在或密碼錯誤！'); history.go(-1);</script>");   
             return; 
 		}
 

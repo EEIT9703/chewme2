@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import javax.xml.bind.DatatypeConverter;
 
 import com.sun.jersey.core.util.Base64;
-@WebFilter("/member/login.jsp")
+@WebFilter("/*")
 public class FindUserPassword implements Filter {
 	String requestURI;
 
