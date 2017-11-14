@@ -25,6 +25,7 @@ function joinClubEventListner() {
 			window.alert("加入社團成功");
 			$('#joinClub').hide();
 			$('#joinClub').prop('disabled','disabled');
+			$('#hello p').text('歡迎加入社員');
 			
 		})
 	});

@@ -164,7 +164,7 @@ table {
 				</div>
 
 			</div>
-			<div class="col-md-2">
+			<div id="hello"class="col-md-2">
 				<c:if test="${identity == 'club_manager'}">
 					<p>社團管理員:${LoginOK.memName}您好</p>
 				</c:if>

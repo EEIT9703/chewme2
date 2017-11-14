@@ -168,6 +168,7 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
                 			map.put("EDate", collectionVO.getActivityVO().getEDate().toString());
                 			map.put("activity_state",collectionVO.getActivityVO().getActivity_state().toString());
                 			map.put("act_photo",collectionVO.getActivityVO().getAct_photo());
+                			map.put("act_price",collectionVO.getActivityVO().getAct_price());
                 			list.add(map);
                 		}
                 		JSONArray attrArrayList = new JSONArray(list);				
