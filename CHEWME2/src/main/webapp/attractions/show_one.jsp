@@ -70,7 +70,7 @@ pageEncoding="UTF-8"%>
 
 #text1 {
 	width: 700px;
-	height: 500px;
+	height: 500px;	
 }
 
 .btn.btn-info {

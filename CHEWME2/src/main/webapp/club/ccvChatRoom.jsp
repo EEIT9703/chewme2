@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <script src="js/clubwebSocket.js"></script>
 
-<div id="messageDisplay" style="width: 80%; height: 400px;border=solid:1px:black"></div>
+<div id="messageDisplay" style="width: 80%; height: 400px;border=solid:1px:black;overflow:scroll;"></div>
 
 
 <div>

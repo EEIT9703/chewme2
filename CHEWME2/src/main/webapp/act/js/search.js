@@ -68,6 +68,7 @@ $(document).ready(function() {
 				$(".btn.btn-info.btn-sm:last").attr({"href":'/CHEWME2/act/ActivitySearch?action=searchattr&name='+ data.attractionID})
 				$(".act_name:last").attr("id","act_name"+j);
 				$("#act_name"+j).text(data.name);	
+				$(".searchhasimage:last").attr({"src": "/CHEWME2/getImage.do?id="+ data.name +"&type=uploadimg"});
 				$(".id:last").attr({"id": data.attractionID, "value": data.attractionID});
 				$(".intro1:last").attr("id", "intro1"+j);
 				$("#intro1"+j).text(data.intro.substring(0, 150) + ".....");
