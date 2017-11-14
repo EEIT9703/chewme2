@@ -50,7 +50,7 @@ nt_id=237459292600-4nc82k5o9iq1caepr82fsukrcpsflah0.apps.googleusercontent.com">
 			<div class="col-lg-12">
 				<div class="text-center">
 					<a data-toggle="modal" data-target="#gridSystemModal" tabindex="5"
-						class="forgot-password">Forgot Password?</a>
+						class="forgot-password">忘記密碼?</a>
 				</div>
 			</div>
 		</div>

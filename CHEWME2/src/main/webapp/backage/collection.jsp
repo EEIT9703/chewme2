@@ -251,12 +251,14 @@ $(function(){
 // 			opt.append(cell5);
 			var count=0;
 			$.each(array,function(i,activity){
-			var img ="data:image/png;base64,"+activity.act_photo;
-			
-	         var cell1 = $('<img>').attr({"src":img})	       
+			var img ="data:image/png;base64,"+activity.act_photo;		
+	         var cell1 = $('<img>').attr({"src":img})
+	         var alink="<%=request.getContextPath()%>"+"/act/ActivitySearch?action=searchone&name="+activity.actID;
+	         var b= $('<a></a>').attr("href",alink)
+	          b.append(cell1)
+	         
 	       	 var cell2 = $('<p></p>').text(activity.act_name);
-	         
-	         
+     
 	         var span =$('<span></span>')
 	         var select =$('<select></select').attr({"id":"selectID"});
 	      		for(var a=1;a<=8;a++){
@@ -276,7 +278,7 @@ $(function(){
 	       	 var button2=$('<button></button>').css({'color':'write','width':'45px','height':'30px','padding':'0px 0px 1px 0px'}).addClass('delete btn btn-danger').attr({'type':'button'}).text("移除");
 	         var cell6=$('<span><span>').append(button2)
          	 var row = $("<div></div>").addClass('item').attr({'class':'item','id':activity.actID});	 
-	       	 row.append([cell1, cell2,span,span2,cell3,cell4,cell5,cell6]);
+	       	 row.append([b, cell2,span,span2,cell3,cell4,cell5,cell6]);
 	       	fg.append(row);
   	       
 	       	count++;
