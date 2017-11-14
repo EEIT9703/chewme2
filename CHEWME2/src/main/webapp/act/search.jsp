@@ -86,7 +86,7 @@ body { background-color:#ddd; }
 	<div class="row" id="div1">
           <c:forEach var="activityVO" items="${actSvc.all}">
           <c:if test="${activityVO.activity_state == 1}">
-           <div class="col-md-4  margin_bottom30">
+           <div class="col-md-4  margin_bottom30" style="height:450px;">
            <div class=title>
 			<input type="hidden" id="${activityVO.actID}">  
 			</div>
@@ -99,7 +99,7 @@ body { background-color:#ddd; }
 			</a>	
 				<div class="blog-content bg-white">
 				<img src="<%=request.getContextPath()%>/image/chewme-logo-3-1.png" width="50" height="50" style="float:left;vertical-align:middle;">
-				<h2 id="act_name" class="act_name" style="">${activityVO.act_name}</h2>
+				<h4 id="act_name" class="act_name" style="">${activityVO.act_name}</h4>
 				
 				<a class="btn-sm btn btn-info ">
                 <i class="fa fa-usd" aria-hidden="true"></i> 價格:${activityVO.act_price} 元
