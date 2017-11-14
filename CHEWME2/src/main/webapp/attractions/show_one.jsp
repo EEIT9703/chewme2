@@ -150,12 +150,14 @@ html {
 					<table>
 						<tr>
 							<td>
+							<c:choose>
 							<c:when test = "${empty LoginOK}">
 								<img src = "<%=request.getContextPath()%>/attractions/img/portrait.png" width=50px height=50px style="border-radius:50%;">								
 							</c:when>
 							<c:otherwise>
 								<img src='data:image/png;base64,${LoginOK.memPhoto}' width=50px height=50px style="border-radius:50%;">
 							</c:otherwise>									
+							</c:choose>
 							</td>
 							<td><textarea id="memo" placeholder="請輸入內容..."></textarea></td>
 						</tr>

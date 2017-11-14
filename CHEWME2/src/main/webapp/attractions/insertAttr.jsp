@@ -52,7 +52,9 @@ input[type = "file"]{
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"></link>
-
+<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery-1.12.3.min.js"></script>
 </head>
 <body>
 	<div>
@@ -159,7 +161,6 @@ input[type = "file"]{
 		}      // 預覽圖片結束
 	})
 	</script>
-	<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-	<script	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+	
 </body>
 </html>
