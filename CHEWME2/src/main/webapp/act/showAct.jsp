@@ -10,12 +10,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/bootstrap355.css" rel="stylesheet">
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
-
+<link href="<%=request.getContextPath()%>/css/summernote.css" rel="stylesheet">
 
 <!-- Font Awesome  -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"></link>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/font-awesome.min.css"></link>
 
 </head>
 
@@ -145,24 +145,14 @@
                                 <span class="glyphicon glyphicon-chevron-right" style="color:red;"></span>
                             </a>
                         </div>
-                    </div>
-                </div>
-                <div class="heading">
-                    <h2>行程介紹</h2>
-                </div>
-                <div class="item-desc">
-                    <p class="text-muted">${activityVO.act_news}</p>
-                </div>
+                    </div>                    
+                </div>              
             </div>
-            <div style="height:40px"></div>
-            <form class="col-md-6"  role="form" >               
-               
-                <div class="date-time row">
+            
+            <div class="date-time row">
                     <div class="form-group col-md-6">
-                 
-                    </div>
-                    </div>
-                <div class="btn-group btn-group-justified">
+                 <div style="height:40px"></div>
+                  <div class="btn-group btn-group-justified">
                     <a href="#" class="btn btn-default">參加行程</a>
                     <a href="#" class="btn btn-default"><i class="fa fa-heart-o" aria-hidden="true" style="color:red;"></i> 加入我的收藏</a>
                     <a href="#" class="btn btn-default">檢舉行程</a>
@@ -181,11 +171,17 @@
                         <div role="tabpanel" class="tab-pane" id="profile">出發日期:${actVO.BDate}<br>回程日期:${activityVO.EDate}</div>
                         <div role="tabpanel" class="tab-pane" id="S">一人費用:${actVO.act_price}元</div>       
                     </div>
+                    </div>                    
+                    </div>              
                 </div>
-                <!-- Tabs --->
-                                        
-            </form>
+                <!-- Tabs --->          
         </div>
+        <div class="heading">
+                    <h2>行程介紹</h2>
+                </div>
+                <div class="item-desc col-md-12">
+                    <p class="text-muted">${activityVO.act_news}</p>
+                </div>
     </div>
     <!-- /.container -->
 						
