@@ -35,9 +35,9 @@
 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 
 <script src="<%=request.getContextPath()%>/js/chatroom.js"></script>
-<script
-	src="<%=request.getContextPath()%>/com-resource/js/mychatroom.js"></script>
-<script src="<%=request.getContextPath()%>/chatroom/js/openWebSocket.js"></script>
+<!-- <script -->
+<%-- 	src="<%=request.getContextPath()%>/com-resource/js/mychatroom.js"></script> --%>
+<%-- <script src="<%=request.getContextPath()%>/chatroom/js/openWebSocket.js"></script> --%>
 <script>document.getElementById("memIntr").value =${LoginOK.memIntr};</script>
 </head>
 <body>
@@ -45,7 +45,7 @@
 		<%@ include file="../header.jsp"%>
 	</header>
 
-	<p hidden id="requestContextPath"><%=request.getContextPath()%></p>
+<%-- 	<p hidden id="requestContextPath"><%=request.getContextPath()%></p> --%>
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 col-md-6">
