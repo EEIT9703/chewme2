@@ -51,7 +51,7 @@ public class LoginFilter implements Filter {
 					if ( ! isRequestedSessionIdValid ) {
 						session.setAttribute("timeOut", "使用逾時，請重新登入");
 					}
-					resp.sendRedirect(contextPath + "/member/login.jsp");
+					resp.sendRedirect(contextPath + "/index.jsp");
 					return;
 				}
 			} else {   //不需要登入
