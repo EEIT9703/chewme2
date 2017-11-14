@@ -50,7 +50,7 @@ window.onload = function() {
 	function setWebSocket() {
 		// 開始WebSocket連線
 		webSocket = new WebSocket(
-				'ws://localhost:8081/CHEWME2/chatroom?param=1');
+				'ws://'+$('#reqServerName').text()+':'+$('#reqServerPort').text()+'/CHEWME2/chatroom?param=1');
 		// 以下開始偵測WebSocket的各種事件
 
 		// onerror , 連線錯誤時觸發
