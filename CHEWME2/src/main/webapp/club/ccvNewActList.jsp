@@ -14,7 +14,6 @@
 						<tr>
 							<th scope="row">1</th>
 							<td>活動名稱</td>
-							<td>Otto</td>
 							<td>預計參加人數</td>
 							<td>目前參加人數</td>
 							<td>出發日期</td>
@@ -28,7 +27,6 @@
 						<c:forEach var="actVO" items="${clubActList}">
 							<tr>
 								<td>${actVO.act_name}</td>
-								<td>Otto</td>
 								<td>${actVO.act_groups}</td>
 								<td>${actVO.act_current}</td>
 								<td>${actVO.BDate}</td>
