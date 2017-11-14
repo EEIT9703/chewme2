@@ -242,7 +242,7 @@ body {
 						<li style="padding:18px 0px 0px 0px;margin-left:20px">
 								訪客,你好
 						</c:when>
-						<c:when test="${ ! empty LoginOK && empty LoginOK.memPhoto}">
+						<c:when test="${ ! empty LoginOK && empty LoginOK.memPhoto && empty picUri}">
 						<li >
 							<img src='<%=request.getContextPath()%>/image/nophoto.png'
 									style="border-radius: 50%" width=50px height=50px>

@@ -54,7 +54,7 @@ public class ResetPasswordServlet extends HttpServlet {
         msvc.updatePwd(userName,newPassword);
         
           
-		rw.write("<script>alert('重設密碼成功'); location.href='login.jsp';</script>");
+		rw.write("<script>alert('重設密碼成功'); location.href='../index.jsp';</script>");
           
     }  
   

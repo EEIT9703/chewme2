@@ -3,6 +3,7 @@ package com.iii.eeit9703.member.controller;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +31,8 @@ public class MemberEditorServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
+		res.setContentType("text/html;charset=UTF-8");
+		PrintWriter rw = res.getWriter();
 		String action = req.getParameter("action");
 		HttpSession session = req.getSession();
 
@@ -41,7 +44,7 @@ public class MemberEditorServlet extends HttpServlet {
 			} catch (Exception e) {
 				// errorMsgs.add(e.getMessage());
 				errorMsgs.put("errorIDDup", e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/member/memEditor.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/member/mempage.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -127,27 +130,26 @@ public class MemberEditorServlet extends HttpServlet {
 					errorMsgs.put("PicEmpty", "請放入圖片");
 				}
 				
-				MemVO memVO = new MemVO();
-				memVO.setMemId(memId);
-				memVO.setMemberId(memberId);
-				memVO.setMemName(memName);
-				memVO.setMemNickN(memNickN);
-				memVO.setMemPwd(memPwd);
-				memVO.setMemBirthday(memBirthday);
-				memVO.setMemMail(memMail);
-				memVO.setMemAddr(memAddr);
-				memVO.setMemPhone(memPhone);
-				memVO.setMemAddr(memIntr);
-				memVO.setMemPhoto(base64);
+				MemVO mv = new MemVO();
+				mv.setMemId(memId);
+				mv.setMemberId(memberId);
+				mv.setMemName(memName);
+				mv.setMemNickN(memNickN);
+				mv.setMemPwd(memPwd);
+				mv.setMemBirthday(memBirthday);
+				mv.setMemMail(memMail);
+				mv.setMemAddr(memAddr);
+				mv.setMemPhone(memPhone);
+				mv.setMemAddr(memIntr);
+				mv.setMemPhoto(base64);
 
 				MemService memSvc = new MemService();
 				
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("memVO", memVO);
+					req.setAttribute("memVO", mv);
 					System.out.println("2" + errorMsgs);
-					RequestDispatcher failureView = req.getRequestDispatcher("/member/memeditor.jsp");
-					failureView.forward(req, res);
-					return;
+					rw.write("<script>alert('修改失敗,請確認您的資料！'); location.href='mempage.jsp';</script>");  
+		            return; 
 				}
 
 				System.out.println(memberId);
@@ -155,17 +157,16 @@ public class MemberEditorServlet extends HttpServlet {
 				memSvc.updateMem(memId, memberId, memName, memNickN, memPwd, memBirthday, memMail, memAddr,
 						memPhone, memIntr, base64);
 				session.removeAttribute("LoginOK");
-				session.setAttribute("LoginOK", memVO);
-				String url = "/index.jsp";// 成功後轉交的連結
-				RequestDispatcher successView = req.getRequestDispatcher(url);
-				successView.forward(req, res);
+				session.setAttribute("LoginOK", mv);
+				rw.write("<script>alert('修改成功！'); location.href='mempage.jsp';</script>");  
+	            return; 
 
 			} catch (Exception e) {
 				// errorMsgs.add(e.getMessage());
 				errorMsgs.put("errorIDDup", e.getMessage());
 				System.out.println("4" + errorMsgs);
-				RequestDispatcher failureView = req.getRequestDispatcher("/member/memeditor.jsp");
-				failureView.forward(req, res);
+				rw.write("<script>alert('修改失敗,請確認您的資料！'); location.href='mempage.jsp';</script>");  
+	            return; 
 			}
 
 		}
