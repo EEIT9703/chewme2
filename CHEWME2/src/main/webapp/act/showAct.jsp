@@ -167,7 +167,7 @@
 
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="home">成團人數:${actVO.act_groups}人<br>參與人數:${actVO.act_current}</div>
+                        <div role="tabpanel" class="tab-pane active" id="home">成團人數:${actVO.act_groups}人<br>參與人數:${actVO.act_current}人</div>
                         <div role="tabpanel" class="tab-pane" id="profile">出發日期:${actVO.BDate}<br>回程日期:${activityVO.EDate}</div>
                         <div role="tabpanel" class="tab-pane" id="S">一人費用:${actVO.act_price}元</div>       
                     </div>
