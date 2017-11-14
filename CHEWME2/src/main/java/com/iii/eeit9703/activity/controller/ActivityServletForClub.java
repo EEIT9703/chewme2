@@ -55,6 +55,12 @@ public class ActivityServletForClub extends HttpServlet {
 		resp.setHeader("content-type", "text/html;charset=UTF-8");
 		resp.setContentType("text/html; charset=UTF-8");
 		
+		if(req.getParameter("action")!=null){			
+			System.out.println(req.getParameter("action"));
+		}
+		if(req.getParameter("clubId")!=null){
+			System.out.println("the club Id is " +req.getParameter("clubId"));			
+		}
 		
 		String action = req.getParameter("action");
 		PrintWriter out = resp.getWriter();
@@ -224,6 +230,7 @@ public class ActivityServletForClub extends HttpServlet {
 				activityVO.setSch_photo(sch_photo);
 				if(req.getParameter("clubId")!=null){
 					Integer clubId = Integer.parseInt(req.getParameter("clubId"));
+					System.out.println("insert the club id "+ clubId);
 					activityVO.setClubId(clubId);
 				}
 				req.setAttribute("activityVO", activityVO); //含有輸入錯誤的activityVO 也存入req

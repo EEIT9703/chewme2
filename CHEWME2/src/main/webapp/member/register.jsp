@@ -1,5 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+﻿<form ENCTYPE="multipart/form-data" id="register-form"action="<%=request.getContextPath()%>/member/register.do"
+method="post" role="form" style="display: none;">
 <img id="img_header"
 	src="<%=request.getContextPath()%>/image/nophoto.png"
 	class="img-responsive" width="150" height="150">
@@ -69,3 +69,4 @@
 		</div>
 	</div>
 </div>
+</form>

@@ -127,12 +127,12 @@ body {
 	<div class="container-fluid">
 		<div>
 			<div>
-				<p class="navbar-brand " href="#">
-					<img src="<%=request.getContextPath()%>/image/chewme-logobig.png"
-						width="330" height="50" alt="" style="padding-bottom: 10px;">
+				<p class="navbar-left" href="<%=request.getContextPath()%>/index.jsp">
+					<img src="<%=request.getContextPath()%>/image/chewme-logo-3-2.png"
+						width="" height="" alt="" style="max-width:250px;">
 				</p>
 			</div>
-			<!-- <div class="navbar-header" >
+<!-- 			 <div class="navbar-header" >
 				<p class="navbar-brand " style="font-family: 'Arial';font-size:30px;margin-top:7px;font-weight:bold;">CHEWME</p>
 				<button type="button" class="navbar-toggle collapsed"
 					data-toggle="collapse" data-target="#navbar-right"
@@ -235,7 +235,7 @@ body {
 	
 				<li><c:if test="${ ! empty LoginOK }">
 						<a class="nav-link" style="padding:19px 0px 0px 0px;margin-right:10px"
-							href="<%=request.getContextPath()%>/member/mempage.jsp" a>${LoginOK.memName }</a>
+							href="<%=request.getContextPath()%>/member/mempage.jsp" a>${LoginOK.memNickN}</a>
 					</c:if></li>
 				<c:choose>
 						<c:when test="${  empty LoginOK}">
@@ -296,10 +296,10 @@ body {
 												action="<%=request.getContextPath()%>/member/login.do"
 												method="post" role="form" style="display: block;">
 												<%@ include file="/member/login.jsp"%>
-											</form>
-											<form id="register-form"
-												action="<%=request.getContextPath()%>/member/register.do"
-												method="post" role="form" style="display: none;">
+											</form>									
+											<form ENCTYPE="multipart/form-data" id="register-form"
+											action="<%=request.getContextPath()%>/member/register.do"
+											method="post" role="form" style="display: none;">
 												<%@ include file="/member/register.jsp"%>
 											</form>
 										</div>
