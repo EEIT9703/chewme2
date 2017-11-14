@@ -18,10 +18,9 @@
 							<td>社員生日</td>
 							<td>社員興趣</td>
 							<td>社員信箱</td>
-							<td>加好友</td>
-							<c:if test="${identity == 'club_manager'}">
+							<%-- <c:if test="${identity == 'club_manager'}">
 								<td>社員參加過的活動</td>
-							</c:if>
+							</c:if> --%>
 					</thead>
 					<tbody>
 						<c:forEach var="memVO" items="${MemVOList}">
@@ -33,12 +32,12 @@
 								<td>${memVO.memBirthday}</td>
 								<td>${memVO.memIntr}</td>
 								<td>${memVO.memMail}</td>
-								<td><button type="submit" class="btn btn-primary btn-sm"
-										name="addfriend" value="$">加入</button></td>
-								<c:if test="${identity == 'club_manager'}">
+								
+								<%-- <c:if test="${identity == 'club_manager'}">
 									<td><button type="submit" class="btn btn-primary btn-sm"
 											name="memActs" value="$">參加過之本社活動</button></td>
 								</c:if>
+								 --%>
 							</tr>
 						</c:forEach>
 					</tbody>

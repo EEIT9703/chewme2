@@ -10,12 +10,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/bootstrap355.css" rel="stylesheet">
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/summernote.css" rel="stylesheet">
 
 
 <!-- Font Awesome  -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"></link>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/font-awesome.min.css"></link>
 
 </head>
 
@@ -103,7 +104,7 @@
 </style>
 
 <body>
-<header><%@ include file="/header.jsp"%></header>
+<header><%@ include file="../header.jsp"%></header>
 
 	
 
@@ -144,33 +145,13 @@
                                 <span class="glyphicon glyphicon-chevron-right" style="color:red;"></span>
                             </a>
                         </div>
-                    </div>
-                </div>
-                <div class="heading">
-                    <h2>行程介紹</h2>
-                </div>
-                <div class="item-desc">
-                    <p class="text-muted">${activityVO.act_news}</p>
-                </div>
+                    </div>                    
+                </div>                          
             </div>
-            <div style="height:40px"></div>
-<!--             <div class="col-md-6"  role="form" >                -->
-               <div class="col-md-6">     
-                <div class="date-time row">
+            
+            <div class="date-time row">
                     <div class="form-group col-md-6">
-                
-                    </div>
-                    </div>
-<!--                 <div class="show_icon btn-group btn-group-justified">
-                		<span><button class="btn btn-default show_act">參加行程</button></span>
-                   		<span><button class="btn btn-default show_col">加入我的收藏</button></span>
-                    	<span><button class="btn btn-default show_rep">檢舉行程</button></span>
-                
-                    <a href="#" class="btn btn-default">參加行程</a>
-                    <a href="#" class="btn btn-default"><i class="fa fa-heart-o" aria-hidden="true" style="color:red;"></i> 加入我的收藏</a>
-                    <a href="#" class="btn btn-default show_report">檢舉行程</a>
-                </div>  -->
-                
+                    <div style="height:40px"></div>
                 <div class="show_icon btn-group btn-group-justified">
                 		<a class="btn btn-default show_act" href="/CHEWME2/backage/collection.jsp">參加行程</a>
                    		<a class="btn btn-default show_col"><i class="fa fa-heart-o" aria-hidden="true" style="color:red;"></i> 加入我的收藏</a>
@@ -192,9 +173,30 @@
                         <div role="tabpanel" class="tab-pane" id="S">一人費用:${activityVO.act_price}元</div>       
                     </div>
                 </div>
+                    </div>
+                    </div>
+<!--                 <div class="show_icon btn-group btn-group-justified">
+                		<span><button class="btn btn-default show_act">參加行程</button></span>
+                   		<span><button class="btn btn-default show_col">加入我的收藏</button></span>
+                    	<span><button class="btn btn-default show_rep">檢舉行程</button></span>
+                
+                    <a href="#" class="btn btn-default">參加行程</a>
+                    <a href="#" class="btn btn-default"><i class="fa fa-heart-o" aria-hidden="true" style="color:red;"></i> 加入我的收藏</a>
+                    <a href="#" class="btn btn-default show_report">檢舉行程</a>
+                </div>  -->
+                
+                
                
-                 </div>                      
-<!--             </form> -->
+                 </div> 
+            <div class="heading">
+                    <h2>行程介紹</h2>
+                </div>     
+            <div class="item-desc col-md-12">
+                    <p class="text-muted">${activityVO.act_news}</p>
+                </div>
+            <div style="height:40px"></div>
+               <div class="col-md-6">     
+                     
         </div>
     </div><br>
     <!-- /.container -->
@@ -221,12 +223,10 @@
 						</div>
 						<div class="modal-body">
 						<div class="form-group">
-<!-- 						<form id="fileUpDate">					 -->
-<!-- 								<input type="text" id="text" name="text" width=2px height=400px> -->
-								 <textarea class="text" cols="75" rows="5" style="resize: none" >
-　						
-								</textarea>
-<!-- 						</form> -->					
+
+								 <textarea class="text" cols="75" rows="5" style="resize: none">　						
+								</textarea>				
+
 						</div>
 						<div class="form-group">													
 						</div>
@@ -234,12 +234,11 @@
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
 							<button type="button" class="btn btn-primary" id="confirm" >發送</button>
-<!-- 							<button type="submit" class="btn btn-primary"  id="confirm">確認</button> -->
 						</div>
 					</div>
-					<!-- /.modal-content -->
+
 				</div>
-				<!-- /.modal -->
+
 			</div>
  
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 

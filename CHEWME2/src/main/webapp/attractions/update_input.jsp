@@ -52,6 +52,7 @@
 						<option>桃園縣</option>
 						<option>新竹市</option>
 						<option>臺中市</option>
+						<option>南投縣</option>
 						<option>嘉義縣</option>
 						<option>臺南市</option>
 						<option>高雄市</option>

@@ -8,6 +8,7 @@ $(document).ready(function() {
 		$.get("/CHEWME2/act/searchR.jsp", {}, function(data) {	
 			template = data;	
 		})
+
 	}	
 	function getTemp_attr() {
 		$.get("/CHEWME2/act/searchR_attr.jsp", {}, function(data) {	
@@ -54,7 +55,12 @@ $(document).ready(function() {
 				
 				})
 			})
+			$.each($('.activityTemplate'),function(i,atemplate ){
+			if(i%3==0){
+				atemplate.after('<div class="clearfix visible-md visible-sm"></div>');
+			}
 			
+		})
 			
 		}else if(select1 == "景點"){			
 			var name = $("#text").val();			
@@ -68,12 +74,19 @@ $(document).ready(function() {
 				$(".btn.btn-info.btn-sm:last").attr({"href":'/CHEWME2/act/ActivitySearch?action=searchattr&name='+ data.attractionID})
 				$(".act_name:last").attr("id","act_name"+j);
 				$("#act_name"+j).text(data.name);	
+				$(".searchhasimage:last").attr({"src": "/CHEWME2/getImage.do?id="+ data.name +"&type=uploadimg"});
 				$(".id:last").attr({"id": data.attractionID, "value": data.attractionID});
 				$(".intro1:last").attr("id", "intro1"+j);
 				$("#intro1"+j).text(data.intro.substring(0, 150) + ".....");
 				$("#intro1"+j).append("<a>(繼續閱讀)</a>");
 				})			
 			})
+			$.each($('.attractionTemplate'),function(i,attrmplate ){
+			if(i%3==0){
+				attrmplate.after('<div class="clearfix visible-md visible-sm"></div>');
+			}
+			
+		})
 		}		
 	})
 })

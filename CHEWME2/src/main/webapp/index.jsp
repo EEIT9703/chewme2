@@ -322,7 +322,7 @@ $(window).load(function(){
  
 	// 先把 #abgne_float_ad 移動到定點
 	$ad.css({
-		top: $(document).height()-_diffY,
+		top: $(document).height()*0.7-_diffY,
 		left: $win.width() - _width - _diffX,
 		opacity: 1
 	});

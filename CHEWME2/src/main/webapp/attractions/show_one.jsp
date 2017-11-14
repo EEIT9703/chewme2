@@ -70,7 +70,7 @@ pageEncoding="UTF-8"%>
 
 #text1 {
 	width: 700px;
-	height: 500px;
+	height: 500px;	
 }
 
 .btn.btn-info {
@@ -149,7 +149,15 @@ html {
 				<div style="border: 1px solid #E3E3E3; padding:3px;">
 					<table>
 						<tr>
-							<td><img src='data:image/png;base64,${LoginOK.memPhoto}' width=50px height=50px style="border-radius:50%;">
+							<td>
+							<c:choose>
+							<c:when test = "${empty LoginOK}">
+								<img src = "<%=request.getContextPath()%>/attractions/img/portrait.png" width=50px height=50px style="border-radius:50%;">								
+							</c:when>
+							<c:otherwise>
+								<img src='data:image/png;base64,${LoginOK.memPhoto}' width=50px height=50px style="border-radius:50%;">
+							</c:otherwise>									
+							</c:choose>
 							</td>
 							<td><textarea id="memo" placeholder="請輸入內容..."></textarea></td>
 						</tr>

@@ -85,6 +85,7 @@ body { background-color:#ddd; }
     <div class="container">             	
 	<div class="row" id="div1">
           <c:forEach var="activityVO" items="${actSvc.all}">
+          <c:if test="${activityVO.activity_state == 1}">
            <div class="col-md-4  margin_bottom30">
            <div class=title>
 			<input type="hidden" id="${activityVO.actID}">  
@@ -122,6 +123,7 @@ body { background-color:#ddd; }
 				</div>
 				</div>
 			</div>
+			</c:if>
 			</c:forEach>
 			</div>
 			</div>

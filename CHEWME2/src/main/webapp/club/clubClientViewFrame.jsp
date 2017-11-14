@@ -47,8 +47,11 @@ table {
 
 	<header><%@ include file="../header.jsp"%></header>
 	<p hidden id="userId_session" value="">${LoginOK.memId}</p>
+	<p hidden id="userName_session" value="">${LoginOK.memName}</p>
 	<p hidden id="clubIdforView" value="">${clubVOForView.clubId}</p>
 	<p hidden id="reqContextPath" value=""><%=request.getContextPath()%></p>
+	<p hidden id="reqServerName" value=""><%=request.getServerName()%></p>
+	<p hidden id="reqServerPort" value=""><%=request.getServerPort()%></p>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4">
@@ -164,7 +167,7 @@ table {
 				</div>
 
 			</div>
-			<div class="col-md-2">
+			<div id="hello" class="col-md-2">
 				<c:if test="${identity == 'club_manager'}">
 					<p>社團管理員:${LoginOK.memName}您好</p>
 				</c:if>
@@ -238,6 +241,8 @@ table {
 						aria-controls="profile">關於我們</a></li>
 					<li class="nav-item"><a class="nav-link" data-toggle="tab"
 						href="#member-info" role="tab" aria-controls="profile">社員資訊</a></li>
+					<li class="nav-item"><a class="nav-link" data-toggle="tab"
+						href="#manager-chat" role="tab" aria-controls="profile">管理員聊天</a></li>
 				</ul>
 			</div>
 			<div class="col"></div>
@@ -253,6 +258,9 @@ table {
 			</div>
 			<div id="member-info">
 				<%@ include file="ccvClubMemberInfo.jsp"%>
+			</div>
+			<div id="manager-chat">
+				<%@ include file="ccvChatRoom.jsp"%>
 			</div>
 		</div>
 		<div id="canvasDiv" hidden>
