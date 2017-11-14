@@ -51,7 +51,7 @@ table {
 	<p hidden id="clubIdforView" value="">${clubVOForView.clubId}</p>
 	<p hidden id="reqContextPath" value=""><%=request.getContextPath()%></p>
 	<p hidden id="reqServerName" value=""><%=request.getServerName()%></p>
-	<p hidden id="reqServerPort" value=""><%=request.getServerName()%></p>
+	<p hidden id="reqServerPort" value=""><%=request.getServerPort()%></p>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4">
