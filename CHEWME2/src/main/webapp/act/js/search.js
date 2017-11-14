@@ -77,16 +77,17 @@ $(document).ready(function() {
 				$(".searchhasimage:last").attr({"src": "/CHEWME2/getImage.do?id="+ data.name +"&type=uploadimg"});
 				$(".id:last").attr({"id": data.attractionID, "value": data.attractionID});
 				$(".intro1:last").attr("id", "intro1"+j);
-				$("#intro1"+j).text(data.intro.substring(0, 150) + ".....");
+				$("#intro1"+j).text(data.intro.substring(0, 100) + ".....");
 				$("#intro1"+j).append("<a>(繼續閱讀)</a>");
-				})			
+				})	
+//				$.each($('.attractionTemplate'),function(i,attrmplate ){
+//			if(i%3==0){
+//				attrmplate.after('<div class="clearfix visible-md visible-sm"></div>');
+//			}
+//			
+//		})
 			})
-			$.each($('.attractionTemplate'),function(i,attrmplate ){
-			if(i%3==0){
-				attrmplate.after('<div class="clearfix visible-md visible-sm"></div>');
-			}
 			
-		})
 		}		
 	})
 })
