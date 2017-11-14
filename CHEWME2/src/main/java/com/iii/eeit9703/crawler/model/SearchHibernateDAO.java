@@ -59,7 +59,7 @@ public class SearchHibernateDAO {
 		SearchHibernateDAO dao = new SearchHibernateDAO();
 //		AttrVO attrs =dao.findByPK("101");
 //		System.out.println(attrs.getName());
-		AttrVO attr = dao.findByPK("101");
+		AttrVO attr = dao.findByPK("中正紀念");
 		System.out.println(attr.getName());		
 		System.out.print(attr.getAttractionID() + ",");
 		System.out.print(attr.getName() + ",");

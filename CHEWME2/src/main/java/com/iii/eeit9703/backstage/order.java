@@ -29,6 +29,7 @@ public class order {
 		ScheduleDAO_Hibernate daoSch =new ScheduleDAO_Hibernate();
 		List<ScheduleVO> listsSch =daoSch.getAll();	
 		int[] sche =new int[listsSch.size()];
+		
 		int i=0;
 	
 		for(ScheduleVO scheduleVO:listsSch){		
@@ -49,7 +50,8 @@ public class order {
 				map_fav.put(sche[x], 1);
 					} 
 			
-		}		
+		}
+	
 		List<Entry<Integer,Integer>> list =new ArrayList<Entry<Integer,Integer>>(map_fav.entrySet());
 		Collections.sort(list, new Comparator<Map.Entry<Integer, Integer>>() {
 			  public int compare(Map.Entry<Integer, Integer> o1,
@@ -67,7 +69,9 @@ public class order {
 			int[] attr_total =new int[count+5];
 			for (Map.Entry<Integer, Integer> entry : list) {
 			if(count<5){
+			System.out.println(entry.getKey());	
 			AttrVO attrVO=daoAttr.findByPKInt(entry.getKey());
+			System.out.println(attrVO.getAttractionID());
 			attr[count]=attrVO.getName();
 			attr_total[count]=entry.getValue();		
 			// map1.put(attrVO.getName(), entry.getValue());
