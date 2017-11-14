@@ -357,10 +357,13 @@ body {
 
 	function loadActivity(){		
 		$.getJSON('<%=request.getContextPath()%>/ShoppingCar?action=getMyCars',{},function(array){
+			
         var fg = $(document.createDocumentFragment());
 	 		var opt = $(".cartrows");
 	 			opt.empty();
 			var count=0;
+			
+			if(array!=''){
 	 		$.each(array,function(i,activity){
 	 			var img ="data:image/png;base64,"+activity.act_photo;
 	 			var div_out=$("<div></div>").addClass('cartrow');
@@ -380,6 +383,12 @@ body {
 	 			fg.append(div_out);
 	 			count++;
 	 		})
+			}
+			else{
+				var div_no=$("<h3>你未收藏任何行程</h3>").addClass('cartrow')
+				fg.append(div_no);
+				
+			}
 	 		$('.aaa').text(count);
 	 		$('.cartrows').append(fg);
 	 		
@@ -402,8 +411,7 @@ body {
 	
 	$('#div1').on('click','button',function(){
 		var id = $(this).parent().parent().parent().parent().parent().find('input').attr('id')
-		
-		alert(id)
+	
 		
 		$.getJSON('<%=request.getContextPath()%>/ShoppingCar?action=inputCar',{'ID' : id}, result);
 	})
