@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html
->
+<%
+
+
+
+%>
+<!DOCTYPE html>
 <html>
 <head>
 
@@ -181,7 +185,7 @@ margin:0px 80px 30px 0px;
 
 .item img{
 width:250px;
-height:100px;
+height:150px;
 }
 </style>
 
@@ -196,8 +200,8 @@ height:100px;
 		<div class="col-md-2 column ">
 			<div class="sidebar___2Ft5w">
 				<div class="myPhoto___3FFnp">
-			   	<div style="background-image:url('<%=request.getContextPath()%>/image/338196.jpg')" class="img-circle user-photo___7yyZ6"></div>	
-				<p class="shortText___3j1uo" title="黃彥坤">黃彥坤</p>
+			   	<div style="background-image:url('data:image/png;base64,${LoginOK.memPhoto}')" class="img-circle user-photo___7yyZ6"></div>	
+				<p class="shortText___3j1uo" style="margin-top:7px">${LoginOK.memName}</p>
 				</div>
 				<div>
 					<ul class="list___3xuJM">
@@ -267,9 +271,9 @@ $(function(){
 	         var cell3=$('<span></span>').addClass('inder_price').text(activity.act_price);
 	      	 var cell4=$('<span></span>').addClass('price_icon').text('$');
 	      	 
-	      	 var button1=$('<button></button>').css('color','blue').addClass('buy').attr({'type':'submit'}).text("購買");
+	      	 var button1=$('<button></button>').css({'color':'write','width':'45px','height':'30px','padding':'0px 0px 1px 0px'}).addClass('buy btn btn-primary').attr({'type':'submit'}).text("購買");
 	         var cell5=$('<span></span>').append(button1)
-	       	 var button2=$('<button></button>').css('color','red').addClass('delete').attr({'type':'button'}).text("移除");
+	       	 var button2=$('<button></button>').css({'color':'write','width':'45px','height':'30px','padding':'0px 0px 1px 0px'}).addClass('delete btn btn-danger').attr({'type':'button'}).text("移除");
 	         var cell6=$('<span><span>').append(button2)
          	 var row = $("<div></div>").addClass('item').attr({'class':'item','id':activity.actID});	 
 	       	 row.append([cell1, cell2,span,span2,cell3,cell4,cell5,cell6]);

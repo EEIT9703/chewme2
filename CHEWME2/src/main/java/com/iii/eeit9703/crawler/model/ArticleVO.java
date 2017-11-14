@@ -5,6 +5,7 @@ public class ArticleVO implements java.io.Serializable{
 	private Integer memId;
 	private Integer attractionID;
 	private String contents;
+	private String memPhoto;
 	public Integer getArticleID() {
 		return articleID;
 	}
@@ -28,6 +29,12 @@ public class ArticleVO implements java.io.Serializable{
 	}
 	public void setContents(String contents) {
 		this.contents = contents;
+	}
+	public String getMemPhoto() {
+		return memPhoto;
+	}
+	public void setMemPhoto(String memPhoto) {
+		this.memPhoto = memPhoto;
 	}
 	
 }

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.iii.eeit9703.activity.model.*"%>
 
@@ -41,7 +41,9 @@ body { background-color:#ddd; }
     height: 40px;
     border: 1px solid #000;
   }
-
+#searchtable{
+	margin:auto;
+}
 
 </style>
 
@@ -50,7 +52,7 @@ body { background-color:#ddd; }
 	
 	<div class="container">
 	<div class="row">
-           <table>
+           <table id="searchtable">
         	<tr>
         		<td>
         			<select name="county" class="selectpicker" style="width:20px;" id="select1">
@@ -95,8 +97,8 @@ body { background-color:#ddd; }
 				<img class="img-responsive center-block" src="data:image/png;base64,${activityVO.act_photo}" height="250">
 			</a>	
 				<div class="blog-content bg-white">
-				<img src="<%=request.getContextPath()%>/image/chewme-logo.png" width="50" height="50" style="float:left">
-				<h3 id="act_name" class="act_name" style="">${activityVO.act_name}</h3>
+				<img src="<%=request.getContextPath()%>/image/chewme-logo-3-1.png" width="50" height="50" style="float:left;vertical-align:middle;">
+				<h2 id="act_name" class="act_name" style="">${activityVO.act_name}</h2>
 				
 				<a class="btn-sm btn btn-info ">
                 <i class="fa fa-usd" aria-hidden="true"></i> 價格:${activityVO.act_price} 元
@@ -125,12 +127,7 @@ body { background-color:#ddd; }
 			</div>
 	
 
-<script>
 
-var fbhtml_url=window.location.toString();
-
-
-</script>
 
 <script src="<%=request.getContextPath()%>/act/js/search.js"></script>
 <script src="<%=request.getContextPath()%>/js/FontAwesomeCdnConfig.js"></script>

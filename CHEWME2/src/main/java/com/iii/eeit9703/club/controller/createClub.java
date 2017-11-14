@@ -1,7 +1,6 @@
 package com.iii.eeit9703.club.controller;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,6 +16,8 @@ import com.iii.eeit9703.club.model.ClubPhotoService;
 import com.iii.eeit9703.club.model.ClubPhotoVO;
 import com.iii.eeit9703.club.model.ClubService;
 import com.iii.eeit9703.club.model.ClubVO;
+import com.iii.eeit9703.member.model.MemVO;
+import com.iii.eeit9703.member.model.MemberSession;
 
 @WebServlet("/club/createClub.do")
 @MultipartConfig(maxFileSize=1024*1024*500)
@@ -83,7 +84,10 @@ public class createClub extends HttpServlet {
 			System.out.println(request.getParameter("address"));
 			System.out.println(request.getParameter("uploadImage"));
 			clubVO.setClubName(request.getParameter("clubName"));
-			clubVO.setManagerId(1);
+			MemVO memVO = (MemVO)session.getAttribute("LoginOK");
+			Integer managerId = memVO.getMemId();
+			MemberSession ms = (MemberSession)session.getAttribute("LoginOK_MS");
+			clubVO.setManagerId(managerId);
 			clubVO.setLocationId(Integer.parseInt("0"));
 			clubVO.setBrief(request.getParameter("brief"));
 			clubVO.setRefURL(request.getParameter("url"));
@@ -93,6 +97,9 @@ public class createClub extends HttpServlet {
 			//clubVO.setClubPic("");
 			ClubService cs = new ClubService();
 			Integer clubId = cs.insertClub(clubVO);
+			ms.addOwnClubList(clubId);
+			
+			
 			ClubPhotoService cps = new ClubPhotoService();
 			clubPhotoVO.setClubId(clubId);
 			clubPhotoVO.setName(request.getParameter("clubName"));

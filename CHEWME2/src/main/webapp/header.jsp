@@ -1,4 +1,5 @@
-﻿﻿<%-- <%@ page import="java.util.*"%>
+﻿﻿﻿﻿
+<%-- <%@ page import="java.util.*"%>
 <%@ page import="com.iii.eeit9703.member.model.*"%>
 <%@ page import="com.iii.eeit9703.collection.*"%>
 <%
@@ -8,11 +9,13 @@ pageContext.setAttribute("list",list);
 int a=list.size();
 pageContext.setAttribute("all",a);
 %> --%>
-
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/bootstrap.min.css">
 <!-- 置頂  -->
-<link href="<%=request.getContextPath()%>/css/navbar-fixed-top.css"
-	rel="stylesheet">
+
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/loginNregister.css">
 
 <style>
 
@@ -124,10 +127,12 @@ body {
 	<div class="container-fluid">
 		<div>
 			<div>
-				<p class="navbar-brand " href="#">
-				<img src="<%=request.getContextPath()%>/image/chewme-logobig.png" width="330" height="50" alt="" style="padding-bottom: 10px;"></p>
+				<p class="navbar-left" href="<%=request.getContextPath()%>/index.jsp">
+					<img src="<%=request.getContextPath()%>/image/chewme-logo-3-2.png"
+						width="" height="" alt="" style="max-width:250px;">
+				</p>
 			</div>
-			<!-- <div class="navbar-header" >
+<!-- 			 <div class="navbar-header" >
 				<p class="navbar-brand " style="font-family: 'Arial';font-size:30px;margin-top:7px;font-weight:bold;">CHEWME</p>
 				<button type="button" class="navbar-toggle collapsed"
 					data-toggle="collapse" data-target="#navbar-right"
@@ -142,10 +147,10 @@ body {
 			<ul class="nav navbar-nav" style="margin-left: 50px">
 				<li><a href="<%=request.getContextPath()%>/index.jsp"><img
 						src="<%=request.getContextPath()%>/image/home.png" width=40px
-						height=40px>　Home</a></li>
+						height=40px> Home</a></li>
 				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#"><img
 						src="<%=request.getContextPath()%>/image/calendar.png" width=40px
-						height=40px>　揪旅行<span class="caret"></span></a>
+						height=40px> 揪旅行<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a
 							href="<%=request.getContextPath()%>/actEditor/editorScuedule.jsp">創行程</a></li>
@@ -154,7 +159,7 @@ body {
 					</ul></li>
 				<li><a class="dropdown-toggle" data-toggle="dropdown" href="#"><img
 						src="<%=request.getContextPath()%>/image/users.png" width=40px
-						height=40px>　找社團<span class="caret"></span></a>
+						height=40px> 找社團<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a
 							href="<%=request.getContextPath()%>/club/createClub.do">創社團</a></li>
@@ -163,18 +168,18 @@ body {
 
 				<li><a
 					href="<%=request.getContextPath()%>/attractions/listAll.jsp"><img
-						src="<%=request.getContextPath()%>/image/maps.png"
-						width=40px height=40px>　查景點</a></li>
+						src="<%=request.getContextPath()%>/image/maps.png" width=40px
+						height=40px> 查景點</a></li>
 			</ul>
 
-			<ul class="nav navbar-nav navbar-right"  style="margin-top:10px;">
+			<ul class="nav navbar-nav navbar-right" style="margin-top: 10px;">
 
 				<c:choose>
 					<c:when test="${!empty LoginOK}">
 						<li class="nav-shopping-cart"><div class="dropdown">
 								<img id="drop" data-toggle="dropdown"
-									src="<%=request.getContextPath()%>/image/material.png" width=40px
-									height=40px /><span class="aaa" data-reactid="65"></span>
+									src="<%=request.getContextPath()%>/image/material.png"
+									width=40px height=40px /><span class="aaa" data-reactid="65"></span>
 								<ul style="width: 300px;"
 									class="dropdown-menu pull-right  role="
 									menu"
@@ -205,60 +210,146 @@ body {
 					<c:otherwise>
 						<li class="nav-shopping-cart"><div class="dropdown">
 								<img id="drop" data-toggle="dropdown"
-									src="<%=request.getContextPath()%>/image/material.png" width=40px
-									height=40px />
+									src="<%=request.getContextPath()%>/image/material.png"
+									width=40px height=40px />
 					</c:otherwise>
 
 				</c:choose>
 
 				<li><c:if test="${  !empty SysManager }">
 						<a class="nav-link"
-							href="<%=request.getContextPath()%>/backage/backage_index.jsp"><span
-							class="glyphicon glyphicon-log-in"></span>維護 </a>
+							href="<%=request.getContextPath()%>/backage/backage_index.jsp"><span>
+							<img src="<%=request.getContextPath()%>/image/settings.png" width=30px height=30px></span>維護 </a>
 					</c:if></li>
 				<li><c:if test="${  empty LoginOK }">
-						<a class="nav-link"
-							href="<%=request.getContextPath()%>/member/login.jsp"><span
-							class="glyphicon glyphicon-log-in"></span>登入 </a>
+						<a class="nav-link" href="#" data-toggle="modal"
+							data-target="#loginNregisterModal"><span>
+							<img src="<%=request.getContextPath()%>/image/login_1.png" width=30px height=30px></span>登入/註冊 </a>
 					</c:if></li>
 
 				<li><c:if test="${ ! empty LoginOK }">
 						<a class="nav-link"
-							href="<%=request.getContextPath()%>/member/logout.jsp"><span
-							class="glyphicon glyphicon-log-in"></span>登出 </a>
+							href="<%=request.getContextPath()%>/member/logout.jsp"><span>
+							<img src="<%=request.getContextPath()%>/image/login_out_1.png" width=30px height=30px></span>登出 </a>
 					</c:if></li>
-
-				<li><c:if test="${  empty LoginOK }">
-						<a class="nav-link"
-							href="<%=request.getContextPath()%>/member/register.jsp"><span
-							class="glyphicon glyphicon-user"></span>註冊 </a>
-					</c:if></li>
+	
 				<li><c:if test="${ ! empty LoginOK }">
-						<a class="nav-link"
-							href="<%=request.getContextPath()%>/member/mempage.jsp" a>${LoginOK.memName }</a>
+						<a class="nav-link" style="padding:19px 0px 0px 0px;margin-right:10px"
+							href="<%=request.getContextPath()%>/member/mempage.jsp" a>${LoginOK.memNickN}</a>
 					</c:if></li>
-				<li><c:choose>
-						<c:when test="${  empty LoginOK.memPhoto && empty picUri}">
-								<img src='<%=request.getContextPath()%>/image/nophoto.png'
+				<c:choose>
+						<c:when test="${  empty LoginOK}">
+						<li style="padding:18px 0px 0px 0px;margin-left:20px">
+								訪客,你好
+						</c:when>
+						<c:when test="${ ! empty LoginOK && empty LoginOK.memPhoto}">
+						<li >
+							<img src='<%=request.getContextPath()%>/image/nophoto.png'
 									style="border-radius: 50%" width=50px height=50px>
 						</c:when>
-						<c:when test="${ ! empty LoginOK.memPhoto }">
+						
+						<c:when test="${ ! empty LoginOK && ! empty LoginOK.memPhoto}">
+						<li>
 							<img src='data:image/png;base64,${LoginOK.memPhoto}'
 								style="border-radius: 50%" width=50px height=50px>
 						</c:when>
+						
 						<c:otherwise>
 							<img src='${picUri}' style="border-radius: 50%" width=50px height=50px >
 						</c:otherwise>
 					</c:choose></li>
-					<li style="width:50px"></li>
+				<li style="width: 50px"></li>
 			</ul>
 		</div>
 	</div>
 
 
 </nav>
-<%-- <script src="<%=request.getContextPath()%>/js/jquery-1.12.3.min.js"></script> --%>
 
+<div class="modal fade" id="loginNregisterModal" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2 style="color: #00BBFF">CHEWME</h2>
+			</div>
+			<div class="modal-body">
+				<div class="container" align="center">
+					<div class="row">
+						<div class="col-xs-6 col-sm-6 col-md-6">
+							<div class="panel panel-login">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-xs-6">
+											<a href="#" class="active" id="login-form-link">登入</a>
+										</div>
+										<div class="col-xs-6">
+											<a href="#" id="register-form-link">註冊</a>
+										</div>
+									</div>
+									<hr>
+								</div>
+								<div class="panel-body">
+									<div class="row">
+										<div class="col-lg-12">
+											<form id="login-form"
+												action="<%=request.getContextPath()%>/member/login.do"
+												method="post" role="form" style="display: block;">
+												<%@ include file="/member/login.jsp"%>
+											</form>									
+											<form ENCTYPE="multipart/form-data" id="register-form"
+											action="<%=request.getContextPath()%>/member/register.do"
+											method="post" role="form" style="display: none;">
+												<%@ include file="/member/register.jsp"%>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal -->
+</div>
+<div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog"
+	aria-labelledby="gridModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="gridModalLabel">忘記密碼?</h4>
+			</div>
+			<form action="<%=request.getContextPath()%>/member/forgetPwd.do" method="post">
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-3 col-md-offset-3">
+							<br>&nbsp;您的帳號：<input type="text" name="userId" /><br>
+							<br> &nbsp;您的信箱：<input type="text" name="userMail" /><br>
+						</div>
+						<br />
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">提交</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<%-- <script src="<%=request.getContextPath()%>/js/jquery-1.12.3.min.js"></script> --%>
+<script src="<%=request.getContextPath()%>/js/register.js"></script>
+<script src="<%=request.getContextPath()%>/js/loginNregister.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <script>
  $(function(){
 	
@@ -282,7 +373,7 @@ body {
 	 			var button = $('<button id="opop"></button>').css('color','red').addClass('close glyphicon glyphicon-remove').attr({'type':'button','name':activity.actID});
 	 			var span2=$('<span></span>').append(button)			
 	 			var cell2=$("<div></div>").append([span1,span2])	
-	 			var cell3=$("<div></div>").text("$5888")
+	 			var cell3=$("<div></div>").text(activity.act_price)
 	 			
 	 			cell1.append(img);
 	 			div_out.append([cell1,cell2,cell3]);
@@ -311,6 +402,9 @@ body {
 	
 	$('#div1').on('click','button',function(){
 		var id = $(this).parent().parent().parent().parent().parent().find('input').attr('id')
+		
+		alert(id)
+		
 		$.getJSON('<%=request.getContextPath()%>/ShoppingCar?action=inputCar',{'ID' : id}, result);
 	})
 		function result(array) {
@@ -328,4 +422,25 @@ body {
 
 
 	})
+	$(function() {
+			// 預覽圖片
+			$("#memPhoto").change(function() {
+
+				readImage_header(this);
+			});
+
+			function readImage_header(input) {
+				if (input.files && input.files[0]) {
+					var file = input.files[0];
+					var FR = new FileReader();
+					FR.onload = function(e) {
+						// e.target.result = base64 format picture
+						$('#img_header ').attr("src", e.target.result);
+						var url = e.target.result;
+
+					};
+					FR.readAsDataURL(input.files[0]);
+				}
+			} // 預覽圖片結束
+		})		
 </script>

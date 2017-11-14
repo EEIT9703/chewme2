@@ -11,7 +11,7 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
  
-@ServerEndpoint("/websocket")
+@ServerEndpoint("/chatroom")
 public class WebSocketEndpointTest {
     //用來存放WebSocket已連接的Socket
     static ArrayList<Session> sessions;

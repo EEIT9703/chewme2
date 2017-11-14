@@ -19,10 +19,10 @@
 
 <link rel="stylesheet" type="text/css" href="css/dialog.css" />
 <link rel="stylesheet" type="text/css"
-	href="../css/igs/imgareaselect-default.css" />
+	href="<%=request.getContextPath()%>/css/igs/imgareaselect-default.css" />
 
-<script src="../js/jquery-3.2.1.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <style>
 .carousel-inner {
@@ -46,7 +46,7 @@ table {
 <body>
 
 	<header><%@ include file="../header.jsp"%></header>
-
+	<p hidden id="userId_session" value="">${LoginOK.memId}</p>
 	<p hidden id="clubIdforView" value="">${clubVOForView.clubId}</p>
 	<p hidden id="reqContextPath" value=""><%=request.getContextPath()%></p>
 	<div class="container">
@@ -63,7 +63,7 @@ table {
 
 						<tr>
 							<td>社團編號:</td>
-							<td>${clubVOForView.clubId}</td>
+							<td id="clubId">${clubVOForView.clubId}</td>
 						</tr>
 						<tr>
 							<td>社團名稱:</td>
@@ -209,14 +209,15 @@ table {
 				</c:if>
 				<c:if test="${identity == 'club_member'}">
 					<div>
-						<button id="joinClub" class="btn btn-sm btn-primary"
-							style="width: 100%">加入社團</button>
+						<button id="joinClub" class="btn btn-sm btn-danger"
+							style="width: 100%">退出社團</button>
 					</div>
 				</c:if>
 				<c:if test="${identity == 'normal_member'}">
+
 					<div>
-						<button id="joinClub" class="btn btn-sm btn-danger"
-							style="width: 100%">退出社團</button>
+						<button id="joinClub" class="btn btn-sm btn-primary"
+							style="width: 100%">加入社團</button>
 					</div>
 				</c:if>
 
@@ -229,9 +230,6 @@ table {
 					<li class="nav-item"><a class="nav-link active"
 						id="new-travel-tab" data-toggle="tab" href="#newActList-page"
 						role="tab" aria-controls="home" aria-expanded="true">推薦行程</a></li>
-					<li class="nav-item"><a class="nav-link " id="pass-travel-tab"
-						data-toggle="tab" href="#oldActList-page" role="tab"
-						aria-controls="profile">過去行程</a></li>
 					<li class="nav-item"><a class="nav-link " id="forum-tab"
 						data-toggle="tab" href="#forum-page" role="tab"
 						aria-controls="profile">討論區</a></li>
@@ -249,11 +247,8 @@ table {
 			<div id="newActList-page">
 				<%@ include file="ccvNewActList.jsp"%>
 			</div>
-			<div id="oldActList-page">
-				<%@ include file="ccvOldActList.jsp"%>
-			</div>
 			<div id="my-info">
-
+				<%@ include file="ccvAboutMe.jsp"%>
 				<!-- 				<iframe src="../club/info.jsp"></iframe> -->
 			</div>
 			<div id="member-info">

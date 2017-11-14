@@ -4,11 +4,11 @@
 
 <hibernate-mapping>
 	<class name="com.iii.eeit9703.crawler.model.AttrVO" table="Attractions">
-		<id name="attractionID" column="attractionID">
+		<id name="name" column="name">
 			<generator class="identity" />
 
 		</id>
-		<property name="name" column="name" />
+		<property name="attractionID" column="attractionID" />
 		<property name="county" column="county" />
 		<property name="type" column="type" />
 		<property name="address" column="address" />

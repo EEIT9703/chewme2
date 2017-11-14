@@ -1,7 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 ﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.iii.eeit9703.activity.model.*"%>
+<%
+ActService ser=new ActService();
+if(session.getAttribute("record")!=null){
+Set<Integer> a=(Set<Integer>)session.getAttribute("record");
+ArrayList<ActivityVO> lis = new ArrayList();
 
+Iterator<Integer> iterator=a.iterator();
+while(iterator.hasNext()){
+	ActivityVO activityVO=ser.getOneAct(iterator.next());
+	lis.add(activityVO);
+}
+pageContext.setAttribute("list1", lis);
+}
+%> 
 <!DOCTYPE html>
 <html>
 
@@ -11,10 +26,14 @@ pageEncoding="UTF-8"%>
 <meta charset="utf-8" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/BootSideMenu.css">
+
 <script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/slideshow.js">	</script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/BootSideMenu.js"></script>
+
+
 <style>
 
 ul, li {
@@ -89,13 +108,27 @@ ul, li {
 	color: #000;
 }
 
+#abgne_float_ad {
+	display: none;
+	position: absolute;
+}
+#abgne_float_ad img {
+	border: none;
+}
+
 </style>
 
 </head>
 
 <body>
 	<header><%@ include file="header.jsp"%></header>
-
+	
+		<!-- 	側邊廣告 -->
+	<div id="abgne_float_ad" >
+		<a href="http://cheng-sing.com/travel/2017/10/19/">
+			<img src="image/barAD.gif" title="按我免費取票" width="125px"/>
+		</a>
+	</div>
 	
 	<article>
 		<div class="jumbotron">
@@ -109,8 +142,10 @@ ul, li {
 					</div>
 					<div class="abgne-control">
 						<ul class="arrows" style="list-style-type: none">
-							<li style="list-style-type: none" class="prev">&lt;</li>
-							<li style="list-style-type: none" class="next">&gt;</li>
+<!-- 							<li style="list-style-type: none" class="prev">&lt;</li> -->
+<!-- 							<li style="list-style-type: none" class="next">&gt;</li> -->
+							<li style="list-style-type: none" class="prev" width=20px height=20px><img src=image/left.png width=14px height=14px></li>
+							<li style="list-style-type: none" class="next"><img src=image/right.png width=14px height=14px></li>
 						</ul>
 					</div>
 				</div>
@@ -212,66 +247,99 @@ ul, li {
 <!--           </ul> -->
 
 <div id="test" style="padding:0px">
+<div><h1>瀏覽過的行程</h1></div>
+<hr color="black" size="20" width="100%"  align="left">
+<c:forEach var="ActivityVO" items="${list1}">
   <div class="user">
-      <img src="image/55.jpg" alt="Esempio" class="img-thumbnail" width=50px><br>
-      <a href="<%=request.getContextPath()%>/act/ActivitySearch?action=searchone&name=30" target="_blank" class="navbar-link">Andrea Lombardo</a>
-  </div>
-
-  <div class="list-group">
-
-      <a href="#item-1" class="list-group-item" data-toggle="collapse">Item 1</a>
-
-      <div class="list-group collapse" id="item-1">
-          <a href="#" class="list-group-item">Item 1 di 1</a>
-          <a href="#" class="list-group-item">Item 2 di 1</a>
-          <a href="#item-1-1" class="list-group-item" data-toggle="collapse">Item 3 di 1</a>
-
-          <div class="list-group collapse" id="item-1-1">
-              <a href="#" class="list-group-item">Item 1 di 1.3</a>
-              <a href="#" class="list-group-item">Item 2 di 1.3</a>
-              <a href="#" class="list-group-item">Item 3 di 1.3</a>
-          </div>
-
-      </div>
-
-      <a href="#item-2" class="list-group-item" data-toggle="collapse">Item 2</a>
-
-      <div class="list-group collapse" id="item-2">
-          <a href="#" class="list-group-item">Item 1 di 2</a>
-          <a href="#" class="list-group-item">Item 2 di 2</a>
-          <a href="#" class="list-group-item">Item 3 di 2</a>
-      </div>
-
-      <a href="#item-3" class="list-group-item" data-toggle="collapse">Item 3</a>
-
-      <div class="list-group collapse" id="item-3">
-          <a href="#" class="list-group-item">Item 1 di 3</a>
-          <a href="#" class="list-group-item">Item 2 di 3</a>
-          <a href="#item-3-1" class="list-group-item" data-toggle="collapse">Item 3 di 3</a>
-
-          <div class="list-group collapse" id="item-3-1">
-              <a href="#" class="list-group-item">Item 1 di 3.3</a>
-              <a href="#" class="list-group-item">Item 2 di 3.3</a>
-              <a href="#" class="list-group-item">Item 3 di 3.3</a>
-          </div>
-
-      </div>
-
-      <a href="#item-4" class="list-group-item" data-toggle="collapse">Item 4</a>
-
-      <div class="list-group collapse" id="item-4">
-          <a href="#" class="list-group-item">Item 1 di 4</a>
-          <a href="#" class="list-group-item">Item 2 di 4</a>
-          <a href="#" class="list-group-item">Item 3 di 4</a>
-      </div>
+      <img src="data:image/png;base64,${ActivityVO.act_photo} alt="Esempio" class="img-thumbnail" width=200px height=150px><br>
+      <a href="<%=request.getContextPath()%>/act/ActivitySearch?action=searchone&name=${ActivityVO.actID}"  target="_blank" class="navbar-link">${ActivityVO.act_name}</a>
 
   </div>
+</c:forEach>
+<!--   <div class="list-group"> -->
+
+<!--       <a href="#item-1" class="list-group-item" data-toggle="collapse">Item 1</a> -->
+
+<!--       <div class="list-group collapse" id="item-1"> -->
+<!--           <a href="#" class="list-group-item">Item 1 di 1</a> -->
+<!--           <a href="#" class="list-group-item">Item 2 di 1</a> -->
+<!--           <a href="#item-1-1" class="list-group-item" data-toggle="collapse">Item 3 di 1</a> -->
+
+<!--           <div class="list-group collapse" id="item-1-1"> -->
+<!--               <a href="#" class="list-group-item">Item 1 di 1.3</a> -->
+<!--               <a href="#" class="list-group-item">Item 2 di 1.3</a> -->
+<!--               <a href="#" class="list-group-item">Item 3 di 1.3</a> -->
+<!--           </div> -->
+
+<!--       </div> -->
+
+<!--       <a href="#item-2" class="list-group-item" data-toggle="collapse">Item 2</a> -->
+
+<!--       <div class="list-group collapse" id="item-2"> -->
+<!--           <a href="#" class="list-group-item">Item 1 di 2</a> -->
+<!--           <a href="#" class="list-group-item">Item 2 di 2</a> -->
+<!--           <a href="#" class="list-group-item">Item 3 di 2</a> -->
+<!--       </div> -->
+
+<!--       <a href="#item-3" class="list-group-item" data-toggle="collapse">Item 3</a> -->
+
+<!--       <div class="list-group collapse" id="item-3"> -->
+<!--           <a href="#" class="list-group-item">Item 1 di 3</a> -->
+<!--           <a href="#" class="list-group-item">Item 2 di 3</a> -->
+<!--           <a href="#item-3-1" class="list-group-item" data-toggle="collapse">Item 3 di 3</a> -->
+
+<!--           <div class="list-group collapse" id="item-3-1"> -->
+<!--               <a href="#" class="list-group-item">Item 1 di 3.3</a> -->
+<!--               <a href="#" class="list-group-item">Item 2 di 3.3</a> -->
+<!--               <a href="#" class="list-group-item">Item 3 di 3.3</a> -->
+<!--           </div> -->
+
+<!--       </div> -->
+
+<!--       <a href="#item-4" class="list-group-item" data-toggle="collapse">Item 4</a> -->
+
+<!--       <div class="list-group collapse" id="item-4"> -->
+<!--           <a href="#" class="list-group-item">Item 1 di 4</a> -->
+<!--           <a href="#" class="list-group-item">Item 2 di 4</a> -->
+<!--           <a href="#" class="list-group-item">Item 3 di 4</a> -->
+<!--       </div> -->
+
+<!--   </div> -->
 
 </div>
 
 	
 	</article>
+	
+
 <script>
+$(window).load(function(){
+	var $win = $(window),
+		$ad = $('#abgne_float_ad').css('opacity', 0).show(),	// 讓廣告區塊變透明且顯示出來
+		_width = $ad.width(),
+		_height = $ad.height(),
+		_diffY = 1250, _diffX = 20,	// 距離右及下方邊距
+		_moveSpeed = 800;	// 移動的速度
+ 
+	// 先把 #abgne_float_ad 移動到定點
+	$ad.css({
+		top: $(document).height()-_diffY,
+		left: $win.width() - _width - _diffX,
+		opacity: 1
+	});
+ 
+	// 幫網頁加上 scroll 及 resize 事件
+	$win.bind('scroll resize', function(){
+		var $this = $(this);
+ 
+		// 控制 #abgne_float_ad 的移動
+		$ad.stop().animate({
+			top: $this.scrollTop() + $this.height() - _height - _diffY,
+			left: $this.scrollLeft() + $this.width() - _width - _diffX
+		}, _moveSpeed);
+	}).scroll();	// 觸發一次 scroll()
+});
+
 $(function(){
 
 	$('#test').BootSideMenu({
@@ -295,7 +363,7 @@ $(function(){
 		  closeOnClick: true,
 
 		  // width
-		  width: "20%"
+		  width: "15%"
 		  
 		});
 

@@ -86,7 +86,7 @@ public class MemService {
 		MemService memSvc=new MemService();
 		for(MemVO mv:memSvc.getAll()){
 			if(mv.getMemberId().trim().equals(userId.trim())){
-				if(mv.getMemberId().trim().equals(userId.trim())){
+				if(mv.getMemberId().trim().equals(userMail.trim())){
 					return mv;					
 				}
 			}

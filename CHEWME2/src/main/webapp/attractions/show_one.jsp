@@ -1,4 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.iii.eeit9703.crawler.model.*"%>
@@ -148,7 +149,7 @@ html {
 				<div style="border: 1px solid #E3E3E3; padding:3px;">
 					<table>
 						<tr>
-							<td><img src='data:image/png;base64,${LoginOK.memPhoto}' width=40px height=40px>
+							<td><img src='data:image/png;base64,${LoginOK.memPhoto}' width=50px height=50px style="border-radius:50%;">
 							</td>
 							<td><textarea id="memo" placeholder="請輸入內容..."></textarea></td>
 						</tr>
@@ -156,7 +157,8 @@ html {
 				</div>
 				<div>
 					<button type="button" class="btn btn-info" id="button1">送出留言</button>
-				</div>				
+				</div>	
+				<div id="photo1" style="display:none;">${LoginOK.memPhoto}</div>			
 				<div id="text1"></div>	
 			</div>		
 				<div>
@@ -196,18 +198,21 @@ html {
 					//console.log(id1.value);				
 				var val1 = $("#memo").val();                // 取得textarea內輸入的留言
 				var anum = document.getElementById("id1").innerHTML;    // 取得當前頁面的景點編號
+				var memphoto = $("#photo1").text();
 					if (val1 == "") {
 						alert("請勿空白");
 					} 
 					else {
 						// 按下送出留言，底下區塊新增一個div
 						$("#text1").append(temp1);
+						$(".mysrc_:last").attr("id", "article_photo11" + j);
+						$("#article_photo11" + j).attr({"src": 'data:image/png;base64,' + memphoto});
 						$(".text_01:last").attr("id", "mytext"+j);
 						$("#mytext"+j).text(val1);					
 					}
 				//alert(mnum);
 				// 取得 1.使用者輸入的留言內容(val1)  2.當前頁面的景點編號(anum)   傳送到後端servlet寫進資料庫
-				$.post("/CHEWME2/ArticleServlet?action=sendmessage",{"contents":val1, "attractionID":anum}, function(data){
+				$.post("/CHEWME2/ArticleServlet?action=sendmessage",{"contents":val1, "attractionID":anum, "memPhoto1":memphoto}, function(data){
 					
 					})			
 					j++;
@@ -215,14 +220,18 @@ html {
 				});
 				
 				// 點擊留言版的標籤發生事件
-				$("#message").one('click', function(){				
+				$("#message").one('click', function(){	
+					//console.log($("#photo1").text());
 					// 取得當前景點ID
 					var num = document.getElementById("id1").innerHTML;
 					//console.log(num);
 	  				$.getJSON("/CHEWME2/ArticleServlet?action=getmessage",{'message':num},function(data){ 	
 						$.each(data, function(i, datas){
-							console.log(datas.contents);
+							//console.log(datas.contents);
+							//console.log(datas.memPhoto + "測試");
 							$("#text1").append(temp1);
+							$(".mysrc_:last").attr("id", "article_photo" + i);
+ 							$("#article_photo" + i).attr({"src": 'data:image/png;base64,' + datas.memPhoto});
 							$(".text_01:last").attr("id", "mytext_01"+i);
 							$("#mytext_01"+i).text(datas.contents);	
 						})

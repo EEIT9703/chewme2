@@ -1,6 +1,5 @@
 package com.iii.eeit9703.crawler.model;
 
-import com.iii.eeit9703.activity.model.ActivityVO;
 import com.iii.eeit9703.hibernate.util.HibernateUtil;
 
 import java.util.List;
@@ -58,15 +57,16 @@ public class SearchHibernateDAO {
 	public static void main(String[] args) {
 //
 		SearchHibernateDAO dao = new SearchHibernateDAO();
-		AttrVO attrs =dao.findByPKInt(5);
-		System.out.println(attrs.getName());
-//		AttrVO attr = dao.findByPK("台北101");
-//		System.out.print(attr.getAttractionID() + ",");
-//		System.out.print(attr.getName() + ",");
-//		System.out.print(attr.getCounty() + ",");
-//		System.out.print(attr.getType() + ",");
-//		System.out.print(attr.getAddress() + ",");
-//		System.out.print(attr.getTel() + ",");
-//		System.out.print(attr.getIntro() + ",");
+//		AttrVO attrs =dao.findByPK("101");
+//		System.out.println(attrs.getName());
+		AttrVO attr = dao.findByPK("101");
+		System.out.println(attr.getName());		
+		System.out.print(attr.getAttractionID() + ",");
+		System.out.print(attr.getName() + ",");
+		System.out.print(attr.getCounty() + ",");
+		System.out.print(attr.getType() + ",");
+		System.out.print(attr.getAddress() + ",");
+		System.out.print(attr.getTel() + ",");
+		System.out.print(attr.getIntro() + ",");
 	}
 }

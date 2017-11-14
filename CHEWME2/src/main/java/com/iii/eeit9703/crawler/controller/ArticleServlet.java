@@ -45,7 +45,7 @@ public class ArticleServlet extends HttpServlet {
 			JSONArray artarry = new JSONArray(meslist);
 			
 			out.println(artarry.toString());
-			 System.out.print(artarry);
+			// System.out.print(artarry.toString());
 
 		}
 	}
@@ -65,12 +65,14 @@ public class ArticleServlet extends HttpServlet {
 		if ("sendmessage".equals(action)) {
 			Integer attractionID = Integer.parseInt(request.getParameter("attractionID"));
 			String contents = request.getParameter("contents");
+			String mempho = request.getParameter("memPhoto1");
 			// System.out.println(contents);
 			// System.out.println(attractionID);
-
+			//System.out.println(mempho);
 			ArticleVO articleVO = new ArticleVO();
 			articleVO.setAttractionID(attractionID);
 			articleVO.setContents(contents);
+			articleVO.setMemPhoto(mempho);
 			
 			ArticleHibernateDAO arthiber = new ArticleHibernateDAO();
 			arthiber.insert(articleVO);

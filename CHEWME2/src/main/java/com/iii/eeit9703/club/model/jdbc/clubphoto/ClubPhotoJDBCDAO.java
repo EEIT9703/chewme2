@@ -9,9 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -66,6 +64,7 @@ public class ClubPhotoJDBCDAO implements ClubPhotoDAOI {
 		PreparedStatement pstmt = null;
 
 		try {
+			System.out.println("start to insert the Img");
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT);
 
@@ -130,36 +129,43 @@ public class ClubPhotoJDBCDAO implements ClubPhotoDAOI {
 			}
 		}
 	}
+
 	@Override
 	public void updateByClubId(ClubPhotoVO clubPicVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		System.out.println("the clubid is"+clubPicVO.getClubId());
+		if (!checkClubId(clubPicVO.getClubId())) {
+			System.out.println("change to insert the Img");
+			insert(clubPicVO);
+		} else {
+			try {
+				System.out.println("start to update the Img");
+				con = ds.getConnection();
+				pstmt = con.prepareStatement(UPDATE_BY_CLUBID);
 
-		try {
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(UPDATE_BY_CLUBID);
+				// pstmt.setInt(1, clubPicVO.getPhotoId());
+				pstmt.setString(1, clubPicVO.getName());
+				pstmt.setBinaryStream(2, clubPicVO.getPhoto());
+				pstmt.setInt(3, clubPicVO.getClubId());
+				pstmt.executeUpdate();
 
-			//pstmt.setInt(1, clubPicVO.getPhotoId());
-			pstmt.setString(1, clubPicVO.getName());
-			pstmt.setBinaryStream(2, clubPicVO.getPhoto());
-			pstmt.setInt(3, clubPicVO.getClubId());
-			pstmt.executeUpdate();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
 				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace();
+				if (con != null) {
+					try {
+						con.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}
@@ -199,12 +205,12 @@ public class ClubPhotoJDBCDAO implements ClubPhotoDAOI {
 	}
 
 	// �d�浧
-	
-	
-	public InputStream findPhotoById(Integer photoId){
-		
+
+	public InputStream findPhotoById(Integer photoId) {
+
 		return null;
 	}
+
 	@Override
 	public ClubPhotoVO findByPrimaryKey(Integer photoId) {
 
@@ -231,11 +237,11 @@ public class ClubPhotoJDBCDAO implements ClubPhotoDAOI {
 				byte[] buffer = new byte[len];
 				int count;
 				try {
-					while ((count = is.read(buffer)) !=-1 ) {
+					while ((count = is.read(buffer)) != -1) {
 
-							System.out.println("in the while");
-							// fos2.write(buffer, 0, len);
-							System.out.println(new String(buffer, "UTf-8"));
+						System.out.println("in the while");
+						// fos2.write(buffer, 0, len);
+						System.out.println(new String(buffer, "UTf-8"));
 					}
 				} catch (UnsupportedEncodingException e) {
 					// TODO Auto-generated catch block
@@ -290,14 +296,49 @@ public class ClubPhotoJDBCDAO implements ClubPhotoDAOI {
 		return list;
 	}
 
+	private boolean checkClubId(Integer clubId) {
+		List<Integer> list = new ArrayList<Integer>();
+		// ClubPhotoVO clubPicVO = null;
+
+		 Connection con = null;
+		 PreparedStatement pstmt = null;
+		 ResultSet rs = null;
+		try {
+			// con = ds.getConnection();
+			con = ds.getConnection();
+			//pstmt = con.prepareStatement(INSERT);
+			pstmt = con.prepareStatement("select clubId from club_photo");
+			// pstmt.setInt(1, clubId);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				Integer p_clubId;
+				// clubPicVO = new ClubPhotoVO();
+				// clubPicVO.setPhoto(rs.getBinaryStream("photo"));
+				// clubPicVO.setName(rs.getString("name"));
+				// clubPicVO.setPhotoId(rs.getInt("photoId"));
+				p_clubId = rs.getInt("clubId");
+				list.add(p_clubId);
+			}
+			rs.close();
+			pstmt.close();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		boolean have;
+		have = (list.contains(clubId)) ? true : false;
+		System.out.println("list is "+list);
+		System.out.println("have is "+have);
+		return have;
+	}
+
 	public static void main(String[] args) {
 
 		ClubPhotoJDBCDAO chd = new ClubPhotoJDBCDAO();
-		//List<ClubPhotoVO> list = chd.getClubPhotoByClubId(4);
+		// List<ClubPhotoVO> list = chd.getClubPhotoByClubId(4);
 		ClubPhotoVO photo = chd.findByPrimaryKey(1);
 
-	
-		
 	}
 
 }

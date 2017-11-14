@@ -9,6 +9,13 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/com-resource/css/scrollbar2.css" />
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/chatroom.css">
+
+
+
 <style>
 .custab {
 	border: 1px solid #ccc;
@@ -23,13 +30,22 @@
 	transition: 0.5s;
 }
 </style>
+<script src="../js/jquery-3.2.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+
+<script src="<%=request.getContextPath()%>/js/chatroom.js"></script>
+<script
+	src="<%=request.getContextPath()%>/com-resource/js/mychatroom.js"></script>
+<script
+	src="<%=request.getContextPath() %>/chatroom/js/openWebSocket.js"></script>
 </head>
 <body>
 	<header>
 		<%@ include file="../header.jsp"%>
 	</header>
 
-
+	<p hidden id="requestContextPath"><%=request.getContextPath() %></p>
 	<div class="container">
 		<div class="row col-md-6 col-md-offset-2 custyle">
 			<div class="col-md-9">
@@ -85,6 +101,7 @@
 								</tr>
 							</table>
 							<input type="hidden" name="memId" value="${LoginOK.memId }">
+							<input type="hidden" name="action" value="update">
 							<button
 								onclick="location.href='<%=request.getContextPath()%>/member/memeditor.jsp'">修改</button>
 						</form>
@@ -112,7 +129,7 @@
 		</div>
 	</div>
 	<script src="<%=request.getContextPath()%>/js/jquery-1.12.3.min.js"></script>
-<script>
+	<script>
 $(function(){
 	var id=document.getElementById("memId").value;
 	loadmemClub(id);   
@@ -125,15 +142,23 @@ $(function(){
 	    		  //product = {}
 	    		  var cell1 = $('<td></td>').text(smc.clubId)
 	    		  //var cell2 = $('<td></td>').text(smc.clubName)
-	    		  var cell2 = $('<td></td>').html("<a href='<%=request.getContextPath()%>/club/clubClientView.do?action=chooseClub&clubId="+smc.clubId+"'>"+smc.clubName+"</a>")
-	    		  var row = $('<tr></tr>').append([cell1,cell2]);
-	    		  
-	    		  fragment.append(row);
-	    	  });
-	    	  $('#memClubTable>tbody').html(fragment);	  
-	    })
-	   }
-	})
-</script>
+	    		  var cell2 = $('<td></td>').html("<a href='<%=request.getContextPath()%>/club/clubClientView.do?action=chooseClub&clubId="
+																				+ smc.clubId
+																				+ "'>"
+																				+ smc.clubName
+																				+ "</a>")
+														var row = $('<tr></tr>')
+																.append(
+																		[
+																				cell1,
+																				cell2 ]);
+
+														fragment.append(row);
+													});
+									$('#memClubTable>tbody').html(fragment);
+								})
+			}
+		})
+	</script>
 </body>
 </html>

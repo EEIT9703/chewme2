@@ -1,13 +1,11 @@
 package com.iii.eeit9703.activity.model;
 
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -33,6 +31,8 @@ public class ActivityDAO implements ActivityDAO_interface {
 		//活動上架
 		private static final String UPDATE_ACT =
 				"UPDATE activity set act_name=?, act_groups=?, BDate=?, EDate=?, act_price=?,activity_state=? where actID = ?";
+		private static final String UPDATE_ACT_CLUB =
+				"UPDATE activity set act_name=?, act_groups=?, BDate=?, EDate=?, act_price=?,activity_state=?,clubId=? where actID = ?";
 		//刪除活動
 		private static final String DELETE_ACT =
 				"DELETE FROM activity where actID = ?";
@@ -63,7 +63,11 @@ public class ActivityDAO implements ActivityDAO_interface {
 		try {
 			
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(UPDATE_ACT);
+			if((Integer)activityVO.getClubId()!=null){				
+				pstmt = con.prepareStatement(UPDATE_ACT_CLUB);
+			}else{				
+				pstmt = con.prepareStatement(UPDATE_ACT);
+			}
 			
 			pstmt.setString(1, activityVO.getAct_name());    //活動名稱
 			pstmt.setString(2, activityVO.getAct_groups());    //成團人數
@@ -71,8 +75,12 @@ public class ActivityDAO implements ActivityDAO_interface {
 			pstmt.setDate(4, activityVO.getEDate());     //結束日期
 			pstmt.setString(5, activityVO.getAct_price());    //活動價格
 			pstmt.setInt(6, activityVO.getActivity_state());  //活動上下架
-			pstmt.setInt(7, activityVO.getActID());      //活動編號
-
+			if((Integer)activityVO.getClubId()!=null){
+				pstmt.setInt(7, activityVO.getClubId());     //社團編號				
+				pstmt.setInt(8, activityVO.getActID());      //活動編號			
+			}else{
+				pstmt.setInt(7, activityVO.getActID());      //活動編號
+			}
 			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -297,6 +305,7 @@ public class ActivityDAO implements ActivityDAO_interface {
 					activityVO.setAct_current(rs.getString("act_current"));        //當前人數
 					activityVO.setAct_photo(rs.getString("act_photo"));
 					activityVO.setAct_price(rs.getString("act_price"));
+					activityVO.setActivity_state(rs.getInt("activity_state"));
 					
 					list.add(activityVO);
 				}

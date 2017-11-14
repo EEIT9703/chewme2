@@ -82,7 +82,7 @@ option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 			<div id="tabs" style="width:550px">
 			  <ul>
 		    	<li><a href="#attr">景　點</a></li>
-				<li><a href="#rest">餐　聽</a></li>
+				<li><a href="#rest">餐　廳</a></li>
  	 			<li><a href="#stay">住　宿</a></li>
 			  </ul>
 			  <div id="attr"></div>
@@ -113,7 +113,7 @@ option{font-family: 'Arial','Microsoft JhengHei';font-size:17px;}
 </div>		
 
 <!-- 轉換頁面框 -->
-<FORM METHOD="post" ACTION="Calendar.do" name="form1">
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Calendar.do" name="form1">
 <div class="modal fade" id="pass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">

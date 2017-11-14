@@ -51,7 +51,7 @@ public class GetImageServlet extends HttpServlet {
 			} else if (type.equalsIgnoreCase("upimg")) {
 				pstmt = conn.prepareStatement("select image from attractions where attractionID = ?");
 			} else if (type.equalsIgnoreCase("memPic")){
-				pstmt = conn.prepareStatement("select memPhoto from  where memId = ?");				
+				pstmt = conn.prepareStatement("select memPhoto from members where memId = ?");				
 			} else if (type.equalsIgnoreCase("clubPic")){
 				pstmt = conn.prepareStatement("select photo from club_photo where clubId = ?");								
 			} else if(type.equalsIgnoreCase("actPic")){
