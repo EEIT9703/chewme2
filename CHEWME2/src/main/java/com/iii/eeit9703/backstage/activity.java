@@ -38,7 +38,8 @@ import com.iii.eeit9703.collection.CollectionService;
 import com.iii.eeit9703.collection.CollectionVO;
 import com.iii.eeit9703.crawler.model.AttrService;
 import com.iii.eeit9703.crawler.model.AttrVO;
-import com.iii.eeit9703.crawler.model.SearchHibernateDAO;
+import com.iii.eeit9703.crawler.model.AttrVO2;
+import com.iii.eeit9703.crawler.model.SearchHibernateDAO2;
 import com.iii.eeit9703.member.model.MemDAO_hibernate;
 import com.iii.eeit9703.member.model.MemVO;
 import com.iii.eeit9703.member.model.MemberSession;
@@ -423,7 +424,7 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 					}
 				if("getOrderCharts".equals(action)){
 					
-					SearchHibernateDAO daoAttr = new SearchHibernateDAO();		
+					SearchHibernateDAO2 daoAttr = new SearchHibernateDAO2();		
 					ScheduleDAO_Hibernate daoSch =new ScheduleDAO_Hibernate();
 					List<ScheduleVO> listsSch =daoSch.getAll();	
 					int[] sche =new int[listsSch.size()];
@@ -464,8 +465,8 @@ private void processRequest(HttpServletRequest request, HttpServletResponse resp
 						int[] attr_total =new int[count+5];
 						for (Map.Entry<Integer, Integer> entry : list) {
 						if(count<5){
-						AttrVO attrVO=daoAttr.findByPKInt(entry.getKey());
-						attr[count]=attrVO.getName();
+						AttrVO2 attrVO2=daoAttr.findByPKInt(entry.getKey());
+						attr[count]=attrVO2.getName();
 						attr_total[count]=entry.getValue();		
 						// map1.put(attrVO.getName(), entry.getValue());
 						// sec.add(map1);
