@@ -242,7 +242,7 @@ body {
 						<li style="padding:18px 0px 0px 0px;margin-left:20px">
 								訪客,你好
 						</c:when>
-						<c:when test="${ ! empty LoginOK && empty LoginOK.memPhoto}">
+						<c:when test="${ ! empty LoginOK && empty LoginOK.memPhoto && empty picUri}">
 						<li >
 							<img src='<%=request.getContextPath()%>/image/nophoto.png'
 									style="border-radius: 50%" width=50px height=50px>
@@ -357,10 +357,13 @@ body {
 
 	function loadActivity(){		
 		$.getJSON('<%=request.getContextPath()%>/ShoppingCar?action=getMyCars',{},function(array){
+			
         var fg = $(document.createDocumentFragment());
 	 		var opt = $(".cartrows");
 	 			opt.empty();
 			var count=0;
+			
+			if(array!=''){
 	 		$.each(array,function(i,activity){
 	 			var img ="data:image/png;base64,"+activity.act_photo;
 	 			var div_out=$("<div></div>").addClass('cartrow');
@@ -373,13 +376,19 @@ body {
 	 			var button = $('<button id="opop"></button>').css('color','red').addClass('close glyphicon glyphicon-remove').attr({'type':'button','name':activity.actID});
 	 			var span2=$('<span></span>').append(button)			
 	 			var cell2=$("<div></div>").append([span1,span2])	
-	 			var cell3=$("<div></div>").text(activity.act_price)
+	 			var cell3=$("<div></div>").text("價錢:"+activity.act_price+"$")
 	 			
 	 			cell1.append(img);
 	 			div_out.append([cell1,cell2,cell3]);
 	 			fg.append(div_out);
 	 			count++;
 	 		})
+			}
+			else{
+				var div_no=$("<h3>你未收藏任何行程</h3>").addClass('cartrow')
+				fg.append(div_no);
+				
+			}
 	 		$('.aaa').text(count);
 	 		$('.cartrows').append(fg);
 	 		
@@ -402,8 +411,7 @@ body {
 	
 	$('#div1').on('click','button',function(){
 		var id = $(this).parent().parent().parent().parent().parent().find('input').attr('id')
-		
-		alert(id)
+	
 		
 		$.getJSON('<%=request.getContextPath()%>/ShoppingCar?action=inputCar',{'ID' : id}, result);
 	})

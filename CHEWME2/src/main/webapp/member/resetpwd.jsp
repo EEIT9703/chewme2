@@ -13,12 +13,12 @@
 	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<header><%@ include file="/member/login.jsp"%></header>
+	<header><%@ include file="/index.jsp"%></header>
 	<div align="center">
 			<button type="submit" class="btn btn btn-primary" data-toggle="modal"
-				data-target="#myModal">點此重設密碼</button>
+				data-target="#resetModal">點此重設密碼</button>
 	</div>
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+	<div class="modal fade" id="resetModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">

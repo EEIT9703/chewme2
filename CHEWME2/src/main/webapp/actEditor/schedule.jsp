@@ -30,7 +30,7 @@
 h1{text-align: center;font-family: 'Arial','Microsoft JhengHei';}
 h2{text-align: center;font-family: 'Arial','Microsoft JhengHei';}
 span{color: #004B97;font-family: 'Arial','Microsoft JhengHei';font-size:27px;font-weight:bold;}
-#name{color:	#003D79;font-family: 'Arial','Microsoft JhengHei';font-size:32px;font-weight:bold;padding-left:10px;}
+#attrname,#actname{color:	#003D79;font-family: 'Arial','Microsoft JhengHei';font-size:32px;font-weight:bold;padding-left:10px;}
 #tel{color: #9F5000;font-family: 'Arial','Microsoft JhengHei';font-size:27px;font-weight:bold;padding-left:10px;}
 #addr{font-family: 'Arial','Microsoft JhengHei';font-size:27px;font-weight:bold;padding-left:10px;}
 #intro{font-family: 'Arial','Microsoft JhengHei';font-size:22px;padding-left:10px;}
@@ -47,7 +47,7 @@ span{color: #004B97;font-family: 'Arial','Microsoft JhengHei';font-size:27px;fon
 
 <div id=showSchedule><img id='photo' /></div>
 <div id=schedule>
-	<h1 id="name"></h1>
+	<h1 id="actname"></h1>
 	<h2 id="day1"></h2>
 	<div id="vt1"></div>
 	<h2 id="day2"></h2>
@@ -66,7 +66,7 @@ window.onload = function(){
 	
 	$.get("<%=request.getContextPath()%>/Schedule.do?mission=getActName",{'actID':actID},function(actName){
 		console.log(actName);
-		$('#name').html(actName+"的行程明細");
+		$('#actname').html(actName+"的行程明細");
 		ACTname=actName;
 		console.log(ACTname);
 	});
@@ -93,7 +93,7 @@ window.onload = function(){
 		
 		for (var i = k; i < array.length; i++) {			
 				
-			var name = $("<p id='name'></p>").append(array[i].name);
+			var name = $("<p id='attrname'></p>").append(array[i].name);
 			var tel = $("<p id='tel'></p>").append(array[i].tel);
 			var addr = $("<p id='addr'></p>").append(array[i].address);
 			var intro = $("<p id='intro'></p>").append(array[i].intro);

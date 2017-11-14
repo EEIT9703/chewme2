@@ -2,15 +2,15 @@
 pageEncoding="UTF-8"%> 
 
 
-<div class="col-md-4  margin_bottom30">
+<div class="col-md-4  margin_bottom30 activityTemplate" style="height:450px;">
            <div class="thumbnail">
 			<a class="url" href="<%=request.getContextPath()%>/act/show.jsp">			
 				<img class="center-block img-responsive" src="" height="150">
 			</a>
            		<input type="hidden" class="id">  
 				<div class="blog-content bg-white">
-				<img src="<%=request.getContextPath()%>/image/chewme-logo.png" width="50" height="50" style="float:left">				
-				<h2 id="" class="act_name"></h2>
+				<img src="<%=request.getContextPath()%>/image/chewme-logo-3-1.png" width="50" height="50" style="float:left;vertical-align:middle;">
+				<h4 id="" class="act_name"></h4>
 				
 				<a class="btn-sm btn btn-info ">
                 <i class="act_price fa fa-usd" aria-hidden="true"></i>

@@ -170,7 +170,7 @@ html {
 			<div>
 				<tr>
 					
-					<td><a href="insertAttr.jsp" class="btn btn-primary">返回列表</a></td>
+					<td><a href="listAll.jsp" class="btn btn-primary" style="color:white;">返回列表</a></td>
 				</tr>
 			</div>
 		</div>
