@@ -2,7 +2,7 @@
 pageEncoding="UTF-8"%> 
 
 
-<div class="col-md-4  margin_bottom30">
+<div class="col-md-4  margin_bottom30 activityTemplate">
            <div class="thumbnail">
 			<a class="url" href="<%=request.getContextPath()%>/act/show.jsp">			
 				<img class="center-block img-responsive" src="" height="150">
