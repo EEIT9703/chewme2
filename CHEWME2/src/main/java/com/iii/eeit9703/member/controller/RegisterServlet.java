@@ -136,6 +136,8 @@ public class RegisterServlet extends HttpServlet {
 				if (memSvc.idExists(memberId)) {
 					// errorMsgs.add("帳號已存在");
 					errorMsgs.put("IDExistError", "帳號已存在");
+					rw.write("<script>alert('帳號已存在！'); history.go(-1);</script>");  
+		            return; 
 				}
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("memVO", memVO);

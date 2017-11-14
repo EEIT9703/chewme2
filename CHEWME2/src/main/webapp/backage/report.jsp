@@ -159,7 +159,12 @@
 				loadReport(cell);			
 			});
 
-			   function loadReport(cell){	 
+			   function loadReport(cell){
+				   var that = this;
+				    if(!this.todayDate) {
+				        this.todayDate = new Date();
+				    }
+				   
 					$(document).ready(function() {		
 						//alert( JSON.stringify(all));
 						$('#calendar').fullCalendar({
@@ -169,7 +174,7 @@
 								right : 'month,agendaWeek,agendaDay,listWeek'
 							},
 							
-							defaultDate : '2017-10-10',
+							defaultDate :that.todayDate,
 							navLinks : true, // can click day/week names to navigate views
 							editable : true,
 							eventLimit : true, // allow "more" link when too many events

@@ -6,13 +6,14 @@ $(document).ready(function() {
 	reqContextPath = $('#reqContextPath').text();
 	console.log($('.manage_input'));
 	$("#tabs").tabs();
+	$("#briefdiv").hide();
 	getTemplates();
 	createForum();
 	setClubImg();
 	changePicSet();
 	joinClubEventListner();
 	changeManagerEventListener();
-
+	changeBriefChangeListener();
 
 })
 
@@ -25,8 +26,21 @@ function joinClubEventListner() {
 			window.alert("加入社團成功");
 			$('#joinClub').hide();
 			$('#joinClub').prop('disabled','disabled');
+			$('#hello p').text('歡迎加入社員');
 			
 		})
+	});
+}
+
+function changeBriefChangeListener(){
+	$('#briefbutton').on("click",function(){
+		$("#briefdiv").show();
+		 console.log($("#brieftextarea").val());
+		 console.log($("#briefpanel p").text());
+		var newbrief = $("#brieftextarea").val();
+		
+		$("#briefpanel p").text(newbrief);
+		renewClubInfo();
 	});
 }
 
@@ -57,19 +71,24 @@ function changeManagerEventListener() {
 			var temp = $(target).find('input').val();
 			$(target).text(temp);
 		})
-		$.post(reqContextPath + '/club/clubClientView.do', {
-			
-			action : "updateClubInfo",
-			clubId : $('#clubIdforView').text(),
-			clubName : $('#club_name').text(),
-			addr : $('#club_addr').text(),
-			cityId : $('#club_loc').text(),
-			refUrl : $('#club_refurl').text(),
-		}, function(data) {
-			console.log("ok");
-		})
+		renewClubInfo();
 	})
 }
+function renewClubInfo(){
+	$.post(reqContextPath + '/club/clubClientView.do', {
+		
+		action : "updateClubInfo",
+		clubId : $('#clubIdforView').text(),
+		clubName : $('#club_name').text(),
+		addr : $('#club_addr').text(),
+		cityId : $('#club_loc').text(),
+		refUrl : $('#club_refurl').text(),
+		brief : $('#briefpanel p').text()
+	}, function(data) {
+		console.log("ok");
+	})
+}
+
 
 
 function setClubImg() {
@@ -105,6 +124,7 @@ function clientCCV() {
 	$('.manage button').prop("disabled", true).parent().hide();
 	$("#clientCCV").parent().hide()
 	$("#manageCCV").parent().show();
+	$("#briefdiv").hide();
 }
 
 function manageCCV() {
@@ -120,6 +140,7 @@ function manageCCV() {
 	})
 	$("#clientCCV").parent().show()
 	$("#manageCCV").parent().hide();
+	$("#briefdiv").show();
 
 }
 function changeContent(btn) {

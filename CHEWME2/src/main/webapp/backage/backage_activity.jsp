@@ -155,7 +155,7 @@
   		function snedActivity(array){
   			
   			//var docFrag = $(document.createDocumentFragment()); 			
-  			var status=["下架","上架","待審核"];
+  			var status=["建構","上架","下架"];
   			var opt = $('#activity>tbody');
   			opt.empty();
   			$.each(array,function(i,activity){				

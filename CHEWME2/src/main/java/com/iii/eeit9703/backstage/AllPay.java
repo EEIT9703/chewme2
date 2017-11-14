@@ -152,7 +152,7 @@ public class AllPay extends HttpServlet {
 			obj.setTradeDesc("test Description");
 			obj.setItemName(activityVO.getAct_name()+"__"+people+"人");
 			obj.setReturnURL("https://tw.yahoo.com");
-			obj.setClientBackURL("http://www.google.com");//成功回到哪裡
+			obj.setClientBackURL("http://localhost:8081/CHEWME2/index.jsp");//成功回到哪裡
 			obj.setNeedExtraPaidInfo("N");
 			obj.setHoldTradeAMT("0");
 			obj.setUseRedeem("N");

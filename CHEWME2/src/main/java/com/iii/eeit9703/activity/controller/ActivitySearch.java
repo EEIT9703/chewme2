@@ -84,12 +84,12 @@ public class ActivitySearch extends HttpServlet {
 				ActService actSvc = new ActService();
 				ActivityVO activityVO = actSvc.getOneAct(actID);
 				System.out.println(activityVO.getAct_name());
-				
+				if(session.getAttribute("record")!=null){
 				Set<Integer> record =(Set<Integer>) session.getAttribute("record");				
-				record.add(actID);
+				record.add(actID);			
 				System.out.println(record.size()+"qeqeqeeqeqeqeqe");
 				session.setAttribute("record", record);
-				
+				}
                 req.setAttribute("activityVO", activityVO);
 				RequestDispatcher view = req.getRequestDispatcher("/act/show.jsp");
 				view.forward(req,resp);

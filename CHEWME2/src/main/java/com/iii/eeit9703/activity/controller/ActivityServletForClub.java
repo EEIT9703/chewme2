@@ -142,6 +142,8 @@ public class ActivityServletForClub extends HttpServlet {
 				//2.查詢一筆資料
 				ActService actSvc = new ActService();
 				ActivityVO activityVO = actSvc.getOneAct(actID);
+				
+				
 	
 				JSONObject actJSON = new JSONObject(activityVO);
 
@@ -187,6 +189,12 @@ public class ActivityServletForClub extends HttpServlet {
 				String act_groupsReg ="^[(0-9_)]$";
 				if(!act_groups.trim().matches(act_groupsReg)){
 					//error.put("errorGroups2","旅遊人數只能為數字");
+				}
+				
+				String act_current = req.getParameter("act_current");
+				if(act_current == null){
+					 act_current = "0";
+					System.out.println(act_current);
 				}
 				
 				java.sql.Date BDate = null;

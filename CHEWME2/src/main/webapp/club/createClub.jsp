@@ -10,7 +10,7 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="css/dialog.css" />
 <link rel="stylesheet" type="text/css"
 	href="../css/igs/imgareaselect-default.css" />

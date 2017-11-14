@@ -180,7 +180,7 @@ margin-right:5px;
 .item{
 /* margin-left:0px; */
 /* margin-right:80px; */
-margin:0px 80px 30px 0px;
+/* margin:0px 80px 30px 0px; */
 }
 
 .item img{
@@ -251,12 +251,14 @@ $(function(){
 // 			opt.append(cell5);
 			var count=0;
 			$.each(array,function(i,activity){
-			var img ="data:image/png;base64,"+activity.act_photo;
-			
-	         var cell1 = $('<img>').attr({"src":img})	       
+			var img ="data:image/png;base64,"+activity.act_photo;		
+	         var cell1 = $('<img>').attr({"src":img})
+	         var alink="<%=request.getContextPath()%>"+"/act/ActivitySearch?action=searchone&name="+activity.actID;
+	         var b= $('<a></a>').attr("href",alink)
+	          b.append(cell1)
+	         
 	       	 var cell2 = $('<p></p>').text(activity.act_name);
-	         
-	         
+     
 	         var span =$('<span></span>')
 	         var select =$('<select></select').attr({"id":"selectID"});
 	      		for(var a=1;a<=8;a++){
@@ -268,7 +270,7 @@ $(function(){
  	       
   
  	         var span2 =$('<span></span>').text('人')
-	         var cell3=$('<span></span>').addClass('inder_price').text(activity.act_price);
+	         var cell3=$('<span></span>').addClass('inder_price').text(activity.act_price)
 	      	 var cell4=$('<span></span>').addClass('price_icon').text('$');
 	      	 
 	      	 var button1=$('<button></button>').css({'color':'write','width':'45px','height':'30px','padding':'0px 0px 1px 0px'}).addClass('buy btn btn-primary').attr({'type':'submit'}).text("購買");
@@ -276,7 +278,7 @@ $(function(){
 	       	 var button2=$('<button></button>').css({'color':'write','width':'45px','height':'30px','padding':'0px 0px 1px 0px'}).addClass('delete btn btn-danger').attr({'type':'button'}).text("移除");
 	         var cell6=$('<span><span>').append(button2)
          	 var row = $("<div></div>").addClass('item').attr({'class':'item','id':activity.actID});	 
-	       	 row.append([cell1, cell2,span,span2,cell3,cell4,cell5,cell6]);
+	       	 row.append([b, cell2,span,span2,cell3,cell4,cell5,cell6]);
 	       	fg.append(row);
   	       
 	       	count++;
@@ -409,10 +411,10 @@ $(function(){
 
 				$.post('<%=request.getContextPath()%>/allpay',{'action':'goOrder','actID':actID,'opt':opt,'price':price},function(){
 					
-					$.blockUI({ message: '<h1><img src="busy.gif" /> Just a moment...</h1>' });
+					$.blockUI({ message: '<h1><img src="busy.gif" /> 處理中...</h1>' });
 					setTimeout(function(){
 						window.location.href="<%=request.getContextPath()%>/backage/allpay_list.jsp";	
-					}, 5000);
+					}, 3000);
 	
 				});
 			
@@ -447,11 +449,12 @@ $(function(){
 		  })
 // 		$("#cc").wrecker({
 // 			  itemSelector : ".item",
-// 			  maxColumns : 4
+// 			  maxColumns : 3,
+			 
 // 			});
 // 		$("#cc").wrecker({
 // 			  itemSelector : ".item",
-// 			  maxColumns : 4,
+// 			  maxColumns : 3,
 // 			  responsiveColumns : [
 // 			    // windowMaxWidth : columns
 // 			    // windowMaxWidth order and values should match those in your responsive CSS
