@@ -217,13 +217,13 @@
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal"
 								aria-hidden="true">&times;</button>
-							<h4 class="modal-title" id="myModalLabel">我要檢舉</h4>
+							<h4 class="modal-title" id="myModalLabel">我要檢舉此行程</h4>
 						</div>
 						<div class="modal-body">
 						<div class="form-group">
 <!-- 						<form id="fileUpDate">					 -->
 <!-- 								<input type="text" id="text" name="text" width=2px height=400px> -->
-								 <textarea class="text" cols="75" rows="5" style="resize: none">
+								 <textarea class="text" cols="75" rows="5" style="resize: none" >
 　						
 								</textarea>
 <!-- 						</form> -->					
