@@ -10,7 +10,7 @@ pageEncoding="UTF-8"%>
 				<div class="row">
 					<div class="col-xs-2 col-sm-1 col-md-1 imgDiv">
 						<img src="/CHEWME2/image/guest.png"
-							class="img-responsive" style="border-radius:50%"></img>
+							style="border-radius:50%;width:50px;height:50px"></img>
 					</div>
 					<div class="col-xs-9 col-sm-10 col-md-11">
 						<div class="well">...</div>
