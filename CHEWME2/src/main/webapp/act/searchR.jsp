@@ -10,13 +10,15 @@ pageEncoding="UTF-8"%>
            		<input type="hidden" class="id">  
 				<div class="blog-content bg-white">
 				<img src="<%=request.getContextPath()%>/image/chewme-logo-3-1.png" width="50" height="50" style="float:left;vertical-align:middle;">
-				<h4 id="" class="act_name"></h4>
+				<h3 id="" class="act_name"></h3>
 				
 				<a class="btn-sm btn btn-info ">
                 <i class="act_price fa fa-usd" aria-hidden="true"></i>
                 </a>
-                
-				<a class="btn-sm btn btn-info ">
+                <a class="btn-sm btn btn-info ">
+                <span class="act_groups glyphicon glyphicon-user"></span>
+                </a>
+				<a class="btn-sm btn btn-danger ">
                 <span class="act_current glyphicon glyphicon-user"></span>
                 </a> 
 				<hr>
