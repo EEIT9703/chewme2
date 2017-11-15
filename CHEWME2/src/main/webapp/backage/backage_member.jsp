@@ -91,7 +91,7 @@
                           	 <th>會員密碼</th>
                              <th>生日</th>
                              <th>信箱</th>
-                             <th>地址</th>
+<!--                              <th>地址</th> -->
                              <th>電話</th>                            
 <!--                         <th>圖片</th> -->
                              <th>狀態</th>
@@ -135,9 +135,9 @@
 	         var cell4 = $('<td></td>').text(member.memPwd);  
 	         var cell5 = $('<td></td>').text(member.memBirthday);
 	         var cell6 = $('<td></td>').text(member.memMail);
-	         var cell7 = $('<td></td>').text(member.memAddr);
+// 	         var cell7 = $('<td></td>').text(member.memAddr);
 	         var cell8 = $('<td></td>').text(member.memPhone);	      
-	        // var cell11 = $('<td></td>').text(member.memPhoto);  
+	        // var cell11 = $('<td></td>	').text(member.memPhoto);  
 	         var select1 =$('<select id="select1"></select');
 	         var select2 =$('<select id="select2"></select');
 
@@ -161,11 +161,32 @@
 	        		select2.append(sel2)        		 
 	        })
 	        var cell10= $('<td></td>').html(select2)             
-	        var row = $('<tr></tr>').append([cell1, cell2,cell3,cell4,cell5,cell6,cell7,cell8,cell9,cell10]); 
+	        var row = $('<tr></tr>').append([cell1, cell2,cell3,cell4,cell5,cell6,cell8,cell9,cell10]); 
 	  	         opt.append(row);
 	        		
   			})
-  			 $('#member').DataTable();
+  				var opt = {
+							"oLanguage" : {
+								"sProcessing" : "處理中...",
+								"sLengthMenu" : "顯示 _MENU_ 項結果",
+								"sZeroRecords" : "沒有匹配結果",
+								"sInfo" : "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+								"sInfoEmpty" : "顯示第 0 至 0 項結果，共 0 項",
+								"sInfoFiltered" : "(從 _MAX_ 項結果過濾)",
+								"sSearch" : "搜索:",
+								"oPaginate" : {
+									"sFirst" : "首頁",
+									"sPrevious" : "上頁",
+									"sNext" : "下頁",
+									"sLast" : "尾頁"
+									
+								}
+							}
+						};
+  			
+  			$("#member>tbody>tr:nth-child(even)").css("background-color","#f1f7fe");
+						$("#member").dataTable(opt);
+  	
   		}
   		
 		 

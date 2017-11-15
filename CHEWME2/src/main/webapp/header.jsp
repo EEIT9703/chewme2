@@ -29,7 +29,7 @@ pageContext.setAttribute("all",a);
 
 .cartrow {
 	width: 100%;
-	padding: 20px;
+	padding: 10px;
 	margin: auto;
 }
 
@@ -202,7 +202,7 @@ body {
 									<li role="presentation" class="divider"></li>
 									<li role="presentation" class="goshop"><a
 										href="<%=request.getContextPath()%>/backage/collection.jsp"><input
-											type="button" value="前往結帳" class="btn btn-primary"
+											type="button" value="前往收藏列表" class="btn btn-primary"
 											style="text-align: center"></a></li>
 								</ul>
 							</div></li>
@@ -376,7 +376,7 @@ body {
 	 			var button = $('<button id="opop"></button>').css('color','red').addClass('close glyphicon glyphicon-remove').attr({'type':'button','name':activity.actID});
 	 			var span2=$('<span></span>').append(button)			
 	 			var cell2=$("<div></div>").append([span1,span2])	
-	 			var cell3=$("<div></div>").text("價錢:"+activity.act_price+"$")
+	 			var cell3=$("<div></div>").text("價錢:"+activity.act_price+"$").css('margin','5px 0px 0px 0px')
 	 			
 	 			cell1.append(img);
 	 			div_out.append([cell1,cell2,cell3]);
