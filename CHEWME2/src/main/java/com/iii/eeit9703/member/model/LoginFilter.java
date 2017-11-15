@@ -13,8 +13,8 @@ import com.iii.eeit9703.member.model.MemVO;
 @WebFilter(
 		urlPatterns = { "/*" }, 
 		initParams = { 
-//				@WebInitParam(name = "mustLogin1", value = "/attractions/*"), 
-//				@WebInitParam(name = "mustLogin2", value = "/act/*"), 
+				@WebInitParam(name = "mustLogin1", value = "/attractions/*"), 
+				@WebInitParam(name = "mustLogin2", value = "/act/*"), 
 				//請自行加入jsp需要過濾的頁面
 		})
 public class LoginFilter implements Filter {
@@ -32,6 +32,8 @@ public class LoginFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter rw = response.getWriter();
 		boolean isRequestedSessionIdValid = false;
 		if (request instanceof HttpServletRequest
 				&& response instanceof HttpServletResponse) {
@@ -51,7 +53,7 @@ public class LoginFilter implements Filter {
 					if ( ! isRequestedSessionIdValid ) {
 						session.setAttribute("timeOut", "使用逾時，請重新登入");
 					}
-					resp.sendRedirect(contextPath + "/index.jsp");
+					rw.write("<script>alert('若要使用功能請登入!'); location.href='../index.jsp';</script>");
 					return;
 				}
 			} else {   //不需要登入

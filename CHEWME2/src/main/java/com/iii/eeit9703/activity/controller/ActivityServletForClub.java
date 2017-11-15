@@ -230,6 +230,7 @@ public class ActivityServletForClub extends HttpServlet {
 					
 				activityVO.setAct_name(act_name);
 				activityVO.setAct_groups(act_groups);
+				activityVO.setAct_current(act_current);
 				activityVO.setBDate(BDate);
 				activityVO.setEDate(EDate);
 				activityVO.setAct_price(act_price);
