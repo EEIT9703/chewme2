@@ -251,7 +251,7 @@ ul, li {
 <hr color="black" size="20" width="100%"  align="left">
 <c:forEach var="ActivityVO" items="${list1}">
   <div class="user">
-      <img src="data:image/png;base64,${ActivityVO.act_photo} alt="Esempio" class="img-thumbnail" width=200px height=150px><br>
+      <img src="data:image/png;base64,${ActivityVO.act_photo}" alt="Esempio" class="img-thumbnail" width=200px height=150px><br>
       <a href="<%=request.getContextPath()%>/act/ActivitySearch?action=searchone&name=${ActivityVO.actID}"  target="_blank" class="navbar-link">${ActivityVO.act_name}</a>
 
   </div>

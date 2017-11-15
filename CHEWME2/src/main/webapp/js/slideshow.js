@@ -19,7 +19,7 @@ $(function() {
 									function(i, photo) {
 
 										var cell1 = $(
-												'<a target="_blank" href="http://yahoo.com.tw"></a>')
+												'<a target="_blank" href="#" ></a>')
 												.html(
 														"<img src='data:image/png;base64,"+photo.photo+"'>");
 										var row = $(

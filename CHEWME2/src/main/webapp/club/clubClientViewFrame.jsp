@@ -233,14 +233,14 @@ table {
 					<li class="nav-item"><a class="nav-link active"
 						id="new-travel-tab" data-toggle="tab" href="#newActList-page"
 						role="tab" aria-controls="home" aria-expanded="true">推薦行程</a></li>
+					<li class="nav-item"><a class="nav-link" data-toggle="tab"
+						href="#member-info" role="tab" aria-controls="profile">社員資訊</a></li>
 					<li class="nav-item"><a class="nav-link " id="forum-tab"
 						data-toggle="tab" href="#forum-page" role="tab"
 						aria-controls="profile">討論區</a></li>
 					<li class="nav-item"><a class="nav-link " id="myclub-tab"
 						data-toggle="tab" href="#my-info" role="tab"
 						aria-controls="profile">關於我們</a></li>
-					<li class="nav-item"><a class="nav-link" data-toggle="tab"
-						href="#member-info" role="tab" aria-controls="profile">社員資訊</a></li>
 					<li class="nav-item"><a class="nav-link" data-toggle="tab"
 						href="#manager-chat" role="tab" aria-controls="profile">管理員聊天</a></li>
 				</ul>
