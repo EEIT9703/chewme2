@@ -10,10 +10,11 @@ pageEncoding="UTF-8"%>
 				<div class="intro1"></div>
 				<img class="searchhasimage" src="" height="200"></img>
 				
-				<a class="btn btn-info btn-sm" href="<%=request.getContextPath()%>/attractions/show_attr.jsp">
+				<a class="btn btn-info btn-md pull-center" href="<%=request.getContextPath()%>/attractions/show_attr.jsp">
               	<span class="glyphicon glyphicon-log-in"></span> 查看
              	</a>  
-         
+             	<hr>
+         		<p>
 				<div>Share : 
 				<a href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent('http://www.web.com.tw/activity/index.html'))));"><i class="fa fa-facebook margin_left10" aria-hidden="true"></i></a>
 				<a href="javascript"><i class="fa fa-twitter margin_left10" aria-hidden="true"></i></a>

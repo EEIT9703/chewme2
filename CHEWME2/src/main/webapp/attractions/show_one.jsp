@@ -86,10 +86,13 @@ html {
  	height: 100% 
  } 
 
- body { 
- 	height: 100%; 
- 	margin: 0 20%; 
- 	padding: 0px 
+body { 
+ 	height: 1423px; 
+  	margin: 0 20%;  
+  	padding: 0px;  
+  	background: url(https://i.ytimg.com/vi/4kfXjatgeEU/maxresdefault.jpg); 
+ 	background-repeat: no-repeat;
+ 	background-size: cover;
  }    
  #button1{
  	margin:0px;
@@ -154,8 +157,14 @@ html {
 							<c:when test = "${empty LoginOK}">
 								<img src = "<%=request.getContextPath()%>/attractions/img/portrait.png" width=50px height=50px style="border-radius:50%;">								
 							</c:when>
-							<c:otherwise>
+							<c:when test = "${ !empty LoginOK && empty LoginOK.memPhoto && empty picUri}">
+								<img src = "<%=request.getContextPath()%>/attractions/img/portrait.png" width=50px height=50px style="border-radius:50%;">
+							</c:when>
+							<c:when test = "${ !empty LoginOK && !empty LoginOK.memPhoto}">
 								<img src='data:image/png;base64,${LoginOK.memPhoto}' width=50px height=50px style="border-radius:50%;">
+							</c:when>
+							<c:otherwise>
+								<img src='${picUri}' style="border-radius: 50%" width=50px height=50px >
 							</c:otherwise>									
 							</c:choose>
 							</td>
