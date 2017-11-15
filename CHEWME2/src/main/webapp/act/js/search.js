@@ -45,10 +45,14 @@ $(document).ready(function() {
 					$("#act_name"+i).text(datas.act_name);
 					
 					$(".act_price:last").attr("id","act_price"+i);				
-					$("#act_price"+i).after(" 價格:"+datas.act_price+" 元");		
+					$("#act_price"+i).after(" 價格:"+datas.act_price+" 元");
+					
+					$(".act_groups:last").attr("id","act_groups"+i);
+					$("#act_groups"+i).after(" 上限:"+datas.act_groups+" 人");
 					
 					$(".act_current:last").attr("id","act_current"+i);
-					$("#act_current"+i).after(" 目前人數:"+datas.act_current+" 人");
+					$("#act_current"+i).after(" 目前:"+datas.act_current+" 人");
+										
 					
 					$(".id:last").attr({"id": datas.actID, "value": datas.actID});
 				}

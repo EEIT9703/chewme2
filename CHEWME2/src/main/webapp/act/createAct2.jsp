@@ -9,9 +9,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<!-- Font Awesome  -->
-<link href="<%=request.getContextPath()%>/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
+<!-- Font Awesome  -->
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+<link href="<%=request.getContextPath()%>/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
 <script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
@@ -168,7 +169,7 @@ body{
                     </div>
                 <div class="btn-group btn-group-justified" >
                     <a href="#" class="btn btn-default">參加行程</a>
-                    <a href="#" class="btn btn-default"><i class="fa fa-heart-o" aria-hidden="true" style="color:red;"></i> 加入我的收藏</a>
+                    <a href="#" class="btn btn-default"><i class="fa fa-heart-o" aria-hidden="true" style="color:red;"></i></i> 加入我的收藏</a>
                 </div>               
 
                 <div class="card" style="margin-top:20px;">

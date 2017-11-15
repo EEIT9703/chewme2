@@ -15,6 +15,7 @@
 <link href="<%=request.getContextPath()%>/css/summernote.css" rel="stylesheet">
 
 <!-- Font Awesome  -->
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/font-awesome.min.css"></link>
 
 </head>
