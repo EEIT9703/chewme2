@@ -3,7 +3,7 @@ pageEncoding="UTF-8"%>
 <li class="list-group-item">
 	<div class="row">
 		<div class="col-xs-2 col-sm-1 col-md-1 col-md-offset-1 imgDiv">
-			<img src="/CHEWME2/image/guest.png" class="img-responsive"></img>
+			<img style="border-radius:50%;width:50px;height:50px" src="/CHEWME2/image/guest.png" ></img>
 		</div>
 		<div class="col-xs-8 col-sm-9 col-md-9">
 			<textarea class="full" style="resize: none;width:100%"></textarea>

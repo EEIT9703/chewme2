@@ -13,8 +13,8 @@ import com.iii.eeit9703.member.model.MemVO;
 @WebFilter(
 		urlPatterns = { "/*" }, 
 		initParams = { 
-//				@WebInitParam(name = "mustLogin1", value = "/attractions/*"), 
-//				@WebInitParam(name = "mustLogin2", value = "/act/*"), 
+				@WebInitParam(name = "mustLogin1", value = "/attractions/*"), 
+				@WebInitParam(name = "mustLogin2", value = "/act/*"), 
 				//請自行加入jsp需要過濾的頁面
 		})
 public class LoginFilter implements Filter {
@@ -39,7 +39,7 @@ public class LoginFilter implements Filter {
 			HttpServletResponse resp = (HttpServletResponse) response;
 			servletPath = req.getServletPath();  
 			contextPath = req.getContextPath();
-			requestURI  = req.getRequestURI();
+			requestURI  = "/CHEWME2/index.jsp";
 			isRequestedSessionIdValid = req.isRequestedSessionIdValid();
 			
 			if (mustLogin()) {

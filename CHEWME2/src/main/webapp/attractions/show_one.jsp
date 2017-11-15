@@ -24,12 +24,12 @@ pageEncoding="UTF-8"%>
 }
 
 #tabs-1 {
-	height: 900px;
+ 	height: 900px; 
 /* 	border:1px solid green; */
 }
 
 #tabs-2 {
-	height: 700px;
+ 	height: 700px; 
 }
 
 #img2 {
@@ -86,10 +86,9 @@ html {
  	height: 100% 
  } 
 
- body { 
- 	height: 100%; 
- 	margin: 0 20%; 
- 	padding: 0px 
+body {
+  	margin: 0 20%;  
+  	padding: 0px;  
  }    
  #button1{
  	margin:0px;
@@ -111,6 +110,7 @@ html {
 </script>
 </head>
 <body>
+	<div>
 	<header><%@include file="../header.jsp"%></header>
 	<form method="post" action="Attraction.do">
 		<div id="tabs">
@@ -154,8 +154,14 @@ html {
 							<c:when test = "${empty LoginOK}">
 								<img src = "<%=request.getContextPath()%>/attractions/img/portrait.png" width=50px height=50px style="border-radius:50%;">								
 							</c:when>
-							<c:otherwise>
+							<c:when test = "${ !empty LoginOK && empty LoginOK.memPhoto && empty picUri}">
+								<img src = "<%=request.getContextPath()%>/attractions/img/portrait.png" width=50px height=50px style="border-radius:50%;">
+							</c:when>
+							<c:when test = "${ !empty LoginOK && !empty LoginOK.memPhoto}">
 								<img src='data:image/png;base64,${LoginOK.memPhoto}' width=50px height=50px style="border-radius:50%;">
+							</c:when>
+							<c:otherwise>
+								<img src='${picUri}' style="border-radius: 50%" width=50px height=50px >
 							</c:otherwise>									
 							</c:choose>
 							</td>
@@ -252,6 +258,6 @@ html {
 	<script src="<%=request.getContextPath()%>/attractions/js/map.js"></script>  
 	<script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfX3HNjv2RvHE8gBJg5WDetgOUzjwsEpk&callback=initMap"></script>
-	
+	</div>
 </body>
 </html>

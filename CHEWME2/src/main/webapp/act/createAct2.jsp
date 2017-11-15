@@ -9,9 +9,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<!-- Font Awesome  -->
-<link href="<%=request.getContextPath()%>/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
+<!-- Font Awesome  -->
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+<link href="<%=request.getContextPath()%>/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
 <script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>

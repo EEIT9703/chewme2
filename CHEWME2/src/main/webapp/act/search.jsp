@@ -99,17 +99,20 @@ body { background-color:#ddd; }
 			</a>	
 				<div class="blog-content bg-white">
 				<img src="<%=request.getContextPath()%>/image/chewme-logo-3-1.png" width="50" height="50" style="float:left;vertical-align:middle;">
-				<h4 id="act_name" class="act_name" style="">${activityVO.act_name}</h4>
+				<h3 id="act_name" class="act_name" style="">${activityVO.act_name}</h3>
 				
 				<a class="btn-sm btn btn-info ">
                 <i class="fa fa-usd" aria-hidden="true"></i> 價格:${activityVO.act_price} 元
                 </a>
 				<a class="btn-sm btn btn-info ">
-                <span class="glyphicon glyphicon-user"></span> 目前人數:${activityVO.act_current} 人
+                <span class="glyphicon glyphicon-user"></span> 上限:${activityVO.act_groups} 人
+                </a>
+                <a class="btn-sm btn btn-danger ">
+                <span class="glyphicon glyphicon-user" ></span> 目前:${activityVO.act_current} 人
                 </a> 
 				<hr>
 				<p><span>Share : 
-				<a href="href="javascript:void(0);" onclick="window.open('http://www.facebook.com/sharer/sharer.php?u='+fbhtml_url);return false;"><i class="fa fa-facebook margin_left10" aria-hidden="true"></i></a>
+				<a href="javascript::;"><i class="fa fa-facebook margin_left10" aria-hidden="true"></i></a>
 				<a href="javascript::;"><i class="fa fa-twitter margin_left10" aria-hidden="true"></i></a>
 				<a href="javascript::;"><i class="fa fa-google-plus margin_left10" aria-hidden="true"></i></a>
 				 </span> 

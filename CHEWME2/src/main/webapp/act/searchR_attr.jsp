@@ -12,12 +12,11 @@ pageEncoding="UTF-8"%>
 				
 				<a class="btn btn-info btn-sm" href="<%=request.getContextPath()%>/attractions/show_attr.jsp">
               	<span class="glyphicon glyphicon-log-in"></span> 查看
-             	</a>  
-         
+             	</a>
 				<div>Share : 
-				<a href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent('http://www.web.com.tw/activity/index.html'))));"><i class="fa fa-facebook margin_left10" aria-hidden="true"></i></a>
-				<a href="javascript"><i class="fa fa-twitter margin_left10" aria-hidden="true"></i></a>
-				<a href="javascript"><i class="fa fa-google-plus margin_left10" aria-hidden="true"></i></a>
+					<a href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent('http://www.web.com.tw/activity/index.html'))));"><i class="fa fa-facebook margin_left10" aria-hidden="true"></i></a>
+					<a href="javascript"><i class="fa fa-twitter margin_left10" aria-hidden="true"></i></a>
+					<a href="javascript"><i class="fa fa-google-plus margin_left10" aria-hidden="true"></i></a>
 				</div>
 				 
                 <span class="pull-right">	

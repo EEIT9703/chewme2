@@ -305,7 +305,12 @@ $(function(){
 			var count=0;
 			$.each(array,function(i,activity){
 				var img ="data:image/png;base64,"+activity.act_photo;
-	         var cell1 = $('<img>').attr({"src":img})	       
+	         var cell1 = $('<img>').attr({"src":img})
+	         var alink="<%=request.getContextPath()%>"+"/act/ActivitySearch?action=searchone&name="+activity.actID;
+	         var b= $('<a></a>').attr("href",alink)
+	          b.append(cell1)
+	         
+	         
 	       	 var cell2 = $('<p></p>').text(activity.act_name);
 	         
 	         
@@ -323,7 +328,7 @@ $(function(){
 	       	// var button2=$('<button></button>').css('color','red').addClass('delete').attr({'type':'button'}).text("移除");
 	        // var cell6=$('<span><span>').append(button2)
          	 var row = $("<div></div>").addClass('item').attr({'class':'item','id':activity.actID});	 
-	       	 row.append([cell1, cell2,span,span1,span2,span3]);
+	       	 row.append([b, cell2,span,span1,span2,span3]);
 	       	fg.append(row);
   	       
 	     //  	count++;
@@ -359,7 +364,7 @@ $(function(){
 		         var cell3 = $('<td></td>').text(order.orderPeople);
 		         var cell4 = $('<td></td>').text(order.orderPrice);  
 		         var cell5 = $('<td></td>').text(order.orderTime);  
-		         var cell6 = $('<td></td>').text(order.orderStatus); 
+		         var cell6 = $('<td></td>').text("已付款"); 
 		         var row = $('<tr></tr>').append([cell1, cell2,cell3,cell4,cell5,cell6]); 
 		         tbody.append(row);
 			})
