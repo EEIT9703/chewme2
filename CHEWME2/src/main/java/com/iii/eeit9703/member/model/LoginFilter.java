@@ -13,8 +13,9 @@ import com.iii.eeit9703.member.model.MemVO;
 @WebFilter(
 		urlPatterns = { "/*" }, 
 		initParams = { 
-				@WebInitParam(name = "mustLogin1", value = "/attractions/*"), 
-				@WebInitParam(name = "mustLogin2", value = "/act/*"), 
+				@WebInitParam(name = "mustLogin1", value = "/attraction/*"), 
+				@WebInitParam(name = "mustLogin2", value = "/act/actServlet"),
+				@WebInitParam(name = "mustLogin3", value = "/actEditor/editorScuedule.jsp"), 
 				//請自行加入jsp需要過濾的頁面
 		})
 public class LoginFilter implements Filter {
