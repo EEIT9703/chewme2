@@ -112,7 +112,7 @@ body { background-color:#ddd; }
                 </a> 
 				<hr>
 				<p><span>Share : 
-				<a href="href="javascript:void(0);" onclick="window.open('http://www.facebook.com/sharer/sharer.php?u='+fbhtml_url);return false;"><i class="fa fa-facebook margin_left10" aria-hidden="true"></i></a>
+				<a href="javascript::;"><i class="fa fa-facebook margin_left10" aria-hidden="true"></i></a>
 				<a href="javascript::;"><i class="fa fa-twitter margin_left10" aria-hidden="true"></i></a>
 				<a href="javascript::;"><i class="fa fa-google-plus margin_left10" aria-hidden="true"></i></a>
 				 </span> 

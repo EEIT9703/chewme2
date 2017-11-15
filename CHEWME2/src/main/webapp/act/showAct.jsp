@@ -10,13 +10,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<link href="<%=request.getContextPath()%>/css/bootstrap355.css" rel="stylesheet">
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
-<link href="<%=request.getContextPath()%>/css/summernote.css" rel="stylesheet">
-
+<link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
 <!-- Font Awesome  -->
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/font-awesome.min.css"></link>
+<link href="<%=request.getContextPath()%>/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+<script src="<%=request.getContextPath()%>/js/jquery-3.2.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/css/summernote.css" rel="stylesheet">
 
 </head>
 
@@ -210,7 +214,7 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
 	
-	<script src="../act/js/showAct.js"></script>
+	<script src="<%=request.getContextPath()%>/act/js/showAct.js"></script>
 </body>
 <script type="text/javascript">
 
