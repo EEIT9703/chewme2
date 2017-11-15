@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>揪是ME</title>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/bootstrap.min.css">
 <!-- <link rel="stylesheet" -->
@@ -62,7 +62,7 @@ body {
 		<div class="row">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-						<h3 class="panel-title">我的資料</h3>
+						<h3 class="panel-title">揪是ME</h3>
 					</div>
 					<div class="panel-body">
 						<div class="the-price" align="center">
