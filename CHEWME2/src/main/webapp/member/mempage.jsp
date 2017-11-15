@@ -9,14 +9,26 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/com-resource/css/scrollbar2.css" />
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/chatroom.css">
+<!-- <link rel="stylesheet" -->
+<%-- 	href="<%=request.getContextPath()%>/com-resource/css/scrollbar2.css" /> --%>
+<!-- <link rel="stylesheet" -->
+<%-- 	href="<%=request.getContextPath()%>/css/chatroom.css"> --%>
 
 
 
 <style>
+.gg{
+width:800px;
+margin:0px auto;
+
+}
+body {
+	height: 100%;
+	background-repeat: no-repeat;
+	background: url(https://i.ytimg.com/vi/4kfXjatgeEU/maxresdefault.jpg);
+	font-family: 'Oxygen', sans-serif;
+	background-size: cover;
+}
 .custab {
 	border: 1px solid #ccc;
 	padding: 5px;
@@ -34,11 +46,11 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 
-<script src="<%=request.getContextPath()%>/js/chatroom.js"></script>
+<%-- <script src="<%=request.getContextPath()%>/js/chatroom.js"></script> --%>
 <!-- <script -->
 <%-- 	src="<%=request.getContextPath()%>/com-resource/js/mychatroom.js"></script> --%>
 <%-- <script src="<%=request.getContextPath()%>/chatroom/js/openWebSocket.js"></script> --%>
-<script>document.getElementById("memIntr").value =${LoginOK.memIntr};</script>
+
 </head>
 <body>
 	<header>
@@ -46,9 +58,8 @@
 	</header>
 
 <%-- 	<p hidden id="requestContextPath"><%=request.getContextPath()%></p> --%>
-	<div class="container">
+	<div class="gg" align="center">
 		<div class="row">
-			<div class="col-xs-12 col-md-6">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<h3 class="panel-title">我的資料</h3>
@@ -105,15 +116,25 @@
 						<input type="hidden" name="action" value="update">
 						<button type="submit" class="btn btn btn-primary"
 							data-toggle="modal" data-target="#editorModal">修改</button>
+							<button type="submit" class="btn btn btn-primary"
+							data-toggle="modal" data-target="#myclubModal">我的社團列表</button>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="col-xs-12 col-md-6">
-		<div class="page-header">
-			<h3>我的社團</h3>
-		</div>
+
+	<div class="modal fade" id="myclubModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					我的社團
+				</h4>
+			</div>
+			<div class="modal-body">
 		<!-- 每頁不同的內容從這裡開始 -->
 		<input type="hidden" id="memId" value="${LoginOK.memId}">
 		<table id="memClubTable" class="table table-striped custab">
@@ -128,7 +149,13 @@
 			<tfoot>
 			</tfoot>
 		</table>
+		<div align="center">
+			<a href='<%=request.getContextPath()%>/club/findClub.jsp'>來去揪社團</a></div>
 	</div>
+			</div>
+			
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
 	<div class="modal fade" id="editorModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">

@@ -39,7 +39,7 @@ public class LoginFilter implements Filter {
 			HttpServletResponse resp = (HttpServletResponse) response;
 			servletPath = req.getServletPath();  
 			contextPath = req.getContextPath();
-			requestURI  = req.getRequestURI();
+			requestURI  = "/CHEWME2/index.jsp";
 			isRequestedSessionIdValid = req.isRequestedSessionIdValid();
 			
 			if (mustLogin()) {
