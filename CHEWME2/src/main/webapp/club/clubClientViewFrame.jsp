@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -48,6 +48,10 @@ table {
 	<header><%@ include file="../header.jsp"%></header>
 	<p hidden id="userId_session" value="">${LoginOK.memId}</p>
 	<p hidden id="userName_session" value="">${LoginOK.memName}</p>
+	<p hidden id="userNickN_session" value="">${LoginOK.memNickN}</p>
+	<p hidden id="userBirth_session" value="">${LoginOK.memBirthday}</p>
+	<p hidden id="userInterest_session" value="">${LoginOK.memIntr}</p>
+	<p hidden id="userMmail_session" value="">${LoginOK.memMail}</p>
 	<p hidden id="clubIdforView" value="">${clubVOForView.clubId}</p>
 	<p hidden id="reqContextPath" value=""><%=request.getContextPath()%></p>
 	<p hidden id="reqServerName" value=""><%=request.getServerName()%></p>
