@@ -145,6 +145,7 @@ public class GoogleServlet extends HttpServlet {
 				session.setAttribute("LoginOK", mv);
 				session.setAttribute("LoginOK_MS",ms);
 				session.setAttribute("record", record);
+				session.setAttribute("picUri", jo.getString("picture"));
 				rw.write("<script>alert('登入成功！'); location.href='index.jsp';</script>");   
 	            return; 
 			}
