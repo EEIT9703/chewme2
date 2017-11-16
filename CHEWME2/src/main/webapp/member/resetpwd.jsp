@@ -111,8 +111,6 @@ ul, li {
 					確認新密碼：<input type="password" name="newPassword2" /><br />
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">關閉
-						</button>
 						<button type="submit" class="btn btn-primary">提交更改</button>
 					</div>
 				</form>
