@@ -27,6 +27,7 @@ function joinClubEventListner() {
 			$('#joinClub').hide();
 			$('#joinClub').prop('disabled','disabled');
 			$('#hello p').text('歡迎加入社員');
+			$('#clubMemberTable tbody').append('<tr><td>'+$("#userId_session").text()+'</td><td>'+$("#userName_session").text()+'</td><td>'+$("#userNickN_session").text()+'</td><td>'+$("#userBirth_session").text()+'</td><td>'+$("#userInterest_session").text()+'</td><td>'+$("#userMmail_session").text()+'</td><tr>');
 			
 		})
 	});

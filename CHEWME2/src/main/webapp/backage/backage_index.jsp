@@ -101,11 +101,11 @@
 								<ul>
 									<li><a href="#tabs-1">年度銷售額</a></li>
 									<li><a href="#tabs-2">出遊人數</a></li>
-									<li><a href="#tabs-3">人數</a></li>
+									<li><a href="#tabs-3">五大熱門景點</a></li>
 								</ul>
-								<div id="tabs-1"><div id="container" style="min-width:400px;height:400px"></div></div>
-								<div id="tabs-2"><div id="container2" style="min-width:400px;height:400px"></div></div>
-								<div id="tabs-3"><div id="container3" style="min-width:400px;height:400px"></div></div>
+								<div id="tabs-1"><div id="container" style="min-width:400px;height:500px"></div></div>
+								<div id="tabs-2"><div id="container2" style="min-width:400px;height:500px"></div></div>
+								<div id="tabs-3"><div id="container3" style="min-width:400px;height:500px"></div></div>
 							</div>
 
 
@@ -267,13 +267,13 @@ var cell4=new Array();
   	  		        yAxis: {
   	  		            min: 0,
   	  		            title: {
-  	  		                text: '人數 (people)'
+  	  		                text: '次數 (number)'
   	  		            }
   	  		        },
   	  		        tooltip: {
   	  		            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
   	  		            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-  	  		            '<td style="padding:0"><b>{point.y:.1f} 人</b></td></tr>',
+  	  		            '<td style="padding:0"><b>{point.y:.1f} 次</b></td></tr>',
   	  		            footerFormat: '</table>',
   	  		            shared: true,
   	  		            useHTML: true

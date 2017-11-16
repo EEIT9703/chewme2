@@ -79,7 +79,7 @@
                
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-10">
                     <div class="panel panel-default">
                       
                          <div class="panel-heading"> 
@@ -201,6 +201,7 @@
 								}
 							}
 						};
+  			 $("#activity>tbody>tr:nth-child(even)").css("background-color","#f1f7fe");
 						$("#activity").dataTable(opt);
 
 					}
@@ -211,7 +212,7 @@
 			  var opt =$(this).attr("selected","selected");
 			 $.post('<%=request.getContextPath()%>/activity',{'id':id,'action':'upDateActivityStatus','opt':opt.val()},function(){
 				
-				 alert("更新status成功")
+				 alert("行程已下架")
 				 
 				 
 			 })

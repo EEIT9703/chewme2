@@ -157,13 +157,13 @@
 
 <!--                     <div class="panel panel-default"> -->
 <!--                       			 預留空間	 -->
-                      			<div id="mulitplefileuploader" style="width:10px">選擇檔案</div>
+                      			<div id="mulitplefileuploader" style="width:10px;">選擇檔案</div>
                       			
 
 								<div id="status"></div>
 
-								<div id="startbutton" class="ajax-file-upload-green">Upload</div>
-<!--                     </div> -->
+								<div id="startbutton" class="ajax-file-upload-green" style="margin: 0 5px 5px 10px">Upload</div>
+<!--                     </div> --> 
                 
 <!--                     <div class="chat-panel panel panel-default"> -->
 <!--                    			預留空間 -->

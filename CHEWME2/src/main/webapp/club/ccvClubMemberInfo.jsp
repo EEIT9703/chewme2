@@ -7,9 +7,7 @@
 		<p>...</p>
 
 		<div>
-			<form id="findClubForm" action="clubClientView.do?action=chooseClub"
-				method="POST">
-				<table class="table table-hover">
+				<table class="table table-hover"  id="clubMemberTable" >
 					<thead>
 						<tr>	
 							<td></td>
@@ -42,7 +40,6 @@
 						</c:forEach>
 					</tbody>
 				</table>
-			</form>
 		</div>
 	</div>
 </div>

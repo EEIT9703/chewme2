@@ -247,7 +247,7 @@ ul, li {
 <!--           </ul> -->
 
 <div id="test" style="padding:0px">
-<div><h1>瀏覽過的行程</h1></div>
+<div><h2>瀏覽過的行程</h2></div>
 <hr color="black" size="20" width="100%"  align="left">
 <c:forEach var="ActivityVO" items="${list1}">
   <div class="user">

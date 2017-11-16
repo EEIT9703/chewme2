@@ -14,7 +14,7 @@
 <!--     	<div id="custom-search-input"> -->
         	<div class="input-group col-md-12">
         	<form method="get" action="SearchServlet">
-        	<table style="margin-left:450px;">
+        	<table style="margin-left:250px;">
         	<tr>
         		<td>
             		<input type="text" class="search-query form-control" placeholder="搜尋" id="tags" name="tags" autofocus/> 
