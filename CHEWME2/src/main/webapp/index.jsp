@@ -22,7 +22,7 @@ pageContext.setAttribute("list1", lis);
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>CHEWME</title>
+<title>CHEWME 首頁</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/BootSideMenu.css">
@@ -318,12 +318,12 @@ $(window).load(function(){
 		$ad = $('#abgne_float_ad').css('opacity', 0).show(),	// 讓廣告區塊變透明且顯示出來
 		_width = $ad.width(),
 		_height = $ad.height(),
-		_diffY = 1250, _diffX = 20,	// 距離右及下方邊距
+		_diffY = 1750, _diffX = 20,	// 距離右及下方邊距
 		_moveSpeed = 800;	// 移動的速度
  
 	// 先把 #abgne_float_ad 移動到定點
 	$ad.css({
-		top: $(document).height()*0.7-_diffY,
+		top: $(document).height()*0.2,
 		left: $win.width() - _width - _diffX,
 		opacity: 1
 	});

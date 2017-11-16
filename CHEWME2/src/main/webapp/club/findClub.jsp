@@ -6,7 +6,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>CHEWME找社團</title>
+<title>CHEWME 揪社團</title>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="css/mystyle.css">
 

@@ -45,7 +45,7 @@ text-align: center;
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>列表</title>
+<title>CHEWME 查景點</title>
 
 <script src="<%=request.getContextPath()%>/js/jquery-1.12.3.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/jquery-ui.min.js"></script>

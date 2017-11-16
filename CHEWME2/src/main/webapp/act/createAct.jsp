@@ -8,7 +8,7 @@
 <html lang="zh-tw">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>CHEWME</title>
+<title>CHEWME 揪新團</title>
 
 <link href="<%=request.getContextPath()%>/css/bootstrap.css"
 	rel="stylesheet">

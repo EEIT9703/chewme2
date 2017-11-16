@@ -25,7 +25,7 @@
 <script src="<%=request.getContextPath()%>/js/html2canvas.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>行程表  ${actID}</title>
+<title>CHEWME行程表_${actID}</title>
 </head>
 <style>
 h1{text-align: center;font-family: 'Arial','Microsoft JhengHei';}
