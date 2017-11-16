@@ -324,21 +324,20 @@ body {
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title" id="gridModalLabel">忘記密碼?</h4>
+				<h4 class="modal-title" id="gridModalLabel" style="color:#007799">忘記密碼?</h4>
 			</div>
 			<form action="<%=request.getContextPath()%>/member/forgetPwd.do" method="post">
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-md-3 col-md-offset-3">
-							<br>&nbsp;您的帳號：<input type="text" name="userId" /><br>
-							<br> &nbsp;您的信箱：<input type="text" name="userMail" /><br>
+							&nbsp;您的帳號：<input type="text" name="userId" /><br>
+							&nbsp;您的信箱：<input type="text" name="userMail" /><br>
 						</div>
 						<br />
 					</div>
 
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					<button type="submit" class="btn btn-primary">提交</button>
 				</div>
 			</form>
