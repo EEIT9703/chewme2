@@ -246,7 +246,7 @@ table {
 						data-toggle="tab" href="#my-info" role="tab"
 						aria-controls="profile">關於我們</a></li>
 					<li class="nav-item"><a class="nav-link" data-toggle="tab"
-						href="#manager-chat" role="tab" aria-controls="profile">管理員聊天</a></li>
+						href="#manager-chat" role="tab" aria-controls="profile">社團聊天</a></li>
 				</ul>
 			</div>
 			<div class="col"></div>

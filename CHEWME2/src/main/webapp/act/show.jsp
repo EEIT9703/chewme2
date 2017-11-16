@@ -8,7 +8,7 @@
 <html lang="zh-tw">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>CHEWME</title>
 
 <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet">
 <!-- Font Awesome  -->

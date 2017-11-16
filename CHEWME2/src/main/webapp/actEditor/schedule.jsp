@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery-ui.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/vertical-timeline.css">

@@ -4,7 +4,7 @@
 	<!-- Default panel contents -->
 	<div class="panel-heading">社員資訊</div>
 	<div class="panel-body" style="padding: 0;">
-		<p>...</p>
+
 
 		<div>
 				<table class="table table-hover"  id="clubMemberTable" >

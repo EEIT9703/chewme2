@@ -4,6 +4,7 @@
 <!DOCTYPE html >
 <html lang="en">
 <head>
+
 <!-- jQuery CSS & JS -->
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery-ui.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery-ui.structure.min.css">

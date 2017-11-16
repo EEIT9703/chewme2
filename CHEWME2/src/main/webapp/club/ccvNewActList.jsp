@@ -4,7 +4,7 @@
 	<!-- Default panel contents -->
 	<div class="panel-heading">推薦行程</div>
 	<div class="panel-body" style="padding: 0;">
-		<p>...</p>
+
 
 		<div class="container">
 			<form id="findClubForm" action="clubClientView.do?action=chooseClub"

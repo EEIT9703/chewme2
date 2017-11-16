@@ -22,7 +22,7 @@ pageContext.setAttribute("list1", lis);
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title></title>
+<title>CHEWME</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/BootSideMenu.css">

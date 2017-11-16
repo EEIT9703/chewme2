@@ -6,7 +6,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>CHEWME_找社團</title>
+<title>CHEWME找社團</title>
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="css/mystyle.css">
 
@@ -23,7 +23,7 @@
 			<!-- Default panel contents -->
 			<div class="panel-heading">社團名單</div>
 			<div class="panel-body" style="padding: 0;">
-				<p>...</p>
+			
 
 				<div class="container">
 					<form id="findClubForm"
