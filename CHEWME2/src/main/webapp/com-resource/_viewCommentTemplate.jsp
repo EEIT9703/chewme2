@@ -7,7 +7,7 @@
 			<img style="border-radius:50%;width:50px;height:50px" src="/CHEWME2/image/guest.png" class="img-responsive"></img>
 		</div>
 		<div class="col-xs-9 col-sm-10 col-md-10">
-			<div class="well">...</div>
+			<div class="well"></div>
 		</div>
 	</div>
 </li>
