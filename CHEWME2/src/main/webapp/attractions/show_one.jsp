@@ -24,12 +24,12 @@ pageEncoding="UTF-8"%>
 }
 
 #tabs-1 {
-	height: 900px;
+ 	height: 900px; 
 /* 	border:1px solid green; */
 }
 
 #tabs-2 {
-	height: 700px;
+ 	height: 700px; 
 }
 
 #img2 {
@@ -86,13 +86,9 @@ html {
  	height: 100% 
  } 
 
-body { 
- 	height: 1423px; 
+body {
   	margin: 0 20%;  
   	padding: 0px;  
-  	background: url(https://i.ytimg.com/vi/4kfXjatgeEU/maxresdefault.jpg); 
- 	background-repeat: no-repeat;
- 	background-size: cover;
  }    
  #button1{
  	margin:0px;
@@ -114,6 +110,7 @@ body {
 </script>
 </head>
 <body>
+	<div>
 	<header><%@include file="../header.jsp"%></header>
 	<form method="post" action="Attraction.do">
 		<div id="tabs">
@@ -261,6 +258,6 @@ body {
 	<script src="<%=request.getContextPath()%>/attractions/js/map.js"></script>  
 	<script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfX3HNjv2RvHE8gBJg5WDetgOUzjwsEpk&callback=initMap"></script>
-	
+	</div>
 </body>
 </html>

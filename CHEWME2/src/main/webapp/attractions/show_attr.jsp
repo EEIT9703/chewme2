@@ -4,7 +4,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.iii.eeit9703.crawler.model.*"%>
 <%
-// 	AttrVO attrVO = (AttrVO) request.getAttribute("attrVO");
+ 	AttrVO attrVO = (AttrVO) request.getAttribute("attrVO");
 %>
 <!DOCTYPE html>
 <html>
